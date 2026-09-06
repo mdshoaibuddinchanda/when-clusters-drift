@@ -3,6 +3,22 @@
 from clusterdrift.data.canonicalize import canonicalize_bundle
 from clusterdrift.data.downloader import DatasetDownloader
 from clusterdrift.data.manifest import ManifestManager, compute_file_sha256
+from clusterdrift.data.folds import (
+    FoldSplit,
+    InnerFold,
+    compute_split_hash,
+    generate_group_kfold_splits,
+    generate_kfold_splits,
+    generate_tableshift_natural_splits,
+    generate_temporal_block_splits,
+    generate_whyshift_natural_splits,
+    save_fold_split_artifacts,
+    verify_split_artifact,
+)
+from clusterdrift.data.preprocess import (
+    SourceOnlyPreprocessor,
+    build_preprocessor,
+)
 from clusterdrift.data.registry import (
     get_dataset_spec,
     get_synthetic_spec,
@@ -52,4 +68,17 @@ __all__ = [
     "ManifestManager",
     "DataValidator",
     "compute_file_sha256",
+    "FoldSplit",
+    "InnerFold",
+    "compute_split_hash",
+    "generate_kfold_splits",
+    "generate_group_kfold_splits",
+    "generate_temporal_block_splits",
+    "generate_whyshift_natural_splits",
+    "generate_tableshift_natural_splits",
+    "save_fold_split_artifacts",
+    "verify_split_artifact",
+    "SourceOnlyPreprocessor",
+    "build_preprocessor",
 ]
+

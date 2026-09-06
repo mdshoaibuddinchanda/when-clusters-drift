@@ -1,0 +1,26 @@
+protocol_version: 1
+
+splitting:
+  outer_folds: 5
+  inner_folds: 3
+  split_seed: 20260907
+
+preprocessing:
+  output_dtype: float32
+
+  numeric:
+    imputer: median
+    scaler: standard
+
+  categorical:
+    imputer: most_frequent
+    encoder: onehot
+    handle_unknown: ignore
+    min_frequency: 0.01
+
+  ordinal:
+    policy: onehot_unless_explicit_order
+
+  boolean:
+    imputer: most_frequent
+    encoding: zero_one

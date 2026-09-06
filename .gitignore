@@ -38,6 +38,10 @@ results/**
 # Preserve gitkeep, manifests, and documentation
 !data/processed/.gitkeep
 !data/splits/.gitkeep
+!data/splits/phase2_input_lock.json
+!data/splits/split_manifest.json
+!data/splits/preprocessing_audit.csv
+!data/splits/**/*.json
 !data/manifests/**
 !data/README.md
 

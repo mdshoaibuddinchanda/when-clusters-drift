@@ -1,0 +1,431 @@
+{
+  "phase1_freeze_commit": "d5cb818589a138b25f10e926e9e83b198d369599",
+  "created_at": "2026-09-06T19:20:52Z",
+  "split_seed": 20260907,
+  "outer_folds": 5,
+  "inner_folds": 3,
+  "total_eligible_datasets": 34,
+  "total_partitions": 46,
+  "eligible_datasets": {
+    "iris": {
+      "dataset_group": "controlled_real",
+      "source_provider": "sklearn",
+      "split_strategy": "kfold",
+      "canonical_dir": "data/canonical/controlled/iris",
+      "canonical_bundle_sha256": "06a7bea1035adc450f695977cf5ff01ec45cd7cb140a5e8f23ad103da0949a27",
+      "row_count": 150,
+      "feature_count": 4,
+      "date_of_freeze": "2026-09-07"
+    },
+    "wine": {
+      "dataset_group": "controlled_real",
+      "source_provider": "sklearn",
+      "split_strategy": "kfold",
+      "canonical_dir": "data/canonical/controlled/wine",
+      "canonical_bundle_sha256": "e8e4dc77b2c204df11aa1323495507605c5f904eb1175ef5a9629f3cd9dc821b",
+      "row_count": 178,
+      "feature_count": 13,
+      "date_of_freeze": "2026-09-07"
+    },
+    "seeds": {
+      "dataset_group": "controlled_real",
+      "source_provider": "openml",
+      "split_strategy": "kfold",
+      "canonical_dir": "data/canonical/controlled/seeds",
+      "canonical_bundle_sha256": "b3cc7798de38b4f5b40a3c0e9c6afe0d0368422198cadfc4c80412cc739c8dc9",
+      "row_count": 210,
+      "feature_count": 7,
+      "date_of_freeze": "2026-09-07"
+    },
+    "glass": {
+      "dataset_group": "controlled_real",
+      "source_provider": "openml",
+      "split_strategy": "kfold",
+      "canonical_dir": "data/canonical/controlled/glass",
+      "canonical_bundle_sha256": "acc0be0fc68cc97c452475bbe1f35dae27d8dbdf8877445b022b26a4c1da4ba6",
+      "row_count": 214,
+      "feature_count": 9,
+      "date_of_freeze": "2026-09-07"
+    },
+    "ecoli": {
+      "dataset_group": "controlled_real",
+      "source_provider": "openml",
+      "split_strategy": "kfold",
+      "canonical_dir": "data/canonical/controlled/ecoli",
+      "canonical_bundle_sha256": "b5ef6012bb4ec53a31808fbfd354ec7463b1ca2aac940be4ede819f6bc5fa2d2",
+      "row_count": 336,
+      "feature_count": 7,
+      "date_of_freeze": "2026-09-07"
+    },
+    "yeast": {
+      "dataset_group": "controlled_real",
+      "source_provider": "openml",
+      "split_strategy": "kfold",
+      "canonical_dir": "data/canonical/controlled/yeast",
+      "canonical_bundle_sha256": "bbb1ad8a894a4c00778d3713ac65ffdaabf42a343f2b8647ba4e4113109800b2",
+      "row_count": 1484,
+      "feature_count": 8,
+      "date_of_freeze": "2026-09-07"
+    },
+    "vehicle_silhouettes": {
+      "dataset_group": "controlled_real",
+      "source_provider": "openml",
+      "split_strategy": "kfold",
+      "canonical_dir": "data/canonical/controlled/vehicle_silhouettes",
+      "canonical_bundle_sha256": "c0507977add20d390908e1c8c7a062c6b6ca6541c4dc869a44c13794ca49a398",
+      "row_count": 846,
+      "feature_count": 18,
+      "date_of_freeze": "2026-09-07"
+    },
+    "image_segmentation": {
+      "dataset_group": "controlled_real",
+      "source_provider": "openml",
+      "split_strategy": "kfold",
+      "canonical_dir": "data/canonical/controlled/image_segmentation",
+      "canonical_bundle_sha256": "e9017e8d991e2aa03cfea07890801b98fc755002fb49c488b1c4aed738fbec2c",
+      "row_count": 2310,
+      "feature_count": 18,
+      "date_of_freeze": "2026-09-07"
+    },
+    "satimage": {
+      "dataset_group": "controlled_real",
+      "source_provider": "openml",
+      "split_strategy": "kfold",
+      "canonical_dir": "data/canonical/controlled/satimage",
+      "canonical_bundle_sha256": "8e702b9bbdc62768177559086a346cb6a1325977914749d51348e8430355efbf",
+      "row_count": 6430,
+      "feature_count": 36,
+      "date_of_freeze": "2026-09-07"
+    },
+    "pendigits": {
+      "dataset_group": "controlled_real",
+      "source_provider": "openml",
+      "split_strategy": "kfold",
+      "canonical_dir": "data/canonical/controlled/pendigits",
+      "canonical_bundle_sha256": "e065779699b3acda40abd0b01e76c6cc6adcd12338c4a55bf084f8e8e362629e",
+      "row_count": 10992,
+      "feature_count": 16,
+      "date_of_freeze": "2026-09-07"
+    },
+    "optdigits": {
+      "dataset_group": "controlled_real",
+      "source_provider": "openml",
+      "split_strategy": "kfold",
+      "canonical_dir": "data/canonical/controlled/optdigits",
+      "canonical_bundle_sha256": "e4fcad9bbe56b5d128035baad54b4bf0da8fd86be5cd4328c3121f841695440e",
+      "row_count": 5620,
+      "feature_count": 64,
+      "date_of_freeze": "2026-09-07"
+    },
+    "letter_recognition": {
+      "dataset_group": "controlled_real",
+      "source_provider": "openml",
+      "split_strategy": "kfold",
+      "canonical_dir": "data/canonical/controlled/letter_recognition",
+      "canonical_bundle_sha256": "a21977d09b6b9b1f163d1e3d027900639183d0ce004d9b67193a04bb8465c146",
+      "row_count": 20000,
+      "feature_count": 16,
+      "date_of_freeze": "2026-09-07"
+    },
+    "banknote_authentication": {
+      "dataset_group": "controlled_real",
+      "source_provider": "openml",
+      "split_strategy": "kfold",
+      "canonical_dir": "data/canonical/controlled/banknote_authentication",
+      "canonical_bundle_sha256": "445ead712220b311e3ec7121840f3305395773e51d1ddc83a5fc0bfd45183a7d",
+      "row_count": 1372,
+      "feature_count": 4,
+      "date_of_freeze": "2026-09-07"
+    },
+    "ionosphere": {
+      "dataset_group": "controlled_real",
+      "source_provider": "openml",
+      "split_strategy": "kfold",
+      "canonical_dir": "data/canonical/controlled/ionosphere",
+      "canonical_bundle_sha256": "eca7d42d83ca60d905dd826974f997f3fb761b8e1d9313e5069f69d54aa1908a",
+      "row_count": 351,
+      "feature_count": 34,
+      "date_of_freeze": "2026-09-07"
+    },
+    "sonar": {
+      "dataset_group": "controlled_real",
+      "source_provider": "openml",
+      "split_strategy": "kfold",
+      "canonical_dir": "data/canonical/controlled/sonar",
+      "canonical_bundle_sha256": "a96acdbe229653c3b5388efaa8612239923efc26ef719bb86afa24301f4337f6",
+      "row_count": 208,
+      "feature_count": 60,
+      "date_of_freeze": "2026-09-07"
+    },
+    "breast_cancer_wisconsin_diagnostic": {
+      "dataset_group": "controlled_real",
+      "source_provider": "sklearn",
+      "split_strategy": "kfold",
+      "canonical_dir": "data/canonical/controlled/breast_cancer_wisconsin_diagnostic",
+      "canonical_bundle_sha256": "afbaa0e3d7da94dd224c489771b90fa0db77875ee64c74a2dd26a31d0884eac1",
+      "row_count": 569,
+      "feature_count": 30,
+      "date_of_freeze": "2026-09-07"
+    },
+    "pima_diabetes": {
+      "dataset_group": "controlled_real",
+      "source_provider": "openml",
+      "split_strategy": "kfold",
+      "canonical_dir": "data/canonical/controlled/pima_diabetes",
+      "canonical_bundle_sha256": "27fed1028d76076c513c75a26e3b31e211b5ca6116b72d0c35638b41d15c0c93",
+      "row_count": 768,
+      "feature_count": 8,
+      "date_of_freeze": "2026-09-07"
+    },
+    "heart_disease": {
+      "dataset_group": "controlled_real",
+      "source_provider": "openml",
+      "split_strategy": "kfold",
+      "canonical_dir": "data/canonical/controlled/heart_disease",
+      "canonical_bundle_sha256": "6e911376a9efb14d8854f88a603a01dd992892b8151023dbbbef9df750a45879",
+      "row_count": 294,
+      "feature_count": 13,
+      "date_of_freeze": "2026-09-07"
+    },
+    "haberman_survival": {
+      "dataset_group": "controlled_real",
+      "source_provider": "openml",
+      "split_strategy": "kfold",
+      "canonical_dir": "data/canonical/controlled/haberman_survival",
+      "canonical_bundle_sha256": "ff79a9f41b62db1f4c4927745c0d1ffad2c814a40904535067e46ba412a2d763",
+      "row_count": 306,
+      "feature_count": 3,
+      "date_of_freeze": "2026-09-07"
+    },
+    "dermatology": {
+      "dataset_group": "controlled_real",
+      "source_provider": "openml",
+      "split_strategy": "kfold",
+      "canonical_dir": "data/canonical/controlled/dermatology",
+      "canonical_bundle_sha256": "e8ca74df36fa9d2b9d7b9627cd2ccf8d0306bd343ca2424d23a375d2c3d7c229",
+      "row_count": 366,
+      "feature_count": 34,
+      "date_of_freeze": "2026-09-07"
+    },
+    "balance_scale": {
+      "dataset_group": "controlled_real",
+      "source_provider": "openml",
+      "split_strategy": "kfold",
+      "canonical_dir": "data/canonical/controlled/balance_scale",
+      "canonical_bundle_sha256": "bcd795f2be7918189f21a739b48ad5583dcdae8efdbd23256b9c574f6c7d3d66",
+      "row_count": 625,
+      "feature_count": 4,
+      "date_of_freeze": "2026-09-07"
+    },
+    "waveform": {
+      "dataset_group": "controlled_real",
+      "source_provider": "openml",
+      "split_strategy": "kfold",
+      "canonical_dir": "data/canonical/controlled/waveform",
+      "canonical_bundle_sha256": "31699e04c4591627b65e494edd2907ccd9baff40ac9f42e0210afbb13f43f74e",
+      "row_count": 5000,
+      "feature_count": 40,
+      "date_of_freeze": "2026-09-07"
+    },
+    "spambase": {
+      "dataset_group": "controlled_real",
+      "source_provider": "openml",
+      "split_strategy": "kfold",
+      "canonical_dir": "data/canonical/controlled/spambase",
+      "canonical_bundle_sha256": "df45af075f8d5419d64bc7c81db9ddad980bd2bad5380309af81ade8608ba4b6",
+      "row_count": 4601,
+      "feature_count": 57,
+      "date_of_freeze": "2026-09-07"
+    },
+    "mice_protein_expression": {
+      "dataset_group": "controlled_real",
+      "source_provider": "uci",
+      "split_strategy": "group_kfold",
+      "canonical_dir": "data/canonical/controlled/mice_protein_expression",
+      "canonical_bundle_sha256": "0ad1f7f847c84b9cc5299bd05d8823b1dbd152612c6fc50bb458fec212d7c8c4",
+      "row_count": 1080,
+      "feature_count": 77,
+      "date_of_freeze": "2026-09-07"
+    },
+    "human_activity_recognition": {
+      "dataset_group": "controlled_real",
+      "source_provider": "uci",
+      "split_strategy": "group_kfold",
+      "canonical_dir": "data/canonical/controlled/human_activity_recognition",
+      "canonical_bundle_sha256": "e4b7891aba45f2e8dbf36e0f779a1d244f0f60f4120b356a22f02cac37d5fd38",
+      "row_count": 10299,
+      "feature_count": 561,
+      "date_of_freeze": "2026-09-07"
+    },
+    "isolet": {
+      "dataset_group": "controlled_real",
+      "source_provider": "openml",
+      "split_strategy": "kfold",
+      "canonical_dir": "data/canonical/controlled/isolet",
+      "canonical_bundle_sha256": "9d069e37146d31022ec288e3c2fbbadfba07e43cfc2a6af6f95be6532938d4cf",
+      "row_count": 7797,
+      "feature_count": 617,
+      "date_of_freeze": "2026-09-07"
+    },
+    "madelon": {
+      "dataset_group": "controlled_real",
+      "source_provider": "openml",
+      "split_strategy": "kfold",
+      "canonical_dir": "data/canonical/controlled/madelon",
+      "canonical_bundle_sha256": "01e0b4dc6a3e5b03571a28533edcd03cfcd59e9651104a7a607cdc35821f3a4e",
+      "row_count": 2600,
+      "feature_count": 500,
+      "date_of_freeze": "2026-09-07"
+    },
+    "electricity": {
+      "dataset_group": "controlled_real",
+      "source_provider": "openml",
+      "split_strategy": "temporal_block",
+      "canonical_dir": "data/canonical/controlled/electricity",
+      "canonical_bundle_sha256": "bd0134d8ec032b0cb125d6395ddb0b6fe9f751efcb5b2961d4803f89cb4b8605",
+      "row_count": 45312,
+      "feature_count": 8,
+      "date_of_freeze": "2026-09-07"
+    },
+    "bank_marketing": {
+      "dataset_group": "controlled_real",
+      "source_provider": "openml",
+      "split_strategy": "kfold",
+      "canonical_dir": "data/canonical/controlled/bank_marketing",
+      "canonical_bundle_sha256": "8289c4fcf072e69c19e8d9f0340825d6fe0cacf8a7a497ac08441eb0fce7a58b",
+      "row_count": 45211,
+      "feature_count": 16,
+      "date_of_freeze": "2026-09-07"
+    },
+    "aps_failure": {
+      "dataset_group": "controlled_real",
+      "source_provider": "openml",
+      "split_strategy": "kfold",
+      "canonical_dir": "data/canonical/controlled/aps_failure",
+      "canonical_bundle_sha256": "ce3e2676f0650e30fcd51f698c0909651e832dbcb922c33ff77a72dd235b1350",
+      "row_count": 76000,
+      "feature_count": 170,
+      "date_of_freeze": "2026-09-07"
+    },
+    "whyshift_acs_income": {
+      "dataset_group": "natural_shift",
+      "source_provider": "whyshift",
+      "split_strategy": "natural_domain",
+      "canonical_dir": "data/canonical/natural/whyshift/income",
+      "domains": [
+        "CA",
+        "FL",
+        "NY",
+        "PA",
+        "TX"
+      ],
+      "canonical_bundle_sha256": {
+        "CA": "ce9520f45bf8d341c6a64be458c80dc01dc2a34e45065e5b23a1481dc9a4b581",
+        "FL": "567b67d61a04a4562cc3e91ee5668debce9b8bcd5550d0833b12c526f466e2dd",
+        "NY": "ffd81a09bc9808502614293f23aec6a10ab4863931bfa5847243a240f95a839b",
+        "PA": "06f857feb05286b5bb7ae00319903f308583081d6e05e740bafdd619087f6591",
+        "TX": "85bf70cb6acab326568ad7e3e7f46317ae3805963cf09d9e19e44b1de95e9155"
+      },
+      "row_count": {
+        "CA": 195665,
+        "FL": 98925,
+        "NY": 103021,
+        "PA": 68308,
+        "TX": 135924
+      },
+      "feature_count": 76,
+      "date_of_freeze": "2026-09-07"
+    },
+    "whyshift_acs_pubcov": {
+      "dataset_group": "natural_shift",
+      "source_provider": "whyshift",
+      "split_strategy": "natural_domain",
+      "canonical_dir": "data/canonical/natural/whyshift/pubcov",
+      "domains": [
+        "CA",
+        "FL",
+        "NY",
+        "PA",
+        "TX"
+      ],
+      "canonical_bundle_sha256": {
+        "CA": "0796f5a3caed34972169bc79b2bfbc3a403e2402533e294923a7c71ae2ff1586",
+        "FL": "e38afdaf6a97f4902d69653d125c53d2f42c6f09179b21aab838c9b128a5e2b4",
+        "NY": "0264af6f8045e31213c534130039b973ff13105b9b4b57ff23387137e6e07fd3",
+        "PA": "42357500167dc39305aafdf0d6ec406d31d4fb3aafe98b4eb40fae71ed3e6a8f",
+        "TX": "22579cf8da7106789ef2d6ac3006086646a3cbe890c183988f260a9a66c1d707"
+      },
+      "row_count": {
+        "CA": 138554,
+        "FL": 71297,
+        "NY": 67551,
+        "PA": 44081,
+        "TX": 98928
+      },
+      "feature_count": 42,
+      "date_of_freeze": "2026-09-07"
+    },
+    "whyshift_acs_mobility": {
+      "dataset_group": "natural_shift",
+      "source_provider": "whyshift",
+      "split_strategy": "natural_domain",
+      "canonical_dir": "data/canonical/natural/whyshift/mobility",
+      "domains": [
+        "CA",
+        "FL",
+        "NY",
+        "PA",
+        "TX"
+      ],
+      "canonical_bundle_sha256": {
+        "CA": "778143a4ba0c5bc4b96ec406813e7c09b57e6343372d49531195b6f05efa267b",
+        "FL": "eebbe1837a9701ce9ec2414e6f12fc6f42533f432270194006d650f95ff1aab7",
+        "NY": "e34b20dd015bf35fd0c869d071cd15c52717158114e026b5ecc43ebafb0d15d0",
+        "PA": "36c178d2ff2e1bd7809efd648ab1002d81f365ca48e55bd869dffc0f1887d24f",
+        "TX": "0f58e325a0daabf357dddcb6d67db2ccd83d09fe944445a68396f543879b75c4"
+      },
+      "row_count": {
+        "CA": 80329,
+        "FL": 34491,
+        "NY": 40463,
+        "PA": 23918,
+        "TX": 53312
+      },
+      "feature_count": 63,
+      "date_of_freeze": "2026-09-07"
+    },
+    "tableshift_hospital_readmission": {
+      "dataset_group": "natural_shift",
+      "source_provider": "tableshift",
+      "split_strategy": "natural_domain",
+      "canonical_dir": "data/canonical/natural/tableshift/tableshift_hospital_readmission",
+      "canonical_bundle_sha256": "3a6aff0c2189a01f5a4f4ae3f3861f39865fb8ed8a3a6f61a62ef8f43852aff5",
+      "row_count": 99493,
+      "feature_count": 46,
+      "domain_column": "admission_source_id",
+      "date_of_freeze": "2026-09-07"
+    }
+  },
+  "excluded_datasets": [
+    {
+      "dataset_id": "whyshift_taxi",
+      "reason": "Raw download required; no Phase-1 canonical bundle present in data/canonical/."
+    },
+    {
+      "dataset_id": "whyshift_us_accidents",
+      "reason": "Raw download required; no Phase-1 canonical bundle present in data/canonical/."
+    },
+    {
+      "dataset_id": "tableshift_college_scorecard",
+      "reason": "Raw download required; no Phase-1 canonical bundle present in data/canonical/."
+    },
+    {
+      "dataset_id": "tableshift_heloc",
+      "reason": "Raw download required; no Phase-1 canonical bundle present in data/canonical/."
+    },
+    {
+      "dataset_id": "tableshift_assistments",
+      "reason": "Raw download required; no Phase-1 canonical bundle present in data/canonical/."
+    }
+  ]
+}
