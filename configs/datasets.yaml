@@ -1207,37 +1207,6 @@ real_datasets:
     split_strategy: natural_domain
     group_column: null
     time_column: null
-  tableshift_childhood_lead:
-    id: tableshift_childhood_lead
-    display_name: TableShift Childhood Blood Lead
-    dataset_group: natural_shift
-    source_provider: tableshift
-    source_type: external_archive
-    source_url: https://github.com/mlfoundations/tableshift
-    source_id: childhood_lead
-    source_version: '2023'
-    download_mode: auth_required
-    license: Open Data
-    citation: 'Gardner, J., Popovic, Z., & Schmidt, L. (2023). TableShift: A Benchmark
-      for Distribution Shift in Tabular Data. NeurIPS 2023.'
-    target_column: target
-    domain_column: poverty_tier
-    id_columns: []
-    drop_columns: []
-    expected_min_rows: 5000
-    expected_min_features: 15
-    expected_classes: 2
-    has_missing_values: false
-    categorical_features: []
-    notes: Elevated childhood blood lead levels shifted across county poverty levels.
-      Requires TableShift nhanes_lead archive.
-    domain_metadata:
-      split_type: socio_economic
-      source_domain: high_income
-      target_domain: low_income
-    split_strategy: natural_domain
-    group_column: null
-    time_column: null
   tableshift_heloc:
     id: tableshift_heloc
     display_name: TableShift FICO HELOC

@@ -7,14 +7,14 @@ This directory contains the dataset acquisition, storage, unpacking, and validat
 
 ## 1. Quick Summary of Datasets
 
-When everything is fully set up, the repository manages **48 total datasets and benchmark families**:
+When everything is fully set up, the repository manages **47 total datasets and benchmark families**:
 
 | Category | Registered | Currently Canonicalized | Status | Notes |
 |---|---|---|---|---|
 | **Controlled Real Datasets** | **30** | **30 / 30** | ✅ 100% Complete | Standard tabular benchmarks (sklearn + OpenML + UCI) |
-| **Natural-Shift Real Datasets** | **10** | **4 / 10** (16 state/domain partitions) | 🟡 In Progress / Raw Placed | 4 canonicalized + 4 raw placed (HELOC, ASSISTments, Scorecard, Accidents) + 2 pending |
+| **Natural-Shift Real Datasets** | **9** | **4 / 9** (16 state/domain partitions) | 🟡 In Progress / Raw Placed | 4 canonicalized + 4 raw placed (HELOC, ASSISTments, Scorecard, Accidents) + 1 pending (Taxi train) |
 | **Synthetic Benchmark Families** | **8** | **8 / 8** | ✅ 100% Complete | Gaussian mixtures & Student-t with exact soft posterior truth |
-| **Total Benchmark Universe** | **48** | **42 active units / partitions** | — | Over **1,685,789 observations** in canonical format |
+| **Total Benchmark Universe** | **47** | **42 active units / partitions** | — | Over **1,685,789 observations** in canonical format |
 
 ---
 
@@ -30,13 +30,12 @@ data/
 │       │   ├── mobility/     # Raw Census PUMS state CSVs (CA, FL, NY, PA, TX)
 │       │   ├── pubcov/       # Raw Census PUMS state CSVs (CA, FL, NY, PA, TX)
 │       │   ├── whyshift_us_accidents/ # US_Accidents_March23.csv (~2.9 GB)
-│       │   └── whyshift_taxi/         # NYC Taxi Trip Duration
+│       │   └── whyshift_taxi/         # NYC Taxi Trip Duration (test.csv placed, train.csv pending)
 │       └── tableshift/
 │           ├── tableshift_hospital_readmission/ # diabetes_130_us_hospitals.zip
 │           ├── tableshift_college_scorecard/    # Most-Recent-Cohorts & historical files
 │           ├── tableshift_heloc/                # heloc_dataset_v1.csv
-│           ├── tableshift_assistments/          # 2012-2013-data-with-predictions-4-final.csv (~3.0 GB)
-│           └── tableshift_childhood_lead/       # NHANES SAS Transport XPT files
+│           └── tableshift_assistments/          # 2012-2013-data-with-predictions-4-final.csv (~3.0 GB)
 │
 ├── canonical/                # Standardized, label-isolated Parquet partitions (GITIGNORED)
 │   ├── controlled/           # 30 controlled real datasets (features.parquet, labels.parquet, metadata.json, optional groups.parquet)
@@ -74,7 +73,7 @@ data/
 To acquire and canonicalize all available automated datasets:
 
 ```bash
-# Acquire all 40 registered real datasets
+# Acquire all registered real datasets
 python scripts/01_download_real_datasets.py --all
 
 # Or acquire a specific group:
@@ -125,7 +124,6 @@ For datasets requiring manual download or platform credentials, place raw files 
 | **US Accidents** (`whyshift_us_accidents`) | `data/raw/natural/whyshift/whyshift_us_accidents/` | `US_Accidents_March23.csv` | Download `archive.zip` from [Kaggle US Accidents](https://www.kaggle.com/datasets/sobhanmoosavi/us-accidents), extract CSV. |
 | **College Scorecard** (`tableshift_college_scorecard`) | `data/raw/natural/tableshift/tableshift_college_scorecard/` | `Most-Recent-Cohorts-Institution.csv` & cohorts | Download `College_Scorecard_Raw_Data_*.zip` from [College Scorecard](https://collegescorecard.ed.gov/data/), extract all files. |
 | **NYC Taxi** (`whyshift_taxi`) | `data/raw/natural/whyshift/whyshift_taxi/` | `train.csv` | Download `train.zip` from [Kaggle NYC Taxi](https://www.kaggle.com/competitions/nyc-taxi-trip-duration/data), extract `train.csv`. |
-| **Childhood Lead** (`tableshift_childhood_lead`) | `data/raw/natural/tableshift/tableshift_childhood_lead/` | CDC NHANES `.XPT` files | CDC NHANES survey files (Demographics & Blood Lead). Built programmatically via TableShift. |
 
 #### Safe Unpacking Pattern
 Always extract downloaded archives directly into their destination folder and remove the `.zip` file to save disk space and keep the repository root clean:
@@ -137,7 +135,62 @@ Remove-Item "College_Scorecard_Raw_Data_06102026.zip"
 
 ---
 
-## 4. Why Each Dataset is Included
+## 4. Upstream Repositories and Direct Source Links
+
+### A. Controlled Real Datasets (30 Datasets)
+
+| Slug | Provider | Source ID | Upstream Link |
+|---|---|---|---|
+| `iris` | scikit-learn | `load_iris` | [scikit-learn Iris](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_iris.html) |
+| `wine` | scikit-learn | `load_wine` | [scikit-learn Wine](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_wine.html) |
+| `breast_cancer_wisconsin_diagnostic` | scikit-learn | `load_breast_cancer` | [scikit-learn Breast Cancer](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_breast_cancer.html) |
+| `seeds` | OpenML | 1499 | [OpenML 1499](https://www.openml.org/d/1499) |
+| `glass` | OpenML | 41 | [OpenML 41](https://www.openml.org/d/41) |
+| `ecoli` | OpenML | 39 | [OpenML 39](https://www.openml.org/d/39) |
+| `yeast` | OpenML | 181 | [OpenML 181](https://www.openml.org/d/181) |
+| `vehicle_silhouettes` | OpenML | 54 | [OpenML 54](https://www.openml.org/d/54) |
+| `image_segmentation` | OpenML | 40984 | [OpenML 40984](https://www.openml.org/d/40984) |
+| `satimage` | OpenML | 182 | [OpenML 182](https://www.openml.org/d/182) |
+| `pendigits` | OpenML | 32 | [OpenML 32](https://www.openml.org/d/32) |
+| `optdigits` | OpenML | 28 | [OpenML 28](https://www.openml.org/d/28) |
+| `letter_recognition` | OpenML | 6 | [OpenML 6](https://www.openml.org/d/6) |
+| `banknote_authentication` | OpenML | 1462 | [OpenML 1462](https://www.openml.org/d/1462) |
+| `ionosphere` | OpenML | 59 | [OpenML 59](https://www.openml.org/d/59) |
+| `sonar` | OpenML | 40 | [OpenML 40](https://www.openml.org/d/40) |
+| `pima_diabetes` | OpenML | 37 | [OpenML 37](https://www.openml.org/d/37) |
+| `heart_disease` | OpenML | 1565 | [OpenML 1565](https://www.openml.org/d/1565) |
+| `haberman_survival` | OpenML | 43 | [OpenML 43](https://www.openml.org/d/43) |
+| `dermatology` | OpenML | 35 | [OpenML 35](https://www.openml.org/d/35) |
+| `balance_scale` | OpenML | 11 | [OpenML 11](https://www.openml.org/d/11) |
+| `waveform` | OpenML | 60 | [OpenML 60](https://www.openml.org/d/60) |
+| `spambase` | OpenML | 44 | [OpenML 44](https://www.openml.org/d/44) |
+| `isolet` | OpenML | 300 | [OpenML 300](https://www.openml.org/d/300) |
+| `madelon` | OpenML | 1485 | [OpenML 1485](https://www.openml.org/d/1485) |
+| `electricity` | OpenML | 151 | [OpenML 151](https://www.openml.org/d/151) |
+| `bank_marketing` | OpenML | 1461 | [OpenML 1461](https://www.openml.org/d/1461) |
+| `aps_failure` | OpenML | 41138 | [OpenML 41138](https://www.openml.org/d/41138) |
+| `human_activity_recognition` | UCI | 240 | [UCI HAR Dataset](https://archive.ics.uci.edu/dataset/240/human+activity+recognition+using+smartphones) |
+| `mice_protein_expression` | UCI | 342 | [UCI Mice Protein Dataset](https://archive.ics.uci.edu/dataset/342/mice+protein+expression) |
+
+---
+
+### B. Natural-Shift Real Datasets (9 Datasets)
+
+| Slug | Benchmark Provider | Upstream Source Link |
+|---|---|---|
+| `whyshift_acs_income` | WhyShift / Census PUMS | [namkoong-lab/whyshift](https://github.com/namkoong-lab/whyshift) |
+| `whyshift_acs_pubcov` | WhyShift / Census PUMS | [namkoong-lab/whyshift](https://github.com/namkoong-lab/whyshift) |
+| `whyshift_acs_mobility` | WhyShift / Census PUMS | [namkoong-lab/whyshift](https://github.com/namkoong-lab/whyshift) |
+| `whyshift_us_accidents` | WhyShift / Kaggle | [Kaggle US Accidents](https://www.kaggle.com/datasets/sobhanmoosavi/us-accidents) |
+| `whyshift_taxi` | WhyShift / Kaggle | [Kaggle NYC Taxi Trip Duration](https://www.kaggle.com/competitions/nyc-taxi-trip-duration/data) |
+| `tableshift_hospital_readmission` | TableShift / UCI 296 | [UCI Diabetes 130-US Hospitals](https://archive.ics.uci.edu/dataset/296/diabetes+130-us+hospitals+for+years+1999-2008) |
+| `tableshift_heloc` | TableShift / FICO | [FICO Challenge](https://community.fico.com/s/explainable-machine-learning-challenge) / [Mirror](https://raw.githubusercontent.com/patrickmthisi/FICO-Homeloan-credit-classification/main/heloc_dataset_v1.csv) |
+| `tableshift_college_scorecard` | TableShift / Dept. of Ed. | [College Scorecard Data](https://collegescorecard.ed.gov/data/) |
+| `tableshift_assistments` | TableShift / Kaggle | [Kaggle ASSISTments 2012–2013](https://www.kaggle.com/datasets/nicolaswattiez/skillbuilder-data-2009-2010) |
+
+---
+
+## 5. Why Each Dataset is Included
 
 ### 1. 30 Controlled Real Datasets
 * **Purpose**: Establish baseline clustering performance and evaluate how standard algorithms (k-means, FCM, GMM) behave under controlled artificial drift (feature dropout, covariance scaling, mean shift).
@@ -151,7 +204,7 @@ Remove-Item "College_Scorecard_Raw_Data_06102026.zip"
     - `human_activity_recognition` (UCI 240): $10,299 \times 561$, 6 activity classes, grouped across 30 distinct human subjects (`subject_id`).
     - `mice_protein_expression` (UCI 342): $1,080 \times 77$, 8 genotype/treatment classes, grouped across 72 biological mice (`mouse_subject_id`).
 
-### 2. 10 Natural-Shift Real Datasets
+### 2. 9 Natural-Shift Real Datasets
 * **Purpose**: Evaluate label-free failure prediction under genuine, naturally occurring distribution shifts across geographic states, hospital systems, educational cohorts, and socio-economic tiers.
 * **Composition**:
   - *WhyShift Spatial Partitions*:
@@ -165,7 +218,6 @@ Remove-Item "College_Scorecard_Raw_Data_06102026.zip"
     - `tableshift_heloc` (FICO credit risk performance shifted across risk tiers)
     - `tableshift_college_scorecard` (Graduation outcomes shifted between public and private universities)
     - `tableshift_assistments` (Online tutoring accuracy shifted across different school cohorts)
-    - `tableshift_childhood_lead` (Elevated blood lead shifted across household poverty tiers)
 
 ### 3. 8 Synthetic Benchmark Families
 * **Purpose**: Provide mathematical ground truth for soft clustering memberships ($\sum_k \tau_{ik} = 1.0$), enabling exact evaluation of failure prediction metrics without confounding estimation errors.
@@ -181,7 +233,7 @@ Remove-Item "College_Scorecard_Raw_Data_06102026.zip"
 
 ---
 
-## 5. Physical Artifact Isolation Rules
+## 6. Physical Artifact Isolation Rules
 
 Every canonicalized dataset strictly isolates its variables into separate files:
 

@@ -126,7 +126,7 @@ def list_controlled_real() -> List[str]:
 
 
 def list_natural_shift() -> List[str]:
-    """List all 10 natural-shift real dataset slugs."""
+    """List all natural-shift real dataset slugs."""
     load_registry()
     return [k for k, v in _REAL_REGISTRY.items() if v.dataset_group == "natural_shift"]
 

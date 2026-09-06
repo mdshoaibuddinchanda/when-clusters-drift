@@ -5,7 +5,7 @@ from clusterdrift.data.registry import get_dataset_spec, list_natural_shift
 
 def test_natural_shift_domain_separation():
     natural_slugs = list_natural_shift()
-    assert len(natural_slugs) == 10
+    assert len(natural_slugs) == 9
 
     for slug in natural_slugs:
         spec = get_dataset_spec(slug)

@@ -21,13 +21,6 @@
     "status": "missing_or_unacquired"
   },
   {
-    "dataset_id": "tableshift_childhood_lead",
-    "group": "natural_shift",
-    "download_mode": "auth_required",
-    "source_url": "https://github.com/mlfoundations/tableshift",
-    "status": "missing_or_unacquired"
-  },
-  {
     "dataset_id": "tableshift_heloc",
     "group": "natural_shift",
     "download_mode": "manual_license_acceptance",

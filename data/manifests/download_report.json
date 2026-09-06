@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-09-06T17:52:29Z",
-  "total_targets": 40,
+  "timestamp": "2026-09-06T18:29:37Z",
+  "total_targets": 39,
   "downloaded_ok": 0,
   "already_verified": 34,
-  "auth_required": 5,
+  "auth_required": 4,
   "manual_license_required": 1,
   "failed": 0,
   "controlled_available": "30 / 30",
@@ -28,7 +28,7 @@
       "n_features": 0,
       "n_classes": null,
       "canonical_files": [],
-      "duration_seconds": 0.001
+      "duration_seconds": 0.0
     },
     {
       "dataset_id": "seeds",
@@ -98,7 +98,7 @@
       "n_features": 0,
       "n_classes": null,
       "canonical_files": [],
-      "duration_seconds": 0.0
+      "duration_seconds": 0.001
     },
     {
       "dataset_id": "pendigits",
@@ -218,7 +218,7 @@
       "n_features": 0,
       "n_classes": null,
       "canonical_files": [],
-      "duration_seconds": 0.002
+      "duration_seconds": 0.0
     },
     {
       "dataset_id": "waveform",
@@ -228,7 +228,7 @@
       "n_features": 0,
       "n_classes": null,
       "canonical_files": [],
-      "duration_seconds": 0.0
+      "duration_seconds": 0.001
     },
     {
       "dataset_id": "spambase",
@@ -381,16 +381,6 @@
       "duration_seconds": 0.0
     },
     {
-      "dataset_id": "tableshift_childhood_lead",
-      "status": "auth_required",
-      "message": "[AUTH REQUIRED] tableshift_childhood_lead: Requires credentials or API token. Source: https://github.com/mlfoundations/tableshift. To enable, configure access or place downloaded raw archive in 'D:\\DR2\\when-clusters-drift\\data\\raw\\natural\\tableshift\\tableshift_childhood_lead'.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
-    },
-    {
       "dataset_id": "tableshift_heloc",
       "status": "manual_license_acceptance",
       "message": "[MANUAL LICENSE REQUIRED] tableshift_heloc: Requires manual license acceptance at https://community.fico.com/s/explainable-machine-learning-challenge. License: FICO Community License. Once accepted, place raw data files into 'data/raw/natural/tableshift/tableshift_heloc/'.",
@@ -408,9 +398,9 @@
       "n_features": 0,
       "n_classes": null,
       "canonical_files": [],
-      "duration_seconds": 0.001
+      "duration_seconds": 0.0
     }
   ],
   "manifest_schema_version": 2,
-  "generated_from_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d"
+  "generated_from_commit": "8ae6ca325890f3044743740a9618753f0ed4fdf0"
 }

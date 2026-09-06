@@ -1,4 +1,4 @@
-"""Test that the dataset registry contains exactly 40 real and 8 synthetic datasets."""
+"""Test that the dataset registry contains exactly 39 real and 8 synthetic datasets."""
 
 import pytest
 from clusterdrift.data.registry import (
@@ -16,9 +16,9 @@ def test_real_dataset_counts():
     controlled = list_controlled_real()
     natural = list_natural_shift()
 
-    assert len(all_real) == 40, f"Expected 40 real datasets, got {len(all_real)}"
+    assert len(all_real) == 39, f"Expected 39 real datasets, got {len(all_real)}"
     assert len(controlled) == 30, f"Expected 30 controlled real datasets, got {len(controlled)}"
-    assert len(natural) == 10, f"Expected 10 natural shift datasets, got {len(natural)}"
+    assert len(natural) == 9, f"Expected 9 natural shift datasets, got {len(natural)}"
     assert set(controlled).isdisjoint(set(natural)), "Controlled and natural datasets must not overlap."
 
 

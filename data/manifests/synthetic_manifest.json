@@ -14,9 +14,9 @@
     "canonical_bundle_sha256": "47affdc32fcb63720bfb85131cbae95c1c8945b8857c2565e44d7915d96f3992",
     "canonical_sha256": "47affdc32fcb63720bfb85131cbae95c1c8945b8857c2565e44d7915d96f3992",
     "soft_truth_available": true,
-    "generated_from_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "generated_from_commit": "8ae6ca325890f3044743740a9618753f0ed4fdf0",
     "manifest_schema_version": 2,
-    "git_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "git_commit": "8ae6ca325890f3044743740a9618753f0ed4fdf0",
     "extra": {}
   },
   {
@@ -34,9 +34,9 @@
     "canonical_bundle_sha256": "806e16d8bb0d7a5126a1b7bbac90ac44f47f530a70371917df4d36b3ac902727",
     "canonical_sha256": "806e16d8bb0d7a5126a1b7bbac90ac44f47f530a70371917df4d36b3ac902727",
     "soft_truth_available": true,
-    "generated_from_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "generated_from_commit": "8ae6ca325890f3044743740a9618753f0ed4fdf0",
     "manifest_schema_version": 2,
-    "git_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "git_commit": "8ae6ca325890f3044743740a9618753f0ed4fdf0",
     "extra": {}
   },
   {
@@ -54,9 +54,9 @@
     "canonical_bundle_sha256": "e4eb6781301b6d1d4a391315e38673e6d99f5ad26d14fca7e536fb5ebe0d7cb6",
     "canonical_sha256": "e4eb6781301b6d1d4a391315e38673e6d99f5ad26d14fca7e536fb5ebe0d7cb6",
     "soft_truth_available": true,
-    "generated_from_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "generated_from_commit": "8ae6ca325890f3044743740a9618753f0ed4fdf0",
     "manifest_schema_version": 2,
-    "git_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "git_commit": "8ae6ca325890f3044743740a9618753f0ed4fdf0",
     "extra": {}
   },
   {
@@ -74,9 +74,9 @@
     "canonical_bundle_sha256": "5314403fe64287401c8a4f89860445ade9d456d7ed162b73fddb0fde8ece4077",
     "canonical_sha256": "5314403fe64287401c8a4f89860445ade9d456d7ed162b73fddb0fde8ece4077",
     "soft_truth_available": true,
-    "generated_from_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "generated_from_commit": "8ae6ca325890f3044743740a9618753f0ed4fdf0",
     "manifest_schema_version": 2,
-    "git_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "git_commit": "8ae6ca325890f3044743740a9618753f0ed4fdf0",
     "extra": {}
   },
   {
@@ -94,9 +94,9 @@
     "canonical_bundle_sha256": "2e96b004ea87a60d7fd311ff312785be4fdb822001ffd98804a9fd8bdac5995c",
     "canonical_sha256": "2e96b004ea87a60d7fd311ff312785be4fdb822001ffd98804a9fd8bdac5995c",
     "soft_truth_available": true,
-    "generated_from_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "generated_from_commit": "8ae6ca325890f3044743740a9618753f0ed4fdf0",
     "manifest_schema_version": 2,
-    "git_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "git_commit": "8ae6ca325890f3044743740a9618753f0ed4fdf0",
     "extra": {}
   },
   {
@@ -114,9 +114,9 @@
     "canonical_bundle_sha256": "0d3b3b997692329c84e4ad75de04355c3cd0e86ee29b314da0e9367363bc9c3f",
     "canonical_sha256": "0d3b3b997692329c84e4ad75de04355c3cd0e86ee29b314da0e9367363bc9c3f",
     "soft_truth_available": true,
-    "generated_from_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "generated_from_commit": "8ae6ca325890f3044743740a9618753f0ed4fdf0",
     "manifest_schema_version": 2,
-    "git_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "git_commit": "8ae6ca325890f3044743740a9618753f0ed4fdf0",
     "extra": {}
   },
   {
@@ -134,9 +134,9 @@
     "canonical_bundle_sha256": "10724d6aabc22e1be65dd6cee293918943ffee27506240ebeab46fe3229684a5",
     "canonical_sha256": "10724d6aabc22e1be65dd6cee293918943ffee27506240ebeab46fe3229684a5",
     "soft_truth_available": true,
-    "generated_from_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "generated_from_commit": "8ae6ca325890f3044743740a9618753f0ed4fdf0",
     "manifest_schema_version": 2,
-    "git_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "git_commit": "8ae6ca325890f3044743740a9618753f0ed4fdf0",
     "extra": {}
   },
   {
@@ -154,9 +154,9 @@
     "canonical_bundle_sha256": "c79d32d96c1246b6f1fdb688437f80454cdac2036fb2743ee64a7123f7f1cbdf",
     "canonical_sha256": "c79d32d96c1246b6f1fdb688437f80454cdac2036fb2743ee64a7123f7f1cbdf",
     "soft_truth_available": true,
-    "generated_from_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "generated_from_commit": "8ae6ca325890f3044743740a9618753f0ed4fdf0",
     "manifest_schema_version": 2,
-    "git_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "git_commit": "8ae6ca325890f3044743740a9618753f0ed4fdf0",
     "extra": {}
   }
 ]
