@@ -4,7 +4,10 @@ from typing import List, Optional, Tuple
 import numpy as np
 import pandas as pd
 
+from sklearn.cluster import kmeans_plusplus
+
 from clusterdrift.methods.base import BaseClusteringMethod
+from clusterdrift.methods.diagnostics import assess_fuzzy_partition_degeneracy
 from clusterdrift.methods.utils import check_simplex_constraint, ensure_feature_array
 
 
@@ -18,6 +21,7 @@ class FCM(BaseClusteringMethod):
         random_state: Optional[int] = None,
         max_iter: int = 150,
         tol: float = 1e-5,
+        initialization: str = "kmeans++",
     ):
         super().__init__(
             n_clusters=n_clusters,
@@ -27,7 +31,12 @@ class FCM(BaseClusteringMethod):
         )
         if m <= 1.0:
             raise ValueError(f"Fuzzifier m must be strictly > 1.0, got {m}")
+        if initialization not in ("kmeans++", "random_membership"):
+            raise ValueError(
+                f"Unknown initialization method '{initialization}'. Must be 'kmeans++' or 'random_membership'."
+            )
         self.m: float = float(m)
+        self.initialization: str = initialization
         self.membership_semantics: str = "fuzzy"
         self.center_shift_history_: List[float] = []
 
@@ -116,16 +125,29 @@ class FCM(BaseClusteringMethod):
             self.status_ = "EMPTY_CLUSTER"
             raise ValueError(f"n_samples ({N}) must be >= n_clusters ({self.n_clusters})")
 
-        # Deterministic initialization of memberships or prototypes from random_state
-        rng = np.random.default_rng(self.random_state)
-        # Initialize memberships using Dirichlet distribution to guarantee simplex
-        U = rng.dirichlet(np.ones(self.n_clusters), size=N)
+        self.initialization_method_ = self.initialization
 
-        # Compute initial centers from initial U
-        centers, valid = self._update_centers(arr_X, U)
-        if not valid:
-            self.status_ = "EMPTY_CLUSTER"
-            raise RuntimeError("Initial fuzzy mass collapsed into empty cluster.")
+        if self.initialization == "kmeans++":
+            # Deterministic prototype seeding using kmeans++
+            init_centers, _ = kmeans_plusplus(
+                arr_X, n_clusters=self.n_clusters, random_state=self.random_state
+            )
+            centers = np.ascontiguousarray(init_centers, dtype=np.float64)
+            self.initial_centers_ = centers.copy()
+            # Compute initial memberships from initial prototypes
+            dist = self._compute_distances(arr_X, centers)
+            U = self._compute_memberships_from_distances(dist)
+        elif self.initialization == "random_membership":
+            # Historical random Dirichlet membership initialization (preserved for tests)
+            rng = np.random.default_rng(self.random_state)
+            U = rng.dirichlet(np.ones(self.n_clusters), size=N)
+            centers, valid = self._update_centers(arr_X, U)
+            if not valid:
+                self.status_ = "EMPTY_CLUSTER"
+                raise RuntimeError("Initial fuzzy mass collapsed into empty cluster.")
+            self.initial_centers_ = centers.copy()
+        else:
+            raise ValueError(f"Unsupported initialization: {self.initialization}")
 
         self.objective_history_ = []
         self.center_shift_history_ = []
@@ -167,7 +189,18 @@ class FCM(BaseClusteringMethod):
         if not valid_simplex:
             self.warnings_.append(f"Final membership simplex deviation: {max_dev}")
 
-        if self.converged_:
+        # Assess fuzzy solution degeneracy
+        self.diagnostics_ = assess_fuzzy_partition_degeneracy(
+            arr_X, self.cluster_centers_, self.membership_, self.n_clusters
+        )
+        self.degenerate_solution_ = self.diagnostics_["is_degenerate"]
+
+        if self.degenerate_solution_:
+            self.status_ = "DEGENERATE_SOLUTION"
+            self.warnings_.append(
+                "Degenerate fuzzy solution detected: near-uniform memberships and collapsed prototypes."
+            )
+        elif self.converged_:
             self.status_ = "SUCCESS"
         elif self.status_ == "INVALID_INPUT":
             self.status_ = "MAX_ITER_REACHED"

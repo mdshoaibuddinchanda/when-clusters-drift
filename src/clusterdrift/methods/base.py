@@ -19,8 +19,12 @@ class BaseClusteringMethod(ABC):
     - random_state: Optional[int]
     - membership_: np.ndarray of shape (n_samples, n_clusters)
     - membership_semantics: str ('fuzzy', 'probabilistic', 'hard_one_hot')
-    - status_: str ('SUCCESS', 'MAX_ITER_REACHED', 'NUMERICAL_FAILURE', 'SINGULAR_METRIC', 'EMPTY_CLUSTER', 'INVALID_INPUT')
+    - status_: str ('SUCCESS', 'MAX_ITER_REACHED', 'NUMERICAL_FAILURE', 'SINGULAR_METRIC', 'EMPTY_CLUSTER', 'INVALID_INPUT', 'DEGENERATE_SOLUTION')
     - warnings_: List[str]
+    - degenerate_solution_: bool
+    - diagnostics_: Dict[str, Any]
+    - initialization_method_: str
+    - initial_centers_: Optional[np.ndarray]
     """
 
     def __init__(
@@ -46,6 +50,10 @@ class BaseClusteringMethod(ABC):
         self.membership_semantics: str = "fuzzy"
         self.status_: str = "INVALID_INPUT"
         self.warnings_: List[str] = []
+        self.degenerate_solution_: bool = False
+        self.diagnostics_: dict = {}
+        self.initialization_method_: str = ""
+        self.initial_centers_: Optional[np.ndarray] = None
 
     @abstractmethod
     def fit(self, X: np.ndarray | pd.DataFrame) -> "BaseClusteringMethod":

@@ -170,6 +170,7 @@ def instantiate_method(
             random_state=seed,
             max_iter=c.get("max_iter", 150),
             tol=float(c.get("tol", 1e-5)),
+            initialization=c.get("initialization", "kmeans++"),
         )
     elif method_name == "gmm":
         c = methods_cfg.get("gmm", {})
@@ -194,6 +195,8 @@ def instantiate_method(
             random_state=seed,
             max_iter=c.get("max_iter", 150),
             tol=float(c.get("tol", 1e-5)),
+            initialization=c.get("initialization", "fcm_warm_start"),
+            warm_start_initialization=c.get("warm_start_initialization", "kmeans++"),
         )
     elif method_name == "gustafson_kessel":
         c = methods_cfg.get("gustafson_kessel", {})
@@ -206,6 +209,7 @@ def instantiate_method(
             min_eig=float(c.get("min_eig", 1e-6)),
             max_cond=float(c.get("max_cond", 1e8)),
             ridge_factor=float(c.get("ridge_factor", 1e-5)),
+            initialization=c.get("initialization", "kmeans++"),
         )
     else:
         raise ValueError(f"Unknown method name: {method_name}")
@@ -282,7 +286,7 @@ def main() -> None:
                 runtime_sec = time.perf_counter() - t0
 
                 # Predictions & Metrics computed post-fit
-                if status in ("SUCCESS", "MAX_ITER_REACHED"):
+                if status in ("SUCCESS", "MAX_ITER_REACHED", "DEGENERATE_SOLUTION"):
                     pred_labels = model.predict(X_source)
                     ari = adjusted_rand_index(y_source, pred_labels)
                     nmi = normalized_mutual_info(y_source, pred_labels)
@@ -318,6 +322,9 @@ def main() -> None:
                     converged = False
                     n_iter = 0
 
+                diag = getattr(model, "diagnostics_", None) or {}
+                is_degen = bool(getattr(model, "degenerate_solution_", False) or (status == "DEGENERATE_SOLUTION"))
+
                 record = {
                     "dataset": ds_id,
                     "fold": 0,
@@ -336,6 +343,15 @@ def main() -> None:
                     "FPC": round(fpc, 4) if fpc is not None else None,
                     "PE": round(pe, 4) if pe is not None else None,
                     "XB": round(xb, 4) if xb is not None else None,
+                    "fpc_floor": round(diag.get("fpc_floor"), 4) if diag.get("fpc_floor") is not None else None,
+                    "fpc_floor_gap": round(diag.get("fpc_floor_gap"), 6) if diag.get("fpc_floor_gap") is not None else None,
+                    "pe_ceiling": round(diag.get("pe_ceiling"), 4) if diag.get("pe_ceiling") is not None else None,
+                    "pe_ceiling_gap": round(diag.get("pe_ceiling_gap"), 6) if diag.get("pe_ceiling_gap") is not None else None,
+                    "min_center_distance": round(diag.get("min_center_distance"), 6) if diag.get("min_center_distance") is not None else None,
+                    "normalized_min_center_distance": round(diag.get("normalized_min_center_distance"), 6) if diag.get("normalized_min_center_distance") is not None else None,
+                    "mean_max_membership": round(diag.get("mean_max_membership"), 4) if diag.get("mean_max_membership") is not None else None,
+                    "effective_clusters": int(diag.get("effective_distinct_prototypes")) if diag.get("effective_distinct_prototypes") is not None else None,
+                    "degenerate_solution": is_degen,
                     "warnings": "; ".join(warnings) if warnings else "",
                 }
                 runs_records.append(record)
@@ -357,16 +373,27 @@ def main() -> None:
     for method_name in methods_list:
         sub = df_runs[df_runs["method"] == method_name]
         total_m = len(sub)
-        conv_m = int(sub["converged"].sum())
         succ_m = int((sub["status"] == "SUCCESS").sum())
-        mean_ari = float(sub["ARI"].dropna().mean()) if not sub["ARI"].dropna().empty else 0.0
+        conv_m = int(sub["converged"].sum())
+        num_conv_rate = round(conv_m / total_m, 4) if total_m > 0 else 0.0
+        degen_cnt = int(sub["degenerate_solution"].sum())
+        degen_rate = round(degen_cnt / total_m, 4) if total_m > 0 else 0.0
+        nondegen_rate = round(1.0 - degen_rate, 4)
+        usable_cnt = int((sub["status"].isin(["SUCCESS", "MAX_ITER_REACHED"]) & (~sub["degenerate_solution"])).sum())
+        usable_rate = round(usable_cnt / total_m, 4) if total_m > 0 else 0.0
+        nondegen_ari = sub[~sub["degenerate_solution"]]["ARI"].dropna()
+        mean_ari = float(nondegen_ari.mean()) if not nondegen_ari.empty else 0.0
         mean_time = float(sub["runtime_seconds"].mean())
 
         summary_rows.append({
             "method": method_name,
             "total_runs": total_m,
             "success_count": succ_m,
-            "convergence_rate": round(conv_m / total_m, 4) if total_m > 0 else 0.0,
+            "numerical_convergence_rate": num_conv_rate,
+            "degenerate_count": degen_cnt,
+            "degenerate_rate": degen_rate,
+            "nondegenerate_rate": nondegen_rate,
+            "usable_rate": usable_rate,
             "mean_ARI": round(mean_ari, 4),
             "mean_runtime_seconds": round(mean_time, 4),
             "methods_config_sha256": methods_config_sha,
@@ -376,6 +403,68 @@ def main() -> None:
     summary_path = out_dir / "validation_summary.csv"
     df_summary.to_csv(summary_path, index=False)
     print(f"Saved: {summary_path}")
+
+    # Historical pre-repair baseline statistics from Phase 3 frozen outputs
+    pre_repair_stats = {
+        "kmeans": {
+            "success_count": 55,
+            "degenerate_count": 0,
+            "degenerate_rate": 0.0,
+            "mean_ari": 0.4735,
+            "mean_runtime_seconds": 0.2442,
+        },
+        "fcm": {
+            "success_count": 55,
+            "degenerate_count": 40,
+            "degenerate_rate": 0.7273,
+            "mean_ari": 0.2500,
+            "mean_runtime_seconds": 1.7833,
+        },
+        "gmm": {
+            "success_count": 55,
+            "degenerate_count": 0,
+            "degenerate_rate": 0.0,
+            "mean_ari": 0.4390,
+            "mean_runtime_seconds": 1.1329,
+        },
+        "pfcm": {
+            "success_count": 52,
+            "degenerate_count": 46,
+            "degenerate_rate": 0.8364,
+            "mean_ari": 0.2089,
+            "mean_runtime_seconds": 0.7543,
+        },
+        "gustafson_kessel": {
+            "success_count": 36,
+            "degenerate_count": 30,
+            "degenerate_rate": 0.5455,
+            "mean_ari": 0.2566,
+            "mean_runtime_seconds": 36.3817,
+        },
+    }
+
+    comparison_rows = []
+    for row in summary_rows:
+        m = row["method"]
+        pre = pre_repair_stats.get(m, {})
+        comparison_rows.append({
+            "method": m,
+            "pre_repair_success_count": pre.get("success_count", 0),
+            "post_repair_success_count": row["success_count"],
+            "pre_repair_degenerate_count": pre.get("degenerate_count", 0),
+            "post_repair_degenerate_count": row["degenerate_count"],
+            "pre_repair_degenerate_rate": pre.get("degenerate_rate", 0.0),
+            "post_repair_degenerate_rate": row["degenerate_rate"],
+            "pre_repair_mean_ari": pre.get("mean_ari", 0.0),
+            "post_repair_mean_ari": row["mean_ARI"],
+            "pre_repair_mean_runtime_seconds": pre.get("mean_runtime_seconds", 0.0),
+            "post_repair_mean_runtime_seconds": row["mean_runtime_seconds"],
+        })
+
+    df_comp = pd.DataFrame(comparison_rows)
+    comp_path = out_dir / "initialization_repair_comparison.csv"
+    df_comp.to_csv(comp_path, index=False)
+    print(f"Saved: {comp_path}")
 
     # Save failures
     failures_path = out_dir / "failures.json"

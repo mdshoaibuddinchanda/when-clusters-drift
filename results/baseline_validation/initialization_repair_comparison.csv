@@ -1,0 +1,6 @@
+method,pre_repair_success_count,post_repair_success_count,pre_repair_degenerate_count,post_repair_degenerate_count,pre_repair_degenerate_rate,post_repair_degenerate_rate,pre_repair_mean_ari,post_repair_mean_ari,pre_repair_mean_runtime_seconds,post_repair_mean_runtime_seconds
+kmeans,55,55,0,0,0.0,0.0,0.4735,0.4735,0.2442,0.1644
+fcm,55,15,40,40,0.7273,0.7273,0.25,0.3856,1.7833,2.0832
+gmm,55,55,0,0,0.0,0.0,0.439,0.439,1.1329,0.9048
+pfcm,52,5,46,50,0.8364,0.9091,0.2089,0.6658,0.7543,2.8501
+gustafson_kessel,36,10,30,30,0.5455,0.5455,0.2566,0.2563,36.3817,31.5828

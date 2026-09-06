@@ -135,3 +135,66 @@ def test_fcm_reproducibility(sample_data, seed):
 
     np.testing.assert_array_equal(f1.cluster_centers_, f2.cluster_centers_)
     np.testing.assert_array_equal(f1.membership_, f2.membership_)
+
+
+@pytest.mark.parametrize("seed", [1, 2, 3, 4, 5])
+def test_fcm_easy_balanced_synthetic_not_degenerate(seed):
+    """Verify that FCM on 3 well-separated balanced Gaussians is strictly non-degenerate and achieves ARI > 0.5."""
+    from clusterdrift.metrics.external import adjusted_rand_index
+
+    rng = np.random.default_rng(1000 + seed)
+    c1 = rng.normal(loc=[-5.0, 0.0], scale=0.5, size=(100, 2))
+    c2 = rng.normal(loc=[0.0, 5.0], scale=0.5, size=(100, 2))
+    c3 = rng.normal(loc=[5.0, 0.0], scale=0.5, size=(100, 2))
+    X = np.vstack([c1, c2, c3])
+    y_true = np.array([0] * 100 + [1] * 100 + [2] * 100)
+
+    fcm = FCM(n_clusters=3, random_state=seed, initialization="kmeans++")
+    fcm.fit(X)
+
+    # Must be SUCCESS and NOT degenerate
+    assert fcm.status_ == "SUCCESS"
+    assert fcm.degenerate_solution_ is False
+    assert fcm.diagnostics_["effective_distinct_prototypes"] == 3
+    assert fcm.diagnostics_["fpc_floor_gap"] > 0.2  # Meaningfully above 1/K = 0.333
+    assert fcm.diagnostics_["pe_ceiling_gap"] > 0.3  # Meaningfully below log(3) = 1.0986
+
+    # Minimum prototype separation must be well above collapse threshold
+    assert fcm.diagnostics_["normalized_min_center_distance"] > 0.3
+
+    # Broad sanity threshold: ARI > 0.5
+    ari = adjusted_rand_index(y_true, fcm.predict(X))
+    assert ari > 0.8, f"Expected clean cluster recovery, got ARI={ari}"
+
+
+def test_fcm_random_membership_causes_collapse_regression():
+    """Verify that the historical Dirichlet random membership initializer collapses on large N."""
+    rng = np.random.default_rng(42)
+    # Multi-dimensional sample where Law of Large Numbers forces Dirichlet initial centers to global mean
+    X = rng.normal(size=(500, 10))
+
+    fcm_collapse = FCM(n_clusters=3, random_state=42, initialization="random_membership")
+    fcm_collapse.fit(X)
+
+    # Must be correctly labeled as DEGENERATE_SOLUTION
+    assert fcm_collapse.status_ == "DEGENERATE_SOLUTION"
+    assert fcm_collapse.degenerate_solution_ is True
+    assert fcm_collapse.diagnostics_["fpc_floor_gap"] < 0.02
+
+
+def test_fcm_kmeans_plusplus_prevents_collapse():
+    """Verify that kmeans++ prototype seeding on the same large N dataset prevents degeneracy."""
+    rng = np.random.default_rng(42)
+    c1 = rng.normal(loc=[-5.0, 0.0], scale=0.8, size=(1000, 2))
+    c2 = rng.normal(loc=[5.0, 0.0], scale=0.8, size=(1000, 2))
+    X = np.vstack([c1, c2])
+
+    fcm_fixed = FCM(n_clusters=2, random_state=42, initialization="kmeans++")
+    fcm_fixed.fit(X)
+
+    # Must be non-degenerate and successful
+    assert fcm_fixed.status_ == "SUCCESS"
+    assert fcm_fixed.degenerate_solution_ is False
+    assert fcm_fixed.diagnostics_["fpc_floor_gap"] > 0.3
+    assert fcm_fixed.diagnostics_["normalized_min_center_distance"] > 0.5
+

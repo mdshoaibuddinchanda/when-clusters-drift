@@ -6,11 +6,15 @@ Pal, N. R., Pal, K., Keller, J. M., & Bezdek, J. C. (2005).
 IEEE Transactions on Fuzzy Systems, 13(4), 517-530.
 """
 
+import time
 from typing import List, Optional, Tuple
 import numpy as np
 import pandas as pd
+from sklearn.cluster import kmeans_plusplus
 
 from clusterdrift.methods.base import BaseClusteringMethod
+from clusterdrift.methods.diagnostics import assess_fuzzy_partition_degeneracy
+from clusterdrift.methods.fcm import FCM
 from clusterdrift.methods.utils import check_simplex_constraint, ensure_feature_array
 
 
@@ -28,6 +32,8 @@ class PFCM(BaseClusteringMethod):
         random_state: Optional[int] = None,
         max_iter: int = 150,
         tol: float = 1e-5,
+        initialization: str = "fcm_warm_start",
+        warm_start_initialization: str = "kmeans++",
     ):
         super().__init__(
             n_clusters=n_clusters,
@@ -39,17 +45,27 @@ class PFCM(BaseClusteringMethod):
             raise ValueError(f"Parameters a and b must be strictly positive, got a={a}, b={b}")
         if m <= 1.0 or eta <= 1.0:
             raise ValueError(f"Exponents m and eta must be strictly > 1.0, got m={m}, eta={eta}")
+        if initialization not in ("fcm_warm_start", "kmeans++", "random_membership"):
+            raise ValueError(
+                f"Unknown initialization method '{initialization}'. "
+                "Must be 'fcm_warm_start', 'kmeans++', or 'random_membership'."
+            )
 
         self.a: float = float(a)
         self.b: float = float(b)
         self.m: float = float(m)
         self.eta: float = float(eta)
         self.k_scale: float = float(k_scale)
+        self.initialization: str = initialization
+        self.warm_start_initialization: str = warm_start_initialization
         self.membership_semantics: str = "fuzzy"
 
         self.typicality_: Optional[np.ndarray] = None
         self.gamma_: Optional[np.ndarray] = None
         self.center_shift_history_: List[float] = []
+        self.init_fcm_iterations_: int = 0
+        self.init_fcm_objective_: Optional[float] = None
+        self.warm_start_runtime_seconds_: float = 0.0
 
     def _compute_distances(self, X: np.ndarray, centers: np.ndarray) -> np.ndarray:
         """Compute Euclidean distance matrix d_ik = ||x_i - v_k||_2."""
@@ -142,19 +158,56 @@ class PFCM(BaseClusteringMethod):
             self.status_ = "EMPTY_CLUSTER"
             raise ValueError(f"n_samples ({N}) must be >= n_clusters ({self.n_clusters})")
 
-        rng = np.random.default_rng(self.random_state)
-        # Initial memberships via Dirichlet distribution
-        U = rng.dirichlet(np.ones(self.n_clusters), size=N)
+        self.initialization_method_ = self.initialization
 
-        # Initial prototypes from U
-        U_m = U ** self.m
-        mass = np.maximum(np.sum(U_m, axis=0), 1e-12)
-        centers = (U_m.T @ arr_X) / mass[:, np.newaxis]
+        if self.initialization == "fcm_warm_start":
+            # Literature-grounded initialization via converged warm-start FCM
+            t0_ws = time.perf_counter()
+            init_fcm = FCM(
+                n_clusters=self.n_clusters,
+                m=self.m,
+                random_state=self.random_state,
+                max_iter=self.max_iter,
+                tol=self.tol,
+                initialization=self.warm_start_initialization,
+            )
+            init_fcm.fit(arr_X)
+            self.warm_start_runtime_seconds_ = time.perf_counter() - t0_ws
+            self.init_fcm_iterations_ = init_fcm.n_iter_
+            self.init_fcm_objective_ = (
+                init_fcm.objective_history_[-1] if init_fcm.objective_history_ else None
+            )
+            centers = init_fcm.cluster_centers_.copy()
+            U = init_fcm.membership_.copy()
+            self.initial_centers_ = centers.copy()
+            # Estimate gamma from final converged FCM partition
+            self.gamma_ = self._estimate_gamma(arr_X, centers, U)
+            dist = self._compute_distances(arr_X, centers)
+            T = self._compute_typicalities(dist, self.gamma_)
 
-        # Initial gamma estimation
-        self.gamma_ = self._estimate_gamma(arr_X, centers, U)
-        dist = self._compute_distances(arr_X, centers)
-        T = self._compute_typicalities(dist, self.gamma_)
+        elif self.initialization == "kmeans++":
+            init_centers, _ = kmeans_plusplus(
+                arr_X, n_clusters=self.n_clusters, random_state=self.random_state
+            )
+            centers = np.ascontiguousarray(init_centers, dtype=np.float64)
+            self.initial_centers_ = centers.copy()
+            dist = self._compute_distances(arr_X, centers)
+            U = self._compute_fuzzy_memberships(dist)
+            self.gamma_ = self._estimate_gamma(arr_X, centers, U)
+            T = self._compute_typicalities(dist, self.gamma_)
+
+        elif self.initialization == "random_membership":
+            rng = np.random.default_rng(self.random_state)
+            U = rng.dirichlet(np.ones(self.n_clusters), size=N)
+            U_m = U ** self.m
+            mass = np.maximum(np.sum(U_m, axis=0), 1e-12)
+            centers = (U_m.T @ arr_X) / mass[:, np.newaxis]
+            self.initial_centers_ = centers.copy()
+            self.gamma_ = self._estimate_gamma(arr_X, centers, U)
+            dist = self._compute_distances(arr_X, centers)
+            T = self._compute_typicalities(dist, self.gamma_)
+        else:
+            raise ValueError(f"Unsupported initialization: {self.initialization}")
 
         self.objective_history_ = []
         self.center_shift_history_ = []
@@ -197,7 +250,18 @@ class PFCM(BaseClusteringMethod):
         if not valid_simplex:
             self.warnings_.append(f"PFCM membership simplex deviation: {max_dev}")
 
-        if self.converged_:
+        # Assess fuzzy solution degeneracy
+        self.diagnostics_ = assess_fuzzy_partition_degeneracy(
+            arr_X, self.cluster_centers_, self.membership_, self.n_clusters
+        )
+        self.degenerate_solution_ = self.diagnostics_["is_degenerate"]
+
+        if self.degenerate_solution_:
+            self.status_ = "DEGENERATE_SOLUTION"
+            self.warnings_.append(
+                "Degenerate fuzzy solution detected: near-uniform memberships and collapsed prototypes."
+            )
+        elif self.converged_:
             self.status_ = "SUCCESS"
         elif self.status_ == "INVALID_INPUT":
             self.status_ = "MAX_ITER_REACHED"

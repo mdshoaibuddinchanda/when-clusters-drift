@@ -68,3 +68,44 @@ def test_gk_reproducibility(sample_data, seed):
 
     np.testing.assert_array_equal(g1.cluster_centers_, g2.cluster_centers_)
     np.testing.assert_array_equal(g1.membership_, g2.membership_)
+
+
+def test_gk_kmeans_plusplus_initialization():
+    """Verify that GustafsonKessel records kmeans++ initialization method and initial centers."""
+    rng = np.random.default_rng(42)
+    c1 = rng.normal(loc=[-4.0, 0.0], scale=0.5, size=(40, 2))
+    c2 = rng.normal(loc=[4.0, 0.0], scale=0.5, size=(40, 2))
+    X = np.vstack([c1, c2])
+
+    gk = GustafsonKessel(n_clusters=2, random_state=42, initialization="kmeans++")
+    gk.fit(X)
+
+    assert gk.initialization_method_ == "kmeans++"
+    assert gk.initial_centers_ is not None
+    assert gk.initial_centers_.shape == (2, 2)
+
+
+@pytest.mark.parametrize("seed", [1, 2, 3, 4, 5])
+def test_gk_easy_balanced_synthetic_not_degenerate(seed):
+    """Verify that GK on 3 well-separated balanced Gaussians is strictly non-degenerate and achieves ARI > 0.5."""
+    from clusterdrift.metrics.external import adjusted_rand_index
+
+    rng = np.random.default_rng(3000 + seed)
+    c1 = rng.normal(loc=[-5.0, 0.0], scale=0.5, size=(100, 2))
+    c2 = rng.normal(loc=[0.0, 5.0], scale=0.5, size=(100, 2))
+    c3 = rng.normal(loc=[5.0, 0.0], scale=0.5, size=(100, 2))
+    X = np.vstack([c1, c2, c3])
+    y_true = np.array([0] * 100 + [1] * 100 + [2] * 100)
+
+    gk = GustafsonKessel(n_clusters=3, random_state=seed, initialization="kmeans++")
+    gk.fit(X)
+
+    assert gk.status_ == "SUCCESS"
+    assert gk.degenerate_solution_ is False
+    assert gk.diagnostics_["effective_distinct_prototypes"] == 3
+    assert gk.diagnostics_["fpc_floor_gap"] > 0.2
+    assert gk.diagnostics_["normalized_min_center_distance"] > 0.3
+
+    ari = adjusted_rand_index(y_true, gk.predict(X))
+    assert ari > 0.8, f"Expected clean cluster recovery, got ARI={ari}"
+

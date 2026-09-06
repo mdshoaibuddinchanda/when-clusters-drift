@@ -9,7 +9,10 @@ from typing import List, Optional, Tuple
 import numpy as np
 import pandas as pd
 
+from sklearn.cluster import kmeans_plusplus
+
 from clusterdrift.methods.base import BaseClusteringMethod
+from clusterdrift.methods.diagnostics import assess_fuzzy_partition_degeneracy
 from clusterdrift.methods.utils import (
     check_simplex_constraint,
     compute_log_det_root,
@@ -32,6 +35,7 @@ class GustafsonKessel(BaseClusteringMethod):
         min_eig: float = 1e-6,
         max_cond: float = 1e8,
         ridge_factor: float = 1e-5,
+        initialization: str = "kmeans++",
     ):
         super().__init__(
             n_clusters=n_clusters,
@@ -41,10 +45,16 @@ class GustafsonKessel(BaseClusteringMethod):
         )
         if m <= 1.0:
             raise ValueError(f"Fuzzifier m must be strictly > 1.0, got {m}")
+        if initialization not in ("kmeans++", "random_membership"):
+            raise ValueError(
+                f"Unknown initialization method '{initialization}'. Must be 'kmeans++' or 'random_membership'."
+            )
+
         self.m: float = float(m)
         self.min_eig: float = float(min_eig)
         self.max_cond: float = float(max_cond)
         self.ridge_factor: float = float(ridge_factor)
+        self.initialization: str = initialization
         self.membership_semantics: str = "fuzzy"
 
         self.covariances_: Optional[List[np.ndarray]] = None
@@ -170,14 +180,28 @@ class GustafsonKessel(BaseClusteringMethod):
             self.status_ = "EMPTY_CLUSTER"
             raise ValueError(f"n_samples ({N}) must be >= n_clusters ({self.n_clusters})")
 
-        rng = np.random.default_rng(self.random_state)
-        # Initial memberships via Dirichlet distribution
-        U = rng.dirichlet(np.ones(self.n_clusters), size=N)
+        self.initialization_method_ = self.initialization
 
-        centers, valid = self._update_centers(arr_X, U)
-        if not valid:
-            self.status_ = "EMPTY_CLUSTER"
-            raise RuntimeError("Initial fuzzy mass collapsed into empty cluster.")
+        if self.initialization == "kmeans++":
+            init_centers, _ = kmeans_plusplus(
+                arr_X, n_clusters=self.n_clusters, random_state=self.random_state
+            )
+            centers = np.ascontiguousarray(init_centers, dtype=np.float64)
+            self.initial_centers_ = centers.copy()
+            # Initial memberships from Euclidean distances to initial prototypes
+            diff = arr_X[:, np.newaxis, :] - centers[np.newaxis, :, :]
+            init_euc_dist = np.sqrt(np.maximum(np.sum(diff ** 2, axis=-1), 0.0))
+            U = self._compute_memberships_from_distances(init_euc_dist)
+        elif self.initialization == "random_membership":
+            rng = np.random.default_rng(self.random_state)
+            U = rng.dirichlet(np.ones(self.n_clusters), size=N)
+            centers, valid = self._update_centers(arr_X, U)
+            if not valid:
+                self.status_ = "EMPTY_CLUSTER"
+                raise RuntimeError("Initial fuzzy mass collapsed into empty cluster.")
+            self.initial_centers_ = centers.copy()
+        else:
+            raise ValueError(f"Unsupported initialization: {self.initialization}")
 
         # Initial covariances and metric matrices
         covs, metrics, conds, regs, valid_cov = self._update_covariances_and_metrics(arr_X, centers, U)
@@ -246,7 +270,18 @@ class GustafsonKessel(BaseClusteringMethod):
         if any(regs):
             self.warnings_.append(f"Regularization applied to {sum(regs)}/{self.n_clusters} clusters.")
 
-        if self.converged_:
+        # Assess fuzzy solution degeneracy
+        self.diagnostics_ = assess_fuzzy_partition_degeneracy(
+            arr_X, self.cluster_centers_, self.membership_, self.n_clusters
+        )
+        self.degenerate_solution_ = self.diagnostics_["is_degenerate"]
+
+        if self.degenerate_solution_:
+            self.status_ = "DEGENERATE_SOLUTION"
+            self.warnings_.append(
+                "Degenerate fuzzy solution detected: near-uniform memberships and collapsed prototypes."
+            )
+        elif self.converged_:
             self.status_ = "SUCCESS"
         elif self.status_ == "INVALID_INPUT":
             self.status_ = "MAX_ITER_REACHED"
