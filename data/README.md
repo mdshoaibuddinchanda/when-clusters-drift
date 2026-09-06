@@ -1,28 +1,51 @@
 # Dataset Acquisition, Provenance, and Validation Architecture
 
-This directory contains the dataset acquisition, storage, and validation infrastructure for the benchmark study:
+This directory contains the dataset acquisition, storage, unpacking, and validation infrastructure for the benchmark study:
 **When Clusters Drift: Label-Free Failure Prediction and Risk-Guided Adaptation for Soft Clustering**.
 
 ---
 
-## 1. Directory Structure
+## 1. Quick Summary of Datasets
+
+When everything is fully set up, the repository manages **48 total datasets and benchmark families**:
+
+| Category | Registered | Currently Canonicalized | Status | Notes |
+|---|---|---|---|---|
+| **Controlled Real Datasets** | **30** | **30 / 30** | ✅ 100% Complete | Standard tabular benchmarks (sklearn + OpenML + UCI) |
+| **Natural-Shift Real Datasets** | **10** | **4 / 10** (16 state/domain partitions) | 🟡 In Progress / Raw Placed | 4 canonicalized + 4 raw placed (HELOC, ASSISTments, Scorecard, Accidents) + 2 pending |
+| **Synthetic Benchmark Families** | **8** | **8 / 8** | ✅ 100% Complete | Gaussian mixtures & Student-t with exact soft posterior truth |
+| **Total Benchmark Universe** | **48** | **42 active units / partitions** | — | Over **1,685,789 observations** in canonical format |
+
+---
+
+## 2. Directory Structure
 
 ```text
 data/
-├── raw/                      # Untransformed raw downloads cached from upstream providers
+├── raw/                      # Untransformed raw downloads cached from upstream providers (GITIGNORED)
 │   ├── controlled/           # Raw OpenML / UCI downloads for controlled datasets
 │   └── natural/              # Raw WhyShift and TableShift partitions
 │       ├── whyshift/
+│       │   ├── income/       # Raw Census PUMS state CSVs (CA, FL, NY, PA, TX)
+│       │   ├── mobility/     # Raw Census PUMS state CSVs (CA, FL, NY, PA, TX)
+│       │   ├── pubcov/       # Raw Census PUMS state CSVs (CA, FL, NY, PA, TX)
+│       │   ├── whyshift_us_accidents/ # US_Accidents_March23.csv (~2.9 GB)
+│       │   └── whyshift_taxi/         # NYC Taxi Trip Duration
 │       └── tableshift/
+│           ├── tableshift_hospital_readmission/ # diabetes_130_us_hospitals.zip
+│           ├── tableshift_college_scorecard/    # Most-Recent-Cohorts & historical files
+│           ├── tableshift_heloc/                # heloc_dataset_v1.csv
+│           ├── tableshift_assistments/          # 2012-2013-data-with-predictions-4-final.csv (~3.0 GB)
+│           └── tableshift_childhood_lead/       # NHANES SAS Transport XPT files
 │
-├── canonical/                # Standardized, label-isolated Parquet partitions
+├── canonical/                # Standardized, label-isolated Parquet partitions (GITIGNORED)
 │   ├── controlled/           # 30 controlled real datasets (features.parquet, labels.parquet, metadata.json, optional groups.parquet)
 │   └── natural/              # Natural-shift datasets separated by domain/state (optional domains.parquet)
-│       ├── whyshift/
-│       └── tableshift/
+│       ├── whyshift/         # 15 state domain partitions across income, mobility, pubcov
+│       └── tableshift/       # tableshift_hospital_readmission (17 admission source domains)
 │
-├── synthetic/                # 8 controlled synthetic benchmark families
-│   ├── s01_balanced_gmm/
+├── synthetic/                # 8 controlled synthetic benchmark families (GITIGNORED)
+│   ├── s01_balanced_gmm/     # features.parquet, hard_labels.parquet, soft_memberships.npy, parameters.json
 │   ├── s02_overlap_gmm/
 │   ├── s03_imbalanced_gmm/
 │   ├── s04_heteroscedastic_gmm/
@@ -34,147 +57,136 @@ data/
 ├── processed/                # Reserved strictly for experiment-time scalers/folds (Phase 2+)
 ├── splits/                   # Reserved strictly for source/target rotation indices (Phase 2+)
 │
-└── manifests/                # Cryptographic manifests, provenance records, and reports
-    ├── datasets.json         # Manifest entries for all real datasets with SHA256 hashes
-    ├── synthetic_manifest.json # Manifest entries for synthetic generators and parameters
+└── manifests/                # Cryptographic manifests, provenance records, and reports (TRACKED BY GIT)
+    ├── datasets.json         # Manifest entries for all real datasets with SHA256 bundle hashes
+    ├── synthetic_manifest.json # Manifest entries for synthetic generators with bundle hashes
     ├── download_report.json  # Timestamped execution report from 01_download_real_datasets.py
     ├── unavailable_datasets.json # Instructions and access endpoints for credential-gated datasets
     └── dataset_summary.csv   # Comprehensive tabular audit of row/feature counts, missingness, and hashes
 ```
 
-> **Important**: `data/processed/` is strictly prohibited from holding downloaded or canonical data. It is reserved for later experiment-specific preprocessing (e.g. source-fitted standard scalers and imputers).
-
 ---
 
-## 2. One-Command Reproduction Workflows
+## 3. How to Run, Check, and Unpack Data
 
-### A. Download Real Datasets
+### A. How to Run Data Acquisition
 
-To acquire and canonicalize all available real-world datasets:
+To acquire and canonicalize all available automated datasets:
 
 ```bash
+# Acquire all 40 registered real datasets
 python scripts/01_download_real_datasets.py --all
+
+# Or acquire a specific group:
+python scripts/01_download_real_datasets.py --group controlled
+python scripts/01_download_real_datasets.py --group natural
+
+# Or acquire an individual dataset:
+python scripts/01_download_real_datasets.py --dataset wine
 ```
 
-Options:
-
-- `--group controlled`: Download all 30 controlled real datasets.
-- `--group natural`: Download natural-shift datasets.
-- `--dataset <slug>`: Download a specific dataset (e.g., `--dataset wine` or `--dataset seeds`).
-- `--force`: Overwrite existing canonical files.
-- `--dry-run`: Preview planned downloads without network execution.
-
-### B. Generate Deterministic Synthetic Datasets
-
-To generate all eight synthetic benchmark families with exact soft posterior ground truth:
+To generate the 8 synthetic benchmark families:
 
 ```bash
 python scripts/02_generate_synthetic_datasets.py --all
 ```
 
-Options:
+---
 
-- `--dataset <slug>`: Generate a specific family (e.g., `s01_balanced_gmm`).
-- `--force`: Overwrite existing synthetic artifacts.
-- `--dry-run`: Preview generator specifications.
+### B. How to Check and Validate Data Integrity
 
-### C. Validate Integrity and Generate Manifests
-
-To audit structural schemas, verify label isolation, compute hashes, and generate `dataset_summary.csv`:
+To audit all canonical datasets, verify label and domain isolation, and generate cryptographic manifests:
 
 ```bash
+# Run comprehensive dataset validator and update manifests
 python scripts/03_validate_datasets.py
+
+# Run unit tests verifying checksums and schema integrity
+pytest tests/test_dataset_checksums.py -v
+pytest tests/test_dataset_integrity.py -v
+```
+
+Validation asserts that:
+1. Every dataset has isolated `features.parquet`, `labels.parquet`, and `metadata.json`.
+2. Group-structured datasets (`human_activity_recognition`, `mice_protein_expression`) isolate `groups.parquet` (`subject_id` and `mouse_subject_id`).
+3. Domain-shift datasets (`tableshift_hospital_readmission`) isolate `domains.parquet` (`admission_source_id`).
+4. Constituent files match Schema v2 cryptographic bundle hashes.
+
+---
+
+### C. How to Unpack and Place Credentialed / Manual Datasets
+
+For datasets requiring manual download or platform credentials, place raw files into the appropriate folder under `data/raw/natural/`:
+
+| Dataset | Expected Directory | File(s) Needed | Source / Instructions |
+|---|---|---|---|
+| **FICO HELOC** (`tableshift_heloc`) | `data/raw/natural/tableshift/tableshift_heloc/` | `heloc_dataset_v1.csv` | Accept terms at [FICO Community](https://community.fico.com/s/explainable-machine-learning-challenge) or download from [GitHub mirror](https://raw.githubusercontent.com/patrickmthisi/FICO-Homeloan-credit-classification/main/heloc_dataset_v1.csv). |
+| **ASSISTments** (`tableshift_assistments`) | `data/raw/natural/tableshift/tableshift_assistments/` | `2012-2013-data-with-predictions-4-final.csv` | Download from [Kaggle ASSISTments](https://www.kaggle.com/datasets/nicolaswattiez/skillbuilder-data-2009-2010), extract CSV. |
+| **US Accidents** (`whyshift_us_accidents`) | `data/raw/natural/whyshift/whyshift_us_accidents/` | `US_Accidents_March23.csv` | Download `archive.zip` from [Kaggle US Accidents](https://www.kaggle.com/datasets/sobhanmoosavi/us-accidents), extract CSV. |
+| **College Scorecard** (`tableshift_college_scorecard`) | `data/raw/natural/tableshift/tableshift_college_scorecard/` | `Most-Recent-Cohorts-Institution.csv` & cohorts | Download `College_Scorecard_Raw_Data_*.zip` from [College Scorecard](https://collegescorecard.ed.gov/data/), extract all files. |
+| **NYC Taxi** (`whyshift_taxi`) | `data/raw/natural/whyshift/whyshift_taxi/` | `train.csv` | Download `train.zip` from [Kaggle NYC Taxi](https://www.kaggle.com/competitions/nyc-taxi-trip-duration/data), extract `train.csv`. |
+| **Childhood Lead** (`tableshift_childhood_lead`) | `data/raw/natural/tableshift/tableshift_childhood_lead/` | CDC NHANES `.XPT` files | CDC NHANES survey files (Demographics & Blood Lead). Built programmatically via TableShift. |
+
+#### Safe Unpacking Pattern
+Always extract downloaded archives directly into their destination folder and remove the `.zip` file to save disk space and keep the repository root clean:
+```powershell
+# Example: Extract and clean up College Scorecard
+Expand-Archive -Path "College_Scorecard_Raw_Data_06102026.zip" -DestinationPath "data/raw/natural/tableshift/tableshift_college_scorecard/"
+Remove-Item "College_Scorecard_Raw_Data_06102026.zip"
 ```
 
 ---
 
-## 3. Dataset Taxonomy
+## 4. Why Each Dataset is Included
 
-### 30 Controlled Real Datasets (`controlled_real`)
+### 1. 30 Controlled Real Datasets
+* **Purpose**: Establish baseline clustering performance and evaluate how standard algorithms (k-means, FCM, GMM) behave under controlled artificial drift (feature dropout, covariance scaling, mean shift).
+* **Composition**: Classic benchmarks spanning diverse domains (biology, medicine, computer vision, physical sensors, text processing):
+  - *Small/Classical*: `iris`, `wine`, `seeds`, `glass`, `ecoli`, `yeast`, `balance_scale`, `haberman_survival`
+  - *Sensor/Signal*: `sonar`, `ionosphere`, `waveform`
+  - *Vision/Digits*: `vehicle_silhouettes`, `image_segmentation`, `satimage`, `pendigits`, `optdigits`, `letter_recognition`
+  - *Medical/Clinical*: `breast_cancer_wisconsin_diagnostic`, `pima_diabetes`, `heart_disease`, `dermatology`
+  - *Financial/Industrial*: `banknote_authentication`, `spambase`, `electricity`, `bank_marketing`, `aps_failure`, `madelon`, `isolet`
+  - *Group-Structured*:
+    - `human_activity_recognition` (UCI 240): $10,299 \times 561$, 6 activity classes, grouped across 30 distinct human subjects (`subject_id`).
+    - `mice_protein_expression` (UCI 342): $1,080 \times 77$, 8 genotype/treatment classes, grouped across 72 biological mice (`mouse_subject_id`).
 
-All 30 datasets are acquired from scikit-learn built-ins or official OpenML data IDs pinned in `configs/datasets.yaml`:
+### 2. 10 Natural-Shift Real Datasets
+* **Purpose**: Evaluate label-free failure prediction under genuine, naturally occurring distribution shifts across geographic states, hospital systems, educational cohorts, and socio-economic tiers.
+* **Composition**:
+  - *WhyShift Spatial Partitions*:
+    - `whyshift_acs_income` (5 state domains: CA, TX, NY, FL, PA; N=601,843)
+    - `whyshift_acs_pubcov` (5 state domains: CA, TX, NY, FL, PA; N=420,411)
+    - `whyshift_acs_mobility` (5 state domains: CA, TX, NY, FL, PA; N=232,512)
+    - `whyshift_us_accidents` (Traffic accident severity across states)
+    - `whyshift_taxi` (Ride duration shifted across metropolitan areas)
+  - *TableShift Domain Partitions*:
+    - `tableshift_hospital_readmission` (Diabetic inpatient encounters, 46 predictors, shifted across 17 clinical admission source IDs)
+    - `tableshift_heloc` (FICO credit risk performance shifted across risk tiers)
+    - `tableshift_college_scorecard` (Graduation outcomes shifted between public and private universities)
+    - `tableshift_assistments` (Online tutoring accuracy shifted across different school cohorts)
+    - `tableshift_childhood_lead` (Elevated blood lead shifted across household poverty tiers)
 
-1. `iris` (sklearn)
-2. `wine` (sklearn)
-3. `seeds` (OpenML 1499)
-4. `glass` (OpenML 41)
-5. `ecoli` (OpenML 39)
-6. `yeast` (OpenML 181)
-7. `vehicle_silhouettes` (OpenML 54)
-8. `image_segmentation` (OpenML 40984)
-9. `satimage` (OpenML 182)
-10. `pendigits` (OpenML 32)
-11. `optdigits` (OpenML 28)
-12. `letter_recognition` (OpenML 6)
-13. `banknote_authentication` (OpenML 1462)
-14. `ionosphere` (OpenML 59)
-15. `sonar` (OpenML 40)
-16. `breast_cancer_wisconsin_diagnostic` (sklearn)
-17. `pima_diabetes` (OpenML 37)
-18. `heart_disease` (OpenML 1565)
-19. `haberman_survival` (OpenML 43)
-20. `dermatology` (OpenML 35)
-21. `balance_scale` (OpenML 11)
-22. `waveform` (OpenML 60, 40 predictors incl. 19 noise attributes)
-23. `spambase` (OpenML 44)
-24. `mice_protein_expression` (UCI 342, Mice Protein Expression, 1,080 x 77, 8 classes, 72 biological mice, path: `data/canonical/controlled/mice_protein_expression/`)
-25. `human_activity_recognition` (UCI 240, HAR Using Smartphones, 10,299 x 561, 6 classes, 30 subjects, path: `data/canonical/controlled/human_activity_recognition/`)
-26. `isolet` (OpenML 300)
-27. `madelon` (OpenML 1485)
-28. `electricity` (OpenML 151)
-29. `bank_marketing` (OpenML 1461)
-30. `aps_failure` (OpenML 41138)
-
-### 10 Natural-Shift Real Datasets (`natural_shift`)
-
-Preserve genuine spatial, institutional, and clinical domain partitions:
-
-- **WhyShift Spatial Partitions**:
-  - `whyshift_acs_income` (5 state domains: CA, TX, NY, FL, PA; N=601,843)
-  - `whyshift_acs_pubcov` (5 state domains: CA, TX, NY, FL, PA; N=420,411)
-  - `whyshift_acs_mobility` (5 state domains: CA, TX, NY, FL, PA; N=232,512)
-  - `whyshift_taxi` (Cities: nyc, bog, mex, uio; credential-gated source)
-  - `whyshift_us_accidents` (States: CA, TX, FL, NY; credential-gated Kaggle source)
-- **TableShift Domain Partitions**:
-  - `tableshift_hospital_readmission` (UCI 296 / TableShift diabetes readmission, N=99,493, 46 predictors: 8 numeric, 3 ordinal, 35 categorical, 17 admission source domains)
-  - `tableshift_college_scorecard` (Higher education; public vs. private domain shift; auth required)
-  - `tableshift_childhood_lead` (CDC blood lead; county poverty level shift; auth required)
-  - `tableshift_heloc` (FICO credit risk; community license acceptance required)
-  - `tableshift_assistments` (Online education; school cohort shift; auth required)
-
-### 8 Synthetic Benchmark Families (`synthetic`)
-
-Each family is generated with deterministic seeds (1001-1008), varying cluster counts ($K \in \{3, 4, 5\}$), and exact soft posterior memberships ($\sum_k \tau_{ik} = 1.0$):
-
-- `s01_balanced_gmm` (seed 1001, $K=3, d=10, n=10000$, balanced spherical Gaussian)
-- `s02_overlap_gmm` (seed 1002, $K=3, d=10, n=10000$, high overlap / boundary ambiguity)
-- `s03_imbalanced_gmm` (seed 1003, $K=3, d=10, n=10000, \pi=[0.70, 0.20, 0.10]$)
-- `s04_heteroscedastic_gmm` (seed 1004, $K=3, d=10, n=10000$, unequal cluster variances)
-- `s05_anisotropic_gmm` (seed 1005, $K=3, d=10, n=10000$, rotated elliptical covariance)
-- `s06_high_dimensional_gmm` (seed 1006, $K=5, d=100, n=10000$, high-dimensional structure)
-- `s07_irrelevant_features_gmm` (seed 1007, $K=4, d=100, n=10000$, 20 informative + 80 noise dimensions)
-- `s08_student_t_mixture` (seed 1008, $K=3, d=10, n=10000, \nu=3$, heavy-tailed natural outliers)
+### 3. 8 Synthetic Benchmark Families
+* **Purpose**: Provide mathematical ground truth for soft clustering memberships ($\sum_k \tau_{ik} = 1.0$), enabling exact evaluation of failure prediction metrics without confounding estimation errors.
+* **Composition**:
+  - `s01_balanced_gmm`: Balanced, well-separated spherical Gaussians ($K=3, d=10, n=10000$).
+  - `s02_overlap_gmm`: Reduced separation to stress boundary ambiguity ($K=3, d=10, n=10000$).
+  - `s03_imbalanced_gmm`: Severe cluster prior imbalance ($\pi=[0.70, 0.20, 0.10]$).
+  - `s04_heteroscedastic_gmm`: Unequal cluster covariance variances ($\sigma^2 \in \{0.5, 1.5, 3.0\}$).
+  - `s05_anisotropic_gmm`: Rotated non-spherical clusters violating Euclidean distance assumptions.
+  - `s06_high_dimensional_gmm`: High-dimensional mixture testing curse of dimensionality ($d=100, K=5$).
+  - `s07_irrelevant_features_gmm`: 20 informative dimensions embedded in 80 pure noise dimensions.
+  - `s08_student_t_mixture`: Heavy-tailed Student-t clusters ($\nu=3$) modeling natural outliers.
 
 ---
 
-## 4. Credential-Gated & Manual Access Handling
+## 5. Physical Artifact Isolation Rules
 
-To maintain research integrity and prevent legal/license violations, the downloader never scrapes or circumvents authentication:
+Every canonicalized dataset strictly isolates its variables into separate files:
 
-- **`AUTO`**: Downloaded directly via official APIs (scikit-learn, OpenML, WhyShift).
-- **`AUTH_REQUIRED`**: Datasets requiring Kaggle API tokens or data portal registration (e.g. `whyshift_taxi`, `whyshift_us_accidents`). The downloader records exact instructions and continues without crashing.
-- **`MANUAL_LICENSE_ACCEPTANCE`**: Datasets requiring explicit user agreement (e.g. `tableshift_heloc` under FICO Community License).
-
-Place any manually acquired archives into their respective directory under `data/raw/` to have them automatically processed on the next run.
-
----
-
-## 5. Physical Label, Domain, and Group Separation
-
-Every canonicalized dataset is split into separate files:
-
-- `features.parquet`: Pure input features $\tilde{X}$. Target, domain, and group columns are strictly omitted (`assert target_column not in X.columns`, `assert domain_column not in X.columns`, `assert group_column not in X.columns`).
-- `labels.parquet`: Evaluation ground truth $y$. Kept strictly isolated from clustering predictors.
-- `domains.parquet` *(optional)*: Preserved natural-shift partition variable (e.g. `admission_source_id` for TableShift).
-- `groups.parquet` *(optional)*: Preserved experimental unit repeated-measurement grouping (e.g. `subject_id` for HAR, `MouseID` for Mice Protein Expression).
-- `metadata.json`: Feature names, exhaustive feature roles (`numeric`, `categorical`, `ordinal`), row counts, split strategies, domain indicators, and license provenance.
+- `features.parquet`: Pure input features $X$. Target, domain, and group columns are strictly excluded.
+- `labels.parquet`: Ground-truth evaluation labels $y$. Completely separated from clustering inputs.
+- `domains.parquet` *(optional)*: Preserved domain indicator for natural distribution shifts.
+- `groups.parquet` *(optional)*: Preserved repeated-measurement group identifiers for GroupKFold validation.
+- `metadata.json`: Feature roles (`numeric`, `categorical`, `ordinal`, `boolean`), split policy, and provenance.
