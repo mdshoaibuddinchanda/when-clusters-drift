@@ -6,10 +6,18 @@
     "K": 3,
     "n_rows": 10000,
     "n_features": 10,
-    "canonical_sha256": "7cdbb24ac4df4f5fdebc20edb0687b7d961494d20a83c221165bce227922b716",
+    "features_sha256": "7cdbb24ac4df4f5fdebc20edb0687b7d961494d20a83c221165bce227922b716",
+    "hard_labels_sha256": "6821d2a815d13c4d2c778276ddf1043cb74eff0cc1a60de7d7a02eb68ba3043e",
+    "soft_memberships_sha256": "3e7f474f6f68727c75b01731b3f6f035c215813989c77e2f5753ec4b387e04d6",
     "parameters_sha256": "45d1ea2ebd6da67f2a9f7e0600700f04219259d1b440928e80b755498580b766",
+    "metadata_sha256": "32f4e9cd7ab1967a358b6f9b019ece306ba061f41cb9d6cb5fdcfb6390158e2c",
+    "canonical_bundle_sha256": "47affdc32fcb63720bfb85131cbae95c1c8945b8857c2565e44d7915d96f3992",
+    "canonical_sha256": "47affdc32fcb63720bfb85131cbae95c1c8945b8857c2565e44d7915d96f3992",
     "soft_truth_available": true,
-    "git_commit": "883018b54583e349f2ba5391471582468754d9d7"
+    "generated_from_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "manifest_schema_version": 2,
+    "git_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "extra": {}
   },
   {
     "family_id": "s02_overlap_gmm",
@@ -18,10 +26,18 @@
     "K": 3,
     "n_rows": 10000,
     "n_features": 10,
-    "canonical_sha256": "971fe13cc8c342b137533fcaff32fd52ba0313589b73db2d432c288ae9bf9af9",
+    "features_sha256": "971fe13cc8c342b137533fcaff32fd52ba0313589b73db2d432c288ae9bf9af9",
+    "hard_labels_sha256": "891d900a05906852e509d5e1f9c1a49cac72ec0d04232c31f034592871a0e6f2",
+    "soft_memberships_sha256": "bdcacc86106534d8b0cbbcfa577b867ca2f001e6efc4bdfb48d2f038d1dbf0b0",
     "parameters_sha256": "c6217c203870750b93416285d8ef3185873442592b42869a7868316c26c0d62a",
+    "metadata_sha256": "ccc5b9096a027dd54ae3c470cf9f2452f22353d2ebb1aa4c73190be39f74ea4f",
+    "canonical_bundle_sha256": "806e16d8bb0d7a5126a1b7bbac90ac44f47f530a70371917df4d36b3ac902727",
+    "canonical_sha256": "806e16d8bb0d7a5126a1b7bbac90ac44f47f530a70371917df4d36b3ac902727",
     "soft_truth_available": true,
-    "git_commit": "883018b54583e349f2ba5391471582468754d9d7"
+    "generated_from_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "manifest_schema_version": 2,
+    "git_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "extra": {}
   },
   {
     "family_id": "s03_imbalanced_gmm",
@@ -30,10 +46,18 @@
     "K": 3,
     "n_rows": 10000,
     "n_features": 10,
-    "canonical_sha256": "6bf0829c7eac42789cf7fb9074065de4d1a9b04b61a56dfd6042af3f4320f999",
+    "features_sha256": "6bf0829c7eac42789cf7fb9074065de4d1a9b04b61a56dfd6042af3f4320f999",
+    "hard_labels_sha256": "81240c6a90fed7f5adaa8c165a3c09019e6d3fc5b61226ace694e1cb378f26af",
+    "soft_memberships_sha256": "1bd06ffda71c6caf759f7933223bb7d3448775eae2218aae27cc304b8a21fec2",
     "parameters_sha256": "d9fa68d61d759abe661aa003275028f9fad995fcd430bb041d1284e1da690a23",
+    "metadata_sha256": "fb5e302e8d11a5d567e01109ad80d3b82b5a4f8198fe246665153e162ce42766",
+    "canonical_bundle_sha256": "e4eb6781301b6d1d4a391315e38673e6d99f5ad26d14fca7e536fb5ebe0d7cb6",
+    "canonical_sha256": "e4eb6781301b6d1d4a391315e38673e6d99f5ad26d14fca7e536fb5ebe0d7cb6",
     "soft_truth_available": true,
-    "git_commit": "883018b54583e349f2ba5391471582468754d9d7"
+    "generated_from_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "manifest_schema_version": 2,
+    "git_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "extra": {}
   },
   {
     "family_id": "s04_heteroscedastic_gmm",
@@ -42,10 +66,18 @@
     "K": 3,
     "n_rows": 10000,
     "n_features": 10,
-    "canonical_sha256": "9c577556477c57c0ef8ab9efc166d3d102ad52aa0b6d817dc7fa71f68430b8ce",
+    "features_sha256": "9c577556477c57c0ef8ab9efc166d3d102ad52aa0b6d817dc7fa71f68430b8ce",
+    "hard_labels_sha256": "cac9af5f24974dd41043cccf175fc5a375d0fe1c5242a4f6e85a122265052fb7",
+    "soft_memberships_sha256": "56a5253de4943119befb9ffaa9c50b295b03384f5350b5d0d2fc6643d9f6894c",
     "parameters_sha256": "8ae538ed961909e39a77fbdb578ff6bf472d776e532f57840364793e17229d29",
+    "metadata_sha256": "12e1deb26bc1786c355ac9c8acc87dd0f81dbcf218ee33f9989024d12893c539",
+    "canonical_bundle_sha256": "5314403fe64287401c8a4f89860445ade9d456d7ed162b73fddb0fde8ece4077",
+    "canonical_sha256": "5314403fe64287401c8a4f89860445ade9d456d7ed162b73fddb0fde8ece4077",
     "soft_truth_available": true,
-    "git_commit": "883018b54583e349f2ba5391471582468754d9d7"
+    "generated_from_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "manifest_schema_version": 2,
+    "git_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "extra": {}
   },
   {
     "family_id": "s05_anisotropic_gmm",
@@ -54,10 +86,18 @@
     "K": 3,
     "n_rows": 10000,
     "n_features": 10,
-    "canonical_sha256": "8d5a41f99fabef9f47805ae7e810b532aea09340ff339b14266ec7e0fc192b1e",
+    "features_sha256": "8d5a41f99fabef9f47805ae7e810b532aea09340ff339b14266ec7e0fc192b1e",
+    "hard_labels_sha256": "0174ca06bb8d1237ddd799e88bc5dcc30a1bf13ffb0ec13eac57778f833d8d2c",
+    "soft_memberships_sha256": "fdb6a71dc83ac1845392a1919fe06d88120f8e9f2c04b7168a095e20291fc0cb",
     "parameters_sha256": "46ed3069872ff2e7587ae52065730f914bdbc6165c8307c7a6a5bc1b717fab5a",
+    "metadata_sha256": "6955e8de1b20b527c3f4c1a6d44bdeffd0f5b0d6cb4782be9eb571c4879476d0",
+    "canonical_bundle_sha256": "2e96b004ea87a60d7fd311ff312785be4fdb822001ffd98804a9fd8bdac5995c",
+    "canonical_sha256": "2e96b004ea87a60d7fd311ff312785be4fdb822001ffd98804a9fd8bdac5995c",
     "soft_truth_available": true,
-    "git_commit": "883018b54583e349f2ba5391471582468754d9d7"
+    "generated_from_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "manifest_schema_version": 2,
+    "git_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "extra": {}
   },
   {
     "family_id": "s06_high_dimensional_gmm",
@@ -66,10 +106,18 @@
     "K": 5,
     "n_rows": 10000,
     "n_features": 100,
-    "canonical_sha256": "7e2e93ea50e717f7c509ad940ca73ac44226dd36e2f6c719f36c9f7771b0f167",
+    "features_sha256": "7e2e93ea50e717f7c509ad940ca73ac44226dd36e2f6c719f36c9f7771b0f167",
+    "hard_labels_sha256": "fb62ffb3a20d13b022648022fd23fec2635399ac8e939f205756972ad3cd8bf1",
+    "soft_memberships_sha256": "d1d7c14628cc0ae96cb24a522374872b9deb7e30027e8f2f3378df86622e47ed",
     "parameters_sha256": "4795de886ebacee7e97c42172dd2bb7034a1f4f2a77b26e61e0c8da29fe0619a",
+    "metadata_sha256": "608e0fcf8a9df13de8caa2a34161a2ddbaefd503264201889e142b15ebe4db68",
+    "canonical_bundle_sha256": "0d3b3b997692329c84e4ad75de04355c3cd0e86ee29b314da0e9367363bc9c3f",
+    "canonical_sha256": "0d3b3b997692329c84e4ad75de04355c3cd0e86ee29b314da0e9367363bc9c3f",
     "soft_truth_available": true,
-    "git_commit": "883018b54583e349f2ba5391471582468754d9d7"
+    "generated_from_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "manifest_schema_version": 2,
+    "git_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "extra": {}
   },
   {
     "family_id": "s07_irrelevant_features_gmm",
@@ -78,10 +126,18 @@
     "K": 4,
     "n_rows": 10000,
     "n_features": 100,
-    "canonical_sha256": "65b0df4fd6cf7461950070cf4b1812158c43ec34aa1246547e0228898acc28fc",
+    "features_sha256": "65b0df4fd6cf7461950070cf4b1812158c43ec34aa1246547e0228898acc28fc",
+    "hard_labels_sha256": "fb119f3b44ac07b59182dd0df0c20f185d940b98e32cff2f58ea9533c8c5d429",
+    "soft_memberships_sha256": "a80aba8b8fe689ed13bd3cbd7b5042990d1d09fd49afd16c88d752c518285cdb",
     "parameters_sha256": "737605330e43c61ee8f0c6e4c9b74f8dac523ac9d6d441617ba7ed142a6080f2",
+    "metadata_sha256": "c182120060ba758993f5f819dffaa072c941ed168fec298bbb954cd50891e7e7",
+    "canonical_bundle_sha256": "10724d6aabc22e1be65dd6cee293918943ffee27506240ebeab46fe3229684a5",
+    "canonical_sha256": "10724d6aabc22e1be65dd6cee293918943ffee27506240ebeab46fe3229684a5",
     "soft_truth_available": true,
-    "git_commit": "883018b54583e349f2ba5391471582468754d9d7"
+    "generated_from_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "manifest_schema_version": 2,
+    "git_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "extra": {}
   },
   {
     "family_id": "s08_student_t_mixture",
@@ -90,9 +146,17 @@
     "K": 3,
     "n_rows": 10000,
     "n_features": 10,
-    "canonical_sha256": "c1e505e54f980142f0751bcc84c7521bbccd029b51230857714302d300a2ec95",
+    "features_sha256": "c1e505e54f980142f0751bcc84c7521bbccd029b51230857714302d300a2ec95",
+    "hard_labels_sha256": "c4ddbfaf7dec6021f4f5e24767fbdccbad62ad028c2cbb0027ab46ac17a88b92",
+    "soft_memberships_sha256": "6b8c5aa90491f88466521489f232c133ef06848bc4b9ecbed2396d96d2174b1f",
     "parameters_sha256": "8e8ed316be708b37e826e963218d1a16a42c25639c26a113b6b6a0db95e4165b",
+    "metadata_sha256": "7a839f5b20b5e3bcb20df1d6f41bcaad22298f25ddad384fe31aadfaf9b7cfea",
+    "canonical_bundle_sha256": "c79d32d96c1246b6f1fdb688437f80454cdac2036fb2743ee64a7123f7f1cbdf",
+    "canonical_sha256": "c79d32d96c1246b6f1fdb688437f80454cdac2036fb2743ee64a7123f7f1cbdf",
     "soft_truth_available": true,
-    "git_commit": "883018b54583e349f2ba5391471582468754d9d7"
+    "generated_from_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "manifest_schema_version": 2,
+    "git_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d",
+    "extra": {}
   }
 ]

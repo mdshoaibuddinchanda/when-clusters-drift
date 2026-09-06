@@ -6,7 +6,11 @@ from typing import Any, Dict, List, Optional
 import numpy as np
 import pandas as pd
 
-from clusterdrift.data.manifest import compute_file_sha256
+from clusterdrift.data.manifest import (
+    compute_canonical_bundle_sha256,
+    compute_file_sha256,
+    compute_synthetic_bundle_sha256,
+)
 from clusterdrift.data.schemas import ALLOWED_FEATURE_ROLES, DatasetSpec, ValidationResult
 
 
@@ -284,7 +288,18 @@ class DataValidator:
                 if tdir.exists() and (tdir / "features.parquet").exists():
                     res = self.validate_canonical_dataset(tdir, spec)
                     fpath = tdir / "features.parquet"
-                    sha = compute_file_sha256(fpath)
+                    lpath = tdir / "labels.parquet"
+                    mpath = tdir / "metadata.json"
+                    gpath = tdir / "groups.parquet"
+                    dpath = tdir / "domains.parquet"
+
+                    f_sha = compute_file_sha256(fpath)
+                    l_sha = compute_file_sha256(lpath) if lpath.exists() else "NONE"
+                    m_sha = compute_file_sha256(mpath) if mpath.exists() else "NONE"
+                    g_sha = compute_file_sha256(gpath) if gpath.exists() else None
+                    d_sha = compute_file_sha256(dpath) if dpath.exists() else None
+                    bundle_sha = compute_canonical_bundle_sha256(f_sha, l_sha, g_sha, d_sha, m_sha)
+
                     size_mb = fpath.stat().st_size / (1024 * 1024)
                     has_group = (tdir / "groups.parquet").exists()
                     has_domain = (tdir / "domains.parquet").exists()
@@ -312,7 +327,8 @@ class DataValidator:
                         "license": spec.license,
                         "download_mode": spec.download_mode,
                         "source_version": spec.source_version,
-                        "sha256": sha,
+                        "canonical_bundle_sha256": bundle_sha,
+                        "sha256": bundle_sha,
                     })
                 else:
                     records.append({
@@ -336,6 +352,7 @@ class DataValidator:
                         "license": spec.license,
                         "download_mode": spec.download_mode,
                         "source_version": spec.source_version,
+                        "canonical_bundle_sha256": "none",
                         "sha256": "none",
                     })
             elif spec.dataset_group == "natural_shift":
@@ -348,7 +365,18 @@ class DataValidator:
                         if ddir.exists() and (ddir / "features.parquet").exists():
                             res = self.validate_canonical_dataset(ddir, spec)
                             fpath = ddir / "features.parquet"
-                            sha = compute_file_sha256(fpath)
+                            lpath = ddir / "labels.parquet"
+                            mpath = ddir / "metadata.json"
+                            gpath = ddir / "groups.parquet"
+                            dpath = ddir / "domains.parquet"
+
+                            f_sha = compute_file_sha256(fpath)
+                            l_sha = compute_file_sha256(lpath) if lpath.exists() else "NONE"
+                            m_sha = compute_file_sha256(mpath) if mpath.exists() else "NONE"
+                            g_sha = compute_file_sha256(gpath) if gpath.exists() else None
+                            d_sha = compute_file_sha256(dpath) if dpath.exists() else None
+                            bundle_sha = compute_canonical_bundle_sha256(f_sha, l_sha, g_sha, d_sha, m_sha)
+
                             size_mb = fpath.stat().st_size / (1024 * 1024)
                             records.append({
                                 "dataset_id": f"{spec.id}_{d}",
@@ -371,14 +399,26 @@ class DataValidator:
                                 "license": spec.license,
                                 "download_mode": spec.download_mode,
                                 "source_version": spec.source_version,
-                                "sha256": sha,
+                                "canonical_bundle_sha256": bundle_sha,
+                                "sha256": bundle_sha,
                             })
                 elif spec.source_provider == "tableshift":
                     task_dir = self.canonical_dir / "natural" / "tableshift" / spec.id
                     if task_dir.exists() and (task_dir / "features.parquet").exists():
                         res = self.validate_canonical_dataset(task_dir, spec)
                         fpath = task_dir / "features.parquet"
-                        sha = compute_file_sha256(fpath)
+                        lpath = task_dir / "labels.parquet"
+                        mpath = task_dir / "metadata.json"
+                        gpath = task_dir / "groups.parquet"
+                        dpath = task_dir / "domains.parquet"
+
+                        f_sha = compute_file_sha256(fpath)
+                        l_sha = compute_file_sha256(lpath) if lpath.exists() else "NONE"
+                        m_sha = compute_file_sha256(mpath) if mpath.exists() else "NONE"
+                        g_sha = compute_file_sha256(gpath) if gpath.exists() else None
+                        d_sha = compute_file_sha256(dpath) if dpath.exists() else None
+                        bundle_sha = compute_canonical_bundle_sha256(f_sha, l_sha, g_sha, d_sha, m_sha)
+
                         size_mb = fpath.stat().st_size / (1024 * 1024)
                         has_group = (task_dir / "groups.parquet").exists()
                         has_domain = (task_dir / "domains.parquet").exists()
@@ -406,7 +446,8 @@ class DataValidator:
                             "license": spec.license,
                             "download_mode": spec.download_mode,
                             "source_version": spec.source_version,
-                            "sha256": sha,
+                            "canonical_bundle_sha256": bundle_sha,
+                            "sha256": bundle_sha,
                         })
 
         # 2. Synthetic datasets
@@ -414,8 +455,19 @@ class DataValidator:
             for sdir in sorted(self.synthetic_dir.iterdir()):
                 if sdir.is_dir() and (sdir / "features.parquet").exists():
                     fpath = sdir / "features.parquet"
+                    hpath = sdir / "hard_labels.parquet"
+                    spath = sdir / "soft_memberships.npy"
+                    ppath = sdir / "parameters.json"
+                    mpath = sdir / "metadata.json"
+
+                    f_sha = compute_file_sha256(fpath)
+                    h_sha = compute_file_sha256(hpath) if hpath.exists() else "NONE"
+                    s_sha = compute_file_sha256(spath) if spath.exists() else "NONE"
+                    p_sha = compute_file_sha256(ppath) if ppath.exists() else "NONE"
+                    m_sha = compute_file_sha256(mpath) if mpath.exists() else "NONE"
+                    bundle_sha = compute_synthetic_bundle_sha256(f_sha, h_sha, s_sha, p_sha, m_sha)
+
                     X = pd.read_parquet(fpath)
-                    sha = compute_file_sha256(fpath)
                     size_mb = fpath.stat().st_size / (1024 * 1024)
                     records.append({
                         "dataset_id": sdir.name,
@@ -438,7 +490,8 @@ class DataValidator:
                         "license": "Apache-2.0",
                         "download_mode": "generated",
                         "source_version": "1.0",
-                        "sha256": sha,
+                        "canonical_bundle_sha256": bundle_sha,
+                        "sha256": bundle_sha,
                     })
 
         df_summary = pd.DataFrame(records)

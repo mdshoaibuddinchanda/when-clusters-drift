@@ -28,7 +28,7 @@ class DownloadStatus(str, Enum):
     SKIPPED = "skipped"
 
 
-ALLOWED_FEATURE_ROLES = frozenset({"numeric", "categorical", "ordinal"})
+ALLOWED_FEATURE_ROLES = frozenset({"numeric", "categorical", "ordinal", "boolean"})
 
 
 @dataclass(frozen=True)
@@ -107,7 +107,7 @@ class SyntheticDatasetSpec:
 
 @dataclass
 class DatasetManifestEntry:
-    """Auditable provenance record for a dataset artifact."""
+    """Auditable provenance record for a real-world dataset artifact (Schema v2)."""
     dataset_id: str
     dataset_type: str
     source_provider: str
@@ -116,7 +116,14 @@ class DatasetManifestEntry:
     source_url: Optional[str]
     retrieved_at: str
     raw_sha256: Optional[str]
-    canonical_sha256: str
+    raw_hash_status: str
+    features_sha256: str
+    labels_sha256: str
+    groups_sha256: Optional[str]
+    domains_sha256: Optional[str]
+    metadata_sha256: str
+    canonical_bundle_sha256: str
+    canonical_sha256: str  # Backward-compatible alias of canonical_bundle_sha256
     n_rows: int
     n_features: int
     n_classes: Optional[int]
@@ -124,8 +131,45 @@ class DatasetManifestEntry:
     target_name: Optional[str]
     license: str
     status: str
-    git_commit: str
+    generated_from_commit: str
+    manifest_schema_version: int = 2
+    git_commit: Optional[str] = None  # Deprecated backward-compatible alias of generated_from_commit
     extra: Dict[str, Any] = field(default_factory=dict)
+
+    def __post_init__(self):
+        if self.git_commit is None:
+            self.git_commit = self.generated_from_commit
+        if not self.canonical_sha256:
+            self.canonical_sha256 = self.canonical_bundle_sha256
+
+
+@dataclass
+class SyntheticManifestEntry:
+    """Auditable provenance record for a synthetic benchmark family (Schema v2)."""
+    family_id: str
+    generator: str
+    generator_seed: int
+    K: int
+    n_rows: int
+    n_features: int
+    features_sha256: str
+    hard_labels_sha256: str
+    soft_memberships_sha256: str
+    parameters_sha256: str
+    metadata_sha256: str
+    canonical_bundle_sha256: str
+    canonical_sha256: str  # Backward-compatible alias of canonical_bundle_sha256
+    soft_truth_available: bool = True
+    generated_from_commit: str = ""
+    manifest_schema_version: int = 2
+    git_commit: Optional[str] = None  # Deprecated backward-compatible alias of generated_from_commit
+    extra: Dict[str, Any] = field(default_factory=dict)
+
+    def __post_init__(self):
+        if self.git_commit is None:
+            self.git_commit = self.generated_from_commit
+        if not self.canonical_sha256:
+            self.canonical_sha256 = self.canonical_bundle_sha256
 
 
 @dataclass

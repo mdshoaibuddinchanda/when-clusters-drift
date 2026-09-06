@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-09-06T16:54:24Z",
+  "timestamp": "2026-09-06T17:52:29Z",
   "total_targets": 40,
   "downloaded_ok": 0,
   "already_verified": 34,
@@ -28,7 +28,7 @@
       "n_features": 0,
       "n_classes": null,
       "canonical_files": [],
-      "duration_seconds": 0.0
+      "duration_seconds": 0.001
     },
     {
       "dataset_id": "seeds",
@@ -198,7 +198,7 @@
       "n_features": 0,
       "n_classes": null,
       "canonical_files": [],
-      "duration_seconds": 0.001
+      "duration_seconds": 0.0
     },
     {
       "dataset_id": "dermatology",
@@ -218,7 +218,7 @@
       "n_features": 0,
       "n_classes": null,
       "canonical_files": [],
-      "duration_seconds": 0.0
+      "duration_seconds": 0.002
     },
     {
       "dataset_id": "waveform",
@@ -328,7 +328,7 @@
       "n_features": 0,
       "n_classes": null,
       "canonical_files": [],
-      "duration_seconds": 0.0
+      "duration_seconds": 0.001
     },
     {
       "dataset_id": "whyshift_acs_mobility",
@@ -348,7 +348,7 @@
       "n_features": 0,
       "n_classes": null,
       "canonical_files": [],
-      "duration_seconds": 0.002
+      "duration_seconds": 0.0
     },
     {
       "dataset_id": "whyshift_us_accidents",
@@ -408,7 +408,9 @@
       "n_features": 0,
       "n_classes": null,
       "canonical_files": [],
-      "duration_seconds": 0.0
+      "duration_seconds": 0.001
     }
-  ]
+  ],
+  "manifest_schema_version": 2,
+  "generated_from_commit": "4ab87a77c2dca66a6ee855219483ce6ef2ee279d"
 }
