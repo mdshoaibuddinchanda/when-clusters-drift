@@ -81,7 +81,15 @@ class ManifestManager:
             license=spec.license,
             status=status,
             git_commit=get_git_commit(),
-            extra={"domain_column": spec.domain_column, "subdomain": meta.get("subdomain")},
+            extra={
+                "domain_column": spec.domain_column,
+                "subdomain": meta.get("subdomain"),
+                "split_strategy": spec.split_strategy,
+                "group_column": spec.group_column,
+                "time_column": spec.time_column,
+                "has_group_artifact": meta.get("has_group_artifact", False),
+                "has_domain_artifact": meta.get("has_domain_artifact", False),
+            },
         )
 
     def generate_all_manifests(

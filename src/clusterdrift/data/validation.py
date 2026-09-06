@@ -52,6 +52,10 @@ class DataValidator:
         # 1. Load data
         X = pd.read_parquet(features_path)
         y = pd.read_parquet(labels_path) if labels_path.exists() else None
+        domains_path = dataset_dir / "domains.parquet"
+        domains = pd.read_parquet(domains_path) if domains_path.exists() else None
+        groups_path = dataset_dir / "groups.parquet"
+        groups = pd.read_parquet(groups_path) if groups_path.exists() else None
         meta = json.loads(metadata_path.read_text(encoding="utf-8")) if metadata_path.exists() else {}
 
         n_rows, n_cols = X.shape
@@ -79,6 +83,20 @@ class DataValidator:
         else:
             checks_passed.append("label_isolation_enforced")
 
+        # Strict Domain Isolation Check
+        domain_col = spec.domain_column if spec else meta.get("domain_column")
+        if domain_col and domain_col in X.columns:
+            errors.append(f"CRITICAL DOMAIN LEAKAGE: domain column '{domain_col}' found in features.parquet!")
+        else:
+            checks_passed.append("domain_isolation_enforced")
+
+        # Strict Group Isolation Check
+        group_col = spec.group_column if spec else meta.get("group_column")
+        if group_col and group_col in X.columns:
+            errors.append(f"CRITICAL GROUP LEAKAGE: group column '{group_col}' found in features.parquet!")
+        else:
+            checks_passed.append("group_isolation_enforced")
+
         # Row count alignment
         if y is not None:
             if len(X) == len(y):
@@ -88,6 +106,35 @@ class DataValidator:
             n_classes = int(y.iloc[:, 0].nunique()) if len(y) > 0 else None
         else:
             n_classes = None
+
+        if domains is not None:
+            if len(X) == len(domains):
+                checks_passed.append("domain_length_match")
+            else:
+                errors.append(f"Domain row count mismatch: features={len(X)}, domains={len(domains)}.")
+
+        if groups is not None:
+            if len(X) == len(groups):
+                checks_passed.append("group_length_match")
+            else:
+                errors.append(f"Group row count mismatch: features={len(X)}, groups={len(groups)}.")
+
+        # Feature role completeness
+        feature_roles = meta.get("feature_roles", {})
+        if feature_roles:
+            missing_roles = [col for col in X.columns if col not in feature_roles]
+            if missing_roles:
+                errors.append(f"FEATURE ROLE INCOMPLETENESS: Missing declared role for: {missing_roles[:5]}.")
+            else:
+                checks_passed.append("feature_roles_complete")
+
+        # Forbidden global categorical factorization check
+        if meta.get("dataset_id") == "tableshift_hospital_readmission":
+            for cat_col in ["race", "gender", "payer_code", "medical_specialty"]:
+                if cat_col in X.columns and pd.api.types.is_numeric_dtype(X[cat_col]):
+                    errors.append(
+                        f"FORBIDDEN ACQUISITION PREPROCESSING: Categorical column '{cat_col}' was factorized into numeric dtype!"
+                    )
 
         # Strict Source Identity & Specification Checks
         if spec is not None:
@@ -224,6 +271,11 @@ class DataValidator:
                     fpath = tdir / "features.parquet"
                     sha = compute_file_sha256(fpath)
                     size_mb = fpath.stat().st_size / (1024 * 1024)
+                    has_group = (tdir / "groups.parquet").exists()
+                    has_domain = (tdir / "domains.parquet").exists()
+                    n_groups = int(pd.read_parquet(tdir / "groups.parquet").iloc[:, 0].nunique()) if has_group else 0
+                    n_domains = int(pd.read_parquet(tdir / "domains.parquet").iloc[:, 0].nunique()) if has_domain else 0
+
                     records.append({
                         "dataset_id": spec.id,
                         "dataset_group": spec.dataset_group,
@@ -237,6 +289,11 @@ class DataValidator:
                         "duplicate_rows": res.duplicate_rows,
                         "constant_features": len(res.constant_features),
                         "canonical_size_mb": round(size_mb, 4),
+                        "split_strategy": spec.split_strategy,
+                        "n_groups": n_groups,
+                        "n_domains": n_domains,
+                        "has_group_artifact": has_group,
+                        "has_domain_artifact": has_domain,
                         "license": spec.license,
                         "download_mode": spec.download_mode,
                         "source_version": spec.source_version,
@@ -256,6 +313,11 @@ class DataValidator:
                         "duplicate_rows": 0,
                         "constant_features": 0,
                         "canonical_size_mb": 0.0,
+                        "split_strategy": spec.split_strategy,
+                        "n_groups": 0,
+                        "n_domains": 0,
+                        "has_group_artifact": False,
+                        "has_domain_artifact": False,
                         "license": spec.license,
                         "download_mode": spec.download_mode,
                         "source_version": spec.source_version,
@@ -286,6 +348,11 @@ class DataValidator:
                                 "duplicate_rows": res.duplicate_rows,
                                 "constant_features": len(res.constant_features),
                                 "canonical_size_mb": round(size_mb, 4),
+                                "split_strategy": spec.split_strategy,
+                                "n_groups": 0,
+                                "n_domains": 1,
+                                "has_group_artifact": False,
+                                "has_domain_artifact": True,
                                 "license": spec.license,
                                 "download_mode": spec.download_mode,
                                 "source_version": spec.source_version,
@@ -298,6 +365,11 @@ class DataValidator:
                         fpath = task_dir / "features.parquet"
                         sha = compute_file_sha256(fpath)
                         size_mb = fpath.stat().st_size / (1024 * 1024)
+                        has_group = (task_dir / "groups.parquet").exists()
+                        has_domain = (task_dir / "domains.parquet").exists()
+                        n_groups = int(pd.read_parquet(task_dir / "groups.parquet").iloc[:, 0].nunique()) if has_group else 0
+                        n_domains = int(pd.read_parquet(task_dir / "domains.parquet").iloc[:, 0].nunique()) if has_domain else 0
+
                         records.append({
                             "dataset_id": spec.id,
                             "dataset_group": spec.dataset_group,
@@ -311,6 +383,11 @@ class DataValidator:
                             "duplicate_rows": res.duplicate_rows,
                             "constant_features": len(res.constant_features),
                             "canonical_size_mb": round(size_mb, 4),
+                            "split_strategy": spec.split_strategy,
+                            "n_groups": n_groups,
+                            "n_domains": n_domains,
+                            "has_group_artifact": has_group,
+                            "has_domain_artifact": has_domain,
                             "license": spec.license,
                             "download_mode": spec.download_mode,
                             "source_version": spec.source_version,
@@ -338,6 +415,11 @@ class DataValidator:
                         "duplicate_rows": int(X.duplicated().sum()),
                         "constant_features": 0,
                         "canonical_size_mb": round(size_mb, 4),
+                        "split_strategy": "kfold",
+                        "n_groups": 0,
+                        "n_domains": 0,
+                        "has_group_artifact": False,
+                        "has_domain_artifact": False,
                         "license": "Apache-2.0",
                         "download_mode": "generated",
                         "source_version": "1.0",

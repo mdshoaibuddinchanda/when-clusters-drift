@@ -158,3 +158,187 @@ def test_all_canonical_datasets_pass_strict_validation():
         res = validator.validate_canonical_dataset(target_dir, spec)
         assert res.is_valid, f"Dataset '{did}' failed strict validation with errors: {res.errors}"
 
+
+def test_domain_column_isolation(tmp_path):
+    """Negative unit test proving domain-defining feature inside features.parquet causes validation failure."""
+    validator = DataValidator(data_root=tmp_path)
+    ds_dir = tmp_path / "canonical" / "natural" / "tableshift" / "leak_test"
+    ds_dir.mkdir(parents=True, exist_ok=True)
+
+    pd.DataFrame({"feat1": [1.0, 2.0], "admission_source_id": [1, 2]}).to_parquet(ds_dir / "features.parquet")
+    pd.DataFrame({"readmitted": [0, 1]}).to_parquet(ds_dir / "labels.parquet")
+    pd.DataFrame({"admission_source_id": [1, 2]}).to_parquet(ds_dir / "domains.parquet")
+    (ds_dir / "metadata.json").write_text(
+        json.dumps({
+            "dataset_id": "leak_test",
+            "domain_column": "admission_source_id",
+            "target_column": "readmitted",
+        }),
+        encoding="utf-8",
+    )
+
+    spec = DatasetSpec(
+        id="leak_test",
+        display_name="Leak Test",
+        dataset_group="natural_shift",
+        source_provider="tableshift",
+        source_type="test",
+        source_url=None,
+        source_id="test",
+        source_version="1",
+        download_mode="auto",
+        license="MIT",
+        citation="",
+        target_column="readmitted",
+        domain_column="admission_source_id",
+    )
+
+    res = validator.validate_canonical_dataset(ds_dir, spec)
+    assert not res.is_valid
+    assert any("CRITICAL DOMAIN LEAKAGE" in err for err in res.errors)
+
+
+def test_domain_alignment(tmp_path):
+    """Verify that domain rows must match feature and label rows."""
+    validator = DataValidator(data_root=tmp_path)
+    ds_dir = tmp_path / "canonical" / "natural" / "alignment_test"
+    ds_dir.mkdir(parents=True, exist_ok=True)
+
+    pd.DataFrame({"feat1": [1.0, 2.0, 3.0]}).to_parquet(ds_dir / "features.parquet")
+    pd.DataFrame({"target": [0, 1, 0]}).to_parquet(ds_dir / "labels.parquet")
+    pd.DataFrame({"domain": [1, 2]}).to_parquet(ds_dir / "domains.parquet")
+    (ds_dir / "metadata.json").write_text(
+        json.dumps({
+            "dataset_id": "alignment_test",
+            "domain_column": "domain",
+            "target_column": "target",
+        }),
+        encoding="utf-8",
+    )
+
+    res = validator.validate_canonical_dataset(ds_dir)
+    assert not res.is_valid
+    assert any("Domain row count mismatch" in err for err in res.errors)
+
+
+def test_group_column_isolation(tmp_path):
+    """Negative unit test proving group-defining feature inside features.parquet causes validation failure."""
+    validator = DataValidator(data_root=tmp_path)
+    ds_dir = tmp_path / "canonical" / "controlled" / "group_leak_test"
+    ds_dir.mkdir(parents=True, exist_ok=True)
+
+    pd.DataFrame({"feat1": [1.0, 2.0], "subject_id": [101, 102]}).to_parquet(ds_dir / "features.parquet")
+    pd.DataFrame({"target": [0, 1]}).to_parquet(ds_dir / "labels.parquet")
+    pd.DataFrame({"subject_id": [101, 102]}).to_parquet(ds_dir / "groups.parquet")
+    (ds_dir / "metadata.json").write_text(
+        json.dumps({
+            "dataset_id": "group_leak_test",
+            "group_column": "subject_id",
+            "target_column": "target",
+        }),
+        encoding="utf-8",
+    )
+
+    spec = DatasetSpec(
+        id="group_leak_test",
+        display_name="Group Leak Test",
+        dataset_group="controlled_real",
+        source_provider="uci",
+        source_type="test",
+        source_url=None,
+        source_id="test",
+        source_version="1",
+        download_mode="auto",
+        license="MIT",
+        citation="",
+        target_column="target",
+        group_column="subject_id",
+    )
+
+    res = validator.validate_canonical_dataset(ds_dir, spec)
+    assert not res.is_valid
+    assert any("CRITICAL GROUP LEAKAGE" in err for err in res.errors)
+
+
+def test_group_alignment(tmp_path):
+    """Verify that group rows must match feature and label rows."""
+    validator = DataValidator(data_root=tmp_path)
+    ds_dir = tmp_path / "canonical" / "controlled" / "group_align_test"
+    ds_dir.mkdir(parents=True, exist_ok=True)
+
+    pd.DataFrame({"feat1": [1.0, 2.0, 3.0]}).to_parquet(ds_dir / "features.parquet")
+    pd.DataFrame({"target": [0, 1, 0]}).to_parquet(ds_dir / "labels.parquet")
+    pd.DataFrame({"subject_id": [1, 2]}).to_parquet(ds_dir / "groups.parquet")
+    (ds_dir / "metadata.json").write_text(
+        json.dumps({
+            "dataset_id": "group_align_test",
+            "group_column": "subject_id",
+            "target_column": "target",
+        }),
+        encoding="utf-8",
+    )
+
+    res = validator.validate_canonical_dataset(ds_dir)
+    assert not res.is_valid
+    assert any("Group row count mismatch" in err for err in res.errors)
+
+
+def test_har_subject_groups_preserved():
+    """Verify HAR has exactly 10,299 group assignments, 30 subjects, and subject_id not in features."""
+    ds_dir = Path("data/canonical/controlled/human_activity_recognition")
+    assert ds_dir.exists(), "HAR canonical directory missing"
+    f = pd.read_parquet(ds_dir / "features.parquet")
+    l = pd.read_parquet(ds_dir / "labels.parquet")
+    g = pd.read_parquet(ds_dir / "groups.parquet")
+    assert len(f) == len(l) == len(g) == 10299
+    assert f.shape[1] == 561
+    assert "subject_id" not in f.columns
+    assert "subject_id" in g.columns
+    assert g["subject_id"].nunique() == 30
+
+
+def test_mice_mouse_groups_preserved():
+    """Verify Mice Protein Expression has exactly 1,080 group rows, MouseID not in features."""
+    ds_dir = Path("data/canonical/controlled/mice_protein_expression")
+    assert ds_dir.exists(), "Mice Protein canonical directory missing"
+    f = pd.read_parquet(ds_dir / "features.parquet")
+    l = pd.read_parquet(ds_dir / "labels.parquet")
+    g = pd.read_parquet(ds_dir / "groups.parquet")
+    assert len(f) == len(l) == len(g) == 1080
+    assert f.shape[1] == 77
+    assert "MouseID" not in f.columns
+    assert "MouseID" in g.columns
+    assert g["MouseID"].nunique() == 1080
+
+
+def test_no_global_categorical_encoding():
+    """Verify TableShift Hospital Readmission categorical columns are not globally factorized into integer codes."""
+    ds_dir = Path("data/canonical/natural/tableshift/tableshift_hospital_readmission")
+    assert ds_dir.exists(), "TableShift Hospital Readmission directory missing"
+    f = pd.read_parquet(ds_dir / "features.parquet")
+    l = pd.read_parquet(ds_dir / "labels.parquet")
+    d = pd.read_parquet(ds_dir / "domains.parquet")
+    assert len(f) == len(l) == len(d) == 99493
+    assert f.shape[1] == 46
+    assert "admission_source_id" not in f.columns
+    assert "admission_source_id" in d.columns
+    for cat_col in ["race", "gender", "payer_code", "medical_specialty"]:
+        assert not pd.api.types.is_numeric_dtype(f[cat_col]), f"Column {cat_col} was factorized into numeric dtype!"
+
+
+def test_split_strategy_registry():
+    """Verify all 40 registered real datasets have valid split strategy metadata."""
+    from clusterdrift.data.registry import load_registry, get_dataset_spec, list_datasets
+    load_registry(force_reload=True)
+    for did in list_datasets():
+        spec = get_dataset_spec(did)
+        assert spec.split_strategy in {"kfold", "group_kfold", "temporal_block", "natural_domain"}, f"Invalid strategy for {did}"
+        if did in {"human_activity_recognition", "mice_protein_expression"}:
+            assert spec.split_strategy == "group_kfold"
+            assert spec.group_column is not None
+        elif did == "electricity":
+            assert spec.split_strategy == "temporal_block"
+            assert spec.time_column == "date"
+        elif spec.dataset_group == "natural_shift":
+            assert spec.split_strategy == "natural_domain"
+

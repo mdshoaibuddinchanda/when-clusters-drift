@@ -71,6 +71,10 @@ def load_registry(config_path: Optional[Path] = None, force_reload: bool = False
             categorical_features=spec.get("categorical_features", []),
             notes=spec.get("notes", ""),
             domain_metadata=spec.get("domain_metadata", {}),
+            split_strategy=spec.get("split_strategy", "kfold"),
+            group_column=spec.get("group_column"),
+            time_column=spec.get("time_column"),
+            feature_roles=spec.get("feature_roles", {}),
         )
 
     syn_reg: Dict[str, SyntheticDatasetSpec] = {}

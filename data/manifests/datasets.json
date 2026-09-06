@@ -16,10 +16,15 @@
     "target_name": "target",
     "license": "BSD-3-Clause",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "kfold",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     }
   },
   {
@@ -39,10 +44,15 @@
     "target_name": "target",
     "license": "BSD-3-Clause",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "kfold",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     }
   },
   {
@@ -62,10 +72,15 @@
     "target_name": "Class",
     "license": "CC BY 4.0",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "kfold",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     }
   },
   {
@@ -85,10 +100,15 @@
     "target_name": "Type",
     "license": "CC BY 4.0",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "kfold",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     }
   },
   {
@@ -108,10 +128,15 @@
     "target_name": "class",
     "license": "CC BY 4.0",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "kfold",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     }
   },
   {
@@ -131,10 +156,15 @@
     "target_name": "class_protein_localization",
     "license": "CC BY 4.0",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "kfold",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     }
   },
   {
@@ -154,10 +184,15 @@
     "target_name": "Class",
     "license": "CC BY 4.0",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "kfold",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     }
   },
   {
@@ -177,10 +212,15 @@
     "target_name": "class",
     "license": "CC BY 4.0",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "kfold",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     }
   },
   {
@@ -200,10 +240,15 @@
     "target_name": "class",
     "license": "CC BY 4.0",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "kfold",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     }
   },
   {
@@ -223,10 +268,15 @@
     "target_name": "class",
     "license": "CC BY 4.0",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "kfold",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     }
   },
   {
@@ -246,10 +296,15 @@
     "target_name": "class",
     "license": "CC BY 4.0",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "kfold",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     }
   },
   {
@@ -269,10 +324,15 @@
     "target_name": "class",
     "license": "CC BY 4.0",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "kfold",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     }
   },
   {
@@ -292,10 +352,15 @@
     "target_name": "Class",
     "license": "CC BY 4.0",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "kfold",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     }
   },
   {
@@ -315,10 +380,15 @@
     "target_name": "class",
     "license": "CC BY 4.0",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "kfold",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     }
   },
   {
@@ -338,10 +408,15 @@
     "target_name": "Class",
     "license": "CC BY 4.0",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "kfold",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     }
   },
   {
@@ -361,10 +436,15 @@
     "target_name": "target",
     "license": "BSD-3-Clause",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "kfold",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     }
   },
   {
@@ -384,10 +464,15 @@
     "target_name": "class",
     "license": "CC BY 4.0",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "kfold",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     }
   },
   {
@@ -407,10 +492,15 @@
     "target_name": "Class",
     "license": "CC BY 4.0",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "kfold",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     }
   },
   {
@@ -430,10 +520,15 @@
     "target_name": "Survival_status",
     "license": "CC BY 4.0",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "kfold",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     }
   },
   {
@@ -453,10 +548,15 @@
     "target_name": "class",
     "license": "CC BY 4.0",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "kfold",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     }
   },
   {
@@ -476,10 +576,15 @@
     "target_name": "class",
     "license": "CC BY 4.0",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "kfold",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     }
   },
   {
@@ -499,10 +604,15 @@
     "target_name": "class",
     "license": "CC BY 4.0",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "kfold",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     }
   },
   {
@@ -522,10 +632,15 @@
     "target_name": "class",
     "license": "CC BY 4.0",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "kfold",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     }
   },
   {
@@ -545,10 +660,15 @@
     "target_name": "class",
     "license": "CC BY 4.0",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "group_kfold",
+      "group_column": "MouseID",
+      "time_column": null,
+      "has_group_artifact": true,
+      "has_domain_artifact": false
     }
   },
   {
@@ -568,10 +688,15 @@
     "target_name": "activity",
     "license": "CC BY 4.0",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "group_kfold",
+      "group_column": "subject_id",
+      "time_column": null,
+      "has_group_artifact": true,
+      "has_domain_artifact": false
     }
   },
   {
@@ -591,10 +716,15 @@
     "target_name": "class",
     "license": "CC BY 4.0",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "kfold",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     }
   },
   {
@@ -614,10 +744,15 @@
     "target_name": "Class",
     "license": "CC BY 4.0",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "kfold",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     }
   },
   {
@@ -637,10 +772,15 @@
     "target_name": "class",
     "license": "CC BY 4.0",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "temporal_block",
+      "group_column": null,
+      "time_column": "date",
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     }
   },
   {
@@ -660,10 +800,15 @@
     "target_name": "Class",
     "license": "CC BY 4.0",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "kfold",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     }
   },
   {
@@ -683,10 +828,15 @@
     "target_name": "class",
     "license": "CC BY 4.0",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": null,
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "kfold",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     }
   },
   {
@@ -706,10 +856,15 @@
     "target_name": "target",
     "license": "MIT",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": "state",
-      "subdomain": "CA"
+      "subdomain": "CA",
+      "split_strategy": "natural_domain",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     },
     "domain": "CA"
   },
@@ -730,10 +885,15 @@
     "target_name": "target",
     "license": "MIT",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": "state",
-      "subdomain": "TX"
+      "subdomain": "TX",
+      "split_strategy": "natural_domain",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     },
     "domain": "TX"
   },
@@ -754,10 +914,15 @@
     "target_name": "target",
     "license": "MIT",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": "state",
-      "subdomain": "NY"
+      "subdomain": "NY",
+      "split_strategy": "natural_domain",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     },
     "domain": "NY"
   },
@@ -778,10 +943,15 @@
     "target_name": "target",
     "license": "MIT",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": "state",
-      "subdomain": "FL"
+      "subdomain": "FL",
+      "split_strategy": "natural_domain",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     },
     "domain": "FL"
   },
@@ -802,10 +972,15 @@
     "target_name": "target",
     "license": "MIT",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": "state",
-      "subdomain": "PA"
+      "subdomain": "PA",
+      "split_strategy": "natural_domain",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     },
     "domain": "PA"
   },
@@ -826,10 +1001,15 @@
     "target_name": "target",
     "license": "MIT",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": "state",
-      "subdomain": "CA"
+      "subdomain": "CA",
+      "split_strategy": "natural_domain",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     },
     "domain": "CA"
   },
@@ -850,10 +1030,15 @@
     "target_name": "target",
     "license": "MIT",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": "state",
-      "subdomain": "TX"
+      "subdomain": "TX",
+      "split_strategy": "natural_domain",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     },
     "domain": "TX"
   },
@@ -874,10 +1059,15 @@
     "target_name": "target",
     "license": "MIT",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": "state",
-      "subdomain": "NY"
+      "subdomain": "NY",
+      "split_strategy": "natural_domain",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     },
     "domain": "NY"
   },
@@ -898,10 +1088,15 @@
     "target_name": "target",
     "license": "MIT",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": "state",
-      "subdomain": "FL"
+      "subdomain": "FL",
+      "split_strategy": "natural_domain",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     },
     "domain": "FL"
   },
@@ -922,10 +1117,15 @@
     "target_name": "target",
     "license": "MIT",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": "state",
-      "subdomain": "PA"
+      "subdomain": "PA",
+      "split_strategy": "natural_domain",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     },
     "domain": "PA"
   },
@@ -946,10 +1146,15 @@
     "target_name": "target",
     "license": "MIT",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": "state",
-      "subdomain": "CA"
+      "subdomain": "CA",
+      "split_strategy": "natural_domain",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     },
     "domain": "CA"
   },
@@ -970,10 +1175,15 @@
     "target_name": "target",
     "license": "MIT",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": "state",
-      "subdomain": "TX"
+      "subdomain": "TX",
+      "split_strategy": "natural_domain",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     },
     "domain": "TX"
   },
@@ -994,10 +1204,15 @@
     "target_name": "target",
     "license": "MIT",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": "state",
-      "subdomain": "NY"
+      "subdomain": "NY",
+      "split_strategy": "natural_domain",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     },
     "domain": "NY"
   },
@@ -1018,10 +1233,15 @@
     "target_name": "target",
     "license": "MIT",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": "state",
-      "subdomain": "FL"
+      "subdomain": "FL",
+      "split_strategy": "natural_domain",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     },
     "domain": "FL"
   },
@@ -1042,10 +1262,15 @@
     "target_name": "target",
     "license": "MIT",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": "state",
-      "subdomain": "PA"
+      "subdomain": "PA",
+      "split_strategy": "natural_domain",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": false
     },
     "domain": "PA"
   },
@@ -1058,18 +1283,23 @@
     "source_url": "https://archive.ics.uci.edu/static/public/296/diabetes+130-us+hospitals+for+years+1999-2008.zip",
     "retrieved_at": "phase_1_acquisition",
     "raw_sha256": null,
-    "canonical_sha256": "9b8833f93aac7b43dfcf3aac0d1ba6222f4be18b51483c313d1a6c7ee833eb79",
+    "canonical_sha256": "8911c82fd000eac9f2450edc56d858a18c78e3d9085e332b65aa560c02e6a14c",
     "n_rows": 99493,
-    "n_features": 47,
+    "n_features": 46,
     "n_classes": 2,
-    "feature_names_hash": "0f94ff9eda6f9e03fe0b331b213ad72eede2b96d0872cd2c569daa778ed11b3b",
+    "feature_names_hash": "4a0d8281cf4feacffcecb96082bb2079256cfd479b03f1b40e7eaf3f1642c0bd",
     "target_name": "readmitted",
     "license": "CC BY 4.0",
     "status": "canonicalized",
-    "git_commit": "d7157d6a09f3375d102e43a324d752c806bacf02",
+    "git_commit": "bfb1f5ffdfba071045fc14eb2cd1168d2a7bc75a",
     "extra": {
       "domain_column": "admission_source_id",
-      "subdomain": null
+      "subdomain": null,
+      "split_strategy": "natural_domain",
+      "group_column": null,
+      "time_column": null,
+      "has_group_artifact": false,
+      "has_domain_artifact": true
     }
   }
 ]

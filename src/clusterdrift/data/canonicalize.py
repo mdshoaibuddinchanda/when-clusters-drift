@@ -34,8 +34,24 @@ def canonicalize_bundle(
             y = X[target_col].copy()
         X = X.drop(columns=[target_col])
 
+    # Verify and enforce domain isolation
+    domain_col = spec.domain_column
+    domains = bundle.domains
+    if domain_col and domain_col in X.columns:
+        if domains is None:
+            domains = pd.DataFrame({domain_col: X[domain_col].copy()})
+        X = X.drop(columns=[domain_col])
+
+    # Verify and enforce group isolation
+    group_col = spec.group_column
+    groups = bundle.groups
+    if group_col and group_col in X.columns:
+        if groups is None:
+            groups = pd.DataFrame({group_col: X[group_col].copy()})
+        X = X.drop(columns=[group_col])
+
     # Drop explicit id_columns or drop_columns from features
-    for col in spec.drop_columns:
+    for col in list(spec.id_columns) + list(spec.drop_columns):
         if col in X.columns:
             X = X.drop(columns=[col])
 
@@ -64,6 +80,41 @@ def canonicalize_bundle(
         y_df.to_parquet(labels_path, index=False, engine="pyarrow")
         n_classes = None
 
+    # Save domains.parquet if domain artifact exists
+    domains_path = output_dir / "domains.parquet"
+    has_domains = domains is not None
+    if has_domains:
+        if isinstance(domains, pd.DataFrame):
+            dom_df = domains.copy()
+        elif isinstance(domains, pd.Series):
+            dom_df = pd.DataFrame({domain_col or "domain": domains.values})
+        else:
+            dom_df = pd.DataFrame({domain_col or "domain": domains})
+        dom_df.to_parquet(domains_path, index=False, engine="pyarrow")
+
+    # Save groups.parquet if group artifact exists
+    groups_path = output_dir / "groups.parquet"
+    has_groups = groups is not None
+    if has_groups:
+        if isinstance(groups, pd.DataFrame):
+            grp_df = groups.copy()
+        elif isinstance(groups, pd.Series):
+            grp_df = pd.DataFrame({group_col or "group": groups.values})
+        else:
+            grp_df = pd.DataFrame({group_col or "group": groups})
+        grp_df.to_parquet(groups_path, index=False, engine="pyarrow")
+
+    # Build feature roles ensuring completeness
+    feature_roles = dict(spec.feature_roles)
+    if bundle.feature_roles:
+        feature_roles.update(bundle.feature_roles)
+    for col in feature_names:
+        if col not in feature_roles:
+            if pd.api.types.is_numeric_dtype(X[col]):
+                feature_roles[col] = "numeric"
+            else:
+                feature_roles[col] = "categorical"
+
     # Construct metadata
     meta = {
         "dataset_id": spec.id,
@@ -74,9 +125,15 @@ def canonicalize_bundle(
         "n_features": int(len(feature_names)),
         "n_classes": n_classes,
         "feature_names": feature_names,
+        "feature_roles": feature_roles,
         "target_column": target_col,
-        "domain_column": spec.domain_column,
-        "protected_from_features": spec.domain_column is not None,
+        "domain_column": domain_col,
+        "group_column": group_col,
+        "time_column": spec.time_column,
+        "split_strategy": spec.split_strategy,
+        "has_domain_artifact": has_domains,
+        "has_group_artifact": has_groups,
+        "protected_from_features": domain_col is not None,
         "source_provider": spec.source_provider,
         "source_id": spec.source_id,
         "source_version": spec.source_version,
@@ -91,8 +148,13 @@ def canonicalize_bundle(
     with open(metadata_path, "w", encoding="utf-8") as f:
         json.dump(meta, f, indent=2)
 
-    return {
+    ret = {
         "features_path": str(features_path),
         "labels_path": str(labels_path),
         "metadata_path": str(metadata_path),
     }
+    if has_domains:
+        ret["domains_path"] = str(domains_path)
+    if has_groups:
+        ret["groups_path"] = str(groups_path)
+    return ret

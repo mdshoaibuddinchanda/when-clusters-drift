@@ -27,11 +27,13 @@ def load_sklearn_dataset(spec: DatasetSpec) -> DatasetBundle:
     X = bunch.data.copy()
     y = bunch.target.copy()
     feature_names = list(X.columns)
+    feature_roles = {fn: "numeric" for fn in feature_names}
 
     return DatasetBundle(
         X=X,
         y=y,
         feature_names=feature_names,
+        feature_roles=feature_roles,
         metadata={
             "source_id": sid,
             "sklearn_name": spec.id,
@@ -40,7 +42,39 @@ def load_sklearn_dataset(spec: DatasetSpec) -> DatasetBundle:
     )
 
 
-def load_openml_dataset(spec: DatasetSpec, data_home: Optional[Path] = None) -> DatasetBundle:
+def _load_mice_protein_groups(raw_dir: Optional[Path] = None) -> pd.DataFrame:
+    """Load authentic MouseID groupings from the UCI 342 archive."""
+    url = "https://archive.ics.uci.edu/static/public/342/mice+protein+expression.zip"
+    zip_path = None
+    if raw_dir is not None:
+        target_dir = raw_dir / "controlled" / "mice_protein_expression"
+        target_dir.mkdir(parents=True, exist_ok=True)
+        zip_path = target_dir / "mice_protein_expression.zip"
+
+    content = None
+    if zip_path and zip_path.exists() and zip_path.stat().st_size > 0:
+        with open(zip_path, "rb") as f:
+            content = f.read()
+    else:
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"})
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            content = resp.read()
+        if zip_path:
+            with open(zip_path, "wb") as f:
+                f.write(content)
+
+    with zipfile.ZipFile(io.BytesIO(content)) as z:
+        with z.open("Data_Cortex_Nuclear.xls") as f:
+            df_uci = pd.read_excel(f)
+
+    return pd.DataFrame({"MouseID": df_uci["MouseID"].astype(str)})
+
+
+def load_openml_dataset(
+    spec: DatasetSpec,
+    data_home: Optional[Path] = None,
+    raw_dir: Optional[Path] = None,
+) -> DatasetBundle:
     """Load dataset from OpenML via official OpenML data_id and capture source dataset name."""
     data_id = int(spec.source_id)
     bunch = fetch_openml(
@@ -60,15 +94,32 @@ def load_openml_dataset(spec: DatasetSpec, data_home: Optional[Path] = None) -> 
     feature_names = list(X.columns)
     openml_name = bunch.details.get("name") if hasattr(bunch, "details") else None
 
+    groups_df = None
+    if spec.id == "mice_protein_expression":
+        groups_df = _load_mice_protein_groups(raw_dir)
+
+    feature_roles = {}
+    for col in feature_names:
+        if pd.api.types.is_numeric_dtype(X[col]):
+            feature_roles[col] = "numeric"
+        else:
+            feature_roles[col] = "categorical"
+
+    meta: Dict[str, Any] = {
+        "openml_id": data_id,
+        "openml_name": openml_name,
+        "url": spec.source_url,
+    }
+    if groups_df is not None:
+        meta["n_groups"] = int(groups_df["MouseID"].nunique())
+
     return DatasetBundle(
         X=X,
         y=y,
         feature_names=feature_names,
-        metadata={
-            "openml_id": data_id,
-            "openml_name": openml_name,
-            "url": spec.source_url,
-        },
+        groups=groups_df,
+        feature_roles=feature_roles,
+        metadata=meta,
     )
 
 
@@ -108,23 +159,31 @@ def load_uci_har_dataset(spec: DatasetSpec, raw_dir: Path) -> DatasetBundle:
         # Read train + test splits
         X_train = pd.read_csv(io.BytesIO(z.read("UCI HAR Dataset/train/X_train.txt")), sep=r"\s+", header=None, names=unique_feat_names, dtype=np.float32)
         y_train = pd.read_csv(io.BytesIO(z.read("UCI HAR Dataset/train/y_train.txt")), sep=r"\s+", header=None, names=["activity"])
+        sub_train = pd.read_csv(io.BytesIO(z.read("UCI HAR Dataset/train/subject_train.txt")), sep=r"\s+", header=None, names=["subject_id"])
 
         X_test = pd.read_csv(io.BytesIO(z.read("UCI HAR Dataset/test/X_test.txt")), sep=r"\s+", header=None, names=unique_feat_names, dtype=np.float32)
         y_test = pd.read_csv(io.BytesIO(z.read("UCI HAR Dataset/test/y_test.txt")), sep=r"\s+", header=None, names=["activity"])
+        sub_test = pd.read_csv(io.BytesIO(z.read("UCI HAR Dataset/test/subject_test.txt")), sep=r"\s+", header=None, names=["subject_id"])
 
         X_df = pd.concat([X_train, X_test], ignore_index=True)
         y_df = pd.concat([y_train, y_test], ignore_index=True)["activity"]
+        groups_df = pd.concat([sub_train, sub_test], ignore_index=True)
+
+    feature_roles = {fn: "numeric" for fn in unique_feat_names}
 
     return DatasetBundle(
         X=X_df,
         y=y_df,
         feature_names=unique_feat_names,
+        groups=groups_df,
+        feature_roles=feature_roles,
         metadata={
             "uci_id": 240,
             "uci_name": "Human Activity Recognition Using Smartphones",
             "url": url,
             "train_observations": len(X_train),
             "test_observations": len(X_test),
+            "n_groups": int(groups_df["subject_id"].nunique()),
         },
     )
 
@@ -156,28 +215,49 @@ def load_tableshift_hospital_readmission(spec: DatasetSpec, raw_dir: Path) -> Da
     y_series = (df["readmitted"] != "NO").astype(int)
     y_series.name = "readmitted"
 
+    # Natural-shift domain variable: admission_source_id isolated into domains.parquet
     domain_series = df["admission_source_id"].astype(int)
+    domains_df = pd.DataFrame({"admission_source_id": domain_series})
 
-    # Drop patient/encounter IDs and target column
-    drop_cols = ["encounter_id", "patient_nbr", "readmitted"]
+    # Drop patient/encounter IDs, target column, AND domain column from features
+    drop_cols = ["encounter_id", "patient_nbr", "readmitted", "admission_source_id"]
     X_df = df.drop(columns=drop_cols).copy()
 
-    # Convert non-numeric categorical columns to integer factor codes
+    # Preserve semantic data types WITHOUT acquisition-time factorization or one-hot encoding
+    ordinal_cols = {"age", "max_glu_serum", "A1Cresult"}
+    numeric_cols = {
+        "time_in_hospital",
+        "num_lab_procedures",
+        "num_procedures",
+        "num_medications",
+        "number_outpatient",
+        "number_emergency",
+        "number_inpatient",
+        "number_diagnoses",
+    }
+    feature_roles = {}
     for col in X_df.columns:
-        if not pd.api.types.is_numeric_dtype(X_df[col]):
-            codes, _ = pd.factorize(X_df[col])
-            X_df[col] = codes.astype(np.float32)
+        if col in ordinal_cols:
+            feature_roles[col] = "ordinal"
+            X_df[col] = X_df[col].astype(str)
+        elif col in numeric_cols:
+            feature_roles[col] = "numeric"
+            X_df[col] = pd.to_numeric(X_df[col], errors="coerce").astype(np.float32)
         else:
-            X_df[col] = X_df[col].astype(np.float32)
+            feature_roles[col] = "categorical"
+            X_df[col] = X_df[col].astype(str)
 
     return DatasetBundle(
         X=X_df,
         y=y_series,
+        domains=domains_df,
+        feature_roles=feature_roles,
         feature_names=list(X_df.columns),
         metadata={
             "tableshift_task": "diabetes_readmission",
             "domain_column": "admission_source_id",
             "domain_values": sorted(list(domain_series.unique().tolist())),
+            "n_domains": int(domain_series.nunique()),
             "url": url,
         },
     )

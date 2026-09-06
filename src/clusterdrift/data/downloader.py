@@ -164,9 +164,9 @@ class DatasetDownloader:
         )
 
     def _download_openml(self, spec: DatasetSpec, t0: float) -> DownloadResult:
-        raw_cache = self.raw_dir / "controlled" / spec.id
-        raw_cache.mkdir(parents=True, exist_ok=True)
-        bundle = load_openml_dataset(spec, data_home=raw_cache)
+        cache_dir = Path("D:/Cache/scikit_learn_data")
+        cache_dir.mkdir(parents=True, exist_ok=True)
+        bundle = load_openml_dataset(spec, data_home=cache_dir, raw_dir=self.raw_dir)
         out_dir = self.canonical_dir / "controlled" / spec.id
         paths = canonicalize_bundle(bundle, spec, out_dir)
         return DownloadResult(

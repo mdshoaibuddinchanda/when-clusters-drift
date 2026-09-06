@@ -57,6 +57,10 @@ class DatasetSpec:
     categorical_features: List[str] = field(default_factory=list)
     notes: str = ""
     domain_metadata: Dict[str, Any] = field(default_factory=dict)
+    split_strategy: str = "kfold"
+    group_column: Optional[str] = None
+    time_column: Optional[str] = None
+    feature_roles: Dict[str, str] = field(default_factory=dict)
 
 
 @dataclass
@@ -67,6 +71,9 @@ class DatasetBundle:
     feature_names: List[str] = field(default_factory=list)
     metadata: Dict[str, Any] = field(default_factory=dict)
     domain_labels: Optional[pd.Series] = None
+    groups: Optional[pd.DataFrame] = None
+    domains: Optional[pd.DataFrame] = None
+    feature_roles: Dict[str, str] = field(default_factory=dict)
 
 
 @dataclass

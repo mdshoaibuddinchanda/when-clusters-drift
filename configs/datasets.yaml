@@ -26,6 +26,9 @@ real_datasets:
     expected_features: 4
     expected_source_name: iris
     expected_target: target
+    split_strategy: kfold
+    group_column: null
+    time_column: null
   wine:
     id: wine
     display_name: Wine Recognition
@@ -53,6 +56,9 @@ real_datasets:
     expected_features: 13
     expected_source_name: wine
     expected_target: target
+    split_strategy: kfold
+    group_column: null
+    time_column: null
   seeds:
     id: seeds
     display_name: Seeds
@@ -81,6 +87,9 @@ real_datasets:
     expected_features: 7
     expected_source_name: seeds
     expected_target: Class
+    split_strategy: kfold
+    group_column: null
+    time_column: null
   glass:
     id: glass
     display_name: Glass Identification
@@ -108,6 +117,9 @@ real_datasets:
     expected_features: 9
     expected_source_name: glass
     expected_target: Type
+    split_strategy: kfold
+    group_column: null
+    time_column: null
   ecoli:
     id: ecoli
     display_name: Ecoli
@@ -137,6 +149,9 @@ real_datasets:
     expected_features: 7
     expected_source_name: ecoli
     expected_target: class
+    split_strategy: kfold
+    group_column: null
+    time_column: null
   yeast:
     id: yeast
     display_name: Yeast
@@ -167,6 +182,9 @@ real_datasets:
     expected_features: 8
     expected_source_name: yeast
     expected_target: class_protein_localization
+    split_strategy: kfold
+    group_column: null
+    time_column: null
   vehicle_silhouettes:
     id: vehicle_silhouettes
     display_name: Statlog Vehicle Silhouettes
@@ -194,6 +212,9 @@ real_datasets:
     expected_features: 18
     expected_source_name: vehicle
     expected_target: Class
+    split_strategy: kfold
+    group_column: null
+    time_column: null
   image_segmentation:
     id: image_segmentation
     display_name: Image Segmentation
@@ -222,6 +243,9 @@ real_datasets:
     expected_features: 18
     expected_source_name: segment
     expected_target: class
+    split_strategy: kfold
+    group_column: null
+    time_column: null
   satimage:
     id: satimage
     display_name: Statlog Landsat Satellite
@@ -249,6 +273,9 @@ real_datasets:
     expected_features: 36
     expected_source_name: satimage
     expected_target: class
+    split_strategy: kfold
+    group_column: null
+    time_column: null
   pendigits:
     id: pendigits
     display_name: Pen-Based Digits
@@ -276,6 +303,9 @@ real_datasets:
     expected_features: 16
     expected_source_name: pendigits
     expected_target: class
+    split_strategy: kfold
+    group_column: null
+    time_column: null
   optdigits:
     id: optdigits
     display_name: Optical Recognition of Handwritten Digits
@@ -303,6 +333,9 @@ real_datasets:
     expected_features: 64
     expected_source_name: optdigits
     expected_target: class
+    split_strategy: kfold
+    group_column: null
+    time_column: null
   letter_recognition:
     id: letter_recognition
     display_name: Letter Recognition
@@ -330,6 +363,9 @@ real_datasets:
     expected_features: 16
     expected_source_name: letter
     expected_target: class
+    split_strategy: kfold
+    group_column: null
+    time_column: null
   banknote_authentication:
     id: banknote_authentication
     display_name: Banknote Authentication
@@ -357,6 +393,9 @@ real_datasets:
     expected_features: 4
     expected_source_name: banknote-authentication
     expected_target: Class
+    split_strategy: kfold
+    group_column: null
+    time_column: null
   ionosphere:
     id: ionosphere
     display_name: Johns Hopkins Ionosphere
@@ -385,6 +424,9 @@ real_datasets:
     expected_features: 34
     expected_source_name: ionosphere
     expected_target: class
+    split_strategy: kfold
+    group_column: null
+    time_column: null
   sonar:
     id: sonar
     display_name: Mines vs. Rocks Sonar
@@ -413,6 +455,9 @@ real_datasets:
     expected_features: 60
     expected_source_name: sonar
     expected_target: Class
+    split_strategy: kfold
+    group_column: null
+    time_column: null
   breast_cancer_wisconsin_diagnostic:
     id: breast_cancer_wisconsin_diagnostic
     display_name: Breast Cancer Wisconsin Diagnostic
@@ -440,6 +485,9 @@ real_datasets:
     expected_features: 30
     expected_source_name: breast_cancer_wisconsin_diagnostic
     expected_target: target
+    split_strategy: kfold
+    group_column: null
+    time_column: null
   pima_diabetes:
     id: pima_diabetes
     display_name: Pima Indians Diabetes
@@ -469,6 +517,9 @@ real_datasets:
     expected_features: 8
     expected_source_name: diabetes
     expected_target: class
+    split_strategy: kfold
+    group_column: null
+    time_column: null
   heart_disease:
     id: heart_disease
     display_name: Cleveland Heart Disease
@@ -505,6 +556,9 @@ real_datasets:
     expected_features: 13
     expected_source_name: heart-h
     expected_target: Class
+    split_strategy: kfold
+    group_column: null
+    time_column: null
   haberman_survival:
     id: haberman_survival
     display_name: Haberman's Survival
@@ -532,6 +586,9 @@ real_datasets:
     expected_features: 3
     expected_source_name: haberman
     expected_target: Survival_status
+    split_strategy: kfold
+    group_column: null
+    time_column: null
   dermatology:
     id: dermatology
     display_name: Dermatology
@@ -560,6 +617,9 @@ real_datasets:
     expected_features: 34
     expected_source_name: dermatology
     expected_target: class
+    split_strategy: kfold
+    group_column: null
+    time_column: null
   balance_scale:
     id: balance_scale
     display_name: Balance Scale
@@ -587,6 +647,9 @@ real_datasets:
     expected_features: 4
     expected_source_name: balance-scale
     expected_target: class
+    split_strategy: kfold
+    group_column: null
+    time_column: null
   waveform:
     id: waveform
     display_name: Waveform-5000 (40 predictors, incl. 19 noise attributes)
@@ -614,6 +677,9 @@ real_datasets:
     expected_features: 40
     expected_source_name: waveform-5000
     expected_target: class
+    split_strategy: kfold
+    group_column: null
+    time_column: null
   spambase:
     id: spambase
     display_name: Spambase
@@ -641,6 +707,9 @@ real_datasets:
     expected_features: 57
     expected_source_name: spambase
     expected_target: class
+    split_strategy: kfold
+    group_column: null
+    time_column: null
   mice_protein_expression:
     id: mice_protein_expression
     display_name: Mice Protein Expression
@@ -674,6 +743,9 @@ real_datasets:
     expected_features: 77
     expected_source_name: MiceProtein
     expected_target: class
+    split_strategy: group_kfold
+    group_column: MouseID
+    time_column: null
   human_activity_recognition:
     id: human_activity_recognition
     display_name: Human Activity Recognition Using Smartphones
@@ -702,6 +774,9 @@ real_datasets:
     expected_features: 561
     expected_source_name: Human Activity Recognition Using Smartphones
     expected_target: activity
+    split_strategy: group_kfold
+    group_column: subject_id
+    time_column: null
   isolet:
     id: isolet
     display_name: ISOLET Spoken Letter Recognition
@@ -729,6 +804,9 @@ real_datasets:
     expected_features: 617
     expected_source_name: isolet
     expected_target: class
+    split_strategy: kfold
+    group_column: null
+    time_column: null
   madelon:
     id: madelon
     display_name: Madelon
@@ -756,6 +834,9 @@ real_datasets:
     expected_features: 500
     expected_source_name: madelon
     expected_target: Class
+    split_strategy: kfold
+    group_column: null
+    time_column: null
   electricity:
     id: electricity
     display_name: Australian Electricity Market
@@ -779,11 +860,16 @@ real_datasets:
     has_missing_values: false
     categorical_features:
     - day
-    notes: Electricity spot price movement (UP/DOWN) subject to temporal drift.
+    notes: Electricity spot price movement (UP/DOWN) subject to temporal drift. Australian
+      New South Wales Electricity Market (Elec2, Harries 1999) chronologically sampled
+      at 30-minute intervals over 1996-1998.
     expected_rows: 45312
     expected_features: 8
     expected_source_name: electricity
     expected_target: class
+    split_strategy: temporal_block
+    time_column: date
+    group_column: null
   bank_marketing:
     id: bank_marketing
     display_name: Bank Marketing (Direct Marketing)
@@ -820,6 +906,9 @@ real_datasets:
     expected_features: 16
     expected_source_name: bank-marketing
     expected_target: Class
+    split_strategy: kfold
+    group_column: null
+    time_column: null
   aps_failure:
     id: aps_failure
     display_name: APS Failure at Scania Trucks
@@ -847,6 +936,9 @@ real_datasets:
     expected_features: 170
     expected_source_name: APSFailure
     expected_target: class
+    split_strategy: kfold
+    group_column: null
+    time_column: null
   whyshift_acs_income:
     id: whyshift_acs_income
     display_name: WhyShift ACS Income
@@ -881,6 +973,9 @@ real_datasets:
       - FL
       - PA
       reference_domain: CA
+    split_strategy: natural_domain
+    group_column: null
+    time_column: null
   whyshift_acs_pubcov:
     id: whyshift_acs_pubcov
     display_name: WhyShift ACS Public Coverage
@@ -914,6 +1009,9 @@ real_datasets:
       - FL
       - PA
       reference_domain: CA
+    split_strategy: natural_domain
+    group_column: null
+    time_column: null
   whyshift_acs_mobility:
     id: whyshift_acs_mobility
     display_name: WhyShift ACS Mobility
@@ -947,6 +1045,9 @@ real_datasets:
       - FL
       - PA
       reference_domain: CA
+    split_strategy: natural_domain
+    group_column: null
+    time_column: null
   whyshift_taxi:
     id: whyshift_taxi
     display_name: WhyShift Taxi
@@ -980,6 +1081,9 @@ real_datasets:
       - mex
       - uio
       reference_domain: nyc
+    split_strategy: natural_domain
+    group_column: null
+    time_column: null
   whyshift_us_accidents:
     id: whyshift_us_accidents
     display_name: WhyShift US Accidents
@@ -1013,6 +1117,9 @@ real_datasets:
       - FL
       - NY
       reference_domain: CA
+    split_strategy: natural_domain
+    group_column: null
+    time_column: null
   tableshift_college_scorecard:
     id: tableshift_college_scorecard
     display_name: TableShift College Scorecard
@@ -1041,6 +1148,9 @@ real_datasets:
       split_type: institutional
       source_domain: public
       target_domain: private
+    split_strategy: natural_domain
+    group_column: null
+    time_column: null
   tableshift_hospital_readmission:
     id: tableshift_hospital_readmission
     display_name: TableShift Hospital Readmission
@@ -1063,16 +1173,21 @@ real_datasets:
     expected_classes: 2
     has_missing_values: true
     categorical_features: []
-    notes: TableShift clinical diabetic inpatient readmission across admission sources
-      (99,493 encounters).
+    notes: Official TableShift clinical diabetic inpatient readmission across admission
+      sources (diabetes_admsrc shift configuration, 99,493 encounters, 46 clustering
+      predictors). Phase 2 will create source/OOD partitions from the preserved admission_source_id
+      domain artifact.
     domain_metadata:
       split_type: clinical_source
       source_domain: emergency
       target_domain: referral
     expected_rows: 99493
-    expected_features: 47
+    expected_features: 46
     expected_source_name: diabetes_readmission
     expected_target: readmitted
+    split_strategy: natural_domain
+    group_column: null
+    time_column: null
   tableshift_childhood_lead:
     id: tableshift_childhood_lead
     display_name: TableShift Childhood Blood Lead
@@ -1101,6 +1216,9 @@ real_datasets:
       split_type: socio_economic
       source_domain: high_income
       target_domain: low_income
+    split_strategy: natural_domain
+    group_column: null
+    time_column: null
   tableshift_heloc:
     id: tableshift_heloc
     display_name: TableShift FICO HELOC
@@ -1129,6 +1247,9 @@ real_datasets:
       split_type: risk_rating
       source_domain: tier_a
       target_domain: tier_b
+    split_strategy: natural_domain
+    group_column: null
+    time_column: null
   tableshift_assistments:
     id: tableshift_assistments
     display_name: TableShift ASSISTments
@@ -1158,6 +1279,9 @@ real_datasets:
       split_type: school_cohort
       source_domain: cohort_1
       target_domain: cohort_2
+    split_strategy: natural_domain
+    group_column: null
+    time_column: null
 synthetic_datasets:
   s01_balanced_gmm:
     family_id: s01_balanced_gmm
