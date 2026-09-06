@@ -1,6 +1,6 @@
-method,pre_repair_success_count,post_repair_success_count,pre_repair_degenerate_count,post_repair_degenerate_count,pre_repair_degenerate_rate,post_repair_degenerate_rate,pre_repair_mean_ari,post_repair_mean_ari,pre_repair_mean_runtime_seconds,post_repair_mean_runtime_seconds
-kmeans,55,55,0,0,0.0,0.0,0.4735,0.4735,0.2442,0.1644
-fcm,55,15,40,40,0.7273,0.7273,0.25,0.3856,1.7833,2.0832
-gmm,55,55,0,0,0.0,0.0,0.439,0.439,1.1329,0.9048
-pfcm,52,5,46,50,0.8364,0.9091,0.2089,0.6658,0.7543,2.8501
-gustafson_kessel,36,10,30,30,0.5455,0.5455,0.2566,0.2563,36.3817,31.5828
+method,pre_repair_success_count,post_repair_success_count,pre_repair_degenerate_count,post_repair_degenerate_count,pre_repair_degenerate_rate,post_repair_degenerate_rate,pre_optimizer_converged_rate,post_optimizer_converged_rate,pre_scientifically_nondegenerate_rate,post_scientifically_nondegenerate_rate,pre_usable_rate,post_usable_rate,pre_mean_ARI_all_runs,post_mean_ARI_all_runs,pre_median_ARI_all_runs,post_median_ARI_all_runs,pre_mean_ARI_nondegenerate_only,post_mean_ARI_nondegenerate_only,pre_mean_runtime_seconds,post_mean_runtime_seconds
+kmeans,55,55,0,0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,0.4735,0.4735,0.4196,0.4196,0.4735,0.4735,0.2442,0.1644
+fcm,55,15,40,40,0.7273,0.7273,1.0,1.0,0.2727,0.2727,0.2727,0.2727,0.25,0.2801,0.1426,0.1753,0.3773,0.3856,1.7833,2.0832
+gmm,55,55,0,0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,0.439,0.439,0.3349,0.3349,0.439,0.439,1.1329,0.9048
+pfcm,52,5,53,50,0.9636,0.9091,0.9455,1.0,0.0364,0.0909,0.0364,0.0909,0.2089,0.2655,0.1084,0.1597,0.7544,0.6658,0.7543,2.8501
+gustafson_kessel,36,10,30,30,0.5455,0.5455,0.6545,0.6545,0.4545,0.4545,0.4545,0.4545,0.2566,0.2796,0.1266,0.2077,0.2537,0.2563,36.3817,31.5828

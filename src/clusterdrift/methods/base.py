@@ -54,6 +54,10 @@ class BaseClusteringMethod(ABC):
         self.diagnostics_: dict = {}
         self.initialization_method_: str = ""
         self.initial_centers_: Optional[np.ndarray] = None
+        self.fuzzifier_policy_: str = ""
+        self.effective_m_: Optional[float] = None
+        self.effective_dimension_: int = 0
+        self.fuzzifier_clipped_: bool = False
 
     @abstractmethod
     def fit(self, X: np.ndarray | pd.DataFrame) -> "BaseClusteringMethod":

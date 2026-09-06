@@ -1,4 +1,4 @@
-# Configuration for Clustering Baseline Methods (Phase 3.1)
+# Configuration for Clustering Baseline Methods (Phase 3.2)
 algorithm_seeds:
   - 1
   - 2
@@ -12,8 +12,17 @@ kmeans:
   tol: 1.0e-4
   algorithm: "lloyd"
 
+# Conventional FCM m=2 baseline control (fcm_fixed_m2)
 fcm:
   m: 2.0
+  fuzzifier_policy: "fixed"
+  max_iter: 150
+  tol: 1.0e-5
+  initialization: "kmeans++"
+
+# Dimension-adaptive FCM policy (Winkler rule: m_D = max(1.01, 1 + 2/D))
+fcm_adaptive:
+  fuzzifier_policy: "dimension_adaptive"
   max_iter: 150
   tol: 1.0e-5
   initialization: "kmeans++"
@@ -29,6 +38,7 @@ pfcm:
   a: 1.0
   b: 1.0
   m: 2.0
+  fuzzifier_policy: "fixed"
   eta: 2.0
   k_scale: 1.0
   max_iter: 150
@@ -38,6 +48,7 @@ pfcm:
 
 gustafson_kessel:
   m: 2.0
+  fuzzifier_policy: "fixed"
   max_iter: 150
   tol: 1.0e-5
   min_eig: 1.0e-6

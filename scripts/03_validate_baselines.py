@@ -404,61 +404,66 @@ def main() -> None:
     df_summary.to_csv(summary_path, index=False)
     print(f"Saved: {summary_path}")
 
-    # Historical pre-repair baseline statistics from Phase 3 frozen outputs
-    pre_repair_stats = {
-        "kmeans": {
-            "success_count": 55,
-            "degenerate_count": 0,
-            "degenerate_rate": 0.0,
-            "mean_ari": 0.4735,
-            "mean_runtime_seconds": 0.2442,
-        },
-        "fcm": {
-            "success_count": 55,
-            "degenerate_count": 40,
-            "degenerate_rate": 0.7273,
-            "mean_ari": 0.2500,
-            "mean_runtime_seconds": 1.7833,
-        },
-        "gmm": {
-            "success_count": 55,
-            "degenerate_count": 0,
-            "degenerate_rate": 0.0,
-            "mean_ari": 0.4390,
-            "mean_runtime_seconds": 1.1329,
-        },
-        "pfcm": {
-            "success_count": 52,
-            "degenerate_count": 46,
-            "degenerate_rate": 0.8364,
-            "mean_ari": 0.2089,
-            "mean_runtime_seconds": 0.7543,
-        },
-        "gustafson_kessel": {
-            "success_count": 36,
-            "degenerate_count": 30,
-            "degenerate_rate": 0.5455,
-            "mean_ari": 0.2566,
-            "mean_runtime_seconds": 36.3817,
-        },
-    }
+    # Programmatically derive pre-repair baseline statistics from versioned artifact
+    frozen_path = out_dir / "phase3_frozen_runs.csv"
+    if not frozen_path.exists():
+        raise FileNotFoundError(f"Missing required historical audit artifact: {frozen_path}")
+    df_pre = pd.read_csv(frozen_path)
 
     comparison_rows = []
-    for row in summary_rows:
-        m = row["method"]
-        pre = pre_repair_stats.get(m, {})
+    for method_name in methods_list:
+        pre_sub = df_pre[df_pre["method"] == method_name]
+        post_sub = df_runs[df_runs["method"] == method_name]
+
+        n_pre = len(pre_sub)
+        n_post = len(post_sub)
+
+        # Pre-repair metrics
+        pre_conv_rate = round(int(pre_sub["converged"].sum()) / n_pre, 4) if n_pre > 0 else 0.0
+        if method_name in ("fcm", "pfcm", "gustafson_kessel"):
+            pre_degen_mask = pre_sub["FPC"] <= (1.0 / pre_sub["K"] + 0.02)
+        else:
+            pre_degen_mask = pd.Series(False, index=pre_sub.index)
+        pre_degen_cnt = int(pre_degen_mask.sum())
+        pre_degen_rate = round(pre_degen_cnt / n_pre, 4) if n_pre > 0 else 0.0
+        pre_nondegen_rate = round(1.0 - pre_degen_rate, 4)
+        pre_usable_cnt = int((pre_sub["status"].isin(["SUCCESS", "MAX_ITER_REACHED"]) & (~pre_degen_mask)).sum())
+        pre_usable_rate = round(pre_usable_cnt / n_pre, 4) if n_pre > 0 else 0.0
+        pre_ari_all = pre_sub["ARI"].dropna()
+        pre_ari_nondegen = pre_sub[~pre_degen_mask]["ARI"].dropna()
+
+        # Post-repair metrics
+        post_conv_rate = round(int(post_sub["converged"].sum()) / n_post, 4) if n_post > 0 else 0.0
+        post_degen_cnt = int(post_sub["degenerate_solution"].sum())
+        post_degen_rate = round(post_degen_cnt / n_post, 4) if n_post > 0 else 0.0
+        post_nondegen_rate = round(1.0 - post_degen_rate, 4)
+        post_usable_cnt = int((post_sub["status"].isin(["SUCCESS", "MAX_ITER_REACHED"]) & (~post_sub["degenerate_solution"])).sum())
+        post_usable_rate = round(post_usable_cnt / n_post, 4) if n_post > 0 else 0.0
+        post_ari_all = post_sub["ARI"].dropna()
+        post_ari_nondegen = post_sub[~post_sub["degenerate_solution"]]["ARI"].dropna()
+
         comparison_rows.append({
-            "method": m,
-            "pre_repair_success_count": pre.get("success_count", 0),
-            "post_repair_success_count": row["success_count"],
-            "pre_repair_degenerate_count": pre.get("degenerate_count", 0),
-            "post_repair_degenerate_count": row["degenerate_count"],
-            "pre_repair_degenerate_rate": pre.get("degenerate_rate", 0.0),
-            "post_repair_degenerate_rate": row["degenerate_rate"],
-            "pre_repair_mean_ari": pre.get("mean_ari", 0.0),
-            "post_repair_mean_ari": row["mean_ARI"],
-            "pre_repair_mean_runtime_seconds": pre.get("mean_runtime_seconds", 0.0),
-            "post_repair_mean_runtime_seconds": row["mean_runtime_seconds"],
+            "method": method_name,
+            "pre_repair_success_count": int((pre_sub["status"] == "SUCCESS").sum()),
+            "post_repair_success_count": int((post_sub["status"] == "SUCCESS").sum()),
+            "pre_repair_degenerate_count": pre_degen_cnt,
+            "post_repair_degenerate_count": post_degen_cnt,
+            "pre_repair_degenerate_rate": pre_degen_rate,
+            "post_repair_degenerate_rate": post_degen_rate,
+            "pre_optimizer_converged_rate": pre_conv_rate,
+            "post_optimizer_converged_rate": post_conv_rate,
+            "pre_scientifically_nondegenerate_rate": pre_nondegen_rate,
+            "post_scientifically_nondegenerate_rate": post_nondegen_rate,
+            "pre_usable_rate": pre_usable_rate,
+            "post_usable_rate": post_usable_rate,
+            "pre_mean_ARI_all_runs": round(float(pre_ari_all.mean()), 4) if not pre_ari_all.empty else 0.0,
+            "post_mean_ARI_all_runs": round(float(post_ari_all.mean()), 4) if not post_ari_all.empty else 0.0,
+            "pre_median_ARI_all_runs": round(float(pre_ari_all.median()), 4) if not pre_ari_all.empty else 0.0,
+            "post_median_ARI_all_runs": round(float(post_ari_all.median()), 4) if not post_ari_all.empty else 0.0,
+            "pre_mean_ARI_nondegenerate_only": round(float(pre_ari_nondegen.mean()), 4) if not pre_ari_nondegen.empty else 0.0,
+            "post_mean_ARI_nondegenerate_only": round(float(post_ari_nondegen.mean()), 4) if not post_ari_nondegen.empty else 0.0,
+            "pre_mean_runtime_seconds": round(float(pre_sub["runtime_seconds"].mean()), 4),
+            "post_mean_runtime_seconds": round(float(post_sub["runtime_seconds"].mean()), 4),
         })
 
     df_comp = pd.DataFrame(comparison_rows)

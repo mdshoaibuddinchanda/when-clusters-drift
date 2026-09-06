@@ -15,6 +15,7 @@ from sklearn.cluster import kmeans_plusplus
 from clusterdrift.methods.base import BaseClusteringMethod
 from clusterdrift.methods.diagnostics import assess_fuzzy_partition_degeneracy
 from clusterdrift.methods.fcm import FCM
+from clusterdrift.methods.fuzzifier import resolve_fuzzifier
 from clusterdrift.methods.utils import check_simplex_constraint, ensure_feature_array
 
 
@@ -26,7 +27,7 @@ class PFCM(BaseClusteringMethod):
         n_clusters: int,
         a: float = 1.0,
         b: float = 1.0,
-        m: float = 2.0,
+        m: float | str = 2.0,
         eta: float = 2.0,
         k_scale: float = 1.0,
         random_state: Optional[int] = None,
@@ -34,6 +35,7 @@ class PFCM(BaseClusteringMethod):
         tol: float = 1e-5,
         initialization: str = "fcm_warm_start",
         warm_start_initialization: str = "kmeans++",
+        fuzzifier_policy: str = "fixed",
     ):
         super().__init__(
             n_clusters=n_clusters,
@@ -43,8 +45,16 @@ class PFCM(BaseClusteringMethod):
         )
         if a <= 0.0 or b <= 0.0:
             raise ValueError(f"Parameters a and b must be strictly positive, got a={a}, b={b}")
-        if m <= 1.0 or eta <= 1.0:
-            raise ValueError(f"Exponents m and eta must be strictly > 1.0, got m={m}, eta={eta}")
+        if isinstance(m, str) and m in ("dimension_adaptive", "winkler_dimension_rule"):
+            fuzzifier_policy = m
+            m = 2.0
+
+        if fuzzifier_policy == "fixed":
+            if float(m) <= 1.0:
+                raise ValueError(f"Fuzzifier m must be strictly > 1.0, got {m}")
+        if float(eta) <= 1.0:
+            raise ValueError(f"Exponent eta must be strictly > 1.0, got eta={eta}")
+
         if initialization not in ("fcm_warm_start", "kmeans++", "random_membership"):
             raise ValueError(
                 f"Unknown initialization method '{initialization}'. "
@@ -54,6 +64,7 @@ class PFCM(BaseClusteringMethod):
         self.a: float = float(a)
         self.b: float = float(b)
         self.m: float = float(m)
+        self.fuzzifier_policy: str = fuzzifier_policy
         self.eta: float = float(eta)
         self.k_scale: float = float(k_scale)
         self.initialization: str = initialization
@@ -74,9 +85,10 @@ class PFCM(BaseClusteringMethod):
         return np.sqrt(np.maximum(dist_sq, 0.0))
 
     def _compute_fuzzy_memberships(self, dist: np.ndarray) -> np.ndarray:
-        """Compute fuzzy membership matrix U satisfying row simplex constraint."""
+        """Compute fuzzy membership matrix U satisfying row simplex constraint in the log domain."""
         N, K = dist.shape
-        power = 2.0 / (self.m - 1.0)
+        m_eff = self.effective_m_ if getattr(self, "effective_m_", None) is not None else self.m
+        power = 2.0 / (m_eff - 1.0)
         U = np.zeros((N, K), dtype=np.float64)
 
         zero_mask = dist == 0.0
@@ -84,10 +96,12 @@ class PFCM(BaseClusteringMethod):
 
         if np.any(~has_zero):
             normal_dist = dist[~has_zero]
-            inv_dist = 1.0 / np.maximum(normal_dist, 1e-15)
-            inv_dist_pow = inv_dist ** power
-            row_sums = np.sum(inv_dist_pow, axis=1, keepdims=True)
-            U[~has_zero] = inv_dist_pow / np.maximum(row_sums, 1e-15)
+            safe_dist = np.maximum(normal_dist, 1e-15)
+            log_w = - power * np.log(safe_dist)
+            M = np.max(log_w, axis=1, keepdims=True)
+            w = np.exp(log_w - M)
+            row_sums = np.sum(w, axis=1, keepdims=True)
+            U[~has_zero] = w / np.maximum(row_sums, 1e-15)
 
         if np.any(has_zero):
             for i in np.where(has_zero)[0]:
@@ -119,7 +133,8 @@ class PFCM(BaseClusteringMethod):
         """Estimate scale parameter gamma_k from initial partition following Pal et al. (2005)."""
         dist = self._compute_distances(X, centers)
         dist_sq = dist ** 2
-        U_m = U ** self.m
+        m_eff = self.effective_m_ if getattr(self, "effective_m_", None) is not None else self.m
+        U_m = U ** m_eff
         fuzzy_mass = np.sum(U_m, axis=0)  # (K,)
         safe_mass = np.maximum(fuzzy_mass, 1e-12)
         gamma = self.k_scale * np.sum(U_m * dist_sq, axis=0) / safe_mass
@@ -129,7 +144,8 @@ class PFCM(BaseClusteringMethod):
         self, X: np.ndarray, U: np.ndarray, T: np.ndarray
     ) -> Tuple[np.ndarray, bool]:
         """Update prototypes v_k = sum_i(w_ik * x_i) / sum_i(w_ik), where w_ik = a*u_ik^m + b*t_ik^eta."""
-        weight = self.a * (U ** self.m) + self.b * (T ** self.eta)  # (n, K)
+        m_eff = self.effective_m_ if getattr(self, "effective_m_", None) is not None else self.m
+        weight = self.a * (U ** m_eff) + self.b * (T ** self.eta)  # (n, K)
         col_mass = np.sum(weight, axis=0)  # (K,)
 
         if np.any(col_mass < 1e-15):
@@ -145,7 +161,8 @@ class PFCM(BaseClusteringMethod):
         """Compute PFCM objective J_PFCM."""
         dist = self._compute_distances(X, centers)
         dist_sq = dist ** 2
-        comp1 = np.sum((self.a * (U ** self.m) + self.b * (T ** self.eta)) * dist_sq)
+        m_eff = self.effective_m_ if getattr(self, "effective_m_", None) is not None else self.m
+        comp1 = np.sum((self.a * (U ** m_eff) + self.b * (T ** self.eta)) * dist_sq)
         comp2 = np.sum(gamma * np.sum((1.0 - T) ** self.eta, axis=0))
         return float(comp1 + comp2)
 
@@ -158,6 +175,17 @@ class PFCM(BaseClusteringMethod):
             self.status_ = "EMPTY_CLUSTER"
             raise ValueError(f"n_samples ({N}) must be >= n_clusters ({self.n_clusters})")
 
+        # Resolve fuzzifier policy strictly from unsupervised feature dimensionality d
+        res = resolve_fuzzifier(
+            policy=self.fuzzifier_policy,
+            value=self.m,
+            n_features=d,
+        )
+        self.fuzzifier_policy_ = res.policy
+        self.effective_m_ = res.effective_m
+        self.effective_dimension_ = res.dimension
+        self.fuzzifier_clipped_ = res.clipped
+
         self.initialization_method_ = self.initialization
 
         if self.initialization == "fcm_warm_start":
@@ -165,11 +193,12 @@ class PFCM(BaseClusteringMethod):
             t0_ws = time.perf_counter()
             init_fcm = FCM(
                 n_clusters=self.n_clusters,
-                m=self.m,
+                m=self.effective_m_,
                 random_state=self.random_state,
                 max_iter=self.max_iter,
                 tol=self.tol,
                 initialization=self.warm_start_initialization,
+                fuzzifier_policy="fixed",
             )
             init_fcm.fit(arr_X)
             self.warm_start_runtime_seconds_ = time.perf_counter() - t0_ws
@@ -199,7 +228,7 @@ class PFCM(BaseClusteringMethod):
         elif self.initialization == "random_membership":
             rng = np.random.default_rng(self.random_state)
             U = rng.dirichlet(np.ones(self.n_clusters), size=N)
-            U_m = U ** self.m
+            U_m = U ** self.effective_m_
             mass = np.maximum(np.sum(U_m, axis=0), 1e-12)
             centers = (U_m.T @ arr_X) / mass[:, np.newaxis]
             self.initial_centers_ = centers.copy()

@@ -13,6 +13,7 @@ from sklearn.cluster import kmeans_plusplus
 
 from clusterdrift.methods.base import BaseClusteringMethod
 from clusterdrift.methods.diagnostics import assess_fuzzy_partition_degeneracy
+from clusterdrift.methods.fuzzifier import resolve_fuzzifier
 from clusterdrift.methods.utils import (
     check_simplex_constraint,
     compute_log_det_root,
@@ -28,7 +29,7 @@ class GustafsonKessel(BaseClusteringMethod):
     def __init__(
         self,
         n_clusters: int,
-        m: float = 2.0,
+        m: float | str = 2.0,
         random_state: Optional[int] = None,
         max_iter: int = 150,
         tol: float = 1e-5,
@@ -36,6 +37,7 @@ class GustafsonKessel(BaseClusteringMethod):
         max_cond: float = 1e8,
         ridge_factor: float = 1e-5,
         initialization: str = "kmeans++",
+        fuzzifier_policy: str = "fixed",
     ):
         super().__init__(
             n_clusters=n_clusters,
@@ -43,14 +45,21 @@ class GustafsonKessel(BaseClusteringMethod):
             max_iter=max_iter,
             tol=tol,
         )
-        if m <= 1.0:
-            raise ValueError(f"Fuzzifier m must be strictly > 1.0, got {m}")
+        if isinstance(m, str) and m in ("dimension_adaptive", "winkler_dimension_rule"):
+            fuzzifier_policy = m
+            m = 2.0
+
+        if fuzzifier_policy == "fixed":
+            if float(m) <= 1.0:
+                raise ValueError(f"Fuzzifier m must be strictly > 1.0, got {m}")
+
         if initialization not in ("kmeans++", "random_membership"):
             raise ValueError(
                 f"Unknown initialization method '{initialization}'. Must be 'kmeans++' or 'random_membership'."
             )
 
         self.m: float = float(m)
+        self.fuzzifier_policy: str = fuzzifier_policy
         self.min_eig: float = float(min_eig)
         self.max_cond: float = float(max_cond)
         self.ridge_factor: float = float(ridge_factor)
@@ -78,9 +87,10 @@ class GustafsonKessel(BaseClusteringMethod):
         return dist
 
     def _compute_memberships_from_distances(self, dist: np.ndarray) -> np.ndarray:
-        """Compute fuzzy membership matrix U from Mahalanobis distances."""
+        """Compute fuzzy membership matrix U from Mahalanobis distances in the log domain."""
         N, K = dist.shape
-        power = 2.0 / (self.m - 1.0)
+        m_eff = self.effective_m_ if getattr(self, "effective_m_", None) is not None else self.m
+        power = 2.0 / (m_eff - 1.0)
         U = np.zeros((N, K), dtype=np.float64)
 
         zero_mask = dist == 0.0
@@ -88,10 +98,12 @@ class GustafsonKessel(BaseClusteringMethod):
 
         if np.any(~has_zero):
             normal_dist = dist[~has_zero]
-            inv_dist = 1.0 / np.maximum(normal_dist, 1e-15)
-            inv_dist_pow = inv_dist ** power
-            row_sums = np.sum(inv_dist_pow, axis=1, keepdims=True)
-            U[~has_zero] = inv_dist_pow / np.maximum(row_sums, 1e-15)
+            safe_dist = np.maximum(normal_dist, 1e-15)
+            log_w = - power * np.log(safe_dist)
+            M = np.max(log_w, axis=1, keepdims=True)
+            w = np.exp(log_w - M)
+            row_sums = np.sum(w, axis=1, keepdims=True)
+            U[~has_zero] = w / np.maximum(row_sums, 1e-15)
 
         if np.any(has_zero):
             for i in np.where(has_zero)[0]:
@@ -103,7 +115,8 @@ class GustafsonKessel(BaseClusteringMethod):
 
     def _update_centers(self, X: np.ndarray, U: np.ndarray) -> Tuple[np.ndarray, bool]:
         """Update cluster prototypes v_k = sum_i(u_ik^m * x_i) / sum_i(u_ik^m)."""
-        U_m = U ** self.m
+        m_eff = self.effective_m_ if getattr(self, "effective_m_", None) is not None else self.m
+        U_m = U ** m_eff
         fuzzy_mass = np.sum(U_m, axis=0)
 
         if np.any(fuzzy_mass < 1e-15):
@@ -119,7 +132,8 @@ class GustafsonKessel(BaseClusteringMethod):
         """Compute cluster fuzzy covariance matrices and norm-inducing metric matrices A_k."""
         N, d = X.shape
         K = self.n_clusters
-        U_m = U ** self.m
+        m_eff = self.effective_m_ if getattr(self, "effective_m_", None) is not None else self.m
+        U_m = U ** m_eff
         fuzzy_mass = np.sum(U_m, axis=0)
 
         covariances = []
@@ -167,7 +181,8 @@ class GustafsonKessel(BaseClusteringMethod):
 
     def _compute_objective(self, dist: np.ndarray, U: np.ndarray) -> float:
         """Compute Gustafson-Kessel objective J_GK."""
-        U_m = U ** self.m
+        m_eff = self.effective_m_ if getattr(self, "effective_m_", None) is not None else self.m
+        U_m = U ** m_eff
         dist_sq = dist ** 2
         return float(np.sum(U_m * dist_sq))
 
@@ -179,6 +194,17 @@ class GustafsonKessel(BaseClusteringMethod):
         if N < self.n_clusters:
             self.status_ = "EMPTY_CLUSTER"
             raise ValueError(f"n_samples ({N}) must be >= n_clusters ({self.n_clusters})")
+
+        # Resolve fuzzifier policy strictly from unsupervised feature dimensionality d
+        res = resolve_fuzzifier(
+            policy=self.fuzzifier_policy,
+            value=self.m,
+            n_features=d,
+        )
+        self.fuzzifier_policy_ = res.policy
+        self.effective_m_ = res.effective_m
+        self.effective_dimension_ = res.dimension
+        self.fuzzifier_clipped_ = res.clipped
 
         self.initialization_method_ = self.initialization
 
