@@ -1,0 +1,42 @@
+# Configuration for Clustering Baseline Methods (Phase 3)
+algorithm_seeds:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+
+kmeans:
+  n_init: 10
+  max_iter: 300
+  tol: 1.0e-4
+  algorithm: "lloyd"
+
+fcm:
+  m: 2.0
+  max_iter: 150
+  tol: 1.0e-5
+
+gmm:
+  covariance_type: "full"
+  n_init: 1
+  reg_covar: 1.0e-6
+  max_iter: 100
+  tol: 1.0e-3
+
+pfcm:
+  a: 1.0
+  b: 1.0
+  m: 2.0
+  eta: 2.0
+  k_scale: 1.0
+  max_iter: 150
+  tol: 1.0e-5
+
+gustafson_kessel:
+  m: 2.0
+  max_iter: 150
+  tol: 1.0e-5
+  min_eig: 1.0e-6
+  max_cond: 1.0e8
+  ridge_factor: 1.0e-5

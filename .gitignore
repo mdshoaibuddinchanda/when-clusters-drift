@@ -33,7 +33,8 @@ data/synthetic/**
 data/processed/**
 data/splits/**
 runs/**
-results/**
+results/*
+!results/baseline_validation/
 
 # Preserve gitkeep, manifests, and documentation
 !data/processed/.gitkeep
@@ -44,6 +45,7 @@ results/**
 !data/splits/**/*.json
 !data/manifests/**
 !data/README.md
+!results/baseline_validation/**
 
 # Credentials & secrets
 kaggle.json
