@@ -103,10 +103,10 @@ All 30 datasets are acquired from scikit-learn built-ins or official OpenML data
 19. `haberman_survival` (OpenML 43)
 20. `dermatology` (OpenML 35)
 21. `balance_scale` (OpenML 11)
-22. `waveform` (OpenML 60)
+22. `waveform` (OpenML 60, 40 predictors incl. 19 noise attributes)
 23. `spambase` (OpenML 44)
-24. `mice_protein_expression` (OpenML 40966)
-25. `human_activity_recognition` (OpenML 1471)
+24. `mice_protein_expression` (OpenML 40966, MiceProtein, 1,080 x 77, 8 classes)
+25. `human_activity_recognition` (UCI 240, HAR Using Smartphones, 10,299 x 561, 6 classes)
 26. `isolet` (OpenML 300)
 27. `madelon` (OpenML 1485)
 28. `electricity` (OpenML 151)
@@ -114,30 +114,30 @@ All 30 datasets are acquired from scikit-learn built-ins or official OpenML data
 30. `aps_failure` (OpenML 41138)
 
 ### 10 Natural-Shift Real Datasets (`natural_shift`)
-Preserve genuine spatial, institutional, and temporal domain partitions:
+Preserve genuine spatial, institutional, and clinical domain partitions:
 - **WhyShift Spatial Partitions**:
-  - `whyshift_acs_income` (5 state domains: CA, TX, NY, FL, PA)
-  - `whyshift_acs_pubcov` (5 state domains: CA, TX, NY, FL, PA)
-  - `whyshift_acs_mobility` (5 state domains: CA, TX, NY, FL, PA)
-  - `whyshift_taxi` (Cities: nyc, bog, mex, uio; credential-gated Kaggle source)
+  - `whyshift_acs_income` (5 state domains: CA, TX, NY, FL, PA; N=601,843)
+  - `whyshift_acs_pubcov` (5 state domains: CA, TX, NY, FL, PA; N=420,411)
+  - `whyshift_acs_mobility` (5 state domains: CA, TX, NY, FL, PA; N=232,512)
+  - `whyshift_taxi` (Cities: nyc, bog, mex, uio; credential-gated source)
   - `whyshift_us_accidents` (States: CA, TX, FL, NY; credential-gated Kaggle source)
 - **TableShift Domain Partitions**:
-  - `tableshift_hospital_readmission` (OpenML 43893; clinical admission source shift)
-  - `tableshift_college_scorecard` (Higher education; public vs. private domain shift)
-  - `tableshift_childhood_lead` (CDC blood lead; county poverty level shift)
+  - `tableshift_hospital_readmission` (UCI 296 / TableShift diabetes readmission, N=99,493, clinical admission source shift)
+  - `tableshift_college_scorecard` (Higher education; public vs. private domain shift; auth required)
+  - `tableshift_childhood_lead` (CDC blood lead; county poverty level shift; auth required)
   - `tableshift_heloc` (FICO credit risk; community license acceptance required)
-  - `tableshift_assistments` (Online education; school cohort shift)
+  - `tableshift_assistments` (Online education; school cohort shift; auth required)
 
 ### 8 Synthetic Benchmark Families (`synthetic`)
-Each family is generated with a fixed seed and exact soft posterior memberships:
-- `s01_balanced_gmm` ($K=3, d=10, n=10000$, balanced spherical Gaussian)
-- `s02_overlap_gmm` ($K=3, d=10, n=10000$, high overlap / boundary ambiguity)
-- `s03_imbalanced_gmm` ($K=3, d=10, n=10000, \pi=[0.70, 0.20, 0.10]$)
-- `s04_heteroscedastic_gmm` ($K=3, d=10, n=10000$, unequal cluster variances)
-- `s05_anisotropic_gmm` ($K=3, d=10, n=10000$, rotated elliptical covariance)
-- `s06_high_dimensional_gmm` ($K=5, d=100, n=10000$, high-dimensional structure)
-- `s07_irrelevant_features_gmm` ($K=4, d=100, n=10000$, 20 informative + 80 noise dimensions)
-- `s08_student_t_mixture` ($K=3, d=10, n=10000, \nu=3$, heavy-tailed natural outliers)
+Each family is generated with deterministic seeds (1001-1008), varying cluster counts ($K \in \{3, 4, 5\}$), and exact soft posterior memberships ($\sum_k \tau_{ik} = 1.0$):
+- `s01_balanced_gmm` (seed 1001, $K=3, d=10, n=10000$, balanced spherical Gaussian)
+- `s02_overlap_gmm` (seed 1002, $K=3, d=10, n=10000$, high overlap / boundary ambiguity)
+- `s03_imbalanced_gmm` (seed 1003, $K=3, d=10, n=10000, \pi=[0.70, 0.20, 0.10]$)
+- `s04_heteroscedastic_gmm` (seed 1004, $K=3, d=10, n=10000$, unequal cluster variances)
+- `s05_anisotropic_gmm` (seed 1005, $K=3, d=10, n=10000$, rotated elliptical covariance)
+- `s06_high_dimensional_gmm` (seed 1006, $K=5, d=100, n=10000$, high-dimensional structure)
+- `s07_irrelevant_features_gmm` (seed 1007, $K=4, d=100, n=10000$, 20 informative + 80 noise dimensions)
+- `s08_student_t_mixture` (seed 1008, $K=3, d=10, n=10000, \nu=3$, heavy-tailed natural outliers)
 
 ---
 

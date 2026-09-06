@@ -48,7 +48,11 @@ class DatasetSpec:
     drop_columns: List[str] = field(default_factory=list)
     expected_min_rows: int = 10
     expected_min_features: int = 2
+    expected_rows: Optional[int] = None
+    expected_features: Optional[int] = None
     expected_classes: Optional[int] = None
+    expected_source_name: Optional[str] = None
+    expected_target: Optional[str] = None
     has_missing_values: bool = False
     categorical_features: List[str] = field(default_factory=list)
     notes: str = ""

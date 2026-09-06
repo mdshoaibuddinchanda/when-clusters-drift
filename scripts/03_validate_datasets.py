@@ -35,17 +35,30 @@ def main():
 
     # 3. Print validation report
     available_real = df_summary[(df_summary["dataset_group"] != "synthetic") & (df_summary["status"] == "available")]
-    unacquired_real = df_summary[(df_summary["dataset_group"] != "synthetic") & (df_summary["status"] != "available")]
-    synthetic_avail = df_summary[df_summary["dataset_group"] == "synthetic"]
+    controlled_avail = available_real[available_real["dataset_group"] == "controlled_real"]
+    natural_records = available_real[available_real["dataset_group"] == "natural_shift"]
 
+    # Deduplicate natural datasets by mapping back to registered natural dataset IDs
+    natural_specs = [s for s in all_real_specs if s.dataset_group == "natural_shift"]
+    natural_dataset_ids = set()
+    for did in natural_records["dataset_id"]:
+        for s in natural_specs:
+            if did.startswith(s.id):
+                natural_dataset_ids.add(s.id)
+                break
+        else:
+            natural_dataset_ids.add(did)
+
+    synthetic_avail = df_summary[df_summary["dataset_group"] == "synthetic"]
     total_rows = available_real["rows"].sum() + synthetic_avail["rows"].sum()
 
     print("\n" + "=" * 60)
     print("WHEN CLUSTERS DRIFT — DATASET INTEGRITY & VALIDATION REPORT")
     print("=" * 60)
     print(f"Registered Real Datasets:        40")
-    print(f"  - Controlled Real Available:   {len(available_real[available_real['dataset_group'] == 'controlled_real'])} / 30")
-    print(f"  - Natural Shift Available:     {len(available_real[available_real['dataset_group'] == 'natural_shift'])} / 10")
+    print(f"  - Controlled Real Available:   {len(controlled_avail)} / 30")
+    print(f"  - Natural Datasets Available:  {len(natural_dataset_ids)} / 10")
+    print(f"  - Natural Domains/Partitions:  {len(natural_records)}")
     print(f"Synthetic Families Available:    {len(synthetic_avail)} / 8")
     print(f"Total Observations Acquired:     {total_rows:,}")
     print(f"Validation Duration:             {round(time.time() - t_start, 2)}s")

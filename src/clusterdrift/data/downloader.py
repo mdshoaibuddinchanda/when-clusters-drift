@@ -8,7 +8,13 @@ from typing import Dict, List, Optional
 import pandas as pd
 
 from clusterdrift.data.canonicalize import canonicalize_bundle
-from clusterdrift.data.loaders import load_openml_dataset, load_sklearn_dataset, load_whyshift_dataset
+from clusterdrift.data.loaders import (
+    load_openml_dataset,
+    load_sklearn_dataset,
+    load_tableshift_hospital_readmission,
+    load_uci_har_dataset,
+    load_whyshift_dataset,
+)
 from clusterdrift.data.schemas import DatasetSpec, DownloadMode, DownloadResult, DownloadStatus
 
 
@@ -89,6 +95,8 @@ class DatasetDownloader:
                 return self._download_whyshift(spec, t0)
             elif spec.source_provider == "tableshift":
                 return self._download_tableshift(spec, t0)
+            elif spec.source_provider == "uci":
+                return self._download_uci(spec, t0)
             else:
                 return DownloadResult(
                     dataset_id=spec.id,
@@ -209,11 +217,51 @@ class DatasetDownloader:
             duration_seconds=round(time.time() - t0, 3),
         )
 
+    def _download_uci(self, spec: DatasetSpec, t0: float) -> DownloadResult:
+        """Handle UCI datasets using authentic repository archives."""
+        raw_cache = self.raw_dir / "controlled" / spec.id
+        raw_cache.mkdir(parents=True, exist_ok=True)
+        if spec.id == "human_activity_recognition":
+            bundle = load_uci_har_dataset(spec, raw_cache)
+        else:
+            raise ValueError(f"Unknown UCI dataset: {spec.id}")
+
+        out_dir = self.canonical_dir / "controlled" / spec.id
+        paths = canonicalize_bundle(bundle, spec, out_dir)
+        return DownloadResult(
+            dataset_id=spec.id,
+            status=DownloadStatus.OK,
+            message=f"[OK] {spec.id} acquired from UCI Repository (id={spec.source_id}).",
+            n_rows=len(bundle.X),
+            n_features=len(bundle.feature_names),
+            n_classes=int(bundle.y.nunique()) if bundle.y is not None else None,
+            canonical_files=list(paths.values()),
+            duration_seconds=round(time.time() - t0, 3),
+        )
+
     def _download_tableshift(self, spec: DatasetSpec, t0: float) -> DownloadResult:
-        """Handle TableShift datasets using OpenML or official endpoints."""
-        if spec.source_type == "openml" and spec.source_id:
-            raw_cache = self.raw_dir / "natural" / "tableshift" / spec.id
-            raw_cache.mkdir(parents=True, exist_ok=True)
+        """Handle TableShift datasets using official benchmark sources."""
+        raw_cache = self.raw_dir / "natural" / "tableshift" / spec.id
+        raw_cache.mkdir(parents=True, exist_ok=True)
+        if spec.id == "tableshift_hospital_readmission":
+            bundle = load_tableshift_hospital_readmission(spec, raw_cache)
+            out_dir = self.canonical_dir / "natural" / "tableshift" / spec.id
+            domain_meta = {
+                "task": "diabetes_readmission",
+                "domain_column": "admission_source_id",
+            }
+            paths = canonicalize_bundle(bundle, spec, out_dir, domain_meta=domain_meta)
+            return DownloadResult(
+                dataset_id=spec.id,
+                status=DownloadStatus.OK,
+                message=f"[OK] {spec.id} acquired from TableShift diabetes readmission benchmark.",
+                n_rows=len(bundle.X),
+                n_features=len(bundle.feature_names),
+                n_classes=int(bundle.y.nunique()) if bundle.y is not None else None,
+                canonical_files=list(paths.values()),
+                duration_seconds=round(time.time() - t0, 3),
+            )
+        elif spec.source_type == "openml" and spec.source_id:
             bundle = load_openml_dataset(spec, data_home=raw_cache)
             out_dir = self.canonical_dir / "natural" / "tableshift" / spec.id
             paths = canonicalize_bundle(bundle, spec, out_dir)
@@ -228,7 +276,6 @@ class DatasetDownloader:
                 duration_seconds=round(time.time() - t0, 3),
             )
         else:
-            # TableShift tasks hosted externally or via tableshift package
             return DownloadResult(
                 dataset_id=spec.id,
                 status=DownloadStatus.AUTH_REQUIRED if spec.download_mode == DownloadMode.AUTH_REQUIRED else DownloadStatus.FAILED,

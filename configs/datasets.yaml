@@ -1,23 +1,17 @@
-# Dataset Registry Configuration
-# When Clusters Drift: Label-Free Failure Prediction and Risk-Guided Adaptation for Soft Clustering
-# Contains exactly 40 real datasets (30 controlled_real + 10 natural_shift) and 8 synthetic families.
-
 real_datasets:
-  # ==========================================
-  # 30 CONTROLLED REAL DATASETS
-  # ==========================================
   iris:
     id: iris
-    display_name: "Iris"
+    display_name: Iris
     dataset_group: controlled_real
     source_provider: sklearn
     source_type: builtin
-    source_url: "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_iris.html"
-    source_id: "sklearn_iris"
-    source_version: "pinned_by_environment"
+    source_url: https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_iris.html
+    source_id: sklearn_iris
+    source_version: pinned_by_environment
     download_mode: auto
-    license: "BSD-3-Clause"
-    citation: "Fisher, R. A. (1936). The use of multiple measurements in taxonomic problems. Annals of Eugenics, 7(2), 179-188."
+    license: BSD-3-Clause
+    citation: Fisher, R. A. (1936). The use of multiple measurements in taxonomic
+      problems. Annals of Eugenics, 7(2), 179-188.
     target_column: target
     domain_column: null
     id_columns: []
@@ -27,20 +21,24 @@ real_datasets:
     expected_classes: 3
     has_missing_values: false
     categorical_features: []
-    notes: "Classic 3-class baseline benchmark."
-
+    notes: Classic 3-class baseline benchmark.
+    expected_rows: 150
+    expected_features: 4
+    expected_source_name: iris
+    expected_target: target
   wine:
     id: wine
-    display_name: "Wine Recognition"
+    display_name: Wine Recognition
     dataset_group: controlled_real
     source_provider: sklearn
     source_type: builtin
-    source_url: "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_wine.html"
-    source_id: "sklearn_wine"
-    source_version: "pinned_by_environment"
+    source_url: https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_wine.html
+    source_id: sklearn_wine
+    source_version: pinned_by_environment
     download_mode: auto
-    license: "BSD-3-Clause"
-    citation: "Aeberhard, S., Coomans, D., & de Vel, O. (1992). Comparative analysis of statistical pattern recognition methods. Journal of Chemometrics, 8(6), 405-416."
+    license: BSD-3-Clause
+    citation: Aeberhard, S., Coomans, D., & de Vel, O. (1992). Comparative analysis
+      of statistical pattern recognition methods. Journal of Chemometrics, 8(6), 405-416.
     target_column: target
     domain_column: null
     id_columns: []
@@ -50,20 +48,25 @@ real_datasets:
     expected_classes: 3
     has_missing_values: false
     categorical_features: []
-    notes: "Continuous chemical analysis of Italian wines."
-
+    notes: Continuous chemical analysis of Italian wines.
+    expected_rows: 178
+    expected_features: 13
+    expected_source_name: wine
+    expected_target: target
   seeds:
     id: seeds
-    display_name: "Seeds"
+    display_name: Seeds
     dataset_group: controlled_real
     source_provider: openml
     source_type: api
-    source_url: "https://www.openml.org/d/1499"
-    source_id: "1499"
-    source_version: "1"
+    source_url: https://www.openml.org/d/1499
+    source_id: '1499'
+    source_version: '1'
     download_mode: auto
-    license: "CC BY 4.0"
-    citation: "Charytanowicz, M., Niewczas, J., Kulczycki, P., Kowalski, P. A., Lukasik, S., & Zak, S. (2010). Complete gradient clustering algorithm for features analysis of x-ray images. Information Technologies in Biomedicine, 15-24."
+    license: CC BY 4.0
+    citation: Charytanowicz, M., Niewczas, J., Kulczycki, P., Kowalski, P. A., Lukasik,
+      S., & Zak, S. (2010). Complete gradient clustering algorithm for features analysis
+      of x-ray images. Information Technologies in Biomedicine, 15-24.
     target_column: Class
     domain_column: null
     id_columns: []
@@ -73,20 +76,24 @@ real_datasets:
     expected_classes: 3
     has_missing_values: false
     categorical_features: []
-    notes: "Geometric properties of wheat grains."
-
+    notes: Geometric properties of wheat grains.
+    expected_rows: 210
+    expected_features: 7
+    expected_source_name: seeds
+    expected_target: Class
   glass:
     id: glass
-    display_name: "Glass Identification"
+    display_name: Glass Identification
     dataset_group: controlled_real
     source_provider: openml
     source_type: api
-    source_url: "https://www.openml.org/d/41"
-    source_id: "41"
-    source_version: "1"
+    source_url: https://www.openml.org/d/41
+    source_id: '41'
+    source_version: '1'
     download_mode: auto
-    license: "CC BY 4.0"
-    citation: "Evett, I. W., & Spiehler, E. J. (1987). Rule induction in forensic science. Central Research Establishment, Home Office Forensic Science Service."
+    license: CC BY 4.0
+    citation: Evett, I. W., & Spiehler, E. J. (1987). Rule induction in forensic science.
+      Central Research Establishment, Home Office Forensic Science Service.
     target_column: Type
     domain_column: null
     id_columns: []
@@ -96,66 +103,83 @@ real_datasets:
     expected_classes: 6
     has_missing_values: false
     categorical_features: []
-    notes: "Forensic glass fragments with severe class overlap."
-
+    notes: Forensic glass fragments with severe class overlap.
+    expected_rows: 214
+    expected_features: 9
+    expected_source_name: glass
+    expected_target: Type
   ecoli:
     id: ecoli
-    display_name: "Ecoli"
+    display_name: Ecoli
     dataset_group: controlled_real
     source_provider: openml
     source_type: api
-    source_url: "https://www.openml.org/d/39"
-    source_id: "39"
-    source_version: "1"
+    source_url: https://www.openml.org/d/39
+    source_id: '39'
+    source_version: '1'
     download_mode: auto
-    license: "CC BY 4.0"
-    citation: "Horton, P., & Nakai, K. (1996). A probabilistic classification system for predicting the cellular localization sites of proteins. ISMB 1996."
+    license: CC BY 4.0
+    citation: Horton, P., & Nakai, K. (1996). A probabilistic classification system
+      for predicting the cellular localization sites of proteins. ISMB 1996.
     target_column: class
     domain_column: null
-    id_columns: ["sequence_name"]
-    drop_columns: ["sequence_name"]
+    id_columns:
+    - sequence_name
+    drop_columns:
+    - sequence_name
     expected_min_rows: 336
     expected_min_features: 7
     expected_classes: 8
     has_missing_values: false
     categorical_features: []
-    notes: "Cellular protein localization with imbalanced classes."
-
+    notes: Cellular protein localization with imbalanced classes.
+    expected_rows: 336
+    expected_features: 7
+    expected_source_name: ecoli
+    expected_target: class
   yeast:
     id: yeast
-    display_name: "Yeast"
+    display_name: Yeast
     dataset_group: controlled_real
     source_provider: openml
     source_type: api
-    source_url: "https://www.openml.org/d/181"
-    source_id: "181"
-    source_version: "1"
+    source_url: https://www.openml.org/d/181
+    source_id: '181'
+    source_version: '1'
     download_mode: auto
-    license: "CC BY 4.0"
-    citation: "Nakai, K., & Horton, P. (1999). PSORT: a program for detecting sorting signals in proteins and predicting their subcellular localization. Trends in Biochemical Sciences, 24(1), 34-36."
+    license: CC BY 4.0
+    citation: 'Nakai, K., & Horton, P. (1999). PSORT: a program for detecting sorting
+      signals in proteins and predicting their subcellular localization. Trends in
+      Biochemical Sciences, 24(1), 34-36.'
     target_column: class_protein_localization
     domain_column: null
-    id_columns: ["sequence_name"]
-    drop_columns: ["sequence_name"]
+    id_columns:
+    - sequence_name
+    drop_columns:
+    - sequence_name
     expected_min_rows: 1484
     expected_min_features: 8
     expected_classes: 10
     has_missing_values: false
     categorical_features: []
-    notes: "Protein localization sites in yeast cells."
-
+    notes: Protein localization sites in yeast cells.
+    expected_rows: 1484
+    expected_features: 8
+    expected_source_name: yeast
+    expected_target: class_protein_localization
   vehicle_silhouettes:
     id: vehicle_silhouettes
-    display_name: "Statlog Vehicle Silhouettes"
+    display_name: Statlog Vehicle Silhouettes
     dataset_group: controlled_real
     source_provider: openml
     source_type: api
-    source_url: "https://www.openml.org/d/54"
-    source_id: "54"
-    source_version: "1"
+    source_url: https://www.openml.org/d/54
+    source_id: '54'
+    source_version: '1'
     download_mode: auto
-    license: "CC BY 4.0"
-    citation: "Siebert, J. P. (1987). Vehicle recognition using rule based methods. Turing Institute Research Memorandum."
+    license: CC BY 4.0
+    citation: Siebert, J. P. (1987). Vehicle recognition using rule based methods.
+      Turing Institute Research Memorandum.
     target_column: Class
     domain_column: null
     id_columns: []
@@ -165,20 +189,24 @@ real_datasets:
     expected_classes: 4
     has_missing_values: false
     categorical_features: []
-    notes: "4 classes of 2D vehicle silhouettes."
-
+    notes: 4 classes of 2D vehicle silhouettes.
+    expected_rows: 846
+    expected_features: 18
+    expected_source_name: vehicle
+    expected_target: Class
   image_segmentation:
     id: image_segmentation
-    display_name: "Image Segmentation"
+    display_name: Image Segmentation
     dataset_group: controlled_real
     source_provider: openml
     source_type: api
-    source_url: "https://www.openml.org/d/40984"
-    source_id: "40984"
-    source_version: "1"
+    source_url: https://www.openml.org/d/40984
+    source_id: '40984'
+    source_version: '1'
     download_mode: auto
-    license: "CC BY 4.0"
-    citation: "Vision Group, University of Massachusetts (1990). Statlog Image Segmentation benchmark."
+    license: CC BY 4.0
+    citation: Vision Group, University of Massachusetts (1990). Statlog Image Segmentation
+      benchmark.
     target_column: class
     domain_column: null
     id_columns: []
@@ -188,20 +216,25 @@ real_datasets:
     expected_classes: 7
     has_missing_values: false
     categorical_features: []
-    notes: "Outdoor image patches drawn from 7 hand-segmented classes."
-
+    notes: Image segmentation with 18 features (region-centroid-col excluded in OpenML
+      40984).
+    expected_rows: 2310
+    expected_features: 18
+    expected_source_name: segment
+    expected_target: class
   satimage:
     id: satimage
-    display_name: "Statlog Landsat Satellite"
+    display_name: Statlog Landsat Satellite
     dataset_group: controlled_real
     source_provider: openml
     source_type: api
-    source_url: "https://www.openml.org/d/182"
-    source_id: "182"
-    source_version: "1"
+    source_url: https://www.openml.org/d/182
+    source_id: '182'
+    source_version: '1'
     download_mode: auto
-    license: "CC BY 4.0"
-    citation: "King, R. D., Feng, C., & Sutherland, A. (1995). Statlog comparison of ML algorithms on Landsat satellite images."
+    license: CC BY 4.0
+    citation: King, R. D., Feng, C., & Sutherland, A. (1995). Statlog comparison of
+      ML algorithms on Landsat satellite images.
     target_column: class
     domain_column: null
     id_columns: []
@@ -211,20 +244,24 @@ real_datasets:
     expected_classes: 6
     has_missing_values: false
     categorical_features: []
-    notes: "Multispectral satellite pixels across 6 soil categories."
-
+    notes: Multispectral satellite pixels across 6 soil categories.
+    expected_rows: 6430
+    expected_features: 36
+    expected_source_name: satimage
+    expected_target: class
   pendigits:
     id: pendigits
-    display_name: "Pen-Based Digits"
+    display_name: Pen-Based Digits
     dataset_group: controlled_real
     source_provider: openml
     source_type: api
-    source_url: "https://www.openml.org/d/32"
-    source_id: "32"
-    source_version: "1"
+    source_url: https://www.openml.org/d/32
+    source_id: '32'
+    source_version: '1'
     download_mode: auto
-    license: "CC BY 4.0"
-    citation: "Alimoglu, F., & Alpaydin, E. (1996). Methods of combining multiple classifiers applied to handwritten digit recognition."
+    license: CC BY 4.0
+    citation: Alimoglu, F., & Alpaydin, E. (1996). Methods of combining multiple classifiers
+      applied to handwritten digit recognition.
     target_column: class
     domain_column: null
     id_columns: []
@@ -234,20 +271,24 @@ real_datasets:
     expected_classes: 10
     has_missing_values: false
     categorical_features: []
-    notes: "Normalized spatial trajectories of handwritten digits."
-
+    notes: Normalized spatial trajectories of handwritten digits.
+    expected_rows: 10992
+    expected_features: 16
+    expected_source_name: pendigits
+    expected_target: class
   optdigits:
     id: optdigits
-    display_name: "Optical Recognition of Handwritten Digits"
+    display_name: Optical Recognition of Handwritten Digits
     dataset_group: controlled_real
     source_provider: openml
     source_type: api
-    source_url: "https://www.openml.org/d/28"
-    source_id: "28"
-    source_version: "1"
+    source_url: https://www.openml.org/d/28
+    source_id: '28'
+    source_version: '1'
     download_mode: auto
-    license: "CC BY 4.0"
-    citation: "Alpaydin, E., & Kaynak, C. (1998). Cascading classifiers. Kybernetika, 34(4), 369-374."
+    license: CC BY 4.0
+    citation: Alpaydin, E., & Kaynak, C. (1998). Cascading classifiers. Kybernetika,
+      34(4), 369-374.
     target_column: class
     domain_column: null
     id_columns: []
@@ -257,20 +298,24 @@ real_datasets:
     expected_classes: 10
     has_missing_values: false
     categorical_features: []
-    notes: "8x8 normalized bitmaps of handwritten digits."
-
+    notes: 8x8 normalized bitmaps of handwritten digits.
+    expected_rows: 5620
+    expected_features: 64
+    expected_source_name: optdigits
+    expected_target: class
   letter_recognition:
     id: letter_recognition
-    display_name: "Letter Recognition"
+    display_name: Letter Recognition
     dataset_group: controlled_real
     source_provider: openml
     source_type: api
-    source_url: "https://www.openml.org/d/6"
-    source_id: "6"
-    source_version: "1"
+    source_url: https://www.openml.org/d/6
+    source_id: '6'
+    source_version: '1'
     download_mode: auto
-    license: "CC BY 4.0"
-    citation: "Frey, P. W., & Slate, D. J. (1991). Letter recognition using Holland-style adaptive classifiers. Machine Learning, 6(2), 161-182."
+    license: CC BY 4.0
+    citation: Frey, P. W., & Slate, D. J. (1991). Letter recognition using Holland-style
+      adaptive classifiers. Machine Learning, 6(2), 161-182.
     target_column: class
     domain_column: null
     id_columns: []
@@ -280,20 +325,24 @@ real_datasets:
     expected_classes: 26
     has_missing_values: false
     categorical_features: []
-    notes: "26 capital English alphabet letters across font distortions."
-
+    notes: 26 capital English alphabet letters across font distortions.
+    expected_rows: 20000
+    expected_features: 16
+    expected_source_name: letter
+    expected_target: class
   banknote_authentication:
     id: banknote_authentication
-    display_name: "Banknote Authentication"
+    display_name: Banknote Authentication
     dataset_group: controlled_real
     source_provider: openml
     source_type: api
-    source_url: "https://www.openml.org/d/1462"
-    source_id: "1462"
-    source_version: "1"
+    source_url: https://www.openml.org/d/1462
+    source_id: '1462'
+    source_version: '1'
     download_mode: auto
-    license: "CC BY 4.0"
-    citation: "Lohweg, V. (2012). Banknote authentication data set. University of Applied Sciences Ostwestfalen-Lippe."
+    license: CC BY 4.0
+    citation: Lohweg, V. (2012). Banknote authentication data set. University of Applied
+      Sciences Ostwestfalen-Lippe.
     target_column: Class
     domain_column: null
     id_columns: []
@@ -303,20 +352,25 @@ real_datasets:
     expected_classes: 2
     has_missing_values: false
     categorical_features: []
-    notes: "Continuous wavelet features of genuine and forged banknotes."
-
+    notes: Continuous wavelet features of genuine and forged banknotes.
+    expected_rows: 1372
+    expected_features: 4
+    expected_source_name: banknote-authentication
+    expected_target: Class
   ionosphere:
     id: ionosphere
-    display_name: "Johns Hopkins Ionosphere"
+    display_name: Johns Hopkins Ionosphere
     dataset_group: controlled_real
     source_provider: openml
     source_type: api
-    source_url: "https://www.openml.org/d/59"
-    source_id: "59"
-    source_version: "1"
+    source_url: https://www.openml.org/d/59
+    source_id: '59'
+    source_version: '1'
     download_mode: auto
-    license: "CC BY 4.0"
-    citation: "Sigillito, V. G., Wing, S. P., Hutton, L. V., & Baker, K. B. (1989). Classification of radar returns from the ionosphere using neural networks. Johns Hopkins APL Technical Digest, 10, 262-266."
+    license: CC BY 4.0
+    citation: Sigillito, V. G., Wing, S. P., Hutton, L. V., & Baker, K. B. (1989).
+      Classification of radar returns from the ionosphere using neural networks. Johns
+      Hopkins APL Technical Digest, 10, 262-266.
     target_column: class
     domain_column: null
     id_columns: []
@@ -326,20 +380,25 @@ real_datasets:
     expected_classes: 2
     has_missing_values: false
     categorical_features: []
-    notes: "Phased array radar autocorrelation pulses."
-
+    notes: Phased array radar autocorrelation pulses.
+    expected_rows: 351
+    expected_features: 34
+    expected_source_name: ionosphere
+    expected_target: class
   sonar:
     id: sonar
-    display_name: "Mines vs. Rocks Sonar"
+    display_name: Mines vs. Rocks Sonar
     dataset_group: controlled_real
     source_provider: openml
     source_type: api
-    source_url: "https://www.openml.org/d/40"
-    source_id: "40"
-    source_version: "1"
+    source_url: https://www.openml.org/d/40
+    source_id: '40'
+    source_version: '1'
     download_mode: auto
-    license: "CC BY 4.0"
-    citation: "Gorman, R. P., & Sejnowski, T. J. (1988). Analysis of hidden units in a layered network trained to classify sonar targets. Neural Networks, 1(1), 75-89."
+    license: CC BY 4.0
+    citation: Gorman, R. P., & Sejnowski, T. J. (1988). Analysis of hidden units in
+      a layered network trained to classify sonar targets. Neural Networks, 1(1),
+      75-89.
     target_column: Class
     domain_column: null
     id_columns: []
@@ -349,20 +408,24 @@ real_datasets:
     expected_classes: 2
     has_missing_values: false
     categorical_features: []
-    notes: "60 frequency response angles detecting metal cylinders vs rocks."
-
+    notes: 60 frequency response angles detecting metal cylinders vs rocks.
+    expected_rows: 208
+    expected_features: 60
+    expected_source_name: sonar
+    expected_target: Class
   breast_cancer_wisconsin_diagnostic:
     id: breast_cancer_wisconsin_diagnostic
-    display_name: "Breast Cancer Wisconsin Diagnostic"
+    display_name: Breast Cancer Wisconsin Diagnostic
     dataset_group: controlled_real
     source_provider: sklearn
     source_type: builtin
-    source_url: "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_breast_cancer.html"
-    source_id: "sklearn_breast_cancer"
-    source_version: "pinned_by_environment"
+    source_url: https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_breast_cancer.html
+    source_id: sklearn_breast_cancer
+    source_version: pinned_by_environment
     download_mode: auto
-    license: "BSD-3-Clause"
-    citation: "Street, W. N., Wolberg, W. H., & Mangasarian, O. L. (1993). Nuclear feature extraction for breast tumor diagnosis. IS&T/SPIE 1993."
+    license: BSD-3-Clause
+    citation: Street, W. N., Wolberg, W. H., & Mangasarian, O. L. (1993). Nuclear
+      feature extraction for breast tumor diagnosis. IS&T/SPIE 1993.
     target_column: target
     domain_column: null
     id_columns: []
@@ -372,20 +435,26 @@ real_datasets:
     expected_classes: 2
     has_missing_values: false
     categorical_features: []
-    notes: "Nuclear shape measurements for fine needle aspirate images."
-
+    notes: Nuclear shape measurements for fine needle aspirate images.
+    expected_rows: 569
+    expected_features: 30
+    expected_source_name: breast_cancer_wisconsin_diagnostic
+    expected_target: target
   pima_diabetes:
     id: pima_diabetes
-    display_name: "Pima Indians Diabetes"
+    display_name: Pima Indians Diabetes
     dataset_group: controlled_real
     source_provider: openml
     source_type: api
-    source_url: "https://www.openml.org/d/37"
-    source_id: "37"
-    source_version: "1"
+    source_url: https://www.openml.org/d/37
+    source_id: '37'
+    source_version: '1'
     download_mode: auto
-    license: "CC BY 4.0"
-    citation: "Smith, J. W., Everhart, J. E., Dickson, W. C., Knowler, W. C., & Johannes, R. S. (1988). Using the ADAP learning algorithm to forecast the onset of diabetes mellitus. In Proceedings of the Symposium on Computer Applications and Medical Care."
+    license: CC BY 4.0
+    citation: Smith, J. W., Everhart, J. E., Dickson, W. C., Knowler, W. C., & Johannes,
+      R. S. (1988). Using the ADAP learning algorithm to forecast the onset of diabetes
+      mellitus. In Proceedings of the Symposium on Computer Applications and Medical
+      Care.
     target_column: class
     domain_column: null
     id_columns: []
@@ -395,43 +464,60 @@ real_datasets:
     expected_classes: 2
     has_missing_values: false
     categorical_features: []
-    notes: "Clinical diagnostic records for diabetes onset."
-
+    notes: Clinical diagnostic records for diabetes onset.
+    expected_rows: 768
+    expected_features: 8
+    expected_source_name: diabetes
+    expected_target: class
   heart_disease:
     id: heart_disease
-    display_name: "Cleveland Heart Disease"
+    display_name: Cleveland Heart Disease
     dataset_group: controlled_real
     source_provider: openml
     source_type: api
-    source_url: "https://www.openml.org/d/1565"
-    source_id: "1565"
-    source_version: "1"
+    source_url: https://www.openml.org/d/1565
+    source_id: '1565'
+    source_version: '1'
     download_mode: auto
-    license: "CC BY 4.0"
-    citation: "Detrano, R., Janosi, A., Steinbrunn, W., Pfisterer, M., Schmid, J. J., Sandhu, S., ... & Froelicher, V. (1989). International application of a new probability algorithm for the diagnosis of coronary artery disease. American Journal of Cardiology, 64(5), 304-310."
+    license: CC BY 4.0
+    citation: Detrano, R., Janosi, A., Steinbrunn, W., Pfisterer, M., Schmid, J. J.,
+      Sandhu, S., ... & Froelicher, V. (1989). International application of a new
+      probability algorithm for the diagnosis of coronary artery disease. American
+      Journal of Cardiology, 64(5), 304-310.
     target_column: Class
     domain_column: null
     id_columns: []
     drop_columns: []
     expected_min_rows: 303
     expected_min_features: 13
-    expected_classes: 2
+    expected_classes: 5
     has_missing_values: true
-    categorical_features: ["sex", "cp", "fbs", "restecg", "exang", "slope", "thal"]
-    notes: "Diagnostic measurements for coronary heart disease presence."
-
+    categorical_features:
+    - sex
+    - cp
+    - fbs
+    - restecg
+    - exang
+    - slope
+    - thal
+    notes: Hungarian heart disease keeping native 5-class severity levels.
+    expected_rows: 294
+    expected_features: 13
+    expected_source_name: heart-h
+    expected_target: Class
   haberman_survival:
     id: haberman_survival
-    display_name: "Haberman's Survival"
+    display_name: Haberman's Survival
     dataset_group: controlled_real
     source_provider: openml
     source_type: api
-    source_url: "https://www.openml.org/d/43"
-    source_id: "43"
-    source_version: "1"
+    source_url: https://www.openml.org/d/43
+    source_id: '43'
+    source_version: '1'
     download_mode: auto
-    license: "CC BY 4.0"
-    citation: "Haberman, S. J. (1976). Generalized Residuals for Log-Linear Models. Proceedings of the 9th International Biometric Conference."
+    license: CC BY 4.0
+    citation: Haberman, S. J. (1976). Generalized Residuals for Log-Linear Models.
+      Proceedings of the 9th International Biometric Conference.
     target_column: Survival_status
     domain_column: null
     id_columns: []
@@ -441,20 +527,25 @@ real_datasets:
     expected_classes: 2
     has_missing_values: false
     categorical_features: []
-    notes: "Breast cancer surgery patient survival after 5 years."
-
+    notes: Breast cancer surgery patient survival after 5 years.
+    expected_rows: 306
+    expected_features: 3
+    expected_source_name: haberman
+    expected_target: Survival_status
   dermatology:
     id: dermatology
-    display_name: "Dermatology"
+    display_name: Dermatology
     dataset_group: controlled_real
     source_provider: openml
     source_type: api
-    source_url: "https://www.openml.org/d/35"
-    source_id: "35"
-    source_version: "1"
+    source_url: https://www.openml.org/d/35
+    source_id: '35'
+    source_version: '1'
     download_mode: auto
-    license: "CC BY 4.0"
-    citation: "Guvenir, H. A., Demiroz, G., & Altay, N. (1998). Learning differential diagnosis of erythemato-squamous diseases using voting feature intervals. Artificial Intelligence in Medicine, 13(3), 147-165."
+    license: CC BY 4.0
+    citation: Guvenir, H. A., Demiroz, G., & Altay, N. (1998). Learning differential
+      diagnosis of erythemato-squamous diseases using voting feature intervals. Artificial
+      Intelligence in Medicine, 13(3), 147-165.
     target_column: class
     domain_column: null
     id_columns: []
@@ -464,20 +555,24 @@ real_datasets:
     expected_classes: 6
     has_missing_values: true
     categorical_features: []
-    notes: "Differential clinical and histopathological diagnosis across 6 skin diseases."
-
+    notes: Differential clinical and histopathological diagnosis across 6 skin diseases.
+    expected_rows: 366
+    expected_features: 34
+    expected_source_name: dermatology
+    expected_target: class
   balance_scale:
     id: balance_scale
-    display_name: "Balance Scale"
+    display_name: Balance Scale
     dataset_group: controlled_real
     source_provider: openml
     source_type: api
-    source_url: "https://www.openml.org/d/11"
-    source_id: "11"
-    source_version: "1"
+    source_url: https://www.openml.org/d/11
+    source_id: '11'
+    source_version: '1'
     download_mode: auto
-    license: "CC BY 4.0"
-    citation: "Siegler, R. S. (1976). Three aspects of cognitive development. Cognitive Psychology, 8(4), 481-520."
+    license: CC BY 4.0
+    citation: Siegler, R. S. (1976). Three aspects of cognitive development. Cognitive
+      Psychology, 8(4), 481-520.
     target_column: class
     domain_column: null
     id_columns: []
@@ -487,20 +582,24 @@ real_datasets:
     expected_classes: 3
     has_missing_values: false
     categorical_features: []
-    notes: "Non-linear psychological balance tip classification (Left, Balance, Right)."
-
+    notes: Non-linear psychological balance tip classification (Left, Balance, Right).
+    expected_rows: 625
+    expected_features: 4
+    expected_source_name: balance-scale
+    expected_target: class
   waveform:
     id: waveform
-    display_name: "Waveform Database Generator (Version 1)"
+    display_name: Waveform-5000 (40 predictors, incl. 19 noise attributes)
     dataset_group: controlled_real
     source_provider: openml
     source_type: api
-    source_url: "https://www.openml.org/d/60"
-    source_id: "60"
-    source_version: "1"
+    source_url: https://www.openml.org/d/60
+    source_id: '60'
+    source_version: '1'
     download_mode: auto
-    license: "CC BY 4.0"
-    citation: "Breiman, L., Friedman, J. H., Olshen, R. A., & Stone, C. J. (1984). Classification and Regression Trees. Wadsworth."
+    license: CC BY 4.0
+    citation: Breiman, L., Friedman, J. H., Olshen, R. A., & Stone, C. J. (1984).
+      Classification and Regression Trees. Wadsworth.
     target_column: class
     domain_column: null
     id_columns: []
@@ -510,20 +609,24 @@ real_datasets:
     expected_classes: 3
     has_missing_values: false
     categorical_features: []
-    notes: "Continuous triangular waveform combinations with noise."
-
+    notes: Waveform-5000 with 40 predictors, including 19 noise attributes.
+    expected_rows: 5000
+    expected_features: 40
+    expected_source_name: waveform-5000
+    expected_target: class
   spambase:
     id: spambase
-    display_name: "Spambase"
+    display_name: Spambase
     dataset_group: controlled_real
     source_provider: openml
     source_type: api
-    source_url: "https://www.openml.org/d/44"
-    source_id: "44"
-    source_version: "1"
+    source_url: https://www.openml.org/d/44
+    source_id: '44'
+    source_version: '1'
     download_mode: auto
-    license: "CC BY 4.0"
-    citation: "Hopkins, M., Reeber, E., Forman, G., & Suermondt, J. (1999). Spambase Database. Hewlett-Packard Labs."
+    license: CC BY 4.0
+    citation: Hopkins, M., Reeber, E., Forman, G., & Suermondt, J. (1999). Spambase
+      Database. Hewlett-Packard Labs.
     target_column: class
     domain_column: null
     id_columns: []
@@ -533,44 +636,59 @@ real_datasets:
     expected_classes: 2
     has_missing_values: false
     categorical_features: []
-    notes: "Continuous word and character frequencies for email spam detection."
-
+    notes: Continuous word and character frequencies for email spam detection.
+    expected_rows: 4601
+    expected_features: 57
+    expected_source_name: spambase
+    expected_target: class
   mice_protein_expression:
     id: mice_protein_expression
-    display_name: "Mice Protein Expression"
+    display_name: Mice Protein Expression
     dataset_group: controlled_real
     source_provider: openml
     source_type: api
-    source_url: "https://www.openml.org/d/40966"
-    source_id: "40996"
-    source_version: "1"
+    source_url: https://www.openml.org/d/40966
+    source_id: '40966'
+    source_version: '1'
     download_mode: auto
-    license: "CC BY 4.0"
-    citation: "Higuera, C., Gardiner, K. J., & Cios, K. J. (2015). Self-organizing feature maps identify proteins critical to learning in a mouse model of Down syndrome. PLOS ONE, 10(6), e0129126."
+    license: CC BY 4.0
+    citation: Higuera, C., Gardiner, K. J., & Cios, K. J. (2015). Self-organizing
+      feature maps identify proteins critical to learning in a mouse model of Down
+      syndrome. PLOS ONE, 10(6), e0129126.
     target_column: class
     domain_column: null
-    id_columns: ["MouseID"]
-    drop_columns: ["MouseID", "Genotype", "Treatment", "Behavior"]
+    id_columns:
+    - MouseID
+    drop_columns:
+    - MouseID
+    - Genotype
+    - Treatment
+    - Behavior
     expected_min_rows: 1080
     expected_min_features: 77
     expected_classes: 8
     has_missing_values: true
     categorical_features: []
-    notes: "77 protein expression levels measured in the cerebral cortex of mice."
-
+    notes: 77 protein expression levels measured in the cerebral cortex of mice.
+    expected_rows: 1080
+    expected_features: 77
+    expected_source_name: MiceProtein
+    expected_target: class
   human_activity_recognition:
     id: human_activity_recognition
-    display_name: "Human Activity Recognition Using Smartphones"
+    display_name: Human Activity Recognition Using Smartphones
     dataset_group: controlled_real
-    source_provider: openml
-    source_type: api
-    source_url: "https://www.openml.org/d/1471"
-    source_id: "1471"
-    source_version: "1"
+    source_provider: uci
+    source_type: archive
+    source_url: https://archive.ics.uci.edu/static/public/240/human+activity+recognition+using+smartphones.zip
+    source_id: '240'
+    source_version: '1'
     download_mode: auto
-    license: "CC BY 4.0"
-    citation: "Anguita, D., Ghio, A., Oneto, L., Parra, X., & Reyes-Ortiz, J. L. (2013). A public domain dataset for human activity recognition using smartphones. ESANN 2013."
-    target_column: Class
+    license: CC BY 4.0
+    citation: Anguita, D., Ghio, A., Oneto, L., Parra, X., & Reyes-Ortiz, J. L. (2013).
+      A public domain dataset for human activity recognition using smartphones. ESANN
+      2013.
+    target_column: activity
     domain_column: null
     id_columns: []
     drop_columns: []
@@ -579,20 +697,24 @@ real_datasets:
     expected_classes: 6
     has_missing_values: false
     categorical_features: []
-    notes: "561 accelerometer and gyroscope sensor features across 6 activities."
-
+    notes: 561 accelerometer and gyroscope sensor features across 6 activities.
+    expected_rows: 10299
+    expected_features: 561
+    expected_source_name: Human Activity Recognition Using Smartphones
+    expected_target: activity
   isolet:
     id: isolet
-    display_name: "ISOLET Spoken Letter Recognition"
+    display_name: ISOLET Spoken Letter Recognition
     dataset_group: controlled_real
     source_provider: openml
     source_type: api
-    source_url: "https://www.openml.org/d/300"
-    source_id: "300"
-    source_version: "1"
+    source_url: https://www.openml.org/d/300
+    source_id: '300'
+    source_version: '1'
     download_mode: auto
-    license: "CC BY 4.0"
-    citation: "Fanty, M., & Cole, R. (1991). Spoken letter recognition. In Advances in Neural Information Processing Systems (Vol. 3)."
+    license: CC BY 4.0
+    citation: Fanty, M., & Cole, R. (1991). Spoken letter recognition. In Advances
+      in Neural Information Processing Systems (Vol. 3).
     target_column: class
     domain_column: null
     id_columns: []
@@ -602,20 +724,24 @@ real_datasets:
     expected_classes: 26
     has_missing_values: false
     categorical_features: []
-    notes: "617 continuous spectral features of spoken English letters."
-
+    notes: 617 continuous spectral features of spoken English letters.
+    expected_rows: 7797
+    expected_features: 617
+    expected_source_name: isolet
+    expected_target: class
   madelon:
     id: madelon
-    display_name: "Madelon"
+    display_name: Madelon
     dataset_group: controlled_real
     source_provider: openml
     source_type: api
-    source_url: "https://www.openml.org/d/1485"
-    source_id: "1485"
-    source_version: "1"
+    source_url: https://www.openml.org/d/1485
+    source_id: '1485'
+    source_version: '1'
     download_mode: auto
-    license: "CC BY 4.0"
-    citation: "Guyon, I. (2003). Design of experiments of the NIPS 2003 variable selection benchmark."
+    license: CC BY 4.0
+    citation: Guyon, I. (2003). Design of experiments of the NIPS 2003 variable selection
+      benchmark.
     target_column: Class
     domain_column: null
     id_columns: []
@@ -625,20 +751,24 @@ real_datasets:
     expected_classes: 2
     has_missing_values: false
     categorical_features: []
-    notes: "500 continuous features with severe non-linear redundancy and noise."
-
+    notes: 500 continuous features with severe non-linear redundancy and noise.
+    expected_rows: 2600
+    expected_features: 500
+    expected_source_name: madelon
+    expected_target: Class
   electricity:
     id: electricity
-    display_name: "Australian Electricity Market"
+    display_name: Australian Electricity Market
     dataset_group: controlled_real
     source_provider: openml
     source_type: api
-    source_url: "https://www.openml.org/d/151"
-    source_id: "151"
-    source_version: "1"
+    source_url: https://www.openml.org/d/151
+    source_id: '151'
+    source_version: '1'
     download_mode: auto
-    license: "CC BY 4.0"
-    citation: "Harries, M. (1999). Splice-2 research report. School of Computer Science and Engineering, University of New South Wales."
+    license: CC BY 4.0
+    citation: Harries, M. (1999). Splice-2 research report. School of Computer Science
+      and Engineering, University of New South Wales.
     target_column: class
     domain_column: null
     id_columns: []
@@ -647,21 +777,26 @@ real_datasets:
     expected_min_features: 8
     expected_classes: 2
     has_missing_values: false
-    categorical_features: ["day"]
-    notes: "Electricity spot price movement (UP/DOWN) subject to temporal drift."
-
+    categorical_features:
+    - day
+    notes: Electricity spot price movement (UP/DOWN) subject to temporal drift.
+    expected_rows: 45312
+    expected_features: 8
+    expected_source_name: electricity
+    expected_target: class
   bank_marketing:
     id: bank_marketing
-    display_name: "Bank Marketing (Direct Marketing)"
+    display_name: Bank Marketing (Direct Marketing)
     dataset_group: controlled_real
     source_provider: openml
     source_type: api
-    source_url: "https://www.openml.org/d/1461"
-    source_id: "1461"
-    source_version: "1"
+    source_url: https://www.openml.org/d/1461
+    source_id: '1461'
+    source_version: '1'
     download_mode: auto
-    license: "CC BY 4.0"
-    citation: "Moro, S., Cortez, P., & Rita, P. (2014). A data-driven approach to predict the success of bank telemarketing. Decision Support Systems, 62, 22-31."
+    license: CC BY 4.0
+    citation: Moro, S., Cortez, P., & Rita, P. (2014). A data-driven approach to predict
+      the success of bank telemarketing. Decision Support Systems, 62, 22-31.
     target_column: Class
     domain_column: null
     id_columns: []
@@ -670,21 +805,34 @@ real_datasets:
     expected_min_features: 16
     expected_classes: 2
     has_missing_values: false
-    categorical_features: ["job", "marital", "education", "default", "housing", "loan", "contact", "month", "poutcome"]
-    notes: "Portuguese banking institution telemarketing campaign results."
-
+    categorical_features:
+    - job
+    - marital
+    - education
+    - default
+    - housing
+    - loan
+    - contact
+    - month
+    - poutcome
+    notes: Portuguese banking institution telemarketing campaign results.
+    expected_rows: 45211
+    expected_features: 16
+    expected_source_name: bank-marketing
+    expected_target: Class
   aps_failure:
     id: aps_failure
-    display_name: "APS Failure at Scania Trucks"
+    display_name: APS Failure at Scania Trucks
     dataset_group: controlled_real
     source_provider: openml
     source_type: api
-    source_url: "https://www.openml.org/d/41138"
-    source_id: "41138"
-    source_version: "1"
+    source_url: https://www.openml.org/d/41138
+    source_id: '41138'
+    source_version: '1'
     download_mode: auto
-    license: "CC BY 4.0"
-    citation: "Gidlof, C., & Carlsson, S. (2016). IDA 2016 Industrial Challenge. Scania CV AB."
+    license: CC BY 4.0
+    citation: Gidlof, C., & Carlsson, S. (2016). IDA 2016 Industrial Challenge. Scania
+      CV AB.
     target_column: class
     domain_column: null
     id_columns: []
@@ -694,23 +842,24 @@ real_datasets:
     expected_classes: 2
     has_missing_values: true
     categorical_features: []
-    notes: "Severe industrial sensor failure data with extensive missing values."
-
-  # ==========================================
-  # 10 NATURAL-SHIFT REAL DATASETS
-  # ==========================================
+    notes: Severe industrial sensor failure data with extensive missing values.
+    expected_rows: 76000
+    expected_features: 170
+    expected_source_name: APSFailure
+    expected_target: class
   whyshift_acs_income:
     id: whyshift_acs_income
-    display_name: "WhyShift ACS Income"
+    display_name: WhyShift ACS Income
     dataset_group: natural_shift
     source_provider: whyshift
     source_type: package
-    source_url: "https://github.com/namkoong-lab/whyshift"
-    source_id: "income"
-    source_version: "0.1.4"
+    source_url: https://github.com/namkoong-lab/whyshift
+    source_id: income
+    source_version: 0.1.4
     download_mode: auto
-    license: "MIT"
-    citation: "Ding, F., Hardt, M., Miller, J., & Schmidt, L. (2021). Retiring Adult: New datasets for fair machine learning. NeurIPS 2021."
+    license: MIT
+    citation: 'Ding, F., Hardt, M., Miller, J., & Schmidt, L. (2021). Retiring Adult:
+      New datasets for fair machine learning. NeurIPS 2021.'
     target_column: target
     domain_column: state
     id_columns: []
@@ -720,25 +869,31 @@ real_datasets:
     expected_classes: 2
     has_missing_values: false
     categorical_features: []
-    notes: "U.S. Census Bureau ACS Income across geographic states (CA, TX, NY, FL, PA)."
+    notes: U.S. Census Bureau ACS Income across geographic states (CA, TX, NY, FL,
+      PA).
     domain_metadata:
       task: income
       type: spatial
-      domains: ["CA", "TX", "NY", "FL", "PA"]
-      reference_domain: "CA"
-
+      domains:
+      - CA
+      - TX
+      - NY
+      - FL
+      - PA
+      reference_domain: CA
   whyshift_acs_pubcov:
     id: whyshift_acs_pubcov
-    display_name: "WhyShift ACS Public Coverage"
+    display_name: WhyShift ACS Public Coverage
     dataset_group: natural_shift
     source_provider: whyshift
     source_type: package
-    source_url: "https://github.com/namkoong-lab/whyshift"
-    source_id: "pubcov"
-    source_version: "0.1.4"
+    source_url: https://github.com/namkoong-lab/whyshift
+    source_id: pubcov
+    source_version: 0.1.4
     download_mode: auto
-    license: "MIT"
-    citation: "Ding, F., Hardt, M., Miller, J., & Schmidt, L. (2021). Retiring Adult: New datasets for fair machine learning. NeurIPS 2021."
+    license: MIT
+    citation: 'Ding, F., Hardt, M., Miller, J., & Schmidt, L. (2021). Retiring Adult:
+      New datasets for fair machine learning. NeurIPS 2021.'
     target_column: target
     domain_column: state
     id_columns: []
@@ -748,25 +903,30 @@ real_datasets:
     expected_classes: 2
     has_missing_values: false
     categorical_features: []
-    notes: "U.S. Census Bureau ACS Public Coverage across geographic states."
+    notes: U.S. Census Bureau ACS Public Coverage across geographic states.
     domain_metadata:
       task: pubcov
       type: spatial
-      domains: ["CA", "TX", "NY", "FL", "PA"]
-      reference_domain: "CA"
-
+      domains:
+      - CA
+      - TX
+      - NY
+      - FL
+      - PA
+      reference_domain: CA
   whyshift_acs_mobility:
     id: whyshift_acs_mobility
-    display_name: "WhyShift ACS Mobility"
+    display_name: WhyShift ACS Mobility
     dataset_group: natural_shift
     source_provider: whyshift
     source_type: package
-    source_url: "https://github.com/namkoong-lab/whyshift"
-    source_id: "mobility"
-    source_version: "0.1.4"
+    source_url: https://github.com/namkoong-lab/whyshift
+    source_id: mobility
+    source_version: 0.1.4
     download_mode: auto
-    license: "MIT"
-    citation: "Ding, F., Hardt, M., Miller, J., & Schmidt, L. (2021). Retiring Adult: New datasets for fair machine learning. NeurIPS 2021."
+    license: MIT
+    citation: 'Ding, F., Hardt, M., Miller, J., & Schmidt, L. (2021). Retiring Adult:
+      New datasets for fair machine learning. NeurIPS 2021.'
     target_column: target
     domain_column: state
     id_columns: []
@@ -776,25 +936,30 @@ real_datasets:
     expected_classes: 2
     has_missing_values: false
     categorical_features: []
-    notes: "U.S. Census Bureau ACS Mobility prediction across geographic states."
+    notes: U.S. Census Bureau ACS Mobility prediction across geographic states.
     domain_metadata:
       task: mobility
       type: spatial
-      domains: ["CA", "TX", "NY", "FL", "PA"]
-      reference_domain: "CA"
-
+      domains:
+      - CA
+      - TX
+      - NY
+      - FL
+      - PA
+      reference_domain: CA
   whyshift_taxi:
     id: whyshift_taxi
-    display_name: "WhyShift Taxi"
+    display_name: WhyShift Taxi
     dataset_group: natural_shift
     source_provider: whyshift
     source_type: external_archive
-    source_url: "https://github.com/namkoong-lab/whyshift"
-    source_id: "taxi"
-    source_version: "1.0"
+    source_url: https://github.com/namkoong-lab/whyshift
+    source_id: taxi
+    source_version: '1.0'
     download_mode: auth_required
-    license: "CC0: Public Domain"
-    citation: "Kaggle Taxi Trip Duration and Open Data platforms across metropolitan regions."
+    license: 'CC0: Public Domain'
+    citation: Kaggle Taxi Trip Duration and Open Data platforms across metropolitan
+      regions.
     target_column: target
     domain_column: city
     id_columns: []
@@ -804,25 +969,30 @@ real_datasets:
     expected_classes: 2
     has_missing_values: false
     categorical_features: []
-    notes: "Taxi duration and fare across cities (nyc, bog, mex, uio). Requires Kaggle/external city CSV."
+    notes: Taxi duration and fare across cities (nyc, bog, mex, uio). Requires Kaggle/external
+      city CSV.
     domain_metadata:
       task: taxi
       type: spatial
-      domains: ["nyc", "bog", "mex", "uio"]
-      reference_domain: "nyc"
-
+      domains:
+      - nyc
+      - bog
+      - mex
+      - uio
+      reference_domain: nyc
   whyshift_us_accidents:
     id: whyshift_us_accidents
-    display_name: "WhyShift US Accidents"
+    display_name: WhyShift US Accidents
     dataset_group: natural_shift
     source_provider: whyshift
     source_type: external_archive
-    source_url: "https://www.kaggle.com/datasets/sobhanmoosavi/us-accidents"
-    source_id: "us_accidents"
-    source_version: "Dec21"
+    source_url: https://www.kaggle.com/datasets/sobhanmoosavi/us-accidents
+    source_id: us_accidents
+    source_version: Dec21
     download_mode: auth_required
-    license: "CC BY-NC-SA 4.0"
-    citation: "Moosavi, S., Samavatian, M., Parthasarathy, S., & Ramnath, R. (2019). A Countrywide Traffic Accident Dataset. arXiv preprint arXiv:1906.05409."
+    license: CC BY-NC-SA 4.0
+    citation: Moosavi, S., Samavatian, M., Parthasarathy, S., & Ramnath, R. (2019).
+      A Countrywide Traffic Accident Dataset. arXiv preprint arXiv:1906.05409.
     target_column: target
     domain_column: state
     id_columns: []
@@ -832,25 +1002,30 @@ real_datasets:
     expected_classes: 2
     has_missing_values: true
     categorical_features: []
-    notes: "Traffic accident severity across geographic state partitions. Requires Kaggle US Accidents CSV."
+    notes: Traffic accident severity across geographic state partitions. Requires
+      Kaggle US Accidents CSV.
     domain_metadata:
       task: us_accidents
       type: spatial
-      domains: ["CA", "TX", "FL", "NY"]
-      reference_domain: "CA"
-
+      domains:
+      - CA
+      - TX
+      - FL
+      - NY
+      reference_domain: CA
   tableshift_college_scorecard:
     id: tableshift_college_scorecard
-    display_name: "TableShift College Scorecard"
+    display_name: TableShift College Scorecard
     dataset_group: natural_shift
     source_provider: tableshift
     source_type: external_archive
-    source_url: "https://collegescorecard.ed.gov/data/"
-    source_id: "college_scorecard"
-    source_version: "2023"
+    source_url: https://collegescorecard.ed.gov/data/
+    source_id: college_scorecard
+    source_version: '2023'
     download_mode: auth_required
-    license: "U.S. Public Domain"
-    citation: "Gardner, J., Popovic, Z., & Schmidt, L. (2023). TableShift: A Benchmark for Distribution Shift in Tabular Data. NeurIPS 2023."
+    license: U.S. Public Domain
+    citation: 'Gardner, J., Popovic, Z., & Schmidt, L. (2023). TableShift: A Benchmark
+      for Distribution Shift in Tabular Data. NeurIPS 2023.'
     target_column: target
     domain_column: domain
     id_columns: []
@@ -860,24 +1035,25 @@ real_datasets:
     expected_classes: 2
     has_missing_values: true
     categorical_features: []
-    notes: "Higher education graduation outcome shifted across public vs private institutions. Requires College Scorecard archive."
+    notes: Higher education graduation outcome shifted across public vs private institutions.
+      Requires College Scorecard archive.
     domain_metadata:
       split_type: institutional
-      source_domain: "public"
-      target_domain: "private"
-
+      source_domain: public
+      target_domain: private
   tableshift_hospital_readmission:
     id: tableshift_hospital_readmission
-    display_name: "TableShift Hospital Readmission"
+    display_name: TableShift Hospital Readmission
     dataset_group: natural_shift
     source_provider: tableshift
-    source_type: openml
-    source_url: "https://www.openml.org/d/43893"
-    source_id: "43893"
-    source_version: "1"
+    source_type: archive
+    source_url: https://archive.ics.uci.edu/static/public/296/diabetes+130-us+hospitals+for+years+1999-2008.zip
+    source_id: diabetes_readmission
+    source_version: '1'
     download_mode: auto
-    license: "CC BY 4.0"
-    citation: "Strack, B., DeShazo, J. P., Gennings, C., et al. (2014). Impact of HbA1c measurement on hospital readmission rates. BioMed Research International."
+    license: CC BY 4.0
+    citation: Strack, B., DeShazo, J. P., Gennings, C., et al. (2014). Impact of HbA1c
+      measurement on hospital readmission rates. BioMed Research International.
     target_column: readmitted
     domain_column: admission_source_id
     id_columns: []
@@ -887,24 +1063,29 @@ real_datasets:
     expected_classes: 2
     has_missing_values: true
     categorical_features: []
-    notes: "Clinical diabetic inpatient readmission across clinical admission sources."
+    notes: TableShift clinical diabetic inpatient readmission across admission sources
+      (99,493 encounters).
     domain_metadata:
       split_type: clinical_source
-      source_domain: "emergency"
-      target_domain: "referral"
-
+      source_domain: emergency
+      target_domain: referral
+    expected_rows: 99493
+    expected_features: 47
+    expected_source_name: diabetes_readmission
+    expected_target: readmitted
   tableshift_childhood_lead:
     id: tableshift_childhood_lead
-    display_name: "TableShift Childhood Blood Lead"
+    display_name: TableShift Childhood Blood Lead
     dataset_group: natural_shift
     source_provider: tableshift
     source_type: external_archive
-    source_url: "https://github.com/mlfoundations/tableshift"
-    source_id: "childhood_lead"
-    source_version: "2023"
+    source_url: https://github.com/mlfoundations/tableshift
+    source_id: childhood_lead
+    source_version: '2023'
     download_mode: auth_required
-    license: "Open Data"
-    citation: "Gardner, J., Popovic, Z., & Schmidt, L. (2023). TableShift: A Benchmark for Distribution Shift in Tabular Data. NeurIPS 2023."
+    license: Open Data
+    citation: 'Gardner, J., Popovic, Z., & Schmidt, L. (2023). TableShift: A Benchmark
+      for Distribution Shift in Tabular Data. NeurIPS 2023.'
     target_column: target
     domain_column: poverty_tier
     id_columns: []
@@ -914,24 +1095,25 @@ real_datasets:
     expected_classes: 2
     has_missing_values: false
     categorical_features: []
-    notes: "Elevated childhood blood lead levels shifted across county poverty levels. Requires TableShift nhanes_lead archive."
+    notes: Elevated childhood blood lead levels shifted across county poverty levels.
+      Requires TableShift nhanes_lead archive.
     domain_metadata:
       split_type: socio_economic
-      source_domain: "high_income"
-      target_domain: "low_income"
-
+      source_domain: high_income
+      target_domain: low_income
   tableshift_heloc:
     id: tableshift_heloc
-    display_name: "TableShift FICO HELOC"
+    display_name: TableShift FICO HELOC
     dataset_group: natural_shift
     source_provider: tableshift
     source_type: external_archive
-    source_url: "https://community.fico.com/s/explainable-machine-learning-challenge"
-    source_id: "heloc"
-    source_version: "1.0"
+    source_url: https://community.fico.com/s/explainable-machine-learning-challenge
+    source_id: heloc
+    source_version: '1.0'
     download_mode: manual_license_acceptance
-    license: "FICO Community License"
-    citation: "FICO Explainable Machine Learning Challenge (2018). Home Equity Line of Credit Dataset."
+    license: FICO Community License
+    citation: FICO Explainable Machine Learning Challenge (2018). Home Equity Line
+      of Credit Dataset.
     target_column: RiskPerformance
     domain_column: ExternalRiskEstimate_tier
     id_columns: []
@@ -941,24 +1123,26 @@ real_datasets:
     expected_classes: 2
     has_missing_values: false
     categorical_features: []
-    notes: "Financial credit risk performance shifted across external credit risk ratings. Requires FICO community agreement."
+    notes: Financial credit risk performance shifted across external credit risk ratings.
+      Requires FICO community agreement.
     domain_metadata:
       split_type: risk_rating
-      source_domain: "tier_a"
-      target_domain: "tier_b"
-
+      source_domain: tier_a
+      target_domain: tier_b
   tableshift_assistments:
     id: tableshift_assistments
-    display_name: "TableShift ASSISTments"
+    display_name: TableShift ASSISTments
     dataset_group: natural_shift
     source_provider: tableshift
     source_type: external_archive
-    source_url: "https://sites.google.com/site/assistmentsdata/"
-    source_id: "assistments"
-    source_version: "2012-2013"
+    source_url: https://sites.google.com/site/assistmentsdata/
+    source_id: assistments
+    source_version: 2012-2013
     download_mode: auth_required
-    license: "Educational Research Public"
-    citation: "Feng, M., Heffernan, N., & Koedinger, K. (2009). Addressing the assessment challenge with an online system that tutors as it assesses. User Modeling and User-Adapted Interaction."
+    license: Educational Research Public
+    citation: Feng, M., Heffernan, N., & Koedinger, K. (2009). Addressing the assessment
+      challenge with an online system that tutors as it assesses. User Modeling and
+      User-Adapted Interaction.
     target_column: correct
     domain_column: school_id
     id_columns: []
@@ -968,15 +1152,12 @@ real_datasets:
     expected_classes: 2
     has_missing_values: true
     categorical_features: []
-    notes: "Online educational tutoring mathematics problem correctness shifted across school cohorts. Requires ASSISTments data portal file."
+    notes: Online educational tutoring mathematics problem correctness shifted across
+      school cohorts. Requires ASSISTments data portal file.
     domain_metadata:
       split_type: school_cohort
-      source_domain: "cohort_1"
-      target_domain: "cohort_2"
-
-# ==========================================
-# 8 SYNTHETIC BENCHMARK FAMILIES
-# ==========================================
+      source_domain: cohort_1
+      target_domain: cohort_2
 synthetic_datasets:
   s01_balanced_gmm:
     family_id: s01_balanced_gmm
@@ -985,11 +1166,10 @@ synthetic_datasets:
     K: 3
     n: 10000
     d: 10
-    notes: "Balanced well-separated Gaussian mixture with spherical covariance."
+    notes: Balanced well-separated Gaussian mixture with spherical covariance.
     parameters:
       separation: 3.5
       covariance_scale: 1.0
-
   s02_overlap_gmm:
     family_id: s02_overlap_gmm
     generator: overlap_gmm
@@ -997,11 +1177,11 @@ synthetic_datasets:
     K: 3
     n: 10000
     d: 10
-    notes: "Overlapping Gaussian mixture with reduced separation to test membership ambiguity."
+    notes: Overlapping Gaussian mixture with reduced separation to test membership
+      ambiguity.
     parameters:
       separation: 1.2
       covariance_scale: 1.0
-
   s03_imbalanced_gmm:
     family_id: s03_imbalanced_gmm
     generator: imbalanced_gmm
@@ -1009,11 +1189,13 @@ synthetic_datasets:
     K: 3
     n: 10000
     d: 10
-    notes: "Gaussian mixture with severe cluster prior imbalance."
+    notes: Gaussian mixture with severe cluster prior imbalance.
     parameters:
-      priors: [0.70, 0.20, 0.10]
+      priors:
+      - 0.7
+      - 0.2
+      - 0.1
       separation: 3.0
-
   s04_heteroscedastic_gmm:
     family_id: s04_heteroscedastic_gmm
     generator: heteroscedastic_gmm
@@ -1021,11 +1203,13 @@ synthetic_datasets:
     K: 3
     n: 10000
     d: 10
-    notes: "Gaussian mixture with unequal cluster covariance variances."
+    notes: Gaussian mixture with unequal cluster covariance variances.
     parameters:
-      variances: [0.5, 1.5, 3.0]
+      variances:
+      - 0.5
+      - 1.5
+      - 3.0
       separation: 3.5
-
   s05_anisotropic_gmm:
     family_id: s05_anisotropic_gmm
     generator: anisotropic_gmm
@@ -1033,11 +1217,10 @@ synthetic_datasets:
     K: 3
     n: 10000
     d: 10
-    notes: "Rotated non-spherical clusters violating standard Euclidean distance assumptions."
+    notes: Rotated non-spherical clusters violating standard Euclidean distance assumptions.
     parameters:
       eccentricity: 4.0
       separation: 3.5
-
   s06_high_dimensional_gmm:
     family_id: s06_high_dimensional_gmm
     generator: high_dimensional_gmm
@@ -1045,11 +1228,10 @@ synthetic_datasets:
     K: 5
     n: 10000
     d: 100
-    notes: "High-dimensional Gaussian mixture testing curse of dimensionality."
+    notes: High-dimensional Gaussian mixture testing curse of dimensionality.
     parameters:
       separation: 4.0
       covariance_scale: 1.0
-
   s07_irrelevant_features_gmm:
     family_id: s07_irrelevant_features_gmm
     generator: irrelevant_features_gmm
@@ -1057,12 +1239,12 @@ synthetic_datasets:
     K: 4
     n: 10000
     d: 100
-    notes: "20 informative cluster dimensions embedded within 80 standard Gaussian noise dimensions."
+    notes: 20 informative cluster dimensions embedded within 80 standard Gaussian
+      noise dimensions.
     parameters:
       informative_d: 20
       noise_d: 80
       separation: 3.5
-
   s08_student_t_mixture:
     family_id: s08_student_t_mixture
     generator: student_t_mixture
@@ -1070,7 +1252,7 @@ synthetic_datasets:
     K: 3
     n: 10000
     d: 10
-    notes: "Heavy-tailed Student-t mixture with df=3 inducing natural outlier behavior."
+    notes: Heavy-tailed Student-t mixture with df=3 inducing natural outlier behavior.
     parameters:
       df: 3.0
       separation: 3.5

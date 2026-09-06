@@ -89,6 +89,78 @@ class DataValidator:
         else:
             n_classes = None
 
+        # Strict Source Identity & Specification Checks
+        if spec is not None:
+            # 1. Source Identity check
+            if spec.source_provider == "openml":
+                actual_id = meta.get("openml_id")
+                actual_name = meta.get("openml_name")
+                if actual_id is not None and str(actual_id) != str(spec.source_id):
+                    errors.append(f"SOURCE ID MISMATCH: Expected OpenML ID {spec.source_id}, but found {actual_id}!")
+                if spec.expected_source_name and actual_name:
+                    if actual_name.lower() != spec.expected_source_name.lower():
+                        errors.append(
+                            f"SOURCE IDENTITY MISMATCH: Expected OpenML dataset name '{spec.expected_source_name}', "
+                            f"but found '{actual_name}' (ID={actual_id})!"
+                        )
+            elif spec.source_provider == "uci":
+                actual_id = meta.get("uci_id")
+                actual_name = meta.get("uci_name")
+                if actual_id is not None and str(actual_id) != str(spec.source_id):
+                    errors.append(f"SOURCE ID MISMATCH: Expected UCI ID {spec.source_id}, but found {actual_id}!")
+                if spec.expected_source_name and actual_name:
+                    if actual_name.lower() != spec.expected_source_name.lower():
+                        errors.append(
+                            f"SOURCE IDENTITY MISMATCH: Expected UCI dataset name '{spec.expected_source_name}', "
+                            f"but found '{actual_name}'!"
+                        )
+            elif spec.source_provider == "tableshift":
+                actual_task = meta.get("tableshift_task")
+                if spec.expected_source_name and actual_task:
+                    if actual_task.lower() != spec.expected_source_name.lower():
+                        errors.append(
+                            f"SOURCE IDENTITY MISMATCH: Expected TableShift task '{spec.expected_source_name}', "
+                            f"but found '{actual_task}'!"
+                        )
+
+            # 2. Strict Row Count check
+            if spec.expected_rows is not None:
+                if n_rows != spec.expected_rows:
+                    errors.append(f"ROW COUNT MISMATCH: Expected exactly {spec.expected_rows} rows, but found {n_rows}!")
+                else:
+                    checks_passed.append("exact_rows_matched")
+            elif spec.expected_min_rows:
+                if n_rows < spec.expected_min_rows:
+                    errors.append(f"ROW COUNT VIOLATION: Expected at least {spec.expected_min_rows} rows, but found {n_rows}!")
+                else:
+                    checks_passed.append("min_rows_satisfied")
+
+            # 3. Strict Feature Count check
+            if spec.expected_features is not None:
+                if n_cols != spec.expected_features:
+                    errors.append(f"FEATURE COUNT MISMATCH: Expected exactly {spec.expected_features} features, but found {n_cols}!")
+                else:
+                    checks_passed.append("exact_features_matched")
+            elif spec.expected_min_features:
+                if n_cols < spec.expected_min_features:
+                    errors.append(f"FEATURE COUNT VIOLATION: Expected at least {spec.expected_min_features} features, but found {n_cols}!")
+                else:
+                    checks_passed.append("min_features_satisfied")
+
+            # 4. Strict Class Count check
+            if spec.expected_classes is not None and n_classes is not None:
+                if n_classes != spec.expected_classes:
+                    errors.append(f"CLASS COUNT MISMATCH: Expected exactly {spec.expected_classes} classes, but found {n_classes}!")
+                else:
+                    checks_passed.append("exact_classes_matched")
+
+            # 5. Strict Target Column Name check
+            if spec.expected_target is not None and y is not None:
+                if y.columns[0] != spec.expected_target:
+                    errors.append(f"TARGET NAME MISMATCH: Expected target '{spec.expected_target}', but found '{y.columns[0]}'!")
+                else:
+                    checks_passed.append("target_name_matched")
+
         # 3. Numerical Audits
         missing_count = int(X.isna().sum().sum())
         missing_fraction = float(missing_count / (n_rows * n_cols)) if n_rows * n_cols > 0 else 0.0

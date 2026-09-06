@@ -22,8 +22,8 @@ dermatology,controlled_real,openml,available,366,34,6.0,8,0.0006,0,0,0.0279,CC B
 balance_scale,controlled_real,openml,available,625,4,3.0,0,0.0,0,0,0.0032,CC BY 4.0,auto,1,1b41072264f1dfb0b375ee9ea7debaae455347adcd8c80455a36dfca92296641
 waveform,controlled_real,openml,available,5000,40,3.0,0,0.0,0,0,0.3555,CC BY 4.0,auto,1,295ee8ce7ecd766dd8d87402ebe680ff12992293d56b0278d5fa8a30465bd7ae
 spambase,controlled_real,openml,available,4601,57,2.0,0,0.0,394,0,0.2264,CC BY 4.0,auto,1,47da2effa88d256b36dae82e1f6fbff7aa25e8e372190f9f30d8c310133d7297
-mice_protein_expression,controlled_real,openml,available,70000,784,10.0,0,0.0,0,0,42.1064,CC BY 4.0,auto,1,cc4a5dc234be1cf0e5c049ad70b5056eea3ef42f0a8cec177d0ced335e1ebc0c
-human_activity_recognition,controlled_real,openml,available,14980,14,2.0,0,0.0,0,0,0.2635,CC BY 4.0,auto,1,63cb4da82d55adb13c15a47961c45d5c0543ed76e54ace3b09eca9db468d489d
+mice_protein_expression,controlled_real,openml,available,1080,77,8.0,1396,0.0168,0,0,0.7732,CC BY 4.0,auto,1,298f546a9ac28a874f73ed5d3b6d71f94af7b271d18bbd7124ff0cae999bdbb1
+human_activity_recognition,controlled_real,uci,available,10299,561,6.0,0,0.0,0,0,29.3305,CC BY 4.0,auto,1,a1cd3df518437455a9d8a6063287f82199257d929791ee4d99eaa53e67a7e88c
 isolet,controlled_real,openml,available,7797,617,26.0,0,0.0,0,0,17.0106,CC BY 4.0,auto,1,6dde01eba74ef0304a9faa8ff52079fe9691fde5d9edbe3976c3324edb24d716
 madelon,controlled_real,openml,available,2600,500,2.0,0,0.0,0,0,1.6528,CC BY 4.0,auto,1,71e507957fec3ce06997f18b5566ad32c61f231154aa54e5bd1dd1b1212861de
 electricity,controlled_real,openml,available,45312,8,2.0,0,0.0,0,0,0.4003,CC BY 4.0,auto,1,c4522727d44eb368d42cc09ab12bfa062a85668a9fa1a0b6f5c4beeeb8b73adb
@@ -44,7 +44,7 @@ whyshift_acs_mobility_TX,natural_shift,whyshift,available,53312,63,2.0,0,0.0,363
 whyshift_acs_mobility_NY,natural_shift,whyshift,available,40463,63,2.0,0,0.0,2882,2,0.3844,MIT,auto,0.1.4,2a8bb9550baa374c5e945829c7d1e66bb3cd71613e5af30e986d246d26d9d586
 whyshift_acs_mobility_FL,natural_shift,whyshift,available,34491,63,2.0,0,0.0,1940,2,0.3289,MIT,auto,0.1.4,627764c3de5b1e352b3a528883d50d937d3adeb87a122167bb3f906d5b58a32d
 whyshift_acs_mobility_PA,natural_shift,whyshift,available,23918,63,2.0,0,0.0,1706,4,0.2356,MIT,auto,0.1.4,9026ae0ae2ffa9fbf5deedbcf58a5c161756d63bf62f136a926076cd387dabcc
-tableshift_hospital_readmission,natural_shift,tableshift,available,1470,34,2.0,0,0.0,0,2,0.0653,CC BY 4.0,auto,1,725f1bcefd085a92904992d62ea1aaf8d5ae0a607d22f16157b0076cdeba32e5
+tableshift_hospital_readmission,natural_shift,tableshift,available,99493,47,2.0,0,0.0,0,3,1.3153,CC BY 4.0,auto,1,9b8833f93aac7b43dfcf3aac0d1ba6222f4be18b51483c313d1a6c7ee833eb79
 s01_balanced_gmm,synthetic,clusterdrift_synthetic,available,10000,10,,0,0.0,0,0,0.9359,Apache-2.0,generated,1.0,7cdbb24ac4df4f5fdebc20edb0687b7d961494d20a83c221165bce227922b716
 s02_overlap_gmm,synthetic,clusterdrift_synthetic,available,10000,10,,0,0.0,0,0,0.9359,Apache-2.0,generated,1.0,971fe13cc8c342b137533fcaff32fd52ba0313589b73db2d432c288ae9bf9af9
 s03_imbalanced_gmm,synthetic,clusterdrift_synthetic,available,10000,10,,0,0.0,0,0,0.9359,Apache-2.0,generated,1.0,6bf0829c7eac42789cf7fb9074065de4d1a9b04b61a56dfd6042af3f4320f999
