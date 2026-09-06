@@ -13,6 +13,7 @@ from clusterdrift.data.loaders import (
     load_sklearn_dataset,
     load_tableshift_hospital_readmission,
     load_uci_har_dataset,
+    load_uci_mice_protein_dataset,
     load_whyshift_dataset,
 )
 from clusterdrift.data.schemas import DatasetSpec, DownloadMode, DownloadResult, DownloadStatus
@@ -223,6 +224,8 @@ class DatasetDownloader:
         raw_cache.mkdir(parents=True, exist_ok=True)
         if spec.id == "human_activity_recognition":
             bundle = load_uci_har_dataset(spec, raw_cache)
+        elif spec.id == "mice_protein_expression":
+            bundle = load_uci_mice_protein_dataset(spec, raw_cache)
         else:
             raise ValueError(f"Unknown UCI dataset: {spec.id}")
 
@@ -246,11 +249,7 @@ class DatasetDownloader:
         if spec.id == "tableshift_hospital_readmission":
             bundle = load_tableshift_hospital_readmission(spec, raw_cache)
             out_dir = self.canonical_dir / "natural" / "tableshift" / spec.id
-            domain_meta = {
-                "task": "diabetes_readmission",
-                "domain_column": "admission_source_id",
-            }
-            paths = canonicalize_bundle(bundle, spec, out_dir, domain_meta=domain_meta)
+            paths = canonicalize_bundle(bundle, spec, out_dir)
             return DownloadResult(
                 dataset_id=spec.id,
                 status=DownloadStatus.OK,

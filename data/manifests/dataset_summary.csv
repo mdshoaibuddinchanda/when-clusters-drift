@@ -22,7 +22,7 @@ dermatology,controlled_real,openml,available,366,34,6.0,8,0.0006,0,0,0.0279,kfol
 balance_scale,controlled_real,openml,available,625,4,3.0,0,0.0,0,0,0.0032,kfold,0,0,False,False,CC BY 4.0,auto,1,1b41072264f1dfb0b375ee9ea7debaae455347adcd8c80455a36dfca92296641
 waveform,controlled_real,openml,available,5000,40,3.0,0,0.0,0,0,0.3555,kfold,0,0,False,False,CC BY 4.0,auto,1,295ee8ce7ecd766dd8d87402ebe680ff12992293d56b0278d5fa8a30465bd7ae
 spambase,controlled_real,openml,available,4601,57,2.0,0,0.0,394,0,0.2264,kfold,0,0,False,False,CC BY 4.0,auto,1,47da2effa88d256b36dae82e1f6fbff7aa25e8e372190f9f30d8c310133d7297
-mice_protein_expression,controlled_real,openml,available,1080,77,8.0,1396,0.0168,0,0,0.7732,group_kfold,1080,0,True,False,CC BY 4.0,auto,1,298f546a9ac28a874f73ed5d3b6d71f94af7b271d18bbd7124ff0cae999bdbb1
+mice_protein_expression,controlled_real,uci,available,1080,77,8.0,1396,0.0168,0,0,0.7732,group_kfold,72,0,True,False,CC BY 4.0,auto,1,298f546a9ac28a874f73ed5d3b6d71f94af7b271d18bbd7124ff0cae999bdbb1
 human_activity_recognition,controlled_real,uci,available,10299,561,6.0,0,0.0,0,0,29.3305,group_kfold,30,0,True,False,CC BY 4.0,auto,1,a1cd3df518437455a9d8a6063287f82199257d929791ee4d99eaa53e67a7e88c
 isolet,controlled_real,openml,available,7797,617,26.0,0,0.0,0,0,17.0106,kfold,0,0,False,False,CC BY 4.0,auto,1,6dde01eba74ef0304a9faa8ff52079fe9691fde5d9edbe3976c3324edb24d716
 madelon,controlled_real,openml,available,2600,500,2.0,0,0.0,0,0,1.6528,kfold,0,0,False,False,CC BY 4.0,auto,1,71e507957fec3ce06997f18b5566ad32c61f231154aa54e5bd1dd1b1212861de

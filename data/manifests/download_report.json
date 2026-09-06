@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-09-06T16:38:57Z",
+  "timestamp": "2026-09-06T16:54:24Z",
   "total_targets": 40,
   "downloaded_ok": 0,
   "already_verified": 34,
@@ -38,7 +38,7 @@
       "n_features": 0,
       "n_classes": null,
       "canonical_files": [],
-      "duration_seconds": 0.001
+      "duration_seconds": 0.0
     },
     {
       "dataset_id": "glass",
@@ -128,7 +128,7 @@
       "n_features": 0,
       "n_classes": null,
       "canonical_files": [],
-      "duration_seconds": 0.001
+      "duration_seconds": 0.0
     },
     {
       "dataset_id": "banknote_authentication",
@@ -198,7 +198,7 @@
       "n_features": 0,
       "n_classes": null,
       "canonical_files": [],
-      "duration_seconds": 0.0
+      "duration_seconds": 0.001
     },
     {
       "dataset_id": "dermatology",
@@ -258,7 +258,7 @@
       "n_features": 0,
       "n_classes": null,
       "canonical_files": [],
-      "duration_seconds": 0.001
+      "duration_seconds": 0.0
     },
     {
       "dataset_id": "isolet",
@@ -338,7 +338,7 @@
       "n_features": 0,
       "n_classes": null,
       "canonical_files": [],
-      "duration_seconds": 0.001
+      "duration_seconds": 0.0
     },
     {
       "dataset_id": "whyshift_taxi",
@@ -348,7 +348,7 @@
       "n_features": 0,
       "n_classes": null,
       "canonical_files": [],
-      "duration_seconds": 0.0
+      "duration_seconds": 0.002
     },
     {
       "dataset_id": "whyshift_us_accidents",

@@ -28,6 +28,9 @@ class DownloadStatus(str, Enum):
     SKIPPED = "skipped"
 
 
+ALLOWED_FEATURE_ROLES = frozenset({"numeric", "categorical", "ordinal"})
+
+
 @dataclass(frozen=True)
 class DatasetSpec:
     """Immutable specification for a real-world dataset."""

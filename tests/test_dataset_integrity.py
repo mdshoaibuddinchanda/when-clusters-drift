@@ -298,7 +298,7 @@ def test_har_subject_groups_preserved():
 
 
 def test_mice_mouse_groups_preserved():
-    """Verify Mice Protein Expression has exactly 1,080 group rows, MouseID not in features."""
+    """Verify Mice Protein Expression has exactly 1,080 group rows, 72 biological mice, mouse_subject_id not in features."""
     ds_dir = Path("data/canonical/controlled/mice_protein_expression")
     assert ds_dir.exists(), "Mice Protein canonical directory missing"
     f = pd.read_parquet(ds_dir / "features.parquet")
@@ -307,8 +307,107 @@ def test_mice_mouse_groups_preserved():
     assert len(f) == len(l) == len(g) == 1080
     assert f.shape[1] == 77
     assert "MouseID" not in f.columns
-    assert "MouseID" in g.columns
-    assert g["MouseID"].nunique() == 1080
+    assert "mouse_subject_id" not in f.columns
+    assert "mouse_subject_id" in g.columns
+    assert g["mouse_subject_id"].nunique() == 72
+
+
+def test_mice_protein_no_multiple_group_identifiers():
+    """Verify no biological mouse appears under multiple group identifiers."""
+    ds_dir = Path("data/canonical/controlled/mice_protein_expression")
+    assert ds_dir.exists(), "Mice Protein canonical directory missing"
+    g = pd.read_parquet(ds_dir / "groups.parquet")
+    counts = g["mouse_subject_id"].value_counts()
+    assert (counts == 15).all(), f"Found inconsistent measurement counts per mouse: {counts.unique()}"
+    assert len(counts) == 72
+
+
+def test_feature_roles_required(tmp_path):
+    """Verify that DataValidator fails when feature_roles is missing or empty."""
+    validator = DataValidator(data_root=tmp_path)
+    ds_dir = tmp_path / "canonical" / "controlled" / "no_roles_ds"
+    ds_dir.mkdir(parents=True, exist_ok=True)
+
+    pd.DataFrame({"feat1": [1.0, 2.0]}).to_parquet(ds_dir / "features.parquet")
+    pd.DataFrame({"target": [0, 1]}).to_parquet(ds_dir / "labels.parquet")
+    (ds_dir / "metadata.json").write_text(
+        json.dumps({
+            "dataset_id": "no_roles_ds",
+            "target_column": "target",
+            "feature_roles": {},
+        }),
+        encoding="utf-8",
+    )
+
+    res = validator.validate_canonical_dataset(ds_dir)
+    assert not res.is_valid
+    assert any("FEATURE ROLE ERROR" in err for err in res.errors)
+
+
+def test_feature_roles_cover_every_feature(tmp_path):
+    """Verify that DataValidator fails if any feature is missing a declared role."""
+    validator = DataValidator(data_root=tmp_path)
+    ds_dir = tmp_path / "canonical" / "controlled" / "missing_role_ds"
+    ds_dir.mkdir(parents=True, exist_ok=True)
+
+    pd.DataFrame({"feat1": [1.0, 2.0], "feat2": [3.0, 4.0]}).to_parquet(ds_dir / "features.parquet")
+    pd.DataFrame({"target": [0, 1]}).to_parquet(ds_dir / "labels.parquet")
+    (ds_dir / "metadata.json").write_text(
+        json.dumps({
+            "dataset_id": "missing_role_ds",
+            "target_column": "target",
+            "feature_roles": {"feat1": "numeric"},
+        }),
+        encoding="utf-8",
+    )
+
+    res = validator.validate_canonical_dataset(ds_dir)
+    assert not res.is_valid
+    assert any("FEATURE ROLE INCOMPLETENESS" in err for err in res.errors)
+
+
+def test_feature_roles_reject_extra_columns(tmp_path):
+    """Verify that DataValidator fails if feature_roles contains columns not in features.parquet."""
+    validator = DataValidator(data_root=tmp_path)
+    ds_dir = tmp_path / "canonical" / "controlled" / "extra_role_ds"
+    ds_dir.mkdir(parents=True, exist_ok=True)
+
+    pd.DataFrame({"feat1": [1.0, 2.0]}).to_parquet(ds_dir / "features.parquet")
+    pd.DataFrame({"target": [0, 1]}).to_parquet(ds_dir / "labels.parquet")
+    (ds_dir / "metadata.json").write_text(
+        json.dumps({
+            "dataset_id": "extra_role_ds",
+            "target_column": "target",
+            "feature_roles": {"feat1": "numeric", "ghost_feat": "numeric"},
+        }),
+        encoding="utf-8",
+    )
+
+    res = validator.validate_canonical_dataset(ds_dir)
+    assert not res.is_valid
+    assert any("Extra columns in feature_roles" in err for err in res.errors)
+
+
+def test_feature_roles_allowed_vocabulary(tmp_path):
+    """Verify that DataValidator rejects roles not in allowed vocabulary."""
+    validator = DataValidator(data_root=tmp_path)
+    ds_dir = tmp_path / "canonical" / "controlled" / "invalid_role_ds"
+    ds_dir.mkdir(parents=True, exist_ok=True)
+
+    pd.DataFrame({"feat1": [1.0, 2.0]}).to_parquet(ds_dir / "features.parquet")
+    pd.DataFrame({"target": [0, 1]}).to_parquet(ds_dir / "labels.parquet")
+    (ds_dir / "metadata.json").write_text(
+        json.dumps({
+            "dataset_id": "invalid_role_ds",
+            "target_column": "target",
+            "feature_roles": {"feat1": "magic_type"},
+        }),
+        encoding="utf-8",
+    )
+
+    res = validator.validate_canonical_dataset(ds_dir)
+    assert not res.is_valid
+    assert any("FEATURE ROLE VOCABULARY ERROR" in err for err in res.errors)
 
 
 def test_no_global_categorical_encoding():
@@ -341,4 +440,5 @@ def test_split_strategy_registry():
             assert spec.time_column == "date"
         elif spec.dataset_group == "natural_shift":
             assert spec.split_strategy == "natural_domain"
+
 

@@ -714,10 +714,10 @@ real_datasets:
     id: mice_protein_expression
     display_name: Mice Protein Expression
     dataset_group: controlled_real
-    source_provider: openml
-    source_type: api
-    source_url: https://www.openml.org/d/40966
-    source_id: '40966'
+    source_provider: uci
+    source_type: archive
+    source_url: https://archive.ics.uci.edu/static/public/342/mice+protein+expression.zip
+    source_id: '342'
     source_version: '1'
     download_mode: auto
     license: CC BY 4.0
@@ -738,13 +738,13 @@ real_datasets:
     expected_classes: 8
     has_missing_values: true
     categorical_features: []
-    notes: 77 protein expression levels measured in the cerebral cortex of mice.
+    notes: 77 protein expression levels measured in the cerebral cortex of 72 mice (15 measurements per mouse, 1080 total).
     expected_rows: 1080
     expected_features: 77
-    expected_source_name: MiceProtein
+    expected_source_name: null
     expected_target: class
     split_strategy: group_kfold
-    group_column: MouseID
+    group_column: mouse_subject_id
     time_column: null
   human_activity_recognition:
     id: human_activity_recognition
@@ -1178,9 +1178,28 @@ real_datasets:
       predictors). Phase 2 will create source/OOD partitions from the preserved admission_source_id
       domain artifact.
     domain_metadata:
-      split_type: clinical_source
-      source_domain: emergency
-      target_domain: referral
+      benchmark: tableshift
+      experiment_id: diabetes_admsrc
+      domain_split_varname: admission_source_id
+      protocol: leave_one_domain_out
+      candidate_ood_values:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+        - 11
+        - 13
+        - 14
+        - 17
+        - 20
+        - 22
+        - 25
     expected_rows: 99493
     expected_features: 46
     expected_source_name: diabetes_readmission

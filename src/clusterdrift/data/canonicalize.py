@@ -141,7 +141,7 @@ def canonicalize_bundle(
         "citation": spec.citation,
         "has_missing_values": bool(X.isna().any().any()),
         "extra": bundle.metadata,
-        "domain_metadata": domain_meta or spec.domain_metadata,
+        "domain_metadata": {**(spec.domain_metadata or {}), **(domain_meta or {})},
     }
 
     metadata_path = output_dir / "metadata.json"

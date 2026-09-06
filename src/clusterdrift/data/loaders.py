@@ -42,32 +42,57 @@ def load_sklearn_dataset(spec: DatasetSpec) -> DatasetBundle:
     )
 
 
-def _load_mice_protein_groups(raw_dir: Optional[Path] = None) -> pd.DataFrame:
-    """Load authentic MouseID groupings from the UCI 342 archive."""
-    url = "https://archive.ics.uci.edu/static/public/342/mice+protein+expression.zip"
-    zip_path = None
-    if raw_dir is not None:
-        target_dir = raw_dir / "controlled" / "mice_protein_expression"
-        target_dir.mkdir(parents=True, exist_ok=True)
-        zip_path = target_dir / "mice_protein_expression.zip"
+def load_uci_mice_protein_dataset(spec: DatasetSpec, raw_dir: Path) -> DatasetBundle:
+    """Load authentic UCI Mice Protein Expression dataset (UCI 342, Data_Cortex_Nuclear.xls)."""
+    raw_dir.mkdir(parents=True, exist_ok=True)
+    zip_path = raw_dir / "mice_protein_expression.zip"
 
-    content = None
-    if zip_path and zip_path.exists() and zip_path.stat().st_size > 0:
-        with open(zip_path, "rb") as f:
-            content = f.read()
-    else:
+    url = spec.source_url or "https://archive.ics.uci.edu/static/public/342/mice+protein+expression.zip"
+    if not zip_path.exists() or zip_path.stat().st_size == 0:
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"})
         with urllib.request.urlopen(req, timeout=60) as resp:
             content = resp.read()
-        if zip_path:
-            with open(zip_path, "wb") as f:
-                f.write(content)
+        with open(zip_path, "wb") as f:
+            f.write(content)
+    else:
+        with open(zip_path, "rb") as f:
+            content = f.read()
 
     with zipfile.ZipFile(io.BytesIO(content)) as z:
         with z.open("Data_Cortex_Nuclear.xls") as f:
             df_uci = pd.read_excel(f)
 
-    return pd.DataFrame({"MouseID": df_uci["MouseID"].astype(str)})
+    # Biological grouping: 72 biological mice with 15 measurements per mouse (1,080 total)
+    # Physical mouse identifier derived deterministically by stripping the measurement index suffix (e.g. '309_1' -> '309')
+    raw_mouse_id = df_uci["MouseID"].astype(str)
+    mouse_subject_id = raw_mouse_id.str.rsplit("_", n=1).str[0]
+    groups_df = pd.DataFrame({"mouse_subject_id": mouse_subject_id})
+
+    # Features: strictly 77 cortical protein expression measurements
+    # Explicitly exclude identifiers, grouping columns, design metadata, and target
+    non_feature_cols = {"MouseID", "mouse_subject_id", "Genotype", "Treatment", "Behavior", "class"}
+    feature_cols = [c for c in df_uci.columns if c not in non_feature_cols]
+
+    X = df_uci[feature_cols].copy()
+    y = df_uci["class"].copy().astype(str)
+
+    feature_roles = {col: "numeric" for col in feature_cols}
+
+    meta: Dict[str, Any] = {
+        "uci_id": "342",
+        "uci_name": "Mice Protein Expression",
+        "n_groups": int(groups_df["mouse_subject_id"].nunique()),
+        "url": url,
+    }
+
+    return DatasetBundle(
+        X=X,
+        y=y,
+        feature_names=feature_cols,
+        groups=groups_df,
+        feature_roles=feature_roles,
+        metadata=meta,
+    )
 
 
 def load_openml_dataset(
@@ -94,10 +119,6 @@ def load_openml_dataset(
     feature_names = list(X.columns)
     openml_name = bunch.details.get("name") if hasattr(bunch, "details") else None
 
-    groups_df = None
-    if spec.id == "mice_protein_expression":
-        groups_df = _load_mice_protein_groups(raw_dir)
-
     feature_roles = {}
     for col in feature_names:
         if pd.api.types.is_numeric_dtype(X[col]):
@@ -110,14 +131,11 @@ def load_openml_dataset(
         "openml_name": openml_name,
         "url": spec.source_url,
     }
-    if groups_df is not None:
-        meta["n_groups"] = int(groups_df["MouseID"].nunique())
 
     return DatasetBundle(
         X=X,
         y=y,
         feature_names=feature_names,
-        groups=groups_df,
         feature_roles=feature_roles,
         metadata=meta,
     )

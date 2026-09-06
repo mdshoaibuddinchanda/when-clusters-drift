@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 
 from clusterdrift.data.manifest import compute_file_sha256
-from clusterdrift.data.schemas import DatasetSpec, ValidationResult
+from clusterdrift.data.schemas import ALLOWED_FEATURE_ROLES, DatasetSpec, ValidationResult
 
 
 class DataValidator:
@@ -119,13 +119,28 @@ class DataValidator:
             else:
                 errors.append(f"Group row count mismatch: features={len(X)}, groups={len(groups)}.")
 
-        # Feature role completeness
-        feature_roles = meta.get("feature_roles", {})
-        if feature_roles:
-            missing_roles = [col for col in X.columns if col not in feature_roles]
+        # Mandatory feature role completeness and vocabulary check
+        feature_roles = meta.get("feature_roles")
+        if feature_roles is None or not isinstance(feature_roles, dict) or len(feature_roles) == 0:
+            errors.append("FEATURE ROLE ERROR: 'feature_roles' mapping is missing or empty in metadata.")
+        else:
+            role_keys = set(feature_roles.keys())
+            feat_cols = set(X.columns)
+            missing_roles = sorted(list(feat_cols - role_keys))
+            extra_roles = sorted(list(role_keys - feat_cols))
             if missing_roles:
                 errors.append(f"FEATURE ROLE INCOMPLETENESS: Missing declared role for: {missing_roles[:5]}.")
-            else:
+            if extra_roles:
+                errors.append(f"FEATURE ROLE ERROR: Extra columns in feature_roles not in features: {extra_roles[:5]}.")
+
+            invalid_vocab = {col: role for col, role in feature_roles.items() if role not in ALLOWED_FEATURE_ROLES}
+            if invalid_vocab:
+                errors.append(
+                    f"FEATURE ROLE VOCABULARY ERROR: Invalid roles {list(invalid_vocab.items())[:5]}. "
+                    f"Allowed roles are: {sorted(list(ALLOWED_FEATURE_ROLES))}."
+                )
+
+            if not missing_roles and not extra_roles and not invalid_vocab:
                 checks_passed.append("feature_roles_complete")
 
         # Forbidden global categorical factorization check
