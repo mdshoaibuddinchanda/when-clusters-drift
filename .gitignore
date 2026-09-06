@@ -1,0 +1,48 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+build/
+dist/
+
+# Virtual environments
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Testing & tool caches
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Antigravity & IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Data directories (per Phase 1 specification)
+data/raw/**
+data/canonical/**
+data/synthetic/**
+data/processed/**
+data/splits/**
+runs/**
+results/**
+
+# Preserve gitkeep, manifests, and documentation
+!data/processed/.gitkeep
+!data/splits/.gitkeep
+!data/manifests/**
+!data/README.md
+
+# Credentials & secrets
+kaggle.json
+*.pem
+*.key
+.env

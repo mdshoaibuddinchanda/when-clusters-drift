@@ -1,0 +1,414 @@
+{
+  "timestamp": "2026-09-06T14:42:37Z",
+  "total_targets": 40,
+  "downloaded_ok": 0,
+  "already_verified": 34,
+  "auth_required": 5,
+  "manual_license_required": 1,
+  "failed": 0,
+  "controlled_available": "30 / 30",
+  "natural_shift_available": "4 / 10",
+  "duration_seconds": 0.01,
+  "details": [
+    {
+      "dataset_id": "iris",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] iris already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "wine",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] wine already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.001
+    },
+    {
+      "dataset_id": "seeds",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] seeds already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "glass",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] glass already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "ecoli",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] ecoli already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "yeast",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] yeast already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "vehicle_silhouettes",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] vehicle_silhouettes already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "image_segmentation",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] image_segmentation already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "satimage",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] satimage already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "pendigits",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] pendigits already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "optdigits",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] optdigits already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.001
+    },
+    {
+      "dataset_id": "letter_recognition",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] letter_recognition already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "banknote_authentication",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] banknote_authentication already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "ionosphere",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] ionosphere already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "sonar",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] sonar already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "breast_cancer_wisconsin_diagnostic",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] breast_cancer_wisconsin_diagnostic already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "pima_diabetes",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] pima_diabetes already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "heart_disease",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] heart_disease already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "haberman_survival",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] haberman_survival already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "dermatology",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] dermatology already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "balance_scale",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] balance_scale already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "waveform",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] waveform already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "spambase",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] spambase already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "mice_protein_expression",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] mice_protein_expression already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "human_activity_recognition",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] human_activity_recognition already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "isolet",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] isolet already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "madelon",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] madelon already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "electricity",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] electricity already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "bank_marketing",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] bank_marketing already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "aps_failure",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] aps_failure already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "whyshift_acs_income",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] whyshift_acs_income already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "whyshift_acs_pubcov",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] whyshift_acs_pubcov already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "whyshift_acs_mobility",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] whyshift_acs_mobility already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.001
+    },
+    {
+      "dataset_id": "whyshift_taxi",
+      "status": "auth_required",
+      "message": "[AUTH REQUIRED] whyshift_taxi: Requires credentials or API token. Source: https://github.com/namkoong-lab/whyshift. To enable, configure access or place downloaded raw archive in 'D:\\DR2\\when-clusters-drift\\data\\raw\\natural\\whyshift\\whyshift_taxi'.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "whyshift_us_accidents",
+      "status": "auth_required",
+      "message": "[AUTH REQUIRED] whyshift_us_accidents: Requires credentials or API token. Source: https://www.kaggle.com/datasets/sobhanmoosavi/us-accidents. To enable, configure access or place downloaded raw archive in 'D:\\DR2\\when-clusters-drift\\data\\raw\\natural\\whyshift\\whyshift_us_accidents'.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "tableshift_college_scorecard",
+      "status": "auth_required",
+      "message": "[AUTH REQUIRED] tableshift_college_scorecard: Requires credentials or API token. Source: https://collegescorecard.ed.gov/data/. To enable, configure access or place downloaded raw archive in 'D:\\DR2\\when-clusters-drift\\data\\raw\\natural\\tableshift\\tableshift_college_scorecard'.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "tableshift_hospital_readmission",
+      "status": "already_exists",
+      "message": "[SKIP VERIFIED] tableshift_hospital_readmission already exists in canonical format.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "tableshift_childhood_lead",
+      "status": "auth_required",
+      "message": "[AUTH REQUIRED] tableshift_childhood_lead: Requires credentials or API token. Source: https://github.com/mlfoundations/tableshift. To enable, configure access or place downloaded raw archive in 'D:\\DR2\\when-clusters-drift\\data\\raw\\natural\\tableshift\\tableshift_childhood_lead'.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "tableshift_heloc",
+      "status": "manual_license_acceptance",
+      "message": "[MANUAL LICENSE REQUIRED] tableshift_heloc: Requires manual license acceptance at https://community.fico.com/s/explainable-machine-learning-challenge. License: FICO Community License. Once accepted, place raw data files into 'data/raw/natural/tableshift/tableshift_heloc/'.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    },
+    {
+      "dataset_id": "tableshift_assistments",
+      "status": "auth_required",
+      "message": "[AUTH REQUIRED] tableshift_assistments: Requires credentials or API token. Source: https://sites.google.com/site/assistmentsdata/. To enable, configure access or place downloaded raw archive in 'D:\\DR2\\when-clusters-drift\\data\\raw\\natural\\tableshift\\tableshift_assistments'.",
+      "n_rows": 0,
+      "n_features": 0,
+      "n_classes": null,
+      "canonical_files": [],
+      "duration_seconds": 0.0
+    }
+  ]
+}

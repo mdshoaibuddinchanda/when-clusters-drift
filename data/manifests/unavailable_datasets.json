@@ -1,0 +1,44 @@
+[
+  {
+    "dataset_id": "whyshift_taxi",
+    "group": "natural_shift",
+    "download_mode": "auth_required",
+    "source_url": "https://github.com/namkoong-lab/whyshift",
+    "status": "missing_or_unacquired"
+  },
+  {
+    "dataset_id": "whyshift_us_accidents",
+    "group": "natural_shift",
+    "download_mode": "auth_required",
+    "source_url": "https://www.kaggle.com/datasets/sobhanmoosavi/us-accidents",
+    "status": "missing_or_unacquired"
+  },
+  {
+    "dataset_id": "tableshift_college_scorecard",
+    "group": "natural_shift",
+    "download_mode": "auth_required",
+    "source_url": "https://collegescorecard.ed.gov/data/",
+    "status": "missing_or_unacquired"
+  },
+  {
+    "dataset_id": "tableshift_childhood_lead",
+    "group": "natural_shift",
+    "download_mode": "auth_required",
+    "source_url": "https://github.com/mlfoundations/tableshift",
+    "status": "missing_or_unacquired"
+  },
+  {
+    "dataset_id": "tableshift_heloc",
+    "group": "natural_shift",
+    "download_mode": "manual_license_acceptance",
+    "source_url": "https://community.fico.com/s/explainable-machine-learning-challenge",
+    "status": "missing_or_unacquired"
+  },
+  {
+    "dataset_id": "tableshift_assistments",
+    "group": "natural_shift",
+    "download_mode": "auth_required",
+    "source_url": "https://sites.google.com/site/assistmentsdata/",
+    "status": "missing_or_unacquired"
+  }
+]

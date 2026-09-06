@@ -40,7 +40,7 @@ Recent literature establishes several neighboring domains as closed or saturated
 
 ### The Surviving Core Research Questions
 
-```
+```flow chat
 +-----------------------------------------------------------------------------------+
 |  Can unlabeled internal soft-clustering changes predict actual future clustering  |
 |  degradation?                                                                     |
