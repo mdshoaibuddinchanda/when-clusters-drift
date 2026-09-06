@@ -1,344 +1,512 @@
 {
-  "timestamp": "2026-09-06T14:42:37Z",
+  "timestamp": "2026-09-06T15:56:40Z",
   "total_targets": 40,
-  "downloaded_ok": 0,
-  "already_verified": 34,
+  "downloaded_ok": 34,
+  "already_verified": 0,
   "auth_required": 5,
   "manual_license_required": 1,
   "failed": 0,
   "controlled_available": "30 / 30",
   "natural_shift_available": "4 / 10",
-  "duration_seconds": 0.01,
+  "duration_seconds": 368.27,
   "details": [
     {
       "dataset_id": "iris",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] iris already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] iris acquired from scikit-learn built-in.",
+      "n_rows": 150,
+      "n_features": 4,
+      "n_classes": 3,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\iris\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\iris\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\iris\\metadata.json"
+      ],
+      "duration_seconds": 0.025
     },
     {
       "dataset_id": "wine",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] wine already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.001
+      "status": "ok",
+      "message": "[OK] wine acquired from scikit-learn built-in.",
+      "n_rows": 178,
+      "n_features": 13,
+      "n_classes": 3,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\wine\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\wine\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\wine\\metadata.json"
+      ],
+      "duration_seconds": 0.01
     },
     {
       "dataset_id": "seeds",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] seeds already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] seeds acquired from OpenML (data_id=1499).",
+      "n_rows": 210,
+      "n_features": 7,
+      "n_classes": 3,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\seeds\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\seeds\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\seeds\\metadata.json"
+      ],
+      "duration_seconds": 6.417
     },
     {
       "dataset_id": "glass",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] glass already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] glass acquired from OpenML (data_id=41).",
+      "n_rows": 214,
+      "n_features": 9,
+      "n_classes": 6,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\glass\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\glass\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\glass\\metadata.json"
+      ],
+      "duration_seconds": 5.476
     },
     {
       "dataset_id": "ecoli",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] ecoli already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] ecoli acquired from OpenML (data_id=39).",
+      "n_rows": 336,
+      "n_features": 7,
+      "n_classes": 8,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\ecoli\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\ecoli\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\ecoli\\metadata.json"
+      ],
+      "duration_seconds": 5.461
     },
     {
       "dataset_id": "yeast",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] yeast already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] yeast acquired from OpenML (data_id=181).",
+      "n_rows": 1484,
+      "n_features": 8,
+      "n_classes": 10,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\yeast\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\yeast\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\yeast\\metadata.json"
+      ],
+      "duration_seconds": 3.869
     },
     {
       "dataset_id": "vehicle_silhouettes",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] vehicle_silhouettes already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] vehicle_silhouettes acquired from OpenML (data_id=54).",
+      "n_rows": 846,
+      "n_features": 18,
+      "n_classes": 4,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\vehicle_silhouettes\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\vehicle_silhouettes\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\vehicle_silhouettes\\metadata.json"
+      ],
+      "duration_seconds": 3.972
     },
     {
       "dataset_id": "image_segmentation",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] image_segmentation already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] image_segmentation acquired from OpenML (data_id=40984).",
+      "n_rows": 2310,
+      "n_features": 18,
+      "n_classes": 7,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\image_segmentation\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\image_segmentation\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\image_segmentation\\metadata.json"
+      ],
+      "duration_seconds": 4.282
     },
     {
       "dataset_id": "satimage",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] satimage already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] satimage acquired from OpenML (data_id=182).",
+      "n_rows": 6430,
+      "n_features": 36,
+      "n_classes": 6,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\satimage\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\satimage\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\satimage\\metadata.json"
+      ],
+      "duration_seconds": 4.537
     },
     {
       "dataset_id": "pendigits",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] pendigits already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] pendigits acquired from OpenML (data_id=32).",
+      "n_rows": 10992,
+      "n_features": 16,
+      "n_classes": 10,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\pendigits\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\pendigits\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\pendigits\\metadata.json"
+      ],
+      "duration_seconds": 4.676
     },
     {
       "dataset_id": "optdigits",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] optdigits already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.001
+      "status": "ok",
+      "message": "[OK] optdigits acquired from OpenML (data_id=28).",
+      "n_rows": 5620,
+      "n_features": 64,
+      "n_classes": 10,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\optdigits\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\optdigits\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\optdigits\\metadata.json"
+      ],
+      "duration_seconds": 4.769
     },
     {
       "dataset_id": "letter_recognition",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] letter_recognition already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] letter_recognition acquired from OpenML (data_id=6).",
+      "n_rows": 20000,
+      "n_features": 16,
+      "n_classes": 26,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\letter_recognition\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\letter_recognition\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\letter_recognition\\metadata.json"
+      ],
+      "duration_seconds": 4.163
     },
     {
       "dataset_id": "banknote_authentication",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] banknote_authentication already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] banknote_authentication acquired from OpenML (data_id=1462).",
+      "n_rows": 1372,
+      "n_features": 4,
+      "n_classes": 2,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\banknote_authentication\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\banknote_authentication\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\banknote_authentication\\metadata.json"
+      ],
+      "duration_seconds": 3.772
     },
     {
       "dataset_id": "ionosphere",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] ionosphere already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] ionosphere acquired from OpenML (data_id=59).",
+      "n_rows": 351,
+      "n_features": 34,
+      "n_classes": 2,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\ionosphere\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\ionosphere\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\ionosphere\\metadata.json"
+      ],
+      "duration_seconds": 3.927
     },
     {
       "dataset_id": "sonar",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] sonar already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] sonar acquired from OpenML (data_id=40).",
+      "n_rows": 208,
+      "n_features": 60,
+      "n_classes": 2,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\sonar\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\sonar\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\sonar\\metadata.json"
+      ],
+      "duration_seconds": 4.053
     },
     {
       "dataset_id": "breast_cancer_wisconsin_diagnostic",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] breast_cancer_wisconsin_diagnostic already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] breast_cancer_wisconsin_diagnostic acquired from scikit-learn built-in.",
+      "n_rows": 569,
+      "n_features": 30,
+      "n_classes": 2,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\breast_cancer_wisconsin_diagnostic\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\breast_cancer_wisconsin_diagnostic\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\breast_cancer_wisconsin_diagnostic\\metadata.json"
+      ],
+      "duration_seconds": 0.018
     },
     {
       "dataset_id": "pima_diabetes",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] pima_diabetes already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] pima_diabetes acquired from OpenML (data_id=37).",
+      "n_rows": 768,
+      "n_features": 8,
+      "n_classes": 2,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\pima_diabetes\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\pima_diabetes\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\pima_diabetes\\metadata.json"
+      ],
+      "duration_seconds": 3.915
     },
     {
       "dataset_id": "heart_disease",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] heart_disease already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] heart_disease acquired from OpenML (data_id=1565).",
+      "n_rows": 294,
+      "n_features": 13,
+      "n_classes": 5,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\heart_disease\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\heart_disease\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\heart_disease\\metadata.json"
+      ],
+      "duration_seconds": 3.615
     },
     {
       "dataset_id": "haberman_survival",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] haberman_survival already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] haberman_survival acquired from OpenML (data_id=43).",
+      "n_rows": 306,
+      "n_features": 3,
+      "n_classes": 2,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\haberman_survival\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\haberman_survival\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\haberman_survival\\metadata.json"
+      ],
+      "duration_seconds": 3.696
     },
     {
       "dataset_id": "dermatology",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] dermatology already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] dermatology acquired from OpenML (data_id=35).",
+      "n_rows": 366,
+      "n_features": 34,
+      "n_classes": 6,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\dermatology\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\dermatology\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\dermatology\\metadata.json"
+      ],
+      "duration_seconds": 3.695
     },
     {
       "dataset_id": "balance_scale",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] balance_scale already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] balance_scale acquired from OpenML (data_id=11).",
+      "n_rows": 625,
+      "n_features": 4,
+      "n_classes": 3,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\balance_scale\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\balance_scale\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\balance_scale\\metadata.json"
+      ],
+      "duration_seconds": 3.881
     },
     {
       "dataset_id": "waveform",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] waveform already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] waveform acquired from OpenML (data_id=60).",
+      "n_rows": 5000,
+      "n_features": 40,
+      "n_classes": 3,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\waveform\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\waveform\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\waveform\\metadata.json"
+      ],
+      "duration_seconds": 6.65
     },
     {
       "dataset_id": "spambase",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] spambase already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] spambase acquired from OpenML (data_id=44).",
+      "n_rows": 4601,
+      "n_features": 57,
+      "n_classes": 2,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\spambase\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\spambase\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\spambase\\metadata.json"
+      ],
+      "duration_seconds": 4.421
     },
     {
       "dataset_id": "mice_protein_expression",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] mice_protein_expression already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] mice_protein_expression acquired from OpenML (data_id=40966).",
+      "n_rows": 1080,
+      "n_features": 77,
+      "n_classes": 8,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\mice_protein_expression\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\mice_protein_expression\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\mice_protein_expression\\metadata.json"
+      ],
+      "duration_seconds": 4.871
     },
     {
       "dataset_id": "human_activity_recognition",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] human_activity_recognition already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] human_activity_recognition acquired from UCI Repository (id=240).",
+      "n_rows": 10299,
+      "n_features": 561,
+      "n_classes": 6,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\human_activity_recognition\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\human_activity_recognition\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\human_activity_recognition\\metadata.json"
+      ],
+      "duration_seconds": 44.553
     },
     {
       "dataset_id": "isolet",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] isolet already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] isolet acquired from OpenML (data_id=300).",
+      "n_rows": 7797,
+      "n_features": 617,
+      "n_classes": 26,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\isolet\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\isolet\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\isolet\\metadata.json"
+      ],
+      "duration_seconds": 8.819
     },
     {
       "dataset_id": "madelon",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] madelon already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] madelon acquired from OpenML (data_id=1485).",
+      "n_rows": 2600,
+      "n_features": 500,
+      "n_classes": 2,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\madelon\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\madelon\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\madelon\\metadata.json"
+      ],
+      "duration_seconds": 5.729
     },
     {
       "dataset_id": "electricity",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] electricity already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] electricity acquired from OpenML (data_id=151).",
+      "n_rows": 45312,
+      "n_features": 8,
+      "n_classes": 2,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\electricity\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\electricity\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\electricity\\metadata.json"
+      ],
+      "duration_seconds": 4.761
     },
     {
       "dataset_id": "bank_marketing",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] bank_marketing already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] bank_marketing acquired from OpenML (data_id=1461).",
+      "n_rows": 45211,
+      "n_features": 16,
+      "n_classes": 2,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\bank_marketing\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\bank_marketing\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\bank_marketing\\metadata.json"
+      ],
+      "duration_seconds": 4.589
     },
     {
       "dataset_id": "aps_failure",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] aps_failure already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] aps_failure acquired from OpenML (data_id=41138).",
+      "n_rows": 76000,
+      "n_features": 170,
+      "n_classes": 2,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\aps_failure\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\aps_failure\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\controlled\\aps_failure\\metadata.json"
+      ],
+      "duration_seconds": 17.487
     },
     {
       "dataset_id": "whyshift_acs_income",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] whyshift_acs_income already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] whyshift_acs_income acquired across 5 state domains: ['CA', 'TX', 'NY', 'FL', 'PA'].",
+      "n_rows": 601843,
+      "n_features": 76,
+      "n_classes": 2,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\income\\CA\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\income\\CA\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\income\\CA\\metadata.json",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\income\\TX\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\income\\TX\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\income\\TX\\metadata.json",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\income\\NY\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\income\\NY\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\income\\NY\\metadata.json",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\income\\FL\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\income\\FL\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\income\\FL\\metadata.json",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\income\\PA\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\income\\PA\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\income\\PA\\metadata.json"
+      ],
+      "duration_seconds": 70.83
     },
     {
       "dataset_id": "whyshift_acs_pubcov",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] whyshift_acs_pubcov already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] whyshift_acs_pubcov acquired across 5 state domains: ['CA', 'TX', 'NY', 'FL', 'PA'].",
+      "n_rows": 420411,
+      "n_features": 42,
+      "n_classes": 2,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\pubcov\\CA\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\pubcov\\CA\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\pubcov\\CA\\metadata.json",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\pubcov\\TX\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\pubcov\\TX\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\pubcov\\TX\\metadata.json",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\pubcov\\NY\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\pubcov\\NY\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\pubcov\\NY\\metadata.json",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\pubcov\\FL\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\pubcov\\FL\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\pubcov\\FL\\metadata.json",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\pubcov\\PA\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\pubcov\\PA\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\pubcov\\PA\\metadata.json"
+      ],
+      "duration_seconds": 55.536
     },
     {
       "dataset_id": "whyshift_acs_mobility",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] whyshift_acs_mobility already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.001
+      "status": "ok",
+      "message": "[OK] whyshift_acs_mobility acquired across 5 state domains: ['CA', 'TX', 'NY', 'FL', 'PA'].",
+      "n_rows": 232513,
+      "n_features": 63,
+      "n_classes": 2,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\mobility\\CA\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\mobility\\CA\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\mobility\\CA\\metadata.json",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\mobility\\TX\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\mobility\\TX\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\mobility\\TX\\metadata.json",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\mobility\\NY\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\mobility\\NY\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\mobility\\NY\\metadata.json",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\mobility\\FL\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\mobility\\FL\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\mobility\\FL\\metadata.json",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\mobility\\PA\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\mobility\\PA\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\whyshift\\mobility\\PA\\metadata.json"
+      ],
+      "duration_seconds": 56.914
     },
     {
       "dataset_id": "whyshift_taxi",
@@ -358,7 +526,7 @@
       "n_features": 0,
       "n_classes": null,
       "canonical_files": [],
-      "duration_seconds": 0.0
+      "duration_seconds": 0.001
     },
     {
       "dataset_id": "tableshift_college_scorecard",
@@ -372,13 +540,17 @@
     },
     {
       "dataset_id": "tableshift_hospital_readmission",
-      "status": "already_exists",
-      "message": "[SKIP VERIFIED] tableshift_hospital_readmission already exists in canonical format.",
-      "n_rows": 0,
-      "n_features": 0,
-      "n_classes": null,
-      "canonical_files": [],
-      "duration_seconds": 0.0
+      "status": "ok",
+      "message": "[OK] tableshift_hospital_readmission acquired from TableShift diabetes readmission benchmark.",
+      "n_rows": 99493,
+      "n_features": 47,
+      "n_classes": 2,
+      "canonical_files": [
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\tableshift\\tableshift_hospital_readmission\\features.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\tableshift\\tableshift_hospital_readmission\\labels.parquet",
+        "D:\\DR2\\when-clusters-drift\\data\\canonical\\natural\\tableshift\\tableshift_hospital_readmission\\metadata.json"
+      ],
+      "duration_seconds": 4.858
     },
     {
       "dataset_id": "tableshift_childhood_lead",
