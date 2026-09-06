@@ -1,10 +1,40 @@
 """Source-only preprocessing module guaranteeing zero label or target leakage."""
 
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Set, Tuple
 import numpy as np
 import pandas as pd
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder, StandardScaler
+
+
+BOOLEAN_TRUE_VALUES = frozenset({True, 1, 1.0, "true", "1", "1.0", "t", "yes", "y"})
+BOOLEAN_FALSE_VALUES = frozenset({False, 0, 0.0, "false", "0", "0.0", "f", "no", "n"})
+
+
+def normalize_boolean_value(val: Any) -> Any:
+    """Normalize acceptable boolean representations or raise ValueError for invalid inputs."""
+    if pd.isna(val) or val is None or val == "":
+        return np.nan
+
+    if isinstance(val, (bool, np.bool_)):
+        return bool(val)
+
+    if isinstance(val, (int, float, np.integer, np.floating)):
+        if val == 1:
+            return True
+        if val == 0:
+            return False
+        raise ValueError(f"Invalid numeric value for boolean feature: {val}")
+
+    if isinstance(val, str):
+        val_clean = val.strip().lower()
+        if val_clean in BOOLEAN_TRUE_VALUES:
+            return True
+        if val_clean in BOOLEAN_FALSE_VALUES:
+            return False
+        raise ValueError(f"Invalid string value for boolean feature: '{val}'")
+
+    raise ValueError(f"Unrecognized type for boolean feature: {type(val)} ({val})")
 
 
 class SourceOnlyPreprocessor:
@@ -60,7 +90,7 @@ class SourceOnlyPreprocessor:
 
         self.is_fitted: bool = False
         self.output_feature_names: List[str] = []
-        self.source_category_vocabularies_: Dict[str, set] = {}
+        self.source_category_vocabularies_: Dict[str, Set[str]] = {}
 
     def fit(self, X: pd.DataFrame) -> "SourceOnlyPreprocessor":
         """Fit preprocessing transformations strictly on source features without target or label access."""
@@ -69,44 +99,83 @@ class SourceOnlyPreprocessor:
 
         # 1. Numeric features
         if self.numeric_cols:
-            self.numeric_imputer = SimpleImputer(strategy="median")
-            X_num_imp = self.numeric_imputer.fit_transform(X[self.numeric_cols])
+            X_num = X[self.numeric_cols]
+            # Disallow raw infinity
+            arr_num = X_num.to_numpy(dtype=float, copy=False)
+            if np.isneginf(arr_num).any() or np.isposinf(arr_num).any():
+                raise ValueError("Infinite values (+inf or -inf) detected in raw numeric features.")
 
-            # Safe handling for entirely-empty features in source: fill nan statistics with 0.0
-            if np.isnan(self.numeric_imputer.statistics_).any():
-                self.numeric_imputer.statistics_ = np.nan_to_num(self.numeric_imputer.statistics_, nan=0.0)
-                X_num_imp = np.nan_to_num(X_num_imp, nan=0.0)
+            self.numeric_imputer = SimpleImputer(strategy="median", keep_empty_features=True)
+            X_num_imp = self.numeric_imputer.fit_transform(X_num)
+
+            # Preserve entirely missing source features with documented fallback (0.0 before scaler)
+            fallback_num = self.config.get("numeric", {}).get("all_missing_fallback", 0.0)
+            for i, col in enumerate(self.numeric_cols):
+                if X_num[col].isna().all() or (
+                    hasattr(self.numeric_imputer, "statistics_")
+                    and np.isnan(self.numeric_imputer.statistics_[i])
+                ):
+                    self.numeric_imputer.statistics_[i] = fallback_num
+                    X_num_imp[:, i] = fallback_num
 
             self.numeric_scaler = StandardScaler()
             self.numeric_scaler.fit(X_num_imp)
 
-        # 2. Categorical features (including ordinals without explicit order)
+        # 2. Categorical features
         if self.categorical_cols:
-            self.categorical_imputer = SimpleImputer(strategy="most_frequent")
-            X_cat_df = X[self.categorical_cols].astype(str)
-            X_cat_imp = self.categorical_imputer.fit_transform(X_cat_df)
+            X_cat = X[self.categorical_cols].astype("object")
+            # Normalize pandas missing values to np.nan
+            X_cat = X_cat.where(pd.notna(X_cat), np.nan)
 
-            # Record source category vocabulary for unseen category auditing
-            self.source_category_vocabularies_ = {
-                col: set(X_cat_df[col].dropna().unique()) for col in self.categorical_cols
-            }
+            # Record genuine source category vocabulary (excluding missing values)
+            self.source_category_vocabularies_ = {}
+            for col in self.categorical_cols:
+                non_null = X_cat[col].dropna()
+                self.source_category_vocabularies_[col] = set(non_null.astype(str).unique())
+
+            self.categorical_imputer = SimpleImputer(strategy="most_frequent", keep_empty_features=True)
+            X_cat_imp = self.categorical_imputer.fit_transform(X_cat)
+
+            # Preserve entirely missing categorical source features with deterministic sentinel
+            sentinel = self.config.get("categorical", {}).get("all_missing_sentinel", "__MISSING_SOURCE__")
+            for i, col in enumerate(self.categorical_cols):
+                if X_cat[col].isna().all():
+                    self.categorical_imputer.statistics_[i] = sentinel
+                    X_cat_imp[:, i] = sentinel
+                    self.source_category_vocabularies_[col] = {sentinel}
+
+            # Only after imputation normalize values to strings for encoding
+            X_cat_str = X_cat_imp.astype(str)
 
             min_freq = self.config.get("categorical", {}).get("min_frequency", 0.01)
+            if min_freq is not None and min_freq <= 0.0:
+                min_freq = None
             self.categorical_encoder = OneHotEncoder(
                 handle_unknown="ignore",
                 min_frequency=min_freq,
                 sparse_output=False,
                 dtype=np.float32,
             )
-            self.categorical_encoder.fit(X_cat_imp)
+            self.categorical_encoder.fit(X_cat_str)
 
         # 3. Explicitly ordered ordinal features
         if self.ordinal_cols:
             category_orderings = self.metadata.get("category_orderings") or {}
-            self.ordinal_imputer = SimpleImputer(strategy="most_frequent")
-            X_ord_df = X[self.ordinal_cols].astype(str)
-            X_ord_imp = self.ordinal_imputer.fit_transform(X_ord_df)
+            X_ord = X[self.ordinal_cols].astype("object")
+            X_ord = X_ord.where(pd.notna(X_ord), np.nan)
 
+            self.ordinal_imputer = SimpleImputer(strategy="most_frequent", keep_empty_features=True)
+            X_ord_imp = self.ordinal_imputer.fit_transform(X_ord)
+
+            ord_sentinel = self.config.get("ordinal", {}).get("all_missing_sentinel", "__MISSING_SOURCE__")
+            for i, col in enumerate(self.ordinal_cols):
+                if X_ord[col].isna().all():
+                    order = category_orderings.get(col, [])
+                    fallback_ord = order[0] if order else ord_sentinel
+                    self.ordinal_imputer.statistics_[i] = fallback_ord
+                    X_ord_imp[:, i] = fallback_ord
+
+            X_ord_str = X_ord_imp.astype(str)
             ord_encoded = []
             for idx, col in enumerate(self.ordinal_cols):
                 order = category_orderings[col]
@@ -115,7 +184,7 @@ class SourceOnlyPreprocessor:
                     handle_unknown="use_encoded_value",
                     unknown_value=-1,
                 )
-                col_enc = encoder.fit_transform(X_ord_imp[:, [idx]])
+                col_enc = encoder.fit_transform(X_ord_str[:, [idx]])
                 self.ordinal_encoders[col] = encoder
                 ord_encoded.append(col_enc)
 
@@ -125,9 +194,19 @@ class SourceOnlyPreprocessor:
 
         # 4. Boolean features
         if self.boolean_cols:
-            self.boolean_imputer = SimpleImputer(strategy="most_frequent")
-            X_bool_df = X[self.boolean_cols].copy()
-            self.boolean_imputer.fit(X_bool_df)
+            # Map canonical booleans, rejecting unrecognized values
+            X_bool_df = pd.DataFrame(index=X.index)
+            for col in self.boolean_cols:
+                X_bool_df[col] = X[col].apply(normalize_boolean_value)
+
+            self.boolean_imputer = SimpleImputer(strategy="most_frequent", keep_empty_features=True)
+            X_bool_imp = self.boolean_imputer.fit_transform(X_bool_df)
+
+            fallback_bool = bool(self.config.get("boolean", {}).get("all_missing_fallback", False))
+            for i, col in enumerate(self.boolean_cols):
+                if X_bool_df[col].isna().all():
+                    self.boolean_imputer.statistics_[i] = fallback_bool
+                    X_bool_imp[:, i] = fallback_bool
 
         self.is_fitted = True
         self._build_feature_names_out()
@@ -164,37 +243,45 @@ class SourceOnlyPreprocessor:
         # 1. Numeric transform
         if self.numeric_cols:
             X_num = X[self.numeric_cols]
+            arr_num = X_num.to_numpy(dtype=float, copy=False)
+            if np.isneginf(arr_num).any() or np.isposinf(arr_num).any():
+                raise ValueError("Infinite values (+inf or -inf) detected in numeric features during transform.")
+
             X_num_imp = self.numeric_imputer.transform(X_num)
-            X_num_imp = np.nan_to_num(X_num_imp, nan=0.0)
             X_num_scaled = self.numeric_scaler.transform(X_num_imp)
-            parts.append(np.nan_to_num(X_num_scaled, nan=0.0).astype(np.float32))
+            parts.append(X_num_scaled.astype(np.float32))
 
         # 2. Categorical transform
         if self.categorical_cols:
-            X_cat_df = X[self.categorical_cols].astype(str)
-            X_cat_imp = self.categorical_imputer.transform(X_cat_df)
-            X_cat_ohe = self.categorical_encoder.transform(X_cat_imp)
+            X_cat = X[self.categorical_cols].astype("object")
+            X_cat = X_cat.where(pd.notna(X_cat), np.nan)
+            X_cat_imp = self.categorical_imputer.transform(X_cat)
+            X_cat_str = X_cat_imp.astype(str)
+            X_cat_ohe = self.categorical_encoder.transform(X_cat_str)
             parts.append(X_cat_ohe.astype(np.float32))
 
         # 3. Ordinal transform
         if self.ordinal_cols:
-            X_ord_df = X[self.ordinal_cols].astype(str)
-            X_ord_imp = self.ordinal_imputer.transform(X_ord_df)
+            X_ord = X[self.ordinal_cols].astype("object")
+            X_ord = X_ord.where(pd.notna(X_ord), np.nan)
+            X_ord_imp = self.ordinal_imputer.transform(X_ord)
+            X_ord_str = X_ord_imp.astype(str)
             ord_encoded = []
             for idx, col in enumerate(self.ordinal_cols):
                 encoder = self.ordinal_encoders[col]
-                col_enc = encoder.transform(X_ord_imp[:, [idx]])
+                col_enc = encoder.transform(X_ord_str[:, [idx]])
                 ord_encoded.append(col_enc)
             X_ord_mat = np.hstack(ord_encoded)
             X_ord_scaled = self.ordinal_scaler.transform(X_ord_mat)
-            parts.append(np.nan_to_num(X_ord_scaled, nan=0.0).astype(np.float32))
+            parts.append(X_ord_scaled.astype(np.float32))
 
         # 4. Boolean transform
         if self.boolean_cols:
-            X_bool_df = X[self.boolean_cols].copy()
+            X_bool_df = pd.DataFrame(index=X.index)
+            for col in self.boolean_cols:
+                X_bool_df[col] = X[col].apply(normalize_boolean_value)
             X_bool_imp = self.boolean_imputer.transform(X_bool_df)
-            # Map truthy/falsy to 0.0 / 1.0
-            X_bool_arr = (X_bool_imp.astype(str) == "True").astype(np.float32)
+            X_bool_arr = (X_bool_imp == True).astype(np.float32)
             parts.append(X_bool_arr)
 
         if not parts:
@@ -202,26 +289,42 @@ class SourceOnlyPreprocessor:
 
         out = np.hstack(parts).astype(np.float32)
 
-        # Enforce finite representation
-        if not np.all(np.isfinite(out)):
-            out = np.nan_to_num(out, nan=0.0, posinf=0.0, neginf=0.0).astype(np.float32)
+        # Enforce finite representation: do NOT silently hide raw/transformed infinity!
+        if np.isnan(out).any():
+            raise ValueError("NaN values detected in preprocessed output after imputation.")
+        if np.isneginf(out).any() or np.isposinf(out).any():
+            raise ValueError("Infinite values (+inf or -inf) detected in preprocessed output.")
 
         return out
 
-    def count_unseen_categories(self, X_target: pd.DataFrame) -> int:
-        """Count total occurrences of unseen categorical levels in target data."""
+    def get_unseen_categories(self, X_target: pd.DataFrame) -> Tuple[int, List[str]]:
+        """Count total occurrences of unseen categorical levels and list affected column names."""
         if not self.categorical_cols or not self.source_category_vocabularies_:
-            return 0
+            return 0, []
+
+        X_cat_tgt = X_target[self.categorical_cols].astype("object")
+        X_cat_tgt = X_cat_tgt.where(pd.notna(X_cat_tgt), np.nan)
 
         unseen_count = 0
+        affected_cols = []
+
         for col in self.categorical_cols:
-            if col in X_target.columns:
+            if col in X_cat_tgt.columns:
                 source_vocab = self.source_category_vocabularies_.get(col, set())
-                target_vals = X_target[col].dropna().astype(str).tolist()
+                target_vals = X_cat_tgt[col].dropna().astype(str).tolist()
+                col_has_unseen = False
                 for val in target_vals:
                     if val not in source_vocab:
                         unseen_count += 1
-        return unseen_count
+                        col_has_unseen = True
+                if col_has_unseen:
+                    affected_cols.append(col)
+
+        return unseen_count, affected_cols
+
+    def count_unseen_categories(self, X_target: pd.DataFrame) -> int:
+        """Count total occurrences of unseen categorical levels in target data."""
+        return self.get_unseen_categories(X_target)[0]
 
 
 def build_preprocessor(

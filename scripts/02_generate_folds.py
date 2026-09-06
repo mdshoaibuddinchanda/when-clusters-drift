@@ -4,8 +4,6 @@
 import argparse
 import hashlib
 import json
-import os
-import subprocess
 import sys
 import time
 from pathlib import Path
@@ -17,7 +15,10 @@ import yaml
 
 from clusterdrift.data.folds import (
     FoldSplit,
+    compute_preprocessing_config_sha256,
+    compute_scenario_input_sha256,
     compute_split_hash,
+    compute_split_protocol_sha256,
     generate_group_kfold_splits,
     generate_kfold_splits,
     generate_tableshift_natural_splits,
@@ -32,30 +33,27 @@ from clusterdrift.data.registry import get_dataset_spec, list_controlled_real, l
 
 PHASE1_FREEZE_COMMIT = "d5cb818589a138b25f10e926e9e83b198d369599"
 DATE_OF_FREEZE = "2026-09-07"
-SPLIT_SEED = 20260907
-N_OUTER = 5
-N_INNER = 3
 
 EXCLUDED_DATASETS = [
     {
         "dataset_id": "whyshift_taxi",
-        "reason": "Raw download required; no Phase-1 canonical bundle present in data/canonical/.",
+        "reason": "not canonicalized and validated at Phase-1 experiment freeze.",
     },
     {
         "dataset_id": "whyshift_us_accidents",
-        "reason": "Raw download required; no Phase-1 canonical bundle present in data/canonical/.",
+        "reason": "not canonicalized and validated at Phase-1 experiment freeze.",
     },
     {
         "dataset_id": "tableshift_college_scorecard",
-        "reason": "Raw download required; no Phase-1 canonical bundle present in data/canonical/.",
+        "reason": "not canonicalized and validated at Phase-1 experiment freeze.",
     },
     {
         "dataset_id": "tableshift_heloc",
-        "reason": "Raw download required; no Phase-1 canonical bundle present in data/canonical/.",
+        "reason": "not canonicalized and validated at Phase-1 experiment freeze.",
     },
     {
         "dataset_id": "tableshift_assistments",
-        "reason": "Raw download required; no Phase-1 canonical bundle present in data/canonical/.",
+        "reason": "not canonicalized and validated at Phase-1 experiment freeze.",
     },
 ]
 
@@ -83,15 +81,32 @@ def load_preprocessing_config(project_root: Path) -> Dict[str, Any]:
         return yaml.safe_load(f)
 
 
-def get_config_hash(project_root: Path) -> str:
-    cfg_path = project_root / "configs" / "preprocessing.yaml"
-    return compute_file_sha256(cfg_path)
-
-
-def generate_input_lock(project_root: Path, dry_run: bool = False) -> Dict[str, Any]:
+def generate_input_lock(
+    project_root: Path,
+    prep_cfg: Dict[str, Any],
+    dry_run: bool = False,
+) -> Dict[str, Any]:
     """Generate and persist data/splits/phase2_input_lock.json."""
     lock_path = project_root / "data" / "splits" / "phase2_input_lock.json"
     canonical_root = project_root / "data" / "canonical"
+
+    datasets_manifest_path = project_root / "data" / "manifests" / "datasets.json"
+    synthetic_manifest_path = project_root / "data" / "manifests" / "synthetic_manifest.json"
+
+    datasets_manifest_sha = (
+        compute_file_sha256(datasets_manifest_path) if datasets_manifest_path.exists() else ""
+    )
+    synthetic_manifest_sha = (
+        compute_file_sha256(synthetic_manifest_path) if synthetic_manifest_path.exists() else ""
+    )
+
+    split_protocol_sha = compute_split_protocol_sha256(prep_cfg)
+    prep_config_sha = compute_preprocessing_config_sha256(prep_cfg)
+
+    split_cfg = prep_cfg.get("splitting", {})
+    outer_folds = int(split_cfg.get("outer_folds", 5))
+    inner_folds = int(split_cfg.get("inner_folds", 3))
+    split_seed = int(split_cfg.get("split_seed", 20260907))
 
     eligible_datasets: Dict[str, Any] = {}
 
@@ -170,12 +185,27 @@ def generate_input_lock(project_root: Path, dry_run: bool = False) -> Dict[str, 
         "date_of_freeze": DATE_OF_FREEZE,
     }
 
+    # Preserve existing timestamp if present
+    created_at = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+    if lock_path.exists():
+        try:
+            old_lock = json.loads(lock_path.read_text(encoding="utf-8"))
+            if "created_at" in old_lock:
+                created_at = old_lock["created_at"]
+        except Exception:
+            pass
+
     lock_doc = {
-        "phase1_freeze_commit": PHASE1_FREEZE_COMMIT,
-        "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        "split_seed": SPLIT_SEED,
-        "outer_folds": N_OUTER,
-        "inner_folds": N_INNER,
+        "phase2_protocol_version": prep_cfg.get("protocol_version", 1),
+        "source_git_commit": PHASE1_FREEZE_COMMIT,
+        "created_at": created_at,
+        "datasets_manifest_sha256": datasets_manifest_sha,
+        "synthetic_manifest_sha256": synthetic_manifest_sha,
+        "split_protocol_sha256": split_protocol_sha,
+        "preprocessing_config_sha256": prep_config_sha,
+        "split_seed": split_seed,
+        "outer_folds": outer_folds,
+        "inner_folds": inner_folds,
         "total_eligible_datasets": len(eligible_datasets),
         "total_partitions": 46,
         "eligible_datasets": eligible_datasets,
@@ -194,7 +224,8 @@ def process_controlled_dataset(
     ds_id: str,
     project_root: Path,
     prep_cfg: Dict[str, Any],
-    config_hash: str,
+    split_protocol_sha: str,
+    prep_config_sha: str,
     force: bool = False,
     verify_only: bool = False,
     dry_run: bool = False,
@@ -205,9 +236,9 @@ def process_controlled_dataset(
     out_dir = project_root / "data" / "splits" / "controlled" / ds_id
 
     features_path = ds_dir / "features.parquet"
-    labels_path = ds_dir / "labels.parquet"
     groups_path = ds_dir / "groups.parquet"
     meta_path = ds_dir / "metadata.json"
+
     meta = json.loads(meta_path.read_text(encoding="utf-8"))
     bundle_sha = compute_bundle_hash_for_dir(ds_dir)
     feature_roles = meta.get("feature_roles", {})
@@ -215,34 +246,38 @@ def process_controlled_dataset(
     df_X = pd.read_parquet(features_path)
     n_samples = len(df_X)
 
+    split_cfg = prep_cfg.get("splitting", {})
+    n_outer = int(split_cfg.get("outer_folds", 5))
+    n_inner = int(split_cfg.get("inner_folds", 3))
+    split_seed = int(split_cfg.get("split_seed", 20260907))
+
     # Determine splits
     if spec.split_strategy == "group_kfold":
         if not groups_path.exists():
             raise FileNotFoundError(f"Missing groups.parquet for group_kfold dataset {ds_id}")
         df_g = pd.read_parquet(groups_path)
         group_series = df_g.iloc[:, 0].values
-        group_col_name = spec.group_column or "group_id"
+        group_col_name = "mouse_subject_id" if ds_id == "mice_protein_expression" else (spec.group_column or "group_id")
         splits = generate_group_kfold_splits(
             groups=group_series,
-            n_outer=N_OUTER,
-            n_inner=N_INNER,
+            n_outer=n_outer,
+            n_inner=n_inner,
             group_column_name=group_col_name,
         )
     elif spec.split_strategy == "temporal_block":
-        time_col = spec.time_column or "date"
-        time_series = df_X[time_col].values
+        time_cols = split_cfg.get("temporal", {}).get("order_columns", ["date", "period"])
         splits = generate_temporal_block_splits(
-            time_values=time_series,
-            n_outer=N_OUTER,
-            n_inner=N_INNER,
-            time_column_name=time_col,
+            features_df=df_X,
+            time_columns=time_cols,
+            n_outer=n_outer,
+            n_inner=n_inner,
         )
     else:
         splits = generate_kfold_splits(
             n_samples=n_samples,
-            n_outer=N_OUTER,
-            n_inner=N_INNER,
-            split_seed=SPLIT_SEED,
+            n_outer=n_outer,
+            n_inner=n_inner,
+            split_seed=split_seed,
         )
 
     manifest_entries: List[Dict[str, Any]] = []
@@ -251,11 +286,8 @@ def process_controlled_dataset(
     common_meta = {
         "dataset_id": ds_id,
         "scenario_id": "default",
-        "split_seed": SPLIT_SEED,
+        "split_seed": split_seed,
     }
-
-    # Preprocessor output feature dimension tracker for uniformity check
-    encoded_dims: List[int] = []
 
     for split in splits:
         r = split.outer_fold
@@ -265,19 +297,30 @@ def process_controlled_dataset(
 
         is_valid = False
         if npz_path.exists() and json_path.exists() and not force:
-            is_valid = verify_split_artifact(npz_path, json_path, expected_bundle_sha256=bundle_sha)
+            is_valid = verify_split_artifact(
+                npz_path=npz_path,
+                json_path=json_path,
+                expected_bundle_sha256=bundle_sha,
+                expected_protocol_sha256=split_protocol_sha,
+                expected_split_seed=split_seed,
+                expected_strategy=split.split_strategy,
+            )
             if is_valid:
                 print(f"  [{ds_id} fold_{r}] [SKIP VERIFIED]")
 
         if not is_valid:
-            if not dry_run and not verify_only:
+            if verify_only:
+                raise RuntimeError(f"Split artifact invalid or missing for {ds_id} fold_{r} during verify.")
+            if not dry_run:
                 npz_path, json_path, split_sha = save_fold_split_artifacts(
                     split=split,
                     target_dir=out_dir,
                     file_prefix=prefix,
                     common_metadata=common_meta,
                     canonical_bundle_sha256=bundle_sha,
-                    split_config_sha256=config_hash,
+                    split_config_sha256=prep_config_sha,
+                    split_protocol_sha256=split_protocol_sha,
+                    scenario_input_sha256=bundle_sha,
                 )
             else:
                 split_sha = compute_split_hash(
@@ -285,8 +328,9 @@ def process_controlled_dataset(
                     target_indices=split.target_indices,
                     inner_folds=split.inner_folds,
                     split_strategy=split.split_strategy,
-                    split_seed=SPLIT_SEED,
+                    split_seed=split_seed,
                     canonical_bundle_sha256=bundle_sha,
+                    split_protocol_sha256=split_protocol_sha,
                 )
         else:
             with open(json_path, "r", encoding="utf-8") as jf:
@@ -318,32 +362,42 @@ def process_controlled_dataset(
         X_source = df_X.iloc[split.source_indices]
         X_target = df_X.iloc[split.target_indices]
 
+        src_miss_before = int(X_source.isna().sum().sum())
+        tgt_miss_before = int(X_target.isna().sum().sum())
+
         prep = build_preprocessor(feature_roles=feature_roles, config=prep_cfg, metadata=meta)
         prep.fit(X_source)
         out_src = prep.transform(X_source)
         out_tgt = prep.transform(X_target)
 
-        src_nan = bool(np.isnan(out_src).any())
-        tgt_nan = bool(np.isnan(out_tgt).any())
-        src_finite = bool(np.all(np.isfinite(out_src)))
-        tgt_finite = bool(np.all(np.isfinite(out_tgt)))
-        enc_dim = out_src.shape[1]
-        encoded_dims.append(enc_dim)
+        src_miss_after = int(np.isnan(out_src).sum())
+        tgt_miss_after = int(np.isnan(out_tgt).sum())
+        unseen_count, unseen_cols = prep.get_unseen_categories(X_target)
 
         audit_entries.append({
-            "dataset_name": ds_id,
+            "dataset_id": ds_id,
             "scenario_id": "default",
             "outer_fold": r,
             "source_rows": len(split.source_indices),
             "target_rows": len(split.target_indices),
             "raw_features": df_X.shape[1],
-            "encoded_features": enc_dim,
-            "source_has_nan": src_nan,
-            "target_has_nan": tgt_nan,
-            "source_all_finite": src_finite,
-            "target_all_finite": tgt_finite,
-            "preprocessor_config_hash": config_hash,
-            "split_hash": split_sha,
+            "encoded_features": out_src.shape[1],
+            "numeric_features": len(prep.numeric_cols),
+            "categorical_features": len(prep.categorical_cols),
+            "ordinal_features": len(prep.ordinal_cols),
+            "boolean_features": len(prep.boolean_cols),
+            "source_missing_before": src_miss_before,
+            "target_missing_before": tgt_miss_before,
+            "source_missing_after": src_miss_after,
+            "target_missing_after": tgt_miss_after,
+            "unseen_target_category_occurrences": unseen_count,
+            "unseen_target_category_columns": json.dumps(unseen_cols),
+            "source_all_finite": bool(np.all(np.isfinite(out_src))),
+            "target_all_finite": bool(np.all(np.isfinite(out_tgt))),
+            "canonical_or_scenario_input_sha256": bundle_sha,
+            "split_protocol_sha256": split_protocol_sha,
+            "preprocessing_config_sha256": prep_config_sha,
+            "split_sha256": split_sha,
         })
 
     return manifest_entries, audit_entries
@@ -354,7 +408,8 @@ def process_whyshift_dataset(
     task: str,
     project_root: Path,
     prep_cfg: Dict[str, Any],
-    config_hash: str,
+    split_protocol_sha: str,
+    prep_config_sha: str,
     force: bool = False,
     verify_only: bool = False,
     dry_run: bool = False,
@@ -370,13 +425,17 @@ def process_whyshift_dataset(
     ca_bundle_sha = compute_bundle_hash_for_dir(ca_dir)
     feature_roles = ca_meta.get("feature_roles", {})
 
+    split_cfg = prep_cfg.get("splitting", {})
+    n_outer = int(split_cfg.get("outer_folds", 5))
+    n_inner = int(split_cfg.get("inner_folds", 3))
+    split_seed = int(split_cfg.get("split_seed", 20260907))
+
     target_states = ["TX", "NY", "FL", "PA"]
     manifest_entries: List[Dict[str, Any]] = []
     audit_entries: List[Dict[str, Any]] = []
 
     for tgt_state in target_states:
         tgt_dir = canonical_task_dir / tgt_state
-        tgt_meta = json.loads((tgt_dir / "metadata.json").read_text(encoding="utf-8"))
         tgt_features = pd.read_parquet(tgt_dir / "features.parquet")
         tgt_bundle_sha = compute_bundle_hash_for_dir(tgt_dir)
 
@@ -388,12 +447,13 @@ def process_whyshift_dataset(
             n_target=len(tgt_features),
             source_domain="CA",
             target_domain=tgt_state,
-            n_outer=N_OUTER,
-            n_inner=N_INNER,
-            split_seed=SPLIT_SEED,
+            n_outer=n_outer,
+            n_inner=n_inner,
+            split_seed=split_seed,
         )
 
-        composite_bundle_sha = f"{ca_bundle_sha}:{tgt_bundle_sha}"
+        scenario_input_sha = compute_scenario_input_sha256(ca_bundle_sha, tgt_bundle_sha)
+
         common_meta = {
             "dataset_id": ds_id,
             "scenario_id": scenario_id,
@@ -401,10 +461,9 @@ def process_whyshift_dataset(
             "target_domain": tgt_state,
             "source_bundle_sha256": ca_bundle_sha,
             "target_bundle_sha256": tgt_bundle_sha,
-            "split_seed": SPLIT_SEED,
+            "scenario_input_sha256": scenario_input_sha,
+            "split_seed": split_seed,
         }
-
-        encoded_dims: List[int] = []
 
         for split in splits:
             r = split.outer_fold
@@ -414,19 +473,30 @@ def process_whyshift_dataset(
 
             is_valid = False
             if npz_path.exists() and json_path.exists() and not force:
-                is_valid = verify_split_artifact(npz_path, json_path, expected_bundle_sha256=composite_bundle_sha)
+                is_valid = verify_split_artifact(
+                    npz_path=npz_path,
+                    json_path=json_path,
+                    expected_bundle_sha256=scenario_input_sha,
+                    expected_protocol_sha256=split_protocol_sha,
+                    expected_split_seed=split_seed,
+                    expected_strategy=split.split_strategy,
+                )
                 if is_valid:
                     print(f"  [{ds_id} {scenario_id} fold_{r}] [SKIP VERIFIED]")
 
             if not is_valid:
-                if not dry_run and not verify_only:
+                if verify_only:
+                    raise RuntimeError(f"Split artifact invalid or missing for {ds_id} {scenario_id} fold_{r} during verify.")
+                if not dry_run:
                     npz_path, json_path, split_sha = save_fold_split_artifacts(
                         split=split,
                         target_dir=scenario_out_dir,
                         file_prefix=prefix,
                         common_metadata=common_meta,
-                        canonical_bundle_sha256=composite_bundle_sha,
-                        split_config_sha256=config_hash,
+                        canonical_bundle_sha256=ca_bundle_sha,
+                        split_config_sha256=prep_config_sha,
+                        split_protocol_sha256=split_protocol_sha,
+                        scenario_input_sha256=scenario_input_sha,
                     )
                 else:
                     split_sha = compute_split_hash(
@@ -434,8 +504,9 @@ def process_whyshift_dataset(
                         target_indices=split.target_indices,
                         inner_folds=split.inner_folds,
                         split_strategy=split.split_strategy,
-                        split_seed=SPLIT_SEED,
-                        canonical_bundle_sha256=composite_bundle_sha,
+                        split_seed=split_seed,
+                        canonical_bundle_sha256=scenario_input_sha,
+                        split_protocol_sha256=split_protocol_sha,
                     )
             else:
                 with open(json_path, "r", encoding="utf-8") as jf:
@@ -467,32 +538,42 @@ def process_whyshift_dataset(
             X_source = ca_features.iloc[split.source_indices]
             X_target = tgt_features.iloc[split.target_indices]
 
+            src_miss_before = int(X_source.isna().sum().sum())
+            tgt_miss_before = int(X_target.isna().sum().sum())
+
             prep = build_preprocessor(feature_roles=feature_roles, config=prep_cfg, metadata=ca_meta)
             prep.fit(X_source)
             out_src = prep.transform(X_source)
             out_tgt = prep.transform(X_target)
 
-            src_nan = bool(np.isnan(out_src).any())
-            tgt_nan = bool(np.isnan(out_tgt).any())
-            src_finite = bool(np.all(np.isfinite(out_src)))
-            tgt_finite = bool(np.all(np.isfinite(out_tgt)))
-            enc_dim = out_src.shape[1]
-            encoded_dims.append(enc_dim)
+            src_miss_after = int(np.isnan(out_src).sum())
+            tgt_miss_after = int(np.isnan(out_tgt).sum())
+            unseen_count, unseen_cols = prep.get_unseen_categories(X_target)
 
             audit_entries.append({
-                "dataset_name": ds_id,
+                "dataset_id": ds_id,
                 "scenario_id": scenario_id,
                 "outer_fold": r,
                 "source_rows": len(split.source_indices),
                 "target_rows": len(split.target_indices),
                 "raw_features": ca_features.shape[1],
-                "encoded_features": enc_dim,
-                "source_has_nan": src_nan,
-                "target_has_nan": tgt_nan,
-                "source_all_finite": src_finite,
-                "target_all_finite": tgt_finite,
-                "preprocessor_config_hash": config_hash,
-                "split_hash": split_sha,
+                "encoded_features": out_src.shape[1],
+                "numeric_features": len(prep.numeric_cols),
+                "categorical_features": len(prep.categorical_cols),
+                "ordinal_features": len(prep.ordinal_cols),
+                "boolean_features": len(prep.boolean_cols),
+                "source_missing_before": src_miss_before,
+                "target_missing_before": tgt_miss_before,
+                "source_missing_after": src_miss_after,
+                "target_missing_after": tgt_miss_after,
+                "unseen_target_category_occurrences": unseen_count,
+                "unseen_target_category_columns": json.dumps(unseen_cols),
+                "source_all_finite": bool(np.all(np.isfinite(out_src))),
+                "target_all_finite": bool(np.all(np.isfinite(out_tgt))),
+                "canonical_or_scenario_input_sha256": scenario_input_sha,
+                "split_protocol_sha256": split_protocol_sha,
+                "preprocessing_config_sha256": prep_config_sha,
+                "split_sha256": split_sha,
             })
 
     return manifest_entries, audit_entries
@@ -501,7 +582,8 @@ def process_whyshift_dataset(
 def process_tableshift_dataset(
     project_root: Path,
     prep_cfg: Dict[str, Any],
-    config_hash: str,
+    split_protocol_sha: str,
+    prep_config_sha: str,
     force: bool = False,
     verify_only: bool = False,
     dry_run: bool = False,
@@ -520,12 +602,17 @@ def process_tableshift_dataset(
     domain_series = domains_df["admission_source_id"].values
     unique_vals = sorted([int(x) for x in pd.Series(domain_series).unique()])
 
+    split_cfg = prep_cfg.get("splitting", {})
+    n_outer = int(split_cfg.get("outer_folds", 5))
+    n_inner = int(split_cfg.get("inner_folds", 3))
+    split_seed = int(split_cfg.get("split_seed", 20260907))
+
     all_scenarios = generate_tableshift_natural_splits(
         domain_series=domain_series,
         candidate_ood_values=unique_vals,
-        n_outer=N_OUTER,
-        n_inner=N_INNER,
-        split_seed=SPLIT_SEED,
+        n_outer=n_outer,
+        n_inner=n_inner,
+        split_seed=split_seed,
     )
 
     manifest_entries: List[Dict[str, Any]] = []
@@ -533,13 +620,14 @@ def process_tableshift_dataset(
 
     for scenario_id, splits in all_scenarios.items():
         scenario_out_dir = splits_dir / scenario_id
+        target_sample_count = len(splits[0].target_indices)
+
         common_meta = {
             "dataset_id": ds_id,
             "scenario_id": scenario_id,
-            "split_seed": SPLIT_SEED,
+            "target_sample_count": target_sample_count,
+            "split_seed": split_seed,
         }
-
-        encoded_dims: List[int] = []
 
         for split in splits:
             r = split.outer_fold
@@ -549,19 +637,30 @@ def process_tableshift_dataset(
 
             is_valid = False
             if npz_path.exists() and json_path.exists() and not force:
-                is_valid = verify_split_artifact(npz_path, json_path, expected_bundle_sha256=bundle_sha)
+                is_valid = verify_split_artifact(
+                    npz_path=npz_path,
+                    json_path=json_path,
+                    expected_bundle_sha256=bundle_sha,
+                    expected_protocol_sha256=split_protocol_sha,
+                    expected_split_seed=split_seed,
+                    expected_strategy=split.split_strategy,
+                )
                 if is_valid:
                     print(f"  [{ds_id} {scenario_id} fold_{r}] [SKIP VERIFIED]")
 
             if not is_valid:
-                if not dry_run and not verify_only:
+                if verify_only:
+                    raise RuntimeError(f"Split artifact invalid or missing for {ds_id} {scenario_id} fold_{r} during verify.")
+                if not dry_run:
                     npz_path, json_path, split_sha = save_fold_split_artifacts(
                         split=split,
                         target_dir=scenario_out_dir,
                         file_prefix=prefix,
                         common_metadata=common_meta,
                         canonical_bundle_sha256=bundle_sha,
-                        split_config_sha256=config_hash,
+                        split_config_sha256=prep_config_sha,
+                        split_protocol_sha256=split_protocol_sha,
+                        scenario_input_sha256=bundle_sha,
                     )
                 else:
                     split_sha = compute_split_hash(
@@ -569,8 +668,9 @@ def process_tableshift_dataset(
                         target_indices=split.target_indices,
                         inner_folds=split.inner_folds,
                         split_strategy=split.split_strategy,
-                        split_seed=SPLIT_SEED,
+                        split_seed=split_seed,
                         canonical_bundle_sha256=bundle_sha,
+                        split_protocol_sha256=split_protocol_sha,
                     )
             else:
                 with open(json_path, "r", encoding="utf-8") as jf:
@@ -602,32 +702,42 @@ def process_tableshift_dataset(
             X_source = features_df.iloc[split.source_indices]
             X_target = features_df.iloc[split.target_indices]
 
+            src_miss_before = int(X_source.isna().sum().sum())
+            tgt_miss_before = int(X_target.isna().sum().sum())
+
             prep = build_preprocessor(feature_roles=feature_roles, config=prep_cfg, metadata=meta)
             prep.fit(X_source)
             out_src = prep.transform(X_source)
             out_tgt = prep.transform(X_target)
 
-            src_nan = bool(np.isnan(out_src).any())
-            tgt_nan = bool(np.isnan(out_tgt).any())
-            src_finite = bool(np.all(np.isfinite(out_src)))
-            tgt_finite = bool(np.all(np.isfinite(out_tgt)))
-            enc_dim = out_src.shape[1]
-            encoded_dims.append(enc_dim)
+            src_miss_after = int(np.isnan(out_src).sum())
+            tgt_miss_after = int(np.isnan(out_tgt).sum())
+            unseen_count, unseen_cols = prep.get_unseen_categories(X_target)
 
             audit_entries.append({
-                "dataset_name": ds_id,
+                "dataset_id": ds_id,
                 "scenario_id": scenario_id,
                 "outer_fold": r,
                 "source_rows": len(split.source_indices),
                 "target_rows": len(split.target_indices),
                 "raw_features": features_df.shape[1],
-                "encoded_features": enc_dim,
-                "source_has_nan": src_nan,
-                "target_has_nan": tgt_nan,
-                "source_all_finite": src_finite,
-                "target_all_finite": tgt_finite,
-                "preprocessor_config_hash": config_hash,
-                "split_hash": split_sha,
+                "encoded_features": out_src.shape[1],
+                "numeric_features": len(prep.numeric_cols),
+                "categorical_features": len(prep.categorical_cols),
+                "ordinal_features": len(prep.ordinal_cols),
+                "boolean_features": len(prep.boolean_cols),
+                "source_missing_before": src_miss_before,
+                "target_missing_before": tgt_miss_before,
+                "source_missing_after": src_miss_after,
+                "target_missing_after": tgt_miss_after,
+                "unseen_target_category_occurrences": unseen_count,
+                "unseen_target_category_columns": json.dumps(unseen_cols),
+                "source_all_finite": bool(np.all(np.isfinite(out_src))),
+                "target_all_finite": bool(np.all(np.isfinite(out_tgt))),
+                "canonical_or_scenario_input_sha256": bundle_sha,
+                "split_protocol_sha256": split_protocol_sha,
+                "preprocessing_config_sha256": prep_config_sha,
+                "split_sha256": split_sha,
             })
 
     return manifest_entries, audit_entries
@@ -638,27 +748,37 @@ def main():
     parser.add_argument("--all", action="store_true", help="Process all Phase-2 eligible canonical datasets.")
     parser.add_argument("--dataset", type=str, default=None, help="Process a specific dataset by ID.")
     parser.add_argument("--force", action="store_true", help="Force recreation of splits even if verified valid.")
-    parser.add_argument("--verify", action="store_true", help="Verify existing splits and audit without modifying.")
+    parser.add_argument("--verify", action="store_true", help="Verify existing splits without modifying any files.")
     parser.add_argument("--dry-run", action="store_true", help="Perform actions in memory without writing artifacts.")
 
     args = parser.parse_args()
 
     project_root = Path(__file__).resolve().parent.parent
     prep_cfg = load_preprocessing_config(project_root)
-    config_hash = get_config_hash(project_root)
+
+    split_cfg = prep_cfg.get("splitting", {})
+    outer_folds = int(split_cfg.get("outer_folds", 5))
+    inner_folds = int(split_cfg.get("inner_folds", 3))
+    split_seed = int(split_cfg.get("split_seed", 20260907))
+
+    split_protocol_sha = compute_split_protocol_sha256(prep_cfg)
+    prep_config_sha = compute_preprocessing_config_sha256(prep_cfg)
 
     print("=" * 70)
     print("WHEN CLUSTERS DRIFT — PHASE 2 SPLIT GENERATION & AUDIT")
-    print(f"Split seed:            {SPLIT_SEED}")
-    print(f"Outer folds:           {N_OUTER}")
-    print(f"Inner folds:           {N_INNER}")
-    print(f"Config SHA256:         {config_hash}")
+    print(f"Split seed:            {split_seed}")
+    print(f"Outer folds:           {outer_folds}")
+    print(f"Inner folds:           {inner_folds}")
+    print(f"Split Protocol SHA:    {split_protocol_sha}")
+    print(f"Prep Config SHA:       {prep_config_sha}")
     print(f"Freeze Commit:         {PHASE1_FREEZE_COMMIT}")
+    if args.verify:
+        print("MODE:                  STRICTLY READ-ONLY VERIFICATION")
     print("=" * 70)
 
     # 1. Generate / verify input lock
     print("\n[1/4] Verifying Phase-2 Input Lock...")
-    lock_doc = generate_input_lock(project_root, dry_run=args.dry_run)
+    lock_doc = generate_input_lock(project_root, prep_cfg, dry_run=(args.dry_run or args.verify))
     eligible = lock_doc["eligible_datasets"]
     print(f"Registered {len(eligible)} eligible datasets (46 partitions).")
     print(f"Registered {len(lock_doc['excluded_datasets'])} excluded datasets.")
@@ -705,33 +825,16 @@ def main():
     all_manifest: List[Dict[str, Any]] = []
     all_audit: List[Dict[str, Any]] = []
 
-    print("\n[2/4] Processing Controlled Real Datasets...")
-    for ds_id in controlled_to_run:
-        t0 = time.time()
-        man_ents, aud_ents = process_controlled_dataset(
-            ds_id=ds_id,
-            project_root=project_root,
-            prep_cfg=prep_cfg,
-            config_hash=config_hash,
-            force=args.force,
-            verify_only=args.verify,
-            dry_run=args.dry_run,
-        )
-        all_manifest.extend(man_ents)
-        all_audit.extend(aud_ents)
-        elapsed = time.time() - t0
-        print(f"  Processed {ds_id} (5 folds) in {elapsed:.2f}s")
-
-    if whyshift_to_run:
-        print("\n[3/4] Processing WhyShift Natural Datasets...")
-        for ds_id, task in whyshift_to_run:
+    try:
+        print("\n[2/4] Processing Controlled Real Datasets...")
+        for ds_id in controlled_to_run:
             t0 = time.time()
-            man_ents, aud_ents = process_whyshift_dataset(
+            man_ents, aud_ents = process_controlled_dataset(
                 ds_id=ds_id,
-                task=task,
                 project_root=project_root,
                 prep_cfg=prep_cfg,
-                config_hash=config_hash,
+                split_protocol_sha=split_protocol_sha,
+                prep_config_sha=prep_config_sha,
                 force=args.force,
                 verify_only=args.verify,
                 dry_run=args.dry_run,
@@ -739,32 +842,65 @@ def main():
             all_manifest.extend(man_ents)
             all_audit.extend(aud_ents)
             elapsed = time.time() - t0
-            print(f"  Processed {ds_id} (4 scenarios, 20 folds) in {elapsed:.2f}s")
+            print(f"  Processed {ds_id} (5 folds) in {elapsed:.2f}s")
 
-    if tableshift_to_run:
-        print("\n[4/4] Processing TableShift Natural Dataset...")
-        t0 = time.time()
-        man_ents, aud_ents = process_tableshift_dataset(
-            project_root=project_root,
-            prep_cfg=prep_cfg,
-            config_hash=config_hash,
-            force=args.force,
-            verify_only=args.verify,
-            dry_run=args.dry_run,
-        )
-        all_manifest.extend(man_ents)
-        all_audit.extend(aud_ents)
-        elapsed = time.time() - t0
-        print(f"  Processed tableshift_hospital_readmission (17 scenarios, 85 folds) in {elapsed:.2f}s")
+        if whyshift_to_run:
+            print("\n[3/4] Processing WhyShift Natural Datasets...")
+            for ds_id, task in whyshift_to_run:
+                t0 = time.time()
+                man_ents, aud_ents = process_whyshift_dataset(
+                    ds_id=ds_id,
+                    task=task,
+                    project_root=project_root,
+                    prep_cfg=prep_cfg,
+                    split_protocol_sha=split_protocol_sha,
+                    prep_config_sha=prep_config_sha,
+                    force=args.force,
+                    verify_only=args.verify,
+                    dry_run=args.dry_run,
+                )
+                all_manifest.extend(man_ents)
+                all_audit.extend(aud_ents)
+                elapsed = time.time() - t0
+                print(f"  Processed {ds_id} (4 scenarios, 20 folds) in {elapsed:.2f}s")
 
-    # 4. Save audit log and split manifest
+        if tableshift_to_run:
+            print("\n[4/4] Processing TableShift Natural Dataset...")
+            t0 = time.time()
+            man_ents, aud_ents = process_tableshift_dataset(
+                project_root=project_root,
+                prep_cfg=prep_cfg,
+                split_protocol_sha=split_protocol_sha,
+                prep_config_sha=prep_config_sha,
+                force=args.force,
+                verify_only=args.verify,
+                dry_run=args.dry_run,
+            )
+            all_manifest.extend(man_ents)
+            all_audit.extend(aud_ents)
+            elapsed = time.time() - t0
+            print(f"  Processed tableshift_hospital_readmission (17 scenarios, 85 folds) in {elapsed:.2f}s")
+
+    except Exception as e:
+        print(f"\nERROR during processing/verification: {e}")
+        sys.exit(1)
+
+    # 4. Save audit log and split manifest (ONLY if NOT in verify_only or dry_run mode)
     splits_dir = project_root / "data" / "splits"
-    if not args.dry_run and all_manifest:
-        # If running a subset, merge with existing manifest/audit
+    if not args.dry_run and not args.verify and all_manifest:
         manifest_path = splits_dir / "split_manifest.json"
         audit_path = splits_dir / "preprocessing_audit.csv"
 
-        if (args.dataset and manifest_path.exists()) and not args.force:
+        created_at = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+        if manifest_path.exists():
+            try:
+                old_man = json.loads(manifest_path.read_text(encoding="utf-8"))
+                if "created_at" in old_man:
+                    created_at = old_man["created_at"]
+            except Exception:
+                pass
+
+        if args.dataset and manifest_path.exists() and not args.force:
             with open(manifest_path, "r", encoding="utf-8") as f:
                 existing_doc = json.load(f)
             old_splits = {
@@ -778,7 +914,7 @@ def main():
             merged_splits = all_manifest
 
         manifest_doc = {
-            "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "created_at": created_at,
             "total_outer_folds": len(merged_splits),
             "total_inner_folds": sum(s["inner_folds_count"] for s in merged_splits),
             "splits": merged_splits,
@@ -786,15 +922,14 @@ def main():
         with open(manifest_path, "w", encoding="utf-8") as f:
             json.dump(manifest_doc, f, indent=2)
 
-        # Audit CSV
-        if (args.dataset and audit_path.exists()) and not args.force:
+        if args.dataset and audit_path.exists() and not args.force:
             df_old = pd.read_csv(audit_path)
             old_audits = {
-                (row["dataset_name"], row["scenario_id"], row["outer_fold"]): row.to_dict()
+                (row["dataset_id"], row["scenario_id"], row["outer_fold"]): row.to_dict()
                 for _, row in df_old.iterrows()
             }
             for a in all_audit:
-                old_audits[(a["dataset_name"], a["scenario_id"], a["outer_fold"])] = a
+                old_audits[(a["dataset_id"], a["scenario_id"], a["outer_fold"])] = a
             df_final = pd.DataFrame(list(old_audits.values()))
         else:
             df_final = pd.DataFrame(all_audit)
@@ -808,6 +943,7 @@ def main():
     print(f"Total Outer Folds: {len(all_manifest)}")
     print(f"Total Inner Folds: {sum(s['inner_folds_count'] for s in all_manifest)}")
     print("=" * 70)
+    sys.exit(0)
 
 
 if __name__ == "__main__":

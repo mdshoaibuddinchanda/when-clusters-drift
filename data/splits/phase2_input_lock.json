@@ -1,6 +1,11 @@
 {
-  "phase1_freeze_commit": "d5cb818589a138b25f10e926e9e83b198d369599",
+  "phase2_protocol_version": 1,
+  "source_git_commit": "d5cb818589a138b25f10e926e9e83b198d369599",
   "created_at": "2026-09-06T19:20:52Z",
+  "datasets_manifest_sha256": "16eced96d3580e593ebddd78b3c2995e87c6103c1b63d9f2449657b7dcd62e60",
+  "synthetic_manifest_sha256": "da191e975aa1bc711402c97c8732dd205f319c9cb38018d6cdf1c69c060b025b",
+  "split_protocol_sha256": "0e4bd17f13bf34292c29090494bd9a385ca827ec25f405b02eff6375630f7042",
+  "preprocessing_config_sha256": "2755f713a5f5441b35a44ea637f228a39a6c99be934ceebbf8af3d6c05f8cc01",
   "split_seed": 20260907,
   "outer_folds": 5,
   "inner_folds": 3,
@@ -409,23 +414,23 @@
   "excluded_datasets": [
     {
       "dataset_id": "whyshift_taxi",
-      "reason": "Raw download required; no Phase-1 canonical bundle present in data/canonical/."
+      "reason": "not canonicalized and validated at Phase-1 experiment freeze."
     },
     {
       "dataset_id": "whyshift_us_accidents",
-      "reason": "Raw download required; no Phase-1 canonical bundle present in data/canonical/."
+      "reason": "not canonicalized and validated at Phase-1 experiment freeze."
     },
     {
       "dataset_id": "tableshift_college_scorecard",
-      "reason": "Raw download required; no Phase-1 canonical bundle present in data/canonical/."
+      "reason": "not canonicalized and validated at Phase-1 experiment freeze."
     },
     {
       "dataset_id": "tableshift_heloc",
-      "reason": "Raw download required; no Phase-1 canonical bundle present in data/canonical/."
+      "reason": "not canonicalized and validated at Phase-1 experiment freeze."
     },
     {
       "dataset_id": "tableshift_assistments",
-      "reason": "Raw download required; no Phase-1 canonical bundle present in data/canonical/."
+      "reason": "not canonicalized and validated at Phase-1 experiment freeze."
     }
   ]
 }

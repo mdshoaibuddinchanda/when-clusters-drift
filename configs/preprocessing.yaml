@@ -4,6 +4,13 @@ splitting:
   outer_folds: 5
   inner_folds: 3
   split_seed: 20260907
+  temporal:
+    order_columns:
+      - date
+      - period
+    policy: expanding_window_tie_safe
+  natural_resampling:
+    policy: source_resampling_fixed_target
 
 preprocessing:
   output_dtype: float32
@@ -11,16 +18,21 @@ preprocessing:
   numeric:
     imputer: median
     scaler: standard
+    keep_empty_features: true
+    all_missing_fallback: 0.0
 
   categorical:
     imputer: most_frequent
     encoder: onehot
     handle_unknown: ignore
     min_frequency: 0.01
+    all_missing_sentinel: "__MISSING_SOURCE__"
 
   ordinal:
     policy: onehot_unless_explicit_order
+    all_missing_sentinel: "__MISSING_SOURCE__"
 
   boolean:
     imputer: most_frequent
     encoding: zero_one
+    all_missing_fallback: false
