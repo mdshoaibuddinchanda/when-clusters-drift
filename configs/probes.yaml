@@ -1,0 +1,26 @@
+# Phase 5 Dual Probe Banks Configuration
+protocol_version: 1
+
+global_probe_seed: 2026090705
+
+reference:
+  selection: uniform_without_replacement
+  max_size: 2048
+
+current:
+  selection: uniform_without_replacement
+  max_size: 2048
+
+selection:
+  deterministic_sha256_seed: true
+  preserve_current_duplicates: true
+
+storage:
+  persist_full_feature_matrices: false
+  atomic_writes: true
+
+execution:
+  jobs: auto
+  cache_preprocessors: true
+  cache_transformed_banks: true
+  cache_memberships: true

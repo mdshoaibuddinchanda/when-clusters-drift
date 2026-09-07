@@ -1,0 +1,23 @@
+# Phase 5 Cluster Alignment Configuration
+protocol_version: 1
+
+alignment:
+  algorithm: hungarian
+  eta: 0.50
+
+  center_cost:
+    normalization: reference_cluster_rms_radius
+    membership_weight_power: 1.0
+    epsilon: 1.0e-12
+    scale_floor_ratio: 1.0e-6
+
+  membership_overlap:
+    metric: soft_jaccard
+    epsilon: 1.0e-12
+
+  ambiguity:
+    enabled: true
+    cost_margin_tolerance: 1.0e-8
+
+  require_equal_cluster_count: true
+  mutate_models: false
