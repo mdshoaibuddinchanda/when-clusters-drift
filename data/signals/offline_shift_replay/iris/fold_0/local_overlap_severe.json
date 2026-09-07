@@ -1,0 +1,88 @@
+{
+  "affected_numeric_columns": [
+    "petal length (cm)",
+    "petal width (cm)",
+    "sepal length (cm)",
+    "sepal width (cm)"
+  ],
+  "canonical_bundle_sha256": "06a7bea1035adc450f695977cf5ff01ec45cd7cb140a5e8f23ad103da0949a27",
+  "condition": "local_overlap_severe",
+  "dataset_id": "iris",
+  "generated_from_commit": "13c668e9fdc2c44db570093e5ea1fd0c936edb07",
+  "outer_fold": 0,
+  "phase4_npz_sha256": "9f218b164df513ef3e3e364428ab62a1c14419b17aa4df7bd41300d0deac2a03",
+  "phase4_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "phase4_shift_spec_file_sha256": "98beef5b0253f2ace1f0191014167f9b1c8cefaa8244e8fd295ab4e39ea4e4cd",
+  "phase4_shift_spec_sha256": "5b1f6bfc0021c51a273f9972dd6216f6668200bc859ed06243d0ce990c132ec3",
+  "replacement_values": [
+    [
+      2.8115384615384613,
+      0.7551282051282051,
+      5.385897435897435,
+      2.8833333333333333
+    ],
+    [
+      2.911538461538462,
+      0.8551282051282052,
+      5.435897435897436,
+      3.083333333333333
+    ],
+    [
+      2.8615384615384616,
+      0.7551282051282051,
+      5.385897435897435,
+      2.9333333333333336
+    ],
+    [
+      5.0375,
+      1.76125,
+      6.515000000000001,
+      3.09875
+    ],
+    [
+      5.2875,
+      1.86125,
+      6.665,
+      2.9987500000000002
+    ],
+    [
+      5.137499999999999,
+      1.76125,
+      6.665,
+      3.04875
+    ],
+    [
+      4.611538461538462,
+      1.405128205128205,
+      5.935897435897436,
+      2.4833333333333334
+    ],
+    [
+      4.561538461538461,
+      1.5551282051282052,
+      5.985897435897435,
+      2.8833333333333333
+    ],
+    [
+      4.911538461538461,
+      1.3551282051282052,
+      5.985897435897435,
+      2.6833333333333336
+    ]
+  ],
+  "replacement_values_sha256": "2ab7c92f0d48bcdb8f6bd4607018afd4cda879c23ded1936bec5e810859cf91f",
+  "replay_descriptor_sha256": "0e66df9ea99743645792934c3cf86a44370abdc1845d1b51bc4b9a463f56dbac",
+  "selected_target_positions": [
+    0,
+    3,
+    6,
+    10,
+    15,
+    18,
+    22,
+    24,
+    27
+  ],
+  "selected_target_positions_sha256": "83c7307be301671fc82cb3784898680b43c21d60c15bfe39da1008f7152a407d",
+  "split_sha256": "62ecc40875d3cfe3850f993be5f18833054436c5c38b7f9262e9de2ad6da47d8"
+}

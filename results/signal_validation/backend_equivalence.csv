@@ -1,4 +1,4 @@
 dataset_id,operation,numpy_val,torch_val,abs_deviation,tolerance,passed,speedup
 iris,MMD_b2,0.00987754,0.00987754,0.0,1e-08,True,0.0
-human_activity_recognition,MMD_b2,0.00871078,0.00871078,0.0,1e-08,True,1.22
-madelon,MMD_b2,0.00289964,0.00289964,0.0,1e-08,True,1.23
+human_activity_recognition,MMD_b2,0.00871078,0.00871078,0.0,1e-08,True,2.55
+madelon,MMD_b2,0.00289964,0.00289964,0.0,1e-08,True,3.66
