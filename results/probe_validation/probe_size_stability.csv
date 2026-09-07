@@ -1,7 +1,13 @@
-dataset_id,outer_fold,condition,method,probe_size_target,probe_size_actual,permutation,assignment_cost,overlap_mean,runtime
-iris,0,location_severe,fcm_adaptive,512,120,"[0, 1, 2]",2.573418,0.258762,0.0002
-iris,0,location_severe,fcm_adaptive,1024,120,"[0, 1, 2]",2.573418,0.258762,0.00017
-iris,0,location_severe,fcm_adaptive,2048,120,"[0, 1, 2]",2.573418,0.258762,0.00031
-sonar,0,location_severe,fcm_adaptive,512,166,"[0, 1]",0.791833,0.428964,0.00024
-sonar,0,location_severe,fcm_adaptive,1024,166,"[0, 1]",0.791833,0.428964,0.00035
-sonar,0,location_severe,fcm_adaptive,2048,166,"[0, 1]",0.791833,0.428964,0.00021
+dataset_id,outer_fold,condition,method,probe_size_target,probe_size_actual,permutation,assignment_cost,best_assignment_cost,global_assignment_margin,overlap_mean,runtime
+human_activity_recognition,0,location_severe,fcm_adaptive,512,512,"[0, 1, 2, 3, 4, 5]",3.202705,3.202705,0.91522479,0.136898,0.00053
+human_activity_recognition,0,location_severe,fcm_adaptive,1024,1024,"[0, 1, 2, 3, 4, 5]",3.164903,3.164903,0.88537963,0.138659,0.00074
+human_activity_recognition,0,location_severe,fcm_adaptive,2048,2048,"[0, 1, 2, 3, 4, 5]",3.202735,3.202735,0.90290551,0.136741,0.00104
+human_activity_recognition,0,location_severe,fcm_adaptive,4096,4096,"[0, 1, 2, 3, 4, 5]",3.1702,3.1702,0.88555021,0.138288,0.00263
+isolet,0,location_severe,fcm_adaptive,512,512,"[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]",11.932438,11.932438,0.67760205,0.033646,0.00427
+isolet,0,location_severe,fcm_adaptive,1024,1024,"[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]",11.495834,11.495834,0.76877674,0.034444,0.00557
+isolet,0,location_severe,fcm_adaptive,2048,2048,"[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]",11.749206,11.749206,0.81764868,0.033904,0.01018
+isolet,0,location_severe,fcm_adaptive,4096,4096,"[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]",11.563742,11.563742,0.82987952,0.034304,0.01812
+letter_recognition,0,location_severe,fcm_adaptive,512,512,"[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]",16.558093,16.558093,0.7805988,0.035723,0.00695
+letter_recognition,0,location_severe,fcm_adaptive,1024,1024,"[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]",16.6543,16.6543,0.80414969,0.035658,0.00786
+letter_recognition,0,location_severe,fcm_adaptive,2048,2048,"[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]",16.622346,16.622346,0.8011045,0.035678,0.01234
+letter_recognition,0,location_severe,fcm_adaptive,4096,4096,"[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]",16.638172,16.638172,0.80079817,0.035592,0.02045

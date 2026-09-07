@@ -1,19 +1,21 @@
 {
   "available_current_rows": 154,
   "bank_type": "current",
-  "canonical_row_map_sha256": "fe5ac4da0ce6cbf1f3bcbc18743a924a8ec58312003b212d4a6339a4dd855d83",
+  "canonical_row_indices_sha256": "fdfa4ad47defb67954644ed6ea8bf658d06639f663c479337706e4e03422e266",
   "condition": "outliers_severe",
   "dataset_id": "pima_diabetes",
   "derived_seed": 1813016639,
   "global_probe_seed": 2026090705,
+  "npz_sha256": "b33de903c19381f41bb721614bc781e8364760faa632c33b5817a07a3af61beb",
   "outer_fold": 2,
   "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
-  "probe_bank_sha256": "f1099e8aac1d59e27c62daefdabd15bf1279101ad73277af5e89ed671efbb52e",
+  "probe_bank_sha256": "21bfa9110b6aebd342b229c3966f6496faee7187789fdd542be36aa462576307",
   "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
   "scenario_status": "APPLICABLE",
+  "selected_current_positions_sha256": "1b8507859d04e964e41b2e03f97391e19ac33fc2726f6e33787c474a983497cf",
   "selected_current_rows": 154,
-  "selected_positions_sha256": "fe5ac4da0ce6cbf1f3bcbc18743a924a8ec58312003b212d4a6339a4dd855d83",
   "selection_policy": "uniform_without_replacement",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "8a50c94714e57504fd029c2959ef625772e723a8097c560790c1cef1b4e8cf4e"
+  "shift_spec_sha256": "8a50c94714e57504fd029c2959ef625772e723a8097c560790c1cef1b4e8cf4e",
+  "target_partition_positions_sha256": "1b8507859d04e964e41b2e03f97391e19ac33fc2726f6e33787c474a983497cf"
 }

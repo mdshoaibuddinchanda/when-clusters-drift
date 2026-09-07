@@ -1,19 +1,21 @@
 {
   "available_current_rows": 114,
   "bank_type": "current",
-  "canonical_row_map_sha256": "88d0f69bab2265733afb0f4301d8ecfc5e42e06bfed1410bd9ee4b961f14dc9d",
+  "canonical_row_indices_sha256": "74f5f227b91f4aabed8159f03af3f9ca5f16d63c71a1e382b762b15eb8dc7650",
   "condition": "class_prevalence_severe",
   "dataset_id": "breast_cancer_wisconsin_diagnostic",
   "derived_seed": 1729034994,
   "global_probe_seed": 2026090705,
+  "npz_sha256": "9294013fbe68a93c28e692540ebaef123d00a197e1566116550885f31b66fd96",
   "outer_fold": 2,
   "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
-  "probe_bank_sha256": "b33048a78f6ea7a35c19c358b39036878a867eca8c1ea441fbe8709520cc91e6",
+  "probe_bank_sha256": "d1240e67d565579079efd9fa54fb44d8a28d5584493d05c676d4053e8bee7d2f",
   "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
   "scenario_status": "APPLICABLE",
+  "selected_current_positions_sha256": "bb9181b8bc03e7a767f05f92c4ba49d801e03efdd0757a8f7cae139613f30ce5",
   "selected_current_rows": 114,
-  "selected_positions_sha256": "88d0f69bab2265733afb0f4301d8ecfc5e42e06bfed1410bd9ee4b961f14dc9d",
   "selection_policy": "uniform_without_replacement",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "5cf5c45de3bee113064adb20f5219e6196a78527cc106d4906e2c9c17d37bdde"
+  "shift_spec_sha256": "5cf5c45de3bee113064adb20f5219e6196a78527cc106d4906e2c9c17d37bdde",
+  "target_partition_positions_sha256": "06026212653e38cd81d055b47f1813a39ac11780ff517177a3c4d1a18d9ce7bf"
 }

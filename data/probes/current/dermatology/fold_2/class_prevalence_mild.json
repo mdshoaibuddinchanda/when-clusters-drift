@@ -1,19 +1,21 @@
 {
   "available_current_rows": 73,
   "bank_type": "current",
-  "canonical_row_map_sha256": "91d0d032873ffc7bee2006a862b99448015caab4e0e804d47786dd7e8d0eacb2",
+  "canonical_row_indices_sha256": "d7b254633e755a8432154c48faede94db28cd9c8086daadcb717250d325124b9",
   "condition": "class_prevalence_mild",
   "dataset_id": "dermatology",
   "derived_seed": 1502288885,
   "global_probe_seed": 2026090705,
+  "npz_sha256": "c68c1d8d33d86ea63e1557eaa2a25e77f4cc4fa07acbc4cf4af5ccefb1e1ae5f",
   "outer_fold": 2,
   "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
-  "probe_bank_sha256": "301158e6b59a84d7201b1e983ca7170f0a4a11d1c0008850b0792ed477c71b95",
+  "probe_bank_sha256": "7959309437d26bc5581495b9daa019e3a3e653d1efa8b12c0fd08b798bc7aed7",
   "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
   "scenario_status": "APPLICABLE",
+  "selected_current_positions_sha256": "dfb2642d29a7193f948c1efd32c9d8b60b8ee250ca03da289fbad513f19642d8",
   "selected_current_rows": 73,
-  "selected_positions_sha256": "91d0d032873ffc7bee2006a862b99448015caab4e0e804d47786dd7e8d0eacb2",
   "selection_policy": "uniform_without_replacement",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "7a1db29ad3669dc4782f30588ffb655b6236233f98c5eca03f82ad01f5f520a8"
+  "shift_spec_sha256": "7a1db29ad3669dc4782f30588ffb655b6236233f98c5eca03f82ad01f5f520a8",
+  "target_partition_positions_sha256": "3e2c13e2db097ac6cf7aab0d647cc94af5e461ae106d747e04dbcf4ec482cf65"
 }

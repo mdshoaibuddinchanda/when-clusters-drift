@@ -1,19 +1,21 @@
 {
   "available_current_rows": 59,
   "bank_type": "current",
-  "canonical_row_map_sha256": "0dc37eef9221dd47f513a524ae34c3423c2d581ccd89fb9172d557b44bd5e4b6",
+  "canonical_row_indices_sha256": "1ddf628c5115d6d0f328fdfdd1133b16f191913088dd2955581d2f6920058900",
   "condition": "class_prevalence_severe",
   "dataset_id": "heart_disease",
   "derived_seed": 1499731929,
   "global_probe_seed": 2026090705,
+  "npz_sha256": "b1139a7002286ab7b8760a5eb31f690df9bec861d4c8e7e806886fccbcb76fc5",
   "outer_fold": 1,
   "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
-  "probe_bank_sha256": "9dbd92d7ce5ab24ca2b97946340f71ee4aa9a811dd12ff6db938ef51a0c31670",
+  "probe_bank_sha256": "b6fc97e2fdc62eef2e33e842b6bd3c9f89b756c8a9ebf5d5663fcc8d109b8b6d",
   "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
   "scenario_status": "APPLICABLE",
+  "selected_current_positions_sha256": "7bb223f0d178fb754a368175d6b10e925b7d9965d2a710df754d88b61b5642a6",
   "selected_current_rows": 59,
-  "selected_positions_sha256": "0dc37eef9221dd47f513a524ae34c3423c2d581ccd89fb9172d557b44bd5e4b6",
   "selection_policy": "uniform_without_replacement",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "ac917a98a3118626bda66ef33618cb67285d327534ce35ec1de13f7ab38ae048"
+  "shift_spec_sha256": "ac917a98a3118626bda66ef33618cb67285d327534ce35ec1de13f7ab38ae048",
+  "target_partition_positions_sha256": "fef8edfa79a9f2d0795080a0c545834a2d97513af748fc8f36057955e5a41327"
 }

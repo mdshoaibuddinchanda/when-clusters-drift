@@ -1,19 +1,21 @@
 {
   "available_current_rows": 170,
   "bank_type": "current",
-  "canonical_row_map_sha256": "8ca02fe6380284a1682bb73989f7507360979124cd6125e91cae8d00b39ef159",
+  "canonical_row_indices_sha256": "ccd01562ca0d689a3b22b9aaa6312179ee228963c61d103ccb97b59a149c9729",
   "condition": "location_mild",
   "dataset_id": "vehicle_silhouettes",
   "derived_seed": 1875117971,
   "global_probe_seed": 2026090705,
+  "npz_sha256": "26d16a69bb30060ba9704c5936c2dae0a3d7bf0d366ea84b69bb7fe5823bf802",
   "outer_fold": 0,
   "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
-  "probe_bank_sha256": "0b4be2e1c3399c8516d32de792f6f6d88494150ca8d406e832b64b4f68808db9",
+  "probe_bank_sha256": "28ad8bbc6360e62149134cb807d04bac45342efb7ffe7785075fb3a510ad7f38",
   "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
   "scenario_status": "APPLICABLE",
+  "selected_current_positions_sha256": "b81f48ab58ce0954b241266664bc3b667917f806211b9343892044e6223dc809",
   "selected_current_rows": 170,
-  "selected_positions_sha256": "8ca02fe6380284a1682bb73989f7507360979124cd6125e91cae8d00b39ef159",
   "selection_policy": "uniform_without_replacement",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "f78e3337db0bb1c3e6d05b1b3fcabf26e4a33f51a62f777a0ced8dede4515df9"
+  "shift_spec_sha256": "f78e3337db0bb1c3e6d05b1b3fcabf26e4a33f51a62f777a0ced8dede4515df9",
+  "target_partition_positions_sha256": "b81f48ab58ce0954b241266664bc3b667917f806211b9343892044e6223dc809"
 }

@@ -1,19 +1,21 @@
 {
   "available_current_rows": 7552,
   "bank_type": "current",
-  "canonical_row_map_sha256": "d4c99c03c610ae9d72cf1c7c2cb3bd16b1813a19612e623d8e60aaf4447e2e66",
+  "canonical_row_indices_sha256": "c63565b271246662b3cd814fd11c92634546707fb0fcb3c3200b5cda7c120339",
   "condition": "measurement_noise_mild",
   "dataset_id": "electricity",
   "derived_seed": 1924483323,
   "global_probe_seed": 2026090705,
+  "npz_sha256": "9df1678f56233eddf962dc26d1a6c773be794c2fd4dc1ca281e19b23895c1da6",
   "outer_fold": 4,
   "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
-  "probe_bank_sha256": "7aca47501fe45690c2faef4c607cbd15554acb3bec96efc9be374b23d20cff69",
+  "probe_bank_sha256": "f0ec5db3de60f557d103c783804898351d498b4036b8db574d88404173ae87ea",
   "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
   "scenario_status": "APPLICABLE",
+  "selected_current_positions_sha256": "2dd5a3eb00a5e68677535af5f6b9be5a66171b65a0f71ab76342164120ff0a3b",
   "selected_current_rows": 2048,
-  "selected_positions_sha256": "d4c99c03c610ae9d72cf1c7c2cb3bd16b1813a19612e623d8e60aaf4447e2e66",
   "selection_policy": "uniform_without_replacement",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "9a4ff55bef18aa9e8b71eaaad567bba70fca80a20152a3877794669a0086e10b"
+  "shift_spec_sha256": "9a4ff55bef18aa9e8b71eaaad567bba70fca80a20152a3877794669a0086e10b",
+  "target_partition_positions_sha256": "2dd5a3eb00a5e68677535af5f6b9be5a66171b65a0f71ab76342164120ff0a3b"
 }

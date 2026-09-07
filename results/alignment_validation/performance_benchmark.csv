@@ -1,2 +1,2 @@
 operation,samples,clusters,cpu_wall_seconds,gpu_wall_seconds,speedup_vs_cpu,max_cpu_gpu_deviation,cuda_available
-soft_jaccard_overlap,2048,26,0.00895,0.10825,0.08,1.1122376541994328e-07,True
+soft_jaccard_overlap,2048,26,0.00914,0.07449,0.12,1.1122376541994328e-07,True
