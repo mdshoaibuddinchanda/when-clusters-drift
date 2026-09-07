@@ -1,4 +1,4 @@
-﻿"""Strict Byte-Read-Only Verification for Phase 7 Structural Falsification Pilot."""
+"""Strict Byte-Read-Only Verification for Phase 7 Structural Falsification Pilot."""
 
 import hashlib
 import json
@@ -47,10 +47,10 @@ def verify_falsification(project_root: Path) -> Dict[str, Any]:
 
     # Verify input lock references
     for manifest_key, rel_path in [
-        ("phase1_dataset_manifest_sha256", "data/manifests/dataset_manifest.json"),
-        ("phase2_split_manifest_sha256", "data/manifests/split_manifest.json"),
-        ("phase4_shift_manifest_sha256", "data/manifests/shift_manifest.json"),
-        ("phase5_probe_manifest_sha256", "data/manifests/probe_manifest.json"),
+        ("phase1_dataset_manifest_sha256", "data/manifests/datasets.json"),
+        ("phase2_split_manifest_sha256", "data/splits/split_manifest.json"),
+        ("phase4_shift_manifest_sha256", "data/shifts/shift_manifest.json"),
+        ("phase5_probe_manifest_sha256", "data/probes/probe_manifest.json"),
     ]:
         p = root / rel_path
         if not p.exists():

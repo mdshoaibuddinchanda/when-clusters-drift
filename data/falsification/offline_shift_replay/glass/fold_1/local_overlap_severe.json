@@ -1,0 +1,27 @@
+{
+  "affected_numeric_columns": [
+    "Al",
+    "Ba",
+    "Ca",
+    "Fe",
+    "K",
+    "Mg",
+    "Na",
+    "RI",
+    "Si"
+  ],
+  "canonical_bundle_sha256": "acc0be0fc68cc97c452475bbe1f35dae27d8dbdf8877445b022b26a4c1da4ba6",
+  "condition": "local_overlap_severe",
+  "dataset_id": "glass",
+  "generated_from_commit": "8dc7bc8056a686f1eb147f9ec5bf211935454da6",
+  "outer_fold": 1,
+  "phase4_npz_sha256": "59137ac6814e63f235c2191f8a4b390264b5d0dfeca73590b731fb07c365088d",
+  "phase4_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "phase4_shift_spec_file_sha256": "e286057ed35cc7e64c8dfc9cac24b5233dae096d3c0d12cf524f04c26f9fd41f",
+  "phase4_shift_spec_sha256": "3be54e0e2bf6ad3dcf790ead35f653b7b50723ca8c7541906b48f34262cbfc45",
+  "replacement_values_sha256": "215bd6b2f9ce654649adf5cb21ede51f830c4689a99856f3fb0f1c4d20e11dc8",
+  "replay_descriptor_sha256": "ebf01f18a3c74ffd348d466297c3668db20c6c22d47b8d9bd14233786379772e",
+  "replay_npz_sha256": "26eeee2657e93011c50065aa5bfbb5ea688071cd1b9af2d3c66864280ae89486",
+  "selected_target_positions_sha256": "a8bea058f8d45188fb314b37a9035e06969d5cb3307e22ccc67231ec4c461cd2",
+  "split_sha256": "f9be215f92da3277610c4289d0b55a6c4593f8b857b6e637fb9de21c230a4a39"
+}

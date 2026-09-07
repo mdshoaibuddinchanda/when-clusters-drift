@@ -1,0 +1,12 @@
+﻿# Execution-Only Configuration for Phase 7 Structural Signal Falsification Pilot
+# NOTE: This configuration contains ONLY operational runtime parameters.
+# It contains ZERO scientific parameters. Modifying this file does NOT affect the scientific protocol.
+
+execution:
+  worker_backend: threads       # threads or loky
+  worker_count: 4              # maximum 4 workers
+  inner_blas_threads: 1        # bound BLAS/OpenMP inner threads to prevent oversubscription
+  use_mmap: true               # memory-map read-only matrices
+  progress_interval_rows: 25   # report progress every N completed rows
+  max_retries: 1               # maximum retries for failed tasks
+  work_dir: null               # null defaults to %LOCALAPPDATA%/clusterdrift/when-clusters-drift/phase7

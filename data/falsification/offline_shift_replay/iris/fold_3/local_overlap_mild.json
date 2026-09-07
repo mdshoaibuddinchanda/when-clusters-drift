@@ -1,0 +1,22 @@
+{
+  "affected_numeric_columns": [
+    "petal length (cm)",
+    "petal width (cm)",
+    "sepal length (cm)",
+    "sepal width (cm)"
+  ],
+  "canonical_bundle_sha256": "06a7bea1035adc450f695977cf5ff01ec45cd7cb140a5e8f23ad103da0949a27",
+  "condition": "local_overlap_mild",
+  "dataset_id": "iris",
+  "generated_from_commit": "8dc7bc8056a686f1eb147f9ec5bf211935454da6",
+  "outer_fold": 3,
+  "phase4_npz_sha256": "9f218b164df513ef3e3e364428ab62a1c14419b17aa4df7bd41300d0deac2a03",
+  "phase4_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "phase4_shift_spec_file_sha256": "d2de6740dec980df17a0137426ab0a0cdbc38903b04dccd0ad79ae43564d988f",
+  "phase4_shift_spec_sha256": "4c5c84f34b05a163a72b73f0351936e5780feb134394948852ec7ffc9ffbc20b",
+  "replacement_values_sha256": "1eb06c363c6c2180db127aced22ef9f89481d5033f7e593b755344bb1fadc9e3",
+  "replay_descriptor_sha256": "a1c32b9821c3f530bf7fb7de3d5859a730c9d05e8b6cd5d306e7e12e18db9a82",
+  "replay_npz_sha256": "b16480c5b6f9d7622ba7d03a96231fc0a3db7419084e20763a42327e776b6c61",
+  "selected_target_positions_sha256": "665b846365a2942f7e828ce398d8faa9fce69754d26beb1437ff657bc9fea3e8",
+  "split_sha256": "e60af7ef49846cc4df27339327be3fb1dd554e4bcfb87595b4547231f90b4ee8"
+}

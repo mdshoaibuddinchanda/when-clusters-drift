@@ -1,0 +1,13 @@
+{
+  "created_at": "2026-09-07T19:51:50.320946+00:00",
+  "falsification_config_sha256": "9d9f9aaf37c42e0a0cd6c7d0aa5f5820638e4cf7b29db1bfa1f46de382dc6cd6",
+  "lock_version": 1,
+  "methods_config_sha256": "5e5be24811aa3f8289b4b9b3be79bda431d09a6c2ce685963442273d499dc278",
+  "phase1_dataset_manifest_sha256": "16eced96d3580e593ebddd78b3c2995e87c6103c1b63d9f2449657b7dcd62e60",
+  "phase2_split_manifest_sha256": "25106924ad5e1b8dd0b8ceeab65659a2a163e82b561ceca12bec1588aae52ff5",
+  "phase4_shift_manifest_sha256": "60024c73fd25ddbdb874e92ffba98905cf248a40564655980b9806c17d15c852",
+  "phase5_probe_manifest_sha256": "6ec8717a951fd45696a836bd5bc55536f7349ec4687a4053b4951159cdb78659",
+  "phase6_freeze_commit": "a2726e6423405c93d9319eebbe0cbdfdfc7ecbb4",
+  "phase7_producer_commit": "8dc7bc8056a686f1eb147f9ec5bf211935454da6",
+  "signals_config_sha256": "ca073113c293e238c3ab0d753a53ae6fdd6a88426b8b47d59b00a96098586be4"
+}

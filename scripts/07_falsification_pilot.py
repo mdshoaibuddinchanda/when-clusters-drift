@@ -1,29 +1,31 @@
 #!/usr/bin/env python3
 """Phase 7 Structural Signal Falsification Pilot Runner.
 
-Pre-registered protocol execution:
-1. --prepare-offline-replay: Generates 120 local-overlap replay descriptors (JSON+NPZ)
-2. --signals-only: Generates 4,500 label-free FCM signal rows (labels strictly blocked)
-3. --quality-only: Generates 4,500 evaluation-only quality degradation rows
-4. --evaluate: Joins artifacts, runs LODO, LOSFO, Ridge, ablations, diagnostics, bootstrap, verdict
-5. --all: Executes steps 1 to 4 sequentially
-6. --verify: Byte-read-only integrity and verification audit
+Execution-Only Reliability, Caching, Resumability, and Performance Upgrades:
+- Durable atomic per-row checkpointing for all 4,500 signals & quality rows
+- Persistent content-addressed disk cache for derived matrices and models
+- Longest-Processing-Time (LPT) scheduling with dataset-fold affinity
+- Inner BLAS/OpenMP thread bounding to eliminate CPU oversubscription
+- Graceful interruption, observability (--status), and byte-read-only verification
 """
 
 import argparse
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 import copy
 from datetime import datetime, timezone
 import json
 import os
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 import time
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Set, Tuple
 
+import joblib
 import numpy as np
 import pandas as pd
+import psutil
 import yaml
 from sklearn.metrics import (
     adjusted_mutual_info_score,
@@ -33,6 +35,7 @@ from sklearn.metrics import (
 
 from clusterdrift.alignment.costs import compute_reference_cluster_scales
 from clusterdrift.alignment.hungarian import align_clusters
+from clusterdrift.alignment.state import compute_model_fingerprint
 from clusterdrift.data.preprocess import build_preprocessor
 from clusterdrift.falsification.bootstrap import (
     compute_paired_unit_bootstrap,
@@ -45,6 +48,32 @@ from clusterdrift.falsification.dataset import (
 from clusterdrift.falsification.evaluation import (
     run_lodo_evaluation,
     run_losfo_evaluation,
+)
+from clusterdrift.falsification.execution.cache import (
+    PersistentPhase7Cache,
+    compute_content_fingerprint,
+)
+from clusterdrift.falsification.execution.checkpoint import (
+    QualityCheckpointManager,
+    SignalCheckpointManager,
+)
+from clusterdrift.falsification.execution.environment import (
+    get_cpu_topology,
+    get_library_versions,
+    limit_inner_threads,
+    set_blas_thread_env,
+)
+from clusterdrift.falsification.execution.progress import (
+    GracefulInterruptHandler,
+    ProgressJournal,
+)
+from clusterdrift.falsification.execution.resources import (
+    assert_not_frozen_data_path,
+    get_default_work_dir,
+)
+from clusterdrift.falsification.execution.scheduler import (
+    compute_task_complexity,
+    sort_tasks_lpt,
 )
 from clusterdrift.falsification.protocol import (
     ALL_SHIFT_FAMILIES,
@@ -170,10 +199,10 @@ def prepare_offline_replay(cfg: Dict[str, Any], project_root: Path) -> List[Path
 
 
 # ---------------------------------------------------------------------------
-# Pass A: Label-Free Signal Generation (4,500 Rows)
+# Task Worker Execution
 # ---------------------------------------------------------------------------
 
-def process_single_task_signals(
+def process_dataset_fold_task(
     ds: str,
     fold: int,
     K: int,
@@ -184,112 +213,289 @@ def process_single_task_signals(
     alignment_cfg: Dict[str, Any],
     methods_cfg: Dict[str, Any],
     prep_cfg: Dict[str, Any],
-    cache: SignalCache,
     project_root: Path,
-) -> List[SignalResult]:
-    """Execute Pass A label-free signal computation for all scenarios of a dataset fold."""
-    signal_engine = SignalEngine(
-        signals_cfg=sig_cfg,
-        alignment_cfg=alignment_cfg,
-        methods_cfg=methods_cfg,
-        cache=cache,
-    )
+    cache: PersistentPhase7Cache,
+    checkpoint_mgr: SignalCheckpointManager,
+    signal_protocol_sha: str,
+) -> int:
+    """Execute all scenarios for a dataset-fold task with fine-grained checkpointing."""
     probes_dir = project_root / "data" / "probes"
     prep_config_sha = compute_file_sha256(project_root / "configs" / "preprocessing.yaml")
     replay_root = project_root / "data" / "falsification" / "offline_shift_replay"
 
-    # Load raw source features (NO labels)
-    X_src_raw, meta = load_raw_source_features(ds, fold, project_root)
-    roles = meta.get("feature_roles", {col: "numeric" for col in X_src_raw.columns})
+    # Check if all conditions and seeds are already checkpointed
+    all_done = True
+    for cond in conditions:
+        for seed in seeds:
+            if not checkpoint_mgr.is_checkpoint_valid(ds, fold, cond, methods[0], seed, signal_protocol_sha):
+                all_done = False
+                break
+        if not all_done:
+            break
 
-    # Preprocessor (cached)
-    src_prep = cache.get_preprocessor(ds, fold, prep_config_sha)
-    if src_prep is None:
+    if all_done:
+        return len(conditions) * len(seeds)
+
+    # In-memory hot cache for this dataset-fold
+    mem_cache = SignalCache()
+    signal_engine = SignalEngine(
+        signals_cfg=sig_cfg,
+        alignment_cfg=alignment_cfg,
+        methods_cfg=methods_cfg,
+        cache=mem_cache,
+    )
+
+    # 1. Source Preprocessing (from disk cache or compute)
+    src_fp = compute_content_fingerprint({
+        "dataset_id": ds,
+        "outer_fold": fold,
+        "prep_config_sha": prep_config_sha,
+    })
+    cached_source = cache.get_source_data(ds, fold, src_fp)
+
+    if cached_source is not None:
+        X_src_trans, A_R = cached_source
+        X_src_raw, meta = load_raw_source_features(ds, fold, project_root)
+        roles = meta.get("feature_roles", {col: "numeric" for col in X_src_raw.columns})
         src_prep = build_preprocessor(feature_roles=roles, config=prep_cfg, metadata=meta)
         src_prep.fit(X_src_raw)
-        cache.put_preprocessor(ds, fold, prep_config_sha, src_prep)
+    else:
+        X_src_raw, meta = load_raw_source_features(ds, fold, project_root)
+        roles = meta.get("feature_roles", {col: "numeric" for col in X_src_raw.columns})
+        src_prep = build_preprocessor(feature_roles=roles, config=prep_cfg, metadata=meta)
+        src_prep.fit(X_src_raw)
+        X_src_trans = src_prep.transform(X_src_raw)
 
-    X_src_trans = src_prep.transform(X_src_raw)
-
-    # Reference probe bank A^R (cached)
-    ref_desc_path = probes_dir / "reference" / ds / f"fold_{fold}.json"
-    ref_desc, ref_positions, _ = load_reference_probe_descriptor(ref_desc_path)
-    A_R = cache.get_transformed_bank(ref_desc.probe_bank_sha256)
-    if A_R is None:
+        ref_desc_path = probes_dir / "reference" / ds / f"fold_{fold}.json"
+        ref_desc, ref_positions, _ = load_reference_probe_descriptor(ref_desc_path)
         A_R = load_reference_probe_matrix(ds, fold, ref_positions, src_prep, project_root)
-        cache.put_transformed_bank(ref_desc.probe_bank_sha256, A_R)
+        cache.put_source_data(ds, fold, src_fp, X_src_trans, A_R)
 
-    # Load raw target features (NO labels)
+    ref_desc_path = probes_dir / "reference" / ds / f"fold_{fold}.json"
+    ref_desc, _, _ = load_reference_probe_descriptor(ref_desc_path)
+
+    # 2. Source Models & Memberships (retrieved from disk cache or fit)
+    for seed in seeds:
+        model_fp = compute_content_fingerprint({
+            "dataset_id": ds,
+            "outer_fold": fold,
+            "method": methods[0],
+            "seed": seed,
+            "K": K,
+            "prep_config_sha": prep_config_sha,
+        })
+        m_src = cache.get_source_model(ds, fold, methods[0], seed, model_fp)
+        if m_src is None:
+            m_src = fit_clustering_model(
+                method=methods[0],
+                X=X_src_trans,
+                K=K,
+                seed=seed,
+            )
+            cache.put_source_model(ds, fold, methods[0], seed, K, model_fp, m_src)
+        mem_cache.put_source_model(ds, fold, methods[0], seed, m_src)
+
+        m_fp = compute_model_fingerprint(methods[0], {}, seed, m_src.cluster_centers_)
+        cached_ms = cache.get_source_membership_scales(ds, fold, methods[0], seed, model_fp)
+        if cached_ms is not None:
+            U_0_R, scales = cached_ms
+            mem_cache.put_membership(m_fp, ref_desc.probe_bank_sha256, U_0_R)
+            mem_cache.put_reference_scales(m_fp, scales)
+        else:
+            U_0_R = m_src.predict_membership(A_R)
+            scales, _, _ = compute_reference_cluster_scales(
+                X_source=X_src_trans,
+                U_source=m_src.predict_membership(X_src_trans),
+                centers_ref=m_src.cluster_centers_,
+            )
+            cache.put_source_membership_scales(ds, fold, methods[0], seed, model_fp, U_0_R, scales)
+            mem_cache.put_membership(m_fp, ref_desc.probe_bank_sha256, U_0_R)
+            mem_cache.put_reference_scales(m_fp, scales)
+
+    # 3. MMD Sigma (disk cached)
+    cached_sigma = cache.get_mmd_sigma(ds, fold)
+    if cached_sigma is not None:
+        sigma, status, sum_xx = cached_sigma
+        mem_cache.put_mmd_sigma(ds, fold, sigma, status)
+        mem_cache.put_mmd_source_kernel_sum(ds, fold, sum_xx)
+
+    # Load raw target features once for this fold
     ds_dir = project_root / "data" / "canonical" / "controlled" / ds
     df_X = pd.read_parquet(ds_dir / "features.parquet")
     fold_p = project_root / "data" / "splits" / "controlled" / ds / f"fold_{fold}.npz"
     with np.load(fold_p) as npz:
         X_tgt_raw = df_X.iloc[npz["target_indices"]].copy().reset_index(drop=True)
 
-    results: List[SignalResult] = []
+    completed_in_task = 0
 
+    # 4. Process each condition
     for cond in conditions:
         shift_spec_path = project_root / "data" / "shifts" / "specs" / ds / f"fold_{fold}" / f"{cond}.json"
-        if not shift_spec_path.exists():
-            raise FileNotFoundError(f"Shift spec not found: {shift_spec_path}")
         with open(shift_spec_path, "r", encoding="utf-8") as f:
             s_doc = json.load(f)
         shift_spec_sha = s_doc["shift_spec_sha256"]
         shift_spec_file_sha = compute_file_sha256(shift_spec_path)
 
-        # Replay shift using falsification offline replay root
-        shift_res = replay_frozen_shift(
-            X_target_raw=X_tgt_raw,
-            dataset_id=ds,
-            outer_fold=fold,
-            condition=cond,
-            phase4_spec_path=shift_spec_path,
-            X_source_raw=X_src_raw,
-            roles=roles,
-            project_root=project_root,
-            output_root=replay_root,
-        )
-        shift_replay_sha = shift_res.metadata.get("replay_descriptor_sha256")
-        X_tgt_shifted_trans = src_prep.transform(shift_res.X_shifted)
+        # Check if all seeds for this condition are already done
+        cond_done = True
+        for seed in seeds:
+            if not checkpoint_mgr.is_checkpoint_valid(ds, fold, cond, methods[0], seed, signal_protocol_sha):
+                cond_done = False
+                break
+        if cond_done:
+            completed_in_task += len(seeds)
+            continue
 
-        # Paired current probe bank A_t^C (cached)
+        # Retrieve scenario preprocessed arrays or compute once for 5 seeds
+        scen_fp = compute_content_fingerprint({
+            "dataset_id": ds,
+            "outer_fold": fold,
+            "condition": cond,
+            "shift_spec_sha": shift_spec_sha,
+            "prep_config_sha": prep_config_sha,
+        })
+        cached_scen = cache.get_scenario_data(ds, fold, cond, scen_fp)
+
         cur_desc_path = probes_dir / "current" / ds / f"fold_{fold}" / f"{cond}.json"
         cur_desc, cur_positions, _, _ = load_current_probe_descriptor(cur_desc_path)
-        A_C = cache.get_transformed_bank(cur_desc.probe_bank_sha256)
-        if A_C is None:
+
+        if cached_scen is not None:
+            X_tgt_shifted_trans, A_C = cached_scen
+            shift_replay_sha = ""
+            if cond.startswith("local_overlap"):
+                desc_p = replay_root / ds / f"fold_{fold}" / f"{cond}.json"
+                if desc_p.exists():
+                    with open(desc_p, "r", encoding="utf-8") as f:
+                        shift_replay_sha = json.load(f).get("replay_descriptor_sha256", "")
+        else:
+            shift_res = replay_frozen_shift(
+                X_target_raw=X_tgt_raw,
+                dataset_id=ds,
+                outer_fold=fold,
+                condition=cond,
+                phase4_spec_path=shift_spec_path,
+                X_source_raw=X_src_raw,
+                roles=roles,
+                project_root=project_root,
+                output_root=replay_root,
+            )
+            shift_replay_sha = shift_res.metadata.get("replay_descriptor_sha256")
+            X_tgt_shifted_trans = src_prep.transform(shift_res.X_shifted)
             A_C = load_current_probe_matrix(shift_res.X_shifted, cur_positions, src_prep)
-            cache.put_transformed_bank(cur_desc.probe_bank_sha256, A_C)
+            cache.put_scenario_data(ds, fold, cond, scen_fp, X_tgt_shifted_trans, A_C)
+
+        # Check D_X in cache
+        cached_dx = cache.get_dx(ds, fold, cond)
+        if cached_dx is not None:
+            mem_cache.put_dx(ds, fold, cond, cached_dx)
 
         for meth in methods:
             for seed in seeds:
-                res = signal_engine.compute_signals(
-                    dataset_id=ds,
-                    outer_fold=fold,
-                    condition=cond,
-                    method=meth,
-                    seed=seed,
-                    K=K,
-                    X_source_trans=X_src_trans,
-                    X_target_shifted_trans=X_tgt_shifted_trans,
-                    A_R=A_R,
-                    A_C=A_C,
-                    reference_probe_bank_sha256=ref_desc.probe_bank_sha256,
-                    current_probe_bank_sha256=cur_desc.probe_bank_sha256,
-                    shift_spec_sha256=shift_spec_sha,
-                    shift_spec_file_sha256=shift_spec_file_sha,
-                    shift_replay_sha256=shift_replay_sha,
-                )
-                results.append(res)
+                if checkpoint_mgr.is_checkpoint_valid(ds, fold, cond, meth, seed, signal_protocol_sha):
+                    completed_in_task += 1
+                    continue
 
-    return results
+                with limit_inner_threads(1):
+                    res = signal_engine.compute_signals(
+                        dataset_id=ds,
+                        outer_fold=fold,
+                        condition=cond,
+                        method=meth,
+                        seed=seed,
+                        K=K,
+                        X_source_trans=X_src_trans,
+                        X_target_shifted_trans=X_tgt_shifted_trans,
+                        A_R=A_R,
+                        A_C=A_C,
+                        ref_bank_sha256=ref_desc.probe_bank_sha256,
+                        cur_bank_sha256=cur_desc.probe_bank_sha256,
+                        shift_spec_sha256=shift_spec_sha,
+                        shift_spec_file_sha256=shift_spec_file_sha,
+                        shift_replay_sha256=shift_replay_sha,
+                    )
+
+                # Update disk cache with D_X and MMD sigma if newly computed
+                if mem_cache.get_dx(ds, fold, cond) is not None:
+                    cache.put_dx(ds, fold, cond, mem_cache.get_dx(ds, fold, cond))
+                sig_tuple = mem_cache.get_mmd_sigma(ds, fold)
+                sum_xx = mem_cache.get_mmd_source_kernel_sum(ds, fold)
+                if sig_tuple is not None and sum_xx is not None:
+                    cache.put_mmd_sigma(ds, fold, sig_tuple[0], sig_tuple[1], sum_xx)
+
+                # Persist checkpoint immediately
+                checkpoint_mgr.save_checkpoint(res.to_dict())
+                completed_in_task += 1
+
+    return completed_in_task
 
 
-def run_label_free_signals_pass(cfg: Dict[str, Any], project_root: Path, max_workers: int = 4) -> pd.DataFrame:
-    """Execute Pass A label-free signal computation with strict label blocking."""
-    print("[PASS A] Starting label-free signal computation (labels strictly blocked)...")
-    t0 = time.perf_counter()
+# ---------------------------------------------------------------------------
+# Pass A Runner with Resumability & Progress Journaling
+# ---------------------------------------------------------------------------
 
-    # Monkeypatch pd.read_parquet to enforce label blocking
+def run_label_free_signals_pass(
+    cfg: Dict[str, Any],
+    project_root: Path,
+    max_workers: int = 4,
+    resume: bool = True,
+    work_dir: Optional[Path] = None,
+) -> pd.DataFrame:
+    """Execute Pass A label-free signal computation with strict label blocking and resume."""
+    set_blas_thread_env(1)
+    root = Path(project_root)
+    w_dir = work_dir or get_default_work_dir()
+    protocol_sha = compute_falsification_protocol_sha256(cfg)
+
+    cache = PersistentPhase7Cache(w_dir, protocol_sha, root)
+    checkpoint_mgr = SignalCheckpointManager(w_dir, root)
+    journal = ProgressJournal(w_dir, protocol_sha, total_rows=4500, project_root=root)
+    interrupt_handler = GracefulInterruptHandler()
+
+    sig_cfg = yaml.safe_load(open(root / "configs" / "signals.yaml", "r", encoding="utf-8"))
+    alignment_cfg = yaml.safe_load(open(root / "configs" / "alignment.yaml", "r", encoding="utf-8"))
+    methods_cfg = yaml.safe_load(open(root / "configs" / "methods.yaml", "r", encoding="utf-8"))
+    prep_cfg = yaml.safe_load(open(root / "configs" / "preprocessing.yaml", "r", encoding="utf-8"))
+    signal_protocol_sha = compute_signal_protocol_sha256(sig_cfg)
+
+    manifest_path = root / "data" / "manifests" / "datasets.json"
+    classes_map = load_dataset_classes(manifest_path)
+
+    datasets = cfg["datasets"]
+    folds = cfg["outer_folds"]
+    conditions = cfg["conditions"]
+    methods = cfg["methods"]
+    seeds = cfg["algorithm_seeds"]
+
+    # Enumerate all expected 4,500 keys
+    expected_keys = [
+        (ds, fold, cond, meth, seed)
+        for ds in datasets
+        for fold in folds
+        for cond in conditions
+        for meth in methods
+        for seed in seeds
+    ]
+
+    # Check already completed checkpoints
+    valid_keys = checkpoint_mgr.get_completed_checkpoint_keys(signal_protocol_sha)
+    n_valid = len(valid_keys)
+
+    journal.log(
+        f"[PASS A START] Expected rows: 4500 | Already valid checkpoints: {n_valid} | Remaining: {4500 - n_valid}"
+    )
+
+    out_csv = root / "results" / "falsification" / "signals_label_free.csv"
+
+    if n_valid == 4500:
+        journal.log("[PASS A COMPLETE] All 4,500 signal checkpoints valid! Assembling final CSV...")
+        df = checkpoint_mgr.assemble_signals_csv(out_csv, expected_keys)
+        journal.update(completed_rows=4500, completed_tasks=60)
+        return df
+
+    # Order dataset-fold tasks LPT (largest/slowest first)
+    tasks = sort_tasks_lpt(datasets, folds, root)
+
+    # Monkeypatch pd.read_parquet for Pass A label isolation
     orig_read_parquet = pd.read_parquet
 
     def blocked_read_parquet(path, *args, **kwargs):
@@ -301,124 +507,116 @@ def run_label_free_signals_pass(cfg: Dict[str, Any], project_root: Path, max_wor
     pd.read_parquet = blocked_read_parquet
 
     try:
-        # Load configs
-        sig_cfg = yaml.safe_load(open(project_root / "configs" / "signals.yaml", "r", encoding="utf-8"))
-        alignment_cfg = yaml.safe_load(open(project_root / "configs" / "alignment.yaml", "r", encoding="utf-8"))
-        methods_cfg = yaml.safe_load(open(project_root / "configs" / "methods.yaml", "r", encoding="utf-8"))
-        prep_cfg = yaml.safe_load(open(project_root / "configs" / "preprocessing.yaml", "r", encoding="utf-8"))
+        completed_tasks = 0
+        total_completed_rows = n_valid
 
-        manifest_path = project_root / "data" / "manifests" / "dataset_manifest.json"
-        classes_map = load_dataset_classes(manifest_path)
+        for task_idx, (ds, fold) in enumerate(tasks):
+            if interrupt_handler.interrupted:
+                journal.log(f"[INTERRUPTED] Exiting safely after task {task_idx}. Checkpoints preserved.")
+                break
 
-        cache = SignalCache()
-        datasets = cfg["datasets"]
-        folds = cfg["outer_folds"]
-        conditions = cfg["conditions"]
-        methods = cfg["methods"]
-        seeds = cfg["algorithm_seeds"]
+            journal.log(f"[TASK START {task_idx+1}/{len(tasks)}] {ds} fold_{fold}...")
+            task_rows = process_dataset_fold_task(
+                ds=ds,
+                fold=fold,
+                K=classes_map[ds],
+                conditions=conditions,
+                methods=methods,
+                seeds=seeds,
+                sig_cfg=sig_cfg,
+                alignment_cfg=alignment_cfg,
+                methods_cfg=methods_cfg,
+                prep_cfg=prep_cfg,
+                project_root=root,
+                cache=cache,
+                checkpoint_mgr=checkpoint_mgr,
+                signal_protocol_sha=signal_protocol_sha,
+            )
+            completed_tasks += 1
 
-        tasks = [(ds, fold) for ds in datasets for fold in folds]
-        print(f"[PASS A] Dispatching {len(tasks)} dataset-fold tasks across {max_workers} workers...")
+            # Recount valid checkpoints
+            current_valid = len(checkpoint_mgr.get_completed_checkpoint_keys(signal_protocol_sha))
+            progress_doc = journal.update(
+                completed_rows=current_valid,
+                completed_tasks=completed_tasks,
+                total_tasks=len(tasks),
+                active_task=f"{ds}_fold_{fold}",
+                cache_metrics=cache.cache_size_report(),
+            )
+            journal.log(
+                f"[PROGRESS] {current_valid}/4500 rows ({progress_doc['percent_complete']}%) | "
+                f"Throughput: {progress_doc['rows_per_hour']} rows/hr | ETA: {progress_doc['estimated_completion_time']}"
+            )
 
-        all_results: List[SignalResult] = []
-
-        if max_workers > 1:
-            with ThreadPoolExecutor(max_workers=max_workers) as executor:
-                futures = [
-                    executor.submit(
-                        process_single_task_signals,
-                        ds,
-                        fold,
-                        classes_map[ds],
-                        conditions,
-                        methods,
-                        seeds,
-                        sig_cfg,
-                        alignment_cfg,
-                        methods_cfg,
-                        prep_cfg,
-                        cache,
-                        project_root,
-                    )
-                    for ds, fold in tasks
-                ]
-                for fut in futures:
-                    all_results.extend(fut.result())
+        # Assemble final CSV if all 4,500 are done
+        final_valid = len(checkpoint_mgr.get_completed_checkpoint_keys(signal_protocol_sha))
+        if final_valid == 4500:
+            journal.log("[PASS A FINISHED] Assembling all 4,500 checkpoints into signals_label_free.csv...")
+            df = checkpoint_mgr.assemble_signals_csv(out_csv, expected_keys)
+            journal.log(f"[PASS A SUCCESS] Saved -> {out_csv.relative_to(root)}")
+            return df
         else:
-            for ds, fold in tasks:
-                res = process_single_task_signals(
-                    ds,
-                    fold,
-                    classes_map[ds],
-                    conditions,
-                    methods,
-                    seeds,
-                    sig_cfg,
-                    alignment_cfg,
-                    methods_cfg,
-                    prep_cfg,
-                    cache,
-                    project_root,
-                )
-                all_results.extend(res)
-
-        df = pd.DataFrame([r.to_dict() for r in all_results])
-
-        # Canonical sort
-        df.sort_values(
-            by=["dataset_id", "outer_fold", "condition", "method", "seed"],
-            inplace=True,
-        )
-
-        out_path = project_root / "results" / "falsification" / "signals_label_free.csv"
-        atomic_write_csv(out_path, df)
-
-        elapsed = time.perf_counter() - t0
-        print(f"[PASS A COMPLETE] Generated {len(df)} signal rows in {elapsed:.2f}s -> {out_path.relative_to(project_root)}")
-
-        # Save cache execution summary
-        summary = {
-            "elapsed_seconds": elapsed,
-            "total_signal_rows": len(df),
-            "cache_metrics": cache.stats(),
-        }
-        atomic_write_json(project_root / "results" / "falsification" / "execution_summary.json", summary, indent=2)
-
-        return df
+            journal.log(f"[PASS A PARTIAL] {final_valid}/4500 checkpoints complete. Run with --resume to continue.")
+            return pd.DataFrame()
 
     finally:
-        # Restore pd.read_parquet
         pd.read_parquet = orig_read_parquet
+        interrupt_handler.restore()
 
 
 # ---------------------------------------------------------------------------
-# Pass B: Evaluation-Only Quality Targets (4,500 Rows)
+# Pass B Runner with Resumability
 # ---------------------------------------------------------------------------
 
-def run_evaluation_quality_pass(cfg: Dict[str, Any], project_root: Path) -> pd.DataFrame:
+def run_evaluation_quality_pass(
+    cfg: Dict[str, Any],
+    project_root: Path,
+    resume: bool = True,
+    work_dir: Optional[Path] = None,
+) -> pd.DataFrame:
     """Execute Pass B quality computation on full shifted test targets (labels allowed)."""
-    print("[PASS B] Starting evaluation-only quality computation (labels allowed)...")
-    t0 = time.perf_counter()
+    set_blas_thread_env(1)
+    root = Path(project_root)
+    w_dir = work_dir or get_default_work_dir()
+    protocol_sha = compute_falsification_protocol_sha256(cfg)
 
-    methods_cfg = yaml.safe_load(open(project_root / "configs" / "methods.yaml", "r", encoding="utf-8"))
-    prep_cfg = yaml.safe_load(open(project_root / "configs" / "preprocessing.yaml", "r", encoding="utf-8"))
-    manifest_path = project_root / "data" / "manifests" / "dataset_manifest.json"
+    cache = PersistentPhase7Cache(w_dir, protocol_sha, root)
+    checkpoint_mgr = QualityCheckpointManager(w_dir, root)
+    journal = ProgressJournal(w_dir, protocol_sha, total_rows=4500, project_root=root)
+
+    methods_cfg = yaml.safe_load(open(root / "configs" / "methods.yaml", "r", encoding="utf-8"))
+    prep_cfg = yaml.safe_load(open(root / "configs" / "preprocessing.yaml", "r", encoding="utf-8"))
+    manifest_path = root / "data" / "manifests" / "datasets.json"
     classes_map = load_dataset_classes(manifest_path)
-    prep_config_sha = compute_file_sha256(project_root / "configs" / "preprocessing.yaml")
-    replay_root = project_root / "data" / "falsification" / "offline_shift_replay"
+    replay_root = root / "data" / "falsification" / "offline_shift_replay"
 
-    cache = SignalCache()
     datasets = cfg["datasets"]
     folds = cfg["outer_folds"]
     conditions = cfg["conditions"]
     methods = cfg["methods"]
     seeds = cfg["algorithm_seeds"]
 
-    results: List[QualityResult] = []
+    expected_keys = [
+        (ds, fold, cond, meth, seed)
+        for ds in datasets
+        for fold in folds
+        for cond in conditions
+        for meth in methods
+        for seed in seeds
+    ]
+
+    valid_keys = checkpoint_mgr.get_completed_checkpoint_keys()
+    out_csv = root / "results" / "falsification" / "quality_evaluation_only.csv"
+
+    if len(valid_keys) == 4500:
+        journal.log("[PASS B COMPLETE] All 4,500 quality checkpoints valid! Assembling final CSV...")
+        return checkpoint_mgr.assemble_quality_csv(out_csv, expected_keys)
+
+    journal.log(f"[PASS B START] Total rows: 4500 | Existing: {len(valid_keys)} | Remaining: {4500 - len(valid_keys)}")
 
     for ds in datasets:
         K = classes_map[ds]
-        ds_dir = project_root / "data" / "canonical" / "controlled" / ds
+        ds_dir = root / "data" / "canonical" / "controlled" / ds
         df_X = pd.read_parquet(ds_dir / "features.parquet")
         df_y = pd.read_parquet(ds_dir / "labels.parquet")
 
@@ -427,7 +625,7 @@ def run_evaluation_quality_pass(cfg: Dict[str, Any], project_root: Path) -> pd.D
         roles = meta.get("feature_roles", {col: "numeric" for col in df_X.columns})
 
         for fold in folds:
-            fold_p = project_root / "data" / "splits" / "controlled" / ds / f"fold_{fold}.npz"
+            fold_p = root / "data" / "splits" / "controlled" / ds / f"fold_{fold}.npz"
             with np.load(fold_p) as npz:
                 src_idx = npz["source_indices"]
                 tgt_idx = npz["target_indices"]
@@ -451,18 +649,20 @@ def run_evaluation_quality_pass(cfg: Dict[str, Any], project_root: Path) -> pd.D
                     X=X_src_trans,
                     K=K,
                     seed=seed,
-                    methods_cfg=methods_cfg,
                 )
                 src_models[seed] = src_model
 
-                # Clean test prediction
                 X_tgt_clean_trans = src_prep.transform(X_tgt_raw)
-                U_clean = src_model.predict_proba(X_tgt_clean_trans)
+                U_clean = src_model.predict_membership(X_tgt_clean_trans)
                 y_pred_clean = np.argmax(U_clean, axis=1)
                 ari_cleans[seed] = float(adjusted_rand_score(y_tgt_raw, y_pred_clean))
 
             for cond in conditions:
-                shift_spec_path = project_root / "data" / "shifts" / "specs" / ds / f"fold_{fold}" / f"{cond}.json"
+                # Check if all seeds are already checkpointed
+                if all(checkpoint_mgr.is_checkpoint_valid(ds, fold, cond, methods[0], s) for s in seeds):
+                    continue
+
+                shift_spec_path = root / "data" / "shifts" / "specs" / ds / f"fold_{fold}" / f"{cond}.json"
                 shift_res = replay_frozen_shift(
                     X_target_raw=X_tgt_raw,
                     dataset_id=ds,
@@ -471,12 +671,11 @@ def run_evaluation_quality_pass(cfg: Dict[str, Any], project_root: Path) -> pd.D
                     phase4_spec_path=shift_spec_path,
                     X_source_raw=X_src_raw,
                     roles=roles,
-                    project_root=project_root,
+                    project_root=root,
                     output_root=replay_root,
                 )
                 X_tgt_shifted_trans = src_prep.transform(shift_res.X_shifted)
 
-                # Ground truth shifted labels
                 if cond.startswith("class_prevalence"):
                     y_tgt_shifted = y_tgt_raw[shift_res.row_index_map]
                 else:
@@ -484,8 +683,11 @@ def run_evaluation_quality_pass(cfg: Dict[str, Any], project_root: Path) -> pd.D
 
                 for meth in methods:
                     for seed in seeds:
+                        if checkpoint_mgr.is_checkpoint_valid(ds, fold, cond, meth, seed):
+                            continue
+
                         src_model = src_models[seed]
-                        U_cond = src_model.predict_proba(X_tgt_shifted_trans)
+                        U_cond = src_model.predict_membership(X_tgt_shifted_trans)
                         y_pred_cond = np.argmax(U_cond, axis=1)
 
                         ari_clean = ari_cleans[seed]
@@ -495,7 +697,7 @@ def run_evaluation_quality_pass(cfg: Dict[str, Any], project_root: Path) -> pd.D
                         nmi_cond = float(normalized_mutual_info_score(y_tgt_shifted, y_pred_cond, average_method="arithmetic"))
                         ami_cond = float(adjusted_mutual_info_score(y_tgt_shifted, y_pred_cond, average_method="arithmetic"))
 
-                        rec_for_hash = {
+                        rec = {
                             "dataset_id": ds,
                             "outer_fold": fold,
                             "condition": cond,
@@ -509,37 +711,147 @@ def run_evaluation_quality_pass(cfg: Dict[str, Any], project_root: Path) -> pd.D
                             "ami_condition": ami_cond,
                             "n_evaluation_rows": len(y_tgt_shifted),
                         }
-                        q_sha = compute_quality_record_sha256(rec_for_hash)
+                        rec["quality_record_sha256"] = compute_quality_record_sha256(rec)
+                        checkpoint_mgr.save_checkpoint(rec)
 
-                        q_res = QualityResult(
-                            dataset_id=ds,
-                            outer_fold=fold,
-                            condition=cond,
-                            method=meth,
-                            seed=seed,
-                            quality_target="delta_ari",
-                            ari_clean=ari_clean,
-                            ari_condition=ari_cond,
-                            delta_ari=delta_ari,
-                            nmi_condition=nmi_cond,
-                            ami_condition=ami_cond,
-                            n_evaluation_rows=len(y_tgt_shifted),
-                            quality_record_sha256=q_sha,
-                        )
-                        results.append(q_res)
-
-    df = pd.DataFrame([r.to_dict() for r in results])
-    df.sort_values(
-        by=["dataset_id", "outer_fold", "condition", "method", "seed"],
-        inplace=True,
-    )
-
-    out_path = project_root / "results" / "falsification" / "quality_evaluation_only.csv"
-    atomic_write_csv(out_path, df)
-
-    elapsed = time.perf_counter() - t0
-    print(f"[PASS B COMPLETE] Generated {len(df)} quality rows in {elapsed:.2f}s -> {out_path.relative_to(project_root)}")
+    journal.log("[PASS B FINISHED] Assembling quality checkpoints...")
+    df = checkpoint_mgr.assemble_quality_csv(out_csv, expected_keys)
+    journal.log(f"[PASS B SUCCESS] Saved -> {out_csv.relative_to(root)}")
     return df
+
+
+# ---------------------------------------------------------------------------
+# Execution Calibration Runner
+# ---------------------------------------------------------------------------
+
+def calibrate_execution(cfg: Dict[str, Any], project_root: Path, work_dir: Optional[Path] = None) -> Dict[str, Any]:
+    """Benchmark backends and worker counts on representative benchmark panel."""
+    print("[CALIBRATION] Starting execution performance calibration...")
+    root = Path(project_root)
+    w_dir = work_dir or get_default_work_dir()
+    protocol_sha = compute_falsification_protocol_sha256(cfg)
+
+    cache = PersistentPhase7Cache(w_dir, protocol_sha, root)
+    checkpoint_mgr = SignalCheckpointManager(w_dir, root)
+
+    sig_cfg = yaml.safe_load(open(root / "configs" / "signals.yaml", "r", encoding="utf-8"))
+    alignment_cfg = yaml.safe_load(open(root / "configs" / "alignment.yaml", "r", encoding="utf-8"))
+    methods_cfg = yaml.safe_load(open(root / "configs" / "methods.yaml", "r", encoding="utf-8"))
+    prep_cfg = yaml.safe_load(open(root / "configs" / "preprocessing.yaml", "r", encoding="utf-8"))
+    manifest_path = root / "data" / "manifests" / "datasets.json"
+    classes_map = load_dataset_classes(manifest_path)
+    signal_protocol_sha = compute_signal_protocol_sha256(sig_cfg)
+
+    bench_datasets = ["iris", "waveform", "madelon", "letter_recognition"]
+    bench_conditions = ["clean", "location_mild"]
+    bench_seeds = [1, 2]
+
+    print(f"[CALIBRATION] Topology: {get_cpu_topology()}")
+
+    benchmark_configs = [
+        {"backend": "threads", "workers": 1, "inner_threads": 1},
+        {"backend": "threads", "workers": 2, "inner_threads": 1},
+        {"backend": "threads", "workers": 4, "inner_threads": 1},
+    ]
+
+    results = []
+
+    for b_cfg in benchmark_configs:
+        n_workers = b_cfg["workers"]
+        bench_dir = w_dir / "benchmarks" / f"run_workers_{n_workers}"
+        if bench_dir.exists():
+            shutil.rmtree(bench_dir, ignore_errors=True)
+        bench_checkpoint_mgr = SignalCheckpointManager(bench_dir, root)
+
+        t0 = time.perf_counter()
+        mem_before = psutil.virtual_memory().used
+
+        tasks = [(ds, 0) for ds in bench_datasets]
+
+        if n_workers == 1:
+            for ds, fold in tasks:
+                process_dataset_fold_task(
+                    ds=ds,
+                    fold=fold,
+                    K=classes_map[ds],
+                    conditions=bench_conditions,
+                    methods=["fcm_adaptive"],
+                    seeds=bench_seeds,
+                    sig_cfg=sig_cfg,
+                    alignment_cfg=alignment_cfg,
+                    methods_cfg=methods_cfg,
+                    prep_cfg=prep_cfg,
+                    project_root=root,
+                    cache=cache,
+                    checkpoint_mgr=bench_checkpoint_mgr,
+                    signal_protocol_sha=signal_protocol_sha,
+                )
+        else:
+            with ThreadPoolExecutor(max_workers=n_workers) as executor:
+                futures = [
+                    executor.submit(
+                        process_dataset_fold_task,
+                        ds,
+                        fold,
+                        classes_map[ds],
+                        bench_conditions,
+                        ["fcm_adaptive"],
+                        bench_seeds,
+                        sig_cfg,
+                        alignment_cfg,
+                        methods_cfg,
+                        prep_cfg,
+                        root,
+                        cache,
+                        bench_checkpoint_mgr,
+                        signal_protocol_sha,
+                    )
+                    for ds, fold in tasks
+                ]
+                for fut in futures:
+                    fut.result()
+
+        elapsed = time.perf_counter() - t0
+        mem_after = psutil.virtual_memory().used
+        peak_delta_mb = max(0.0, (mem_after - mem_before) / (1024 ** 2))
+        shutil.rmtree(bench_dir, ignore_errors=True)
+
+        total_fits = len(bench_datasets) * len(bench_conditions) * len(bench_seeds)
+        fits_per_sec = total_fits / elapsed if elapsed > 0 else 0.0
+
+        res_entry = {
+            "config": b_cfg,
+            "elapsed_seconds": round(elapsed, 3),
+            "total_fits": total_fits,
+            "fits_per_sec": round(fits_per_sec, 3),
+            "rows_per_hour": round(fits_per_sec * 3600.0, 1),
+            "approx_mem_delta_mb": round(peak_delta_mb, 2),
+        }
+        results.append(res_entry)
+        print(
+            f"  [BENCHMARK] workers={n_workers} | elapsed={elapsed:.2f}s | "
+            f"fits/s={fits_per_sec:.2f} | rows/hr={fits_per_sec*3600:.1f}"
+        )
+
+    best = max(results, key=lambda r: r["fits_per_sec"])
+    calibration_doc = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "cpu_topology": get_cpu_topology(),
+        "benchmarks": results,
+        "selected_best_safe_config": best["config"],
+        "projected_full_run_hours": round(4500 / (best["fits_per_sec"] * 3600.0), 2) if best["fits_per_sec"] > 0 else 0.0,
+    }
+
+    out_p = root / "results" / "falsification" / "execution_calibration.json"
+    out_p.parent.mkdir(parents=True, exist_ok=True)
+    atomic_write_json(out_p, calibration_doc, indent=2)
+
+    print(f"============================================================")
+    print(f"[CALIBRATION COMPLETE] Selected: {best['config']}")
+    print(f"Projected 4,500-run duration: {calibration_doc['projected_full_run_hours']} hours")
+    print(f"Report saved -> {out_p.relative_to(root)}")
+    print(f"============================================================")
+    return calibration_doc
 
 
 # ---------------------------------------------------------------------------
@@ -590,7 +902,6 @@ def run_evaluation(cfg: Dict[str, Any], project_root: Path) -> None:
     atomic_write_csv(res_dir / "losfo_family_metrics.csv", losfo_res["losfo_family_metrics_df"])
     atomic_write_csv(res_dir / "paired_family_deltas.csv", losfo_res["paired_family_deltas_df"])
 
-    # Combine hyperparameter selections
     all_hypers = pd.concat([lodo_res["hyperparameters_df"], losfo_res["hyperparameters_df"]], ignore_index=True)
     atomic_write_csv(res_dir / "hyperparameter_selections.csv", all_hypers)
 
@@ -662,10 +973,10 @@ def create_phase7_input_lock(project_root: Path, producer_commit: str) -> Dict[s
         "created_at": datetime.now(timezone.utc).isoformat(),
         "phase6_freeze_commit": "a2726e6423405c93d9319eebbe0cbdfdfc7ecbb4",
         "phase7_producer_commit": producer_commit,
-        "phase1_dataset_manifest_sha256": compute_file_sha256(project_root / "data" / "manifests" / "dataset_manifest.json"),
-        "phase2_split_manifest_sha256": compute_file_sha256(project_root / "data" / "manifests" / "split_manifest.json"),
-        "phase4_shift_manifest_sha256": compute_file_sha256(project_root / "data" / "manifests" / "shift_manifest.json"),
-        "phase5_probe_manifest_sha256": compute_file_sha256(project_root / "data" / "manifests" / "probe_manifest.json"),
+        "phase1_dataset_manifest_sha256": compute_file_sha256(project_root / "data" / "manifests" / "datasets.json"),
+        "phase2_split_manifest_sha256": compute_file_sha256(project_root / "data" / "splits" / "split_manifest.json"),
+        "phase4_shift_manifest_sha256": compute_file_sha256(project_root / "data" / "shifts" / "shift_manifest.json"),
+        "phase5_probe_manifest_sha256": compute_file_sha256(project_root / "data" / "probes" / "probe_manifest.json"),
         "methods_config_sha256": compute_file_sha256(project_root / "configs" / "methods.yaml"),
         "signals_config_sha256": compute_file_sha256(project_root / "configs" / "signals.yaml"),
         "falsification_config_sha256": compute_file_sha256(project_root / "configs" / "falsification.yaml"),
@@ -679,15 +990,43 @@ def create_phase7_input_lock(project_root: Path, producer_commit: str) -> Dict[s
 def main():
     parser = argparse.ArgumentParser(description="Phase 7 Structural Signal Falsification Pilot")
     parser.add_argument("--prepare-offline-replay", action="store_true", help="Materialize 120 local-overlap replay descriptors")
+    parser.add_argument("--prepare-cache", action="store_true", help="Prewarm persistent runtime cache (label-free)")
+    parser.add_argument("--calibrate-execution", action="store_true", help="Benchmark execution backends and worker counts")
     parser.add_argument("--signals-only", action="store_true", help="Generate 4,500 label-free signal rows (labels blocked)")
     parser.add_argument("--quality-only", action="store_true", help="Generate 4,500 evaluation-only quality degradation rows")
     parser.add_argument("--evaluate", action="store_true", help="Join tables and run LODO/LOSFO/ablation/bootstrap evaluation")
+    parser.add_argument("--status", action="store_true", help="Print runtime status and progress report")
+    parser.add_argument("--validate-cache", action="store_true", help="Validate runtime cache integrity")
+    parser.add_argument("--clear-cache", action="store_true", help="Clear runtime cache directory")
+    parser.add_argument("--yes-really-clear-runtime-cache", action="store_true", help="Confirm cache clear")
+    parser.add_argument("--resume", action="store_true", default=True, help="Resume from fine-grained checkpoints")
     parser.add_argument("--all", action="store_true", help="Run full pipeline: replay, signals, quality, evaluate")
     parser.add_argument("--verify", action="store_true", help="Run strict byte-read-only verification")
-    parser.add_argument("--workers", type=int, default=4, help="Max workers for parallel signal generation")
+    parser.add_argument("--workers", type=str, default="4", help="Workers: 'auto' or integer <= 4")
+    parser.add_argument("--work-dir", type=str, default=None, help="Runtime work/cache directory")
     args = parser.parse_args()
 
+    w_dir = Path(args.work_dir).resolve() if args.work_dir else get_default_work_dir()
     cfg = load_falsification_config(PROJECT_ROOT / "configs" / "falsification.yaml")
+    proto_sha = compute_falsification_protocol_sha256(cfg)
+
+    if args.status:
+        journal = ProgressJournal(w_dir, proto_sha, total_rows=4500, project_root=PROJECT_ROOT)
+        print(journal.get_status_summary())
+        return
+
+    if args.validate_cache:
+        cache = PersistentPhase7Cache(w_dir, proto_sha, PROJECT_ROOT)
+        report = cache.validate_cache()
+        print(f"[CACHE VALIDATION] Valid: {report['valid_items']} | Corrupt: {report['corrupt_items']}")
+        print(f"Size report: {json.dumps(report['size_report'], indent=2)}")
+        return
+
+    if args.clear_cache:
+        cache = PersistentPhase7Cache(w_dir, proto_sha, PROJECT_ROOT)
+        cache.clear_cache(confirmed=args.yes_really_clear_runtime_cache)
+        print(f"[CACHE CLEARED] Successfully cleared {cache.root}")
+        return
 
     if args.verify:
         res = verify_falsification(PROJECT_ROOT)
@@ -697,11 +1036,40 @@ def main():
     if args.prepare_offline_replay or args.all:
         prepare_offline_replay(cfg, PROJECT_ROOT)
 
+    if args.calibrate_execution:
+        calibrate_execution(cfg, PROJECT_ROOT, work_dir=w_dir)
+
+    worker_count = 4
+    if args.workers == "auto":
+        cal_path = PROJECT_ROOT / "results" / "falsification" / "execution_calibration.json"
+        if cal_path.exists():
+            with open(cal_path, "r", encoding="utf-8") as f:
+                cal_doc = json.load(f)
+            worker_count = cal_doc.get("selected_best_safe_config", {}).get("workers", 4)
+        else:
+            worker_count = 4
+    else:
+        try:
+            worker_count = min(4, max(1, int(args.workers)))
+        except ValueError:
+            worker_count = 4
+
     if args.signals_only or args.all:
-        run_label_free_signals_pass(cfg, PROJECT_ROOT, max_workers=args.workers)
+        run_label_free_signals_pass(
+            cfg,
+            PROJECT_ROOT,
+            max_workers=worker_count,
+            resume=args.resume,
+            work_dir=w_dir,
+        )
 
     if args.quality_only or args.all:
-        run_evaluation_quality_pass(cfg, PROJECT_ROOT)
+        run_evaluation_quality_pass(
+            cfg,
+            PROJECT_ROOT,
+            resume=args.resume,
+            work_dir=w_dir,
+        )
 
     if args.evaluate or args.all:
         run_evaluation(cfg, PROJECT_ROOT)
