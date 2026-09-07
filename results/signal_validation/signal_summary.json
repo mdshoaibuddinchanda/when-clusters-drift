@@ -1,0 +1,123 @@
+{
+  "alignment_ambiguity_count": 0,
+  "cache_statistics": {
+    "cached_dx": 48,
+    "cached_memberships": 24,
+    "cached_mmd_sigmas": 6,
+    "cached_mmd_source_sums": 6,
+    "cached_preprocessors": 6,
+    "cached_reference_scales": 24,
+    "cached_source_models": 24,
+    "cached_transformed_banks": 54,
+    "hits": {
+      "dx": 144,
+      "membership": 168,
+      "mmd_sigma": 186,
+      "mmd_source_sum": 42,
+      "preprocessor": 6,
+      "reference_scales": 168,
+      "source_model": 384,
+      "transformed_bank": 0
+    },
+    "misses": {
+      "dx": 48,
+      "membership": 24,
+      "mmd_sigma": 6,
+      "mmd_source_sum": 6,
+      "preprocessor": 6,
+      "reference_scales": 24,
+      "source_model": 24,
+      "transformed_bank": 54
+    }
+  },
+  "candidate_model_status_counts": {
+    "SUCCESS": 192
+  },
+  "signals_distribution": {
+    "D_H": {
+      "max": 0.511258,
+      "mean": 0.062908,
+      "median": 0.024572,
+      "min": 0.0,
+      "p95": 0.225747
+    },
+    "D_M": {
+      "max": 0.6944,
+      "mean": 0.161328,
+      "median": 0.100106,
+      "min": 2.8e-05,
+      "p95": 0.51003
+    },
+    "D_U_C": {
+      "max": 0.925781,
+      "mean": 0.420755,
+      "median": 0.436807,
+      "min": 0.025465,
+      "p95": 0.784334
+    },
+    "D_U_R": {
+      "max": 0.947368,
+      "mean": 0.440888,
+      "median": 0.473937,
+      "min": 0.027313,
+      "p95": 0.790037
+    },
+    "D_V": {
+      "max": 19.579815,
+      "mean": 2.224356,
+      "median": 0.933037,
+      "min": 0.067744,
+      "p95": 12.109456
+    },
+    "D_X": {
+      "max": 0.163091,
+      "mean": 0.041684,
+      "median": 0.020202,
+      "min": 0.000968,
+      "p95": 0.135984
+    }
+  },
+  "source_model_status_counts": {
+    "SUCCESS": 192
+  },
+  "total_records": 192,
+  "unusable_records": 0,
+  "usable_records": 192,
+  "validity_distribution": {
+    "FPC": {
+      "max": 1.0,
+      "mean": 0.938692,
+      "median": 0.979909,
+      "min": 0.718301,
+      "p95": 1.0
+    },
+    "PE": {
+      "max": 0.44922,
+      "mean": 0.105749,
+      "median": 0.034504,
+      "min": 0.0,
+      "p95": 0.363
+    },
+    "PE_norm": {
+      "max": 0.627524,
+      "mean": 0.098797,
+      "median": 0.029108,
+      "min": 0.0,
+      "p95": 0.425292
+    },
+    "XB_soft_m2": {
+      "max": 136.104599,
+      "mean": 10.554153,
+      "median": 2.454447,
+      "min": 0.206058,
+      "p95": 34.271921
+    },
+    "silhouette": {
+      "max": 0.586663,
+      "mean": 0.124824,
+      "median": 0.073607,
+      "min": -0.176104,
+      "p95": 0.480622
+    }
+  }
+}

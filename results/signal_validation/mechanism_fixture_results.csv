@@ -1,0 +1,10 @@
+fixture,passed,details
+identity_zero,True,"D_U_R=0.0, D_U_C=0.0, D_V=0.0, D_H=0.0, D_M=0.0, D_X=0.00e+00"
+permutation_invariant,True,"Recovered perm=[1, 0], D_U_R=0.0, D_V=0.0, D_M=0.0"
+center_movement_positive,True,"Expected 0.25, got 0.250000"
+entropy_change_positive,True,D_H=0.926121 > 0
+mass_change_positive,True,D_M=0.531004 (expected ~1.0 for reversed mass)
+raw_shift_without_structure,True,D_X=1.001783 > 0 while structural signals == 0
+probe_identity_guard,True,Correctly raised ProbeIdentityMismatchError on mismatched bank hashes
+mmd_chunk_equivalence,True,Difference = 0.000e+00 < 1e-12
+source_only_bandwidth,True,Bandwidth sigma=2.475409 strictly deterministic across identical source bank

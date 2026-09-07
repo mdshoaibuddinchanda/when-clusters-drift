@@ -1,0 +1,21 @@
+{
+  "alignment_config_sha256": "3afa2b89ed781bd40ffa3dbe1bc244b74fd12b304d6025e9b8300835aa85d359",
+  "generated_from_commit": "392e599e73e0dda35fbd2f38f797d2636d95f820",
+  "global_signal_seed": 2026090706,
+  "methods_config_sha256": "5e5be24811aa3f8289b4b9b3be79bda431d09a6c2ce685963442273d499dc278",
+  "phase1_datasets_manifest_sha256": "16eced96d3580e593ebddd78b3c2995e87c6103c1b63d9f2449657b7dcd62e60",
+  "phase2_preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "phase2_split_manifest_sha256": "25106924ad5e1b8dd0b8ceeab65659a2a163e82b561ceca12bec1588aae52ff5",
+  "phase4_input_lock_sha256": "65b650447020340d77f416216fafffc469d585d8e84600cb4272bf5262830cb4",
+  "phase4_shift_manifest_sha256": "60024c73fd25ddbdb874e92ffba98905cf248a40564655980b9806c17d15c852",
+  "phase5_artifact_commit": "ca9dbb9b386b9a629af55d0482b451de371b6e1b",
+  "phase5_freeze_commit": "5780b98836d4c8239e5c6d085a3d495dbd8484d4",
+  "phase5_input_lock_sha256": "0cdad3a65ebee2ae080ea8c02bb6e91936aeec3a6b22454cefd42f42f4a679b9",
+  "phase5_probe_manifest_sha256": "6ec8717a951fd45696a836bd5bc55536f7349ec4687a4053b4951159cdb78659",
+  "phase5_producer_commit": "412e20f6b8d0f54b21557dfece01e88fdac0ab47",
+  "phase6_input_lock_sha256": "1bb735a5a6fc23d1da2b9239a706a92902e89cec12ae7f5b274ca7c70745beff",
+  "probe_config_sha256": "f181ce081dd59cd40d37f2da4107bfd4f1b536764993155bd726e198f5ca3343",
+  "protocol_version": 1,
+  "signal_protocol_sha256": "70a97778df2ac411a42e111020d43fa56d09336f20c4bc65929e97cae04054c5",
+  "signals_config_sha256": "ca073113c293e238c3ab0d753a53ae6fdd6a88426b8b47d59b00a96098586be4"
+}
