@@ -18,6 +18,7 @@ from clusterdrift.shifts.base import ShiftResult
 from clusterdrift.shifts.engine import ShiftEngine
 from clusterdrift.shifts.hashing import (
     atomic_write_json,
+    atomic_write_npz,
     compute_bytes_sha256,
     compute_canonical_json_sha256,
     compute_file_sha256,
@@ -35,6 +36,7 @@ def build_local_overlap_replay_descriptor(
     condition: str,
     phase4_spec_path: Union[str, Path],
     project_root: Optional[Path] = None,
+    output_root: Optional[Path] = None,
     commit_sha: Optional[str] = None,
 ) -> Dict[str, Any]:
     """Generate a derived, sparse, feature-only local-overlap replay descriptor.
@@ -42,9 +44,10 @@ def build_local_overlap_replay_descriptor(
     This function is strictly for OFFLINE EXPERIMENT CONSTRUCTION.
     It runs Phase 4's intervention using labels once, extracts the affected
     feature coordinates and replacement values, verifies exact reproduction,
-    and returns a cryptographically bound replay descriptor.
+    persists compressed array coordinates in a companion NPZ, and returns
+    a cryptographically bound metadata replay descriptor.
 
-    NO raw labels, target y, or class IDs are persisted in the descriptor.
+    NO raw labels, target y, class IDs, or raw inline array data are persisted in the descriptor JSON.
     """
     root = project_root or Path(phase4_spec_path).parents[4]
     spec_p = Path(phase4_spec_path)
@@ -92,8 +95,8 @@ def build_local_overlap_replay_descriptor(
         )
 
     # Extract replacement values for affected columns on selected rows
-    replacement_vals = shifted_sub[selected_rows, :]
-    replacement_vals_bytes = np.ascontiguousarray(replacement_vals, dtype=np.float64).tobytes()
+    replacement_vals = np.ascontiguousarray(shifted_sub[selected_rows, :], dtype=np.float64)
+    replacement_vals_bytes = replacement_vals.tobytes()
     replacement_vals_sha = compute_bytes_sha256(replacement_vals_bytes)
 
     # 3. Test replay equivalence immediately
@@ -105,24 +108,35 @@ def build_local_overlap_replay_descriptor(
 
     pd.testing.assert_frame_equal(shift_res.X_shifted, X_replayed, check_exact=True)
 
-    # 4. Construct descriptor
+    # 4. Save companion NPZ with compressed arrays
+    out_base = output_root or ((project_root or root) / "data" / "signals" / "offline_shift_replay")
+    out_dir = Path(out_base) / dataset_id / f"fold_{outer_fold}"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    npz_path = out_dir / f"{condition}.npz"
+    atomic_write_npz(
+        npz_path,
+        selected_target_positions=selected_rows,
+        replacement_values=replacement_vals,
+    )
+    replay_npz_sha = compute_file_sha256(npz_path)
+
+    # 5. Construct metadata-only descriptor (no inline array coordinates or values)
     phase4_spec_file_sha = compute_file_sha256(spec_p)
     descriptor: Dict[str, Any] = {
         "dataset_id": dataset_id,
         "outer_fold": outer_fold,
         "condition": condition,
+        "generated_from_commit": commit_sha or "unknown",
         "phase4_shift_spec_sha256": spec_doc["shift_spec_sha256"],
         "phase4_shift_spec_file_sha256": phase4_spec_file_sha,
         "phase4_npz_sha256": spec_doc["npz_sha256"],
         "phase4_protocol_sha256": spec_doc.get("shift_protocol_sha256", ""),
         "canonical_bundle_sha256": spec_doc.get("canonical_bundle_sha256", ""),
         "split_sha256": spec_doc.get("split_sha256", ""),
-        "selected_target_positions": selected_rows.tolist(),
         "affected_numeric_columns": eligible_cols,
-        "replacement_values": replacement_vals.tolist(),
         "selected_target_positions_sha256": selected_rows_sha,
         "replacement_values_sha256": replacement_vals_sha,
-        "generated_from_commit": commit_sha or "unknown",
+        "replay_npz_sha256": replay_npz_sha,
     }
     descriptor["replay_descriptor_sha256"] = compute_canonical_json_sha256(descriptor)
     return descriptor
@@ -138,6 +152,7 @@ def replay_frozen_shift(
     X_source_raw: Optional[pd.DataFrame] = None,
     roles: Optional[Dict[str, str]] = None,
     project_root: Optional[Path] = None,
+    output_root: Optional[Path] = None,
 ) -> ShiftResult:
     """Deterministically replay a frozen Phase-4 shift without access to labels.
 
@@ -162,6 +177,8 @@ def replay_frozen_shift(
         Feature roles mapping.
     project_root : Optional[Path]
         Repository root.
+    output_root : Optional[Path]
+        Root directory for offline shift replay descriptors/NPZs.
 
     Returns
     -------
@@ -239,14 +256,12 @@ def replay_frozen_shift(
             status="APPLICABLE",
         )
 
-    # 3. Local Overlap: replay using sparse feature-only replay descriptor
+    # 3. Local Overlap: replay using sparse feature-only replay descriptor and companion NPZ
     if condition.startswith("local_overlap"):
+        replay_base = Path(output_root) if output_root is not None else (root / "data" / "signals" / "offline_shift_replay")
         if replay_descriptor is None:
             desc_p = (
-                root
-                / "data"
-                / "signals"
-                / "offline_shift_replay"
+                replay_base
                 / dataset_id
                 / f"fold_{outer_fold}"
                 / f"{condition}.json"
@@ -257,11 +272,22 @@ def replay_frozen_shift(
                 )
             with open(desc_p, "r", encoding="utf-8") as f:
                 desc = json.load(f)
+            companion_npz_p = desc_p.with_suffix(".npz")
         elif isinstance(replay_descriptor, (str, Path)):
-            with open(replay_descriptor, "r", encoding="utf-8") as f:
+            desc_p = Path(replay_descriptor)
+            if not desc_p.exists():
+                raise FileNotFoundError(f"Replay descriptor not found: {desc_p}")
+            with open(desc_p, "r", encoding="utf-8") as f:
                 desc = json.load(f)
+            companion_npz_p = desc_p.with_suffix(".npz")
         else:
             desc = replay_descriptor
+            companion_npz_p = (
+                replay_base
+                / dataset_id
+                / f"fold_{outer_fold}"
+                / f"{condition}.npz"
+            )
 
         # Validate replay descriptor integrity and binding to Phase 4
         if desc.get("dataset_id") != dataset_id or desc.get("outer_fold") != outer_fold or desc.get("condition") != condition:
@@ -282,9 +308,41 @@ def replay_frozen_shift(
         if stored_desc_sha != recomputed_desc_sha:
             raise ValueError("Replay descriptor corrupted: hash does not recompute")
 
-        selected_rows = np.asarray(desc["selected_target_positions"], dtype=np.int64)
+        # Validate companion NPZ file existence and hash
+        if not companion_npz_p.exists():
+            raise FileNotFoundError(
+                f"Companion NPZ not found for local overlap: {companion_npz_p}"
+            )
+        npz_file_sha = compute_file_sha256(companion_npz_p)
+        if desc.get("replay_npz_sha256") and npz_file_sha != desc["replay_npz_sha256"]:
+            raise ValueError(
+                f"Companion NPZ SHA mismatch for {dataset_id} {outer_fold} {condition}: "
+                f"{npz_file_sha} vs {desc['replay_npz_sha256']}"
+            )
+
+        with np.load(companion_npz_p) as npz:
+            if "selected_target_positions" not in npz or "replacement_values" not in npz:
+                raise KeyError(f"Companion NPZ missing required arrays: {companion_npz_p}")
+            selected_rows = npz["selected_target_positions"].astype(np.int64)
+            replacement_vals = npz["replacement_values"].astype(np.float64)
+
+        selected_rows_sha = compute_bytes_sha256(selected_rows.tobytes())
+        if desc.get("selected_target_positions_sha256") and selected_rows_sha != desc["selected_target_positions_sha256"]:
+            raise ValueError(
+                f"selected_target_positions hash mismatch: {selected_rows_sha} vs {desc['selected_target_positions_sha256']}"
+            )
+
+        replacement_vals_sha = compute_bytes_sha256(np.ascontiguousarray(replacement_vals, dtype=np.float64).tobytes())
+        if desc.get("replacement_values_sha256") and replacement_vals_sha != desc["replacement_values_sha256"]:
+            raise ValueError(
+                f"replacement_values hash mismatch: {replacement_vals_sha} vs {desc['replacement_values_sha256']}"
+            )
+
         affected_cols = desc["affected_numeric_columns"]
-        replacement_vals = np.asarray(desc["replacement_values"], dtype=np.float64)
+        if replacement_vals.shape[1] != len(affected_cols):
+            raise ValueError(
+                f"Replacement values column count {replacement_vals.shape[1]} does not match affected columns {len(affected_cols)}"
+            )
 
         # Apply replacement values preserving columns and row counts
         X_shifted = X_target_raw.copy()

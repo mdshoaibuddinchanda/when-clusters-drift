@@ -13,6 +13,7 @@ Executes:
 import argparse
 from concurrent.futures import ThreadPoolExecutor
 import copy
+from datetime import datetime, timezone
 import json
 import os
 from pathlib import Path
@@ -329,6 +330,7 @@ def prepare_offline_replay(
                 condition=cond,
                 phase4_spec_path=spec_path,
                 project_root=project_root,
+                output_root=out_base,
                 commit_sha=commit_sha,
             )
 
@@ -533,6 +535,16 @@ def run_signals_pass_a(
     df_signals = pd.DataFrame(records)
     atomic_write_csv(out_dir / "signals_label_free.csv", df_signals)
     elapsed = time.perf_counter() - t0
+
+    exec_summary = {
+        "execution_timestamp_utc": datetime.now(timezone.utc).isoformat(),
+        "wall_time_seconds": round(elapsed, 4),
+        "signal_rows": len(df_signals),
+        "jobs": jobs,
+        "cache_statistics": cache.stats(),
+    }
+    atomic_write_json(out_dir / "execution_summary.json", exec_summary, indent=2)
+
     print(f"[PASS A COMPLETE] Wrote {len(df_signals)} signal rows to signals_label_free.csv in {elapsed:.2f}s")
     return records
 
@@ -549,12 +561,17 @@ def run_quality_pass_b(
     shift_cfg: Dict[str, Any],
     cache: SignalCache,
     out_dir: Path,
+    dataset_classes: Optional[Dict[str, int]] = None,
 ) -> List[Dict[str, Any]]:
     """Execute Pass B evaluation-only quality target computation on full shifted target."""
     print("\n[PASS B: EVALUATION-ONLY QUALITY] Computing 192 quality degradation targets...")
     t0 = time.perf_counter()
     engine_shift = ShiftEngine(shift_cfg, project_root=project_root)
     prep_config_sha = compute_file_sha256(project_root / "configs" / "preprocessing.yaml")
+
+    if dataset_classes is None:
+        manifest_p = project_root / "data" / "manifests" / "datasets.json"
+        dataset_classes = load_dataset_classes(manifest_p) if manifest_p.exists() else {}
 
     # Group records by (dataset_id, outer_fold)
     grouped_keys: Dict[Tuple[str, int], List[Dict[str, Any]]] = {}
@@ -596,12 +613,24 @@ def run_quality_pass_b(
         X_src_trans = None
         unique_method_seeds = set((r["method"], int(r["seed"])) for r in recs)
         for meth, seed in unique_method_seeds:
+            # Check K provenance from signal records and manifest (NEVER from labels)
+            group_records = [r for r in recs if r["method"] == meth and int(r["seed"]) == seed]
+            k_values = set(int(r["K"]) for r in group_records)
+            if len(k_values) != 1:
+                raise ValueError(
+                    f"Inconsistent K values in signal records for {ds} fold {fold} {meth} seed {seed}: {k_values}"
+                )
+            K_val = next(iter(k_values))
+            if ds in dataset_classes and K_val != dataset_classes[ds]:
+                raise ValueError(
+                    f"K value {K_val} does not match datasets.json manifest {dataset_classes[ds]} for {ds}"
+                )
+
             m_src = cache.get_source_model(ds, fold, meth, seed)
             if m_src is None:
                 # Fresh process support: fit source model on source-only preprocessed features
                 if X_src_trans is None:
                     X_src_trans = src_prep.transform(X_src_raw)
-                K_val = len(np.unique(y_src_raw))
                 m_src = fit_clustering_model(method=meth, K=K_val, seed=seed, X=X_src_trans)
                 cache.put_source_model(ds, fold, meth, seed, m_src)
             pred_clean = m_src.predict(X_tgt_clean_trans)
@@ -792,7 +821,6 @@ def run_performance_benchmarks(project_root: Path, out_dir: Path) -> Tuple[List[
 
 def generate_summary(
     signal_records: List[Dict[str, Any]],
-    cache: SignalCache,
     out_dir: Path,
 ) -> Dict[str, Any]:
     """Generate statistical summary and failure report across signal records."""
@@ -817,7 +845,6 @@ def generate_summary(
         "source_model_status_counts": df["source_model_status"].value_counts().to_dict(),
         "candidate_model_status_counts": df["candidate_model_status"].value_counts().to_dict(),
         "alignment_ambiguity_count": int(df["alignment_ambiguous"].sum()),
-        "cache_statistics": cache.stats(),
         "signals_distribution": {
             "D_U_R": _stats(df["D_U_R"]),
             "D_U_C": _stats(df["D_U_C"]),
@@ -967,6 +994,7 @@ def main():
             out_dir=out_dir,
             jobs=n_jobs,
         )
+        generate_summary(signal_records, out_dir)
         if args.signals_only and not args.all:
             sys.exit(0)
 
@@ -987,6 +1015,7 @@ def main():
             shift_cfg=shift_cfg,
             cache=cache,
             out_dir=out_dir,
+            dataset_classes=dataset_classes,
         )
         if args.quality_only and not args.all:
             sys.exit(0)
@@ -999,7 +1028,7 @@ def main():
 
     # 7. Summary & Input Lock (when running --all)
     if args.all:
-        generate_summary(signal_records, cache, out_dir)
+        generate_summary(signal_records, out_dir)
 
         # Build and write input lock
         commit_sha = args.commit_sha or get_current_git_commit(project_root)

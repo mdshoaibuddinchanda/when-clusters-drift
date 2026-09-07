@@ -73,6 +73,11 @@ def test_signal_record_sha256_binding():
     rec_tampered["D_V"] = 0.790
     assert compute_signal_record_sha256(rec_tampered) != sha_rec
 
+    # Changing shift_replay_sha256 alters hash
+    rec_replay = dict(rec)
+    rec_replay["shift_replay_sha256"] = "replay_sha_abc123"
+    assert compute_signal_record_sha256(rec_replay) != sha_rec
+
 
 def test_quality_record_sha256_binding():
     """Test quality record SHA binds delta_ari and quality target."""

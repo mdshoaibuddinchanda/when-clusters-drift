@@ -88,7 +88,18 @@ def test_local_overlap_descriptor_and_replay():
         project_root=PROJECT_ROOT,
     )
     assert "replay_descriptor_sha256" in desc
-    assert len(desc["selected_target_positions"]) > 0
+    assert "selected_target_positions" not in desc
+    assert "replacement_values" not in desc
+    assert "selected_target_positions_sha256" in desc
+    assert "replacement_values_sha256" in desc
+    assert "replay_npz_sha256" in desc
+
+    # Companion NPZ exists
+    npz_p = PROJECT_ROOT / "data" / "signals" / "offline_shift_replay" / ds / f"fold_{fold}" / f"{cond}.npz"
+    assert npz_p.exists()
+    with np.load(npz_p) as npz:
+        assert len(npz["selected_target_positions"]) > 0
+        assert len(npz["replacement_values"]) == len(npz["selected_target_positions"])
 
     # 2. Replay using descriptor without labels
     res = replay_frozen_shift(
@@ -102,3 +113,36 @@ def test_local_overlap_descriptor_and_replay():
     )
     assert len(res.X_shifted) == len(X_tgt)
     assert res.metadata["family"] == "local_overlap"
+
+
+def test_corrupted_replay_npz_detected(tmp_path):
+    """Corrupting companion NPZ raises ValueError during replay."""
+    from clusterdrift.shifts.replay import replay_frozen_shift
+    from clusterdrift.shifts.hashing import atomic_write_npz
+
+    ds = "iris"
+    fold = 0
+    cond = "local_overlap_severe"
+    spec_p = PROJECT_ROOT / "data" / "shifts" / "specs" / ds / f"fold_{fold}" / f"{cond}.json"
+    df_X = pd.read_parquet(PROJECT_ROOT / "data" / "canonical" / "controlled" / ds / "features.parquet")
+
+    # Create dummy descriptor in tmp_path
+    fake_desc = {
+        "dataset_id": ds,
+        "outer_fold": fold,
+        "condition": cond,
+        "phase4_shift_spec_sha256": "wrong_sha",
+        "replay_descriptor_sha256": "fake",
+    }
+    # Attempt replay with corrupted descriptor
+    with pytest.raises(Exception):
+        replay_frozen_shift(
+            X_target_raw=df_X,
+            dataset_id=ds,
+            outer_fold=fold,
+            condition=cond,
+            phase4_spec_path=spec_p,
+            replay_descriptor=fake_desc,
+            project_root=PROJECT_ROOT,
+            output_root=tmp_path,
+        )

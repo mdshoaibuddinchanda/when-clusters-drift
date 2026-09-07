@@ -246,8 +246,12 @@ def verify_phase6_integrity(
         if row["condition"].startswith("local_overlap"):
             desc_file = root / "data" / "signals" / "offline_shift_replay" / sc_key[0] / f"fold_{sc_key[1]}" / f"{sc_key[2]}.json"
             _assert(desc_file.exists(), f"Local overlap replay descriptor exists for {sc_key}")
+            companion_npz = desc_file.with_suffix(".npz")
+            _assert(companion_npz.exists(), f"Local overlap companion NPZ exists for {sc_key}")
             with open(desc_file, "r", encoding="utf-8") as f:
                 desc = json.load(f)
+            _assert("replacement_values" not in desc, f"Descriptor contains forbidden inline replacement_values for {sc_key}")
+            _assert("selected_target_positions" not in desc, f"Descriptor contains forbidden inline selected_target_positions for {sc_key}")
             _assert(
                 desc["phase4_shift_spec_sha256"] == s_doc["shift_spec_sha256"],
                 f"Replay descriptor phase4_shift_spec_sha256 mismatch for {sc_key}",
@@ -260,6 +264,23 @@ def verify_phase6_integrity(
                 desc["phase4_npz_sha256"] == s_doc["npz_sha256"],
                 f"Replay descriptor phase4_npz_sha256 mismatch for {sc_key}",
             )
+            _assert(
+                desc["replay_npz_sha256"] == compute_file_sha256(companion_npz),
+                f"Companion NPZ SHA mismatch for {sc_key}",
+            )
+            with np.load(companion_npz) as npz:
+                _assert("selected_target_positions" in npz, f"selected_target_positions missing in companion NPZ for {sc_key}")
+                _assert("replacement_values" in npz, f"replacement_values missing in companion NPZ for {sc_key}")
+                pos_bytes = npz["selected_target_positions"].astype(np.int64).tobytes()
+                _assert(
+                    compute_bytes_sha256(pos_bytes) == desc["selected_target_positions_sha256"],
+                    f"selected_target_positions SHA mismatch for {sc_key}",
+                )
+                vals_bytes = np.ascontiguousarray(npz["replacement_values"], dtype=np.float64).tobytes()
+                _assert(
+                    compute_bytes_sha256(vals_bytes) == desc["replacement_values_sha256"],
+                    f"replacement_values SHA mismatch for {sc_key}",
+                )
             desc_copy = dict(desc)
             del desc_copy["replay_descriptor_sha256"]
             _assert(

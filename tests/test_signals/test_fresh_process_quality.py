@@ -3,6 +3,7 @@
 import importlib.util
 from pathlib import Path
 import tempfile
+import numpy as np
 import pandas as pd
 import pytest
 import yaml
@@ -65,3 +66,80 @@ def test_fresh_process_quality_with_empty_cache():
             assert "ari_condition" in qr
             assert "delta_ari" in qr
             assert "quality_record_sha256" in qr
+
+
+def test_k_provenance_independent_of_labels(monkeypatch):
+    """Verify that K is loaded from signal record/manifest and NEVER from len(np.unique(y_src))."""
+    with open(PROJECT_ROOT / "configs" / "signals.yaml") as f:
+        sig_cfg = yaml.safe_load(f)
+    with open(PROJECT_ROOT / "configs" / "preprocessing.yaml") as f:
+        prep_cfg = yaml.safe_load(f)
+    with open(PROJECT_ROOT / "configs" / "shifts.yaml") as f:
+        shift_cfg = yaml.safe_load(f)
+
+    # Monkeypatch read_parquet for labels to return only 2 unique classes
+    orig_read_parquet = pd.read_parquet
+
+    def mock_read_parquet(path, *args, **kwargs):
+        df = orig_read_parquet(path, *args, **kwargs)
+        if "labels.parquet" in str(path).replace("\\", "/"):
+            # Collapse all labels to 2 classes (0 and 1)
+            return pd.DataFrame({"label": np.zeros(len(df), dtype=int)})
+        return df
+
+    monkeypatch.setattr(pd, "read_parquet", mock_read_parquet)
+
+    # Signal record has K=3 (canonical for iris)
+    iris_recs = [{
+        "dataset_id": "iris",
+        "outer_fold": 0,
+        "condition": "clean",
+        "method": "fcm_adaptive",
+        "seed": 1,
+        "K": 3,
+    }]
+
+    cache = SignalCache()
+    with tempfile.TemporaryDirectory() as tmpdir:
+        qual_records = run_quality_pass_b(
+            project_root=PROJECT_ROOT,
+            signal_records=iris_recs,
+            sig_cfg=sig_cfg,
+            prep_cfg=prep_cfg,
+            shift_cfg=shift_cfg,
+            cache=cache,
+            out_dir=Path(tmpdir),
+            dataset_classes={"iris": 3},
+        )
+        assert len(qual_records) == 1
+        m_src = cache.get_source_model("iris", 0, "fcm_adaptive", 1)
+        # Model must have been fitted with K=3, NOT K=1 or K=2 from tampered labels!
+        assert m_src.cluster_centers_.shape[0] == 3
+
+
+def test_inconsistent_k_in_records_rejected():
+    """Verify that inconsistent K values in signal records for same method/seed raise ValueError."""
+    with open(PROJECT_ROOT / "configs" / "signals.yaml") as f:
+        sig_cfg = yaml.safe_load(f)
+    with open(PROJECT_ROOT / "configs" / "preprocessing.yaml") as f:
+        prep_cfg = yaml.safe_load(f)
+    with open(PROJECT_ROOT / "configs" / "shifts.yaml") as f:
+        shift_cfg = yaml.safe_load(f)
+
+    inconsistent_recs = [
+        {"dataset_id": "iris", "outer_fold": 0, "condition": "clean", "method": "fcm_adaptive", "seed": 1, "K": 3},
+        {"dataset_id": "iris", "outer_fold": 0, "condition": "scale_severe", "method": "fcm_adaptive", "seed": 1, "K": 4},
+    ]
+    cache = SignalCache()
+    with tempfile.TemporaryDirectory() as tmpdir:
+        with pytest.raises(ValueError, match="Inconsistent K values"):
+            run_quality_pass_b(
+                project_root=PROJECT_ROOT,
+                signal_records=inconsistent_recs,
+                sig_cfg=sig_cfg,
+                prep_cfg=prep_cfg,
+                shift_cfg=shift_cfg,
+                cache=cache,
+                out_dir=Path(tmpdir),
+                dataset_classes={"iris": 3},
+            )
