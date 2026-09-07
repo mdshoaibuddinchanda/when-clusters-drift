@@ -58,6 +58,10 @@ from clusterdrift.shifts.hashing import (
     atomic_write_csv,
     atomic_write_json,
 )
+from clusterdrift.shifts.replay import (
+    build_local_overlap_replay_descriptor,
+    replay_frozen_shift,
+)
 from clusterdrift.signals.covariate import (
     compute_chunked_rbf_kernel_sum,
     compute_mmd_b2,
@@ -65,7 +69,7 @@ from clusterdrift.signals.covariate import (
     derive_source_median_bandwidth,
 )
 from clusterdrift.signals.divergence import compute_normalized_js_divergence
-from clusterdrift.signals.engine import SignalCache, SignalEngine
+from clusterdrift.signals.engine import SignalCache, SignalEngine, fit_clustering_model
 from clusterdrift.signals.entropy import compute_entropy_shift, compute_normalized_entropy
 from clusterdrift.signals.hashing import (
     build_phase6_input_lock,
@@ -265,6 +269,82 @@ def run_mechanism_tests(out_dir: Path, project_root: Path) -> List[Dict[str, Any
 
 
 # ---------------------------------------------------------------------------
+# Offline Preparation: Sparse Feature-Only Local-Overlap Replay Descriptors
+# ---------------------------------------------------------------------------
+
+def prepare_offline_replay(
+    project_root: Path,
+    sig_cfg: Dict[str, Any],
+    commit_sha: Optional[str] = None,
+) -> List[Path]:
+    """Materialize sparse feature-only local-overlap replay descriptors.
+
+    OFFLINE EXPERIMENT CONSTRUCTION ONLY.
+    Uses labels once to extract affected feature coordinates and replacement values
+    from the frozen Phase-4 generator, verifies exact frame equivalence, and writes
+    the descriptors to data/signals/offline_shift_replay/.
+    Does NOT calculate signals or clustering metrics.
+    """
+    print("\n[OFFLINE SHIFT REPLAY] Preparing sparse local-overlap replay descriptors...")
+    t0 = time.perf_counter()
+    datasets = sig_cfg["validation"]["datasets"]
+    fold = sig_cfg["validation"]["outer_fold"]
+    conditions = [c for c in sig_cfg["validation"]["conditions"] if c.startswith("local_overlap")]
+
+    out_base = project_root / "data" / "signals" / "offline_shift_replay"
+    created_paths: List[Path] = []
+
+    for ds in datasets:
+        ds_dir = project_root / "data" / "canonical" / "controlled" / ds
+        df_X = pd.read_parquet(ds_dir / "features.parquet")
+        df_y = pd.read_parquet(ds_dir / "labels.parquet")
+        fold_p = project_root / "data" / "splits" / "controlled" / ds / f"fold_{fold}.npz"
+        with np.load(fold_p) as npz:
+            src_idx = npz["source_indices"]
+            tgt_idx = npz["target_indices"]
+
+        X_src_raw = df_X.iloc[src_idx].copy().reset_index(drop=True)
+        X_tgt_raw = df_X.iloc[tgt_idx].copy().reset_index(drop=True)
+        y_src_raw = df_y.iloc[src_idx].to_numpy().ravel()
+        y_tgt_raw = df_y.iloc[tgt_idx].to_numpy().ravel()
+
+        with open(ds_dir / "metadata.json", "r", encoding="utf-8") as f:
+            meta = json.load(f)
+        roles = meta.get("feature_roles", {c: "numeric" for c in X_src_raw.columns})
+
+        for cond in conditions:
+            spec_path = project_root / "data" / "shifts" / "specs" / ds / f"fold_{fold}" / f"{cond}.json"
+            if not spec_path.exists():
+                print(f"  [SKIP] Spec not found: {spec_path}")
+                continue
+
+            desc = build_local_overlap_replay_descriptor(
+                X_target_raw=X_tgt_raw,
+                y_target_raw=y_tgt_raw,
+                X_source_raw=X_src_raw,
+                y_source_raw=y_src_raw,
+                roles=roles,
+                dataset_id=ds,
+                outer_fold=fold,
+                condition=cond,
+                phase4_spec_path=spec_path,
+                project_root=project_root,
+                commit_sha=commit_sha,
+            )
+
+            out_dir = out_base / ds / f"fold_{fold}"
+            out_dir.mkdir(parents=True, exist_ok=True)
+            out_path = out_dir / f"{cond}.json"
+            atomic_write_json(out_path, desc, indent=2)
+            created_paths.append(out_path)
+            print(f"  [SAVED] {out_path.relative_to(project_root)} (hash: {desc['replay_descriptor_sha256'][:16]}...)")
+
+    elapsed = time.perf_counter() - t0
+    print(f"[OFFLINE SHIFT REPLAY COMPLETE] Materialized {len(created_paths)} replay descriptors in {elapsed:.2f}s")
+    return created_paths
+
+
+# ---------------------------------------------------------------------------
 # Pass A: Label-Free Signal Generation
 # ---------------------------------------------------------------------------
 
@@ -284,7 +364,6 @@ def process_dataset_signals(
     project_root: Path,
 ) -> List[SignalResult]:
     """Execute Pass A label-free signal computation for all scenarios of a dataset."""
-    engine_shift = ShiftEngine(shift_cfg, project_root=project_root)
     signal_engine = SignalEngine(
         signals_cfg=sig_cfg,
         alignment_cfg=alignment_cfg,
@@ -294,7 +373,7 @@ def process_dataset_signals(
     probes_dir = project_root / "data" / "probes"
     prep_config_sha = compute_file_sha256(project_root / "configs" / "preprocessing.yaml")
 
-    # Load raw source features and roles
+    # Load raw source features and roles (NO labels)
     X_src_raw, meta = load_raw_source_features(ds, fold, project_root)
     roles = meta.get("feature_roles", {col: "numeric" for col in X_src_raw.columns})
 
@@ -315,7 +394,7 @@ def process_dataset_signals(
         A_R = load_reference_probe_matrix(ds, fold, ref_positions, src_prep, project_root)
         cache.put_transformed_bank(ref_desc.probe_bank_sha256, A_R)
 
-    # Load raw target features
+    # Load raw target features (NO labels)
     ds_dir = project_root / "data" / "canonical" / "controlled" / ds
     df_X = pd.read_parquet(ds_dir / "features.parquet")
     fold_p = project_root / "data" / "splits" / "controlled" / ds / f"fold_{fold}.npz"
@@ -330,28 +409,21 @@ def process_dataset_signals(
             continue
         with open(shift_spec_path, "r", encoding="utf-8") as f:
             s_doc = json.load(f)
-        shift_spec_sha = compute_file_sha256(shift_spec_path)
+        shift_spec_sha = s_doc["shift_spec_sha256"]
+        shift_spec_file_sha = compute_file_sha256(shift_spec_path)
 
-        # For offline supervised shift reconstruction ONLY (Phase 4 generator requirements)
-        # Pass A does NOT provide labels to SignalEngine
-        y_tgt_rec, y_src_rec = None, None
-        if cond.startswith("local_overlap") or cond.startswith("class_prevalence"):
-            df_y = pd.read_parquet(ds_dir / "labels.parquet")
-            with np.load(fold_p) as npz:
-                y_src_rec = df_y.iloc[npz["source_indices"]].to_numpy().ravel()
-                y_tgt_rec = df_y.iloc[npz["target_indices"]].to_numpy().ravel()
-
-        shift_res = engine_shift.generate_shift(
+        # Strictly label-free shift replay
+        shift_res = replay_frozen_shift(
+            X_target_raw=X_tgt_raw,
             dataset_id=ds,
             outer_fold=fold,
             condition=cond,
-            X_target=X_tgt_raw,
-            X_source=X_src_raw,
+            phase4_spec_path=shift_spec_path,
+            X_source_raw=X_src_raw,
             roles=roles,
-            y_target=y_tgt_rec,
-            y_source=y_src_rec,
-            backend="numpy",
+            project_root=project_root,
         )
+        shift_replay_sha = shift_res.metadata.get("replay_descriptor_sha256")
         X_tgt_shifted_trans = src_prep.transform(shift_res.X_shifted)
 
         # Paired current probe bank A_t^C (cached)
@@ -378,8 +450,12 @@ def process_dataset_signals(
                     ref_bank_sha256=ref_desc.probe_bank_sha256,
                     cur_bank_sha256=cur_desc.probe_bank_sha256,
                     shift_spec_sha256=shift_spec_sha,
+                    shift_spec_file_sha256=shift_spec_file_sha,
+                    shift_replay_sha256=shift_replay_sha,
                 )
                 results.append(res)
+
+    return results
 
     return results
 
@@ -517,11 +593,17 @@ def run_quality_pass_b(
 
         # Precompute clean ARI Q_0 for each (method, seed)
         clean_q0_map: Dict[Tuple[str, int], float] = {}
+        X_src_trans = None
         unique_method_seeds = set((r["method"], int(r["seed"])) for r in recs)
         for meth, seed in unique_method_seeds:
             m_src = cache.get_source_model(ds, fold, meth, seed)
             if m_src is None:
-                raise RuntimeError(f"Source model missing from cache for {ds} {fold} {meth} {seed}")
+                # Fresh process support: fit source model on source-only preprocessed features
+                if X_src_trans is None:
+                    X_src_trans = src_prep.transform(X_src_raw)
+                K_val = len(np.unique(y_src_raw))
+                m_src = fit_clustering_model(method=meth, K=K_val, seed=seed, X=X_src_trans)
+                cache.put_source_model(ds, fold, meth, seed, m_src)
             pred_clean = m_src.predict(X_tgt_clean_trans)
             q0 = float(adjusted_rand_index(y_tgt_raw, pred_clean))
             clean_q0_map[(meth, seed)] = q0
@@ -782,6 +864,7 @@ def generate_summary(
 def main():
     parser = argparse.ArgumentParser(description="Phase 6 Structural Signal Engine Runner.")
     parser.add_argument("--dry-run", action="store_true", help="Print expected execution counts and exit")
+    parser.add_argument("--prepare-offline-replay", action="store_true", help="Materialize sparse local-overlap replay descriptors")
     parser.add_argument("--mechanism-tests", action="store_true", help="Run 9 mechanism verification fixtures only")
     parser.add_argument("--signals-only", action="store_true", help="Run Pass A label-free signal generation only")
     parser.add_argument("--quality-only", action="store_true", help="Run Pass B evaluation-only quality targets")
@@ -842,6 +925,12 @@ def main():
         print(f"  unique D_X scenarios = {unique_dx}")
         sys.exit(0)
 
+    # 2.5 Prepare Offline Replay Descriptors
+    if args.prepare_offline_replay:
+        commit_sha = args.commit_sha or get_current_git_commit(project_root)
+        prepare_offline_replay(project_root, sig_cfg, commit_sha=commit_sha)
+        sys.exit(0)
+
     # Determine parallelism
     if args.jobs == "auto":
         n_jobs = min(4, os.cpu_count() or 1)
@@ -852,7 +941,12 @@ def main():
     out_dir.mkdir(parents=True, exist_ok=True)
     cache = SignalCache()
 
-    # 3. Mechanism Tests
+    # 3. Offline Replay Preparation (if --all)
+    if args.all:
+        commit_sha = args.commit_sha or get_current_git_commit(project_root)
+        prepare_offline_replay(project_root, sig_cfg, commit_sha=commit_sha)
+
+    # 4. Mechanism Tests
     if args.mechanism_tests or args.all:
         run_mechanism_tests(out_dir, project_root)
         if args.mechanism_tests and not args.all:

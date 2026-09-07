@@ -189,6 +189,34 @@ class SignalCache:
             }
 
 
+def fit_clustering_model(
+    method: str,
+    K: int,
+    seed: int,
+    X: np.ndarray,
+) -> Any:
+    """Fit unsupervised clustering model with locked hyperparameter policy."""
+    if method == "fcm_adaptive":
+        m = FCM(
+            n_clusters=K,
+            random_state=seed,
+            fuzzifier_policy="dimension_adaptive",
+        )
+    elif method == "gmm":
+        m = GMM(
+            n_clusters=K,
+            random_state=seed,
+            covariance_type="full",
+            n_init=1,
+            reg_covar=1e-6,
+        )
+    else:
+        raise ValueError(f"Unsupported clustering method for Phase 6: {method}")
+
+    m.fit(X)
+    return m
+
+
 class SignalEngine:
     """Orchestrates label-free structural signal generation and conventional controls."""
 
@@ -213,25 +241,7 @@ class SignalEngine:
         X: np.ndarray,
     ) -> Any:
         """Fit unsupervised clustering model with locked hyperparameter policy."""
-        if method == "fcm_adaptive":
-            m = FCM(
-                n_clusters=K,
-                random_state=seed,
-                fuzzifier_policy="dimension_adaptive",
-            )
-        elif method == "gmm":
-            m = GMM(
-                n_clusters=K,
-                random_state=seed,
-                covariance_type="full",
-                n_init=1,
-                reg_covar=1e-6,
-            )
-        else:
-            raise ValueError(f"Unsupported clustering method for Phase 6: {method}")
-
-        m.fit(X)
-        return m
+        return fit_clustering_model(method=method, K=K, seed=seed, X=X)
 
     def compute_signals(
         self,
@@ -248,6 +258,8 @@ class SignalEngine:
         ref_bank_sha256: str,
         cur_bank_sha256: str,
         shift_spec_sha256: str,
+        shift_spec_file_sha256: str = "",
+        shift_replay_sha256: Optional[str] = None,
     ) -> SignalResult:
         """Compute all label-free structural signals and conventional controls for a scenario."""
         t_tot_start = time.perf_counter()
@@ -470,6 +482,8 @@ class SignalEngine:
             "reference_bank_sha256": ref_bank_sha256,
             "current_bank_sha256": cur_bank_sha256,
             "shift_spec_sha256": shift_spec_sha256,
+            "shift_spec_file_sha256": shift_spec_file_sha256,
+            "shift_replay_sha256": shift_replay_sha256,
             "source_model_fingerprint": fp_src,
             "candidate_model_fingerprint": fp_cand,
             "alignment_permutation": [int(x) for x in align_res.permutation],

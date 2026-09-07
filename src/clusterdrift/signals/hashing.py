@@ -56,6 +56,7 @@ def compute_signal_record_sha256(rec: Dict[str, Any]) -> str:
         "reference_bank_sha256": rec["reference_bank_sha256"],
         "current_bank_sha256": rec["current_bank_sha256"],
         "shift_spec_sha256": rec["shift_spec_sha256"],
+        "shift_spec_file_sha256": rec.get("shift_spec_file_sha256", ""),
         "source_model_fingerprint": rec["source_model_fingerprint"],
         "candidate_model_fingerprint": rec["candidate_model_fingerprint"],
         "alignment_permutation": rec["alignment_permutation"] if isinstance(rec["alignment_permutation"], list) else json.loads(rec["alignment_permutation"]),

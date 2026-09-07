@@ -10,7 +10,7 @@ from clusterdrift.signals.divergence import (
     check_probability_simplex,
     compute_normalized_js_divergence,
 )
-from clusterdrift.signals.engine import SignalCache, SignalEngine
+from clusterdrift.signals.engine import SignalCache, SignalEngine, fit_clustering_model
 from clusterdrift.signals.entropy import compute_entropy_shift, compute_normalized_entropy
 from clusterdrift.signals.hashing import (
     build_phase6_input_lock,
@@ -50,6 +50,7 @@ __all__ = [
     # Engine and cache
     "SignalEngine",
     "SignalCache",
+    "fit_clustering_model",
     "SignalResult",
     "QualityResult",
     # Divergence

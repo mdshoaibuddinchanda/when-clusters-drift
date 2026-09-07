@@ -7,7 +7,7 @@ Ensures strict decoupling:
 
 from dataclasses import asdict, dataclass
 import json
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 
 @dataclass(frozen=True)
@@ -32,6 +32,8 @@ class SignalResult:
     reference_bank_sha256: str
     current_bank_sha256: str
     shift_spec_sha256: str
+    shift_spec_file_sha256: str
+    shift_replay_sha256: Optional[str]
 
     source_model_fingerprint: str
     candidate_model_fingerprint: str
@@ -91,6 +93,8 @@ class SignalResult:
         d["alignment_permutation"] = json.dumps(self.alignment_permutation)
         d["mass_source_current"] = json.dumps(self.mass_source_current)
         d["mass_candidate_current"] = json.dumps(self.mass_candidate_current)
+        if d.get("shift_replay_sha256") is None:
+            d["shift_replay_sha256"] = ""
         return d
 
 

@@ -16,6 +16,7 @@ import numpy as np
 import pandas as pd
 import yaml
 
+from clusterdrift.shifts.hashing import compute_bytes_sha256
 from clusterdrift.signals.hashing import (
     compute_canonical_dict_sha256,
     compute_file_sha256,
@@ -102,6 +103,38 @@ def verify_phase6_integrity(
         lock_doc["signal_protocol_sha256"] == proto_sha,
         "signal_protocol_sha256 matches current config",
     )
+    _assert(
+        lock_doc["phase5_probe_manifest_sha256"] == compute_file_sha256(root / "data" / "probes" / "probe_manifest.json"),
+        "phase5_probe_manifest_sha256 matches data/probes/probe_manifest.json",
+    )
+    _assert(
+        lock_doc["phase4_shift_manifest_sha256"] == compute_file_sha256(root / "data" / "shifts" / "shift_manifest.json"),
+        "phase4_shift_manifest_sha256 matches data/shifts/shift_manifest.json",
+    )
+    _assert(
+        lock_doc["phase2_split_manifest_sha256"] == compute_file_sha256(root / "data" / "splits" / "split_manifest.json"),
+        "phase2_split_manifest_sha256 matches data/splits/split_manifest.json",
+    )
+    _assert(
+        lock_doc["phase2_preprocessing_config_sha256"] == compute_file_sha256(root / "configs" / "preprocessing.yaml"),
+        "phase2_preprocessing_config_sha256 matches configs/preprocessing.yaml",
+    )
+    _assert(
+        lock_doc["phase1_datasets_manifest_sha256"] == compute_file_sha256(root / "data" / "manifests" / "datasets.json"),
+        "phase1_datasets_manifest_sha256 matches data/manifests/datasets.json",
+    )
+    _assert(
+        lock_doc["methods_config_sha256"] == compute_file_sha256(root / "configs" / "methods.yaml"),
+        "methods_config_sha256 matches configs/methods.yaml",
+    )
+    _assert(
+        lock_doc["alignment_config_sha256"] == compute_file_sha256(root / "configs" / "alignment.yaml"),
+        "alignment_config_sha256 matches configs/alignment.yaml",
+    )
+    _assert(
+        lock_doc["probe_config_sha256"] == compute_file_sha256(root / "configs" / "probes.yaml"),
+        "probe_config_sha256 matches configs/probes.yaml",
+    )
 
     if expected_producer_commit:
         _assert(
@@ -146,6 +179,98 @@ def verify_phase6_integrity(
     _assert(len(quality_keys) == len(df_qual), "No duplicate quality records")
     _assert(quality_keys == expected_keys, "Quality keys exactly match expected 192-key universe")
     _assert(signal_keys == quality_keys, "Signal keys and quality keys are strictly identical")
+
+    # 4. Upstream Scenario Identity and Probe Manifest Verification (Sections 16 & 17)
+    with open(root / "data" / "probes" / "probe_manifest.json", "r", encoding="utf-8") as f:
+        probe_manifest = json.load(f)
+    ref_probe_map: Dict[Tuple[str, int], str] = {}
+    cur_probe_map: Dict[Tuple[str, int, str], str] = {}
+    for p_entry in probe_manifest.get("probes", []):
+        if p_entry.get("bank_type") == "reference":
+            ref_probe_map[(p_entry["dataset_id"], int(p_entry["outer_fold"]))] = p_entry["probe_bank_sha256"]
+        elif p_entry.get("bank_type") == "current":
+            cur_probe_map[(p_entry["dataset_id"], int(p_entry["outer_fold"]), p_entry["condition"])] = p_entry["probe_bank_sha256"]
+
+    shift_spec_cache: Dict[Tuple[str, int, str], Tuple[Dict[str, Any], str]] = {}
+    for _, row in df_sig.iterrows():
+        sc_key = (row["dataset_id"], int(row["outer_fold"]), row["condition"])
+        if sc_key not in shift_spec_cache:
+            spec_file = root / "data" / "shifts" / "specs" / sc_key[0] / f"fold_{sc_key[1]}" / f"{sc_key[2]}.json"
+            _assert(spec_file.exists(), f"Phase-4 spec file exists for {sc_key}")
+            with open(spec_file, "r", encoding="utf-8") as f:
+                s_doc = json.load(f)
+            s_file_sha = compute_file_sha256(spec_file)
+            shift_spec_cache[sc_key] = (s_doc, s_file_sha)
+
+        s_doc, s_file_sha = shift_spec_cache[sc_key]
+
+        # Require row.shift_spec_sha256 == phase4_doc["shift_spec_sha256"]
+        _assert(
+            row["shift_spec_sha256"] == s_doc["shift_spec_sha256"],
+            f"shift_spec_sha256 mismatch for {sc_key}: {row['shift_spec_sha256']} vs {s_doc['shift_spec_sha256']}",
+        )
+        # Require row.shift_spec_file_sha256 == sha256(phase4_json_file)
+        if "shift_spec_file_sha256" in row and pd.notna(row["shift_spec_file_sha256"]):
+            _assert(
+                row["shift_spec_file_sha256"] == s_file_sha,
+                f"shift_spec_file_sha256 mismatch for {sc_key}: {row['shift_spec_file_sha256']} vs {s_file_sha}",
+            )
+
+        # Require reference_bank_sha256 and current_bank_sha256 exist in Phase-5 probe manifest
+        exp_ref = ref_probe_map.get((row["dataset_id"], int(row["outer_fold"])))
+        exp_cur = cur_probe_map.get((row["dataset_id"], int(row["outer_fold"]), row["condition"]))
+        _assert(exp_ref is not None, f"Reference bank not found in Phase-5 manifest for {sc_key}")
+        _assert(exp_cur is not None, f"Current bank not found in Phase-5 manifest for {sc_key}")
+        _assert(
+            row["reference_bank_sha256"] == exp_ref,
+            f"reference_bank_sha256 mismatch for {sc_key}: {row['reference_bank_sha256']} vs {exp_ref}",
+        )
+        _assert(
+            row["current_bank_sha256"] == exp_cur,
+            f"current_bank_sha256 mismatch for {sc_key}: {row['current_bank_sha256']} vs {exp_cur}",
+        )
+
+        # Section 17 Replay identity verification
+        if row["condition"].startswith("class_prevalence"):
+            npz_file = root / "data" / "shifts" / "specs" / sc_key[0] / f"fold_{sc_key[1]}" / f"{sc_key[2]}.npz"
+            _assert(npz_file.exists(), f"Class prevalence NPZ exists for {sc_key}")
+            _assert(compute_file_sha256(npz_file) == s_doc["npz_sha256"], f"NPZ file SHA mismatch for {sc_key}")
+            with np.load(npz_file) as npz:
+                _assert("row_index_map" in npz, f"row_index_map in NPZ for {sc_key}")
+                row_bytes = npz["row_index_map"].tobytes()
+                _assert(
+                    compute_bytes_sha256(row_bytes) == s_doc["metadata"]["resampling_index_sha256"],
+                    f"Resampling index SHA mismatch for {sc_key}",
+                )
+
+        if row["condition"].startswith("local_overlap"):
+            desc_file = root / "data" / "signals" / "offline_shift_replay" / sc_key[0] / f"fold_{sc_key[1]}" / f"{sc_key[2]}.json"
+            _assert(desc_file.exists(), f"Local overlap replay descriptor exists for {sc_key}")
+            with open(desc_file, "r", encoding="utf-8") as f:
+                desc = json.load(f)
+            _assert(
+                desc["phase4_shift_spec_sha256"] == s_doc["shift_spec_sha256"],
+                f"Replay descriptor phase4_shift_spec_sha256 mismatch for {sc_key}",
+            )
+            _assert(
+                desc["phase4_shift_spec_file_sha256"] == s_file_sha,
+                f"Replay descriptor phase4_shift_spec_file_sha256 mismatch for {sc_key}",
+            )
+            _assert(
+                desc["phase4_npz_sha256"] == s_doc["npz_sha256"],
+                f"Replay descriptor phase4_npz_sha256 mismatch for {sc_key}",
+            )
+            desc_copy = dict(desc)
+            del desc_copy["replay_descriptor_sha256"]
+            _assert(
+                desc["replay_descriptor_sha256"] == compute_canonical_dict_sha256(desc_copy),
+                f"Replay descriptor self-hash recomputation mismatch for {sc_key}",
+            )
+            if "shift_replay_sha256" in row and pd.notna(row["shift_replay_sha256"]) and row["shift_replay_sha256"] != "":
+                _assert(
+                    row["shift_replay_sha256"] == desc["replay_descriptor_sha256"],
+                    f"Signal row shift_replay_sha256 mismatch for {sc_key}",
+                )
 
     # 4. Recompute Signal Record SHA256 Hashes
     for _, row in df_sig.iterrows():

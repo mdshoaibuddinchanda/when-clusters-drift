@@ -48,6 +48,10 @@ from clusterdrift.shifts.validation import (
     audit_preprocessing_transformation,
     verify_severity_monotonicity,
 )
+from clusterdrift.shifts.replay import (
+    build_local_overlap_replay_descriptor,
+    replay_frozen_shift,
+)
 
 __all__ = [
     "ALL_CONDITIONS",
@@ -80,4 +84,6 @@ __all__ = [
     "atomic_write_json",
     "atomic_write_csv",
     "atomic_write_npz",
+    "replay_frozen_shift",
+    "build_local_overlap_replay_descriptor",
 ]
