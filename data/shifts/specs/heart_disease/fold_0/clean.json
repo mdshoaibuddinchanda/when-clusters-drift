@@ -1,0 +1,20 @@
+{
+  "condition": "clean",
+  "dataset_id": "heart_disease",
+  "derived_seed": 1579433418,
+  "family": "clean",
+  "metadata": {
+    "family": "clean",
+    "severity": "none"
+  },
+  "npz_relpath": "data/shifts/specs/heart_disease/fold_0/clean.npz",
+  "npz_sha256": "e2f2fa83171b408331b1e04ae0341a7d34d27ab930957a5d948eaa9663bf5ddc",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "57f96fd43eb94f3f3fc406418326526170e788182d04bde090d90c7f5caed3ca",
+  "severity": "none",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "1be7a470b3c060ddff9cb00d18e90223c2ed8b1272f126057d22611a424a5576",
+  "status": "APPLICABLE"
+}

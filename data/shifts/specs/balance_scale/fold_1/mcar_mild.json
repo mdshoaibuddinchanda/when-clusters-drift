@@ -1,0 +1,31 @@
+{
+  "condition": "mcar_mild",
+  "dataset_id": "balance_scale",
+  "derived_seed": 124733870,
+  "family": "mcar",
+  "metadata": {
+    "eligible_cell_count": 500,
+    "family": "mcar",
+    "mask_sha256": "7bf720177f2b7f148ad328474c02d5b2ed3ed715e11be784327d8dc1053b3f49",
+    "newly_masked_cell_count": 50,
+    "per_feature_added_missingness": {
+      "left-distance": 13,
+      "left-weight": 14,
+      "right-distance": 11,
+      "right-weight": 12
+    },
+    "realized_new_missing_fraction": 0.1,
+    "severity": "mild",
+    "target_missing_fraction": 0.1
+  },
+  "npz_relpath": "data/shifts/specs/balance_scale/fold_1/mcar_mild.npz",
+  "npz_sha256": "35fb0c2c08f2c8bf61253d5b49afe12337673c99a8136ca87d1681abb8ed9b9e",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "9551ebe48f11fe04c81ecb4dd649e371ec3abde6d5fc7c0f3a381732d40dc4bb",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "06e9c3b47b3e579cc0e8d09265dc50dccd29c2992db4e16455efd9254a9bfdb4",
+  "status": "APPLICABLE"
+}

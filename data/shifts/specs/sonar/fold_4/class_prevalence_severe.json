@@ -1,0 +1,34 @@
+{
+  "condition": "class_prevalence_severe",
+  "dataset_id": "sonar",
+  "derived_seed": 119349663,
+  "family": "class_prevalence",
+  "metadata": {
+    "anchor_class": "Rock",
+    "family": "class_prevalence",
+    "multiplier": 4.0,
+    "original_class_proportions": {
+      "Mine": 0.5853658536585366,
+      "Rock": 0.4146341463414634
+    },
+    "resampling_index_sha256": "c401e0391d9c47d4e25025dcfa2597cc3c5b820957015892026c8f5213fe00ef",
+    "severity": "severe",
+    "shifted_class_proportions": {
+      "Mine": 0.2682926829268293,
+      "Rock": 0.7317073170731707
+    },
+    "total_variation_distance": 0.31707317073170727,
+    "unique_row_fraction": 0.5609756097560976,
+    "unique_target_rows": 23
+  },
+  "npz_relpath": "data/shifts/specs/sonar/fold_4/class_prevalence_severe.npz",
+  "npz_sha256": "07ec9f82bd3e62f956a7fb48804974f5e36e9b5d8e47040862c41ce9687f5672",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "4d5b19cc4cef3923c4a976a62400bbd0ed83e8d502c71d9b39f538fa31d53104",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "980524819c68fd669724acd23ee9434eaf99e6ea4fd934b951f32f96bec4c38d",
+  "status": "APPLICABLE"
+}

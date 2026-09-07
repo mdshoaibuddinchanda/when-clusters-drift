@@ -1,0 +1,28 @@
+{
+  "condition": "outliers_severe",
+  "dataset_id": "letter_recognition",
+  "derived_seed": 922106743,
+  "family": "outliers",
+  "metadata": {
+    "eligible_feature_count": 16,
+    "family": "outliers",
+    "noise_sha256": "cb2e12d7c1003238ee11716b3911f96f03c1415f7b756880d6e21b6e108bab22",
+    "realized_standardized_displacement": 3.288964736683694,
+    "row_fraction": 0.15,
+    "row_selection_sha256": "2f5446bcc9a96d6fecb82111e0fad76f32a4b57103b6858fa24e96f6920a389a",
+    "selected_row_count": 600,
+    "severity": "severe",
+    "shock_scale": 3.0,
+    "student_t_df": 3
+  },
+  "npz_relpath": "data/shifts/specs/letter_recognition/fold_1/outliers_severe.npz",
+  "npz_sha256": "8584518ab9f3725a5c56be1ea0390d0898ba16699982be6a456d07b4f86cd4df",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "92d05360c8093e58dc55de309dacbd3aa4d3554eee0b805ed97550b7e91645bb",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "1c621767bd1bf2df55c5821c6481f621457a0c9ce35b9ae1deaa61dd57260e7f",
+  "status": "APPLICABLE"
+}

@@ -1,0 +1,35 @@
+{
+  "condition": "location_severe",
+  "dataset_id": "glass",
+  "derived_seed": 389872343,
+  "family": "location",
+  "metadata": {
+    "delta": 1.0,
+    "eligible_feature_count": 9,
+    "family": "location",
+    "feature_fraction": 0.3,
+    "realized_standardized_displacement": 1.0,
+    "selected_feature_count": 3,
+    "selected_features": [
+      "RI",
+      "Al",
+      "Na"
+    ],
+    "severity": "severe",
+    "source_sds": {
+      "Al": 0.5071075630429466,
+      "Na": 0.7819239192401498,
+      "RI": 0.00272924294735802
+    }
+  },
+  "npz_relpath": "data/shifts/specs/glass/fold_2/location_severe.npz",
+  "npz_sha256": "59137ac6814e63f235c2191f8a4b390264b5d0dfeca73590b731fb07c365088d",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "2f7b500172027a6ff7d4e518980d1cc3c750a4058e24e67e92495fe2650b1b49",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "d75c570e0c5b3b4a4c4c8144b6bfede548a8357391eb536f5940f705a1eb1171",
+  "status": "APPLICABLE"
+}

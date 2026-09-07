@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_severe",
+  "dataset_id": "haberman_survival",
+  "derived_seed": 1835811535,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 2,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.3,
+    "noise_seed": 1789583323,
+    "noise_sha256": "d262854b3ff7a97be8fe95c272d6a2d6450a86d6f09b5af58b32e84611bf7315",
+    "rms_standardized_perturbation": 0.30810188564470087,
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/haberman_survival/fold_4/measurement_noise_severe.npz",
+  "npz_sha256": "8b4e6ba67efb7960628523edabf0cad1cc57ff5e000d5a3cc496d5ea6c331857",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "d3d060cfb2d2b3d42657e84a31368eecb0ca37660a399f1d39123b73a5eb08f2",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "3d2c9f0e0dde8f3aaf34a45df6a073f7202641bbda158b6545a6eb567acc5eb6",
+  "status": "APPLICABLE"
+}

@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_severe",
+  "dataset_id": "ionosphere",
+  "derived_seed": 1809906351,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 33,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.3,
+    "noise_seed": 245792492,
+    "noise_sha256": "b7fef71fdf935ec6a94474e6b1a7481147c8f05ac2355ec6abf28c7c5573a4db",
+    "rms_standardized_perturbation": 0.29181746772126443,
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/ionosphere/fold_3/measurement_noise_severe.npz",
+  "npz_sha256": "31d47a1fd2646db7b98d67063afacf371045eeef7e38439a7d014fd138b6aaf6",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "a064db7fc0183b11be244c42be0a260a27b448d009223b57a9d3d61d66cdd05a",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "70e10520e600cad7c75ffbde9862c1f9a122023c5c02f6304fce76ea02fcb720",
+  "status": "APPLICABLE"
+}

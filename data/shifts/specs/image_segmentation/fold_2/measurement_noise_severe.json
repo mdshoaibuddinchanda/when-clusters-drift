@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_severe",
+  "dataset_id": "image_segmentation",
+  "derived_seed": 1925782001,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 17,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.3,
+    "noise_seed": 19743848,
+    "noise_sha256": "32b634ebe57cf71ffb07428f037e261d5971070271cd4cf32016dd02a69fcdb4",
+    "rms_standardized_perturbation": 0.30019205592497744,
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/image_segmentation/fold_2/measurement_noise_severe.npz",
+  "npz_sha256": "064428a7a23ba0feaea2d592a61aadcdfa80ffd1d70610745a899d15fbbd0d80",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "bfb2cd1f3a3afeb07c5b7695819f631ac6144b923a6834dfd517a29b61e6a9f1",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "82d0dd4ea16a0c20e370f7b6edc1f23dfcdeee4cf467b046829bd695ecdda043",
+  "status": "APPLICABLE"
+}

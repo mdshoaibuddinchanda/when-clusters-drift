@@ -1,0 +1,20 @@
+{
+  "condition": "clean",
+  "dataset_id": "mice_protein_expression",
+  "derived_seed": 1226647015,
+  "family": "clean",
+  "metadata": {
+    "family": "clean",
+    "severity": "none"
+  },
+  "npz_relpath": "data/shifts/specs/mice_protein_expression/fold_1/clean.npz",
+  "npz_sha256": "465fce548ec22319cb5553d8b8d3d976efb4ce13a087d79c23d5e1bac03f5475",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "802915f7223e6d5053ce884e9d3fbbd69f7568c5247b41b448e57e5cc395f90e",
+  "severity": "none",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "9f2082f92009617a34b7db8c6d8778d45a967ca7c149f0edfddfdca2303741d5",
+  "status": "APPLICABLE"
+}

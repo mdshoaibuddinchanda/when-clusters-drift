@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_severe",
+  "dataset_id": "yeast",
+  "derived_seed": 811163448,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 8,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.3,
+    "noise_seed": 970279261,
+    "noise_sha256": "8b4de69c563e6f816f02c32cc36cf366a3b398fb637ada4d2fb85a3fa586c342",
+    "rms_standardized_perturbation": 0.2996211254022408,
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/yeast/fold_1/measurement_noise_severe.npz",
+  "npz_sha256": "a47b17799a2f15bb2d208453f7c1876c73a240216abbd02714ac739f691f150e",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "f95b231713ce6bbc70174509a7e60e35b70470d43085e9dd25d09210e8f2a115",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "5fd85c0013306b0c6f057f346d8d9f8378cd18149783f9446781719f7eedcfe2",
+  "status": "APPLICABLE"
+}

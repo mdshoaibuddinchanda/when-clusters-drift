@@ -1,0 +1,28 @@
+{
+  "condition": "outliers_severe",
+  "dataset_id": "ionosphere",
+  "derived_seed": 726596416,
+  "family": "outliers",
+  "metadata": {
+    "eligible_feature_count": 33,
+    "family": "outliers",
+    "noise_sha256": "b2566f55cc50e0a57281c49504e1451e773f3607499abebd2326e4d384e65bd4",
+    "realized_standardized_displacement": 2.983054998266934,
+    "row_fraction": 0.15,
+    "row_selection_sha256": "a0a9506049bbfc8af8490abc158f016686ef870ab01449cee1e4b2d041cb2884",
+    "selected_row_count": 10,
+    "severity": "severe",
+    "shock_scale": 3.0,
+    "student_t_df": 3
+  },
+  "npz_relpath": "data/shifts/specs/ionosphere/fold_1/outliers_severe.npz",
+  "npz_sha256": "31d47a1fd2646db7b98d67063afacf371045eeef7e38439a7d014fd138b6aaf6",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "40bc8183d12740e148199aec4e59a9019ac852c58e5c33e0d61089e0120380d1",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "988fdc390e3cef945524cc8a07f9d30f0f8f1ec96591dc49df0b782afe243503",
+  "status": "APPLICABLE"
+}

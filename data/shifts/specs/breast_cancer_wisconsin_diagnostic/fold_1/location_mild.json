@@ -1,0 +1,47 @@
+{
+  "condition": "location_mild",
+  "dataset_id": "breast_cancer_wisconsin_diagnostic",
+  "derived_seed": 127069442,
+  "family": "location",
+  "metadata": {
+    "delta": 0.5,
+    "eligible_feature_count": 30,
+    "family": "location",
+    "feature_fraction": 0.3,
+    "realized_standardized_displacement": 0.5,
+    "selected_feature_count": 9,
+    "selected_features": [
+      "worst smoothness",
+      "worst concavity",
+      "worst radius",
+      "mean concavity",
+      "worst symmetry",
+      "smoothness error",
+      "concavity error",
+      "radius error",
+      "mean compactness"
+    ],
+    "severity": "mild",
+    "source_sds": {
+      "concavity error": 0.03188862965912908,
+      "mean compactness": 0.05478036858133892,
+      "mean concavity": 0.08100144240965625,
+      "radius error": 0.23778204876629347,
+      "smoothness error": 0.003053527100514266,
+      "worst concavity": 0.21511948355729898,
+      "worst radius": 4.701028303226935,
+      "worst smoothness": 0.023918175658211468,
+      "worst symmetry": 0.06514972130103815
+    }
+  },
+  "npz_relpath": "data/shifts/specs/breast_cancer_wisconsin_diagnostic/fold_1/location_mild.npz",
+  "npz_sha256": "8af4a325425a66cb16001c45c9e850514cce5f858a6f1e9f396585e4ee390717",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "d8899b761ee2fa43ce42ba05b724e1b5ebab4a3bba7a401083e1b4ae9ab042e0",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "cb8ee962877d1e86b0a1a578bf071c6473abedbb496319045b17e10c500cdff2",
+  "status": "APPLICABLE"
+}

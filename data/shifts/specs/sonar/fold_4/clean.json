@@ -1,0 +1,20 @@
+{
+  "condition": "clean",
+  "dataset_id": "sonar",
+  "derived_seed": 1462080170,
+  "family": "clean",
+  "metadata": {
+    "family": "clean",
+    "severity": "none"
+  },
+  "npz_relpath": "data/shifts/specs/sonar/fold_4/clean.npz",
+  "npz_sha256": "6ee79983a7fd0942d2f1414c6008db64d393f5ed9d1bbe76661912ad35942ee5",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "4d5b19cc4cef3923c4a976a62400bbd0ed83e8d502c71d9b39f538fa31d53104",
+  "severity": "none",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "f4c869fa4f2ddf05443f510708c5be7f074d26031a453e9abb9a39555abd77b4",
+  "status": "APPLICABLE"
+}

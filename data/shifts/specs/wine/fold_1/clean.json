@@ -1,0 +1,20 @@
+{
+  "condition": "clean",
+  "dataset_id": "wine",
+  "derived_seed": 1549341096,
+  "family": "clean",
+  "metadata": {
+    "family": "clean",
+    "severity": "none"
+  },
+  "npz_relpath": "data/shifts/specs/wine/fold_1/clean.npz",
+  "npz_sha256": "81609a36eacab27e4817a0894add1bbd6e569355761021937cfcb29fd22f4769",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "fc08a260b532b84cbb2e87d8d1bd9f6fb8f4152d018c7ca14d4e8b7898e364a9",
+  "severity": "none",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "b955fafdc1fec404418ffbfef7679e97289606f324d1f3ff378dc8248d4209d6",
+  "status": "APPLICABLE"
+}

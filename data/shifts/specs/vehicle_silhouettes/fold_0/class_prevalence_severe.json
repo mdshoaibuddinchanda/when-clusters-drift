@@ -1,0 +1,38 @@
+{
+  "condition": "class_prevalence_severe",
+  "dataset_id": "vehicle_silhouettes",
+  "derived_seed": 1264477110,
+  "family": "class_prevalence",
+  "metadata": {
+    "anchor_class": "van",
+    "family": "class_prevalence",
+    "multiplier": 4.0,
+    "original_class_proportions": {
+      "bus": 0.24705882352941178,
+      "opel": 0.2411764705882353,
+      "saab": 0.29411764705882354,
+      "van": 0.21764705882352942
+    },
+    "resampling_index_sha256": "9af930e3464078b7bf56ab65e3d5aa0a9ab93294a1a5d285c4553fa8a8dcb4c9",
+    "severity": "severe",
+    "shifted_class_proportions": {
+      "bus": 0.17058823529411765,
+      "opel": 0.16470588235294117,
+      "saab": 0.17058823529411765,
+      "van": 0.49411764705882355
+    },
+    "total_variation_distance": 0.27647058823529413,
+    "unique_row_fraction": 0.5647058823529412,
+    "unique_target_rows": 96
+  },
+  "npz_relpath": "data/shifts/specs/vehicle_silhouettes/fold_0/class_prevalence_severe.npz",
+  "npz_sha256": "fa3351c78b9712be765a5bcddb46f463dda40f4e9e1e7c6ea7eabc6ee7727d93",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "44aacec03b02adb0907f2d1642f93e5570db0e6a17bf82384057ee60ce866339",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "8abb15194a585807affe322326d5fd5b0d939b16efd494f25ada50222e156874",
+  "status": "APPLICABLE"
+}

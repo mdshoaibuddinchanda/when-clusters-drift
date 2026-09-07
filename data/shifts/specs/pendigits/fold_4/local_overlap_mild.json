@@ -1,0 +1,28 @@
+{
+  "condition": "local_overlap_mild",
+  "dataset_id": "pendigits",
+  "derived_seed": 747168824,
+  "family": "local_overlap",
+  "metadata": {
+    "alpha": 0.25,
+    "boundary_fraction": 0.3,
+    "family": "local_overlap",
+    "mean_competing_centroid_dist_after": 2.131358288273121,
+    "mean_competing_centroid_dist_before": 2.8418110510308283,
+    "mean_source_normalized_movement": 0.7104527627577071,
+    "overlap_strength_metric": 0.7104527627577073,
+    "selected_rows_count": 659,
+    "selected_rows_sha256": "d51eff566d0089e1096448e384f4ccecb2637607cf7cdaac958d332a647340f1",
+    "severity": "mild"
+  },
+  "npz_relpath": "data/shifts/specs/pendigits/fold_4/local_overlap_mild.npz",
+  "npz_sha256": "96cd77477fecaed9d60bc76c5aca809c3dabcb3597da0fb0ff33a7feb272961b",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "c6dfbef6aab51935515817a1bab551e0f5b73fed0c2ac4b11a762ab406d731e0",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "5930d2e9d73c1db667d6922f0642b2f8d14c6aca552c2def9211aa20bb113ed0",
+  "status": "APPLICABLE"
+}

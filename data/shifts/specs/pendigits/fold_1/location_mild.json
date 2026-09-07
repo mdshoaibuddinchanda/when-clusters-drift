@@ -1,0 +1,39 @@
+{
+  "condition": "location_mild",
+  "dataset_id": "pendigits",
+  "derived_seed": 1174996561,
+  "family": "location",
+  "metadata": {
+    "delta": 0.5,
+    "eligible_feature_count": 16,
+    "family": "location",
+    "feature_fraction": 0.3,
+    "realized_standardized_displacement": 0.5,
+    "selected_feature_count": 5,
+    "selected_features": [
+      "input15",
+      "input10",
+      "input14",
+      "input8",
+      "input7"
+    ],
+    "severity": "mild",
+    "source_sds": {
+      "input10": 27.239930101107557,
+      "input14": 33.08451445417208,
+      "input15": 41.72988932087384,
+      "input7": 30.59064339448308,
+      "input8": 29.936061107395666
+    }
+  },
+  "npz_relpath": "data/shifts/specs/pendigits/fold_1/location_mild.npz",
+  "npz_sha256": "4adba94771ee687d2aaf5ba0c6df9f1eb0a0612d91edb8650a3a23f3a4471552",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "ca35336e3101e379be1c793b0eed1fd2a9765c8ef9f7fa1556a367e28d664fe6",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "7435668354600c30a8be6f5c459678009b40c07163f37270b3baacfb66df6c7b",
+  "status": "APPLICABLE"
+}

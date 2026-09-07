@@ -1,0 +1,28 @@
+{
+  "condition": "outliers_severe",
+  "dataset_id": "isolet",
+  "derived_seed": 1701561785,
+  "family": "outliers",
+  "metadata": {
+    "eligible_feature_count": 617,
+    "family": "outliers",
+    "noise_sha256": "4b3f76b2e8b6abc703d30541ad6500d844efb3c35dd14a1d6682593e88f5529a",
+    "realized_standardized_displacement": 3.3103038831884413,
+    "row_fraction": 0.15,
+    "row_selection_sha256": "59259d2808891883e58ecda2c8aee895cdc0e158a5701163aa44ea3513b3f08d",
+    "selected_row_count": 234,
+    "severity": "severe",
+    "shock_scale": 3.0,
+    "student_t_df": 3
+  },
+  "npz_relpath": "data/shifts/specs/isolet/fold_3/outliers_severe.npz",
+  "npz_sha256": "fce158e0318413739672435e79d134209d6d62dae1fc7c78e03d250440bafae7",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "73dfcb2083c265cbfbcc107b349d0cb3eff93bfaa6fa2404a144ccdfb06a33fa",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "d865ad6639593aae4cc30e36ae972b121482ab92a36778f7e5cde77dd89ddaee",
+  "status": "APPLICABLE"
+}

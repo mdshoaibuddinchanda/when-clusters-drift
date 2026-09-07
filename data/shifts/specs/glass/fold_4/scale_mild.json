@@ -1,0 +1,45 @@
+{
+  "condition": "scale_mild",
+  "dataset_id": "glass",
+  "derived_seed": 1082235097,
+  "family": "scale",
+  "metadata": {
+    "eligible_feature_count": 9,
+    "eligible_features": [
+      "Al",
+      "Ba",
+      "Ca",
+      "Fe",
+      "K",
+      "Mg",
+      "Na",
+      "RI",
+      "Si"
+    ],
+    "family": "scale",
+    "realized_scale_measure": 1.25,
+    "scale_factor": 1.25,
+    "severity": "mild",
+    "source_means": {
+      "Al": 1.421220930232558,
+      "Ba": 0.18581395348837207,
+      "Ca": 8.924941860465117,
+      "Fe": 0.05383720930232558,
+      "K": 0.46563953488372084,
+      "Mg": 2.725116279069767,
+      "Na": 13.405872093023255,
+      "RI": 1.5183226744186042,
+      "Si": 72.68982558139534
+    }
+  },
+  "npz_relpath": "data/shifts/specs/glass/fold_4/scale_mild.npz",
+  "npz_sha256": "8e23e089bfc73e62528e4663599c6afd7f211404cfd92e63a1f6cf4aeac9f029",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "94e26642649a2f7e77b7dee6f8705e31560ed56a612c7a242caf302b7c3959fb",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "74223c4ff26d984374cb4ae4925bf14ebbe19d6e2be5ef106bb1cbf6e65f8f00",
+  "status": "APPLICABLE"
+}

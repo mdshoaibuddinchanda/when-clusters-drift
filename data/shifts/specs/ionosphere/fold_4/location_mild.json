@@ -1,0 +1,49 @@
+{
+  "condition": "location_mild",
+  "dataset_id": "ionosphere",
+  "derived_seed": 1625663590,
+  "family": "location",
+  "metadata": {
+    "delta": 0.5,
+    "eligible_feature_count": 33,
+    "family": "location",
+    "feature_fraction": 0.3,
+    "realized_standardized_displacement": 0.5,
+    "selected_feature_count": 10,
+    "selected_features": [
+      "a33",
+      "a04",
+      "a06",
+      "a11",
+      "a20",
+      "a26",
+      "a07",
+      "a05",
+      "a29",
+      "a24"
+    ],
+    "severity": "mild",
+    "source_sds": {
+      "a04": 0.45031380808910554,
+      "a05": 0.5125260151264822,
+      "a06": 0.46229082811344685,
+      "a07": 0.4966399750837006,
+      "a11": 0.5543108063309697,
+      "a20": 0.5067893346297063,
+      "a24": 0.5241257198742673,
+      "a26": 0.503831691059615,
+      "a29": 0.5637170609559068,
+      "a33": 0.5240885788296428
+    }
+  },
+  "npz_relpath": "data/shifts/specs/ionosphere/fold_4/location_mild.npz",
+  "npz_sha256": "31d47a1fd2646db7b98d67063afacf371045eeef7e38439a7d014fd138b6aaf6",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "2106cdca0ff8a7bd9cb50ce0e4b15f7602529f41844c303d726ccd244d91f8dd",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "85709ab50d1ac57a85503f0f6eb3cda6de191a7b3d1a8b2810365f6a8611a85a",
+  "status": "APPLICABLE"
+}

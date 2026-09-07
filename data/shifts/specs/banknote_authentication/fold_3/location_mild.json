@@ -1,0 +1,33 @@
+{
+  "condition": "location_mild",
+  "dataset_id": "banknote_authentication",
+  "derived_seed": 438778926,
+  "family": "location",
+  "metadata": {
+    "delta": 0.5,
+    "eligible_feature_count": 4,
+    "family": "location",
+    "feature_fraction": 0.3,
+    "realized_standardized_displacement": 0.5,
+    "selected_feature_count": 2,
+    "selected_features": [
+      "V1",
+      "V3"
+    ],
+    "severity": "mild",
+    "source_sds": {
+      "V1": 2.839832099128878,
+      "V3": 4.3122385046855225
+    }
+  },
+  "npz_relpath": "data/shifts/specs/banknote_authentication/fold_3/location_mild.npz",
+  "npz_sha256": "d61e269cc808f8c03fb941ee8987763162c6463614b50b2183d22677d9b82b2c",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "b0445c8d5e684f593a48a92b2627117f6df43eec0cfdcc65a667cfc5b30940d1",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "411a0b8dd53d074b79da8d8eea8c42974e09ca597dd98ef0e94b1fa0ea9f197f",
+  "status": "APPLICABLE"
+}

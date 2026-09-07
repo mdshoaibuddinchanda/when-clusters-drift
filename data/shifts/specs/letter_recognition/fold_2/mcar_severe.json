@@ -1,0 +1,43 @@
+{
+  "condition": "mcar_severe",
+  "dataset_id": "letter_recognition",
+  "derived_seed": 1733483785,
+  "family": "mcar",
+  "metadata": {
+    "eligible_cell_count": 64000,
+    "family": "mcar",
+    "mask_sha256": "4947157bb2deca2720fb0bc9f41db765c91fa4a6680ad3a033d5acf26d5b6f66",
+    "newly_masked_cell_count": 19200,
+    "per_feature_added_missingness": {
+      "high": 1223,
+      "onpix": 1196,
+      "width": 1153,
+      "x-bar": 1194,
+      "x-box": 1206,
+      "x-ege": 1196,
+      "x2bar": 1261,
+      "x2ybr": 1251,
+      "xegvy": 1117,
+      "xy2br": 1173,
+      "xybar": 1195,
+      "y-bar": 1209,
+      "y-box": 1167,
+      "y-ege": 1213,
+      "y2bar": 1211,
+      "yegvx": 1235
+    },
+    "realized_new_missing_fraction": 0.3,
+    "severity": "severe",
+    "target_missing_fraction": 0.3
+  },
+  "npz_relpath": "data/shifts/specs/letter_recognition/fold_2/mcar_severe.npz",
+  "npz_sha256": "8584518ab9f3725a5c56be1ea0390d0898ba16699982be6a456d07b4f86cd4df",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "d40a1d6db37256a2b95dfb8bb67f4fa345806ef6e06608d002c5398f4332fc25",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "cfcde1876b5389137f73ce2b56cffc52825f28208cc1616df7ce6cdc75d1de78",
+  "status": "APPLICABLE"
+}

@@ -1,0 +1,258 @@
+{
+  "created_from_git_commit": "8a471625af6301fe8941090748c8057e08324326",
+  "excluded_natural_datasets_and_reason": {
+    "tableshift": "Natural-shift benchmark suite serves as external real-world distribution shift controls and must not receive synthetic controlled perturbations",
+    "whyshift": "Natural-shift benchmark suite serves as external real-world distribution shift controls and must not receive synthetic controlled perturbations"
+  },
+  "global_shift_seed": 2026090704,
+  "included_controlled_datasets": [
+    "aps_failure",
+    "balance_scale",
+    "bank_marketing",
+    "banknote_authentication",
+    "breast_cancer_wisconsin_diagnostic",
+    "dermatology",
+    "ecoli",
+    "electricity",
+    "glass",
+    "haberman_survival",
+    "heart_disease",
+    "human_activity_recognition",
+    "image_segmentation",
+    "ionosphere",
+    "iris",
+    "isolet",
+    "letter_recognition",
+    "madelon",
+    "mice_protein_expression",
+    "optdigits",
+    "pendigits",
+    "pima_diabetes",
+    "satimage",
+    "seeds",
+    "sonar",
+    "spambase",
+    "vehicle_silhouettes",
+    "waveform",
+    "wine",
+    "yeast"
+  ],
+  "included_controlled_datasets_count": 30,
+  "included_split_hashes": {
+    "aps_failure": [
+      "ae9dd4baa6c1a35412f29ad8ee8c1920c1486f1b862d2e7d7aa958cb72d28775",
+      "14f7f995ce9e2a31ff874913dcb1839348218c6329754c7798246cbfc9011d1e",
+      "2750b08e7e8425992adcf6d2c1af10d276366899a78a6f8a5f538ac9afa7cd5b",
+      "995dcb517e7629b5a0627b1eeac317b58e08f6720625e149bb5dab492fba21af",
+      "b12ca6c75502a13c05389e29f0354a2a72feb08f67111cb56b5a18e6df7d16cf"
+    ],
+    "balance_scale": [
+      "68a0292046cbc541e393fcc7b80e328e8475804c84f36502f17f06f2a033808a",
+      "4e53626068b215263f4edd4b0818219bd9c64c46611a339f29317d5197a72c6d",
+      "67f437ba77ec2401b107a9ed52c295cd0d5a0e119c07d26069389d52bc790b72",
+      "f3b2cc2af37a9e907e68b28e148b65872ae64d7353ebe55fa3031eebcdfa5b0d",
+      "757fbbbc17a5b7ed7a96388e7240238ff0aba1f14a4ca3d2ced5b193663e89fc"
+    ],
+    "bank_marketing": [
+      "68d5f66a8847dd2ec1f22efe6cfa5de6831080c9dbf0c25b212ba1f05d020188",
+      "d610bc4b003aa5a58f5ef03e352a80c5f22fb3cd6a8a110cd6d4ebb21cbbe946",
+      "cbb9988c9204b73ebd25e09a8126f6c00a6a5b652a88ea4a6f0fdf585d4035b5",
+      "7abd00cb8f37811a01dd2666abf0de8601e9afd7c21d1a0be308dcdc3b524ddc",
+      "ea22fe82e6f86bf1bc840f1681e159d768f640c0184d1051c11aea0e459925e1"
+    ],
+    "banknote_authentication": [
+      "18c6118508e8f4e1a3f53a17016358dd9f9b8f79eebd074a3ff40f4a76a62c62",
+      "9b2eaab8d85a4c87713c4623dcb4eae9bfd11c4c02c01057ed9f0419cab26fea",
+      "f79a855d850993064650d5aa6ec6d5ce22d5b72ee1ae6aadd62eb6658db59bd8",
+      "46afc6ea93d5c3d6f39bcad26d665139a48845a4f2f8e34b8e3a41e14bc3b2e9",
+      "af2fc58770268e27e62c94765866bef24961d8891f06414607f8f335919d023e"
+    ],
+    "breast_cancer_wisconsin_diagnostic": [
+      "646cf29abad2919daeac47518ba311c5d9af5dfc379b326c7ed5d61ac18c83e9",
+      "e7fea7ea9fd5a3f3105e70f2ca455dae691ab93f58bc0e7ee9c0cf7d7322a529",
+      "6bddf42ed5b3793b5093a14a0885390afd548a10fd0ee16854a47bdc7698beed",
+      "c5d10c60129ce12589783eaa6e0232d3b3c61b07284f2da613906826465ae37c",
+      "20d2fb54aa2cc6dc34e7b9cb003cba0fb88afa5bf232be13882e9ec327833c40"
+    ],
+    "dermatology": [
+      "a7857f4b16a02944207a555e1c442e0740d0346e07945526ff2b13bc15b2e3c5",
+      "5034c0f78c16c67109caee481eefadd9b25ab81910e5493935d7177d24bad376",
+      "f3ab88d02fd68d87654be8edb76d04d02200d6efb7095a5898817760974f4e43",
+      "966b208de3ec4742e20592b594d89430eb718fdc502074796f9e0e1332345300",
+      "debe497588c14431a9cabd4cfee4d53a9c93999e723d1a36a850c2a4772566eb"
+    ],
+    "ecoli": [
+      "74fe13526d7071fe3afa8fcbdb927f93f26a381f2511383037eae3b01f7b24c9",
+      "474c4b94d9f0cfbe6321bcbc7a07c47e799db88a35c9b220d4704987768dd91b",
+      "e4d431111afcc8ff67ddc033261cab9a1212216d7e17d7064d6f89924fe7deaf",
+      "50dd21dbf7c0f8361142e85b7e78264504e9b222458d55f93e00a21dbd946899",
+      "255521340b00fa603e26e32fbc2625ff6365b1301d1f3aaafce6b944ed423c9e"
+    ],
+    "electricity": [
+      "596d1ef52c49b76c14d1d3c5b4a23d393c128fe40fd00e886758cc8d2f6c890a",
+      "13d09eba39111ea5c9921fbce35c2bf8b5d20970fcf97a518cbb30e863f08406",
+      "0583b213a78c6c2eb950fb3aeb97edeed34e1371e815e57b83f0b1359db30b4c",
+      "2ec470966322ecc2c2c390b146e3f65786173d3d79d54acdd24d26d46458ce6b",
+      "94da8b16786a72bfbe27fd0b3d2c554dc124ab397284dfab963bf96cccd25106"
+    ],
+    "glass": [
+      "44f5604b9c76bec2052351942088e6ce2444cb6cf3cff2854150a3e89db6142e",
+      "d5dc3beb3088c6cd7ffac4e8e95aedeac6bb12ec1e0f09f2344f40f16bf9d566",
+      "d5ac6610f0cd328e63338ffec0ab21f89a7c4f594aa06d0fa64843d5e013f9fe",
+      "b5b240b9c7a28f37affe853c325a8d99cd17806b30b173d04eff6d0a7899ce22",
+      "0f7a5f6403ae3dde792f1e26f06db46c2e057d57976a23d5f4afce365c1d09ec"
+    ],
+    "haberman_survival": [
+      "210047dab9b1abdc47cd2794ddbd66a913a4a1d0fd82d4b6019ca7b5cb06aa7c",
+      "fff710198d4b31cb1bb0a557266b661b614373be276a039029be638523a9a44c",
+      "5f8b4b7f96ce1dbc4c9f6b19e5ebaa5b7de18a66a14c03fcc9c3eff4dbfce7c1",
+      "abd855a7b150c0789620907014e0f192f388190388a40b76d7627d7d80daad4d",
+      "0a20d50f619c81de2cf22c371f5166b229b9c48432afa7a7d3c1159013725bdb"
+    ],
+    "heart_disease": [
+      "3dfbe38b551ce3a7063c2bfb8513930b9ec2648733466465eddc07146a469f40",
+      "6f5725f0b56a99e00283e4c3a04380258dcedc81acc5d8f662206a142ab23f7c",
+      "fca1f52e6fe12962e3b99170cad3d4f1007c629b3b80a814d67d1da06262a99b",
+      "2c033a1520252d2d1aa9d849949249c50b66cc6eeafb25ecfa949b52c90e98eb",
+      "8bc48b9c64f8e71c71af1a0afc89452f825f58f10b20569444cf4151c7395600"
+    ],
+    "human_activity_recognition": [
+      "c2870a13ea5f8fe8927ea1bc81610998491786c1a87d5c4340b244cea23593bf",
+      "6243c6fe38f9aeb195e99d985bc05fdad54c47f4001fcc55eb7aea271475ae7f",
+      "51217aedb92f72494d7fbb6860073636e276157f1371578ee4b174c62aea5a21",
+      "88677dc7b85d602201858707e8065b37318eb833163321044c3ef0dc274acd4a",
+      "c647df7320cadd42be2249b2db1490f79f864093df04e3c3de2b7aa96b68191c"
+    ],
+    "image_segmentation": [
+      "bd2cf9582c9dd03e35a28c931c77b01ab53851a5e60dd359c461a40477d01264",
+      "1e58af200255d9b70a7faf8dd8e6c8775fc102faea9c1639208a8b6a179a1927",
+      "4e7b9e2fb45585f293afe87f39a270fbb87f65668ab71dbf24ca92626843a3f5",
+      "9d50d09cae83ec1376c4a701e64c75128a93174e4ebfbeb606b4dd009f95a324",
+      "d31de3dcb92c7b7213e9cb6e3600d6a8d5434836a6b122eb15fa34e454f23328"
+    ],
+    "ionosphere": [
+      "56ecdfd68fd3aa5c17bbedb958937e56c9a4807ba829d1d21f1c281609bbd42c",
+      "d4f2f979b88613e6b03efe664661592e5aa2e078cf0859bb4d992dba31d40b34",
+      "014f51910d7bcc6b815456f3a0a344e4ca85cf6f242a6581c480f0fee9a4a3f0",
+      "8bea26ecacc7f613d4c723e9da3315dd013363bf7fd115b46787a6da0ea7771c",
+      "b3a39c59c4e9aebccb55d43cc1ed18217804d0912d8b4c42617cde484a32cef1"
+    ],
+    "iris": [
+      "c36b10697a673cdb45708e54f86cb5e11fa8134cd3b679aa9c816753e3ba73c5",
+      "bb9a07869c314a9b100ba0b9c64bd389359358b888baed4a93740bfb362c55f1",
+      "38fa1abb5fb68ef67c3d9245391911902085522c332a9f89d7902e7eb8c339c4",
+      "6cb89578606cc6a70caf5e1895538b9fcf3d691881a2d33f793cb177359de63f",
+      "4a6a82af2c457ca31cf887e3b4eea1187300560b34c884e05f9115710d63d52d"
+    ],
+    "isolet": [
+      "d211fecb8b1d71975a52bd7973beffa59b9805f347716a4295a7e3a3ebdd45a6",
+      "9e80e96e2b6de359d67c9cc1ce283fd85644e47fde3cbe178ca02b338c6fcb1a",
+      "ff0658b0fc8cfd5689d83c9b497cee7a23228bdd655f8bfad4d89578e4e34a7d",
+      "580c24dde1b3a998b615da9079aaf8e5f6f4cd8a4e5a4257a4178068e973fc88",
+      "8c1e81b441e59b09f5c74d1da0fdc136d8787be5d001afe4ea3f2bcc8573899c"
+    ],
+    "letter_recognition": [
+      "b98e2d916f62e2ae03bf90c80ab2883376f108009a1090d067e482d2da49fce9",
+      "e7a32aaf328a3f386db815442cd8a72e608a89b5df137da3030a2ea7efc1f2ff",
+      "d1b571349fb18052e4a0dc6effaad1a0fb72e96b99de466153efda100bcfed48",
+      "e2c79360073f61895ae8b4a62b85098ef55f21d128c0c76c196c530ffd0a0c7c",
+      "27543d92cdc7f3867e8e69aab6ecd1c96c44f9e398e2139c001e88e5d96f684a"
+    ],
+    "madelon": [
+      "ec4b0272c0a815d4d6b55ce4036e6e53432c0ee85e34290d6397899c78de04d2",
+      "6443fb1d101258d134f88e4450ce0e9e6763f273d584cca035dbc9b5ec8cd4ac",
+      "a9b525068507667fab1403143c2a403f1003b31241093d0fc886fec1223175ec",
+      "aa09edc912d1b39f183a33f711250f5e0a3dfb103eafecc13466f3d6a3afbbfd",
+      "9dd4430f0479a21c9b4ec570b768466370c35664ae0be7df102f2a755975f855"
+    ],
+    "mice_protein_expression": [
+      "505bd99487b7f641d79bbcb4cfa8d7dad22ff312172ce6bb38591f00f540ca01",
+      "2bbff4ef3e3f5e8cf6fb3c49638196dfec323334c0fb7967969b2014dd037d61",
+      "cb81fbd4e2f8c6384d47086e3a8cde731464404f7a220b4ecadfed444edf16cd",
+      "53fbad812770b5eb62849184d4e2c3ac425a77bbcf93b5658db832a2e19bb1e8",
+      "8047e5b9d1452719cadfdadd1d440a44134462f246730e7d6c58d0921b727dec"
+    ],
+    "optdigits": [
+      "dfeabc29cdd2e9c18e0df746b7de32c512be884c8ab23da4a71ae16823860211",
+      "08e8bedc0b7348bc3e5389ccc0cddfab06f89579ada4837d7e5a3c39c777346e",
+      "3a17fb604a7b3996f8ee95538404559388923ac1fba64e6204803bc3bef4df27",
+      "ead2a7ec2cd465176128b758b618fb1361c545e4b371545b010457e1da08ff15",
+      "f570d1b311db9b40651493336b7e1723b5941b6b3eec86c92467af7d825de6d6"
+    ],
+    "pendigits": [
+      "0144cbf504545d30544d0a2744cb58e5d9043cf7e15fda371c31ab705634b6e1",
+      "abb4b2f01bf8d3521647ce5ae8698d52af8326fbaea63b37b5480470773dda31",
+      "918296fddf0550a4f2798838816446972a7726f2c15b4704058d36aaa48a389d",
+      "b6cf8ff5cdf6bd866b923f174131de257963851a3addf1655d6030fcc7f9f799",
+      "fb3a1f03d94bc2f8df143dbdecfdf0257959c5027fa3b1e8a26b416a1205d353"
+    ],
+    "pima_diabetes": [
+      "069a9cf4b188de92d57501533b368ef7ff56cd0a53b0adfb2e8e64cc36195b6f",
+      "21f1ab1d94b872b467bf13eec9623b16f406a729eb26198ea540ab48be2136ec",
+      "f9d06980fff3a754307f9c89a093f99d9a3567ad3f724698e1d6d7b8c6b99356",
+      "bd74bf28418f21a9c184bd2a77a1ffb5c48646116619711ea21781bf459dfa69",
+      "e02fd5ffcd31950c4bb1270767380360c8477164df1ad7fa3b6852246791060d"
+    ],
+    "satimage": [
+      "6702c8a9beeeb6834f37e02bd16c6af0981c7c4aad5d4c28b047c0174edaf4d1",
+      "0c1110cab3d1b121c098b1e0a9513da6488b4e76106abfa09273265135bc6904",
+      "b65eaaf4a94a6a64264ed02a23e17c21fc802afdef1eb1ac496bc0a772cead62",
+      "22db40e049ec5c851e8a92e8c34f555e23505bbaed0cc3a98fe002ca7d715441",
+      "56df9cd77d6877636b0f9a64f4e3e8413704b7d9b910ad1fcb7e541c2fe937b7"
+    ],
+    "seeds": [
+      "6190cc626346985d7dacd7cd93f9050f1186e13caf0e98eca3f5930f622f4106",
+      "2ccb4df34dbf15c985de4fc1165e14f29fe64ed286dbc1c03f8f65d13321ac29",
+      "7b515066ce5d5c2e2680c6d3e1e14dab76757aa118f35b8a660558ce1b936abf",
+      "081220798c2233b572ed5d44c60f518f8127f849da20c2fb988409697bdb7e1b",
+      "952f9b1b659fae3c73b52ec5ea0b9f626804405aeccd325aa9c4b009cbcb6e56"
+    ],
+    "sonar": [
+      "a854cfda83b58fde5db48b21f24a337946a6d03a6092b39f02e7b11763d940d5",
+      "461407a1a16af068e283653cdde7f4d844b98b33e42909a8f1b623ccf7681e26",
+      "ad40c02801c31d78fd9de0aaf1077b530e72a2ba87cde2c046472a03ce988215",
+      "551c3d9f4c6ef91ad124c8c674b3980538bdcbb3aab556fccb8bccef57de1f84",
+      "7ac192704aa24ae5cf9a3749567d20bb5767b1e88bf18e8116a7712be5ab1c59"
+    ],
+    "spambase": [
+      "ff515194344efa12a2ef5a3791c378e688d26dafd76c8dc73c1c33dbf06cb52d",
+      "159bb3454281401e090384151e54a67c27b71f8f514a757cf85ef6f466243a1b",
+      "4693fcc53bd9d729440b1ece06f55d7baec14a607d11cc5119c7c89b51ed0f8f",
+      "eefcddb6bfe101d2255a58a59c25fcdaf4a4916ec75fdaa17c9519403a929524",
+      "d7dcc2eac4dacf812b2f6f5454590c74ae2af63fbc457479a2b36bda1ab14d80"
+    ],
+    "vehicle_silhouettes": [
+      "8fb181b7f3cf76433272f3c88b84142661a5d5f38dd4a416d21f7e144cf1fc2a",
+      "ba9fb34472b827e48dfd3aa8501dc37cdc0af33bcba34861391fceca8276ed2b",
+      "06fab284801cd98f715399833260a65329e846f389fae42a9bec321243439061",
+      "911bf6bb927b2f14e969f443d7b22e913424e06bb64a4f465fc872a5b350970d",
+      "3cef10d260bccdb63fd9908dc7057b06e05687ebc5f408cd85193d690f99eb5d"
+    ],
+    "waveform": [
+      "6b6197c4e482b131fa681ece23cd29b7118a06874b98b0bb4e8b221d26c81c64",
+      "9685e69eac3bf56648ad7268d614f6a8e7d0fa961c6edfe0e40110cd2332acd1",
+      "1a9f6d277270478a1104233485d7ca9ff2c2704aa628901aab1bc542eed99b4f",
+      "010a5759a801113c60b92dbdbe1c3e0af21f44468a7c97d354a4e3f94d291efd",
+      "8f3c6a83729d4dd508ae74c2bf6aa9989422a3e0c3c7bf304c9659832638c177"
+    ],
+    "wine": [
+      "54059f271e21ca919c718d9829cd14720f29db021a7c86e8ed9044b3f5c52b20",
+      "05ddf4fe70533e5b5b9c4f6108650f66f8a8c614b8657b0804fa0ea783100527",
+      "708f5caf7cd6eb467c14d306a4c78abeec64801f7a831926e1dd9806718c6dad",
+      "56f372c7fc20257a9ddb9fd149c2cdfc87b0744ebd0961cc5282c09c79a51461",
+      "99e747bb35211a3cd7a317296eac74825227a052bc6e8ce107075f87259a7f19"
+    ],
+    "yeast": [
+      "edce52833a708026d9b5bac39b0fb62bff4728c99fb5a1aa8b6cca53ab2b781d",
+      "f23394d5362fbd200a5b47441298f155094075d93e504e11421a8a6d9c275918",
+      "674099aaafa2a26cfb4dfb18055d4f77d74b940337b46cb9f5dda63b0be1ea42",
+      "ccc5d730917affe73065f26269f953078ee86c79382cbbe7e8cc636435967b4d",
+      "b029df72831d9b981b9284640f5838ae4982ce76935b2a1ed16d4ef511d125bc"
+    ]
+  },
+  "phase2_preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "phase2_split_manifest_sha256": "25106924ad5e1b8dd0b8ceeab65659a2a163e82b561ceca12bec1588aae52ff5",
+  "phase3_freeze_commit": "8a471625af6301fe8941090748c8057e08324326",
+  "protocol_version": 1,
+  "shift_config_sha256": "4374d14ce856af5b8fb6d77ee52d93170e84f9a069279b69202246526b9541d9"
+}

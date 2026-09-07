@@ -1,0 +1,20 @@
+{
+  "condition": "clean",
+  "dataset_id": "haberman_survival",
+  "derived_seed": 1136104809,
+  "family": "clean",
+  "metadata": {
+    "family": "clean",
+    "severity": "none"
+  },
+  "npz_relpath": "data/shifts/specs/haberman_survival/fold_3/clean.npz",
+  "npz_sha256": "8b4e6ba67efb7960628523edabf0cad1cc57ff5e000d5a3cc496d5ea6c331857",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "43b99555b06ecf16b9e9462a5dde6d173766e1fa5a94be72e1ae9242bc4765b2",
+  "severity": "none",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "4b0e430e6276325ef8623dfda7a759a62ff07715ec65422f883618bacdc1f4e5",
+  "status": "APPLICABLE"
+}

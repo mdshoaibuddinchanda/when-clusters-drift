@@ -1,0 +1,53 @@
+{
+  "condition": "scale_mild",
+  "dataset_id": "wine",
+  "derived_seed": 1791931454,
+  "family": "scale",
+  "metadata": {
+    "eligible_feature_count": 13,
+    "eligible_features": [
+      "alcalinity_of_ash",
+      "alcohol",
+      "ash",
+      "color_intensity",
+      "flavanoids",
+      "hue",
+      "magnesium",
+      "malic_acid",
+      "nonflavanoid_phenols",
+      "od280/od315_of_diluted_wines",
+      "proanthocyanins",
+      "proline",
+      "total_phenols"
+    ],
+    "family": "scale",
+    "realized_scale_measure": 1.25,
+    "scale_factor": 1.25,
+    "severity": "mild",
+    "source_means": {
+      "alcalinity_of_ash": 19.558450704225354,
+      "alcohol": 12.994225352112675,
+      "ash": 2.3747183098591544,
+      "color_intensity": 5.071197176056337,
+      "flavanoids": 2.0546478873239438,
+      "hue": 0.9552535211267604,
+      "magnesium": 100.80281690140845,
+      "malic_acid": 2.312676056338028,
+      "nonflavanoid_phenols": 0.35640845070422533,
+      "od280/od315_of_diluted_wines": 2.6275352112676056,
+      "proanthocyanins": 1.6476760563380282,
+      "proline": 756.4647887323944,
+      "total_phenols": 2.30330985915493
+    }
+  },
+  "npz_relpath": "data/shifts/specs/wine/fold_2/scale_mild.npz",
+  "npz_sha256": "81609a36eacab27e4817a0894add1bbd6e569355761021937cfcb29fd22f4769",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "28c22215eac00f286e05b7633d7585bee4d662701130adf2f36929f7aeb38ab1",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "df67a7306506aa7acf1ae1bd40eb944cb86ed598699d96efe66e45f9f3bde52d",
+  "status": "APPLICABLE"
+}

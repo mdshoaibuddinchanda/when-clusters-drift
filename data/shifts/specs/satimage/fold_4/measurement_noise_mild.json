@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_mild",
+  "dataset_id": "satimage",
+  "derived_seed": 55392939,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 36,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.1,
+    "noise_seed": 258981957,
+    "noise_sha256": "8a55353a1fb652957a69aa1d0fb31556901da8b8682b9f7e902428ff96729bb3",
+    "rms_standardized_perturbation": 0.0997565490236431,
+    "severity": "mild"
+  },
+  "npz_relpath": "data/shifts/specs/satimage/fold_4/measurement_noise_mild.npz",
+  "npz_sha256": "e4328f6a88dfc24abd21f591002f892f85231e5b99d73f297060ce934ad6739b",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "6279e499c3f9672262287b3f731a2582f6e2550a88502415252b42f2be8cf426",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "731a4c57c77b24559fceedfc57e541820d5e5c6de6f044d2bf04c75ab7644ef3",
+  "status": "APPLICABLE"
+}

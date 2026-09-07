@@ -1,0 +1,20 @@
+{
+  "condition": "clean",
+  "dataset_id": "electricity",
+  "derived_seed": 222314561,
+  "family": "clean",
+  "metadata": {
+    "family": "clean",
+    "severity": "none"
+  },
+  "npz_relpath": "data/shifts/specs/electricity/fold_3/clean.npz",
+  "npz_sha256": "7fe112e4787fa434edc006f330d44aa2d9f94ff3228f8aad835d681fdc715827",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "7ae39c6c8953eb34bb4d8c201eb19d6ab00adf9615d8f9561416ff69d19da261",
+  "severity": "none",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "480840801b285675a34e208e13646d7f6fb0377a42354a4f2bce6f83dd7ecad9",
+  "status": "APPLICABLE"
+}

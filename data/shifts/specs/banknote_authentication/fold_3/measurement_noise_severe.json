@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_severe",
+  "dataset_id": "banknote_authentication",
+  "derived_seed": 2138830851,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 4,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.3,
+    "noise_seed": 1882399086,
+    "noise_sha256": "040b2dc223e9424d3d9b3f704381a5d9f6cab12daa2bd82066692d928692daa3",
+    "rms_standardized_perturbation": 0.282849295462208,
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/banknote_authentication/fold_3/measurement_noise_severe.npz",
+  "npz_sha256": "d61e269cc808f8c03fb941ee8987763162c6463614b50b2183d22677d9b82b2c",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "b0445c8d5e684f593a48a92b2627117f6df43eec0cfdcc65a667cfc5b30940d1",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "1fb06ce198d7cf16053b772decefbe4b6c345d07a1b269d393938a3c9f113f26",
+  "status": "APPLICABLE"
+}

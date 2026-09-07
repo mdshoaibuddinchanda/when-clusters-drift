@@ -1,0 +1,20 @@
+{
+  "condition": "clean",
+  "dataset_id": "breast_cancer_wisconsin_diagnostic",
+  "derived_seed": 1327096536,
+  "family": "clean",
+  "metadata": {
+    "family": "clean",
+    "severity": "none"
+  },
+  "npz_relpath": "data/shifts/specs/breast_cancer_wisconsin_diagnostic/fold_0/clean.npz",
+  "npz_sha256": "8af4a325425a66cb16001c45c9e850514cce5f858a6f1e9f396585e4ee390717",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "dc79c355880503dafe6cabdddcdfb5b6ac1098eae95feb2d5ad1ac90026d7cb1",
+  "severity": "none",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "2f21e501acb0d0dd35be5b0b243942056dc5f8bbc8156e9dc17081450f877690",
+  "status": "APPLICABLE"
+}

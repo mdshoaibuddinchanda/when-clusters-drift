@@ -1,0 +1,34 @@
+{
+  "condition": "class_prevalence_severe",
+  "dataset_id": "bank_marketing",
+  "derived_seed": 595604643,
+  "family": "class_prevalence",
+  "metadata": {
+    "anchor_class": "2",
+    "family": "class_prevalence",
+    "multiplier": 4.0,
+    "original_class_proportions": {
+      "1": 0.8876354788763547,
+      "2": 0.11236452112364521
+    },
+    "resampling_index_sha256": "24d88c24eeafbecb7d59f8deb606f1b4256e198ed0bf858f659a9bcbe59af97a",
+    "severity": "severe",
+    "shifted_class_proportions": {
+      "1": 0.6625746516257465,
+      "2": 0.3374253483742535
+    },
+    "total_variation_distance": 0.22506082725060828,
+    "unique_row_fraction": 0.5687900906879009,
+    "unique_target_rows": 5143
+  },
+  "npz_relpath": "data/shifts/specs/bank_marketing/fold_3/class_prevalence_severe.npz",
+  "npz_sha256": "036a0c34e117b19bb02ef06e11d94b6201a908c9635c0dc02bb12938d720ccb8",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "8f951db2505fd12b16c4ac83a0bb0d603c10dc28a3da065b231f938cfc41aeba",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "45a39eda4cf6cc743ff6c758c64b232258ae6ad397d6d308854fed38f5718a4c",
+  "status": "APPLICABLE"
+}

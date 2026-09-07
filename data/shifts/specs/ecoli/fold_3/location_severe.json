@@ -1,0 +1,35 @@
+{
+  "condition": "location_severe",
+  "dataset_id": "ecoli",
+  "derived_seed": 438786591,
+  "family": "location",
+  "metadata": {
+    "delta": 1.0,
+    "eligible_feature_count": 7,
+    "family": "location",
+    "feature_fraction": 0.3,
+    "realized_standardized_displacement": 1.0,
+    "selected_feature_count": 3,
+    "selected_features": [
+      "alm1",
+      "chg",
+      "gvh"
+    ],
+    "severity": "severe",
+    "source_sds": {
+      "alm1": 0.2138352316563123,
+      "chg": 0.03048553804248462,
+      "gvh": 0.14890638715144094
+    }
+  },
+  "npz_relpath": "data/shifts/specs/ecoli/fold_3/location_severe.npz",
+  "npz_sha256": "820d919b1ee6b7f9a76cb72dcedb08ddf029e225ecdca20c6a5416a67910c7f7",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "e34f263bb6ff37a027b3d8a9031c850ae3dc6af50fb6f51eca2a9df25e86a106",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "94502824ada6010c0dd2ab608af782afdbbc22e387851d79d144188cc9eb8d12",
+  "status": "APPLICABLE"
+}

@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_severe",
+  "dataset_id": "iris",
+  "derived_seed": 631936166,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 4,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.3,
+    "noise_seed": 1865757020,
+    "noise_sha256": "7c6fb68ed21a1ee96c824cc82169cac95d9addc6f6f3f875fcf554a62c06ec95",
+    "rms_standardized_perturbation": 0.27348785081176663,
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/iris/fold_3/measurement_noise_severe.npz",
+  "npz_sha256": "9f218b164df513ef3e3e364428ab62a1c14419b17aa4df7bd41300d0deac2a03",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "51f66c973572e2c5157201f8a25e577069fc5c6f1181bdb8f3df41d79831c5ad",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "6a9124d0ba751fd6cb3adc3609bbe1b05b9aa7d5fbd1e882c23cf4878b7d310a",
+  "status": "APPLICABLE"
+}

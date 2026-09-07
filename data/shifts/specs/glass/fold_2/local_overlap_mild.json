@@ -1,0 +1,28 @@
+{
+  "condition": "local_overlap_mild",
+  "dataset_id": "glass",
+  "derived_seed": 89245609,
+  "family": "local_overlap",
+  "metadata": {
+    "alpha": 0.25,
+    "boundary_fraction": 0.3,
+    "family": "local_overlap",
+    "mean_competing_centroid_dist_after": 1.0506856057395089,
+    "mean_competing_centroid_dist_before": 1.4009141409860189,
+    "mean_source_normalized_movement": 0.35022853524651004,
+    "overlap_strength_metric": 0.35022853524651,
+    "selected_rows_count": 13,
+    "selected_rows_sha256": "139e5b4211a9429a4cbde7bbe86752272abdf2ef63f0e847b5291f7abc4b3ce9",
+    "severity": "mild"
+  },
+  "npz_relpath": "data/shifts/specs/glass/fold_2/local_overlap_mild.npz",
+  "npz_sha256": "59137ac6814e63f235c2191f8a4b390264b5d0dfeca73590b731fb07c365088d",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "2f7b500172027a6ff7d4e518980d1cc3c750a4058e24e67e92495fe2650b1b49",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "39cf16be974e85ad313478bf31bdbf586e1763c279c61b8386c982d054e34109",
+  "status": "APPLICABLE"
+}

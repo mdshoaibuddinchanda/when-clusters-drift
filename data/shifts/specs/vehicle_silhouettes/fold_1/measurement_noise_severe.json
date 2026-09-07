@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_severe",
+  "dataset_id": "vehicle_silhouettes",
+  "derived_seed": 1355682126,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 18,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.3,
+    "noise_seed": 93895576,
+    "noise_sha256": "b6078bf948cc32751e0f5a5aa088a20b49bd0b60f7a2688555dd77a28541b562",
+    "rms_standardized_perturbation": 0.304500870857249,
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/vehicle_silhouettes/fold_1/measurement_noise_severe.npz",
+  "npz_sha256": "ea69a6af400f66d7701f475608ac60c1bfb14785a6507291c34d9ac403e01178",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "9d62b15e4ee237d7d74dfb19e81d152e2d73e32b9fb7a479877eac7171425645",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "a85ae05592969e0512452319fe1438da6beff7ccfd2d7dd130d87b3dfa575eec",
+  "status": "APPLICABLE"
+}

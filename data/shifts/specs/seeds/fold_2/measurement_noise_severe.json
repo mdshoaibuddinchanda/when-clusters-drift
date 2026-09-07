@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_severe",
+  "dataset_id": "seeds",
+  "derived_seed": 1854436187,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 7,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.3,
+    "noise_seed": 1995067996,
+    "noise_sha256": "3883e7b44cfe3122c1e0325d039295d17cc01d751935f9e579dd0d64d1c909f5",
+    "rms_standardized_perturbation": 0.3046529032471452,
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/seeds/fold_2/measurement_noise_severe.npz",
+  "npz_sha256": "8e23e089bfc73e62528e4663599c6afd7f211404cfd92e63a1f6cf4aeac9f029",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "923ab25c075d1a4fc4e870ed1885d4c2f5233482a73320e7b9422fa2fe21416a",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "4d1a689581047f3093a3b3cd47c972f1bc87e80533a2b6d50d4a534543d0e2f2",
+  "status": "APPLICABLE"
+}

@@ -1,0 +1,28 @@
+{
+  "condition": "local_overlap_mild",
+  "dataset_id": "madelon",
+  "derived_seed": 581994465,
+  "family": "local_overlap",
+  "metadata": {
+    "alpha": 0.25,
+    "boundary_fraction": 0.3,
+    "family": "local_overlap",
+    "mean_competing_centroid_dist_after": 16.07459803850662,
+    "mean_competing_centroid_dist_before": 21.43279738467549,
+    "mean_source_normalized_movement": 5.358199346168872,
+    "overlap_strength_metric": 5.35819934616887,
+    "selected_rows_count": 156,
+    "selected_rows_sha256": "1a96b41ef7462c8bb63946287dae0cd259776c8cd2618425632a4658f4d88ecd",
+    "severity": "mild"
+  },
+  "npz_relpath": "data/shifts/specs/madelon/fold_4/local_overlap_mild.npz",
+  "npz_sha256": "ce79a088005e14d7f00a4b8cbaf8bfb6f83fce4f5c04bc519c552e58c068b1d9",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "db1d50203e4baba9b8452a78616095971e91d96aac0a52e2ac09393f867ed53c",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "73d2a1a24b9bcb85de0e5cd5eca4f1b842a200bbf109f4ce3580608e5ab257fc",
+  "status": "APPLICABLE"
+}

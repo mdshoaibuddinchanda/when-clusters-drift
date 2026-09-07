@@ -1,0 +1,28 @@
+{
+  "condition": "outliers_severe",
+  "dataset_id": "dermatology",
+  "derived_seed": 2053466899,
+  "family": "outliers",
+  "metadata": {
+    "eligible_feature_count": 1,
+    "family": "outliers",
+    "noise_sha256": "579505e8043396739e5c80f0da3393b8c1d9cebe86034d37b0fdab35811cb42f",
+    "realized_standardized_displacement": 3.1371748980880136,
+    "row_fraction": 0.15,
+    "row_selection_sha256": "30d821c385a0e53be289894b83ff50e03398031b6d4838212314e12e4f16afef",
+    "selected_row_count": 11,
+    "severity": "severe",
+    "shock_scale": 3.0,
+    "student_t_df": 3
+  },
+  "npz_relpath": "data/shifts/specs/dermatology/fold_0/outliers_severe.npz",
+  "npz_sha256": "edff644fbba5c2ae9d4a1e825ec2070ef5eaafe53f425ffa5f8cfc5390cb1dc3",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "afc8e5f0f42b0451ae90d05ec5145b2a64f04a7b9051de625c1ee6e2b7a99623",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "e806a2094d8b513bd55561a6e8a3f7ca000b0599216c9c9c1f891963b0ee6047",
+  "status": "APPLICABLE"
+}

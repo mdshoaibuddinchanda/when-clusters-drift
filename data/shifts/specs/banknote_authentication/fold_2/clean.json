@@ -1,0 +1,20 @@
+{
+  "condition": "clean",
+  "dataset_id": "banknote_authentication",
+  "derived_seed": 1923280284,
+  "family": "clean",
+  "metadata": {
+    "family": "clean",
+    "severity": "none"
+  },
+  "npz_relpath": "data/shifts/specs/banknote_authentication/fold_2/clean.npz",
+  "npz_sha256": "d61e269cc808f8c03fb941ee8987763162c6463614b50b2183d22677d9b82b2c",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "2cfab7d74277f5eda051b04c7c56c580fcf8db45e9b503125ea4425cfec339eb",
+  "severity": "none",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "d23ffcf1f04d953d66f378e3ae65351c0b7173f7fe96718107771df5a506a269",
+  "status": "APPLICABLE"
+}

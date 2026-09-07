@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_severe",
+  "dataset_id": "mice_protein_expression",
+  "derived_seed": 1723497527,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 77,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.3,
+    "noise_seed": 74002444,
+    "noise_sha256": "8cb03061d9cadab75a03e249d7e6768e2f4b459181b1f74e8f7a569b328fcdf9",
+    "rms_standardized_perturbation": 0.3000062697654442,
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/mice_protein_expression/fold_1/measurement_noise_severe.npz",
+  "npz_sha256": "465fce548ec22319cb5553d8b8d3d976efb4ce13a087d79c23d5e1bac03f5475",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "802915f7223e6d5053ce884e9d3fbbd69f7568c5247b41b448e57e5cc395f90e",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "d3b58aeb75ccd87ce4ad60aadd215edcc15906282ed8f8fe87711829afb970e3",
+  "status": "APPLICABLE"
+}

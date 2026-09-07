@@ -1,0 +1,20 @@
+{
+  "condition": "clean",
+  "dataset_id": "satimage",
+  "derived_seed": 2144854900,
+  "family": "clean",
+  "metadata": {
+    "family": "clean",
+    "severity": "none"
+  },
+  "npz_relpath": "data/shifts/specs/satimage/fold_0/clean.npz",
+  "npz_sha256": "e4328f6a88dfc24abd21f591002f892f85231e5b99d73f297060ce934ad6739b",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "4249424339d4c0d6d37bfa5ac456bb77a155df235a43f068505680bcf0372ba5",
+  "severity": "none",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "64b24ef278f1ba9399bc974f6413115d7186f24491b3b6b57c5da9d7b44ecef6",
+  "status": "APPLICABLE"
+}

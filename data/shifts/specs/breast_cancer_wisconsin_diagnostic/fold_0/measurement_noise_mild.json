@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_mild",
+  "dataset_id": "breast_cancer_wisconsin_diagnostic",
+  "derived_seed": 2118115746,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 30,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.1,
+    "noise_seed": 1630049384,
+    "noise_sha256": "3ebceef135ba0687cb63a74f89b5d223fee2877077414e19b5dcac4c1b941d98",
+    "rms_standardized_perturbation": 0.10112610611411663,
+    "severity": "mild"
+  },
+  "npz_relpath": "data/shifts/specs/breast_cancer_wisconsin_diagnostic/fold_0/measurement_noise_mild.npz",
+  "npz_sha256": "8af4a325425a66cb16001c45c9e850514cce5f858a6f1e9f396585e4ee390717",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "dc79c355880503dafe6cabdddcdfb5b6ac1098eae95feb2d5ad1ac90026d7cb1",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "2da3279fb0b4a2e966f8d76401d75b57b35d5e5d3c7d584d3b69fff030dd9cb8",
+  "status": "APPLICABLE"
+}

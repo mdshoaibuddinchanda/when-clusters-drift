@@ -1,0 +1,42 @@
+{
+  "condition": "class_prevalence_severe",
+  "dataset_id": "dermatology",
+  "derived_seed": 2120464967,
+  "family": "class_prevalence",
+  "metadata": {
+    "anchor_class": "6",
+    "family": "class_prevalence",
+    "multiplier": 4.0,
+    "original_class_proportions": {
+      "1": 0.3013698630136986,
+      "2": 0.2191780821917808,
+      "3": 0.1780821917808219,
+      "4": 0.1095890410958904,
+      "5": 0.1643835616438356,
+      "6": 0.0273972602739726
+    },
+    "resampling_index_sha256": "fc36b377f26351eecc31b0457d2c4a663d311ce1ef549545aa88959e58836b13",
+    "severity": "severe",
+    "shifted_class_proportions": {
+      "1": 0.3287671232876712,
+      "2": 0.2054794520547945,
+      "3": 0.1095890410958904,
+      "4": 0.1506849315068493,
+      "5": 0.136986301369863,
+      "6": 0.0684931506849315
+    },
+    "total_variation_distance": 0.1095890410958904,
+    "unique_row_fraction": 0.5753424657534246,
+    "unique_target_rows": 42
+  },
+  "npz_relpath": "data/shifts/specs/dermatology/fold_2/class_prevalence_severe.npz",
+  "npz_sha256": "b73c49e50a5784476acb580c13ac5bf2c17a5cfca4a71bdcb310c2f7c534c7f6",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "78e28fb8a44b404bf8b83d388f04ed9ce4ef9a877b4d98dad29497df358eb349",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "e47ae492e92b6698aeb2a2a7ced46c1d609c9e7aeab66f4e998559adb05e9d41",
+  "status": "APPLICABLE"
+}

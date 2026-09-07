@@ -1,0 +1,53 @@
+{
+  "condition": "location_severe",
+  "dataset_id": "waveform",
+  "derived_seed": 1807973134,
+  "family": "location",
+  "metadata": {
+    "delta": 1.0,
+    "eligible_feature_count": 40,
+    "family": "location",
+    "feature_fraction": 0.3,
+    "realized_standardized_displacement": 1.0,
+    "selected_feature_count": 12,
+    "selected_features": [
+      "x14",
+      "x13",
+      "x11",
+      "x35",
+      "x26",
+      "x22",
+      "x4",
+      "x18",
+      "x17",
+      "x12",
+      "x33",
+      "x5"
+    ],
+    "severity": "severe",
+    "source_sds": {
+      "x11": 1.6491279505220473,
+      "x12": 1.5381484938383791,
+      "x13": 1.6574604625438953,
+      "x14": 1.7620188332044417,
+      "x17": 1.6719351332131334,
+      "x18": 1.412067611847555,
+      "x22": 0.9981123544185849,
+      "x26": 0.9824670695680829,
+      "x33": 1.0117867030570826,
+      "x35": 1.000765373015427,
+      "x4": 1.424334723579731,
+      "x5": 1.676950830813471
+    }
+  },
+  "npz_relpath": "data/shifts/specs/waveform/fold_1/location_severe.npz",
+  "npz_sha256": "68dd82312817b86a6796ca10193f2f58b051376ea4bfbd9359eb2c28f2f018fe",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "f0131ed8e2b5b57d94dc9796e1db6dcb8ed89791ca9d2c792561c492d7dc2208",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "bc1257aed543a9fed64dfdca10b04c50680b2d4c7827148987ae60eac53d26a7",
+  "status": "APPLICABLE"
+}

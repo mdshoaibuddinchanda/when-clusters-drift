@@ -1,0 +1,31 @@
+{
+  "condition": "mcar_mild",
+  "dataset_id": "iris",
+  "derived_seed": 435513499,
+  "family": "mcar",
+  "metadata": {
+    "eligible_cell_count": 120,
+    "family": "mcar",
+    "mask_sha256": "917d3cdddc7087f7e43d1e477352e35151f23e1b19e679d3156fbf7beb055c28",
+    "newly_masked_cell_count": 12,
+    "per_feature_added_missingness": {
+      "petal length (cm)": 1,
+      "petal width (cm)": 2,
+      "sepal length (cm)": 4,
+      "sepal width (cm)": 5
+    },
+    "realized_new_missing_fraction": 0.1,
+    "severity": "mild",
+    "target_missing_fraction": 0.1
+  },
+  "npz_relpath": "data/shifts/specs/iris/fold_0/mcar_mild.npz",
+  "npz_sha256": "9f218b164df513ef3e3e364428ab62a1c14419b17aa4df7bd41300d0deac2a03",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "99c38e440f72a67c8c4a71bcabdfcc31123653151a1394a894a11254641f5f27",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "700e8194d3615b289b2c34ccf99588d772416ce2781c060d3dc8866c4f5aab2a",
+  "status": "APPLICABLE"
+}

@@ -1,0 +1,33 @@
+{
+  "condition": "location_mild",
+  "dataset_id": "balance_scale",
+  "derived_seed": 1212489978,
+  "family": "location",
+  "metadata": {
+    "delta": 0.5,
+    "eligible_feature_count": 4,
+    "family": "location",
+    "feature_fraction": 0.3,
+    "realized_standardized_displacement": 0.5,
+    "selected_feature_count": 2,
+    "selected_features": [
+      "right-weight",
+      "left-weight"
+    ],
+    "severity": "mild",
+    "source_sds": {
+      "left-weight": 1.4106892245198275,
+      "right-weight": 1.3920055167697558
+    }
+  },
+  "npz_relpath": "data/shifts/specs/balance_scale/fold_0/location_mild.npz",
+  "npz_sha256": "35fb0c2c08f2c8bf61253d5b49afe12337673c99a8136ca87d1681abb8ed9b9e",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "b51593ffd4f452fc119daa7e9ed0d580d45affadde837b94d52c95f5405df752",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "f6049f76fe8ca0c840242801106c84da7e348df3081d02b547e32949b966fbf5",
+  "status": "APPLICABLE"
+}

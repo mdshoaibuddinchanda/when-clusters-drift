@@ -1,0 +1,51 @@
+{
+  "condition": "location_severe",
+  "dataset_id": "satimage",
+  "derived_seed": 208788612,
+  "family": "location",
+  "metadata": {
+    "delta": 1.0,
+    "eligible_feature_count": 36,
+    "family": "location",
+    "feature_fraction": 0.3,
+    "realized_standardized_displacement": 1.0,
+    "selected_feature_count": 11,
+    "selected_features": [
+      "B2attr",
+      "C3attr",
+      "D4attr",
+      "B14attr",
+      "F30attr",
+      "F6attr",
+      "C27attr",
+      "E17attr",
+      "F24attr",
+      "A19attr",
+      "A7attr"
+    ],
+    "severity": "severe",
+    "source_sds": {
+      "A19attr": 1.0030343174867629,
+      "A7attr": 1.0037475327017145,
+      "B14attr": 0.9965573117609091,
+      "B2attr": 0.9972535631047205,
+      "C27attr": 1.0029005593816545,
+      "C3attr": 1.0047559030653719,
+      "D4attr": 1.005881434485607,
+      "E17attr": 0.9967777336032373,
+      "F24attr": 1.0025267421545294,
+      "F30attr": 0.9967587868671476,
+      "F6attr": 0.9964987758365013
+    }
+  },
+  "npz_relpath": "data/shifts/specs/satimage/fold_2/location_severe.npz",
+  "npz_sha256": "e4328f6a88dfc24abd21f591002f892f85231e5b99d73f297060ce934ad6739b",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "acf6070d4939e754765d534ac7c4221e25287adb3c7fcff3fffa40d6b4e8b3fa",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "d6169fe9fba7fca3a05788fcd441d94f59b537ec429b53ab310b91da62eb80d4",
+  "status": "APPLICABLE"
+}

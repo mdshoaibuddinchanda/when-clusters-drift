@@ -1,0 +1,30 @@
+{
+  "condition": "mcar_mild",
+  "dataset_id": "haberman_survival",
+  "derived_seed": 1977414330,
+  "family": "mcar",
+  "metadata": {
+    "eligible_cell_count": 183,
+    "family": "mcar",
+    "mask_sha256": "ef173037569abe559dc5220d7cc6731e141da7e066f06273b66399abce9523c8",
+    "newly_masked_cell_count": 18,
+    "per_feature_added_missingness": {
+      "Age_of_patient_at_time_of_operation": 5,
+      "Number_of_positive_axillary_nodes_detected": 4,
+      "Patients_year_of_operation": 9
+    },
+    "realized_new_missing_fraction": 0.09836065573770492,
+    "severity": "mild",
+    "target_missing_fraction": 0.1
+  },
+  "npz_relpath": "data/shifts/specs/haberman_survival/fold_3/mcar_mild.npz",
+  "npz_sha256": "8b4e6ba67efb7960628523edabf0cad1cc57ff5e000d5a3cc496d5ea6c331857",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "43b99555b06ecf16b9e9462a5dde6d173766e1fa5a94be72e1ae9242bc4765b2",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "74f612d71455c6dee6b263d7b522ae914205eb4844559205fd14d1b41d018117",
+  "status": "APPLICABLE"
+}

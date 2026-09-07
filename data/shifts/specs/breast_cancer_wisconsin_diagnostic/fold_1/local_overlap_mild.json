@@ -1,0 +1,28 @@
+{
+  "condition": "local_overlap_mild",
+  "dataset_id": "breast_cancer_wisconsin_diagnostic",
+  "derived_seed": 609135078,
+  "family": "local_overlap",
+  "metadata": {
+    "alpha": 0.25,
+    "boundary_fraction": 0.3,
+    "family": "local_overlap",
+    "mean_competing_centroid_dist_after": 3.917553626252731,
+    "mean_competing_centroid_dist_before": 5.223404835003641,
+    "mean_source_normalized_movement": 1.3058512087509102,
+    "overlap_strength_metric": 1.30585120875091,
+    "selected_rows_count": 34,
+    "selected_rows_sha256": "7dbeae6e690f76001a0e62b36b2493f7edd26550daf6912b13295f797af239be",
+    "severity": "mild"
+  },
+  "npz_relpath": "data/shifts/specs/breast_cancer_wisconsin_diagnostic/fold_1/local_overlap_mild.npz",
+  "npz_sha256": "8af4a325425a66cb16001c45c9e850514cce5f858a6f1e9f396585e4ee390717",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "d8899b761ee2fa43ce42ba05b724e1b5ebab4a3bba7a401083e1b4ae9ab042e0",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "0f0325b3fe020f1f6bb940af2a2dea51cc34a81ab1d3756bd899f1e40119c17c",
+  "status": "APPLICABLE"
+}

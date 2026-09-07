@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_mild",
+  "dataset_id": "spambase",
+  "derived_seed": 1010770835,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 57,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.1,
+    "noise_seed": 1637303474,
+    "noise_sha256": "1210afd98f58afc4d7197ca6c999c23ceb2496ea17d4b29bd7ad63d5d0cde5d7",
+    "rms_standardized_perturbation": 0.10053928639852984,
+    "severity": "mild"
+  },
+  "npz_relpath": "data/shifts/specs/spambase/fold_3/measurement_noise_mild.npz",
+  "npz_sha256": "1312368959f6b521036fc0e646222e08bf915e2bb91d5e39e732c7c07c827695",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "966d8257dbf5436ef06c2670b93cc69a7a055fa58ed0f2438e3c4ea64ce2ee1d",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "4b307e64e54bec0f4afb932af5ef12db8f7481b6feac17f5bf71026a67709318",
+  "status": "APPLICABLE"
+}

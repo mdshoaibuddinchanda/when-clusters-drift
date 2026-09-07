@@ -1,0 +1,28 @@
+{
+  "condition": "outliers_mild",
+  "dataset_id": "banknote_authentication",
+  "derived_seed": 1840633380,
+  "family": "outliers",
+  "metadata": {
+    "eligible_feature_count": 4,
+    "family": "outliers",
+    "noise_sha256": "03480c062b8136f9dbedc2eb938d74cb725c6c4db90ad53263b320910c1e6af9",
+    "realized_standardized_displacement": 4.484254607615948,
+    "row_fraction": 0.05,
+    "row_selection_sha256": "86c13b2f2fd625a61342f1415ea36b100934b4d9d428508d25698505774674e2",
+    "selected_row_count": 14,
+    "severity": "mild",
+    "shock_scale": 3.0,
+    "student_t_df": 3
+  },
+  "npz_relpath": "data/shifts/specs/banknote_authentication/fold_0/outliers_mild.npz",
+  "npz_sha256": "437918f61660d076fcb8a9e9f8d9577b80a8bfa73774510c8ecab3efb3a78a3d",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "38a1aa0f923a5c34b8322643775d7e43129f8def41a2ba6764b379179eb08750",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "d12d4449c729c09bfdb3dd3544be73f20d62191acb6e9374d18088018ae6068c",
+  "status": "APPLICABLE"
+}

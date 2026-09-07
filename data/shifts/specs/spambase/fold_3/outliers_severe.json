@@ -1,0 +1,28 @@
+{
+  "condition": "outliers_severe",
+  "dataset_id": "spambase",
+  "derived_seed": 683932942,
+  "family": "outliers",
+  "metadata": {
+    "eligible_feature_count": 57,
+    "family": "outliers",
+    "noise_sha256": "e35c3858525b54d0191991a6a09857cc8f3964c57a9c2486177ab589381fda16",
+    "realized_standardized_displacement": 3.2408725929895397,
+    "row_fraction": 0.15,
+    "row_selection_sha256": "be838ea1a66aa319f5404130e87587ae1cad89c6e61a133fb6ef490f0627628f",
+    "selected_row_count": 138,
+    "severity": "severe",
+    "shock_scale": 3.0,
+    "student_t_df": 3
+  },
+  "npz_relpath": "data/shifts/specs/spambase/fold_3/outliers_severe.npz",
+  "npz_sha256": "1312368959f6b521036fc0e646222e08bf915e2bb91d5e39e732c7c07c827695",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "966d8257dbf5436ef06c2670b93cc69a7a055fa58ed0f2438e3c4ea64ce2ee1d",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "af26d4167fff7daa80f4002139e202d3530e81d8fb8630383ecd6326ec96d12b",
+  "status": "APPLICABLE"
+}

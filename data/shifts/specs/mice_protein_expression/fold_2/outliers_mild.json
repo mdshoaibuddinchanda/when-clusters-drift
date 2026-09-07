@@ -1,0 +1,28 @@
+{
+  "condition": "outliers_mild",
+  "dataset_id": "mice_protein_expression",
+  "derived_seed": 234406269,
+  "family": "outliers",
+  "metadata": {
+    "eligible_feature_count": 77,
+    "family": "outliers",
+    "noise_sha256": "8b7275af782a81403a4fbd876e609a61811e189bbda0636a53ca8077e9c1b5f4",
+    "realized_standardized_displacement": 3.4882263582115844,
+    "row_fraction": 0.05,
+    "row_selection_sha256": "d4a8207a357002258c5f94c5070f2bd3eb12297a441f648edd3ad03b8d48044e",
+    "selected_row_count": 10,
+    "severity": "mild",
+    "shock_scale": 3.0,
+    "student_t_df": 3
+  },
+  "npz_relpath": "data/shifts/specs/mice_protein_expression/fold_2/outliers_mild.npz",
+  "npz_sha256": "bff17b5169d57ab8a1d8cac1203bf18f0c845fdee29a9448e9b6628fd0053cea",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "8f50c9b865bf2894e28441aeaf7f1a0ccb9b92712b7a5f7f431747e92026692b",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "d59cc5c701b79ea6c5d4b44f48d7afd3f7acbb2930bacf8e124cad32b5184635",
+  "status": "APPLICABLE"
+}

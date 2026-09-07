@@ -1,0 +1,20 @@
+{
+  "condition": "clean",
+  "dataset_id": "pendigits",
+  "derived_seed": 474900909,
+  "family": "clean",
+  "metadata": {
+    "family": "clean",
+    "severity": "none"
+  },
+  "npz_relpath": "data/shifts/specs/pendigits/fold_4/clean.npz",
+  "npz_sha256": "96cd77477fecaed9d60bc76c5aca809c3dabcb3597da0fb0ff33a7feb272961b",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "c6dfbef6aab51935515817a1bab551e0f5b73fed0c2ac4b11a762ab406d731e0",
+  "severity": "none",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "e70c8c152a03186d23ebaa9cbfb827f9ae7a69142cd32514e6a5b61cca29d9fa",
+  "status": "APPLICABLE"
+}

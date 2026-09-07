@@ -1,0 +1,34 @@
+{
+  "condition": "mcar_mild",
+  "dataset_id": "seeds",
+  "derived_seed": 993614027,
+  "family": "mcar",
+  "metadata": {
+    "eligible_cell_count": 294,
+    "family": "mcar",
+    "mask_sha256": "5413ca4351a6fe83eb334a2210fce493fc2dce6695e79aa3e09301b111a4c6c0",
+    "newly_masked_cell_count": 29,
+    "per_feature_added_missingness": {
+      "V1": 5,
+      "V2": 4,
+      "V3": 4,
+      "V4": 6,
+      "V5": 5,
+      "V6": 3,
+      "V7": 2
+    },
+    "realized_new_missing_fraction": 0.09863945578231292,
+    "severity": "mild",
+    "target_missing_fraction": 0.1
+  },
+  "npz_relpath": "data/shifts/specs/seeds/fold_3/mcar_mild.npz",
+  "npz_sha256": "8e23e089bfc73e62528e4663599c6afd7f211404cfd92e63a1f6cf4aeac9f029",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "c43a466c4830879e6803fb289e99b0a5dbf328902d390950d1392e67f8fd203c",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "e7fd396c555dbc2b7a3f3cda916f0471085c80e2a186cb61bcfe45fd5ad14924",
+  "status": "APPLICABLE"
+}

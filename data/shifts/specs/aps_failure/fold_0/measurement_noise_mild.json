@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_mild",
+  "dataset_id": "aps_failure",
+  "derived_seed": 1532199138,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 169,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.1,
+    "noise_seed": 89014097,
+    "noise_sha256": "91e1b4bd558219195c0408e281bbb180039e2004f38be2f28fe21db0a1b94dc4",
+    "rms_standardized_perturbation": 0.09996770535399291,
+    "severity": "mild"
+  },
+  "npz_relpath": "data/shifts/specs/aps_failure/fold_0/measurement_noise_mild.npz",
+  "npz_sha256": "685fffd1fc1177892e116957d0f5d1ad778eaf4e872d003e31aad41af1acada0",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "f43ed0851025a215578c37ea9eea11a8146f14eedf9e270e17dd0995acefbc8b",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "aa3e09fe6c1b775dc62db65652b4b32eec0abcb94c77ff5862d90cef91f9069f",
+  "status": "APPLICABLE"
+}

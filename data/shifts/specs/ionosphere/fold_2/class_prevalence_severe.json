@@ -1,0 +1,34 @@
+{
+  "condition": "class_prevalence_severe",
+  "dataset_id": "ionosphere",
+  "derived_seed": 1148196186,
+  "family": "class_prevalence",
+  "metadata": {
+    "anchor_class": "b",
+    "family": "class_prevalence",
+    "multiplier": 4.0,
+    "original_class_proportions": {
+      "b": 0.32857142857142857,
+      "g": 0.6714285714285714
+    },
+    "resampling_index_sha256": "e7ea732b15d09e65830f98df2f0e29bb842f8c4d31c59fa242c8a74e33735bb0",
+    "severity": "severe",
+    "shifted_class_proportions": {
+      "b": 0.6428571428571429,
+      "g": 0.35714285714285715
+    },
+    "total_variation_distance": 0.3142857142857143,
+    "unique_row_fraction": 0.5428571428571428,
+    "unique_target_rows": 38
+  },
+  "npz_relpath": "data/shifts/specs/ionosphere/fold_2/class_prevalence_severe.npz",
+  "npz_sha256": "a002e2d47d01999bbb6d0207608cf7ea499620ccc362b62e66d8efdb2a81dd66",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "d0a7db221b84d3dfb648cc1e9e848a6ca84ca7d3afde72eb29c5849759017fde",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "1fb16b18dad60abf7304b1697ff76b9b4b12ab4073ad2aa433670e8897c215f3",
+  "status": "APPLICABLE"
+}

@@ -1,0 +1,35 @@
+{
+  "condition": "location_severe",
+  "dataset_id": "seeds",
+  "derived_seed": 622537564,
+  "family": "location",
+  "metadata": {
+    "delta": 1.0,
+    "eligible_feature_count": 7,
+    "family": "location",
+    "feature_fraction": 0.3,
+    "realized_standardized_displacement": 1.0,
+    "selected_feature_count": 3,
+    "selected_features": [
+      "V6",
+      "V2",
+      "V3"
+    ],
+    "severity": "severe",
+    "source_sds": {
+      "V2": 1.309888395925561,
+      "V3": 0.023720819541623386,
+      "V6": 1.502549148237271
+    }
+  },
+  "npz_relpath": "data/shifts/specs/seeds/fold_2/location_severe.npz",
+  "npz_sha256": "8e23e089bfc73e62528e4663599c6afd7f211404cfd92e63a1f6cf4aeac9f029",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "923ab25c075d1a4fc4e870ed1885d4c2f5233482a73320e7b9422fa2fe21416a",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "303ed838f756c77cc55d8373bf352148f1dbfa9c531542a1bf6d199777007b95",
+  "status": "APPLICABLE"
+}

@@ -1,0 +1,28 @@
+{
+  "condition": "local_overlap_severe",
+  "dataset_id": "pima_diabetes",
+  "derived_seed": 277999016,
+  "family": "local_overlap",
+  "metadata": {
+    "alpha": 0.5,
+    "boundary_fraction": 0.3,
+    "family": "local_overlap",
+    "mean_competing_centroid_dist_after": 0.9843942678184355,
+    "mean_competing_centroid_dist_before": 1.968788535636871,
+    "mean_source_normalized_movement": 0.9843942678184355,
+    "overlap_strength_metric": 0.9843942678184355,
+    "selected_rows_count": 46,
+    "selected_rows_sha256": "7acb0102fdd9fce44f1c59b4e47f8618c85311607dddc88d62d69f890f6c86f7",
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/pima_diabetes/fold_4/local_overlap_severe.npz",
+  "npz_sha256": "034ed0afe67875e0f8537ee012d6ae559433679189ffcb65af7841183e4a869f",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "95274daa23550ba7fa7ce2f619de8cc0e62ea85351c81307292bda783e64614d",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "b4933cefd01d4d7680bb022ebe9210368a1a3453707fa64bb5433bce6cf6d31d",
+  "status": "APPLICABLE"
+}

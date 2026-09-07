@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_severe",
+  "dataset_id": "ecoli",
+  "derived_seed": 1864442938,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 6,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.3,
+    "noise_seed": 1356424359,
+    "noise_sha256": "76973cee81db26983fd6177fbb1928b389c1fa5e52b1ef131ae70bd08d9b063f",
+    "rms_standardized_perturbation": 0.2946396489602464,
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/ecoli/fold_1/measurement_noise_severe.npz",
+  "npz_sha256": "820d919b1ee6b7f9a76cb72dcedb08ddf029e225ecdca20c6a5416a67910c7f7",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "eb3d32ea9fa3feeba7ccfad5106d005000291d581b6b472890abb570696fc230",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "9797ca63a29a4eaf6b0fdcd5b2d48bbfa3b5be495767107b551e7bcfa6e04e60",
+  "status": "APPLICABLE"
+}

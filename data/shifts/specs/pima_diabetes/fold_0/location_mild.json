@@ -1,0 +1,35 @@
+{
+  "condition": "location_mild",
+  "dataset_id": "pima_diabetes",
+  "derived_seed": 231553696,
+  "family": "location",
+  "metadata": {
+    "delta": 0.5,
+    "eligible_feature_count": 8,
+    "family": "location",
+    "feature_fraction": 0.3,
+    "realized_standardized_displacement": 0.5,
+    "selected_feature_count": 3,
+    "selected_features": [
+      "plas",
+      "age",
+      "skin"
+    ],
+    "severity": "mild",
+    "source_sds": {
+      "age": 11.516329863335658,
+      "plas": 32.56421746420385,
+      "skin": 15.91931849986273
+    }
+  },
+  "npz_relpath": "data/shifts/specs/pima_diabetes/fold_0/location_mild.npz",
+  "npz_sha256": "20439b8d11e72c703c8f7a934a93f7cf188b4657403a9c24e789422a0a2f9c10",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "c7da3e66eb24da808c5acaf48eb914cf867094684e2547483108c2ce1dfea5da",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "6aa7476ea0c1639b1cf4f434425451ee18692ef76d1ae69b317ab61ecf97a4cc",
+  "status": "APPLICABLE"
+}

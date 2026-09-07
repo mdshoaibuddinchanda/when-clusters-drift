@@ -1,0 +1,34 @@
+{
+  "condition": "mcar_severe",
+  "dataset_id": "ecoli",
+  "derived_seed": 1990061360,
+  "family": "mcar",
+  "metadata": {
+    "eligible_cell_count": 469,
+    "family": "mcar",
+    "mask_sha256": "1178b3d9e3f960607f7f2d759dbafa5961b5b2b3c701ea712c6d0554be91bc0c",
+    "newly_masked_cell_count": 141,
+    "per_feature_added_missingness": {
+      "aac": 21,
+      "alm1": 22,
+      "alm2": 19,
+      "chg": 22,
+      "gvh": 20,
+      "lip": 24,
+      "mcg": 13
+    },
+    "realized_new_missing_fraction": 0.3006396588486141,
+    "severity": "severe",
+    "target_missing_fraction": 0.3
+  },
+  "npz_relpath": "data/shifts/specs/ecoli/fold_4/mcar_severe.npz",
+  "npz_sha256": "820d919b1ee6b7f9a76cb72dcedb08ddf029e225ecdca20c6a5416a67910c7f7",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "d751662a405fa46343e4f7bdf7ee9eb8a84a20d8ff8ce9ce5046a3ff207f31e7",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "87c9a8b9f9c8c4d77a64e06830f4a2a2ea5c6887798077a586e2be504bcef177",
+  "status": "APPLICABLE"
+}

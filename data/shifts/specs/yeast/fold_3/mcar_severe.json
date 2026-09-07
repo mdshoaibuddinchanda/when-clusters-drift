@@ -1,0 +1,35 @@
+{
+  "condition": "mcar_severe",
+  "dataset_id": "yeast",
+  "derived_seed": 913021273,
+  "family": "mcar",
+  "metadata": {
+    "eligible_cell_count": 2376,
+    "family": "mcar",
+    "mask_sha256": "b0e5dfcbbb66464de24656fd1db97ef0de6078c6c75061cd40214bea09f2104a",
+    "newly_masked_cell_count": 713,
+    "per_feature_added_missingness": {
+      "alm": 80,
+      "erl": 90,
+      "gvh": 97,
+      "mcg": 93,
+      "mit": 81,
+      "nuc": 80,
+      "pox": 97,
+      "vac": 95
+    },
+    "realized_new_missing_fraction": 0.30008417508417506,
+    "severity": "severe",
+    "target_missing_fraction": 0.3
+  },
+  "npz_relpath": "data/shifts/specs/yeast/fold_3/mcar_severe.npz",
+  "npz_sha256": "a47b17799a2f15bb2d208453f7c1876c73a240216abbd02714ac739f691f150e",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "f4fa1a0027ac8232ed7a962cad20383a1b897f1b4823dac56f7660d6f497fc4b",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "8c8064e2aa397a321c277ccd4a40778516867687de1fa9600c91568c3785591d",
+  "status": "APPLICABLE"
+}

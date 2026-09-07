@@ -1,0 +1,42 @@
+{
+  "condition": "class_prevalence_mild",
+  "dataset_id": "human_activity_recognition",
+  "derived_seed": 1559920698,
+  "family": "class_prevalence",
+  "metadata": {
+    "anchor_class": "3",
+    "family": "class_prevalence",
+    "multiplier": 2.0,
+    "original_class_proportions": {
+      "1": 0.16351285783600195,
+      "2": 0.15235322658903444,
+      "3": 0.13731198447355653,
+      "4": 0.17758369723435224,
+      "5": 0.18098010674429887,
+      "6": 0.18825812712275594
+    },
+    "resampling_index_sha256": "98e8a65ee94ca3101eed4231e25b93b909d5ed56e3c5c13e05ef6b3a7beb8334",
+    "severity": "mild",
+    "shifted_class_proportions": {
+      "1": 0.13537117903930132,
+      "2": 0.12324114507520621,
+      "3": 0.2576419213973799,
+      "4": 0.1615720524017467,
+      "5": 0.1596312469674915,
+      "6": 0.16254245511887433
+    },
+    "total_variation_distance": 0.12032993692382338,
+    "unique_row_fraction": 0.6079573022804464,
+    "unique_target_rows": 1253
+  },
+  "npz_relpath": "data/shifts/specs/human_activity_recognition/fold_2/class_prevalence_mild.npz",
+  "npz_sha256": "d74df145393cadb5e2f93574233806bc17c1b54ff7d6e04f4e51ab05d16823aa",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "2cb91dd98d4101087116d3a2d2b7a9d4936a311a74c14280f7fa2211f2fb3cfb",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "f6707f151dc58c4713ba4dfc8fc535d2efc842e057d26b6ee29e1e05156a9125",
+  "status": "APPLICABLE"
+}

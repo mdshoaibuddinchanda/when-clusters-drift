@@ -1,0 +1,35 @@
+{
+  "condition": "location_mild",
+  "dataset_id": "glass",
+  "derived_seed": 1600910679,
+  "family": "location",
+  "metadata": {
+    "delta": 0.5,
+    "eligible_feature_count": 9,
+    "family": "location",
+    "feature_fraction": 0.3,
+    "realized_standardized_displacement": 0.5,
+    "selected_feature_count": 3,
+    "selected_features": [
+      "Fe",
+      "Ca",
+      "Al"
+    ],
+    "severity": "mild",
+    "source_sds": {
+      "Al": 0.45486996795402757,
+      "Ca": 1.3514940820847012,
+      "Fe": 0.0918703460247983
+    }
+  },
+  "npz_relpath": "data/shifts/specs/glass/fold_4/location_mild.npz",
+  "npz_sha256": "8e23e089bfc73e62528e4663599c6afd7f211404cfd92e63a1f6cf4aeac9f029",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "94e26642649a2f7e77b7dee6f8705e31560ed56a612c7a242caf302b7c3959fb",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "c6c9867b1585ec4b9e79027dd1111df0d583a0632beee9ef97d751a310679a8c",
+  "status": "APPLICABLE"
+}

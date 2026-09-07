@@ -1,0 +1,50 @@
+{
+  "condition": "class_prevalence_severe",
+  "dataset_id": "pendigits",
+  "derived_seed": 780157324,
+  "family": "class_prevalence",
+  "metadata": {
+    "anchor_class": "9",
+    "family": "class_prevalence",
+    "multiplier": 4.0,
+    "original_class_proportions": {
+      "0": 0.10732150977717145,
+      "1": 0.0941336971350614,
+      "2": 0.11732605729877217,
+      "3": 0.08503865393360618,
+      "4": 0.10277398817644384,
+      "5": 0.098681218735789,
+      "6": 0.09731696225557071,
+      "7": 0.10277398817644384,
+      "8": 0.0927694406548431,
+      "9": 0.10186448385629832
+    },
+    "resampling_index_sha256": "801a0b4080048aa23d40d61775a25f7f9f96abb23e4eab9f37879b5521856844",
+    "severity": "severe",
+    "shifted_class_proportions": {
+      "0": 0.07594361073215097,
+      "1": 0.06957708049113233,
+      "2": 0.09504320145520691,
+      "3": 0.0572987721691678,
+      "4": 0.08321964529331514,
+      "5": 0.06775807185084129,
+      "6": 0.07503410641200546,
+      "7": 0.08276489313324238,
+      "8": 0.0814006366530241,
+      "9": 0.3119599818099136
+    },
+    "total_variation_distance": 0.2100954979536153,
+    "unique_row_fraction": 0.5779899954524784,
+    "unique_target_rows": 1271
+  },
+  "npz_relpath": "data/shifts/specs/pendigits/fold_0/class_prevalence_severe.npz",
+  "npz_sha256": "eeb89125bf0cab3b93a2ffc6dff6eea5a009946a2f6fb771861c5857fda3677d",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "fb6cb1d78a7e2862163aa1befbc122c41f5e60aaba6b1e16678f39dc4f94b7a1",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "d3ead5902b9e745453beb03740709f9e7098af2e0ea4b1eede333a86d28ffff0",
+  "status": "APPLICABLE"
+}

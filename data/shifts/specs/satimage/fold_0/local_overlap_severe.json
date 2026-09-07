@@ -1,0 +1,28 @@
+{
+  "condition": "local_overlap_severe",
+  "dataset_id": "satimage",
+  "derived_seed": 724042519,
+  "family": "local_overlap",
+  "metadata": {
+    "alpha": 0.5,
+    "boundary_fraction": 0.3,
+    "family": "local_overlap",
+    "mean_competing_centroid_dist_after": 1.6494851126266166,
+    "mean_competing_centroid_dist_before": 3.298970225253233,
+    "mean_source_normalized_movement": 1.6494851126266168,
+    "overlap_strength_metric": 1.6494851126266166,
+    "selected_rows_count": 385,
+    "selected_rows_sha256": "d7eb89f5a39d251ffe8f528421e84356f6a4392020842e905497bb99e9b5156e",
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/satimage/fold_0/local_overlap_severe.npz",
+  "npz_sha256": "e4328f6a88dfc24abd21f591002f892f85231e5b99d73f297060ce934ad6739b",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "4249424339d4c0d6d37bfa5ac456bb77a155df235a43f068505680bcf0372ba5",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "5b6e59b1c78687d8715081adf568863e20435900563a5822927a15ed5f86cff5",
+  "status": "APPLICABLE"
+}

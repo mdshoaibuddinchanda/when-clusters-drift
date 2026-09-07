@@ -1,0 +1,28 @@
+{
+  "condition": "outliers_severe",
+  "dataset_id": "vehicle_silhouettes",
+  "derived_seed": 1367480360,
+  "family": "outliers",
+  "metadata": {
+    "eligible_feature_count": 18,
+    "family": "outliers",
+    "noise_sha256": "0d5f19b45703a397b01d39ab295eeef3bcc382db5689fedce2dd31e65fd60fa6",
+    "realized_standardized_displacement": 3.374382126192527,
+    "row_fraction": 0.15,
+    "row_selection_sha256": "c5706ec5c960956cb7414262e987e56eb02e53b1bc173b991f39bfd48c29d48b",
+    "selected_row_count": 25,
+    "severity": "severe",
+    "shock_scale": 3.0,
+    "student_t_df": 3
+  },
+  "npz_relpath": "data/shifts/specs/vehicle_silhouettes/fold_3/outliers_severe.npz",
+  "npz_sha256": "ea69a6af400f66d7701f475608ac60c1bfb14785a6507291c34d9ac403e01178",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "520683f088b5297ff5780c0a7eeb97b95afd189162561246d1094c226880206a",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "5b431604c14291b89e62eb5e9fba97cc9ff05605059fcd82f90389c78f2ae2b7",
+  "status": "APPLICABLE"
+}

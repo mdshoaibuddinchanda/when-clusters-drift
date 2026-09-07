@@ -1,0 +1,28 @@
+{
+  "condition": "local_overlap_severe",
+  "dataset_id": "vehicle_silhouettes",
+  "derived_seed": 1541749323,
+  "family": "local_overlap",
+  "metadata": {
+    "alpha": 0.5,
+    "boundary_fraction": 0.3,
+    "family": "local_overlap",
+    "mean_competing_centroid_dist_after": 1.179645388744627,
+    "mean_competing_centroid_dist_before": 2.359290777489254,
+    "mean_source_normalized_movement": 1.1796453887446272,
+    "overlap_strength_metric": 1.179645388744627,
+    "selected_rows_count": 51,
+    "selected_rows_sha256": "ea82315797b89e3655282bdc3722c9eab3453c3e6f80407f09601c00eccee73d",
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/vehicle_silhouettes/fold_3/local_overlap_severe.npz",
+  "npz_sha256": "ea69a6af400f66d7701f475608ac60c1bfb14785a6507291c34d9ac403e01178",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "520683f088b5297ff5780c0a7eeb97b95afd189162561246d1094c226880206a",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "939661d285b23046719ce93af910d4a250cc3f42c035181ffa0b1b4ea3030d4f",
+  "status": "APPLICABLE"
+}

@@ -1,0 +1,53 @@
+{
+  "condition": "location_mild",
+  "dataset_id": "waveform",
+  "derived_seed": 2000252777,
+  "family": "location",
+  "metadata": {
+    "delta": 0.5,
+    "eligible_feature_count": 40,
+    "family": "location",
+    "feature_fraction": 0.3,
+    "realized_standardized_displacement": 0.5,
+    "selected_feature_count": 12,
+    "selected_features": [
+      "x5",
+      "x12",
+      "x39",
+      "x33",
+      "x10",
+      "x14",
+      "x3",
+      "x28",
+      "x26",
+      "x18",
+      "x6",
+      "x23"
+    ],
+    "severity": "mild",
+    "source_sds": {
+      "x10": 1.5259355151817109,
+      "x12": 1.5215230868774143,
+      "x14": 1.766534221346645,
+      "x18": 1.4126369922216209,
+      "x23": 0.9697575303449132,
+      "x26": 0.9771794230846119,
+      "x28": 1.0137171477236129,
+      "x3": 1.1886173049175195,
+      "x33": 1.0097344890506337,
+      "x39": 1.0133439180839985,
+      "x5": 1.6701714951463966,
+      "x6": 1.840128003609373
+    }
+  },
+  "npz_relpath": "data/shifts/specs/waveform/fold_4/location_mild.npz",
+  "npz_sha256": "68dd82312817b86a6796ca10193f2f58b051376ea4bfbd9359eb2c28f2f018fe",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "3bde15af5b27c977576637dcb40e7978c3b58b886902093a9cf02cdfee1a8190",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "3dd512ed8d867b5806014538c51404e164f978410c4400b878fbdeb24a69b7b6",
+  "status": "APPLICABLE"
+}

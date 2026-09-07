@@ -1,0 +1,35 @@
+{
+  "condition": "mcar_severe",
+  "dataset_id": "pima_diabetes",
+  "derived_seed": 568998345,
+  "family": "mcar",
+  "metadata": {
+    "eligible_cell_count": 1232,
+    "family": "mcar",
+    "mask_sha256": "d34fc2998ecc7222c5a7ced7e0e6abc12014dc36967951aae359ec91075c913f",
+    "newly_masked_cell_count": 370,
+    "per_feature_added_missingness": {
+      "age": 38,
+      "insu": 44,
+      "mass": 57,
+      "pedi": 58,
+      "plas": 38,
+      "preg": 37,
+      "pres": 57,
+      "skin": 41
+    },
+    "realized_new_missing_fraction": 0.3003246753246753,
+    "severity": "severe",
+    "target_missing_fraction": 0.3
+  },
+  "npz_relpath": "data/shifts/specs/pima_diabetes/fold_2/mcar_severe.npz",
+  "npz_sha256": "20439b8d11e72c703c8f7a934a93f7cf188b4657403a9c24e789422a0a2f9c10",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "51c91ae3fb3d13805fcec64df8052be144d2569022a9dc6643001052a66a6683",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "a41da7f2e9decdb965bca04d2f93c4872368388ba656974f511d69218a5c38c7",
+  "status": "APPLICABLE"
+}

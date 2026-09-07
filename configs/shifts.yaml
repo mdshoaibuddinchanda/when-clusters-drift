@@ -1,0 +1,54 @@
+protocol_version: 1
+
+global_shift_seed: 2026090704
+
+execution:
+  backend: auto
+  cpu_jobs: auto
+  chunk_rows: 65536
+  gpu_min_numeric_cells: 2000000
+  resume: true
+  atomic_writes: true
+
+location:
+  feature_fraction: 0.30
+  severities:
+    mild: 0.5
+    severe: 1.0
+
+scale:
+  severities:
+    mild: 1.25
+    severe: 1.75
+
+mcar:
+  severities:
+    mild: 0.10
+    severe: 0.30
+
+outliers:
+  row_fraction:
+    mild: 0.05
+    severe: 0.15
+  distribution: student_t
+  df: 3
+  shock_scale_source_sd: 3.0
+
+measurement_noise:
+  distribution: gaussian
+  severities:
+    mild: 0.10
+    severe: 0.30
+
+class_prevalence:
+  multiplier:
+    mild: 2.0
+    severe: 4.0
+  preserve_target_n: true
+  sampling: weighted_bootstrap
+
+local_overlap:
+  boundary_fraction: 0.30
+  alpha:
+    mild: 0.25
+    severe: 0.50

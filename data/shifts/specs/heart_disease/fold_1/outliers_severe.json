@@ -1,0 +1,28 @@
+{
+  "condition": "outliers_severe",
+  "dataset_id": "heart_disease",
+  "derived_seed": 941608182,
+  "family": "outliers",
+  "metadata": {
+    "eligible_feature_count": 13,
+    "family": "outliers",
+    "noise_sha256": "fb9d5ae2c9d842c02365a913232642e5d52438cf35bc285e35cc841d001adad8",
+    "realized_standardized_displacement": 3.67049618872758,
+    "row_fraction": 0.15,
+    "row_selection_sha256": "7b914a174e63bc3caede65acf3a75e932859ac8687b15657db35f04a0addb487",
+    "selected_row_count": 9,
+    "severity": "severe",
+    "shock_scale": 3.0,
+    "student_t_df": 3
+  },
+  "npz_relpath": "data/shifts/specs/heart_disease/fold_1/outliers_severe.npz",
+  "npz_sha256": "e2f2fa83171b408331b1e04ae0341a7d34d27ab930957a5d948eaa9663bf5ddc",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "7402745402e1bb0bd196945b99d04988fde18afcf9c0019257a254b3555c2cd3",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "8a5b8807da0eaaaad0e28a13fef6527f0d18f4d0bc18339d69c9ec78eee5660f",
+  "status": "APPLICABLE"
+}

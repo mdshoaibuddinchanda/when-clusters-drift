@@ -1,0 +1,42 @@
+{
+  "condition": "class_prevalence_severe",
+  "dataset_id": "satimage",
+  "derived_seed": 1808676454,
+  "family": "class_prevalence",
+  "metadata": {
+    "anchor_class": "4.",
+    "family": "class_prevalence",
+    "multiplier": 4.0,
+    "original_class_proportions": {
+      "1.": 0.24572317262830481,
+      "2.": 0.11975116640746501,
+      "3.": 0.21539657853810265,
+      "4.": 0.10186625194401244,
+      "5.": 0.10186625194401244,
+      "7.": 0.21539657853810265
+    },
+    "resampling_index_sha256": "884fc46c5089963a0f971df233bcb9991308e28198883ccdb97597baa4c5295e",
+    "severity": "severe",
+    "shifted_class_proportions": {
+      "1.": 0.208398133748056,
+      "2.": 0.09097978227060653,
+      "3.": 0.17418351477449456,
+      "4.": 0.2931570762052877,
+      "5.": 0.08475894245723173,
+      "7.": 0.14852255054432348
+    },
+    "total_variation_distance": 0.19129082426127525,
+    "unique_row_fraction": 0.5925349922239502,
+    "unique_target_rows": 762
+  },
+  "npz_relpath": "data/shifts/specs/satimage/fold_0/class_prevalence_severe.npz",
+  "npz_sha256": "5fbf8a26614b5f82a16f55319b728221213de0d48e8ef6261a04b595816c9c95",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "4249424339d4c0d6d37bfa5ac456bb77a155df235a43f068505680bcf0372ba5",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "85a5416350c9b700769237c1eee4cd942ff747874fb9b8f1aeda499796b1f950",
+  "status": "APPLICABLE"
+}

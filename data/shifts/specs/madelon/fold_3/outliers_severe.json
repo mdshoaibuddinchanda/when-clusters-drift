@@ -1,0 +1,28 @@
+{
+  "condition": "outliers_severe",
+  "dataset_id": "madelon",
+  "derived_seed": 829905294,
+  "family": "outliers",
+  "metadata": {
+    "eligible_feature_count": 500,
+    "family": "outliers",
+    "noise_sha256": "52ccf617536aa2a76ca9f20835ca77901efbbb07700c0ddb8e95b21c26bb15a5",
+    "realized_standardized_displacement": 3.282453399252656,
+    "row_fraction": 0.15,
+    "row_selection_sha256": "5d55f4bf0e6ae43cff71667cdb3b13fbcb3898b513293131aeef71de6996658c",
+    "selected_row_count": 78,
+    "severity": "severe",
+    "shock_scale": 3.0,
+    "student_t_df": 3
+  },
+  "npz_relpath": "data/shifts/specs/madelon/fold_3/outliers_severe.npz",
+  "npz_sha256": "ce79a088005e14d7f00a4b8cbaf8bfb6f83fce4f5c04bc519c552e58c068b1d9",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "d5a9800234e6ec2ebcae6abdbfc3dff8754e3024ce94934bcf745856eadcd488",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "5cf4044d1c0e753f121dd561b28cb09cb892a9b4bc50a0102129ab1b8ca28ac4",
+  "status": "APPLICABLE"
+}

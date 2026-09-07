@@ -1,0 +1,39 @@
+{
+  "condition": "location_severe",
+  "dataset_id": "letter_recognition",
+  "derived_seed": 1978236352,
+  "family": "location",
+  "metadata": {
+    "delta": 1.0,
+    "eligible_feature_count": 16,
+    "family": "location",
+    "feature_fraction": 0.3,
+    "realized_standardized_displacement": 1.0,
+    "selected_feature_count": 5,
+    "selected_features": [
+      "x-box",
+      "x-ege",
+      "yegvx",
+      "xybar",
+      "x2ybr"
+    ],
+    "severity": "severe",
+    "source_sds": {
+      "x-box": 1.9174346885191542,
+      "x-ege": 2.337140977314054,
+      "x2ybr": 2.629492883265744,
+      "xybar": 2.485936057549327,
+      "yegvx": 1.6210487006177086
+    }
+  },
+  "npz_relpath": "data/shifts/specs/letter_recognition/fold_0/location_severe.npz",
+  "npz_sha256": "8584518ab9f3725a5c56be1ea0390d0898ba16699982be6a456d07b4f86cd4df",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "c3cd2cbcdbe5a65b2aa55d2668af0cabb261fa0cda601f8aace545c449d635ac",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "0c00ca518c7c3e880533a008a4158975e95dce356e6bc761ecd6c770cfce6ac1",
+  "status": "APPLICABLE"
+}

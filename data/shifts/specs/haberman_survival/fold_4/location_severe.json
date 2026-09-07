@@ -1,0 +1,31 @@
+{
+  "condition": "location_severe",
+  "dataset_id": "haberman_survival",
+  "derived_seed": 1508208254,
+  "family": "location",
+  "metadata": {
+    "delta": 1.0,
+    "eligible_feature_count": 2,
+    "family": "location",
+    "feature_fraction": 0.3,
+    "realized_standardized_displacement": 1.0,
+    "selected_feature_count": 1,
+    "selected_features": [
+      "Age_of_patient_at_time_of_operation"
+    ],
+    "severity": "severe",
+    "source_sds": {
+      "Age_of_patient_at_time_of_operation": 10.40189877666187
+    }
+  },
+  "npz_relpath": "data/shifts/specs/haberman_survival/fold_4/location_severe.npz",
+  "npz_sha256": "8b4e6ba67efb7960628523edabf0cad1cc57ff5e000d5a3cc496d5ea6c331857",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "d3d060cfb2d2b3d42657e84a31368eecb0ca37660a399f1d39123b73a5eb08f2",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "a1f134d552a1b134bfdf45a5c6fdda52c4945332d4161ec85929f443a5437d81",
+  "status": "APPLICABLE"
+}

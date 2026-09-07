@@ -1,0 +1,31 @@
+{
+  "condition": "scale_severe",
+  "dataset_id": "haberman_survival",
+  "derived_seed": 247534380,
+  "family": "scale",
+  "metadata": {
+    "eligible_feature_count": 2,
+    "eligible_features": [
+      "Age_of_patient_at_time_of_operation",
+      "Number_of_positive_axillary_nodes_detected"
+    ],
+    "family": "scale",
+    "realized_scale_measure": 1.75,
+    "scale_factor": 1.75,
+    "severity": "severe",
+    "source_means": {
+      "Age_of_patient_at_time_of_operation": 52.7265306122449,
+      "Number_of_positive_axillary_nodes_detected": 3.8816326530612244
+    }
+  },
+  "npz_relpath": "data/shifts/specs/haberman_survival/fold_4/scale_severe.npz",
+  "npz_sha256": "8b4e6ba67efb7960628523edabf0cad1cc57ff5e000d5a3cc496d5ea6c331857",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "d3d060cfb2d2b3d42657e84a31368eecb0ca37660a399f1d39123b73a5eb08f2",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "f4e5f0db748c6ee37e5ca4e823128d118ee8a022f4886620792998436ad0ace4",
+  "status": "APPLICABLE"
+}

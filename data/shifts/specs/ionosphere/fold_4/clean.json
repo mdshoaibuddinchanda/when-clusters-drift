@@ -1,0 +1,20 @@
+{
+  "condition": "clean",
+  "dataset_id": "ionosphere",
+  "derived_seed": 282428709,
+  "family": "clean",
+  "metadata": {
+    "family": "clean",
+    "severity": "none"
+  },
+  "npz_relpath": "data/shifts/specs/ionosphere/fold_4/clean.npz",
+  "npz_sha256": "31d47a1fd2646db7b98d67063afacf371045eeef7e38439a7d014fd138b6aaf6",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "2106cdca0ff8a7bd9cb50ce0e4b15f7602529f41844c303d726ccd244d91f8dd",
+  "severity": "none",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "b2af8c3ec268dea9f91c584384a8d4c4bb4f189724fe17a3a44093e4f937ce55",
+  "status": "APPLICABLE"
+}

@@ -35,6 +35,7 @@ data/splits/**
 runs/**
 results/*
 !results/baseline_validation/
+!results/shift_validation/
 
 # Preserve gitkeep, manifests, and documentation
 !data/processed/.gitkeep
@@ -46,6 +47,13 @@ results/*
 !data/manifests/**
 !data/README.md
 !results/baseline_validation/**
+!results/shift_validation/**
+
+# Cache and payload files for shifts
+data/shifts/cache/**
+data/shifts/**/*.parquet
+data/shifts/**/*.npy
+data/shifts/**/*.npz
 
 # Credentials & secrets
 kaggle.json

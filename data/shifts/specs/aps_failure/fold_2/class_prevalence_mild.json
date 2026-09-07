@@ -1,0 +1,34 @@
+{
+  "condition": "class_prevalence_mild",
+  "dataset_id": "aps_failure",
+  "derived_seed": 1974439131,
+  "family": "class_prevalence",
+  "metadata": {
+    "anchor_class": "pos",
+    "family": "class_prevalence",
+    "multiplier": 2.0,
+    "original_class_proportions": {
+      "neg": 0.9813157894736843,
+      "pos": 0.01868421052631579
+    },
+    "resampling_index_sha256": "4462a544d5a368b6f3384c612ee0184fe684071eec4fad434f265cf6abf62bc4",
+    "severity": "mild",
+    "shifted_class_proportions": {
+      "neg": 0.9639473684210527,
+      "pos": 0.03605263157894737
+    },
+    "total_variation_distance": 0.017368421052631585,
+    "unique_row_fraction": 0.6272368421052632,
+    "unique_target_rows": 9534
+  },
+  "npz_relpath": "data/shifts/specs/aps_failure/fold_2/class_prevalence_mild.npz",
+  "npz_sha256": "f7d7961734fb25e50f728f5e6008f6561d6cadd6bcc5973dce09841bbd3b10d4",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "dd566ae25d991e2812c2469492e5c96997125ce9464291b529eee222be5d947f",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "5fd2cc2ed5457ab6096a61e60feeb5531ab79eb79447faf89264cfcab0884438",
+  "status": "APPLICABLE"
+}

@@ -1,0 +1,41 @@
+{
+  "condition": "location_severe",
+  "dataset_id": "image_segmentation",
+  "derived_seed": 1851926815,
+  "family": "location",
+  "metadata": {
+    "delta": 1.0,
+    "eligible_feature_count": 17,
+    "family": "location",
+    "feature_fraction": 0.3,
+    "realized_standardized_displacement": 1.0,
+    "selected_feature_count": 6,
+    "selected_features": [
+      "rawblue.mean",
+      "short.line.density.5",
+      "rawgreen.mean",
+      "hedge.sd",
+      "vegde.sd",
+      "intensity.mean"
+    ],
+    "severity": "severe",
+    "source_sds": {
+      "hedge.sd": 59.608790752904056,
+      "intensity.mean": 37.646726014548776,
+      "rawblue.mean": 43.04074871816972,
+      "rawgreen.mean": 35.79027623034392,
+      "short.line.density.5": 0.04067929289934301,
+      "vegde.sd": 38.705010045781606
+    }
+  },
+  "npz_relpath": "data/shifts/specs/image_segmentation/fold_3/location_severe.npz",
+  "npz_sha256": "064428a7a23ba0feaea2d592a61aadcdfa80ffd1d70610745a899d15fbbd0d80",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "f0eae63f7eaaabfbacf6bbc4b2a8b12168b481ff004d45c1697c626b9337874e",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "ff88d40333de306ea305a7b2cc7a73abf738b791042a4ed2b20f51bf74258292",
+  "status": "APPLICABLE"
+}

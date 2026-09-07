@@ -1,0 +1,36 @@
+{
+  "condition": "class_prevalence_mild",
+  "dataset_id": "wine",
+  "derived_seed": 1564831422,
+  "family": "class_prevalence",
+  "metadata": {
+    "anchor_class": "2",
+    "family": "class_prevalence",
+    "multiplier": 2.0,
+    "original_class_proportions": {
+      "0": 0.4857142857142857,
+      "1": 0.3142857142857143,
+      "2": 0.2
+    },
+    "resampling_index_sha256": "a4a5f5b917ab14a45543c368a2c30804c5e8dabc759c6596b6fece8a595eee67",
+    "severity": "mild",
+    "shifted_class_proportions": {
+      "0": 0.45714285714285713,
+      "1": 0.2857142857142857,
+      "2": 0.2571428571428571
+    },
+    "total_variation_distance": 0.057142857142857134,
+    "unique_row_fraction": 0.5428571428571428,
+    "unique_target_rows": 19
+  },
+  "npz_relpath": "data/shifts/specs/wine/fold_3/class_prevalence_mild.npz",
+  "npz_sha256": "44fcf3377f5cfbeac6d539d8c305a833b3997afd7bdb9376d7180376cb8170b8",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "b4d0df71330f907e86fab20e2300ab533c5a3ad44e80debf8fcba836ba25df44",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "e01c7aa4b08bd2e5ca71b589be7c8db1ff1db5f4c370b9474c662b9a4e38fd8c",
+  "status": "APPLICABLE"
+}

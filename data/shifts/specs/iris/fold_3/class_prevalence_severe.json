@@ -1,0 +1,36 @@
+{
+  "condition": "class_prevalence_severe",
+  "dataset_id": "iris",
+  "derived_seed": 734415636,
+  "family": "class_prevalence",
+  "metadata": {
+    "anchor_class": "1",
+    "family": "class_prevalence",
+    "multiplier": 4.0,
+    "original_class_proportions": {
+      "0": 0.23333333333333334,
+      "1": 0.4,
+      "2": 0.36666666666666664
+    },
+    "resampling_index_sha256": "36f84cdb255bf5464be04ef58fb5a2e5be25f2ef741f53a16acd5ace338e3b3c",
+    "severity": "severe",
+    "shifted_class_proportions": {
+      "0": 0.1,
+      "1": 0.7666666666666667,
+      "2": 0.13333333333333333
+    },
+    "total_variation_distance": 0.3666666666666667,
+    "unique_row_fraction": 0.5333333333333333,
+    "unique_target_rows": 16
+  },
+  "npz_relpath": "data/shifts/specs/iris/fold_3/class_prevalence_severe.npz",
+  "npz_sha256": "3972c56254eaaf8bb99e69173e3aac7c50687e95802d64bbd14367b8834331bc",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "51f66c973572e2c5157201f8a25e577069fc5c6f1181bdb8f3df41d79831c5ad",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "096964f25adcdbf253e8cada70743ec341a6e2ba77c5624e0ce2fc87a2b13309",
+  "status": "APPLICABLE"
+}

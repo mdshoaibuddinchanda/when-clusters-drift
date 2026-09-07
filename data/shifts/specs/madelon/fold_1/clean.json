@@ -1,0 +1,20 @@
+{
+  "condition": "clean",
+  "dataset_id": "madelon",
+  "derived_seed": 1480768108,
+  "family": "clean",
+  "metadata": {
+    "family": "clean",
+    "severity": "none"
+  },
+  "npz_relpath": "data/shifts/specs/madelon/fold_1/clean.npz",
+  "npz_sha256": "ce79a088005e14d7f00a4b8cbaf8bfb6f83fce4f5c04bc519c552e58c068b1d9",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "fbe5999bba0a10d9d329b7a409f1e2779ecda6b685c92c69cc563d2d03066005",
+  "severity": "none",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "891a4cf0ba11220d1defb27e93ad74ffd7f43b3dfd0f9a7e5ca8675b9e2140a5",
+  "status": "APPLICABLE"
+}

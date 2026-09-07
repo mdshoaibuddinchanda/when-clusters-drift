@@ -1,0 +1,28 @@
+{
+  "condition": "local_overlap_severe",
+  "dataset_id": "electricity",
+  "derived_seed": 491768267,
+  "family": "local_overlap",
+  "metadata": {
+    "alpha": 0.5,
+    "boundary_fraction": 0.3,
+    "family": "local_overlap",
+    "mean_competing_centroid_dist_after": 1.4454872321825711,
+    "mean_competing_centroid_dist_before": 2.8909744643651423,
+    "mean_source_normalized_movement": 1.4454872321825711,
+    "overlap_strength_metric": 1.4454872321825711,
+    "selected_rows_count": 2265,
+    "selected_rows_sha256": "f166d72b42921b29fa84e77a9a1ffb421a1873638a72af714714f3edf5387854",
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/electricity/fold_2/local_overlap_severe.npz",
+  "npz_sha256": "7fe112e4787fa434edc006f330d44aa2d9f94ff3228f8aad835d681fdc715827",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "ece71c09a65ddd46526d4c22484430671823634cf4570919ba8c25d56a24cd96",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "d4a4c7c06739cd143605af6a396e728204f4c96c13d0886ed8c78928bf3be57d",
+  "status": "APPLICABLE"
+}

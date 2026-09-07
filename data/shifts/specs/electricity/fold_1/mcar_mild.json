@@ -1,0 +1,35 @@
+{
+  "condition": "mcar_mild",
+  "dataset_id": "electricity",
+  "derived_seed": 1817147736,
+  "family": "mcar",
+  "metadata": {
+    "eligible_cell_count": 60416,
+    "family": "mcar",
+    "mask_sha256": "75f2fe188541161fb2178dc73638886aceba894c0bf564ba91eaa471b853a78e",
+    "newly_masked_cell_count": 6042,
+    "per_feature_added_missingness": {
+      "date": 756,
+      "day": 744,
+      "nswdemand": 729,
+      "nswprice": 760,
+      "period": 756,
+      "transfer": 748,
+      "vicdemand": 764,
+      "vicprice": 785
+    },
+    "realized_new_missing_fraction": 0.10000662076271187,
+    "severity": "mild",
+    "target_missing_fraction": 0.1
+  },
+  "npz_relpath": "data/shifts/specs/electricity/fold_1/mcar_mild.npz",
+  "npz_sha256": "7fe112e4787fa434edc006f330d44aa2d9f94ff3228f8aad835d681fdc715827",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "e3d8874a9c3d67267a00f6a29476fa7294d896a1798e8aea22bd051440399c21",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "20d7d9b49e9331a43a383367e20d848dcbff5d73af76470f4678be4d6b7744bd",
+  "status": "APPLICABLE"
+}

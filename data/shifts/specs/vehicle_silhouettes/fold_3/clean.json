@@ -1,0 +1,20 @@
+{
+  "condition": "clean",
+  "dataset_id": "vehicle_silhouettes",
+  "derived_seed": 1683214169,
+  "family": "clean",
+  "metadata": {
+    "family": "clean",
+    "severity": "none"
+  },
+  "npz_relpath": "data/shifts/specs/vehicle_silhouettes/fold_3/clean.npz",
+  "npz_sha256": "ea69a6af400f66d7701f475608ac60c1bfb14785a6507291c34d9ac403e01178",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "520683f088b5297ff5780c0a7eeb97b95afd189162561246d1094c226880206a",
+  "severity": "none",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "862e7ffa2846d0d2215af2045821f9881185f61d23940f205bceab5bb675522f",
+  "status": "APPLICABLE"
+}

@@ -1,0 +1,41 @@
+{
+  "condition": "scale_mild",
+  "dataset_id": "bank_marketing",
+  "derived_seed": 81909759,
+  "family": "scale",
+  "metadata": {
+    "eligible_feature_count": 7,
+    "eligible_features": [
+      "V1",
+      "V10",
+      "V12",
+      "V13",
+      "V14",
+      "V15",
+      "V6"
+    ],
+    "family": "scale",
+    "realized_scale_measure": 1.25,
+    "scale_factor": 1.25,
+    "severity": "mild",
+    "source_means": {
+      "V1": 40.88116895684149,
+      "V10": 15.809754209405845,
+      "V12": 257.784705134231,
+      "V13": 2.7612872902209076,
+      "V14": 40.56263651193011,
+      "V15": 0.5845613647045813,
+      "V6": 1369.5559733473417
+    }
+  },
+  "npz_relpath": "data/shifts/specs/bank_marketing/fold_1/scale_mild.npz",
+  "npz_sha256": "6870577549a563a51cf81718a1008666e4786172e25e40eab65c3ab6bc89e099",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "8b870d7e08ed5c709b3d09a7a77163693969f55fe14dc55fceecc63113f5efb9",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "0ee53c203058e84ebc4b2be41155200cb8e7a1e2b38031e8060c5f0acb9c6096",
+  "status": "APPLICABLE"
+}

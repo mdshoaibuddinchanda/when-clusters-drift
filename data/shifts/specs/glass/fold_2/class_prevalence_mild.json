@@ -1,0 +1,42 @@
+{
+  "condition": "class_prevalence_mild",
+  "dataset_id": "glass",
+  "derived_seed": 1105415737,
+  "family": "class_prevalence",
+  "metadata": {
+    "anchor_class": "containers",
+    "family": "class_prevalence",
+    "multiplier": 2.0,
+    "original_class_proportions": {
+      "build wind float": 0.37209302325581395,
+      "build wind non-float": 0.4186046511627907,
+      "containers": 0.09302325581395349,
+      "headlamps": 0.046511627906976744,
+      "tableware": 0.0,
+      "vehic wind float": 0.06976744186046512
+    },
+    "resampling_index_sha256": "4847e815a9ed596cb6935923661cf4eda8d1bd216730b563217c10ca4de9e869",
+    "severity": "mild",
+    "shifted_class_proportions": {
+      "build wind float": 0.2558139534883721,
+      "build wind non-float": 0.4186046511627907,
+      "containers": 0.23255813953488372,
+      "headlamps": 0.023255813953488372,
+      "tableware": 0.0,
+      "vehic wind float": 0.06976744186046512
+    },
+    "total_variation_distance": 0.13953488372093023,
+    "unique_row_fraction": 0.627906976744186,
+    "unique_target_rows": 27
+  },
+  "npz_relpath": "data/shifts/specs/glass/fold_2/class_prevalence_mild.npz",
+  "npz_sha256": "984858fda811eb98886fb47c6c74e906fb6e511108e035e93c6ff90e043e9b62",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "2f7b500172027a6ff7d4e518980d1cc3c750a4058e24e67e92495fe2650b1b49",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "a6a46c0020197d367be4787da021e0065dcfbcae3afad7d5556b67ba536487a9",
+  "status": "APPLICABLE"
+}

@@ -1,0 +1,28 @@
+{
+  "condition": "local_overlap_severe",
+  "dataset_id": "bank_marketing",
+  "derived_seed": 148073011,
+  "family": "local_overlap",
+  "metadata": {
+    "alpha": 0.5,
+    "boundary_fraction": 0.3,
+    "family": "local_overlap",
+    "mean_competing_centroid_dist_after": 0.8850866322062644,
+    "mean_competing_centroid_dist_before": 1.7701732644125288,
+    "mean_source_normalized_movement": 0.8850866322062643,
+    "overlap_strength_metric": 0.8850866322062644,
+    "selected_rows_count": 2713,
+    "selected_rows_sha256": "eca7ad9b64e8dbfed9e80ca6ce32544405f05477d8903ace57d4be9045f6a1e7",
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/bank_marketing/fold_4/local_overlap_severe.npz",
+  "npz_sha256": "6870577549a563a51cf81718a1008666e4786172e25e40eab65c3ab6bc89e099",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "fc216a11b9feacdd669a77cc1de35d31666dc204207dd80f325a6d9307159f4e",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "917c43ccbda8a0d9b04fe29a9cd6b12dc9145e1732576f9db3833283e77ea339",
+  "status": "APPLICABLE"
+}

@@ -1,0 +1,28 @@
+{
+  "condition": "outliers_severe",
+  "dataset_id": "pendigits",
+  "derived_seed": 1793013161,
+  "family": "outliers",
+  "metadata": {
+    "eligible_feature_count": 16,
+    "family": "outliers",
+    "noise_sha256": "31ea6d5bc6e21421a408185d142174effe5ef8d789fe5a60fa8f1e65e2ec89ef",
+    "realized_standardized_displacement": 3.297761927157198,
+    "row_fraction": 0.15,
+    "row_selection_sha256": "16f0e9bf25730a090fc04b612fc6d2f9a396f3a273cb099133b5a36049f140af",
+    "selected_row_count": 330,
+    "severity": "severe",
+    "shock_scale": 3.0,
+    "student_t_df": 3
+  },
+  "npz_relpath": "data/shifts/specs/pendigits/fold_0/outliers_severe.npz",
+  "npz_sha256": "4adba94771ee687d2aaf5ba0c6df9f1eb0a0612d91edb8650a3a23f3a4471552",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "fb6cb1d78a7e2862163aa1befbc122c41f5e60aaba6b1e16678f39dc4f94b7a1",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "6c1f42cbdccbd1b134427f821ec877145e28b219f74b58c8cbf0c6c8f6c083c8",
+  "status": "APPLICABLE"
+}

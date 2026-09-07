@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_mild",
+  "dataset_id": "heart_disease",
+  "derived_seed": 1135213483,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 13,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.1,
+    "noise_seed": 1316502531,
+    "noise_sha256": "549d7b019d04c498e3c2f6cbe95be8fd68dbafb3d18afaba0b123fc610266b57",
+    "rms_standardized_perturbation": 0.09606743621780293,
+    "severity": "mild"
+  },
+  "npz_relpath": "data/shifts/specs/heart_disease/fold_2/measurement_noise_mild.npz",
+  "npz_sha256": "e2f2fa83171b408331b1e04ae0341a7d34d27ab930957a5d948eaa9663bf5ddc",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "9dbfafb9c66d4771c4c8f9d9c10d27f222a5c35961fdb2a69373500e05ea4326",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "3f66df2ace2c3f0c6ec56cb96ee19e58393ec8247df4a0cc7185da6c43b61ee8",
+  "status": "APPLICABLE"
+}

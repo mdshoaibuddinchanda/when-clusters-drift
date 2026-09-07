@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_severe",
+  "dataset_id": "waveform",
+  "derived_seed": 1896189151,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 40,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.3,
+    "noise_seed": 2010138916,
+    "noise_sha256": "0b3ceb01b940f69dee80185ebf815ad473c0aecdc81483d83299ce5415c92460",
+    "rms_standardized_perturbation": 0.29935472080883635,
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/waveform/fold_4/measurement_noise_severe.npz",
+  "npz_sha256": "68dd82312817b86a6796ca10193f2f58b051376ea4bfbd9359eb2c28f2f018fe",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "3bde15af5b27c977576637dcb40e7978c3b58b886902093a9cf02cdfee1a8190",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "72c536f624bd942b84ef99a827d0b34bc4d42520fd70850d194ee11844f2839e",
+  "status": "APPLICABLE"
+}

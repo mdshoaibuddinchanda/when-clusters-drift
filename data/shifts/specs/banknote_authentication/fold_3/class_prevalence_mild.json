@@ -1,0 +1,34 @@
+{
+  "condition": "class_prevalence_mild",
+  "dataset_id": "banknote_authentication",
+  "derived_seed": 126782647,
+  "family": "class_prevalence",
+  "metadata": {
+    "anchor_class": "2",
+    "family": "class_prevalence",
+    "multiplier": 2.0,
+    "original_class_proportions": {
+      "1": 0.572992700729927,
+      "2": 0.42700729927007297
+    },
+    "resampling_index_sha256": "dc6579eacacd4c0946792b5ec06162a6e03a792fb2a23bd22a6c84deaa548c0d",
+    "severity": "mild",
+    "shifted_class_proportions": {
+      "1": 0.3686131386861314,
+      "2": 0.6313868613138686
+    },
+    "total_variation_distance": 0.20437956204379562,
+    "unique_row_fraction": 0.5766423357664233,
+    "unique_target_rows": 158
+  },
+  "npz_relpath": "data/shifts/specs/banknote_authentication/fold_3/class_prevalence_mild.npz",
+  "npz_sha256": "fd44a44b910b7f939f3f5d754989cd13e26bbdb1733f931d9ef254b6ceb170ce",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "b0445c8d5e684f593a48a92b2627117f6df43eec0cfdcc65a667cfc5b30940d1",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "9fb363fbcffb57254e1e65a35d87ac01035abb76e584c317d63f94f0867c9964",
+  "status": "APPLICABLE"
+}

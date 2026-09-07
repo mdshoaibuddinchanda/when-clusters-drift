@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_severe",
+  "dataset_id": "electricity",
+  "derived_seed": 42321924,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 4,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.3,
+    "noise_seed": 1645150057,
+    "noise_sha256": "6f7dd4ced6357f5a713d061698cd1cde495e0e0e015fcbf15f08657d6ee3da2b",
+    "rms_standardized_perturbation": 0.2987316746920801,
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/electricity/fold_1/measurement_noise_severe.npz",
+  "npz_sha256": "7fe112e4787fa434edc006f330d44aa2d9f94ff3228f8aad835d681fdc715827",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "e3d8874a9c3d67267a00f6a29476fa7294d896a1798e8aea22bd051440399c21",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "b5dd04198ee13aa2a874b601c664635ab2b56c5e8b19a416a208cb6f60bc0a7f",
+  "status": "APPLICABLE"
+}

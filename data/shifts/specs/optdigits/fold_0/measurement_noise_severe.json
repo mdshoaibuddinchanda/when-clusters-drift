@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_severe",
+  "dataset_id": "optdigits",
+  "derived_seed": 387165541,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 62,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.3,
+    "noise_seed": 487633999,
+    "noise_sha256": "b8356fe13fcc8a6c952f8f85e8c95632fd744cd58db85ad45b4df0768ae9447e",
+    "rms_standardized_perturbation": 0.300726825026353,
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/optdigits/fold_0/measurement_noise_severe.npz",
+  "npz_sha256": "c9b1e33408db4fef8bec8d579d98c832f936a93d0b62c1386b02131acadd3295",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "24545e853790d9457f1c96989a5e2de9b78ec73167666eaf989f14432123f2b5",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "3c217079cec8a81c0bf2f3637c9e45ea9c4f0ba0842c1d57326ac8793e418416",
+  "status": "APPLICABLE"
+}

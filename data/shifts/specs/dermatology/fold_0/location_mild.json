@@ -1,0 +1,31 @@
+{
+  "condition": "location_mild",
+  "dataset_id": "dermatology",
+  "derived_seed": 526691296,
+  "family": "location",
+  "metadata": {
+    "delta": 0.5,
+    "eligible_feature_count": 1,
+    "family": "location",
+    "feature_fraction": 0.3,
+    "realized_standardized_displacement": 0.5,
+    "selected_feature_count": 1,
+    "selected_features": [
+      "Age"
+    ],
+    "severity": "mild",
+    "source_sds": {
+      "Age": 15.152235291437249
+    }
+  },
+  "npz_relpath": "data/shifts/specs/dermatology/fold_0/location_mild.npz",
+  "npz_sha256": "edff644fbba5c2ae9d4a1e825ec2070ef5eaafe53f425ffa5f8cfc5390cb1dc3",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "afc8e5f0f42b0451ae90d05ec5145b2a64f04a7b9051de625c1ee6e2b7a99623",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "222cf7b2d8c149b81b0426e0826e7fd489cbbb3b1e66d379c6609ac8340bb0f6",
+  "status": "APPLICABLE"
+}

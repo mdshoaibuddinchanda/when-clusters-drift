@@ -1,0 +1,50 @@
+{
+  "condition": "class_prevalence_mild",
+  "dataset_id": "yeast",
+  "derived_seed": 626120601,
+  "family": "class_prevalence",
+  "metadata": {
+    "anchor_class": "POX",
+    "family": "class_prevalence",
+    "multiplier": 2.0,
+    "original_class_proportions": {
+      "CYT": 0.30743243243243246,
+      "ERL": 0.0,
+      "EXC": 0.013513513513513514,
+      "ME1": 0.033783783783783786,
+      "ME2": 0.030405405405405407,
+      "ME3": 0.11486486486486487,
+      "MIT": 0.15878378378378377,
+      "NUC": 0.30067567567567566,
+      "POX": 0.02027027027027027,
+      "VAC": 0.02027027027027027
+    },
+    "resampling_index_sha256": "b918ad9847fa7ac7912b11cfba9ec64681a8bbd6b23e125460d4be2c3e1f0649",
+    "severity": "mild",
+    "shifted_class_proportions": {
+      "CYT": 0.2939189189189189,
+      "ERL": 0.0,
+      "EXC": 0.006756756756756757,
+      "ME1": 0.02364864864864865,
+      "ME2": 0.02027027027027027,
+      "ME3": 0.12837837837837837,
+      "MIT": 0.15202702702702703,
+      "NUC": 0.32432432432432434,
+      "POX": 0.037162162162162164,
+      "VAC": 0.013513513513513514
+    },
+    "total_variation_distance": 0.05405405405405407,
+    "unique_row_fraction": 0.6351351351351351,
+    "unique_target_rows": 188
+  },
+  "npz_relpath": "data/shifts/specs/yeast/fold_4/class_prevalence_mild.npz",
+  "npz_sha256": "d04d676c9bbbbf68081c1c7ef47bb36360d85245383325adff32ac95dc7b34dc",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "740c806a47900136ee84d6571c0016f6feeafce70c21a770e47b4f4f73e8e7dd",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "21b104949a4a480584930debfdc8011537076d6ae5c05adcba3bed22e7568019",
+  "status": "APPLICABLE"
+}

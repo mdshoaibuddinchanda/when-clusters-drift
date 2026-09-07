@@ -1,0 +1,28 @@
+{
+  "condition": "local_overlap_mild",
+  "dataset_id": "mice_protein_expression",
+  "derived_seed": 174000503,
+  "family": "local_overlap",
+  "metadata": {
+    "alpha": 0.25,
+    "boundary_fraction": 0.3,
+    "family": "local_overlap",
+    "mean_competing_centroid_dist_after": 5.027881596948,
+    "mean_competing_centroid_dist_before": 6.7019512318423615,
+    "mean_source_normalized_movement": 1.6748789194779379,
+    "overlap_strength_metric": 1.6740696348943613,
+    "selected_rows_count": 62,
+    "selected_rows_sha256": "9249c5ab7b4d1ac37c9948a1912d7781054f76ffd7fde5fbaca643014ae7fbf1",
+    "severity": "mild"
+  },
+  "npz_relpath": "data/shifts/specs/mice_protein_expression/fold_2/local_overlap_mild.npz",
+  "npz_sha256": "bff17b5169d57ab8a1d8cac1203bf18f0c845fdee29a9448e9b6628fd0053cea",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "8f50c9b865bf2894e28441aeaf7f1a0ccb9b92712b7a5f7f431747e92026692b",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "97330d7f84cd8d318cbe8a4646fde305b49124795ed2ab206fb1709fe9eeea71",
+  "status": "APPLICABLE"
+}

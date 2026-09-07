@@ -1,0 +1,20 @@
+{
+  "condition": "clean",
+  "dataset_id": "image_segmentation",
+  "derived_seed": 737317376,
+  "family": "clean",
+  "metadata": {
+    "family": "clean",
+    "severity": "none"
+  },
+  "npz_relpath": "data/shifts/specs/image_segmentation/fold_2/clean.npz",
+  "npz_sha256": "064428a7a23ba0feaea2d592a61aadcdfa80ffd1d70610745a899d15fbbd0d80",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "bfb2cd1f3a3afeb07c5b7695819f631ac6144b923a6834dfd517a29b61e6a9f1",
+  "severity": "none",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "4cafb5e9f8163d0ac3a042cd022db5b7081487fe0becf2fd3dd2866da021dc99",
+  "status": "APPLICABLE"
+}

@@ -1,0 +1,37 @@
+{
+  "condition": "location_severe",
+  "dataset_id": "heart_disease",
+  "derived_seed": 771223254,
+  "family": "location",
+  "metadata": {
+    "delta": 1.0,
+    "eligible_feature_count": 13,
+    "family": "location",
+    "feature_fraction": 0.3,
+    "realized_standardized_displacement": 1.0,
+    "selected_feature_count": 4,
+    "selected_features": [
+      "V2",
+      "V13",
+      "V3",
+      "V8"
+    ],
+    "severity": "severe",
+    "source_sds": {
+      "V13": 4.175448465187148,
+      "V2": 0.4524287370830578,
+      "V3": 0.9896169453332105,
+      "V8": 25.55737495203662
+    }
+  },
+  "npz_relpath": "data/shifts/specs/heart_disease/fold_1/location_severe.npz",
+  "npz_sha256": "e2f2fa83171b408331b1e04ae0341a7d34d27ab930957a5d948eaa9663bf5ddc",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "7402745402e1bb0bd196945b99d04988fde18afcf9c0019257a254b3555c2cd3",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "0cddf6765e8274bd2179018f391c1b4f62dc875f899330f04c7f8586d3f11678",
+  "status": "APPLICABLE"
+}

@@ -1,0 +1,34 @@
+{
+  "condition": "class_prevalence_severe",
+  "dataset_id": "madelon",
+  "derived_seed": 842165392,
+  "family": "class_prevalence",
+  "metadata": {
+    "anchor_class": "1",
+    "family": "class_prevalence",
+    "multiplier": 4.0,
+    "original_class_proportions": {
+      "1": 0.5134615384615384,
+      "2": 0.48653846153846153
+    },
+    "resampling_index_sha256": "596c88eb48d8969c8694a04be84262fb53bbce936d0d8f44b03e7f905dc18e46",
+    "severity": "severe",
+    "shifted_class_proportions": {
+      "1": 0.8192307692307692,
+      "2": 0.18076923076923077
+    },
+    "total_variation_distance": 0.3057692307692308,
+    "unique_row_fraction": 0.5692307692307692,
+    "unique_target_rows": 296
+  },
+  "npz_relpath": "data/shifts/specs/madelon/fold_1/class_prevalence_severe.npz",
+  "npz_sha256": "b455b4bdfafb062a0bc14a991d969f599af9828a5eed05c756af7a93d37de347",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "fbe5999bba0a10d9d329b7a409f1e2779ecda6b685c92c69cc563d2d03066005",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "3f15b99075fe91e65b4f9985e6fa79429968650392aad7acac6306fea930e803",
+  "status": "APPLICABLE"
+}

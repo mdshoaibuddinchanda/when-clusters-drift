@@ -1,0 +1,41 @@
+{
+  "condition": "scale_mild",
+  "dataset_id": "ecoli",
+  "derived_seed": 831654928,
+  "family": "scale",
+  "metadata": {
+    "eligible_feature_count": 7,
+    "eligible_features": [
+      "aac",
+      "alm1",
+      "alm2",
+      "chg",
+      "gvh",
+      "lip",
+      "mcg"
+    ],
+    "family": "scale",
+    "realized_scale_measure": 1.25,
+    "scale_factor": 1.25,
+    "severity": "mild",
+    "source_means": {
+      "aac": 0.49907063197026025,
+      "alm1": 0.49557620817843867,
+      "alm2": 0.49691449814126387,
+      "chg": 0.5018587360594795,
+      "gvh": 0.5001486988847584,
+      "lip": 0.4915985130111524,
+      "mcg": 0.49033457249070633
+    }
+  },
+  "npz_relpath": "data/shifts/specs/ecoli/fold_3/scale_mild.npz",
+  "npz_sha256": "820d919b1ee6b7f9a76cb72dcedb08ddf029e225ecdca20c6a5416a67910c7f7",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "e34f263bb6ff37a027b3d8a9031c850ae3dc6af50fb6f51eca2a9df25e86a106",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "1f6624bc88e1bf8a3cfdcb5310b7554504a608f46a3841aa966442d4630cac49",
+  "status": "APPLICABLE"
+}

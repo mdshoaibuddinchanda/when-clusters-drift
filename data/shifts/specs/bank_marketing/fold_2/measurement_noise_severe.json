@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_severe",
+  "dataset_id": "bank_marketing",
+  "derived_seed": 11328640,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 7,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.3,
+    "noise_seed": 1858777302,
+    "noise_sha256": "a1df253831192b712fb9b7392ef57f142640e22dc3f9d1f0ac0b856740576963",
+    "rms_standardized_perturbation": 0.29885024424203116,
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/bank_marketing/fold_2/measurement_noise_severe.npz",
+  "npz_sha256": "6870577549a563a51cf81718a1008666e4786172e25e40eab65c3ab6bc89e099",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "7387d5ad99ad0401f852ccaa19b32dd0c0109bfaa4ad2bda3650f45b05db992c",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "81e6520927aa6a223ca95acad8d2894009b90e5e4b0a268c25d5ccd2864bbacf",
+  "status": "APPLICABLE"
+}

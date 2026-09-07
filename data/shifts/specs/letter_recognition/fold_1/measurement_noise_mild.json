@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_mild",
+  "dataset_id": "letter_recognition",
+  "derived_seed": 999287392,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 16,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.1,
+    "noise_seed": 1080153960,
+    "noise_sha256": "57d153e9f41b6499a93d9f9b33789adbe4cccb55deba6df771889103f281c650",
+    "rms_standardized_perturbation": 0.10017994753054023,
+    "severity": "mild"
+  },
+  "npz_relpath": "data/shifts/specs/letter_recognition/fold_1/measurement_noise_mild.npz",
+  "npz_sha256": "8584518ab9f3725a5c56be1ea0390d0898ba16699982be6a456d07b4f86cd4df",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "92d05360c8093e58dc55de309dacbd3aa4d3554eee0b805ed97550b7e91645bb",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "f5a213cb506212625ea0fdc71bb4c8668bceab8dfa605693e8f0c06a1f361ef8",
+  "status": "APPLICABLE"
+}

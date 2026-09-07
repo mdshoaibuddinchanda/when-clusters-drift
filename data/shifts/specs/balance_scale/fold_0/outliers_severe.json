@@ -1,0 +1,28 @@
+{
+  "condition": "outliers_severe",
+  "dataset_id": "balance_scale",
+  "derived_seed": 1837924030,
+  "family": "outliers",
+  "metadata": {
+    "eligible_feature_count": 4,
+    "family": "outliers",
+    "noise_sha256": "b5ccf142fcd53e205bf7a9d02670a5bebe72aa24b6dd5da461267e2d641b3ec2",
+    "realized_standardized_displacement": 3.5767267717707436,
+    "row_fraction": 0.15,
+    "row_selection_sha256": "22a33a02614cbe557832eabf5cb0d55a9f52ea1f9f4c4d258e025c21f57f8ecb",
+    "selected_row_count": 19,
+    "severity": "severe",
+    "shock_scale": 3.0,
+    "student_t_df": 3
+  },
+  "npz_relpath": "data/shifts/specs/balance_scale/fold_0/outliers_severe.npz",
+  "npz_sha256": "35fb0c2c08f2c8bf61253d5b49afe12337673c99a8136ca87d1681abb8ed9b9e",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "b51593ffd4f452fc119daa7e9ed0d580d45affadde837b94d52c95f5405df752",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "79d65f0a936c6cd71213f9ee4625165fd7d54b52cc176cbd0e034d0d88375372",
+  "status": "APPLICABLE"
+}

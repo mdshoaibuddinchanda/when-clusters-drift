@@ -1,0 +1,33 @@
+{
+  "condition": "location_mild",
+  "dataset_id": "electricity",
+  "derived_seed": 54819811,
+  "family": "location",
+  "metadata": {
+    "delta": 0.5,
+    "eligible_feature_count": 4,
+    "family": "location",
+    "feature_fraction": 0.3,
+    "realized_standardized_displacement": 0.5,
+    "selected_feature_count": 2,
+    "selected_features": [
+      "nswdemand",
+      "nswprice"
+    ],
+    "severity": "mild",
+    "source_sds": {
+      "nswdemand": 0.1577591917334944,
+      "nswprice": 0.02567164719496316
+    }
+  },
+  "npz_relpath": "data/shifts/specs/electricity/fold_1/location_mild.npz",
+  "npz_sha256": "7fe112e4787fa434edc006f330d44aa2d9f94ff3228f8aad835d681fdc715827",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "e3d8874a9c3d67267a00f6a29476fa7294d896a1798e8aea22bd051440399c21",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "4da3b2619d648e33019c7263c28129e5291e930d873b4b26e7bb885a13865670",
+  "status": "APPLICABLE"
+}

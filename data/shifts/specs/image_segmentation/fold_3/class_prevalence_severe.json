@@ -1,0 +1,44 @@
+{
+  "condition": "class_prevalence_severe",
+  "dataset_id": "image_segmentation",
+  "derived_seed": 636602770,
+  "family": "class_prevalence",
+  "metadata": {
+    "anchor_class": "sky",
+    "family": "class_prevalence",
+    "multiplier": 4.0,
+    "original_class_proportions": {
+      "brickface": 0.14502164502164502,
+      "cement": 0.13852813852813853,
+      "foliage": 0.13636363636363635,
+      "grass": 0.12987012987012986,
+      "path": 0.12554112554112554,
+      "sky": 0.16233766233766234,
+      "window": 0.16233766233766234
+    },
+    "resampling_index_sha256": "b4eb3e3c2cbddfd79039a4129449ef8c5ba9723239b00582ac2ff71299d35a42",
+    "severity": "severe",
+    "shifted_class_proportions": {
+      "brickface": 0.07792207792207792,
+      "cement": 0.10606060606060606,
+      "foliage": 0.07792207792207792,
+      "grass": 0.09523809523809523,
+      "path": 0.10173160173160173,
+      "sky": 0.44805194805194803,
+      "window": 0.09307359307359307
+    },
+    "total_variation_distance": 0.2857142857142857,
+    "unique_row_fraction": 0.5476190476190477,
+    "unique_target_rows": 253
+  },
+  "npz_relpath": "data/shifts/specs/image_segmentation/fold_3/class_prevalence_severe.npz",
+  "npz_sha256": "d50aa690367b832b2ee3bd9bc66f0b3cca7f8a798bb8480a630997b656a02d93",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "f0eae63f7eaaabfbacf6bbc4b2a8b12168b481ff004d45c1697c626b9337874e",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "4c759974339a5d7e09ae5524fdfcf903a4dd85bfec35e54ec5e4a446afc8bdca",
+  "status": "APPLICABLE"
+}

@@ -1,0 +1,20 @@
+{
+  "condition": "clean",
+  "dataset_id": "dermatology",
+  "derived_seed": 1975586052,
+  "family": "clean",
+  "metadata": {
+    "family": "clean",
+    "severity": "none"
+  },
+  "npz_relpath": "data/shifts/specs/dermatology/fold_4/clean.npz",
+  "npz_sha256": "a423d8dc4130b6278b8e0627c4a0c9475a1e57882434e77cd8523ad8e1813dca",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "0a77f529e7f283bc707c451ac0f4d62262cce41cae5a3ff85a8e39fe11746b98",
+  "severity": "none",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "804ae487984ae90cc74193c36e183b154613d26bd6c82299d9e5d1d5be2c0660",
+  "status": "APPLICABLE"
+}

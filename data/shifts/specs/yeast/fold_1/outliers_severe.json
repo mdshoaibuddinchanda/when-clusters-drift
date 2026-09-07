@@ -1,0 +1,28 @@
+{
+  "condition": "outliers_severe",
+  "dataset_id": "yeast",
+  "derived_seed": 757392445,
+  "family": "outliers",
+  "metadata": {
+    "eligible_feature_count": 8,
+    "family": "outliers",
+    "noise_sha256": "1e29494e0ef7e93de780ff7e989b9fd30a777270bbf0f368ab3ac1576b577ed6",
+    "realized_standardized_displacement": 3.508519314085169,
+    "row_fraction": 0.15,
+    "row_selection_sha256": "4d11c9bccf8c74464f7ed6111547d98a5773c0c6e55fc9297806a0e75a362b7b",
+    "selected_row_count": 45,
+    "severity": "severe",
+    "shock_scale": 3.0,
+    "student_t_df": 3
+  },
+  "npz_relpath": "data/shifts/specs/yeast/fold_1/outliers_severe.npz",
+  "npz_sha256": "a47b17799a2f15bb2d208453f7c1876c73a240216abbd02714ac739f691f150e",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "f95b231713ce6bbc70174509a7e60e35b70470d43085e9dd25d09210e8f2a115",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "a227674fa1d49d06d6932c3d979cfbd163d5ee5ea119ccbc62a854e564edefde",
+  "status": "APPLICABLE"
+}

@@ -1,0 +1,43 @@
+{
+  "condition": "scale_severe",
+  "dataset_id": "pima_diabetes",
+  "derived_seed": 1163187311,
+  "family": "scale",
+  "metadata": {
+    "eligible_feature_count": 8,
+    "eligible_features": [
+      "age",
+      "insu",
+      "mass",
+      "pedi",
+      "plas",
+      "preg",
+      "pres",
+      "skin"
+    ],
+    "family": "scale",
+    "realized_scale_measure": 1.75,
+    "scale_factor": 1.75,
+    "severity": "severe",
+    "source_means": {
+      "age": 33.136585365853655,
+      "insu": 79.07317073170732,
+      "mass": 32.20959349593496,
+      "pedi": 0.4701073170731707,
+      "plas": 121.44065040650406,
+      "preg": 3.8910569105691057,
+      "pres": 68.81463414634146,
+      "skin": 20.479674796747968
+    }
+  },
+  "npz_relpath": "data/shifts/specs/pima_diabetes/fold_3/scale_severe.npz",
+  "npz_sha256": "034ed0afe67875e0f8537ee012d6ae559433679189ffcb65af7841183e4a869f",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "a0784be9d16698d125937441f24715dce329e7ef9d5c4d1c3ca7a64c0fdf31c9",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "bdb9c282d2f33b2e8eaa6273225fc6cd6cfccdc8225386f8588653ba952d9e6d",
+  "status": "APPLICABLE"
+}

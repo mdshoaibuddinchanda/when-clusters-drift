@@ -1,0 +1,20 @@
+{
+  "condition": "clean",
+  "dataset_id": "waveform",
+  "derived_seed": 293088593,
+  "family": "clean",
+  "metadata": {
+    "family": "clean",
+    "severity": "none"
+  },
+  "npz_relpath": "data/shifts/specs/waveform/fold_2/clean.npz",
+  "npz_sha256": "68dd82312817b86a6796ca10193f2f58b051376ea4bfbd9359eb2c28f2f018fe",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "f598054018a37420cce5176a060bcae772555d8244130909734b58dbb780b96b",
+  "severity": "none",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "a6d6bf95cf9835a0aa9d071982953134adff5cf63efd395cf5806a52a48ddc99",
+  "status": "APPLICABLE"
+}

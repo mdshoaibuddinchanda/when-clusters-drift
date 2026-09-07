@@ -1,0 +1,41 @@
+{
+  "condition": "scale_severe",
+  "dataset_id": "electricity",
+  "derived_seed": 1009918191,
+  "family": "scale",
+  "metadata": {
+    "eligible_feature_count": 7,
+    "eligible_features": [
+      "date",
+      "nswdemand",
+      "nswprice",
+      "period",
+      "transfer",
+      "vicdemand",
+      "vicprice"
+    ],
+    "family": "scale",
+    "realized_scale_measure": 1.75,
+    "scale_factor": 1.75,
+    "severity": "severe",
+    "source_means": {
+      "date": 0.4172174016949152,
+      "nswdemand": 0.4205473883739406,
+      "nswprice": 0.05609671962394068,
+      "period": 0.4998196898834745,
+      "transfer": 0.4932839228283899,
+      "vicdemand": 0.4158197074417373,
+      "vicprice": 0.0032733142213983053
+    }
+  },
+  "npz_relpath": "data/shifts/specs/electricity/fold_4/scale_severe.npz",
+  "npz_sha256": "7fe112e4787fa434edc006f330d44aa2d9f94ff3228f8aad835d681fdc715827",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "f1571199410a740cb043f7ed568b2a5444d10547435d3654dcad13f716b236ae",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "dfc0774d4e596867aab12efc22f62cb9ebdda76782453a4c337ef2ad2f182164",
+  "status": "APPLICABLE"
+}

@@ -1,0 +1,35 @@
+{
+  "condition": "location_mild",
+  "dataset_id": "bank_marketing",
+  "derived_seed": 1026625206,
+  "family": "location",
+  "metadata": {
+    "delta": 0.5,
+    "eligible_feature_count": 7,
+    "family": "location",
+    "feature_fraction": 0.3,
+    "realized_standardized_displacement": 0.5,
+    "selected_feature_count": 3,
+    "selected_features": [
+      "V6",
+      "V12",
+      "V15"
+    ],
+    "severity": "mild",
+    "source_sds": {
+      "V12": 257.5086329947256,
+      "V15": 2.4032028473584037,
+      "V6": 3032.302783396811
+    }
+  },
+  "npz_relpath": "data/shifts/specs/bank_marketing/fold_4/location_mild.npz",
+  "npz_sha256": "6870577549a563a51cf81718a1008666e4786172e25e40eab65c3ab6bc89e099",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "fc216a11b9feacdd669a77cc1de35d31666dc204207dd80f325a6d9307159f4e",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "d800e306fbed74ffea88036d1211ec683e32304bfae8e93832c36a35f342628e",
+  "status": "APPLICABLE"
+}

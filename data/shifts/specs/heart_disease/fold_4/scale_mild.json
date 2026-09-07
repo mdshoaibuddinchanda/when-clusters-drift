@@ -1,0 +1,53 @@
+{
+  "condition": "scale_mild",
+  "dataset_id": "heart_disease",
+  "derived_seed": 2022643993,
+  "family": "scale",
+  "metadata": {
+    "eligible_feature_count": 13,
+    "eligible_features": [
+      "V1",
+      "V10",
+      "V11",
+      "V12",
+      "V13",
+      "V2",
+      "V3",
+      "V4",
+      "V5",
+      "V6",
+      "V7",
+      "V8",
+      "V9"
+    ],
+    "family": "scale",
+    "realized_scale_measure": 1.25,
+    "scale_factor": 1.25,
+    "severity": "mild",
+    "source_means": {
+      "V1": 48.05084745762712,
+      "V10": 0.6135593220338984,
+      "V11": -4.983050847457627,
+      "V12": -8.809322033898304,
+      "V13": -7.508474576271187,
+      "V2": 0.7330508474576272,
+      "V3": 2.9788135593220337,
+      "V4": 132.40254237288136,
+      "V5": 235.27542372881356,
+      "V6": -0.0847457627118644,
+      "V7": 0.18220338983050846,
+      "V8": 137.97033898305085,
+      "V9": 0.2838983050847458
+    }
+  },
+  "npz_relpath": "data/shifts/specs/heart_disease/fold_4/scale_mild.npz",
+  "npz_sha256": "d112d21a8ed2aa89d400760e9e6376a54d0f85a98c21b87ef873c912359b17c6",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "6d70e5e3a523e16541fe495bc3eb7f5ab92f7b229a621b1b6b657bc6ec98a66f",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "55c22fea04d6f329d663cfb9b00f24bfae6a70106d0c044b6cd0758b50ab54ae",
+  "status": "APPLICABLE"
+}

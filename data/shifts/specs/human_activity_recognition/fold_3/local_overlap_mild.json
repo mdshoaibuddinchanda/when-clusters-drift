@@ -1,0 +1,28 @@
+{
+  "condition": "local_overlap_mild",
+  "dataset_id": "human_activity_recognition",
+  "derived_seed": 1752744307,
+  "family": "local_overlap",
+  "metadata": {
+    "alpha": 0.25,
+    "boundary_fraction": 0.3,
+    "family": "local_overlap",
+    "mean_competing_centroid_dist_after": 9.77455416446936,
+    "mean_competing_centroid_dist_before": 13.032738885959144,
+    "mean_source_normalized_movement": 3.258184721489786,
+    "overlap_strength_metric": 3.258184721489785,
+    "selected_rows_count": 620,
+    "selected_rows_sha256": "07da7196b5a6d91ff05e69105428f21d772bdbfa514d31a41e49f1c9561dab7c",
+    "severity": "mild"
+  },
+  "npz_relpath": "data/shifts/specs/human_activity_recognition/fold_3/local_overlap_mild.npz",
+  "npz_sha256": "8fa70ac9606f057ee887283c7a27180c8c499987af97c57a428d36d08a007406",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "67f9efe41bbf82e87ccd64ec33c2754dcc1f2e4db676e45582b86a30d0da883a",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "78c0954d8c2319dde71522dc2f7d27551ef2eae666187e17d96c32726fe3a248",
+  "status": "APPLICABLE"
+}

@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_mild",
+  "dataset_id": "dermatology",
+  "derived_seed": 1778974127,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 1,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.1,
+    "noise_seed": 192026201,
+    "noise_sha256": "b339a834e9c562d42e65247e18497767c0c44a60c279e0c8ce489979268f8fe7",
+    "rms_standardized_perturbation": 0.09700261742815723,
+    "severity": "mild"
+  },
+  "npz_relpath": "data/shifts/specs/dermatology/fold_2/measurement_noise_mild.npz",
+  "npz_sha256": "a423d8dc4130b6278b8e0627c4a0c9475a1e57882434e77cd8523ad8e1813dca",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "78e28fb8a44b404bf8b83d388f04ed9ce4ef9a877b4d98dad29497df358eb349",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "9d1e9563c977f85ec6e800fdb2c5405055e524d53303130ed039ceaafae42c38",
+  "status": "APPLICABLE"
+}

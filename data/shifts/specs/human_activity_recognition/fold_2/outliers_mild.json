@@ -1,0 +1,28 @@
+{
+  "condition": "outliers_mild",
+  "dataset_id": "human_activity_recognition",
+  "derived_seed": 1964591505,
+  "family": "outliers",
+  "metadata": {
+    "eligible_feature_count": 561,
+    "family": "outliers",
+    "noise_sha256": "ae1fdf61ffd045212045d229727698b72c73210e33a106a7af3f6f21f39afe44",
+    "realized_standardized_displacement": 3.3327821537419706,
+    "row_fraction": 0.05,
+    "row_selection_sha256": "fe668a9b02a4674aa49deed810915d18e4d52ee0d3e4f5a4be6b701a32a2f568",
+    "selected_row_count": 103,
+    "severity": "mild",
+    "shock_scale": 3.0,
+    "student_t_df": 3
+  },
+  "npz_relpath": "data/shifts/specs/human_activity_recognition/fold_2/outliers_mild.npz",
+  "npz_sha256": "f6c93186b22940a6b6fae42cbf9b6cd626f3d31cfbfb417a3d4c95da96d4c78d",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "2cb91dd98d4101087116d3a2d2b7a9d4936a311a74c14280f7fa2211f2fb3cfb",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "adb73d77b065f518bae70b1a60dd56ad426e934d02201176666cf59a56810e93",
+  "status": "APPLICABLE"
+}

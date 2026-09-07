@@ -1,0 +1,29 @@
+{
+  "condition": "scale_mild",
+  "dataset_id": "dermatology",
+  "derived_seed": 675814720,
+  "family": "scale",
+  "metadata": {
+    "eligible_feature_count": 1,
+    "eligible_features": [
+      "Age"
+    ],
+    "family": "scale",
+    "realized_scale_measure": 1.25,
+    "scale_factor": 1.25,
+    "severity": "mild",
+    "source_means": {
+      "Age": 35.83916083916084
+    }
+  },
+  "npz_relpath": "data/shifts/specs/dermatology/fold_4/scale_mild.npz",
+  "npz_sha256": "a423d8dc4130b6278b8e0627c4a0c9475a1e57882434e77cd8523ad8e1813dca",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "0a77f529e7f283bc707c451ac0f4d62262cce41cae5a3ff85a8e39fe11746b98",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "011526401b0322d91d67a8516d1cf8a579ffc8d5dea3ffc238a38242257ba357",
+  "status": "APPLICABLE"
+}

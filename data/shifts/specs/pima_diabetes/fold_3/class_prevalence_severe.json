@@ -1,0 +1,34 @@
+{
+  "condition": "class_prevalence_severe",
+  "dataset_id": "pima_diabetes",
+  "derived_seed": 88912664,
+  "family": "class_prevalence",
+  "metadata": {
+    "anchor_class": "tested_positive",
+    "family": "class_prevalence",
+    "multiplier": 4.0,
+    "original_class_proportions": {
+      "tested_negative": 0.6339869281045751,
+      "tested_positive": 0.3660130718954248
+    },
+    "resampling_index_sha256": "6b608a632ea1d631e9a8060b3d878ced25405c6a6d4a8afa4dc00a223d5195f2",
+    "severity": "severe",
+    "shifted_class_proportions": {
+      "tested_negative": 0.3464052287581699,
+      "tested_positive": 0.6535947712418301
+    },
+    "total_variation_distance": 0.2875816993464052,
+    "unique_row_fraction": 0.5686274509803921,
+    "unique_target_rows": 87
+  },
+  "npz_relpath": "data/shifts/specs/pima_diabetes/fold_3/class_prevalence_severe.npz",
+  "npz_sha256": "89b99f6d474256555d26ddf2d1208428f22b6017bcef7c4a9f8ff651ba032c88",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "a0784be9d16698d125937441f24715dce329e7ef9d5c4d1c3ca7a64c0fdf31c9",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "d90687dd1e347ebda27c3e65661bafbba540b951a55e19aa0f2d3b713d7b864a",
+  "status": "APPLICABLE"
+}

@@ -1,0 +1,28 @@
+{
+  "condition": "outliers_mild",
+  "dataset_id": "bank_marketing",
+  "derived_seed": 1918165902,
+  "family": "outliers",
+  "metadata": {
+    "eligible_feature_count": 7,
+    "family": "outliers",
+    "noise_sha256": "dcb0eadf3fe3cffb599830da20ef659bfa509c8b96eff849cac20e239fa7b804",
+    "realized_standardized_displacement": 3.408279842742102,
+    "row_fraction": 0.05,
+    "row_selection_sha256": "9a0730b5b64b4c261c5c07e4a9442dc786044a8b65bb86ee9b3771d7b1a161e9",
+    "selected_row_count": 452,
+    "severity": "mild",
+    "shock_scale": 3.0,
+    "student_t_df": 3
+  },
+  "npz_relpath": "data/shifts/specs/bank_marketing/fold_0/outliers_mild.npz",
+  "npz_sha256": "c7d3dff8a08ff662267c86a4d7e1b07cfc24559701d61292895814619fff1692",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "8baee52e7143d4ca6474256f69a683a3a08f640ddc009e3dfbc4f6fa5bfd6f37",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "4d21655f3905b0911e121c204486fda6183bfa98d4b3da3f75e6e371c38c2b8c",
+  "status": "APPLICABLE"
+}

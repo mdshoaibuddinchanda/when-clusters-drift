@@ -1,0 +1,46 @@
+{
+  "condition": "class_prevalence_severe",
+  "dataset_id": "mice_protein_expression",
+  "derived_seed": 909447905,
+  "family": "class_prevalence",
+  "metadata": {
+    "anchor_class": "c-CS-s",
+    "family": "class_prevalence",
+    "multiplier": 4.0,
+    "original_class_proportions": {
+      "c-CS-m": 0.07142857142857142,
+      "c-CS-s": 0.21428571428571427,
+      "c-SC-m": 0.07142857142857142,
+      "c-SC-s": 0.14285714285714285,
+      "t-CS-m": 0.14285714285714285,
+      "t-CS-s": 0.07142857142857142,
+      "t-SC-m": 0.07142857142857142,
+      "t-SC-s": 0.21428571428571427
+    },
+    "resampling_index_sha256": "d8f98c9f06e824d0e65d4f01ce6073f527a87304f451a1dc9c7e0732fc8ed177",
+    "severity": "severe",
+    "shifted_class_proportions": {
+      "c-CS-m": 0.047619047619047616,
+      "c-CS-s": 0.5190476190476191,
+      "c-SC-m": 0.03333333333333333,
+      "c-SC-s": 0.10476190476190476,
+      "t-CS-m": 0.06666666666666667,
+      "t-CS-s": 0.047619047619047616,
+      "t-SC-m": 0.04285714285714286,
+      "t-SC-s": 0.1380952380952381
+    },
+    "total_variation_distance": 0.30476190476190473,
+    "unique_row_fraction": 0.580952380952381,
+    "unique_target_rows": 122
+  },
+  "npz_relpath": "data/shifts/specs/mice_protein_expression/fold_3/class_prevalence_severe.npz",
+  "npz_sha256": "40d9dc379f6ced2cf54e1d7898530d8c05a02c013ac841213d5b1775df801ef7",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "744df94578e6d7498b2e660dbeeb082fa7feab4eec4d2d88e882fa032edfb170",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "cc23b788215a3a6de66f1db734cb976a8d086ffb908b233adde05ec89aa83f51",
+  "status": "APPLICABLE"
+}

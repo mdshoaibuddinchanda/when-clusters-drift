@@ -1,0 +1,28 @@
+{
+  "condition": "outliers_severe",
+  "dataset_id": "electricity",
+  "derived_seed": 1923247890,
+  "family": "outliers",
+  "metadata": {
+    "eligible_feature_count": 4,
+    "family": "outliers",
+    "noise_sha256": "82a825229c91515af55823cf0b0051e644814a5ca962c7b56d6652af3d38e612",
+    "realized_standardized_displacement": 3.2856821335548734,
+    "row_fraction": 0.15,
+    "row_selection_sha256": "470ceac715ccd8140e7e5fabf7d754869b537792c27f4c21a57b8134c3d0727d",
+    "selected_row_count": 1133,
+    "severity": "severe",
+    "shock_scale": 3.0,
+    "student_t_df": 3
+  },
+  "npz_relpath": "data/shifts/specs/electricity/fold_0/outliers_severe.npz",
+  "npz_sha256": "7fe112e4787fa434edc006f330d44aa2d9f94ff3228f8aad835d681fdc715827",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "8f05c1d6d0f917d66839ebd06174f3695e2f84d3113ad19a0f44ccacab7ebadf",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "63feef60547d671d8f625342621a639ab40f5c95cd675f30aca2b04b9471ae7e",
+  "status": "APPLICABLE"
+}

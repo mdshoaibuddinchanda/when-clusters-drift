@@ -1,0 +1,28 @@
+{
+  "condition": "local_overlap_severe",
+  "dataset_id": "ionosphere",
+  "derived_seed": 367211819,
+  "family": "local_overlap",
+  "metadata": {
+    "alpha": 0.5,
+    "boundary_fraction": 0.3,
+    "family": "local_overlap",
+    "mean_competing_centroid_dist_after": 1.8153936248925142,
+    "mean_competing_centroid_dist_before": 3.6307872497850284,
+    "mean_source_normalized_movement": 1.8153936248925142,
+    "overlap_strength_metric": 1.8153936248925142,
+    "selected_rows_count": 21,
+    "selected_rows_sha256": "6c43c17d0bd7e0387a3204c4a222269a98c8385851b91aeb84dea971ee414d1f",
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/ionosphere/fold_2/local_overlap_severe.npz",
+  "npz_sha256": "31d47a1fd2646db7b98d67063afacf371045eeef7e38439a7d014fd138b6aaf6",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "d0a7db221b84d3dfb648cc1e9e848a6ca84ca7d3afde72eb29c5849759017fde",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "b55e1c22e92364a78f256808be6979799016b565b3aac6523959c500465621c4",
+  "status": "APPLICABLE"
+}

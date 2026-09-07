@@ -1,0 +1,35 @@
+{
+  "condition": "location_mild",
+  "dataset_id": "yeast",
+  "derived_seed": 1642900435,
+  "family": "location",
+  "metadata": {
+    "delta": 0.5,
+    "eligible_feature_count": 8,
+    "family": "location",
+    "feature_fraction": 0.3,
+    "realized_standardized_displacement": 0.5,
+    "selected_feature_count": 3,
+    "selected_features": [
+      "erl",
+      "gvh",
+      "alm"
+    ],
+    "severity": "mild",
+    "source_sds": {
+      "alm": 0.08723631135267279,
+      "erl": 0.04339065442602491,
+      "gvh": 0.1228618892696671
+    }
+  },
+  "npz_relpath": "data/shifts/specs/yeast/fold_1/location_mild.npz",
+  "npz_sha256": "a47b17799a2f15bb2d208453f7c1876c73a240216abbd02714ac739f691f150e",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "f95b231713ce6bbc70174509a7e60e35b70470d43085e9dd25d09210e8f2a115",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "f054f764a5bbe2f4aed1c068cfc0e8471f1ab0495c34a575e5f5cf820a5fc687",
+  "status": "APPLICABLE"
+}

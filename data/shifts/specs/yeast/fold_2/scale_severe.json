@@ -1,0 +1,43 @@
+{
+  "condition": "scale_severe",
+  "dataset_id": "yeast",
+  "derived_seed": 1663038896,
+  "family": "scale",
+  "metadata": {
+    "eligible_feature_count": 8,
+    "eligible_features": [
+      "alm",
+      "erl",
+      "gvh",
+      "mcg",
+      "mit",
+      "nuc",
+      "pox",
+      "vac"
+    ],
+    "family": "scale",
+    "realized_scale_measure": 1.75,
+    "scale_factor": 1.75,
+    "severity": "severe",
+    "source_means": {
+      "alm": 0.5006992417860151,
+      "erl": 0.5046335299073293,
+      "gvh": 0.4977337826453244,
+      "mcg": 0.4993007582139849,
+      "mit": 0.26279696714406064,
+      "nuc": 0.27541701769165966,
+      "pox": 0.008955349620893008,
+      "vac": 0.5001432181971356
+    }
+  },
+  "npz_relpath": "data/shifts/specs/yeast/fold_2/scale_severe.npz",
+  "npz_sha256": "a47b17799a2f15bb2d208453f7c1876c73a240216abbd02714ac739f691f150e",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "2627a127d33a46ddf318d5285a9ff5c197171eb58b31d836c90d5fad2aa8585f",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "3f79b35b6c3e26d57a15a78eb423398f14178cbf7e7e1ebd8c5d5f10cd9d74f2",
+  "status": "APPLICABLE"
+}

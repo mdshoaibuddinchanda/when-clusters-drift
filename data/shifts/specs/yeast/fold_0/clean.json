@@ -1,0 +1,20 @@
+{
+  "condition": "clean",
+  "dataset_id": "yeast",
+  "derived_seed": 710573390,
+  "family": "clean",
+  "metadata": {
+    "family": "clean",
+    "severity": "none"
+  },
+  "npz_relpath": "data/shifts/specs/yeast/fold_0/clean.npz",
+  "npz_sha256": "a47b17799a2f15bb2d208453f7c1876c73a240216abbd02714ac739f691f150e",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "73f079f81b0bffd635ddb6e5ef24b441ce26d1b86d3594c601cf056ab646d520",
+  "severity": "none",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "dca9ccba6190642b9b45997d4efd783d5264376c127964d4332e7ca0354611e6",
+  "status": "APPLICABLE"
+}

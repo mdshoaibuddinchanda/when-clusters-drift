@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_severe",
+  "dataset_id": "human_activity_recognition",
+  "derived_seed": 45791404,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 561,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.3,
+    "noise_seed": 1084514940,
+    "noise_sha256": "2726edf18c3a422b5e844ffda9b0d639b0c40d1ee78476d6eda93ed031d5ea5a",
+    "rms_standardized_perturbation": 0.3001653670417774,
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/human_activity_recognition/fold_2/measurement_noise_severe.npz",
+  "npz_sha256": "f6c93186b22940a6b6fae42cbf9b6cd626f3d31cfbfb417a3d4c95da96d4c78d",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "2cb91dd98d4101087116d3a2d2b7a9d4936a311a74c14280f7fa2211f2fb3cfb",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "c015112b005449ccc7600c3069923c535ff4fb325840524ac0c40d97d754f8fe",
+  "status": "APPLICABLE"
+}

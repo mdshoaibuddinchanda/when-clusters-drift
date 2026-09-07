@@ -1,0 +1,31 @@
+{
+  "condition": "mcar_mild",
+  "dataset_id": "banknote_authentication",
+  "derived_seed": 2074553002,
+  "family": "mcar",
+  "metadata": {
+    "eligible_cell_count": 1100,
+    "family": "mcar",
+    "mask_sha256": "136176b00a46e64e60239f6c716bf13c12be4a339530af263febfcf3735eceb1",
+    "newly_masked_cell_count": 110,
+    "per_feature_added_missingness": {
+      "V1": 23,
+      "V2": 30,
+      "V3": 35,
+      "V4": 22
+    },
+    "realized_new_missing_fraction": 0.1,
+    "severity": "mild",
+    "target_missing_fraction": 0.1
+  },
+  "npz_relpath": "data/shifts/specs/banknote_authentication/fold_1/mcar_mild.npz",
+  "npz_sha256": "437918f61660d076fcb8a9e9f8d9577b80a8bfa73774510c8ecab3efb3a78a3d",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "b93a74013916c34d511a5efade10469fe9cc4a0de9060f5d1c2444cd4679d1cb",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "2501b9fcb32e871b0df75a88c6a8973c36c7b0df4d270cc828cff2c5cdafefb9",
+  "status": "APPLICABLE"
+}

@@ -1,0 +1,28 @@
+{
+  "condition": "outliers_severe",
+  "dataset_id": "iris",
+  "derived_seed": 962772393,
+  "family": "outliers",
+  "metadata": {
+    "eligible_feature_count": 4,
+    "family": "outliers",
+    "noise_sha256": "a112ea322ff1428be2f96fcc7ab6d935e90b3f6eaa4d929a9bfde8c157c1de67",
+    "realized_standardized_displacement": 4.24950818201867,
+    "row_fraction": 0.15,
+    "row_selection_sha256": "36dd62123269a0bd5050f1faf8361f7c266522ae05a93b8e4a75712915954cee",
+    "selected_row_count": 4,
+    "severity": "severe",
+    "shock_scale": 3.0,
+    "student_t_df": 3
+  },
+  "npz_relpath": "data/shifts/specs/iris/fold_1/outliers_severe.npz",
+  "npz_sha256": "9f218b164df513ef3e3e364428ab62a1c14419b17aa4df7bd41300d0deac2a03",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "04d2188c711195dce560be69ae5fd7e2f6f100fa20efc1a30d1303c09df98d56",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "c9f3a1e15844fee3d236d6c51843d0b522faf2c12a9a5849d0046de635074da1",
+  "status": "APPLICABLE"
+}

@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_severe",
+  "dataset_id": "madelon",
+  "derived_seed": 1658842090,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 500,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.3,
+    "noise_seed": 2056941324,
+    "noise_sha256": "35638f901e648e215bf2ec6b164c5a178aa0e7dfdbf3f4f50bfaadf8f7e121ce",
+    "rms_standardized_perturbation": 0.3007448664906452,
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/madelon/fold_3/measurement_noise_severe.npz",
+  "npz_sha256": "ce79a088005e14d7f00a4b8cbaf8bfb6f83fce4f5c04bc519c552e58c068b1d9",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "d5a9800234e6ec2ebcae6abdbfc3dff8754e3024ce94934bcf745856eadcd488",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "5e4f2eb2b75f1407da71f326ce06f7e20f61e33342172d95c4978f701c057ec4",
+  "status": "APPLICABLE"
+}

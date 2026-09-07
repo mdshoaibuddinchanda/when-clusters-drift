@@ -1,0 +1,20 @@
+{
+  "condition": "clean",
+  "dataset_id": "isolet",
+  "derived_seed": 1626244551,
+  "family": "clean",
+  "metadata": {
+    "family": "clean",
+    "severity": "none"
+  },
+  "npz_relpath": "data/shifts/specs/isolet/fold_0/clean.npz",
+  "npz_sha256": "8f103f7913cffacdee933ab259187678e5838b9df24cd96d2354f4accdee22de",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "c7239163b8a008babb145f31d459287aed0c1e5ee34ab1ea0280fd31b89a2e62",
+  "severity": "none",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "630fa2ead7d7ef86e0af0468a503d360e665b6e7f9179bccd608b9d4ef5f33e1",
+  "status": "APPLICABLE"
+}

@@ -1,0 +1,35 @@
+{
+  "condition": "scale_severe",
+  "dataset_id": "balance_scale",
+  "derived_seed": 1228939636,
+  "family": "scale",
+  "metadata": {
+    "eligible_feature_count": 4,
+    "eligible_features": [
+      "left-distance",
+      "left-weight",
+      "right-distance",
+      "right-weight"
+    ],
+    "family": "scale",
+    "realized_scale_measure": 1.75,
+    "scale_factor": 1.75,
+    "severity": "severe",
+    "source_means": {
+      "left-distance": 3.02,
+      "left-weight": 3.012,
+      "right-distance": 3.06,
+      "right-weight": 2.976
+    }
+  },
+  "npz_relpath": "data/shifts/specs/balance_scale/fold_1/scale_severe.npz",
+  "npz_sha256": "35fb0c2c08f2c8bf61253d5b49afe12337673c99a8136ca87d1681abb8ed9b9e",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "9551ebe48f11fe04c81ecb4dd649e371ec3abde6d5fc7c0f3a381732d40dc4bb",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "bc6f4d6ad42435307787a949bbdbbf590a6397c85d0c8c752103390318cdaced",
+  "status": "APPLICABLE"
+}

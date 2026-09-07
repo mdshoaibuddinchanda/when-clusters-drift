@@ -1,0 +1,40 @@
+{
+  "condition": "class_prevalence_mild",
+  "dataset_id": "heart_disease",
+  "derived_seed": 2067923942,
+  "family": "class_prevalence",
+  "metadata": {
+    "anchor_class": "5",
+    "family": "class_prevalence",
+    "multiplier": 2.0,
+    "original_class_proportions": {
+      "1": 0.5932203389830508,
+      "2": 0.13559322033898305,
+      "3": 0.0847457627118644,
+      "4": 0.1016949152542373,
+      "5": 0.0847457627118644
+    },
+    "resampling_index_sha256": "819bcbd64d75adbd7e45c26a457c291349e7ec170f5c3d72337c4c0620b6e59e",
+    "severity": "mild",
+    "shifted_class_proportions": {
+      "1": 0.4915254237288136,
+      "2": 0.13559322033898305,
+      "3": 0.05084745762711865,
+      "4": 0.13559322033898305,
+      "5": 0.1864406779661017
+    },
+    "total_variation_distance": 0.13559322033898302,
+    "unique_row_fraction": 0.5932203389830508,
+    "unique_target_rows": 35
+  },
+  "npz_relpath": "data/shifts/specs/heart_disease/fold_2/class_prevalence_mild.npz",
+  "npz_sha256": "0a6fa2c49cbd66878e19fd09f531a6dae600f6485cfe724f5e8e9399b957f5d3",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "9dbfafb9c66d4771c4c8f9d9c10d27f222a5c35961fdb2a69373500e05ea4326",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "d13ec55b069ff8c89034301bb870a10468d02183bd411763df9cc19d42bebf62",
+  "status": "APPLICABLE"
+}

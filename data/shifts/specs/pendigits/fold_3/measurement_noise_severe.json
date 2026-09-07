@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_severe",
+  "dataset_id": "pendigits",
+  "derived_seed": 2123770957,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 16,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.3,
+    "noise_seed": 1181619527,
+    "noise_sha256": "96784e46376a70116032de72b6cb41c7856faf1b8346fa19fe3993c3e1d61ceb",
+    "rms_standardized_perturbation": 0.30018149291698015,
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/pendigits/fold_3/measurement_noise_severe.npz",
+  "npz_sha256": "96cd77477fecaed9d60bc76c5aca809c3dabcb3597da0fb0ff33a7feb272961b",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "74f22f375829c1299f5c39e1b62c8dee87b54107d81d1ecce86c30c1d04aa984",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "3068358a2518d8f370a9e00759bae32a89e1a487aa4dbf25aa02d823e482f9a6",
+  "status": "APPLICABLE"
+}

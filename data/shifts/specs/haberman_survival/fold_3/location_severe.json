@@ -1,0 +1,31 @@
+{
+  "condition": "location_severe",
+  "dataset_id": "haberman_survival",
+  "derived_seed": 759428506,
+  "family": "location",
+  "metadata": {
+    "delta": 1.0,
+    "eligible_feature_count": 2,
+    "family": "location",
+    "feature_fraction": 0.3,
+    "realized_standardized_displacement": 1.0,
+    "selected_feature_count": 1,
+    "selected_features": [
+      "Number_of_positive_axillary_nodes_detected"
+    ],
+    "severity": "severe",
+    "source_sds": {
+      "Number_of_positive_axillary_nodes_detected": 6.511469151572238
+    }
+  },
+  "npz_relpath": "data/shifts/specs/haberman_survival/fold_3/location_severe.npz",
+  "npz_sha256": "8b4e6ba67efb7960628523edabf0cad1cc57ff5e000d5a3cc496d5ea6c331857",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "43b99555b06ecf16b9e9462a5dde6d173766e1fa5a94be72e1ae9242bc4765b2",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "f02245b8d4914562b613a773bba3f0d341d10832c7058f55e94216bc5cb70976",
+  "status": "APPLICABLE"
+}

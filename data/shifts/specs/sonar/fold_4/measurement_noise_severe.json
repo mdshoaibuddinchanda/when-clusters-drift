@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_severe",
+  "dataset_id": "sonar",
+  "derived_seed": 1796682850,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 60,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.3,
+    "noise_seed": 1085029752,
+    "noise_sha256": "bf725bfc0221f9e68e478e854f64587fc1881378900a11d27f7fd8e7010a5ccb",
+    "rms_standardized_perturbation": 0.30365223846989625,
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/sonar/fold_4/measurement_noise_severe.npz",
+  "npz_sha256": "6ee79983a7fd0942d2f1414c6008db64d393f5ed9d1bbe76661912ad35942ee5",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "4d5b19cc4cef3923c4a976a62400bbd0ed83e8d502c71d9b39f538fa31d53104",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "a48085e1bc7466ef7d5e7dc27c34536e616ac08ec2dbda716b2fb47bc148a4be",
+  "status": "APPLICABLE"
+}

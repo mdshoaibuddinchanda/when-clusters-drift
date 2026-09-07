@@ -1,0 +1,34 @@
+{
+  "condition": "class_prevalence_severe",
+  "dataset_id": "breast_cancer_wisconsin_diagnostic",
+  "derived_seed": 1280516229,
+  "family": "class_prevalence",
+  "metadata": {
+    "anchor_class": "0",
+    "family": "class_prevalence",
+    "multiplier": 4.0,
+    "original_class_proportions": {
+      "0": 0.49557522123893805,
+      "1": 0.504424778761062
+    },
+    "resampling_index_sha256": "52883e0b24e677523fc2591827edd862f8e04ca397e8a7784bf99ff216965ac1",
+    "severity": "severe",
+    "shifted_class_proportions": {
+      "0": 0.8495575221238938,
+      "1": 0.1504424778761062
+    },
+    "total_variation_distance": 0.35398230088495575,
+    "unique_row_fraction": 0.5575221238938053,
+    "unique_target_rows": 63
+  },
+  "npz_relpath": "data/shifts/specs/breast_cancer_wisconsin_diagnostic/fold_4/class_prevalence_severe.npz",
+  "npz_sha256": "5c9b2ea8def18a1e7471762fde6ec7cd5c2dd4d9d97b6a61ca68c1d733758aea",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "4d3989f71f3afd766905f0c44830a6ccfd261a1b1617ce1a94757fbf520aa4fd",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "659199e372028b06d79bd3c1cf3315d3abf4d4ba77e31aec076cd23284dd68a8",
+  "status": "APPLICABLE"
+}

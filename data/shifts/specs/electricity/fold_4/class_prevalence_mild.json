@@ -1,0 +1,34 @@
+{
+  "condition": "class_prevalence_mild",
+  "dataset_id": "electricity",
+  "derived_seed": 643148764,
+  "family": "class_prevalence",
+  "metadata": {
+    "anchor_class": "UP",
+    "family": "class_prevalence",
+    "multiplier": 2.0,
+    "original_class_proportions": {
+      "DOWN": 0.5365466101694916,
+      "UP": 0.4634533898305085
+    },
+    "resampling_index_sha256": "1b8c618a3a8e60e8e1b6f94c9b8e5939f8cac1e2654f675c15a0b479dfbc20bf",
+    "severity": "mild",
+    "shifted_class_proportions": {
+      "DOWN": 0.3655985169491525,
+      "UP": 0.6344014830508474
+    },
+    "total_variation_distance": 0.170948093220339,
+    "unique_row_fraction": 0.606594279661017,
+    "unique_target_rows": 4581
+  },
+  "npz_relpath": "data/shifts/specs/electricity/fold_4/class_prevalence_mild.npz",
+  "npz_sha256": "5f4cd240881030bf248893931385f02a83ef0e246e4055ce2a08bac84f0254fa",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "f1571199410a740cb043f7ed568b2a5444d10547435d3654dcad13f716b236ae",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "f31c97922ec5665b43e71fe8461c6a4015f225866e668edbca8f5ece936be7bd",
+  "status": "APPLICABLE"
+}

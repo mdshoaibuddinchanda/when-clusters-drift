@@ -1,0 +1,19 @@
+{
+  "condition": "local_overlap_mild",
+  "dataset_id": "dermatology",
+  "derived_seed": 1976182771,
+  "family": "local_overlap",
+  "metadata": {
+    "reason": "Fewer than 2 eligible numeric features for local overlap"
+  },
+  "npz_relpath": "data/shifts/specs/dermatology/fold_2/local_overlap_mild.npz",
+  "npz_sha256": "a423d8dc4130b6278b8e0627c4a0c9475a1e57882434e77cd8523ad8e1813dca",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": "Fewer than 2 eligible numeric features for local overlap",
+  "scenario_input_sha256": "78e28fb8a44b404bf8b83d388f04ed9ce4ef9a877b4d98dad29497df358eb349",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "ed46d547d27cb528a2f3c5960a3949503bf1d73945107213e8c473c3c3ed8db8",
+  "status": "NOT_APPLICABLE"
+}

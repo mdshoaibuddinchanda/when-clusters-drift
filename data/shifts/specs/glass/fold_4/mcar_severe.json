@@ -1,0 +1,36 @@
+{
+  "condition": "mcar_severe",
+  "dataset_id": "glass",
+  "derived_seed": 1082347266,
+  "family": "mcar",
+  "metadata": {
+    "eligible_cell_count": 378,
+    "family": "mcar",
+    "mask_sha256": "1c309e6378ef9cd74d50efef88bfb6fb5400b6f73309b357bb23e9ef29fdf5a1",
+    "newly_masked_cell_count": 113,
+    "per_feature_added_missingness": {
+      "Al": 11,
+      "Ba": 11,
+      "Ca": 10,
+      "Fe": 11,
+      "K": 12,
+      "Mg": 11,
+      "Na": 17,
+      "RI": 13,
+      "Si": 17
+    },
+    "realized_new_missing_fraction": 0.29894179894179895,
+    "severity": "severe",
+    "target_missing_fraction": 0.3
+  },
+  "npz_relpath": "data/shifts/specs/glass/fold_4/mcar_severe.npz",
+  "npz_sha256": "8e23e089bfc73e62528e4663599c6afd7f211404cfd92e63a1f6cf4aeac9f029",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "94e26642649a2f7e77b7dee6f8705e31560ed56a612c7a242caf302b7c3959fb",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "982402faf1b40693815e228e035c37ca23f226535e6e4078c9dbb2db3e7b1dff",
+  "status": "APPLICABLE"
+}

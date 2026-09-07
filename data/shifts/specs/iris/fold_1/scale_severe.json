@@ -1,0 +1,35 @@
+{
+  "condition": "scale_severe",
+  "dataset_id": "iris",
+  "derived_seed": 1373407668,
+  "family": "scale",
+  "metadata": {
+    "eligible_feature_count": 4,
+    "eligible_features": [
+      "petal length (cm)",
+      "petal width (cm)",
+      "sepal length (cm)",
+      "sepal width (cm)"
+    ],
+    "family": "scale",
+    "realized_scale_measure": 1.75,
+    "scale_factor": 1.75,
+    "severity": "severe",
+    "source_means": {
+      "petal length (cm)": 3.7616666666666663,
+      "petal width (cm)": 1.2041666666666666,
+      "sepal length (cm)": 5.840000000000001,
+      "sepal width (cm)": 3.0633333333333335
+    }
+  },
+  "npz_relpath": "data/shifts/specs/iris/fold_1/scale_severe.npz",
+  "npz_sha256": "9f218b164df513ef3e3e364428ab62a1c14419b17aa4df7bd41300d0deac2a03",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "04d2188c711195dce560be69ae5fd7e2f6f100fa20efc1a30d1303c09df98d56",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "b864eb0af6899d89bd4d1c2ffe2fe6372b88a6eb450fb8280aa99161c0aafc34",
+  "status": "APPLICABLE"
+}

@@ -1,0 +1,20 @@
+{
+  "condition": "clean",
+  "dataset_id": "aps_failure",
+  "derived_seed": 1373496228,
+  "family": "clean",
+  "metadata": {
+    "family": "clean",
+    "severity": "none"
+  },
+  "npz_relpath": "data/shifts/specs/aps_failure/fold_0/clean.npz",
+  "npz_sha256": "685fffd1fc1177892e116957d0f5d1ad778eaf4e872d003e31aad41af1acada0",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "f43ed0851025a215578c37ea9eea11a8146f14eedf9e270e17dd0995acefbc8b",
+  "severity": "none",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "503776e36187f439a1a9f24224e8fcf323ba4154702c674ff8cfe4acf1e73e4e",
+  "status": "APPLICABLE"
+}

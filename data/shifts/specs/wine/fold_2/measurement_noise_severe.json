@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_severe",
+  "dataset_id": "wine",
+  "derived_seed": 815415719,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 13,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.3,
+    "noise_seed": 92717892,
+    "noise_sha256": "2e51bfe49079c50f8387fc211c7b0c9399e3fa4aa1607e5f25af525bc3c001d7",
+    "rms_standardized_perturbation": 0.2969427299338905,
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/wine/fold_2/measurement_noise_severe.npz",
+  "npz_sha256": "81609a36eacab27e4817a0894add1bbd6e569355761021937cfcb29fd22f4769",
+  "outer_fold": 2,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "28c22215eac00f286e05b7633d7585bee4d662701130adf2f36929f7aeb38ab1",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "7a13278ce5bf6620e0389ad49ff34a90f4e0a73eb803dcfa5aa695412fea98dc",
+  "status": "APPLICABLE"
+}

@@ -1,0 +1,20 @@
+{
+  "condition": "clean",
+  "dataset_id": "bank_marketing",
+  "derived_seed": 1210890979,
+  "family": "clean",
+  "metadata": {
+    "family": "clean",
+    "severity": "none"
+  },
+  "npz_relpath": "data/shifts/specs/bank_marketing/fold_4/clean.npz",
+  "npz_sha256": "6870577549a563a51cf81718a1008666e4786172e25e40eab65c3ab6bc89e099",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "fc216a11b9feacdd669a77cc1de35d31666dc204207dd80f325a6d9307159f4e",
+  "severity": "none",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "139e8e387f5e4d9aebd03b74e4d311d6b53c365aa277e1535af871ba5fb0d2ea",
+  "status": "APPLICABLE"
+}

@@ -1,0 +1,41 @@
+{
+  "condition": "location_mild",
+  "dataset_id": "vehicle_silhouettes",
+  "derived_seed": 206407194,
+  "family": "location",
+  "metadata": {
+    "delta": 0.5,
+    "eligible_feature_count": 18,
+    "family": "location",
+    "feature_fraction": 0.3,
+    "realized_standardized_displacement": 0.5,
+    "selected_feature_count": 6,
+    "selected_features": [
+      "PR.AXIS_ASPECT_RATIO",
+      "PR.AXIS_RECTANGULARITY",
+      "KURTOSIS_ABOUT_MINOR",
+      "SCALED_RADIUS_OF_GYRATION",
+      "SCALED_VARIANCE_MINOR",
+      "DISTANCE_CIRCULARITY"
+    ],
+    "severity": "mild",
+    "source_sds": {
+      "DISTANCE_CIRCULARITY": 15.654601229078763,
+      "KURTOSIS_ABOUT_MINOR": 6.07368358552116,
+      "PR.AXIS_ASPECT_RATIO": 7.3884651509293295,
+      "PR.AXIS_RECTANGULARITY": 2.6086822693996847,
+      "SCALED_RADIUS_OF_GYRATION": 32.54137660154202,
+      "SCALED_VARIANCE_MINOR": 178.18449074606104
+    }
+  },
+  "npz_relpath": "data/shifts/specs/vehicle_silhouettes/fold_1/location_mild.npz",
+  "npz_sha256": "ea69a6af400f66d7701f475608ac60c1bfb14785a6507291c34d9ac403e01178",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "9d62b15e4ee237d7d74dfb19e81d152e2d73e32b9fb7a479877eac7171425645",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "3d980ffbcb8a4eb32ac6a155c6c507ed3c861804d8463e67eca31e58f67056f5",
+  "status": "APPLICABLE"
+}

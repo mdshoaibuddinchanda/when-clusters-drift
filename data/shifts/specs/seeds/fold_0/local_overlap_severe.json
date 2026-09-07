@@ -1,0 +1,28 @@
+{
+  "condition": "local_overlap_severe",
+  "dataset_id": "seeds",
+  "derived_seed": 1532120845,
+  "family": "local_overlap",
+  "metadata": {
+    "alpha": 0.5,
+    "boundary_fraction": 0.3,
+    "family": "local_overlap",
+    "mean_competing_centroid_dist_after": 1.033737367610639,
+    "mean_competing_centroid_dist_before": 2.067474735221279,
+    "mean_source_normalized_movement": 1.0337373676106396,
+    "overlap_strength_metric": 1.0337373676106398,
+    "selected_rows_count": 12,
+    "selected_rows_sha256": "9aa9885f1c4b628e13fc333fef6d0f61f7b29f112e0f34e9c81147f85ce0721a",
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/seeds/fold_0/local_overlap_severe.npz",
+  "npz_sha256": "8e23e089bfc73e62528e4663599c6afd7f211404cfd92e63a1f6cf4aeac9f029",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "f25a4e02cd3e4b4018f23ed97f9535cc673c664b0c2db7481804b893f7eaba08",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "a94943620bd04c9a749e4036159145a70598a077c869113dc6a5fb5e0ee7892b",
+  "status": "APPLICABLE"
+}

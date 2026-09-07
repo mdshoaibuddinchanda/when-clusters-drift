@@ -1,0 +1,41 @@
+{
+  "condition": "location_severe",
+  "dataset_id": "vehicle_silhouettes",
+  "derived_seed": 183978994,
+  "family": "location",
+  "metadata": {
+    "delta": 1.0,
+    "eligible_feature_count": 18,
+    "family": "location",
+    "feature_fraction": 0.3,
+    "realized_standardized_displacement": 1.0,
+    "selected_feature_count": 6,
+    "selected_features": [
+      "CIRCULARITY",
+      "SCALED_VARIANCE_MINOR",
+      "SKEWNESS_ABOUT_MINOR",
+      "MAX.LENGTH_RECTANGULARITY",
+      "SCALED_VARIANCE_MAJOR",
+      "HOLLOWS_RATIO"
+    ],
+    "severity": "severe",
+    "source_sds": {
+      "CIRCULARITY": 6.238913990077619,
+      "HOLLOWS_RATIO": 7.395175705314234,
+      "MAX.LENGTH_RECTANGULARITY": 14.64255324555731,
+      "SCALED_VARIANCE_MAJOR": 32.03746173833234,
+      "SCALED_VARIANCE_MINOR": 180.209351962477,
+      "SKEWNESS_ABOUT_MINOR": 4.858218600314504
+    }
+  },
+  "npz_relpath": "data/shifts/specs/vehicle_silhouettes/fold_0/location_severe.npz",
+  "npz_sha256": "5d979b69013e636bdf1ddf14045fc7597451b04a58922c11b728ea925842bdb5",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "44aacec03b02adb0907f2d1642f93e5570db0e6a17bf82384057ee60ce866339",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "37bf1782ab2fb51cc41d4988af1e3ebea45abf6b052d0f448a61fe5b40708c33",
+  "status": "APPLICABLE"
+}

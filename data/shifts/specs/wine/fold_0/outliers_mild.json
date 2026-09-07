@@ -1,0 +1,28 @@
+{
+  "condition": "outliers_mild",
+  "dataset_id": "wine",
+  "derived_seed": 946062402,
+  "family": "outliers",
+  "metadata": {
+    "eligible_feature_count": 13,
+    "family": "outliers",
+    "noise_sha256": "6b3249c86aa393a2a1de674e9f90f426746b156f84ca775ab9b08d0e614aeae0",
+    "realized_standardized_displacement": 3.0506737991898705,
+    "row_fraction": 0.05,
+    "row_selection_sha256": "74016392e57338104fe7fc1567b42ed563c8fac16fa80708b6bccaec062ed2d3",
+    "selected_row_count": 2,
+    "severity": "mild",
+    "shock_scale": 3.0,
+    "student_t_df": 3
+  },
+  "npz_relpath": "data/shifts/specs/wine/fold_0/outliers_mild.npz",
+  "npz_sha256": "81609a36eacab27e4817a0894add1bbd6e569355761021937cfcb29fd22f4769",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "fc19ec4792a1fbc9225f640cc48725d948d0101727cb93d3fa47fc9639d2ea61",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "e7f41f012b607c096747aef24200a2a3dab778c0454d6929cf4bd7a36552e3cd",
+  "status": "APPLICABLE"
+}

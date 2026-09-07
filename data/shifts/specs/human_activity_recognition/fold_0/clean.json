@@ -1,0 +1,20 @@
+{
+  "condition": "clean",
+  "dataset_id": "human_activity_recognition",
+  "derived_seed": 1388673583,
+  "family": "clean",
+  "metadata": {
+    "family": "clean",
+    "severity": "none"
+  },
+  "npz_relpath": "data/shifts/specs/human_activity_recognition/fold_0/clean.npz",
+  "npz_sha256": "8fa70ac9606f057ee887283c7a27180c8c499987af97c57a428d36d08a007406",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "70d99799a36eb73774fb23cb131ae10b4e2d2dec33b71427e192e821099d4bf8",
+  "severity": "none",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "4b4276d3ed92a50deb682e7925e6342dd63b312295a28e60856f7975104a12ac",
+  "status": "APPLICABLE"
+}

@@ -1,0 +1,46 @@
+{
+  "condition": "class_prevalence_mild",
+  "dataset_id": "ecoli",
+  "derived_seed": 306853386,
+  "family": "class_prevalence",
+  "metadata": {
+    "anchor_class": "imS",
+    "family": "class_prevalence",
+    "multiplier": 2.0,
+    "original_class_proportions": {
+      "cp": 0.4852941176470588,
+      "im": 0.23529411764705882,
+      "imL": 0.0,
+      "imS": 0.014705882352941176,
+      "imU": 0.10294117647058823,
+      "om": 0.029411764705882353,
+      "omL": 0.014705882352941176,
+      "pp": 0.11764705882352941
+    },
+    "resampling_index_sha256": "765b1f0ea73f1c093a01353b42c7c7bc035afb4e3db284915661a7e6030b1db8",
+    "severity": "mild",
+    "shifted_class_proportions": {
+      "cp": 0.4117647058823529,
+      "im": 0.3088235294117647,
+      "imL": 0.0,
+      "imS": 0.014705882352941176,
+      "imU": 0.14705882352941177,
+      "om": 0.014705882352941176,
+      "omL": 0.0,
+      "pp": 0.10294117647058823
+    },
+    "total_variation_distance": 0.11764705882352944,
+    "unique_row_fraction": 0.6617647058823529,
+    "unique_target_rows": 45
+  },
+  "npz_relpath": "data/shifts/specs/ecoli/fold_0/class_prevalence_mild.npz",
+  "npz_sha256": "67c638642abee7bde9202455f152c826cfeeaf8c2d12cb62c4deec7d45ab19c0",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "91520e8c96052716456906e9006ac02638516a18f522b0ee0d66d3b07d04335a",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "ccee64255278e7063404c03a611f4e1081659b199bdc117d24412f826cd5954d",
+  "status": "APPLICABLE"
+}

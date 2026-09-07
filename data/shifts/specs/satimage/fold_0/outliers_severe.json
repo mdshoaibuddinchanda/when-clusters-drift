@@ -1,0 +1,28 @@
+{
+  "condition": "outliers_severe",
+  "dataset_id": "satimage",
+  "derived_seed": 1939329031,
+  "family": "outliers",
+  "metadata": {
+    "eligible_feature_count": 36,
+    "family": "outliers",
+    "noise_sha256": "7eabc11b34306d70683fba5f271415afb5b1ed098fd0a8e53dbf125006bba784",
+    "realized_standardized_displacement": 3.2943022194039417,
+    "row_fraction": 0.15,
+    "row_selection_sha256": "048763e16b20476149c69fa577c8049d3fe3a904c001f3bda3ff76272b23d477",
+    "selected_row_count": 193,
+    "severity": "severe",
+    "shock_scale": 3.0,
+    "student_t_df": 3
+  },
+  "npz_relpath": "data/shifts/specs/satimage/fold_0/outliers_severe.npz",
+  "npz_sha256": "e4328f6a88dfc24abd21f591002f892f85231e5b99d73f297060ce934ad6739b",
+  "outer_fold": 0,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "4249424339d4c0d6d37bfa5ac456bb77a155df235a43f068505680bcf0372ba5",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "1c4c3531ab38d07864bcba4a9573ff3e1fd59d12f6867ff16e6db337338d1b21",
+  "status": "APPLICABLE"
+}

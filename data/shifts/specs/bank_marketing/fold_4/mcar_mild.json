@@ -1,0 +1,43 @@
+{
+  "condition": "mcar_mild",
+  "dataset_id": "bank_marketing",
+  "derived_seed": 1298109772,
+  "family": "mcar",
+  "metadata": {
+    "eligible_cell_count": 144672,
+    "family": "mcar",
+    "mask_sha256": "a21600fe6967b8c0e6214d96b13b3186e22b854924323de821bdd42ad45d35cc",
+    "newly_masked_cell_count": 14467,
+    "per_feature_added_missingness": {
+      "V1": 899,
+      "V10": 940,
+      "V11": 851,
+      "V12": 952,
+      "V13": 920,
+      "V14": 926,
+      "V15": 899,
+      "V16": 893,
+      "V2": 918,
+      "V3": 908,
+      "V4": 881,
+      "V5": 905,
+      "V6": 916,
+      "V7": 878,
+      "V8": 896,
+      "V9": 885
+    },
+    "realized_new_missing_fraction": 0.09999861756248618,
+    "severity": "mild",
+    "target_missing_fraction": 0.1
+  },
+  "npz_relpath": "data/shifts/specs/bank_marketing/fold_4/mcar_mild.npz",
+  "npz_sha256": "6870577549a563a51cf81718a1008666e4786172e25e40eab65c3ab6bc89e099",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "fc216a11b9feacdd669a77cc1de35d31666dc204207dd80f325a6d9307159f4e",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "4a752c2b39eb7be34b5b613c67b5ad3d49d1d1576158de163b09441df67a5ea4",
+  "status": "APPLICABLE"
+}

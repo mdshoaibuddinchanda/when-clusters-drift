@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_severe",
+  "dataset_id": "pima_diabetes",
+  "derived_seed": 910563477,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 8,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.3,
+    "noise_seed": 1517314018,
+    "noise_sha256": "bb3266e57375dbb5a96d154b88f4fc058fa09ec14d23ed5fd4f50a37a25d948f",
+    "rms_standardized_perturbation": 0.29299964561584807,
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/pima_diabetes/fold_4/measurement_noise_severe.npz",
+  "npz_sha256": "034ed0afe67875e0f8537ee012d6ae559433679189ffcb65af7841183e4a869f",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "95274daa23550ba7fa7ce2f619de8cc0e62ea85351c81307292bda783e64614d",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "df4533a19e5e4549bc20fa0af73d00707212a55079e321bf7208720859a07433",
+  "status": "APPLICABLE"
+}

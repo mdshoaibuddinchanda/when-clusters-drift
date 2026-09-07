@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_mild",
+  "dataset_id": "heart_disease",
+  "derived_seed": 449055414,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 13,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.1,
+    "noise_seed": 2106439637,
+    "noise_sha256": "b983b61e2a159b57ab32510d5d655c836b89225bc80dab0aece3c753b19b89c7",
+    "rms_standardized_perturbation": 0.1007448564716751,
+    "severity": "mild"
+  },
+  "npz_relpath": "data/shifts/specs/heart_disease/fold_1/measurement_noise_mild.npz",
+  "npz_sha256": "e2f2fa83171b408331b1e04ae0341a7d34d27ab930957a5d948eaa9663bf5ddc",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "7402745402e1bb0bd196945b99d04988fde18afcf9c0019257a254b3555c2cd3",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "5e3989b379b04332178f682d01191c92b6bae441059b3ba04da826aec4329d7b",
+  "status": "APPLICABLE"
+}

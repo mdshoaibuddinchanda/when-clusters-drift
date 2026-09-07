@@ -1,0 +1,50 @@
+{
+  "condition": "class_prevalence_severe",
+  "dataset_id": "optdigits",
+  "derived_seed": 1693056400,
+  "family": "class_prevalence",
+  "metadata": {
+    "anchor_class": "2",
+    "family": "class_prevalence",
+    "multiplier": 4.0,
+    "original_class_proportions": {
+      "0": 0.10587188612099645,
+      "1": 0.10231316725978648,
+      "2": 0.11120996441281139,
+      "3": 0.09608540925266904,
+      "4": 0.09341637010676157,
+      "5": 0.09697508896797152,
+      "6": 0.10320284697508897,
+      "7": 0.10320284697508897,
+      "8": 0.09786476868327403,
+      "9": 0.0898576512455516
+    },
+    "resampling_index_sha256": "34fc5e3f4d52f06084794679b677a55b0f8a489ee1618cd8a40ac0854f1ad662",
+    "severity": "severe",
+    "shifted_class_proportions": {
+      "0": 0.08718861209964412,
+      "1": 0.07384341637010676,
+      "2": 0.33807829181494664,
+      "3": 0.06227758007117438,
+      "4": 0.06227758007117438,
+      "5": 0.08362989323843416,
+      "6": 0.08629893238434164,
+      "7": 0.06583629893238434,
+      "8": 0.07829181494661921,
+      "9": 0.06227758007117438
+    },
+    "total_variation_distance": 0.22686832740213525,
+    "unique_row_fraction": 0.5685053380782918,
+    "unique_target_rows": 639
+  },
+  "npz_relpath": "data/shifts/specs/optdigits/fold_1/class_prevalence_severe.npz",
+  "npz_sha256": "61ee7960d19e54429852f7870f00f9a01d82f67761f9a38ea7625769e34a5762",
+  "outer_fold": 1,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "8699c959d536ed5e6755e92aeb1cd9521f30134cc051bcd6a28b7eb4eaf57664",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "9405f53ab84d3f1807324c2405b90d5610ad6763bc6dee0e09aea5d2f0c22f27",
+  "status": "APPLICABLE"
+}

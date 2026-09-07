@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_severe",
+  "dataset_id": "isolet",
+  "derived_seed": 285381322,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 617,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.3,
+    "noise_seed": 2112910165,
+    "noise_sha256": "7f49bfbb9d2362aaf77b0335a27cfa8fcceffcf44075f3340f404504692e1586",
+    "rms_standardized_perturbation": 0.2998556044201677,
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/isolet/fold_4/measurement_noise_severe.npz",
+  "npz_sha256": "fce158e0318413739672435e79d134209d6d62dae1fc7c78e03d250440bafae7",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "ec1081d7a126e777c13bebb6ee0dfe182811b7c141f6165cff7f551b207cab0e",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "fdd00410212b536272809fea9347dd4fa6e43160c97e6493649779c02d5b3361",
+  "status": "APPLICABLE"
+}

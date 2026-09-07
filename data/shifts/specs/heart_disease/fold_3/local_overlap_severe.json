@@ -1,0 +1,28 @@
+{
+  "condition": "local_overlap_severe",
+  "dataset_id": "heart_disease",
+  "derived_seed": 515342246,
+  "family": "local_overlap",
+  "metadata": {
+    "alpha": 0.5,
+    "boundary_fraction": 0.3,
+    "family": "local_overlap",
+    "mean_competing_centroid_dist_after": 1.0558926144287202,
+    "mean_competing_centroid_dist_before": 2.1117852288574412,
+    "mean_source_normalized_movement": 1.0558926144287206,
+    "overlap_strength_metric": 1.055892614428721,
+    "selected_rows_count": 19,
+    "selected_rows_sha256": "bf024fed63a9f0530f5028d5c07da0c464222a3bc2903d9a793c51961f8053f0",
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/heart_disease/fold_3/local_overlap_severe.npz",
+  "npz_sha256": "e2f2fa83171b408331b1e04ae0341a7d34d27ab930957a5d948eaa9663bf5ddc",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "569510b260ad0c041ddb5b6f6aef44478725e9b91c363628c5550f82d2691b2f",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "0e534a5f4d4870efe58c93d63d1a800bb8b750d5c8d497be2f26f0ae1951c890",
+  "status": "APPLICABLE"
+}

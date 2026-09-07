@@ -1,0 +1,33 @@
+{
+  "condition": "location_severe",
+  "dataset_id": "iris",
+  "derived_seed": 247234623,
+  "family": "location",
+  "metadata": {
+    "delta": 1.0,
+    "eligible_feature_count": 4,
+    "family": "location",
+    "feature_fraction": 0.3,
+    "realized_standardized_displacement": 1.0,
+    "selected_feature_count": 2,
+    "selected_features": [
+      "petal length (cm)",
+      "sepal width (cm)"
+    ],
+    "severity": "severe",
+    "source_sds": {
+      "petal length (cm)": 1.765541433844544,
+      "sepal width (cm)": 0.4506577825521156
+    }
+  },
+  "npz_relpath": "data/shifts/specs/iris/fold_4/location_severe.npz",
+  "npz_sha256": "9f218b164df513ef3e3e364428ab62a1c14419b17aa4df7bd41300d0deac2a03",
+  "outer_fold": 4,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "f4eccf39aa495f2f0ba172cbbd1881d967c2cfd0f9dd9ba67bcd4c1de2612942",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "e1012ebe25837ec41462c4dbf70a76c8145f474e292761769ab4a5d76bc74e3b",
+  "status": "APPLICABLE"
+}

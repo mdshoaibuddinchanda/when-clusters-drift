@@ -1,0 +1,20 @@
+{
+  "condition": "clean",
+  "dataset_id": "ecoli",
+  "derived_seed": 171843580,
+  "family": "clean",
+  "metadata": {
+    "family": "clean",
+    "severity": "none"
+  },
+  "npz_relpath": "data/shifts/specs/ecoli/fold_3/clean.npz",
+  "npz_sha256": "820d919b1ee6b7f9a76cb72dcedb08ddf029e225ecdca20c6a5416a67910c7f7",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "e34f263bb6ff37a027b3d8a9031c850ae3dc6af50fb6f51eca2a9df25e86a106",
+  "severity": "none",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "098f432583d7268d9b09c23938dce56e3e2532a69ba59b723f23d64e7de39db6",
+  "status": "APPLICABLE"
+}

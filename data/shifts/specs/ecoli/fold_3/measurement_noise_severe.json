@@ -1,0 +1,25 @@
+{
+  "condition": "measurement_noise_severe",
+  "dataset_id": "ecoli",
+  "derived_seed": 1324516407,
+  "family": "measurement_noise",
+  "metadata": {
+    "eligible_feature_count": 7,
+    "family": "measurement_noise",
+    "noise_multiplier": 0.3,
+    "noise_seed": 320588362,
+    "noise_sha256": "e1d47cb9640ccf4507b7b99b2b3f4f72f505bf6bca268c06398fe3bd630a9b55",
+    "rms_standardized_perturbation": 0.3092702497411237,
+    "severity": "severe"
+  },
+  "npz_relpath": "data/shifts/specs/ecoli/fold_3/measurement_noise_severe.npz",
+  "npz_sha256": "820d919b1ee6b7f9a76cb72dcedb08ddf029e225ecdca20c6a5416a67910c7f7",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "e34f263bb6ff37a027b3d8a9031c850ae3dc6af50fb6f51eca2a9df25e86a106",
+  "severity": "severe",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "48d3e35245a397c1e85bfd1a1878d5cb90a921e96df0890eca3f106ad65e6c6f",
+  "status": "APPLICABLE"
+}

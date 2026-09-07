@@ -1,0 +1,40 @@
+{
+  "condition": "mcar_mild",
+  "dataset_id": "heart_disease",
+  "derived_seed": 1151895595,
+  "family": "mcar",
+  "metadata": {
+    "eligible_cell_count": 767,
+    "family": "mcar",
+    "mask_sha256": "f02324b9407f4d9fe1ee2332adb62dab4b1b2ae3b81e636158a59965b00627f3",
+    "newly_masked_cell_count": 77,
+    "per_feature_added_missingness": {
+      "V1": 7,
+      "V10": 4,
+      "V11": 5,
+      "V12": 6,
+      "V13": 5,
+      "V2": 10,
+      "V3": 5,
+      "V4": 7,
+      "V5": 11,
+      "V6": 6,
+      "V7": 4,
+      "V8": 2,
+      "V9": 5
+    },
+    "realized_new_missing_fraction": 0.10039113428943937,
+    "severity": "mild",
+    "target_missing_fraction": 0.1
+  },
+  "npz_relpath": "data/shifts/specs/heart_disease/fold_3/mcar_mild.npz",
+  "npz_sha256": "e2f2fa83171b408331b1e04ae0341a7d34d27ab930957a5d948eaa9663bf5ddc",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "569510b260ad0c041ddb5b6f6aef44478725e9b91c363628c5550f82d2691b2f",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "0bb27fbaa22cece108e34efa1572bc94e3e38a5318cdc146dd46a2ab3cfef47d",
+  "status": "APPLICABLE"
+}

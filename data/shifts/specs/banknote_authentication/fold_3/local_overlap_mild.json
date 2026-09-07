@@ -1,0 +1,28 @@
+{
+  "condition": "local_overlap_mild",
+  "dataset_id": "banknote_authentication",
+  "derived_seed": 1307619066,
+  "family": "local_overlap",
+  "metadata": {
+    "alpha": 0.25,
+    "boundary_fraction": 0.3,
+    "family": "local_overlap",
+    "mean_competing_centroid_dist_after": 1.1723441679617264,
+    "mean_competing_centroid_dist_before": 1.5631255572823015,
+    "mean_source_normalized_movement": 0.3907813893205754,
+    "overlap_strength_metric": 0.39078138932057516,
+    "selected_rows_count": 82,
+    "selected_rows_sha256": "d5aa256f4d541143832080f14351da0af9549aef861f359c727da87fc7d2ffcd",
+    "severity": "mild"
+  },
+  "npz_relpath": "data/shifts/specs/banknote_authentication/fold_3/local_overlap_mild.npz",
+  "npz_sha256": "d61e269cc808f8c03fb941ee8987763162c6463614b50b2183d22677d9b82b2c",
+  "outer_fold": 3,
+  "protocol_version": 1,
+  "reason": null,
+  "scenario_input_sha256": "b0445c8d5e684f593a48a92b2627117f6df43eec0cfdcc65a667cfc5b30940d1",
+  "severity": "mild",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "2cd562a7b1989b42440d750419ca4e35f7f3420cac9fd9f695b0ea87c3284d9d",
+  "status": "APPLICABLE"
+}
