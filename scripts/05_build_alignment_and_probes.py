@@ -75,6 +75,7 @@ from clusterdrift.probes.validation import (
     validate_saved_current_descriptor,
     validate_saved_reference_descriptor,
 )
+from clusterdrift.probes.verification import verify_phase5_integrity
 from clusterdrift.shifts.engine import ShiftEngine
 from clusterdrift.shifts.hashing import (
     atomic_write_csv,
@@ -710,14 +711,36 @@ def run_stability_and_sensitivity_audits(
 
     for ds in large_datasets:
         K = dataset_classes.get(ds, 3)
-        X_src_raw, meta = load_raw_source_features(ds, 0, project_root)
-        roles = meta.get("feature_roles", {col: "numeric" for col in X_src_raw.columns})
+        ds_dir = project_root / "data" / "canonical" / "controlled" / ds
+        df_X = pd.read_parquet(ds_dir / "features.parquet")
+        with open(ds_dir / "metadata.json", "r", encoding="utf-8") as f:
+            meta = json.load(f)
+        roles = meta.get("feature_roles", {col: "numeric" for col in df_X.columns})
+
+        # Load frozen Phase-2 outer-source indices and outer-target indices
+        fold_p = project_root / "data" / "splits" / "controlled" / ds / "fold_0.npz"
+        with np.load(fold_p) as npz:
+            src_idx = npz["source_indices"]
+            tgt_idx = npz["target_indices"]
+
+        X_src_raw = df_X.iloc[src_idx].copy().reset_index(drop=True)
+        X_tgt_raw = df_X.iloc[tgt_idx].copy().reset_index(drop=True)
+
         src_prep = build_preprocessor(feature_roles=roles, config=prep_cfg, metadata=meta)
         src_prep.fit(X_src_raw)
         X_src_trans = src_prep.transform(X_src_raw)
 
         m_ref = FCM(n_clusters=K, random_state=1, fuzzifier_policy="dimension_adaptive").fit(X_src_trans)
-        shift_res = engine.generate_shift(ds, 0, "location_severe", X_src_raw.copy(), X_src_raw, roles, backend="numpy")
+
+        shift_res = engine.generate_shift(
+            dataset_id=ds,
+            outer_fold=0,
+            condition="location_severe",
+            X_target=X_tgt_raw,
+            X_source=X_src_raw,
+            roles=roles,
+            backend="numpy",
+        )
         X_tgt_trans = src_prep.transform(shift_res.X_shifted)
         m_cand = FCM(n_clusters=K, random_state=1, fuzzifier_policy="dimension_adaptive").fit(X_tgt_trans)
 
@@ -726,10 +749,14 @@ def run_stability_and_sensitivity_audits(
         )
 
         n_available = len(X_src_raw)
+        # Deterministic nested/reproducible reference probe selection
+        rng = np.random.default_rng(42)
+        full_order = rng.permutation(n_available)
 
+        ds_rows = []
         for p_size in [512, 1024, 2048, 4096]:
             actual_size = min(n_available, p_size)
-            idx = select_reference_probe_indices(n_available, actual_size, seed=42)
+            idx = np.sort(full_order[:actual_size])
             A_probe = src_prep.transform(X_src_raw.iloc[idx])
 
             U_ref = m_ref.predict_membership(A_probe)
@@ -739,7 +766,7 @@ def run_stability_and_sensitivity_audits(
             res = align_clusters(m_ref.cluster_centers_, m_cand.cluster_centers_, scales_ref, U_ref, U_cand, eta=0.50)
             dur = time.perf_counter() - t0
 
-            probe_stability_records.append({
+            ds_rows.append({
                 "dataset_id": ds,
                 "outer_fold": 0,
                 "condition": "location_severe",
@@ -747,12 +774,26 @@ def run_stability_and_sensitivity_audits(
                 "probe_size_target": p_size,
                 "probe_size_actual": actual_size,
                 "permutation": json.dumps(res.permutation.tolist()),
-                "assignment_cost": round(res.assignment_cost, 6),
-                "best_assignment_cost": round(res.best_assignment_cost, 6),
-                "global_assignment_margin": round(res.global_assignment_margin, 8) if res.global_assignment_margin is not None else None,
+                "assignment_cost": round(float(res.assignment_cost), 6),
+                "best_assignment_cost": round(float(res.best_assignment_cost), 6),
+                "second_best_assignment_cost": round(float(res.second_best_assignment_cost), 6) if res.second_best_assignment_cost is not None else None,
+                "global_assignment_margin": round(float(res.global_assignment_margin), 8) if res.global_assignment_margin is not None else None,
                 "overlap_mean": round(float(np.mean(res.overlap_matrix)), 6),
-                "runtime": round(dur, 5),
+                "runtime": round(float(dur), 5),
             })
+
+        # Calculate comparisons against B=2048
+        ref_row = next(r for r in ds_rows if r["probe_size_target"] == 2048)
+        ref_perm = ref_row["permutation"]
+        ref_cost = ref_row["assignment_cost"]
+        ref_overlap = ref_row["overlap_mean"]
+
+        for r in ds_rows:
+            r["permutation_matches_B2048"] = bool(r["permutation"] == ref_perm)
+            r["absolute_assignment_cost_delta_vs_B2048"] = round(abs(r["assignment_cost"] - ref_cost), 6)
+            r["absolute_overlap_mean_delta_vs_B2048"] = round(abs(r["overlap_mean"] - ref_overlap), 6)
+
+        probe_stability_records.extend(ds_rows)
 
     if probe_stability_records:
         df_stab = pd.DataFrame(probe_stability_records)
@@ -830,201 +871,7 @@ def run_performance_benchmarks(
 def execute_verify_mode(project_root: Path) -> None:
     """Strictly byte-read-only verification of all Phase 5 probe and alignment artifacts."""
     print("\n[VERIFY MODE] Starting strictly byte-read-only verification for Phase 5...")
-    errors = []
-
-    probes_dir = project_root / "data" / "probes"
-    shifts_dir = project_root / "data" / "shifts"
-    lock_path = probes_dir / "phase5_input_lock.json"
-    manifest_path = probes_dir / "probe_manifest.json"
-
-    if not lock_path.exists():
-        errors.append(f"Missing input lock: {lock_path}")
-    if not manifest_path.exists():
-        errors.append(f"Missing probe manifest: {manifest_path}")
-
-    if errors:
-        print("\n[VERIFY FAILED]:")
-        for e in errors:
-            print(f"  - {e}")
-        sys.exit(1)
-
-    # 1. Verify input lock
-    with open(lock_path, "r", encoding="utf-8") as f:
-        lock_doc = json.load(f)
-
-    # Check upstream configuration and manifest hashes
-    if lock_doc.get("phase4_tooling_freeze_commit") != "f08335e8a4822f2b95e379abf955a80d5c0fb2c8":
-        errors.append("phase4_tooling_freeze_commit mismatch in lock")
-    if lock_doc.get("phase4_artifact_commit") != "6f8dd88b59a297ae05da035835c4055aab43fb29":
-        errors.append("phase4_artifact_commit mismatch in lock")
-    if lock_doc.get("phase4_producer_commit") != "21bcaa7bb00b07de5ee4671adfb06932610bf92d":
-        errors.append("phase4_producer_commit mismatch in lock")
-
-    phase4_lock_p = shifts_dir / "phase4_input_lock.json"
-    if lock_doc.get("phase4_input_lock_sha256") != compute_file_sha256(phase4_lock_p):
-        errors.append("phase4_input_lock_sha256 mismatch")
-
-    phase4_manifest_p = shifts_dir / "shift_manifest.json"
-    if lock_doc.get("phase4_shift_manifest_sha256") != compute_file_sha256(phase4_manifest_p):
-        errors.append("phase4_shift_manifest_sha256 mismatch")
-
-    prep_cfg_p = project_root / "configs" / "preprocessing.yaml"
-    prep_config_sha = compute_file_sha256(prep_cfg_p)
-    if lock_doc.get("phase2_preprocessing_config_sha256") != prep_config_sha:
-        errors.append("phase2_preprocessing_config_sha256 mismatch")
-
-    probe_cfg_p = project_root / "configs" / "probes.yaml"
-    probe_cfg = load_yaml(probe_cfg_p)
-    probe_protocol_sha = compute_probe_protocol_sha256(probe_cfg)
-    if lock_doc.get("probe_protocol_sha256") != probe_protocol_sha:
-        errors.append("probe_protocol_sha256 mismatch")
-
-    align_cfg_p = project_root / "configs" / "alignment.yaml"
-    align_cfg = load_yaml(align_cfg_p)
-    align_protocol_sha = compute_alignment_protocol_sha256(align_cfg)
-    if lock_doc.get("alignment_protocol_sha256") != align_protocol_sha:
-        errors.append("alignment_protocol_sha256 mismatch")
-
-    gen_commit = lock_doc.get("generated_from_commit", "")
-    if not gen_commit or len(gen_commit) < 7 or gen_commit == "unknown":
-        errors.append(f"Invalid generated_from_commit in lock: {gen_commit}")
-
-    # 2. Verify probe manifest
-    with open(manifest_path, "r", encoding="utf-8") as f:
-        manifest_doc = json.load(f)
-
-    probes = manifest_doc.get("probes", [])
-    if len(probes) != 2400:
-        errors.append(f"Probe manifest count is {len(probes)}, expected exactly 2400")
-
-    ref_count = sum(1 for p in probes if p["bank_type"] == "reference")
-    cur_count = sum(1 for p in probes if p["bank_type"] == "current")
-
-    if ref_count != 150:
-        errors.append(f"Reference probe count is {ref_count}, expected 150")
-    if cur_count != 2250:
-        errors.append(f"Current probe count is {cur_count}, expected 2250")
-
-    # Duplicate manifest check
-    manifest_keys = set()
-    manifest_relpaths = set()
-    for p in probes:
-        k = (p["bank_type"], p["dataset_id"], p["outer_fold"], p.get("condition"))
-        if k in manifest_keys:
-            errors.append(f"Duplicate probe manifest entry: {k}")
-        manifest_keys.add(k)
-        manifest_relpaths.add(p["spec_relpath"])
-
-    # 3. Orphan verification
-    disk_json_files = [
-        str(f.relative_to(project_root)).replace("\\", "/")
-        for f in probes_dir.rglob("*.json")
-        if f.name not in ("probe_manifest.json", "phase5_input_lock.json")
-    ]
-    orphan_jsons = set(disk_json_files) - manifest_relpaths
-    if orphan_jsons:
-        errors.append(f"Found {len(orphan_jsons)} orphan descriptor JSON files not in manifest")
-
-    disk_npz_files = [
-        str(f.relative_to(project_root)).replace("\\", "/")
-        for f in probes_dir.rglob("*.npz")
-    ]
-    expected_npz = {p.replace(".json", ".npz") for p in manifest_relpaths}
-    orphan_npzs = set(disk_npz_files) - expected_npz
-    if orphan_npzs:
-        errors.append(f"Found {len(orphan_npzs)} orphan NPZ files not in manifest")
-
-    # 4. Deep descriptor and NPZ verification
-    datasets_manifest_p = project_root / "data" / "manifests" / "datasets.json"
-    splits_manifest_p = project_root / "data" / "splits" / "split_manifest.json"
-    bundle_hashes = load_canonical_bundle_hashes(datasets_manifest_p)
-    split_records = load_phase2_split_hashes(splits_manifest_p)
-    global_seed = probe_cfg.get("global_probe_seed", 2026090705)
-
-    shifts_cfg_p = project_root / "configs" / "shifts.yaml"
-    from clusterdrift.shifts.hashing import compute_shift_protocol_sha256
-    shift_protocol_sha = compute_shift_protocol_sha256(load_yaml(shifts_cfg_p))
-
-    for p in probes:
-        spec_p = project_root / p["spec_relpath"]
-        if not spec_p.exists():
-            errors.append(f"Missing probe spec: {spec_p}")
-            continue
-        npz_p = spec_p.with_suffix(".npz")
-        if not npz_p.exists():
-            errors.append(f"Missing probe companion NPZ: {npz_p}")
-            continue
-
-        ds = p["dataset_id"]
-        f_idx = p["outer_fold"]
-        b_type = p["bank_type"]
-
-        if b_type == "reference":
-            b_sha = bundle_hashes.get(ds, "")
-            sp_sha = split_records.get((ds, f_idx), {}).get("split_sha256", "")
-            is_val, err, _ = validate_saved_reference_descriptor(
-                spec_path=spec_p,
-                expected_canonical_bundle_sha256=b_sha,
-                expected_split_sha256=sp_sha,
-                expected_preprocessing_config_sha256=prep_config_sha,
-                expected_probe_protocol_sha256=probe_protocol_sha,
-                global_probe_seed=global_seed,
-                dataset_id=ds,
-                outer_fold=f_idx,
-            )
-            if not is_val:
-                errors.append(f"Reference descriptor validation error on {p['spec_relpath']}: {err}")
-        else:
-            cond = p["condition"]
-            shift_spec_path = shifts_dir / "specs" / ds / f"fold_{f_idx}" / f"{cond}.json"
-            if not shift_spec_path.exists():
-                errors.append(f"Missing upstream shift spec: {shift_spec_path}")
-                continue
-            with open(shift_spec_path, "r", encoding="utf-8") as sf:
-                sdoc = json.load(sf)
-            shift_spec_sha = sdoc["shift_spec_sha256"]
-
-            is_val, err, _ = validate_saved_current_descriptor(
-                spec_path=spec_p,
-                expected_shift_spec_sha256=shift_spec_sha,
-                expected_shift_protocol_sha256=shift_protocol_sha,
-                expected_preprocessing_config_sha256=prep_config_sha,
-                expected_probe_protocol_sha256=probe_protocol_sha,
-                global_probe_seed=global_seed,
-                dataset_id=ds,
-                outer_fold=f_idx,
-                condition=cond,
-            )
-            if not is_val:
-                errors.append(f"Current descriptor validation error on {p['spec_relpath']}: {err}")
-
-    # 5. Verify result CSVs
-    probe_results_dir = project_root / "results" / "probe_validation"
-    align_results_dir = project_root / "results" / "alignment_validation"
-
-    expected_csvs = [
-        (probe_results_dir / "reference_probe_audit.csv", 150),
-        (probe_results_dir / "current_probe_audit.csv", 2250),
-        (probe_results_dir / "probe_manifest_summary.csv", 3),
-        (align_results_dir / "alignment_runs.csv", 140),
-        (align_results_dir / "alignment_summary.csv", 10),
-        (probe_results_dir / "probe_size_stability.csv", 12),
-        (align_results_dir / "eta_sensitivity.csv", 100),
-        (align_results_dir / "performance_benchmark.csv", 1),
-    ]
-
-    for csv_path, exp_min in expected_csvs:
-        if not csv_path.exists():
-            errors.append(f"Missing result CSV: {csv_path}")
-        else:
-            df = pd.read_csv(csv_path)
-            if len(df) < exp_min:
-                errors.append(f"{csv_path.name} has {len(df)} rows, expected at least {exp_min}")
-
-    amb_csv = align_results_dir / "ambiguity_cases.csv"
-    if not amb_csv.exists():
-        errors.append(f"Missing ambiguity cases CSV: {amb_csv}")
-
+    errors = verify_phase5_integrity(project_root)
     if errors:
         print(f"\n[VERIFY FAILED] Found {len(errors)} validation errors:")
         for err in errors[:25]:
@@ -1112,20 +959,21 @@ def main() -> None:
         print(f"  Probe manifest target: {probes_dir / 'probe_manifest.json'}")
         return
 
-    # Build input lock
-    lock_doc = build_phase5_input_lock(
-        project_root=PROJECT_ROOT,
-        probe_cfg=probe_cfg,
-        alignment_cfg=align_cfg,
-        generated_from_commit=commit_sha,
-    )
-    atomic_write_json(probes_dir / "phase5_input_lock.json", lock_doc, indent=2, sort_keys=True)
-    print(f"Saved Input Lock: {probes_dir / 'phase5_input_lock.json'}")
-
     run_probes = args.all or args.build_probes
     run_alignment = args.all or args.validate_alignment
     run_stability = args.all or args.stability_audit
     run_bench = args.all or args.benchmark
+
+    # Build input lock only when building probe banks
+    if run_probes:
+        lock_doc = build_phase5_input_lock(
+            project_root=PROJECT_ROOT,
+            probe_cfg=probe_cfg,
+            alignment_cfg=align_cfg,
+            generated_from_commit=commit_sha,
+        )
+        atomic_write_json(probes_dir / "phase5_input_lock.json", lock_doc, indent=2, sort_keys=True)
+        print(f"Saved Input Lock: {probes_dir / 'phase5_input_lock.json'}")
 
     # ---------------------------------------------------------
     # 1. Build Probes
@@ -1320,8 +1168,9 @@ def main() -> None:
         )
 
     # Clean failure logs
-    atomic_write_json(probe_results_dir / "failures.json", {}, indent=2)
-    atomic_write_json(align_results_dir / "failures.json", {}, indent=2)
+    if run_probes or run_alignment:
+        atomic_write_json(probe_results_dir / "failures.json", {}, indent=2)
+        atomic_write_json(align_results_dir / "failures.json", {}, indent=2)
 
     # Cache stats
     print("\n[CACHE PERFORMANCE]")
