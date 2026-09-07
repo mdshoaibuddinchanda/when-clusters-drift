@@ -8,7 +8,7 @@
     ],
     "cuda_available": true,
     "cuda_faster_overall": false,
-    "recommendation": "For Phase-4 tabular shifts, NumPy CPU provides parity or faster throughput than GPU for all datasets under 2.5M cells, with zero host-device transfer overhead. Auto backend defaults to NumPy for safe and deterministic execution."
+    "recommendation": "CUDA and NumPy produced numerically identical Phase-4 transformations in the benchmarked conditions. CUDA did not provide a consistent runtime advantage. The existing auto backend may select CUDA for sufficiently large numerical transformations according to the frozen 2,000,000-cell threshold. Backend selection is an execution optimization only and does not affect scientific results."
   },
   "dataset_count": 30,
   "dataset_ids": [

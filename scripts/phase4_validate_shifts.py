@@ -245,20 +245,48 @@ def process_dataset_fold_task(
         sev = "none" if cond == "clean" else cond.rsplit("_", 1)[1]
 
         if is_reusable:
-            # Load spec from disk without modifying
+            # Reconstruct shift deterministically in memory
+            reconstructed_res = engine.generate_shift(
+                dataset_id=dataset_id,
+                outer_fold=outer_fold,
+                condition=cond,
+                X_target=X_tgt,
+                X_source=X_src,
+                roles=roles,
+                y_target=y_tgt,
+                y_source=y_src,
+                backend=backend,
+            )
+
+            # Validate saved JSON and NPZ without rewriting
             with open(spec_path, "r", encoding="utf-8") as f:
                 spec_doc = json.load(f)
             npz_path = spec_path.with_suffix(".npz")
             with np.load(npz_path) as npz:
-                row_map = npz["row_index_map"]
+                persisted_row_map = npz["row_index_map"]
 
-            res = ShiftResult(
-                X_shifted=X_tgt.copy(),  # Lightweight stub for audit
-                row_index_map=row_map,
-                metadata=spec_doc.get("metadata", {}),
-                status=spec_doc.get("status", "APPLICABLE"),
-                reason=spec_doc.get("reason"),
-            )
+            # Exact comparison of reconstructed row_index_map with persisted NPZ
+            if not np.array_equal(reconstructed_res.row_index_map, persisted_row_map):
+                raise RuntimeError(
+                    f"Reconstructed row_index_map differs from persisted NPZ for {dataset_id} fold {outer_fold} condition {cond}"
+                )
+            if reconstructed_res.status != spec_doc.get("status"):
+                raise RuntimeError(
+                    f"Reconstructed status {reconstructed_res.status} differs from persisted spec status {spec_doc.get('status')} for {dataset_id} fold {outer_fold} condition {cond}"
+                )
+
+            # Run actual source-fitted preprocessing transformation
+            audit = audit_preprocessing_transformation(reconstructed_res.X_shifted, src_prep, expected_dim)
+            if not audit["all_finite"]:
+                raise RuntimeError(
+                    f"Reconstructed transformed features contain non-finite values for {dataset_id} fold {outer_fold} condition {cond}"
+                )
+            if not audit["dimension_matches"]:
+                raise RuntimeError(
+                    f"Reconstructed transformed features dimension mismatch for {dataset_id} fold {outer_fold} condition {cond}"
+                )
+
+            res = reconstructed_res
             spec_sha = spec_doc["shift_spec_sha256"]
             spec_file_sha = compute_file_sha256(spec_path)
             fold_results[cond] = res
@@ -270,8 +298,8 @@ def process_dataset_fold_task(
                 "family": fam,
                 "severity": sev,
                 "status": res.status,
-                "all_finite": True,
-                "dimension_matches": True,
+                "all_finite": audit["all_finite"],
+                "dimension_matches": audit["dimension_matches"],
                 "spec_hash": spec_sha,
             })
             summary_records.append({
@@ -488,7 +516,7 @@ def run_benchmark_and_equivalence(
         "benchmarked_datasets": benchmark_datasets,
         "cuda_available": bool(TORCH_AVAILABLE and torch.cuda.is_available()),
         "cuda_faster_overall": False,
-        "recommendation": "For Phase-4 tabular shifts, NumPy CPU provides parity or faster throughput than GPU for all datasets under 2.5M cells, with zero host-device transfer overhead. Auto backend defaults to NumPy for safe and deterministic execution.",
+        "recommendation": "CUDA and NumPy produced numerically identical Phase-4 transformations in the benchmarked conditions. CUDA did not provide a consistent runtime advantage. The existing auto backend may select CUDA for sufficiently large numerical transformations according to the frozen 2,000,000-cell threshold. Backend selection is an execution optimization only and does not affect scientific results.",
     }
     return benchmark_summary
 
@@ -524,12 +552,22 @@ def execute_verify_mode(
     datasets_manifest_path = project_root / "data" / "manifests" / "datasets.json"
     protocol_sha = compute_shift_protocol_sha256(shift_cfg)
 
+    prep_cfg_path = project_root / "configs" / "preprocessing.yaml"
+    shifts_cfg_path = project_root / "configs" / "shifts.yaml"
+    synthetic_manifest_path = project_root / "data" / "manifests" / "synthetic_manifest.json"
+
     if lock_doc.get("shift_protocol_sha256") != protocol_sha:
         errors.append(f"Input lock protocol SHA {lock_doc.get('shift_protocol_sha256')} does not match current {protocol_sha}")
     if lock_doc.get("phase2_split_manifest_sha256") != compute_file_sha256(splits_manifest_path):
         errors.append("Input lock phase2_split_manifest_sha256 does not match disk")
     if lock_doc.get("datasets_manifest_sha256") != compute_file_sha256(datasets_manifest_path):
         errors.append("Input lock datasets_manifest_sha256 does not match disk")
+    if lock_doc.get("phase2_preprocessing_config_sha256") != compute_file_sha256(prep_cfg_path):
+        errors.append("Input lock phase2_preprocessing_config_sha256 does not match disk")
+    if lock_doc.get("shift_config_sha256") != compute_file_sha256(shifts_cfg_path):
+        errors.append("Input lock shift_config_sha256 does not match disk")
+    if lock_doc.get("synthetic_manifest_sha256") != compute_file_sha256(synthetic_manifest_path):
+        errors.append("Input lock synthetic_manifest_sha256 does not match disk")
 
     for ds in controlled_datasets:
         expected_bundle = canonical_bundle_hashes.get(ds, "")
@@ -620,6 +658,57 @@ def execute_verify_mode(
     summary_json_path = results_dir / "phase4_summary.json"
     if not summary_json_path.exists():
         errors.append("Missing results/shift_validation/phase4_summary.json")
+    else:
+        with open(summary_json_path, "r", encoding="utf-8") as f:
+            summary_doc = json.load(f)
+
+        if summary_doc.get("scenario_count") != 2250:
+            errors.append(f"phase4_summary scenario_count is {summary_doc.get('scenario_count')}, expected 2250")
+        if summary_doc.get("dataset_count") != 30:
+            errors.append(f"phase4_summary dataset_count is {summary_doc.get('dataset_count')}, expected 30")
+        if summary_doc.get("dataset_ids") != controlled_datasets:
+            errors.append("phase4_summary dataset_ids do not match controlled datasets")
+        if summary_doc.get("applicable_count") != 2240:
+            errors.append(f"phase4_summary applicable_count is {summary_doc.get('applicable_count')}, expected 2240")
+        if summary_doc.get("not_applicable_count") != 10:
+            errors.append(f"phase4_summary not_applicable_count is {summary_doc.get('not_applicable_count')}, expected 10")
+
+        expected_fam_counts = {
+            "class_prevalence": 300,
+            "clean": 150,
+            "local_overlap": 300,
+            "location": 300,
+            "mcar": 300,
+            "measurement_noise": 300,
+            "outliers": 300,
+            "scale": 300,
+        }
+        if summary_doc.get("per_family_counts") != expected_fam_counts:
+            errors.append("phase4_summary per_family_counts does not match expected distribution")
+
+        sev_mono = summary_doc.get("severity_monotonicity", {})
+        if sev_mono.get("total_pairs") != 1050:
+            errors.append(f"phase4_summary severity total_pairs is {sev_mono.get('total_pairs')}, expected 1050")
+        if sev_mono.get("pass_count") != 1038:
+            errors.append(f"phase4_summary severity pass_count is {sev_mono.get('pass_count')}, expected 1038")
+        if sev_mono.get("warn_count") != 7:
+            errors.append(f"phase4_summary severity warn_count is {sev_mono.get('warn_count')}, expected 7")
+        if sev_mono.get("not_applicable_count") != 5:
+            errors.append(f"phase4_summary severity not_applicable_count is {sev_mono.get('not_applicable_count')}, expected 5")
+        if sev_mono.get("fail_count") != 0:
+            errors.append(f"phase4_summary severity fail_count is {sev_mono.get('fail_count')}, expected 0")
+
+        if summary_doc.get("finite_transformed_count") != 2250:
+            errors.append(f"phase4_summary finite_transformed_count is {summary_doc.get('finite_transformed_count')}, expected 2250")
+        if summary_doc.get("dimension_match_count") != 2250:
+            errors.append(f"phase4_summary dimension_match_count is {summary_doc.get('dimension_match_count')}, expected 2250")
+
+        if summary_doc.get("input_lock_sha256") != compute_file_sha256(lock_path):
+            errors.append("phase4_summary input_lock_sha256 does not match lock file on disk")
+        if summary_doc.get("shift_manifest_sha256") != compute_file_sha256(manifest_path):
+            errors.append("phase4_summary shift_manifest_sha256 does not match manifest file on disk")
+        if summary_doc.get("protocol_sha256") != protocol_sha:
+            errors.append("phase4_summary protocol_sha256 does not match shift protocol on disk")
 
     if errors:
         print(f"\n[VERIFY FAILED] Found {len(errors)} validation errors:")
