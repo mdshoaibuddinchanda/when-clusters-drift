@@ -1,0 +1,141 @@
+protocol_version: 1
+falsification_version: 1
+
+global_seed: 2026090707
+
+datasets:
+  - iris
+  - glass
+  - sonar
+  - breast_cancer_wisconsin_diagnostic
+  - spambase
+  - waveform
+  - satimage
+  - pendigits
+  - letter_recognition
+  - madelon
+  - human_activity_recognition
+  - mice_protein_expression
+
+outer_folds: [0, 1, 2, 3, 4]
+
+conditions:
+  - clean
+  - location_mild
+  - location_severe
+  - scale_mild
+  - scale_severe
+  - mcar_mild
+  - mcar_severe
+  - outliers_mild
+  - outliers_severe
+  - measurement_noise_mild
+  - measurement_noise_severe
+  - class_prevalence_mild
+  - class_prevalence_severe
+  - local_overlap_mild
+  - local_overlap_severe
+
+methods:
+  - fcm_adaptive
+
+algorithm_seeds: [1, 2, 3, 4, 5]
+
+primary_analysis:
+  exclude_clean: true
+  target: delta_ari
+  error_metric: mae
+
+secondary_analysis:
+  include_clean: true
+  metrics:
+    - mae
+    - rmse
+    - median_absolute_error
+    - r2
+
+feature_blocks:
+  P0:
+    - D_X
+
+  P1:
+    - FPC
+    - PE_norm
+    - XB_soft_m2
+    - silhouette
+
+  P2:
+    - D_U_R
+    - D_U_C
+    - D_V
+    - D_H
+    - D_M
+
+  P3:
+    - D_X
+    - FPC
+    - PE_norm
+    - XB_soft_m2
+    - silhouette
+
+  P4:
+    - D_X
+    - D_U_R
+    - D_U_C
+    - D_V
+    - D_H
+    - D_M
+
+  P5:
+    - D_X
+    - FPC
+    - PE_norm
+    - XB_soft_m2
+    - silhouette
+    - D_U_R
+    - D_U_C
+    - D_V
+    - D_H
+    - D_M
+
+primary_regressor:
+  type: hist_gradient_boosting
+  loss: squared_error
+  random_state: 2026090707
+  early_stopping: false
+  min_samples_leaf: 20
+
+  grid:
+    learning_rate: [0.05, 0.10]
+    max_leaf_nodes: [7, 15]
+    max_iter: [150, 300]
+    l2_regularization: [0.0, 1.0]
+
+linear_control:
+  type: ridge
+  alphas:
+    - 0.0001
+    - 0.001
+    - 0.01
+    - 0.1
+    - 1.0
+    - 10.0
+    - 100.0
+    - 1000.0
+    - 10000.0
+
+inner_cv:
+  type: group_kfold
+  groups: dataset_id
+  n_splits: 5
+  scoring: neg_mean_absolute_error
+
+bootstrap:
+  repetitions: 10000
+  seed: 2026090707
+
+execution:
+  jobs: auto
+  max_workers: 4
+  canonical_backend: numpy_float64
+  blas_threads_per_worker: 1
