@@ -1,0 +1,36 @@
+{
+  "cache_statistics": {
+    "cached_dx": 48,
+    "cached_memberships": 24,
+    "cached_mmd_sigmas": 6,
+    "cached_mmd_source_sums": 6,
+    "cached_preprocessors": 6,
+    "cached_reference_scales": 24,
+    "cached_source_models": 24,
+    "cached_transformed_banks": 54,
+    "hits": {
+      "dx": 144,
+      "membership": 168,
+      "mmd_sigma": 186,
+      "mmd_source_sum": 42,
+      "preprocessor": 0,
+      "reference_scales": 168,
+      "source_model": 168,
+      "transformed_bank": 0
+    },
+    "misses": {
+      "dx": 48,
+      "membership": 24,
+      "mmd_sigma": 6,
+      "mmd_source_sum": 6,
+      "preprocessor": 6,
+      "reference_scales": 24,
+      "source_model": 24,
+      "transformed_bank": 54
+    }
+  },
+  "execution_timestamp_utc": "2026-09-07T19:31:24.514022+00:00",
+  "jobs": 4,
+  "signal_rows": 192,
+  "wall_time_seconds": 231.8417
+}

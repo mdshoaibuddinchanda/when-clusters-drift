@@ -1,7 +1,7 @@
 dataset_id,operation,n_samples,n_dim,backend,wall_seconds,result_value
-iris,MMD_b2_numpy_float64,120,4,numpy,0.00065,0.0098775
-iris,MMD_b2_torch_cuda_float64,120,4,torch_cuda,0.21592,0.0098775
-human_activity_recognition,MMD_b2_numpy_float64,1024,561,numpy,0.14933,0.0087108
-human_activity_recognition,MMD_b2_torch_cuda_float64,1024,561,torch_cuda,0.0586,0.0087108
-madelon,MMD_b2_numpy_float64,1024,500,numpy,0.10283,0.0028996
-madelon,MMD_b2_torch_cuda_float64,1024,500,torch_cuda,0.02806,0.0028996
+iris,MMD_b2_numpy_float64,120,4,numpy,0.00047,0.0098775
+iris,MMD_b2_torch_cuda_float64,120,4,torch_cuda,0.21468,0.0098775
+human_activity_recognition,MMD_b2_numpy_float64,1024,561,numpy,0.11931,0.0087108
+human_activity_recognition,MMD_b2_torch_cuda_float64,1024,561,torch_cuda,0.05656,0.0087108
+madelon,MMD_b2_numpy_float64,1024,500,numpy,0.11714,0.0028996
+madelon,MMD_b2_torch_cuda_float64,1024,500,torch_cuda,0.02883,0.0028996
