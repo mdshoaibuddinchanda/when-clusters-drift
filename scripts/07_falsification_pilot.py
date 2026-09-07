@@ -81,7 +81,11 @@ from clusterdrift.falsification.protocol import (
     compute_falsification_protocol_sha256,
     load_falsification_config,
 )
-from clusterdrift.falsification.verification import verify_falsification, verify_pass_a
+from clusterdrift.falsification.verification import (
+    verify_falsification,
+    verify_pass_a,
+    verify_pass_b,
+)
 from clusterdrift.probes.bank import (
     load_current_probe_descriptor,
     load_reference_probe_descriptor,
@@ -635,10 +639,58 @@ def run_evaluation_quality_pass(
     w_dir = work_dir or get_default_work_dir()
     protocol_sha = compute_falsification_protocol_sha256(cfg)
 
-    cache = PersistentPhase7Cache(w_dir, protocol_sha, root)
-    checkpoint_mgr = QualityCheckpointManager(w_dir, root)
+    # 1. Pre-reveal verification of Pass A before accessing any labels
+    signals_p = root / "results" / "falsification" / "signals_label_free.csv"
+    if not signals_p.exists():
+        raise FileNotFoundError(f"Pass A signals file not found: {signals_p}")
+    signals_sha = compute_file_sha256(signals_p)
+    expected_signals_sha = "3a9e6c68cbe34c8763d70769715dba0d34976dfc35c8877c5680561da5c0e80a"
+    if signals_sha != expected_signals_sha:
+        raise ValueError(
+            f"Pass A signals CSV SHA256 mismatch before quality reveal: expected {expected_signals_sha}, got {signals_sha}"
+        )
+
+    pass_a_freeze_p = root / "results" / "falsification" / "pass_a_freeze.json"
+    if not pass_a_freeze_p.exists():
+        raise FileNotFoundError(f"Pass A freeze manifest not found: {pass_a_freeze_p}")
+    with open(pass_a_freeze_p, "r", encoding="utf-8") as f:
+        freeze_doc = json.load(f)
+
+    if freeze_doc.get("quality_pass_started") is not False:
+        raise ValueError("pass_a_freeze.json indicates quality_pass_started is True; must be False prior to reveal.")
+    if freeze_doc.get("evaluation_started") is not False:
+        raise ValueError("pass_a_freeze.json indicates evaluation_started is True; must be False prior to reveal.")
+    if freeze_doc.get("signals_csv_sha256") != expected_signals_sha:
+        raise ValueError("pass_a_freeze.json signals_csv_sha256 mismatch")
+
+    # 2. Index frozen Pass A source model fingerprints for all 300 (ds, fold, meth, seed) keys
+    df_signals = pd.read_csv(signals_p)
+    frozen_source_fps: Dict[Tuple[str, int, str, int], str] = {}
+    for (ds_key, fold_key, meth_key, seed_key), group in df_signals.groupby(
+        ["dataset_id", "outer_fold", "method", "seed"]
+    ):
+        fps = group["source_model_fingerprint"].unique()
+        if len(fps) != 1:
+            raise ValueError(
+                f"Inconsistent Pass A source model fingerprints for {ds_key} fold_{fold_key} seed_{seed_key}: {fps}"
+            )
+        frozen_source_fps[(ds_key, int(fold_key), meth_key, int(seed_key))] = str(fps[0])
+
+    if len(frozen_source_fps) != 300:
+        raise ValueError(f"Expected 300 unique source model keys in Pass A, got {len(frozen_source_fps)}")
+
+    pass_a_freeze_commit = "89b3df90f2cdc29d0e341637a11c0eabd2099ee7"
+    checkpoint_mgr = QualityCheckpointManager(
+        w_dir,
+        root,
+        phase7_protocol_sha256=protocol_sha,
+        pass_a_signals_sha256=expected_signals_sha,
+        pass_a_freeze_commit=pass_a_freeze_commit,
+    )
     journal = ProgressJournal(w_dir, protocol_sha, total_rows=4500, project_root=root)
 
+    prep_config_sha = compute_file_sha256(root / "configs" / "preprocessing.yaml")
+    cache = PersistentPhase7Cache(w_dir, protocol_sha, root)
     methods_cfg = yaml.safe_load(open(root / "configs" / "methods.yaml", "r", encoding="utf-8"))
     prep_cfg = yaml.safe_load(open(root / "configs" / "preprocessing.yaml", "r", encoding="utf-8"))
     manifest_path = root / "data" / "manifests" / "datasets.json"
@@ -694,17 +746,43 @@ def run_evaluation_quality_pass(
             src_prep.fit(X_src_raw)
             X_src_trans = src_prep.transform(X_src_raw)
 
-            # Fit source models once per seed
+            # Fit/retrieve source models once per seed and verify fingerprints
             src_models: Dict[int, Any] = {}
             ari_cleans: Dict[int, float] = {}
 
             for seed in seeds:
-                src_model = fit_clustering_model(
-                    method=methods[0],
-                    X=X_src_trans,
-                    K=K,
-                    seed=seed,
-                )
+                model_fp = compute_content_fingerprint({
+                    "dataset_id": ds,
+                    "outer_fold": fold,
+                    "method": methods[0],
+                    "seed": seed,
+                    "K": K,
+                    "prep_config_sha": prep_config_sha,
+                })
+                src_model = cache.get_source_model(ds, fold, methods[0], seed, model_fp)
+                if src_model is None:
+                    with limit_inner_threads(1):
+                        src_model = fit_clustering_model(
+                            method=methods[0],
+                            K=K,
+                            seed=seed,
+                            X=X_src_trans,
+                        )
+                fresh_fp = compute_model_fingerprint(methods[0], {}, seed, src_model.cluster_centers_)
+                exp_fp = frozen_source_fps[(ds, fold, methods[0], seed)]
+                if fresh_fp != exp_fp:
+                    with limit_inner_threads(1):
+                        src_model = fit_clustering_model(
+                            method=methods[0],
+                            K=K,
+                            seed=seed,
+                            X=X_src_trans,
+                        )
+                    fresh_fp = compute_model_fingerprint(methods[0], {}, seed, src_model.cluster_centers_)
+                    if fresh_fp != exp_fp:
+                        raise ValueError(
+                            f"CRITICAL: Source model fingerprint mismatch for ({ds}, {fold}, {seed}): fresh {fresh_fp} != frozen {exp_fp}"
+                        )
                 src_models[seed] = src_model
 
                 X_tgt_clean_trans = src_prep.transform(X_tgt_raw)
@@ -746,8 +824,12 @@ def run_evaluation_quality_pass(
                         y_pred_cond = np.argmax(U_cond, axis=1)
 
                         ari_clean = ari_cleans[seed]
-                        ari_cond = float(adjusted_rand_score(y_tgt_shifted, y_pred_cond))
-                        delta_ari = ari_clean - ari_cond
+                        if cond == "clean":
+                            ari_cond = ari_clean
+                            delta_ari = 0.0
+                        else:
+                            ari_cond = float(adjusted_rand_score(y_tgt_shifted, y_pred_cond))
+                            delta_ari = ari_clean - ari_cond
 
                         nmi_cond = float(normalized_mutual_info_score(y_tgt_shifted, y_pred_cond, average_method="arithmetic"))
                         ami_cond = float(adjusted_mutual_info_score(y_tgt_shifted, y_pred_cond, average_method="arithmetic"))
@@ -766,7 +848,6 @@ def run_evaluation_quality_pass(
                             "ami_condition": ami_cond,
                             "n_evaluation_rows": len(y_tgt_shifted),
                         }
-                        rec["quality_record_sha256"] = compute_quality_record_sha256(rec)
                         checkpoint_mgr.save_checkpoint(rec)
 
     journal.log("[PASS B FINISHED] Assembling quality checkpoints...")
@@ -1067,6 +1148,7 @@ def main():
     parser.add_argument("--all", action="store_true", help="Run full pipeline: replay, signals, quality, evaluate")
     parser.add_argument("--verify", action="store_true", help="Run strict byte-read-only verification")
     parser.add_argument("--verify-pass-a", action="store_true", help="Run strict byte-read-only verification of Pass A signals")
+    parser.add_argument("--verify-pass-b", action="store_true", help="Run strict byte-read-only verification of Pass B quality")
     parser.add_argument("--workers", type=str, default="4", help="Workers: 'auto' or integer <= 4")
     parser.add_argument("--work-dir", type=str, default=None, help="Runtime work/cache directory")
     args = parser.parse_args()
@@ -1101,6 +1183,22 @@ def main():
         print(f"  Columns: {res['signals']['columns']}")
         print(f"  SHA256: {res['signals']['sha256']}")
         print(f"  Status: {res['pass_a_status']}")
+        print("============================================================")
+        return
+
+    if args.verify_pass_b:
+        res = verify_pass_b(PROJECT_ROOT)
+        print("============================================================")
+        print("[VERIFY PASS B SUCCESS] Pass B evaluation quality verified!")
+        print(f"  Rows: {res['quality']['rows']} (exact universe)")
+        print(f"  Columns: {res['quality']['columns']}")
+        print(f"  SHA256: {res['quality']['sha256']}")
+        print(f"  Status: {res['pass_b_status']}")
+        print(f"  Source Model Fingerprint Checks: {res['source_fingerprint_checks']}/300 matched")
+        print(f"  Clean Delta Checks: {res['clean_delta_checks']}/300 verified")
+        print(f"  Negative Delta Count: {res['signed_negative_delta_count']}")
+        print(f"  Positive Delta Count: {res['positive_delta_count']}")
+        print(f"  Zero Delta Count: {res['zero_delta_count']}")
         print("============================================================")
         return
 

@@ -14,10 +14,16 @@ from clusterdrift.falsification.bootstrap import (
 )
 from clusterdrift.falsification.dataset import FORBIDDEN_PREDICTOR_FEATURES
 from clusterdrift.falsification.evaluation import compute_prediction_record_sha256
+from clusterdrift.falsification.execution.cache import (
+    PersistentPhase7Cache,
+    compute_content_fingerprint,
+)
+from clusterdrift.falsification.execution.resources import get_default_work_dir
 from clusterdrift.falsification.protocol import (
     ALL_SHIFT_FAMILIES,
     CONDITION_TO_FAMILY,
     PREDEFINED_FEATURE_BLOCKS,
+    compute_falsification_protocol_sha256,
     load_falsification_config,
 )
 from clusterdrift.probes.bank import (
@@ -29,6 +35,10 @@ from clusterdrift.shifts.hashing import (
     compute_canonical_json_sha256,
     compute_file_sha256,
 )
+from clusterdrift.alignment.state import compute_model_fingerprint
+from clusterdrift.data.preprocess import build_preprocessor
+from clusterdrift.falsification.execution.environment import limit_inner_threads
+from clusterdrift.signals.engine import fit_clustering_model
 from clusterdrift.signals.hashing import (
     compute_quality_record_sha256,
     compute_signal_record_sha256,
@@ -404,6 +414,243 @@ def verify_pass_a(project_root: Path) -> Dict[str, Any]:
         "input_lock": lock_res,
         "offline_replay": replay_res,
         "signals": signals_res,
+    }
+
+
+def verify_pass_b(project_root: Path, cfg: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    """Execute complete, strict, byte-read-only verification for Phase 7 Pass B."""
+    root = Path(project_root).resolve()
+    if cfg is None:
+        cfg = load_falsification_config(root / "configs" / "falsification.yaml")
+
+    # 1. Require Pass A verification still passes and SHA matches
+    pass_a_res = verify_pass_a(root)
+    exp_signals_sha = "3a9e6c68cbe34c8763d70769715dba0d34976dfc35c8877c5680561da5c0e80a"
+    if pass_a_res["signals"]["sha256"] != exp_signals_sha:
+        raise ValueError(
+            f"Pass A signals CSV SHA256 mismatch during Pass B verification: "
+            f"expected {exp_signals_sha}, got {pass_a_res['signals']['sha256']}"
+        )
+
+    # 2. Quality CSV exists and has exact 4,500 rows
+    quality_p = root / "results" / "falsification" / "quality_evaluation_only.csv"
+    if not quality_p.exists():
+        raise FileNotFoundError(f"Pass B quality artifact not found: {quality_p}")
+
+    df_qual = pd.read_csv(quality_p)
+    expected_rows = (
+        len(cfg["datasets"])
+        * len(cfg["outer_folds"])
+        * len(cfg["conditions"])
+        * len(cfg["methods"])
+        * len(cfg["algorithm_seeds"])
+    )
+    if len(df_qual) != expected_rows:
+        raise ValueError(f"Quality row count mismatch: expected {expected_rows}, got {len(df_qual)}")
+
+    # 3. Exact Key Universe & Key Matching with Pass A signals
+    expected_keys = [
+        (ds, fold, cond, meth, seed)
+        for ds in cfg["datasets"]
+        for fold in cfg["outer_folds"]
+        for cond in cfg["conditions"]
+        for meth in cfg["methods"]
+        for seed in cfg["algorithm_seeds"]
+    ]
+    actual_keys = list(zip(
+        df_qual["dataset_id"],
+        df_qual["outer_fold"].astype(int),
+        df_qual["condition"],
+        df_qual["method"],
+        df_qual["seed"].astype(int),
+    ))
+
+    if len(set(actual_keys)) != expected_rows:
+        raise ValueError(f"Duplicate keys found in quality CSV! Unique count: {len(set(actual_keys))}")
+    if set(actual_keys) != set(expected_keys):
+        missing = set(expected_keys) - set(actual_keys)
+        unexpected = set(actual_keys) - set(expected_keys)
+        raise ValueError(f"Quality key universe mismatch: missing={len(missing)}, unexpected={len(unexpected)}")
+
+    # Check signal keys == quality keys exactly
+    signals_p = root / "results" / "falsification" / "signals_label_free.csv"
+    df_sig = pd.read_csv(signals_p)
+    signal_keys = list(zip(
+        df_sig["dataset_id"],
+        df_sig["outer_fold"].astype(int),
+        df_sig["condition"],
+        df_sig["method"],
+        df_sig["seed"].astype(int),
+    ))
+    if set(actual_keys) != set(signal_keys):
+        raise ValueError("Quality keys do not match Pass A signal keys exactly!")
+
+    # 4. Cryptographic record hash recomputation
+    valid_hashes = 0
+    for idx, row in df_qual.iterrows():
+        rec = row.to_dict()
+        stored_sha = str(rec.get("quality_record_sha256", ""))
+        recomputed_sha = compute_quality_record_sha256(rec)
+        if stored_sha != recomputed_sha:
+            raise ValueError(f"Quality record hash mismatch at row {idx} ({row['dataset_id']}, {row['condition']})")
+        valid_hashes += 1
+
+    # 5. Finiteness & Metric Bounds
+    for col in ["ari_clean", "ari_condition", "delta_ari", "nmi_condition", "ami_condition", "n_evaluation_rows"]:
+        if col not in df_qual.columns:
+            raise KeyError(f"Required quality column missing: {col}")
+        vals = df_qual[col].to_numpy(dtype=np.float64)
+        if not np.isfinite(vals).all():
+            raise ValueError(f"Non-finite values detected in quality column {col}")
+
+    if not ((df_qual["ari_clean"] >= -1.0 - 1e-6) & (df_qual["ari_clean"] <= 1.0 + 1e-6)).all():
+        raise ValueError("ari_clean out of bounds [-1, 1]")
+    if not ((df_qual["ari_condition"] >= -1.0 - 1e-6) & (df_qual["ari_condition"] <= 1.0 + 1e-6)).all():
+        raise ValueError("ari_condition out of bounds [-1, 1]")
+    if not ((df_qual["nmi_condition"] >= -1e-6) & (df_qual["nmi_condition"] <= 1.0 + 1e-6)).all():
+        raise ValueError("nmi_condition out of bounds [0, 1]")
+    if not ((df_qual["ami_condition"] >= -1.0 - 1e-6) & (df_qual["ami_condition"] <= 1.0 + 1e-6)).all():
+        raise ValueError("ami_condition out of bounds [-1, 1]")
+
+    # 6. Delta ARI Identity exactness: delta_ari = ari_clean - ari_condition
+    diff = (df_qual["delta_ari"] - (df_qual["ari_clean"] - df_qual["ari_condition"])).abs()
+    if not (diff <= 1e-6).all():
+        max_diff = diff.max()
+        raise ValueError(f"Delta ARI identity violated: max diff = {max_diff}")
+
+    # 7. Clean condition check: delta_ari == 0 and ari_condition == ari_clean
+    clean_sub = df_qual[df_qual["condition"] == "clean"]
+    if len(clean_sub) != 300:
+        raise ValueError(f"Expected exactly 300 clean condition rows, got {len(clean_sub)}")
+    if not (clean_sub["delta_ari"].abs() <= 1e-6).all():
+        raise ValueError("Clean condition delta_ari is non-zero!")
+    if not ((clean_sub["ari_clean"] - clean_sub["ari_condition"]).abs() <= 1e-6).all():
+        raise ValueError("Clean condition ari_clean != ari_condition!")
+
+    # 8. Clean consistency across conditions for each (dataset_id, outer_fold, method, seed)
+    clean_delta_checks = 0
+    clean_delta_mismatches = 0
+    for (ds, fold, meth, seed), group in df_qual.groupby(["dataset_id", "outer_fold", "method", "seed"]):
+        clean_delta_checks += 1
+        if (group["ari_clean"].max() - group["ari_clean"].min()) > 1e-6:
+            clean_delta_mismatches += 1
+            raise ValueError(f"Inconsistent ari_clean for {ds} fold_{fold} seed_{seed} across conditions")
+
+    # 9. Class prevalence evaluation rows check against Phase-4 specs
+    for (ds, fold), group in df_qual.groupby(["dataset_id", "outer_fold"]):
+        for cond in ["class_prevalence_mild", "class_prevalence_severe"]:
+            sub = group[group["condition"] == cond]
+            if not sub.empty:
+                spec_p = root / "data" / "shifts" / "specs" / ds / f"fold_{fold}" / f"{cond}.npz"
+                with np.load(spec_p) as npz:
+                    exp_len = len(npz["row_index_map"])
+                if not (sub["n_evaluation_rows"] == exp_len).all():
+                    raise ValueError(f"n_evaluation_rows mismatch for {ds} fold_{fold} {cond}")
+
+    # 10. Source model fingerprint check: 300 source models match frozen Pass A
+    source_model_fp_checks = 0
+    source_model_fp_mismatches = 0
+    sig_fps = {}
+    for (ds, fold, meth, seed), group in df_sig.groupby(["dataset_id", "outer_fold", "method", "seed"]):
+        sig_fps[(ds, int(fold), meth, int(seed))] = group["source_model_fingerprint"].iloc[0]
+
+    if len(sig_fps) != 300:
+        raise ValueError(f"Expected 300 source model fingerprints in Pass A, got {len(sig_fps)}")
+
+    manifest_p = root / "data" / "manifests" / "datasets.json"
+    with open(manifest_p, "r", encoding="utf-8") as f:
+        m_list = json.load(f)
+    classes_map = {m["dataset_id"]: m["n_classes"] for m in m_list if "dataset_id" in m}
+    prep_cfg = yaml.safe_load(open(root / "configs" / "preprocessing.yaml", "r", encoding="utf-8"))
+    prep_config_sha = compute_file_sha256(root / "configs" / "preprocessing.yaml")
+    protocol_sha = compute_falsification_protocol_sha256(cfg)
+    cache = PersistentPhase7Cache(get_default_work_dir(), protocol_sha, root)
+
+    for ds in cfg["datasets"]:
+        K = classes_map[ds]
+        ds_dir = root / "data" / "canonical" / "controlled" / ds
+        df_X = pd.read_parquet(ds_dir / "features.parquet")
+        with open(ds_dir / "metadata.json", "r", encoding="utf-8") as f:
+            meta = json.load(f)
+        roles = meta.get("feature_roles", {col: "numeric" for col in df_X.columns})
+
+        for fold in cfg["outer_folds"]:
+            fold_p = root / "data" / "splits" / "controlled" / ds / f"fold_{fold}.npz"
+            with np.load(fold_p) as npz:
+                src_idx = npz["source_indices"]
+            X_src_raw = None
+            X_src_trans = None
+
+            for seed in cfg["algorithm_seeds"]:
+                model_fp = compute_content_fingerprint({
+                    "dataset_id": ds,
+                    "outer_fold": fold,
+                    "method": cfg["methods"][0],
+                    "seed": seed,
+                    "K": K,
+                    "prep_config_sha": prep_config_sha,
+                })
+                src_model = cache.get_source_model(ds, fold, cfg["methods"][0], seed, model_fp)
+                if src_model is None:
+                    if X_src_trans is None:
+                        X_src_raw = df_X.iloc[src_idx].copy().reset_index(drop=True)
+                        src_prep = build_preprocessor(feature_roles=roles, config=prep_cfg, metadata=meta)
+                        src_prep.fit(X_src_raw)
+                        X_src_trans = src_prep.transform(X_src_raw)
+                    with limit_inner_threads(1):
+                        src_model = fit_clustering_model(
+                            method=cfg["methods"][0],
+                            K=K,
+                            seed=seed,
+                            X=X_src_trans,
+                        )
+                act_fp = compute_model_fingerprint(cfg["methods"][0], {}, seed, src_model.cluster_centers_)
+                exp_fp = sig_fps[(ds, fold, cfg["methods"][0], seed)]
+                source_model_fp_checks += 1
+                if act_fp != exp_fp:
+                    # Retry with fresh fit under limit_inner_threads(1)
+                    if X_src_trans is None:
+                        X_src_raw = df_X.iloc[src_idx].copy().reset_index(drop=True)
+                        src_prep = build_preprocessor(feature_roles=roles, config=prep_cfg, metadata=meta)
+                        src_prep.fit(X_src_raw)
+                        X_src_trans = src_prep.transform(X_src_raw)
+                    with limit_inner_threads(1):
+                        src_model = fit_clustering_model(
+                            method=cfg["methods"][0],
+                            K=K,
+                            seed=seed,
+                            X=X_src_trans,
+                        )
+                    act_fp = compute_model_fingerprint(cfg["methods"][0], {}, seed, src_model.cluster_centers_)
+                    if act_fp != exp_fp:
+                        source_model_fp_mismatches += 1
+                        raise ValueError(
+                            f"Source model fingerprint mismatch for {ds} fold_{fold} seed_{seed}: {act_fp} vs {exp_fp}"
+                        )
+
+    # 11. Delta distribution statistics (descriptive integrity only)
+    neg_count = int((df_qual["delta_ari"] < -1e-6).sum())
+    pos_count = int((df_qual["delta_ari"] > 1e-6).sum())
+    zero_count = int((df_qual["delta_ari"].abs() <= 1e-6).sum())
+
+    return {
+        "status": "PASSED",
+        "pass_b_status": "FROZEN",
+        "quality": {
+            "csv_path": str(quality_p.relative_to(root)),
+            "rows": len(df_qual),
+            "columns": len(df_qual.columns),
+            "sha256": compute_file_sha256(quality_p),
+            "size_bytes": quality_p.stat().st_size,
+        },
+        "source_fingerprint_checks": source_model_fp_checks,
+        "source_fingerprint_mismatches": source_model_fp_mismatches,
+        "clean_delta_checks": clean_delta_checks,
+        "clean_delta_mismatches": clean_delta_mismatches,
+        "signed_negative_delta_count": neg_count,
+        "positive_delta_count": pos_count,
+        "zero_delta_count": zero_count,
+        "valid_quality_hashes": valid_hashes,
     }
 
 
