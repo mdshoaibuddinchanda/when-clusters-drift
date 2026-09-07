@@ -46,6 +46,12 @@ def compute_signal_protocol_sha256(signals_cfg: Dict[str, Any]) -> str:
 
 def compute_signal_record_sha256(rec: Dict[str, Any]) -> str:
     """Compute canonical SHA-256 hash of a single signal record."""
+    shift_replay_val = rec.get("shift_replay_sha256")
+    if shift_replay_val is None or (isinstance(shift_replay_val, float) and (shift_replay_val != shift_replay_val)) or shift_replay_val == "":
+        shift_replay_str = ""
+    else:
+        shift_replay_str = str(shift_replay_val)
+
     binding_fields = {
         "signal_protocol_sha256": rec["signal_protocol_sha256"],
         "dataset_id": rec["dataset_id"],
@@ -57,7 +63,7 @@ def compute_signal_record_sha256(rec: Dict[str, Any]) -> str:
         "current_bank_sha256": rec["current_bank_sha256"],
         "shift_spec_sha256": rec["shift_spec_sha256"],
         "shift_spec_file_sha256": rec.get("shift_spec_file_sha256", ""),
-        "shift_replay_sha256": rec.get("shift_replay_sha256") or "",
+        "shift_replay_sha256": shift_replay_str,
         "source_model_fingerprint": rec["source_model_fingerprint"],
         "candidate_model_fingerprint": rec["candidate_model_fingerprint"],
         "alignment_permutation": rec["alignment_permutation"] if isinstance(rec["alignment_permutation"], list) else json.loads(rec["alignment_permutation"]),
