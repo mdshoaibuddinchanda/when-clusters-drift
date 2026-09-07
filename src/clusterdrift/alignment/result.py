@@ -24,6 +24,10 @@ class AlignmentResult:
     cluster_scales: np.ndarray  # Shape: (K,)
     ambiguous: bool
     minimum_assignment_margin: float
+    best_assignment_cost: float = 0.0
+    second_best_assignment_cost: float = 0.0
+    global_assignment_margin: float = 0.0
+    forbidden_edge_producing_second_best: Optional[Any] = None
     ambiguity_details: Dict[str, Any] = field(default_factory=dict)
     eta: float = 0.50
     metadata: Dict[str, Any] = field(default_factory=dict)
@@ -31,3 +35,7 @@ class AlignmentResult:
     def is_identity(self) -> bool:
         """Check whether alignment is the identity permutation."""
         return np.array_equal(self.permutation, np.arange(len(self.permutation)))
+
+    def apply_to_memberships(self, U: np.ndarray) -> np.ndarray:
+        """Permute candidate membership matrix to match reference cluster indices."""
+        return np.ascontiguousarray(U[:, self.permutation].copy())

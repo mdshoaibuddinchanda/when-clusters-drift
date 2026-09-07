@@ -41,6 +41,7 @@ from clusterdrift.alignment.validation import validate_cluster_states, validate_
 from clusterdrift.data.preprocess import build_preprocessor
 from clusterdrift.methods.fcm import FCM
 from clusterdrift.methods.gmm import GMM
+from clusterdrift.methods.utils import check_simplex_constraint
 from clusterdrift.probes.bank import (
     CurrentProbeDescriptor,
     ReferenceProbeDescriptor,
@@ -182,69 +183,48 @@ def process_reference_probe_task(
             is_reusable = True
 
     if is_reusable:
-        desc, indices = load_reference_probe_descriptor(spec_path)
+        desc, positions, canonical_rows = load_reference_probe_descriptor(spec_path)
     else:
         # Load raw source rows
         X_src_raw, meta = load_raw_source_features(dataset_id, outer_fold, project_root)
         n_source = len(X_src_raw)
 
+        # Load Phase-2 source indices
+        fold_p = project_root / "data" / "splits" / "controlled" / dataset_id / f"fold_{outer_fold}.npz"
+        with np.load(fold_p) as npz:
+            phase2_source_indices = npz["source_indices"]
+
         # Deterministic seed derivation
         derived_seed = derive_reference_probe_seed(global_seed, dataset_id, outer_fold, split_hash)
 
-        # Selection
-        indices = select_reference_probe_indices(n_source=n_source, max_size=max_size, seed=derived_seed)
-
-        # Compute hash
-        bank_sha = compute_reference_bank_sha256(
-            dataset_id=dataset_id,
-            outer_fold=outer_fold,
-            canonical_row_indices=indices,
-            canonical_bundle_sha256=canonical_bundle_hash,
-            split_sha256=split_hash,
-            preprocessing_config_sha256=prep_config_sha,
-            probe_protocol_sha256=probe_protocol_sha,
+        # Selection: positions and canonical rows
+        positions, canonical_rows = select_reference_probe_indices(
+            n_source=n_source,
+            max_size=max_size,
+            seed=derived_seed,
+            phase2_source_indices=phase2_source_indices,
         )
 
-        npz_path = spec_path.with_suffix(".npz")
-        # Write descriptor
-        desc = ReferenceProbeDescriptor(
-            dataset_id=dataset_id,
-            outer_fold=outer_fold,
-            bank_type="reference",
-            canonical_bundle_sha256=canonical_bundle_hash,
-            split_sha256=split_hash,
-            preprocessing_config_sha256=prep_config_sha,
-            selection_policy="uniform_without_replacement",
-            global_probe_seed=global_seed,
-            derived_seed=derived_seed,
-            available_rows=n_source,
-            selected_rows=len(indices),
-            canonical_row_indices_sha256="",  # Updated inside save
-            probe_protocol_sha256=probe_protocol_sha,
-            probe_bank_sha256=bank_sha,
-        )
+        metadata = {
+            "dataset_id": dataset_id,
+            "outer_fold": outer_fold,
+            "canonical_bundle_sha256": canonical_bundle_hash,
+            "split_sha256": split_hash,
+            "preprocessing_config_sha256": prep_config_sha,
+            "selection_policy": "uniform_without_replacement",
+            "global_probe_seed": global_seed,
+            "derived_seed": derived_seed,
+            "available_rows": n_source,
+            "probe_protocol_sha256": probe_protocol_sha,
+        }
 
-        # Atomic save
-        save_reference_probe_descriptor(spec_path, desc, indices)
-        # Update NPZ hash in descriptor
-        npz_sha = compute_file_sha256(npz_path)
-        desc = ReferenceProbeDescriptor(
-            dataset_id=desc.dataset_id,
-            outer_fold=desc.outer_fold,
-            bank_type=desc.bank_type,
-            canonical_bundle_sha256=desc.canonical_bundle_sha256,
-            split_sha256=desc.split_sha256,
-            preprocessing_config_sha256=desc.preprocessing_config_sha256,
-            selection_policy=desc.selection_policy,
-            global_probe_seed=desc.global_probe_seed,
-            derived_seed=desc.derived_seed,
-            available_rows=desc.available_rows,
-            selected_rows=desc.selected_rows,
-            canonical_row_indices_sha256=npz_sha,
-            probe_protocol_sha256=desc.probe_protocol_sha256,
-            probe_bank_sha256=desc.probe_bank_sha256,
+        # Single-save atomic persistence
+        desc = save_reference_probe_descriptor(
+            spec_path=spec_path,
+            metadata=metadata,
+            selected_source_positions=positions,
+            canonical_row_indices=canonical_rows,
         )
-        save_reference_probe_descriptor(spec_path, desc, indices)
 
     runtime = time.perf_counter() - t0
     spec_relpath = str(spec_path.relative_to(project_root)).replace("\\", "/")
@@ -265,7 +245,7 @@ def process_reference_probe_task(
             "bank_type": "reference",
             "available_rows": desc.available_rows,
             "selected_rows": desc.selected_rows,
-            "duplicates": len(indices) - len(np.unique(indices)),
+            "duplicates": len(canonical_rows) - len(np.unique(canonical_rows)),
             "bank_hash": desc.probe_bank_sha256,
             "finite": True,
             "runtime": round(runtime, 5),
@@ -328,68 +308,45 @@ def process_current_probe_task(
             is_reusable = True
 
     if is_reusable:
-        desc, positions, canonical_rows = load_current_probe_descriptor(spec_path)
+        desc, positions, target_positions, canonical_rows = load_current_probe_descriptor(spec_path)
     else:
+        # Load Phase-2 target indices
+        fold_p = project_root / "data" / "splits" / "controlled" / dataset_id / f"fold_{outer_fold}.npz"
+        with np.load(fold_p) as npz:
+            phase2_target_indices = npz["target_indices"]
+
         derived_seed = derive_current_probe_seed(global_seed, dataset_id, outer_fold, condition, shift_spec_sha)
-        positions, canonical_rows = select_current_probe_positions(
-            n_target=n_target, row_index_map=row_map, max_size=max_size, seed=derived_seed
+        positions, target_positions, canonical_rows = select_current_probe_positions(
+            n_target=n_target,
+            row_index_map=row_map,
+            max_size=max_size,
+            seed=derived_seed,
+            phase2_target_indices=phase2_target_indices,
         )
 
-        bank_sha = compute_current_bank_sha256(
-            dataset_id=dataset_id,
-            outer_fold=outer_fold,
-            condition=condition,
-            selected_positions=positions,
+        metadata = {
+            "dataset_id": dataset_id,
+            "outer_fold": outer_fold,
+            "condition": condition,
+            "shift_spec_sha256": shift_spec_sha,
+            "shift_protocol_sha256": shift_protocol_sha,
+            "preprocessing_config_sha256": prep_config_sha,
+            "selection_policy": "uniform_without_replacement",
+            "global_probe_seed": global_seed,
+            "derived_seed": derived_seed,
+            "available_current_rows": n_target,
+            "scenario_status": scenario_status,
+            "probe_protocol_sha256": probe_protocol_sha,
+        }
+
+        # Single-save atomic persistence
+        desc = save_current_probe_descriptor(
+            spec_path=spec_path,
+            metadata=metadata,
+            selected_current_positions=positions,
+            target_partition_positions=target_positions,
             canonical_row_indices=canonical_rows,
-            shift_spec_sha256=shift_spec_sha,
-            shift_protocol_sha256=shift_protocol_sha,
-            preprocessing_config_sha256=prep_config_sha,
-            probe_protocol_sha256=probe_protocol_sha,
         )
-
-        npz_path = spec_path.with_suffix(".npz")
-        desc = CurrentProbeDescriptor(
-            dataset_id=dataset_id,
-            outer_fold=outer_fold,
-            condition=condition,
-            bank_type="current",
-            shift_spec_sha256=shift_spec_sha,
-            shift_protocol_sha256=shift_protocol_sha,
-            preprocessing_config_sha256=prep_config_sha,
-            selection_policy="uniform_without_replacement",
-            global_probe_seed=global_seed,
-            derived_seed=derived_seed,
-            available_current_rows=n_target,
-            selected_current_rows=len(positions),
-            selected_positions_sha256="",
-            canonical_row_map_sha256="",
-            scenario_status=scenario_status,
-            probe_protocol_sha256=probe_protocol_sha,
-            probe_bank_sha256=bank_sha,
-        )
-
-        save_current_probe_descriptor(spec_path, desc, positions, canonical_rows)
-        npz_sha = compute_file_sha256(npz_path)
-        desc = CurrentProbeDescriptor(
-            dataset_id=desc.dataset_id,
-            outer_fold=desc.outer_fold,
-            condition=desc.condition,
-            bank_type=desc.bank_type,
-            shift_spec_sha256=desc.shift_spec_sha256,
-            shift_protocol_sha256=desc.shift_protocol_sha256,
-            preprocessing_config_sha256=desc.preprocessing_config_sha256,
-            selection_policy=desc.selection_policy,
-            global_probe_seed=desc.global_probe_seed,
-            derived_seed=desc.derived_seed,
-            available_current_rows=desc.available_current_rows,
-            selected_current_rows=desc.selected_current_rows,
-            selected_positions_sha256=npz_sha,
-            canonical_row_map_sha256=compute_file_sha256(npz_path),
-            scenario_status=desc.scenario_status,
-            probe_protocol_sha256=desc.probe_protocol_sha256,
-            probe_bank_sha256=desc.probe_bank_sha256,
-        )
-        save_current_probe_descriptor(spec_path, desc, positions, canonical_rows)
 
     runtime = time.perf_counter() - t0
     spec_relpath = str(spec_path.relative_to(project_root)).replace("\\", "/")
@@ -441,6 +398,7 @@ def run_alignment_validation_panel(
 
     alignment_records = []
     ambiguity_records = []
+    eta_records = []
 
     for ds in VALIDATION_PANEL_DATASETS:
         K = dataset_classes.get(ds, 3)
@@ -461,10 +419,10 @@ def run_alignment_validation_panel(
 
         # Load reference probe bank A^R (cached)
         ref_desc_path = probes_dir / "reference" / ds / f"fold_{fold}.json"
-        ref_desc, ref_indices = load_reference_probe_descriptor(ref_desc_path)
+        ref_desc, ref_positions, ref_canonical_rows = load_reference_probe_descriptor(ref_desc_path)
         A_R = cache.get_transformed_bank(ref_desc.probe_bank_sha256)
         if A_R is None:
-            A_R = load_reference_probe_matrix(ds, fold, ref_indices, src_prep, project_root)
+            A_R = load_reference_probe_matrix(ds, fold, ref_positions, src_prep, project_root)
             cache.put_transformed_bank(ref_desc.probe_bank_sha256, A_R)
 
         for cond in VALIDATION_PANEL_CONDITIONS:
@@ -507,11 +465,16 @@ def run_alignment_validation_panel(
             )
             X_tgt_shifted_trans = src_prep.transform(shift_res.X_shifted)
 
+            # Load paired current probe bank A_t^C
+            cur_desc_path = probes_dir / "current" / ds / f"fold_{fold}" / f"{cond}.json"
+            cur_desc, cur_positions, cur_target_positions, cur_canonical_rows = load_current_probe_descriptor(cur_desc_path)
+            A_C = load_current_probe_matrix(shift_res.X_shifted, cur_positions, src_prep)
+
             for seed in [1, 3]:
                 for method_name in ["fcm_adaptive", "gmm"]:
                     t0 = time.perf_counter()
 
-                    # 1. Fit source model
+                    # 1. Fit source model and candidate model
                     if method_name == "fcm_adaptive":
                         m_src = FCM(n_clusters=K, random_state=seed, fuzzifier_policy="dimension_adaptive")
                         m_cand = FCM(n_clusters=K, random_state=seed, fuzzifier_policy="dimension_adaptive")
@@ -522,20 +485,36 @@ def run_alignment_validation_panel(
                     m_src.fit(X_src_trans)
                     m_cand.fit(X_tgt_shifted_trans)
 
+                    # Extract real model statuses
+                    src_status = getattr(m_src, "status_", "SUCCESS" if getattr(m_src, "converged_", True) else "FAILED")
+                    src_conv = bool(getattr(m_src, "converged_", True))
+                    src_degen = bool(getattr(m_src, "degenerate_solution_", False))
+
+                    cand_status = getattr(m_cand, "status_", "SUCCESS" if getattr(m_cand, "converged_", True) else "FAILED")
+                    cand_conv = bool(getattr(m_cand, "converged_", True))
+                    cand_degen = bool(getattr(m_cand, "degenerate_solution_", False))
+
                     # Reference cluster scale from source model and source data
                     U_src = m_src.predict_membership(X_src_trans)
                     scales_ref, floored_flags, s_glob = compute_reference_cluster_scales(
                         X_src_trans, U_src, m_src.cluster_centers_
                     )
 
-                    # Evaluate both models on SAME reference probe bank A^R
-                    U_R_ref = m_src.predict_membership(A_R)
-                    U_R_cand = m_cand.predict_membership(A_R)
-
-                    # Probe evaluations with invariant guard
+                    # Evaluate both models on SAME reference probe bank A^R (with caching)
                     fp_src = compute_model_fingerprint(method_name, {}, seed, m_src.cluster_centers_)
                     fp_cand = compute_model_fingerprint(method_name, {}, seed, m_cand.cluster_centers_)
 
+                    U_R_ref = cache.get_membership(fp_src, ref_desc.probe_bank_sha256)
+                    if U_R_ref is None:
+                        U_R_ref = m_src.predict_membership(A_R)
+                        cache.put_membership(fp_src, ref_desc.probe_bank_sha256, U_R_ref)
+
+                    U_R_cand = cache.get_membership(fp_cand, ref_desc.probe_bank_sha256)
+                    if U_R_cand is None:
+                        U_R_cand = m_cand.predict_membership(A_R)
+                        cache.put_membership(fp_cand, ref_desc.probe_bank_sha256, U_R_cand)
+
+                    # Probe evaluations with invariant guard
                     eval_ref = ProbeEvaluation(
                         bank_sha256=ref_desc.probe_bank_sha256,
                         bank_type="reference",
@@ -558,7 +537,6 @@ def run_alignment_validation_panel(
                         n_samples=len(A_R),
                         n_clusters=K,
                     )
-
                     verify_probe_identity(eval_ref, eval_cand)
 
                     # Align candidate to reference
@@ -571,6 +549,59 @@ def run_alignment_validation_panel(
                         eta=0.50,
                     )
 
+                    # Paired evaluation on current probe bank A_t^C (Requirement 13)
+                    U_C_src = m_src.predict_membership(A_C)
+                    U_C_cand = m_cand.predict_membership(A_C)
+
+                    eval_C_src = ProbeEvaluation(
+                        bank_sha256=cur_desc.probe_bank_sha256,
+                        bank_type="current",
+                        dataset_id=ds,
+                        outer_fold=fold,
+                        condition=cond,
+                        model_fingerprint=fp_src,
+                        memberships=U_C_src,
+                        n_samples=len(A_C),
+                        n_clusters=K,
+                    )
+                    eval_C_cand = ProbeEvaluation(
+                        bank_sha256=cur_desc.probe_bank_sha256,
+                        bank_type="current",
+                        dataset_id=ds,
+                        outer_fold=fold,
+                        condition=cond,
+                        model_fingerprint=fp_cand,
+                        memberships=U_C_cand,
+                        n_samples=len(A_C),
+                        n_clusters=K,
+                    )
+                    verify_probe_identity(eval_C_src, eval_C_cand)
+
+                    U_C_cand_aligned = align_res.apply_to_memberships(U_C_cand)
+
+                    valid_finite = bool(np.all(np.isfinite(U_C_src)) and np.all(np.isfinite(U_C_cand_aligned)))
+                    v_s_src, _ = check_simplex_constraint(U_C_src)
+                    v_s_cand, _ = check_simplex_constraint(U_C_cand_aligned)
+                    valid_simplex = bool(v_s_src and v_s_cand)
+
+                    # Status determination
+                    if not (src_conv and not src_degen):
+                        alignment_status = f"SOURCE_MODEL_{src_status}"
+                    elif not (cand_conv and not cand_degen):
+                        alignment_status = f"CANDIDATE_MODEL_{cand_status}"
+                    elif align_res.ambiguous:
+                        alignment_status = "AMBIGUOUS"
+                    else:
+                        alignment_status = "SUCCESS"
+
+                    usable = bool(
+                        src_conv and not src_degen
+                        and cand_conv and not cand_degen
+                        and (alignment_status in ("SUCCESS", "AMBIGUOUS"))
+                        and valid_finite
+                        and valid_simplex
+                    )
+
                     run_sec = time.perf_counter() - t0
 
                     record = {
@@ -580,10 +611,25 @@ def run_alignment_validation_panel(
                         "method": method_name,
                         "seed": seed,
                         "K": K,
-                        "status": "SUCCESS",
+                        "source_model_status": src_status,
+                        "source_converged": src_conv,
+                        "source_degenerate": src_degen,
+                        "candidate_model_status": cand_status,
+                        "candidate_converged": cand_conv,
+                        "candidate_degenerate": cand_degen,
+                        "alignment_status": alignment_status,
+                        "usable": usable,
                         "reference_bank_hash": ref_desc.probe_bank_sha256,
+                        "current_bank_hash": cur_desc.probe_bank_sha256,
+                        "current_probe_evaluated": True,
+                        "current_probe_finite": valid_finite,
+                        "current_probe_simplex_valid": valid_simplex,
                         "eta": 0.50,
                         "assignment_cost": round(align_res.assignment_cost, 6),
+                        "best_assignment_cost": round(align_res.best_assignment_cost, 6),
+                        "second_best_assignment_cost": round(align_res.second_best_assignment_cost, 6) if align_res.second_best_assignment_cost is not None else None,
+                        "global_assignment_margin": round(align_res.global_assignment_margin, 8) if align_res.global_assignment_margin is not None else None,
+                        "forbidden_edge_producing_second_best": json.dumps(align_res.forbidden_edge_producing_second_best) if align_res.forbidden_edge_producing_second_best is not None else None,
                         "identity_assignment_cost": round(align_res.identity_assignment_cost, 6),
                         "permutation": json.dumps(align_res.permutation.tolist()),
                         "inverse_permutation": json.dumps(align_res.inverse_permutation.tolist()),
@@ -602,12 +648,42 @@ def run_alignment_validation_panel(
                             "condition": cond,
                             "method": method_name,
                             "seed": seed,
-                            "minimum_assignment_margin": align_res.minimum_assignment_margin,
-                            "num_ambiguous_pairs": align_res.ambiguity_details["num_ambiguous_pairs"],
-                            "details": json.dumps(align_res.ambiguity_details["ambiguous_pairs"]),
+                            "best_assignment_cost": round(align_res.best_assignment_cost, 6),
+                            "second_best_assignment_cost": round(align_res.second_best_assignment_cost, 6) if align_res.second_best_assignment_cost is not None else None,
+                            "global_assignment_margin": round(align_res.global_assignment_margin, 8) if align_res.global_assignment_margin is not None else None,
+                            "forbidden_edge_producing_second_best": json.dumps(align_res.forbidden_edge_producing_second_best) if align_res.forbidden_edge_producing_second_best is not None else None,
+                            "minimum_assignment_margin": round(align_res.minimum_assignment_margin, 8),
+                            "ambiguous": align_res.ambiguous,
                         })
 
-    return alignment_records, ambiguity_records
+                    # Full representative eta sensitivity audit (Requirement 15)
+                    for eta_val in [0.0, 0.25, 0.50, 0.75, 1.0]:
+                        if eta_val == 0.50:
+                            res_eta = align_res
+                        else:
+                            res_eta = align_clusters(
+                                centers_ref=m_src.cluster_centers_,
+                                centers_cand=m_cand.cluster_centers_,
+                                scales_ref=scales_ref,
+                                U_ref=U_R_ref,
+                                U_cand=U_R_cand,
+                                eta=eta_val,
+                            )
+                        matches_base = bool(np.array_equal(res_eta.permutation, align_res.permutation))
+                        eta_records.append({
+                            "dataset_id": ds,
+                            "condition": cond,
+                            "method": method_name,
+                            "seed": seed,
+                            "eta": eta_val,
+                            "assignment_cost": round(res_eta.assignment_cost, 6),
+                            "best_assignment_cost": round(res_eta.best_assignment_cost, 6),
+                            "global_assignment_margin": round(res_eta.global_assignment_margin, 8) if res_eta.global_assignment_margin is not None else None,
+                            "permutation": json.dumps(res_eta.permutation.tolist()),
+                            "matches_eta_05": matches_base,
+                        })
+
+    return alignment_records, ambiguity_records, eta_records
 
 
 # ---------------------------------------------------------------------------
@@ -624,13 +700,15 @@ def run_stability_and_sensitivity_audits(
     probe_out_dir: Path,
     align_out_dir: Path,
 ) -> None:
-    """Run probe size stability audit and eta sensitivity audit."""
-    print("\n[STABILITY & SENSITIVITY AUDITS] Running audits...")
+    """Run large-dataset probe size stability audit on HAR, Isolet, Letter Recognition."""
+    print("\n[STABILITY AUDIT] Running probe size stability on large datasets (B in {512, 1024, 2048, 4096})...")
     prep_config_sha = compute_file_sha256(project_root / "configs" / "preprocessing.yaml")
+    engine = ShiftEngine(shift_cfg, project_root=project_root)
 
-    # 1. Probe-Size Stability Audit on subset: iris and sonar
     probe_stability_records = []
-    for ds in ["iris", "sonar"]:
+    large_datasets = ["human_activity_recognition", "isolet", "letter_recognition"]
+
+    for ds in large_datasets:
         K = dataset_classes.get(ds, 3)
         X_src_raw, meta = load_raw_source_features(ds, 0, project_root)
         roles = meta.get("feature_roles", {col: "numeric" for col in X_src_raw.columns})
@@ -639,10 +717,7 @@ def run_stability_and_sensitivity_audits(
         X_src_trans = src_prep.transform(X_src_raw)
 
         m_ref = FCM(n_clusters=K, random_state=1, fuzzifier_policy="dimension_adaptive").fit(X_src_trans)
-        # Shifted candidate (location_severe)
-        engine = ShiftEngine(shift_cfg, project_root=project_root)
-        X_tgt_raw = X_src_raw.copy()  # For engineering audit
-        shift_res = engine.generate_shift(ds, 0, "location_severe", X_tgt_raw, X_src_raw, roles, backend="numpy")
+        shift_res = engine.generate_shift(ds, 0, "location_severe", X_src_raw.copy(), X_src_raw, roles, backend="numpy")
         X_tgt_trans = src_prep.transform(shift_res.X_shifted)
         m_cand = FCM(n_clusters=K, random_state=1, fuzzifier_policy="dimension_adaptive").fit(X_tgt_trans)
 
@@ -651,7 +726,8 @@ def run_stability_and_sensitivity_audits(
         )
 
         n_available = len(X_src_raw)
-        for p_size in [512, 1024, 2048]:
+
+        for p_size in [512, 1024, 2048, 4096]:
             actual_size = min(n_available, p_size)
             idx = select_reference_probe_indices(n_available, actual_size, seed=42)
             A_probe = src_prep.transform(X_src_raw.iloc[idx])
@@ -660,7 +736,7 @@ def run_stability_and_sensitivity_audits(
             U_cand = m_cand.predict_membership(A_probe)
 
             t0 = time.perf_counter()
-            res = align_clusters(m_ref.cluster_centers_, m_cand.cluster_centers_, scales_ref, U_ref, U_cand)
+            res = align_clusters(m_ref.cluster_centers_, m_cand.cluster_centers_, scales_ref, U_ref, U_cand, eta=0.50)
             dur = time.perf_counter() - t0
 
             probe_stability_records.append({
@@ -672,6 +748,8 @@ def run_stability_and_sensitivity_audits(
                 "probe_size_actual": actual_size,
                 "permutation": json.dumps(res.permutation.tolist()),
                 "assignment_cost": round(res.assignment_cost, 6),
+                "best_assignment_cost": round(res.best_assignment_cost, 6),
+                "global_assignment_margin": round(res.global_assignment_margin, 8) if res.global_assignment_margin is not None else None,
                 "overlap_mean": round(float(np.mean(res.overlap_matrix)), 6),
                 "runtime": round(dur, 5),
             })
@@ -680,52 +758,6 @@ def run_stability_and_sensitivity_audits(
         df_stab = pd.DataFrame(probe_stability_records)
         atomic_write_csv(probe_out_dir / "probe_size_stability.csv", df_stab)
         print(f"Saved: {probe_out_dir / 'probe_size_stability.csv'}")
-
-    # 2. Eta Sensitivity Audit on iris and glass across eta in {0, 0.25, 0.5, 0.75, 1.0}
-    eta_records = []
-    for ds in ["iris", "glass"]:
-        K = dataset_classes.get(ds, 3)
-        X_src_raw, meta = load_raw_source_features(ds, 0, project_root)
-        roles = meta.get("feature_roles", {col: "numeric" for col in X_src_raw.columns})
-        src_prep = build_preprocessor(feature_roles=roles, config=prep_cfg, metadata=meta)
-        src_prep.fit(X_src_raw)
-        X_src_trans = src_prep.transform(X_src_raw)
-
-        m_ref = FCM(n_clusters=K, random_state=1, fuzzifier_policy="dimension_adaptive").fit(X_src_trans)
-        engine = ShiftEngine(shift_cfg, project_root=project_root)
-        shift_res = engine.generate_shift(ds, 0, "scale_severe", X_src_raw.copy(), X_src_raw, roles, backend="numpy")
-        X_tgt_trans = src_prep.transform(shift_res.X_shifted)
-        m_cand = FCM(n_clusters=K, random_state=1, fuzzifier_policy="dimension_adaptive").fit(X_tgt_trans)
-
-        scales_ref, _, _ = compute_reference_cluster_scales(
-            X_src_trans, m_ref.predict_membership(X_src_trans), m_ref.cluster_centers_
-        )
-        idx = select_reference_probe_indices(len(X_src_raw), 2048, seed=42)
-        A_probe = src_prep.transform(X_src_raw.iloc[idx])
-        U_ref = m_ref.predict_membership(A_probe)
-        U_cand = m_cand.predict_membership(A_probe)
-
-        # Base reference alignment with eta=0.50
-        res_base = align_clusters(m_ref.cluster_centers_, m_cand.cluster_centers_, scales_ref, U_ref, U_cand, eta=0.50)
-
-        for eta_val in [0.0, 0.25, 0.50, 0.75, 1.0]:
-            res = align_clusters(m_ref.cluster_centers_, m_cand.cluster_centers_, scales_ref, U_ref, U_cand, eta=eta_val)
-            matches_base = bool(np.array_equal(res.permutation, res_base.permutation))
-            eta_records.append({
-                "dataset_id": ds,
-                "condition": "scale_severe",
-                "method": "fcm_adaptive",
-                "seed": 1,
-                "eta": eta_val,
-                "assignment_cost": round(res.assignment_cost, 6),
-                "permutation": json.dumps(res.permutation.tolist()),
-                "matches_eta_05": matches_base,
-            })
-
-    if eta_records:
-        df_eta = pd.DataFrame(eta_records)
-        atomic_write_csv(align_out_dir / "eta_sensitivity.csv", df_eta)
-        print(f"Saved: {align_out_dir / 'eta_sensitivity.csv'}")
 
 
 # ---------------------------------------------------------------------------
@@ -801,6 +833,7 @@ def execute_verify_mode(project_root: Path) -> None:
     errors = []
 
     probes_dir = project_root / "data" / "probes"
+    shifts_dir = project_root / "data" / "shifts"
     lock_path = probes_dir / "phase5_input_lock.json"
     manifest_path = probes_dir / "probe_manifest.json"
 
@@ -827,17 +860,34 @@ def execute_verify_mode(project_root: Path) -> None:
     if lock_doc.get("phase4_producer_commit") != "21bcaa7bb00b07de5ee4671adfb06932610bf92d":
         errors.append("phase4_producer_commit mismatch in lock")
 
-    phase4_lock_p = project_root / "data" / "shifts" / "phase4_input_lock.json"
+    phase4_lock_p = shifts_dir / "phase4_input_lock.json"
     if lock_doc.get("phase4_input_lock_sha256") != compute_file_sha256(phase4_lock_p):
         errors.append("phase4_input_lock_sha256 mismatch")
 
-    phase4_manifest_p = project_root / "data" / "shifts" / "shift_manifest.json"
+    phase4_manifest_p = shifts_dir / "shift_manifest.json"
     if lock_doc.get("phase4_shift_manifest_sha256") != compute_file_sha256(phase4_manifest_p):
         errors.append("phase4_shift_manifest_sha256 mismatch")
 
     prep_cfg_p = project_root / "configs" / "preprocessing.yaml"
-    if lock_doc.get("phase2_preprocessing_config_sha256") != compute_file_sha256(prep_cfg_p):
+    prep_config_sha = compute_file_sha256(prep_cfg_p)
+    if lock_doc.get("phase2_preprocessing_config_sha256") != prep_config_sha:
         errors.append("phase2_preprocessing_config_sha256 mismatch")
+
+    probe_cfg_p = project_root / "configs" / "probes.yaml"
+    probe_cfg = load_yaml(probe_cfg_p)
+    probe_protocol_sha = compute_probe_protocol_sha256(probe_cfg)
+    if lock_doc.get("probe_protocol_sha256") != probe_protocol_sha:
+        errors.append("probe_protocol_sha256 mismatch")
+
+    align_cfg_p = project_root / "configs" / "alignment.yaml"
+    align_cfg = load_yaml(align_cfg_p)
+    align_protocol_sha = compute_alignment_protocol_sha256(align_cfg)
+    if lock_doc.get("alignment_protocol_sha256") != align_protocol_sha:
+        errors.append("alignment_protocol_sha256 mismatch")
+
+    gen_commit = lock_doc.get("generated_from_commit", "")
+    if not gen_commit or len(gen_commit) < 7 or gen_commit == "unknown":
+        errors.append(f"Invalid generated_from_commit in lock: {gen_commit}")
 
     # 2. Verify probe manifest
     with open(manifest_path, "r", encoding="utf-8") as f:
@@ -855,7 +905,46 @@ def execute_verify_mode(project_root: Path) -> None:
     if cur_count != 2250:
         errors.append(f"Current probe count is {cur_count}, expected 2250")
 
-    # 3. Verify probe descriptors and NPZ existence
+    # Duplicate manifest check
+    manifest_keys = set()
+    manifest_relpaths = set()
+    for p in probes:
+        k = (p["bank_type"], p["dataset_id"], p["outer_fold"], p.get("condition"))
+        if k in manifest_keys:
+            errors.append(f"Duplicate probe manifest entry: {k}")
+        manifest_keys.add(k)
+        manifest_relpaths.add(p["spec_relpath"])
+
+    # 3. Orphan verification
+    disk_json_files = [
+        str(f.relative_to(project_root)).replace("\\", "/")
+        for f in probes_dir.rglob("*.json")
+        if f.name not in ("probe_manifest.json", "phase5_input_lock.json")
+    ]
+    orphan_jsons = set(disk_json_files) - manifest_relpaths
+    if orphan_jsons:
+        errors.append(f"Found {len(orphan_jsons)} orphan descriptor JSON files not in manifest")
+
+    disk_npz_files = [
+        str(f.relative_to(project_root)).replace("\\", "/")
+        for f in probes_dir.rglob("*.npz")
+    ]
+    expected_npz = {p.replace(".json", ".npz") for p in manifest_relpaths}
+    orphan_npzs = set(disk_npz_files) - expected_npz
+    if orphan_npzs:
+        errors.append(f"Found {len(orphan_npzs)} orphan NPZ files not in manifest")
+
+    # 4. Deep descriptor and NPZ verification
+    datasets_manifest_p = project_root / "data" / "manifests" / "datasets.json"
+    splits_manifest_p = project_root / "data" / "splits" / "split_manifest.json"
+    bundle_hashes = load_canonical_bundle_hashes(datasets_manifest_p)
+    split_records = load_phase2_split_hashes(splits_manifest_p)
+    global_seed = probe_cfg.get("global_probe_seed", 2026090705)
+
+    shifts_cfg_p = project_root / "configs" / "shifts.yaml"
+    from clusterdrift.shifts.hashing import compute_shift_protocol_sha256
+    shift_protocol_sha = compute_shift_protocol_sha256(load_yaml(shifts_cfg_p))
+
     for p in probes:
         spec_p = project_root / p["spec_relpath"]
         if not spec_p.exists():
@@ -864,22 +953,77 @@ def execute_verify_mode(project_root: Path) -> None:
         npz_p = spec_p.with_suffix(".npz")
         if not npz_p.exists():
             errors.append(f"Missing probe companion NPZ: {npz_p}")
+            continue
 
-    # 4. Verify result CSVs
+        ds = p["dataset_id"]
+        f_idx = p["outer_fold"]
+        b_type = p["bank_type"]
+
+        if b_type == "reference":
+            b_sha = bundle_hashes.get(ds, "")
+            sp_sha = split_records.get((ds, f_idx), {}).get("split_sha256", "")
+            is_val, err, _ = validate_saved_reference_descriptor(
+                spec_path=spec_p,
+                expected_canonical_bundle_sha256=b_sha,
+                expected_split_sha256=sp_sha,
+                expected_preprocessing_config_sha256=prep_config_sha,
+                expected_probe_protocol_sha256=probe_protocol_sha,
+                global_probe_seed=global_seed,
+                dataset_id=ds,
+                outer_fold=f_idx,
+            )
+            if not is_val:
+                errors.append(f"Reference descriptor validation error on {p['spec_relpath']}: {err}")
+        else:
+            cond = p["condition"]
+            shift_spec_path = shifts_dir / "specs" / ds / f"fold_{f_idx}" / f"{cond}.json"
+            if not shift_spec_path.exists():
+                errors.append(f"Missing upstream shift spec: {shift_spec_path}")
+                continue
+            with open(shift_spec_path, "r", encoding="utf-8") as sf:
+                sdoc = json.load(sf)
+            shift_spec_sha = sdoc["shift_spec_sha256"]
+
+            is_val, err, _ = validate_saved_current_descriptor(
+                spec_path=spec_p,
+                expected_shift_spec_sha256=shift_spec_sha,
+                expected_shift_protocol_sha256=shift_protocol_sha,
+                expected_preprocessing_config_sha256=prep_config_sha,
+                expected_probe_protocol_sha256=probe_protocol_sha,
+                global_probe_seed=global_seed,
+                dataset_id=ds,
+                outer_fold=f_idx,
+                condition=cond,
+            )
+            if not is_val:
+                errors.append(f"Current descriptor validation error on {p['spec_relpath']}: {err}")
+
+    # 5. Verify result CSVs
     probe_results_dir = project_root / "results" / "probe_validation"
     align_results_dir = project_root / "results" / "alignment_validation"
 
-    for csv_name, exp_min in [
+    expected_csvs = [
         (probe_results_dir / "reference_probe_audit.csv", 150),
         (probe_results_dir / "current_probe_audit.csv", 2250),
-        (align_results_dir / "alignment_runs.csv", 100),
-    ]:
-        if not csv_name.exists():
-            errors.append(f"Missing result CSV: {csv_name}")
+        (probe_results_dir / "probe_manifest_summary.csv", 3),
+        (align_results_dir / "alignment_runs.csv", 140),
+        (align_results_dir / "alignment_summary.csv", 10),
+        (probe_results_dir / "probe_size_stability.csv", 12),
+        (align_results_dir / "eta_sensitivity.csv", 100),
+        (align_results_dir / "performance_benchmark.csv", 1),
+    ]
+
+    for csv_path, exp_min in expected_csvs:
+        if not csv_path.exists():
+            errors.append(f"Missing result CSV: {csv_path}")
         else:
-            df = pd.read_csv(csv_name)
+            df = pd.read_csv(csv_path)
             if len(df) < exp_min:
-                errors.append(f"{csv_name.name} has {len(df)} rows, expected at least {exp_min}")
+                errors.append(f"{csv_path.name} has {len(df)} rows, expected at least {exp_min}")
+
+    amb_csv = align_results_dir / "ambiguity_cases.csv"
+    if not amb_csv.exists():
+        errors.append(f"Missing ambiguity cases CSV: {amb_csv}")
 
     if errors:
         print(f"\n[VERIFY FAILED] Found {len(errors)} validation errors:")
@@ -1079,7 +1223,7 @@ def main() -> None:
     # 2. Alignment Validation Panel
     # ---------------------------------------------------------
     if run_alignment:
-        align_records, amb_records = run_alignment_validation_panel(
+        align_records, amb_records, eta_records = run_alignment_validation_panel(
             project_root=PROJECT_ROOT,
             shift_cfg=shift_cfg,
             methods_cfg=methods_cfg,
@@ -1104,6 +1248,7 @@ def main() -> None:
                 "method": m,
                 "condition": cond,
                 "total_runs": len(group),
+                "usable_runs": int(group["usable"].sum()),
                 "mean_assignment_cost": round(group["assignment_cost"].mean(), 5),
                 "mean_overlap": round(group["overlap_mean"].mean(), 5),
                 "ambiguous_fraction": round(group["ambiguous"].mean(), 4),
@@ -1112,10 +1257,17 @@ def main() -> None:
         print(f"Saved: {align_results_dir / 'alignment_summary.csv'}")
 
         df_amb = pd.DataFrame(amb_records) if amb_records else pd.DataFrame(columns=[
-            "dataset_id", "outer_fold", "condition", "method", "seed", "minimum_assignment_margin", "num_ambiguous_pairs", "details"
+            "dataset_id", "outer_fold", "condition", "method", "seed",
+            "best_assignment_cost", "second_best_assignment_cost",
+            "global_assignment_margin", "forbidden_edge_producing_second_best",
+            "minimum_assignment_margin", "ambiguous"
         ])
         atomic_write_csv(align_results_dir / "ambiguity_cases.csv", df_amb)
         print(f"Saved: {align_results_dir / 'ambiguity_cases.csv'}")
+
+        df_eta = pd.DataFrame(eta_records)
+        atomic_write_csv(align_results_dir / "eta_sensitivity.csv", df_eta)
+        print(f"Saved: {align_results_dir / 'eta_sensitivity.csv'} ({len(df_eta)} rows)")
 
         # Known permutation recovery test fixture verification
         perm_records = []

@@ -7,6 +7,7 @@ import numpy as np
 
 from clusterdrift.probes.bank import load_current_probe_descriptor, load_reference_probe_descriptor
 from clusterdrift.probes.hashing import (
+    compute_array_sha256,
     compute_current_bank_sha256,
     compute_file_sha256,
     compute_reference_bank_sha256,
@@ -34,7 +35,7 @@ def validate_saved_reference_descriptor(
         return False, f"Companion NPZ missing: {npz_path}", None
 
     try:
-        desc, indices = load_reference_probe_descriptor(spec_path)
+        desc, positions, canonical_rows = load_reference_probe_descriptor(spec_path)
     except Exception as e:
         return False, f"Corrupted descriptor or NPZ: {e}", None
 
@@ -53,16 +54,30 @@ def validate_saved_reference_descriptor(
     if desc.derived_seed != expected_seed:
         return False, f"Derived seed mismatch: got {desc.derived_seed}, expected {expected_seed}", None
 
-    # Recompute NPZ hash
+    # Length consistency
+    if len(positions) != desc.selected_rows or len(canonical_rows) != desc.selected_rows:
+        return False, f"Array length mismatch with selected_rows {desc.selected_rows}", None
+
+    # Verify distinct NPZ file byte hash
     npz_sha = compute_file_sha256(npz_path)
-    if desc.canonical_row_indices_sha256 != npz_sha:
+    if desc.npz_sha256 != npz_sha:
         return False, "Companion NPZ byte SHA-256 mismatch", None
 
-    # Recompute bank hash
+    # Verify distinct array byte hashes
+    pos_sha = compute_array_sha256(positions)
+    if desc.selected_source_positions_sha256 != pos_sha:
+        return False, "selected_source_positions array SHA-256 mismatch", None
+
+    can_sha = compute_array_sha256(canonical_rows)
+    if desc.canonical_row_indices_sha256 != can_sha:
+        return False, "canonical_row_indices array SHA-256 mismatch", None
+
+    # Recompute and verify bank hash
     recomputed_bank_sha = compute_reference_bank_sha256(
         dataset_id=dataset_id,
         outer_fold=outer_fold,
-        canonical_row_indices=indices,
+        selected_source_positions=positions,
+        canonical_row_indices=canonical_rows,
         canonical_bundle_sha256=expected_canonical_bundle_sha256,
         split_sha256=expected_split_sha256,
         preprocessing_config_sha256=expected_preprocessing_config_sha256,
@@ -94,7 +109,7 @@ def validate_saved_current_descriptor(
         return False, f"Companion NPZ missing: {npz_path}", None
 
     try:
-        desc, positions, canonical_rows = load_current_probe_descriptor(spec_path)
+        desc, selected_positions, target_positions, canonical_rows = load_current_probe_descriptor(spec_path)
     except Exception as e:
         return False, f"Corrupted descriptor or NPZ: {e}", None
 
@@ -115,15 +130,36 @@ def validate_saved_current_descriptor(
     if desc.derived_seed != expected_seed:
         return False, f"Derived seed mismatch: got {desc.derived_seed}, expected {expected_seed}", None
 
+    # Length consistency
+    n_sel = desc.selected_current_rows
+    if len(selected_positions) != n_sel or len(target_positions) != n_sel or len(canonical_rows) != n_sel:
+        return False, f"Array length mismatch with selected_current_rows {n_sel}", None
+
+    # Verify distinct NPZ file byte hash
     npz_sha = compute_file_sha256(npz_path)
-    if desc.selected_positions_sha256 != npz_sha:
+    if desc.npz_sha256 != npz_sha:
         return False, "Companion NPZ byte SHA-256 mismatch", None
 
+    # Verify distinct array byte hashes
+    cur_sha = compute_array_sha256(selected_positions)
+    if desc.selected_current_positions_sha256 != cur_sha:
+        return False, "selected_current_positions array SHA-256 mismatch", None
+
+    tgt_sha = compute_array_sha256(target_positions)
+    if desc.target_partition_positions_sha256 != tgt_sha:
+        return False, "target_partition_positions array SHA-256 mismatch", None
+
+    can_sha = compute_array_sha256(canonical_rows)
+    if desc.canonical_row_indices_sha256 != can_sha:
+        return False, "canonical_row_indices array SHA-256 mismatch", None
+
+    # Recompute and verify bank hash
     recomputed_bank_sha = compute_current_bank_sha256(
         dataset_id=dataset_id,
         outer_fold=outer_fold,
         condition=condition,
-        selected_positions=positions,
+        selected_current_positions=selected_positions,
+        target_partition_positions=target_positions,
         canonical_row_indices=canonical_rows,
         shift_spec_sha256=expected_shift_spec_sha256,
         shift_protocol_sha256=expected_shift_protocol_sha256,

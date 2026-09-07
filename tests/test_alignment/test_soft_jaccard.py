@@ -44,8 +44,11 @@ def test_soft_jaccard_self_overlap_identity():
     np.testing.assert_allclose(diag, 1.0, atol=1e-6)
 
 
-def test_soft_jaccard_boundedness_and_symmetry():
-    """Overlap must be bounded in [0, 1] and symmetric under transposition of swapped inputs."""
+def test_soft_jaccard_boundedness_and_transposition_symmetry():
+    """Overlap must be bounded in [0, 1] and satisfy O(U_a, U_b) = O(U_b, U_a)^T.
+
+    Note that for distinct models U_a != U_b, the matrix O(U_a, U_b) is generally NOT symmetric.
+    """
     rng = np.random.default_rng(123)
     B, K = 50, 4
     U_a = rng.uniform(0, 1, size=(B, K))
@@ -58,7 +61,10 @@ def test_soft_jaccard_boundedness_and_symmetry():
 
     assert np.all(O_ab >= 0.0)
     assert np.all(O_ab <= 1.0)
+    # Transposition identity: O(U_a, U_b) == O(U_b, U_a)^T
     np.testing.assert_allclose(O_ab, O_ba.T, atol=1e-12)
+    # But O_ab itself is not symmetric across indices
+    assert not np.allclose(O_ab, O_ab.T, atol=1e-4)
 
 
 def test_soft_jaccard_one_hot_memberships():

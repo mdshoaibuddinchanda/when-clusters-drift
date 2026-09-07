@@ -25,6 +25,7 @@ from clusterdrift.probes.evaluation import (
 from clusterdrift.probes.hashing import (
     build_phase5_input_lock,
     compute_alignment_protocol_sha256,
+    compute_array_sha256,
     compute_current_bank_sha256,
     compute_file_sha256,
     compute_probe_protocol_sha256,
@@ -41,6 +42,7 @@ from clusterdrift.probes.matrix import (
 from clusterdrift.probes.selection import (
     select_current_probe_positions,
     select_reference_probe_indices,
+    select_reference_probe_positions,
 )
 from clusterdrift.probes.validation import (
     validate_saved_current_descriptor,

@@ -111,44 +111,73 @@ def align_clusters(
     target_membership = U_cand_to_align if U_cand_to_align is not None else U_cand
     aligned_memberships = target_membership[:, permutation].copy() if target_membership is not None else None
 
-    # 6. Ambiguity analysis
-    ambiguous = False
-    min_margin = float("inf")
-    ambiguous_pairs = []
+    # 6. Global assignment ambiguity analysis
+    best_assignment_cost = assignment_cost
+    second_best_assignment_cost = float("inf")
+    forbidden_edge_producing_second_best = None
+    alt_assignment_costs = []
 
+    if K_ref > 1:
+        dominating_val = float(np.sum(np.abs(combined_cost)) + 1e9)
+
+        for k in range(K_ref):
+            assigned_j = int(permutation[k])
+            C_mod = combined_cost.copy()
+            C_mod[k, assigned_j] = dominating_val
+
+            try:
+                row_alt, col_alt = linear_sum_assignment(C_mod)
+                # Verify that the forbidden edge was not selected
+                if any(int(r) == k and int(c) == assigned_j for r, c in zip(row_alt, col_alt)):
+                    continue
+                cost_alt = float(np.sum(combined_cost[row_alt, col_alt]))
+                alt_assignment_costs.append({
+                    "forbidden_edge": [k, assigned_j],
+                    "cost": cost_alt,
+                })
+                if cost_alt < second_best_assignment_cost:
+                    second_best_assignment_cost = cost_alt
+                    forbidden_edge_producing_second_best = (k, assigned_j)
+            except ValueError:
+                continue
+
+    if np.isinf(second_best_assignment_cost):
+        global_assignment_margin = float("inf")
+        ambiguous = False
+    else:
+        margin = second_best_assignment_cost - best_assignment_cost
+        if -1e-12 <= margin < 0.0:
+            margin = 0.0
+        global_assignment_margin = float(margin)
+        ambiguous = bool(global_assignment_margin <= cost_margin_tolerance)
+
+    # Optional non-primary local diagnostics
+    local_edge_diagnostics = []
     if K_ref > 1:
         for k in range(K_ref):
             assigned_j = permutation[k]
             assigned_cost = combined_cost[k, assigned_j]
-
-            # Best alternative candidate for this reference cluster
             other_j_costs = [combined_cost[k, j] for j in range(K_ref) if j != assigned_j]
-            row_margin = min(other_j_costs) - assigned_cost
-
-            # Best alternative reference for this candidate cluster
             other_k_costs = [combined_cost[k_prime, assigned_j] for k_prime in range(K_ref) if k_prime != k]
-            col_margin = min(other_k_costs) - assigned_cost
-
-            pair_margin = float(min(row_margin, col_margin))
-            if pair_margin < min_margin:
-                min_margin = pair_margin
-
-            if pair_margin < cost_margin_tolerance:
-                ambiguous = True
-                ambiguous_pairs.append({
-                    "ref_cluster": int(k),
-                    "assigned_cand_cluster": int(assigned_j),
-                    "cost": float(assigned_cost),
-                    "margin": pair_margin,
-                })
-    else:
-        min_margin = float("inf")
+            row_margin = min(other_j_costs) - assigned_cost if other_j_costs else 0.0
+            col_margin = min(other_k_costs) - assigned_cost if other_k_costs else 0.0
+            local_edge_diagnostics.append({
+                "ref_cluster": int(k),
+                "assigned_cand_cluster": int(assigned_j),
+                "cost": float(assigned_cost),
+                "row_margin": float(row_margin),
+                "col_margin": float(col_margin),
+            })
 
     ambiguity_details = {
         "cost_margin_tolerance": cost_margin_tolerance,
-        "minimum_assignment_margin": float(min_margin) if np.isfinite(min_margin) else 1e9,
-        "ambiguous_pairs": ambiguous_pairs,
-        "num_ambiguous_pairs": len(ambiguous_pairs),
+        "best_assignment_cost": best_assignment_cost,
+        "second_best_assignment_cost": second_best_assignment_cost,
+        "global_assignment_margin": global_assignment_margin,
+        "forbidden_edge_producing_second_best": forbidden_edge_producing_second_best,
+        "ambiguous": ambiguous,
+        "alt_assignment_costs": alt_assignment_costs,
+        "local_edge_diagnostics": local_edge_diagnostics,
     }
 
     return AlignmentResult(
@@ -163,7 +192,11 @@ def align_clusters(
         identity_assignment_cost=identity_assignment_cost,
         cluster_scales=scales_ref.copy(),
         ambiguous=ambiguous,
-        minimum_assignment_margin=float(min_margin) if np.isfinite(min_margin) else 1e9,
+        minimum_assignment_margin=global_assignment_margin,
+        best_assignment_cost=best_assignment_cost,
+        second_best_assignment_cost=second_best_assignment_cost,
+        global_assignment_margin=global_assignment_margin,
+        forbidden_edge_producing_second_best=forbidden_edge_producing_second_best,
         ambiguity_details=ambiguity_details,
         eta=eta,
         metadata=metadata or {},

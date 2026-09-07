@@ -32,35 +32,19 @@ def test_reference_descriptor_staleness_detection(tmp_path):
     spec_path = tmp_path / "reference" / dataset_id / f"fold_{fold}.json"
     npz_path = spec_path.with_suffix(".npz")
 
-    # Bank SHA
-    bank_sha = compute_reference_bank_sha256(
-        dataset_id, fold, indices, bundle_sha, split_sha, prep_sha, proto_sha
-    )
-
-    # Save initial valid descriptor
-    # Write temp npz first to get its hash
-    from clusterdrift.shifts.hashing import atomic_write_npz
-    spec_path.parent.mkdir(parents=True, exist_ok=True)
-    atomic_write_npz(npz_path, canonical_row_indices=indices)
-    npz_sha = compute_file_sha256(npz_path)
-
-    desc = ReferenceProbeDescriptor(
-        dataset_id=dataset_id,
-        outer_fold=fold,
-        bank_type="reference",
-        canonical_bundle_sha256=bundle_sha,
-        split_sha256=split_sha,
-        preprocessing_config_sha256=prep_sha,
-        selection_policy="uniform_without_replacement",
-        global_probe_seed=global_seed,
-        derived_seed=derived_seed,
-        available_rows=100,
-        selected_rows=100,
-        canonical_row_indices_sha256=npz_sha,
-        probe_protocol_sha256=proto_sha,
-        probe_bank_sha256=bank_sha,
-    )
-    save_reference_probe_descriptor(spec_path, desc, indices)
+    metadata = {
+        "dataset_id": dataset_id,
+        "outer_fold": fold,
+        "canonical_bundle_sha256": bundle_sha,
+        "split_sha256": split_sha,
+        "preprocessing_config_sha256": prep_sha,
+        "selection_policy": "uniform_without_replacement",
+        "global_probe_seed": global_seed,
+        "derived_seed": derived_seed,
+        "available_rows": 100,
+        "probe_protocol_sha256": proto_sha,
+    }
+    desc = save_reference_probe_descriptor(spec_path, metadata, indices, indices)
 
     # Validate passes
     is_val, err, _ = validate_saved_reference_descriptor(

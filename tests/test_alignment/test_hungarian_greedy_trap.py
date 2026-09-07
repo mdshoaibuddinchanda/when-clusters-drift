@@ -43,3 +43,42 @@ def test_hungarian_greedy_trap_lower_global_cost():
     assert hungarian_cost == 4.0
     assert hungarian_cost < greedy_cost
     np.testing.assert_array_equal(col_ind, [1, 0])
+
+
+def test_hungarian_greedy_trap_not_falsely_ambiguous(monkeypatch):
+    """Verify that C = [[1, 2], [2, 10]] with optimal cost 4.0 is NOT marked ambiguous.
+
+    Row 0 has assigned cost 2.0 (while row minimum is 1.0).
+    Under the old row-local margin, this resulted in a negative margin (-1.0) and false ambiguity.
+    Under the global assignment margin:
+        J* = 4.0
+        Forbidding (0, 1) -> alternative assignment (0, 0) + (1, 1) has cost 11.0.
+        Forbidding (1, 0) -> alternative assignment (0, 0) + (1, 1) has cost 11.0.
+        J^(2) = 11.0
+        global_assignment_margin = 11.0 - 4.0 = 7.0 >= 0.
+        ambiguous = False.
+    """
+    C = np.array([
+        [1.0, 2.0],
+        [2.0, 10.0],
+    ])
+    from clusterdrift.alignment import hungarian
+    monkeypatch.setattr(
+        hungarian,
+        "compute_combined_alignment_cost",
+        lambda **kwargs: (C, C, np.eye(2)),
+    )
+    res = hungarian.align_clusters(
+        centers_ref=np.zeros((2, 2)),
+        centers_cand=np.zeros((2, 2)),
+        scales_ref=np.ones(2),
+        U_ref=np.eye(2),
+        U_cand=np.eye(2),
+        cost_margin_tolerance=1e-8,
+    )
+    assert res.assignment_cost == 4.0
+    assert res.best_assignment_cost == 4.0
+    assert res.second_best_assignment_cost == 11.0
+    assert res.global_assignment_margin == 7.0
+    assert res.ambiguous is False
+    assert res.forbidden_edge_producing_second_best in [(0, 1), (1, 0)]

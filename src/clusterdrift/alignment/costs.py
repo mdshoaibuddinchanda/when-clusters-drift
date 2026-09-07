@@ -97,7 +97,10 @@ def compute_soft_jaccard_overlap(
     Returns
     -------
     overlap : np.ndarray, shape (K, K)
-        Symmetric bounded overlap matrix in [0, 1].
+        Bounded overlap matrix in [0, 1].
+        Note: Vector-level soft Jaccard is symmetric in its arguments (J_s(u, v) = J_s(v, u)),
+        and the cross-model matrix satisfies O(U_a, U_b) = O(U_b, U_a)^T. For distinct models
+        (U_ref != U_cand), the matrix O is generally not symmetric across indices (O_kj != O_jk).
     """
     B, K_ref = U_ref.shape
     B_c, K_cand = U_cand.shape

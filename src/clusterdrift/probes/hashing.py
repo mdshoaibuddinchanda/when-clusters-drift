@@ -76,9 +76,15 @@ def compute_alignment_protocol_sha256(alignment_cfg: Dict[str, Any]) -> str:
     return hashlib.sha256(canonical_json.encode("utf-8")).hexdigest()
 
 
+def compute_array_sha256(arr: np.ndarray) -> str:
+    """Compute deterministic SHA-256 of contiguous int64 array bytes."""
+    return hashlib.sha256(np.ascontiguousarray(arr, dtype=np.int64).tobytes()).hexdigest()
+
+
 def compute_reference_bank_sha256(
     dataset_id: str,
     outer_fold: int,
+    selected_source_positions: np.ndarray,
     canonical_row_indices: np.ndarray,
     canonical_bundle_sha256: str,
     split_sha256: str,
@@ -88,16 +94,17 @@ def compute_reference_bank_sha256(
     """Compute deterministic SHA-256 for a reference probe bank."""
     hasher = hashlib.sha256()
     metadata = {
-        "dataset_id": dataset_id,
+        "dataset_id": str(dataset_id),
         "outer_fold": int(outer_fold),
         "bank_type": "reference",
-        "canonical_bundle_sha256": canonical_bundle_sha256,
-        "split_sha256": split_sha256,
-        "preprocessing_config_sha256": preprocessing_config_sha256,
-        "probe_protocol_sha256": probe_protocol_sha256,
-        "num_rows": int(len(canonical_row_indices)),
+        "canonical_bundle_sha256": str(canonical_bundle_sha256),
+        "split_sha256": str(split_sha256),
+        "preprocessing_config_sha256": str(preprocessing_config_sha256),
+        "probe_protocol_sha256": str(probe_protocol_sha256),
+        "num_rows": int(len(selected_source_positions)),
     }
     hasher.update(json.dumps(metadata, sort_keys=True, separators=(",", ":")).encode("utf-8"))
+    hasher.update(np.ascontiguousarray(selected_source_positions, dtype=np.int64).tobytes())
     hasher.update(np.ascontiguousarray(canonical_row_indices, dtype=np.int64).tobytes())
     return hasher.hexdigest()
 
@@ -106,7 +113,8 @@ def compute_current_bank_sha256(
     dataset_id: str,
     outer_fold: int,
     condition: str,
-    selected_positions: np.ndarray,
+    selected_current_positions: np.ndarray,
+    target_partition_positions: np.ndarray,
     canonical_row_indices: np.ndarray,
     shift_spec_sha256: str,
     shift_protocol_sha256: str,
@@ -116,18 +124,19 @@ def compute_current_bank_sha256(
     """Compute deterministic SHA-256 for a current probe bank."""
     hasher = hashlib.sha256()
     metadata = {
-        "dataset_id": dataset_id,
+        "dataset_id": str(dataset_id),
         "outer_fold": int(outer_fold),
-        "condition": condition,
+        "condition": str(condition),
         "bank_type": "current",
-        "shift_spec_sha256": shift_spec_sha256,
-        "shift_protocol_sha256": shift_protocol_sha256,
-        "preprocessing_config_sha256": preprocessing_config_sha256,
-        "probe_protocol_sha256": probe_protocol_sha256,
-        "num_rows": int(len(selected_positions)),
+        "shift_spec_sha256": str(shift_spec_sha256),
+        "shift_protocol_sha256": str(shift_protocol_sha256),
+        "preprocessing_config_sha256": str(preprocessing_config_sha256),
+        "probe_protocol_sha256": str(probe_protocol_sha256),
+        "num_rows": int(len(selected_current_positions)),
     }
     hasher.update(json.dumps(metadata, sort_keys=True, separators=(",", ":")).encode("utf-8"))
-    hasher.update(np.ascontiguousarray(selected_positions, dtype=np.int64).tobytes())
+    hasher.update(np.ascontiguousarray(selected_current_positions, dtype=np.int64).tobytes())
+    hasher.update(np.ascontiguousarray(target_partition_positions, dtype=np.int64).tobytes())
     hasher.update(np.ascontiguousarray(canonical_row_indices, dtype=np.int64).tobytes())
     return hasher.hexdigest()
 
