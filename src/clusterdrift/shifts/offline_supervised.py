@@ -182,8 +182,9 @@ def apply_local_overlap_shift(
     # 2. Map target points into source-standardized space and find nearest competing centroid
     X_tgt_sub = X_target[eligible_cols].to_numpy(dtype=np.float64)
     nan_mask_tgt = np.isnan(X_tgt_sub)
-    # Temporary fill for boundary detection only (original values keep NaNs during perturbation)
-    Z_tgt = np.where(nan_mask_tgt, 0.0, (X_tgt_sub - means_vec) / sds_vec)
+    # Geometry-only temporary imputation using source feature medians (never standardized zero / source mean)
+    X_tgt_geom = np.where(nan_mask_tgt, medians_vec, X_tgt_sub)
+    Z_tgt = (X_tgt_geom - means_vec) / sds_vec
 
     nearest_competing_centroids_std = np.zeros_like(Z_tgt)
     competing_class_per_row: List[Any] = []
@@ -253,7 +254,8 @@ def apply_local_overlap_shift(
         X_shifted[col] = sub_perturbed[:, idx]
 
     # Metrics on affected rows
-    Z_perturbed = np.where(nan_mask_tgt, 0.0, (sub_perturbed - means_vec) / sds_vec)
+    X_perturbed_geom = np.where(nan_mask_tgt, medians_vec, sub_perturbed)
+    Z_perturbed = (X_perturbed_geom - means_vec) / sds_vec
     competing_dist_after = np.linalg.norm(
         Z_perturbed[selected_rows] - nearest_competing_centroids_std[selected_rows],
         axis=1,

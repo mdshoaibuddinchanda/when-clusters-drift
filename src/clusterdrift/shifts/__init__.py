@@ -15,8 +15,14 @@ from clusterdrift.shifts.backend import (
     detect_hardware,
     should_use_gpu,
 )
-from clusterdrift.shifts.engine import ShiftEngine
+from clusterdrift.shifts.engine import (
+    ShiftEngine,
+    validate_saved_shift_spec,
+)
 from clusterdrift.shifts.hashing import (
+    atomic_write_csv,
+    atomic_write_json,
+    atomic_write_npz,
     compute_bytes_sha256,
     compute_canonical_json_sha256,
     compute_file_sha256,
@@ -24,6 +30,8 @@ from clusterdrift.shifts.hashing import (
     compute_shift_protocol_sha256,
     compute_shift_spec_sha256,
     derive_integer_seed,
+    load_canonical_bundle_hashes,
+    load_phase2_split_hashes,
 )
 from clusterdrift.shifts.missingness import apply_mcar_shift
 from clusterdrift.shifts.numeric import (
@@ -49,6 +57,7 @@ __all__ = [
     "SourceStatistics",
     "compute_source_statistics",
     "ShiftEngine",
+    "validate_saved_shift_spec",
     "apply_location_shift",
     "apply_scale_shift",
     "apply_measurement_noise",
@@ -66,4 +75,9 @@ __all__ = [
     "compute_shift_protocol_sha256",
     "compute_scenario_input_sha256",
     "compute_shift_spec_sha256",
+    "load_canonical_bundle_hashes",
+    "load_phase2_split_hashes",
+    "atomic_write_json",
+    "atomic_write_csv",
+    "atomic_write_npz",
 ]

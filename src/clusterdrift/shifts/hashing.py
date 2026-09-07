@@ -1,9 +1,13 @@
-"""Cryptographic hashing and deterministic seed derivation for Phase 4 shifts."""
+"""Cryptographic hashing, provenance binding, and atomic persistence for Phase 4 shifts."""
 
 import hashlib
 import json
+import os
 from pathlib import Path
-from typing import Any, Dict, Union
+import time
+from typing import Any, Dict, Optional, Tuple, Union
+
+import numpy as np
 
 
 def compute_bytes_sha256(data: bytes) -> str:
@@ -52,17 +56,24 @@ def compute_shift_protocol_sha256(cfg_dict: Dict[str, Any]) -> str:
 
 
 def compute_scenario_input_sha256(
-    canonical_bundle_hash: str,
-    split_hash: str,
-    dataset_id: str,
-    outer_fold: int,
+    canonical_bundle_sha256: str = "",
+    split_sha256: str = "",
+    dataset_id: str = "",
+    outer_fold: int = 0,
+    **kwargs: Any,
 ) -> str:
-    """Bind canonical raw dataset, split, dataset ID, and outer fold into scenario input hash."""
+    """Bind canonical bundle hash, scientific split hash, dataset ID, and outer fold.
+    
+    Guarantees that label changes, metadata/role mutations, or split partition
+    alterations strictly invalidate the scenario input hash.
+    """
+    bundle_hash = canonical_bundle_sha256 or kwargs.get("canonical_bundle_hash", "")
+    sp_hash = split_sha256 or kwargs.get("split_hash", "")
     payload = {
-        "canonical_bundle_hash": canonical_bundle_hash,
-        "dataset_id": dataset_id,
-        "outer_fold": outer_fold,
-        "split_hash": split_hash,
+        "canonical_bundle_sha256": str(bundle_hash),
+        "dataset_id": str(dataset_id),
+        "outer_fold": int(outer_fold),
+        "split_sha256": str(sp_hash),
     }
     return compute_canonical_json_sha256(payload)
 
@@ -87,3 +98,110 @@ def compute_shift_spec_sha256(
         "spec_descriptor": spec_descriptor,
     }
     return compute_canonical_json_sha256(payload)
+
+
+def load_canonical_bundle_hashes(manifest_path: Union[str, Path]) -> Dict[str, str]:
+    """Load canonical bundle hashes from Phase-1 dataset manifest."""
+    p = Path(manifest_path)
+    with open(p, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    bundle_hashes: Dict[str, str] = {}
+    if isinstance(data, list):
+        for entry in data:
+            ds_id = entry.get("dataset_id")
+            bundle_hash = entry.get("canonical_bundle_sha256") or entry.get("canonical_sha256")
+            if ds_id and bundle_hash:
+                bundle_hashes[ds_id] = bundle_hash
+    elif isinstance(data, dict):
+        for ds_id, meta in data.items():
+            if isinstance(meta, dict):
+                bundle_hash = meta.get("canonical_bundle_sha256") or meta.get("canonical_sha256")
+                if bundle_hash:
+                    bundle_hashes[ds_id] = bundle_hash
+    return bundle_hashes
+
+
+def load_phase2_split_hashes(split_manifest_path: Union[str, Path]) -> Dict[Tuple[str, int], Dict[str, str]]:
+    """Load Phase-2 scientific split hashes and companion file hashes from split manifest."""
+    p = Path(split_manifest_path)
+    with open(p, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    split_records: Dict[Tuple[str, int], Dict[str, str]] = {}
+    for entry in data.get("splits", []):
+        ds_id = entry.get("dataset_id")
+        fold = entry.get("outer_fold")
+        if ds_id is not None and fold is not None:
+            split_records[(ds_id, fold)] = {
+                "split_sha256": entry.get("split_sha256", ""),
+                "json_sha256": entry.get("json_sha256", ""),
+                "npz_sha256": entry.get("npz_sha256", ""),
+                "json_path": entry.get("json_path", ""),
+                "npz_path": entry.get("npz_path", ""),
+            }
+    return split_records
+
+
+def atomic_write_json(
+    path: Union[str, Path],
+    obj: Any,
+    indent: int = 2,
+    sort_keys: bool = True,
+) -> None:
+    """Write JSON atomically using temporary file and os.replace."""
+    target = Path(path)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    tmp_id = hashlib.sha256(f"{time.time_ns()}:{os.getpid()}".encode()).hexdigest()[:8]
+    temp_path = target.with_name(f".{target.name}.tmp_{tmp_id}")
+    try:
+        with open(temp_path, "w", encoding="utf-8") as f:
+            json.dump(obj, f, indent=indent, sort_keys=sort_keys)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(temp_path, target)
+    except Exception:
+        if temp_path.exists():
+            temp_path.unlink()
+        raise
+
+
+def atomic_write_csv(
+    path: Union[str, Path],
+    df: Any,
+    index: bool = False,
+) -> None:
+    """Write DataFrame to CSV atomically using temporary file and os.replace."""
+    target = Path(path)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    tmp_id = hashlib.sha256(f"{time.time_ns()}:{os.getpid()}".encode()).hexdigest()[:8]
+    temp_path = target.with_name(f".{target.name}.tmp_{tmp_id}")
+    try:
+        df.to_csv(temp_path, index=index)
+        with open(temp_path, "a", encoding="utf-8") as f:
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(temp_path, target)
+    except Exception:
+        if temp_path.exists():
+            temp_path.unlink()
+        raise
+
+
+def atomic_write_npz(
+    path: Union[str, Path],
+    **arrays: Any,
+) -> None:
+    """Write compressed NPZ array file atomically using temporary file and os.replace."""
+    target = Path(path)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    tmp_id = hashlib.sha256(f"{time.time_ns()}:{os.getpid()}".encode()).hexdigest()[:8]
+    temp_path = target.with_name(f".{target.name}.tmp_{tmp_id}")
+    try:
+        with open(temp_path, "wb") as f:
+            np.savez_compressed(f, **arrays)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(temp_path, target)
+    except Exception:
+        if temp_path.exists():
+            temp_path.unlink()
+        raise

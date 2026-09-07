@@ -18,6 +18,8 @@ from clusterdrift.shifts.base import (
 )
 from clusterdrift.shifts.backend import detect_hardware
 from clusterdrift.shifts.hashing import (
+    atomic_write_json,
+    atomic_write_npz,
     compute_canonical_json_sha256,
     compute_file_sha256,
     compute_scenario_input_sha256,
@@ -36,6 +38,117 @@ from clusterdrift.shifts.offline_supervised import (
     apply_class_prevalence_shift,
     apply_local_overlap_shift,
 )
+
+
+def validate_saved_shift_spec(
+    spec_path: Union[str, Path],
+    expected_canonical_bundle_sha256: str,
+    expected_split_sha256: str,
+    expected_shift_protocol_sha256: str,
+    global_shift_seed: int,
+    dataset_id: str,
+    outer_fold: int,
+    condition: str,
+    project_root: Optional[Path] = None,
+    manifest_entry: Optional[Dict[str, Any]] = None,
+) -> Tuple[bool, str, Optional[Dict[str, Any]]]:
+    """Validate on-disk shift spec and companion NPZ against current inputs.
+    
+    Used identically by both --resume and --verify.
+    Returns (is_valid, reason_str, parsed_spec_or_none).
+    """
+    p = Path(spec_path)
+    if not p.exists():
+        return False, f"Spec JSON not found: {p}", None
+
+    npz_path = p.with_suffix(".npz")
+    if not npz_path.exists():
+        return False, f"Companion NPZ not found: {npz_path}", None
+
+    try:
+        with open(p, "r", encoding="utf-8") as f:
+            spec = json.load(f)
+    except Exception as e:
+        return False, f"Invalid JSON in spec file: {e}", None
+
+    # 1. Verify scenario coordinates
+    if spec.get("dataset_id") != dataset_id:
+        return False, f"dataset_id mismatch: {spec.get('dataset_id')} vs {dataset_id}", spec
+    if spec.get("outer_fold") != outer_fold:
+        return False, f"outer_fold mismatch: {spec.get('outer_fold')} vs {outer_fold}", spec
+    if spec.get("condition") != condition:
+        return False, f"condition mismatch: {spec.get('condition')} vs {condition}", spec
+
+    # 2. Verify canonical bundle hash
+    if spec.get("canonical_bundle_sha256") != expected_canonical_bundle_sha256:
+        return False, "canonical_bundle_sha256 mismatch (stale bundle)", spec
+
+    # 3. Verify Phase-2 split hash
+    if spec.get("split_sha256") != expected_split_sha256:
+        return False, "split_sha256 mismatch (stale split)", spec
+
+    # 4. Verify protocol hash
+    if spec.get("shift_protocol_sha256") != expected_shift_protocol_sha256:
+        return False, "shift_protocol_sha256 mismatch (stale config)", spec
+
+    # 5. Recompute scenario_input_sha256
+    expected_input_hash = compute_scenario_input_sha256(
+        canonical_bundle_sha256=expected_canonical_bundle_sha256,
+        split_sha256=expected_split_sha256,
+        dataset_id=dataset_id,
+        outer_fold=outer_fold,
+    )
+    if spec.get("scenario_input_sha256") != expected_input_hash:
+        return False, "scenario_input_sha256 mismatch", spec
+
+    # 6. Recompute derived seed
+    family = "clean" if condition == "clean" else condition.rsplit("_", 1)[0]
+    expected_seed = derive_integer_seed(global_shift_seed, dataset_id, outer_fold, family, "spec")
+    if spec.get("derived_seed") != expected_seed:
+        return False, f"derived_seed mismatch: {spec.get('derived_seed')} vs {expected_seed}", spec
+
+    # 7. Check NPZ actual bytes hash vs saved npz_sha256
+    actual_npz_hash = compute_file_sha256(npz_path)
+    if spec.get("npz_sha256") != actual_npz_hash:
+        return False, "NPZ byte hash mismatch (corrupted or altered NPZ)", spec
+
+    try:
+        with np.load(npz_path) as npz:
+            if "row_index_map" not in npz:
+                return False, "NPZ missing 'row_index_map' array", spec
+    except Exception as e:
+        return False, f"Failed to load NPZ: {e}", spec
+
+    # 8. Recompute shift_spec_sha256
+    severity = "none" if condition == "clean" else condition.rsplit("_", 1)[1]
+    spec_descriptor = {
+        "metadata": spec.get("metadata", {}),
+        "status": spec.get("status", "APPLICABLE"),
+        "reason": spec.get("reason"),
+        "npz_sha256": actual_npz_hash,
+    }
+    expected_spec_hash = compute_shift_spec_sha256(
+        scenario_input_sha256=expected_input_hash,
+        shift_protocol_sha256=expected_shift_protocol_sha256,
+        condition=condition,
+        family=family,
+        severity=severity,
+        derived_seed=expected_seed,
+        spec_descriptor=spec_descriptor,
+    )
+    if spec.get("shift_spec_sha256") != expected_spec_hash:
+        return False, "shift_spec_sha256 mismatch (spec descriptor altered)", spec
+
+    # 9. Verify manifest entry agreement if provided
+    if manifest_entry is not None:
+        if manifest_entry.get("spec_hash") != expected_spec_hash:
+            return False, "Manifest spec_hash mismatch", spec
+        if manifest_entry.get("status") != spec.get("status"):
+            return False, "Manifest status mismatch", spec
+        if manifest_entry.get("shift_spec_file_sha256") != compute_file_sha256(p):
+            return False, "Manifest spec file SHA mismatch", spec
+
+    return True, "VALID", spec
 
 
 class ShiftEngine:
@@ -94,12 +207,7 @@ class ShiftEngine:
         y_source: Optional[np.ndarray] = None,
         backend: str = "auto",
     ) -> ShiftResult:
-        """Apply a specific shift condition to raw target data.
-        
-        CRITICAL ARCHITECTURAL RULE:
-        Operates strictly on raw target features before Phase-2 preprocessing.
-        Target labels (if provided for offline supervised interventions) are never returned in ShiftResult.
-        """
+        """Apply a specific shift condition to raw target data."""
         if condition not in ALL_CONDITIONS:
             raise ValueError(f"Unknown condition '{condition}'. Expected one of: {ALL_CONDITIONS}")
 
@@ -113,41 +221,34 @@ class ShiftEngine:
                 status="APPLICABLE",
             )
 
-        # Parse family and severity
         family, severity = condition.rsplit("_", 1)
         if severity not in SEVERITIES or family not in SHIFT_FAMILIES:
             raise ValueError(f"Invalid condition parsing: family={family}, severity={severity}")
 
         source_stats = self.get_source_statistics(dataset_id, outer_fold, X_source, roles)
 
-        # 2. Location Shift
         if family == "location":
-            seed = derive_integer_seed(self.global_shift_seed, dataset_id, outer_fold, "location", "feature_selection")
-            return apply_location_shift(X_target, source_stats, self.config, severity, seed, backend=backend)
+            feature_seed = derive_integer_seed(self.global_shift_seed, dataset_id, outer_fold, "location", "feature_selection")
+            return apply_location_shift(X_target, source_stats, self.config, severity, feature_seed, backend=backend)
 
-        # 3. Scale Shift
-        elif family == "scale":
+        if family == "scale":
             return apply_scale_shift(X_target, source_stats, self.config, severity, backend=backend)
 
-        # 4. Measurement Noise
-        elif family == "measurement_noise":
-            seed = derive_integer_seed(self.global_shift_seed, dataset_id, outer_fold, "measurement_noise", "gaussian_tensor")
-            return apply_measurement_noise(X_target, source_stats, self.config, severity, seed, backend=backend)
+        if family == "measurement_noise":
+            noise_seed = derive_integer_seed(self.global_shift_seed, dataset_id, outer_fold, "measurement_noise", "noise_tensor")
+            return apply_measurement_noise(X_target, source_stats, self.config, severity, noise_seed, backend=backend)
 
-        # 5. Outliers
-        elif family == "outliers":
+        if family == "outliers":
             row_seed = derive_integer_seed(self.global_shift_seed, dataset_id, outer_fold, "outliers", "row_selection")
-            tensor_seed = derive_integer_seed(self.global_shift_seed, dataset_id, outer_fold, "outliers", "student_t_noise")
+            tensor_seed = derive_integer_seed(self.global_shift_seed, dataset_id, outer_fold, "outliers", "outlier_tensor")
             return apply_outlier_shift(X_target, source_stats, self.config, severity, row_seed, tensor_seed, backend=backend)
 
-        # 6. MCAR Missingness
-        elif family == "mcar":
+        if family == "mcar":
             cell_seed = derive_integer_seed(self.global_shift_seed, dataset_id, outer_fold, "mcar", "cell_permutation")
             clustering_cols = [c for c in X_target.columns if roles.get(c) in ["numeric", "categorical", "ordinal", "boolean"]]
             return apply_mcar_shift(X_target, clustering_cols, self.config, severity, cell_seed)
 
-        # 7. Class Prevalence
-        elif family == "class_prevalence":
+        if family == "class_prevalence":
             if y_target is None or y_source is None:
                 return ShiftResult(
                     X_shifted=X_target.copy(),
@@ -159,8 +260,7 @@ class ShiftEngine:
             resample_seed = derive_integer_seed(self.global_shift_seed, dataset_id, outer_fold, "class_prevalence", "resample")
             return apply_class_prevalence_shift(X_target, y_target, y_source, self.config, severity, resample_seed)
 
-        # 8. Local Structural Overlap
-        elif family == "local_overlap":
+        if family == "local_overlap":
             if y_target is None or y_source is None:
                 return ShiftResult(
                     X_shifted=X_target.copy(),
@@ -169,14 +269,22 @@ class ShiftEngine:
                     status="NOT_APPLICABLE",
                     reason="Labels required for offline local overlap intervention",
                 )
-            return apply_local_overlap_shift(X_target, y_target, X_source, y_source, source_stats, self.config, severity, backend=backend)
+            return apply_local_overlap_shift(
+                X_target=X_target,
+                y_target=y_target,
+                X_source=X_source,
+                y_source=y_source,
+                source_stats=source_stats,
+                cfg=self.config,
+                severity=severity,
+                backend=backend,
+            )
 
-        raise RuntimeError(f"Unhandled family: {family}")
+        raise NotImplementedError(f"Unhandled shift family '{family}'")
 
     def get_spec_path(self, dataset_id: str, outer_fold: int, condition: str) -> Path:
-        """Get path for a shift specification JSON file."""
-        specs_dir = self.project_root / "data" / "shifts" / "specs" / dataset_id / f"fold_{outer_fold}"
-        return specs_dir / f"{condition}.json"
+        """Standardized relative path for a scenario shift specification JSON."""
+        return self.project_root / "data" / "shifts" / "specs" / dataset_id / f"fold_{outer_fold}" / f"{condition}.json"
 
     def save_spec_atomic(
         self,
@@ -184,17 +292,16 @@ class ShiftEngine:
         outer_fold: int,
         condition: str,
         shift_res: ShiftResult,
-        canonical_bundle_hash: str,
-        split_hash: str,
+        canonical_bundle_sha256: str,
+        split_sha256: str,
     ) -> Path:
-        """Save shift specification atomically with companion NPZ array storage if needed."""
+        """Save shift specification atomically with companion NPZ array storage."""
         target_json = self.get_spec_path(dataset_id, outer_fold, condition)
-        target_json.parent.mkdir(parents=True, exist_ok=True)
         target_npz = target_json.with_suffix(".npz")
 
         scenario_input_hash = compute_scenario_input_sha256(
-            canonical_bundle_hash=canonical_bundle_hash,
-            split_hash=split_hash,
+            canonical_bundle_sha256=canonical_bundle_sha256,
+            split_sha256=split_sha256,
             dataset_id=dataset_id,
             outer_fold=outer_fold,
         )
@@ -203,8 +310,8 @@ class ShiftEngine:
         severity = "none" if condition == "clean" else condition.rsplit("_", 1)[1]
         derived_seed = derive_integer_seed(self.global_shift_seed, dataset_id, outer_fold, family, "spec")
 
-        # Save large array data (e.g. row_index_map) in compressed NPZ
-        np.savez_compressed(target_npz, row_index_map=shift_res.row_index_map)
+        # Atomic write of compressed companion NPZ
+        atomic_write_npz(target_npz, row_index_map=shift_res.row_index_map)
         npz_hash = compute_file_sha256(target_npz)
 
         spec_descriptor = {
@@ -233,6 +340,8 @@ class ShiftEngine:
             "severity": severity,
             "status": shift_res.status,
             "reason": shift_res.reason,
+            "canonical_bundle_sha256": canonical_bundle_sha256,
+            "split_sha256": split_sha256,
             "scenario_input_sha256": scenario_input_hash,
             "shift_protocol_sha256": self.protocol_sha256,
             "shift_spec_sha256": spec_sha256,
@@ -242,10 +351,6 @@ class ShiftEngine:
             "metadata": shift_res.metadata,
         }
 
-        # Atomic write: write temp file then rename
-        tmp_path = target_json.with_suffix(".tmp")
-        with open(tmp_path, "w", encoding="utf-8") as f:
-            json.dump(spec_doc, f, indent=2, sort_keys=True)
-        os.replace(tmp_path, target_json)
-
+        # Atomic write of spec JSON
+        atomic_write_json(target_json, spec_doc, indent=2, sort_keys=True)
         return target_json
