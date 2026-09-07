@@ -1,0 +1,19 @@
+{
+  "available_current_rows": 153,
+  "bank_type": "current",
+  "canonical_row_map_sha256": "227cc3455edb2cf92b7b27593ff96d2050fe652b7be0ac7a1adc681483285d86",
+  "condition": "mcar_mild",
+  "dataset_id": "pima_diabetes",
+  "derived_seed": 1812435126,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 4,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "f54ca5b17a30976ea47e34f4124f69697884c87569b5f1549a1efeb66ea13f32",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "scenario_status": "APPLICABLE",
+  "selected_current_rows": 153,
+  "selected_positions_sha256": "227cc3455edb2cf92b7b27593ff96d2050fe652b7be0ac7a1adc681483285d86",
+  "selection_policy": "uniform_without_replacement",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "98a9309a587a23c5b71d210e0c4a8d0038ce6db8258ba8aa609fbba7978bb9ae"
+}

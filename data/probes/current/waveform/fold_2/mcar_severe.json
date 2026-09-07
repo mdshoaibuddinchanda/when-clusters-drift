@@ -1,0 +1,19 @@
+{
+  "available_current_rows": 1000,
+  "bank_type": "current",
+  "canonical_row_map_sha256": "71bbf8fcbf3e95baac16ad32dc292886a665d7a97ae2ae221d46bd5d297e7206",
+  "condition": "mcar_severe",
+  "dataset_id": "waveform",
+  "derived_seed": 976592771,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 2,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "904f369b42513fc4d3a819824d72cb4f016bd9e1261c1f133f61c10af6230162",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "scenario_status": "APPLICABLE",
+  "selected_current_rows": 1000,
+  "selected_positions_sha256": "71bbf8fcbf3e95baac16ad32dc292886a665d7a97ae2ae221d46bd5d297e7206",
+  "selection_policy": "uniform_without_replacement",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "6c3ea58a4d761e41b5a806b1101da09b0332b5e0f3a2a4cf0c1daa3bc61b50e3"
+}

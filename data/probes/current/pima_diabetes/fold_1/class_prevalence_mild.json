@@ -1,0 +1,19 @@
+{
+  "available_current_rows": 154,
+  "bank_type": "current",
+  "canonical_row_map_sha256": "8e6adc1db6c647b21c0363a28e5310da5969cf2602d8bb609c577246f5dc5bf7",
+  "condition": "class_prevalence_mild",
+  "dataset_id": "pima_diabetes",
+  "derived_seed": 372221629,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 1,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "965a8a64d171a327bccee770cef769ed9527e421ec477d8ec9b155005f00be06",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "scenario_status": "APPLICABLE",
+  "selected_current_rows": 154,
+  "selected_positions_sha256": "8e6adc1db6c647b21c0363a28e5310da5969cf2602d8bb609c577246f5dc5bf7",
+  "selection_policy": "uniform_without_replacement",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "9a9b5b4d614c25fe9c3c421e26488040ca039abe88a0959342dc409ae3dc6251"
+}

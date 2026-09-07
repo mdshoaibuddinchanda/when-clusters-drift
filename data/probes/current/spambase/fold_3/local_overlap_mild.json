@@ -1,0 +1,19 @@
+{
+  "available_current_rows": 920,
+  "bank_type": "current",
+  "canonical_row_map_sha256": "780c70d02befaeac2b3ef334a326847fdbaac3dbe7b57342dd6d961652ad4480",
+  "condition": "local_overlap_mild",
+  "dataset_id": "spambase",
+  "derived_seed": 897489119,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 3,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "0b36ed45270cf17b71be93163a7776e5734841272982e1f219d77a341e3e952b",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "scenario_status": "APPLICABLE",
+  "selected_current_rows": 920,
+  "selected_positions_sha256": "780c70d02befaeac2b3ef334a326847fdbaac3dbe7b57342dd6d961652ad4480",
+  "selection_policy": "uniform_without_replacement",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "14e9c84265241cf31009796acfb4f5c831ab8c24522fb127630e20bd71e51084"
+}

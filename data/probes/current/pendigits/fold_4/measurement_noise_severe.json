@@ -1,0 +1,19 @@
+{
+  "available_current_rows": 2198,
+  "bank_type": "current",
+  "canonical_row_map_sha256": "6d77aa39dc572b5241997ae5d36777f37e317e10dc86d0b7fa83c6d4f74435f4",
+  "condition": "measurement_noise_severe",
+  "dataset_id": "pendigits",
+  "derived_seed": 2052990784,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 4,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "613e0aa5b718d339299efb34941932187c100b87cf3541904c746601fae361e9",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "scenario_status": "APPLICABLE",
+  "selected_current_rows": 2048,
+  "selected_positions_sha256": "6d77aa39dc572b5241997ae5d36777f37e317e10dc86d0b7fa83c6d4f74435f4",
+  "selection_policy": "uniform_without_replacement",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "3f51c85729a17b8eccea259ae050ae1efd463f8700073ca8c22966b4d00e96fb"
+}

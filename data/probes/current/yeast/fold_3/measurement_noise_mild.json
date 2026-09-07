@@ -1,0 +1,19 @@
+{
+  "available_current_rows": 297,
+  "bank_type": "current",
+  "canonical_row_map_sha256": "189c6407ad6b12e2414695ce3223913ecb8f3a5cd156095898ffd0cfc369ef43",
+  "condition": "measurement_noise_mild",
+  "dataset_id": "yeast",
+  "derived_seed": 1695487861,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 3,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "385f03594227bbfd1a2f6556a662f11e405a0fd940bf66004ffee4453272dfe8",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "scenario_status": "APPLICABLE",
+  "selected_current_rows": 297,
+  "selected_positions_sha256": "189c6407ad6b12e2414695ce3223913ecb8f3a5cd156095898ffd0cfc369ef43",
+  "selection_policy": "uniform_without_replacement",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "b20c1a24c1632ebf85fdfdb13f60ae9d6c34dbf4deb82dba43a5f801ad4e184b"
+}

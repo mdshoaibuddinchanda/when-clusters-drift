@@ -1,0 +1,16 @@
+{
+  "available_rows": 455,
+  "bank_type": "reference",
+  "canonical_bundle_sha256": "afbaa0e3d7da94dd224c489771b90fa0db77875ee64c74a2dd26a31d0884eac1",
+  "canonical_row_indices_sha256": "783f4bcf1c4a61c10802886129a087d1c508638729ee8ac7c843d8b01c62628c",
+  "dataset_id": "breast_cancer_wisconsin_diagnostic",
+  "derived_seed": 224519901,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 0,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "61f2f05974c217aa82913c1ce397f773dbec3d87025a6ba09a8605928eceb922",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "selected_rows": 455,
+  "selection_policy": "uniform_without_replacement",
+  "split_sha256": "52c5820ce3405556753d75bfda67b12c4d4774da3a6cd3223f4678e2c87d52e7"
+}

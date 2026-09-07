@@ -1,0 +1,16 @@
+{
+  "available_rows": 235,
+  "bank_type": "reference",
+  "canonical_bundle_sha256": "6e911376a9efb14d8854f88a603a01dd992892b8151023dbbbef9df750a45879",
+  "canonical_row_indices_sha256": "e4939972e2923a454496604dcb9de9966a14a2f59d8efc4ac0dd754eca66154a",
+  "dataset_id": "heart_disease",
+  "derived_seed": 765069628,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 3,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "fa0c5e8e7a397d001ce0b5ec4b0da5bec1009ca9118d4ae33aaf0f6aa7f4ce15",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "selected_rows": 235,
+  "selection_policy": "uniform_without_replacement",
+  "split_sha256": "7b404fde5be8b02538222c4c9133ac51761239ae470c2a6b5d0b412fe6483eee"
+}

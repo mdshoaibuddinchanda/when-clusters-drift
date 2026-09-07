@@ -1,0 +1,16 @@
+{
+  "available_rows": 677,
+  "bank_type": "reference",
+  "canonical_bundle_sha256": "c0507977add20d390908e1c8c7a062c6b6ca6541c4dc869a44c13794ca49a398",
+  "canonical_row_indices_sha256": "4fdcc056ce8da68f918ef781b07d09f35b03f9c6dd66d6fc5e0f73375d3e88b9",
+  "dataset_id": "vehicle_silhouettes",
+  "derived_seed": 1307122781,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 1,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "eb2915d9017af059d57a6fb3ff44fb6ca3c19ef63676fb2925ddc78ed1ca1127",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "selected_rows": 677,
+  "selection_policy": "uniform_without_replacement",
+  "split_sha256": "2c8e528dd8d46c265f30cf0704819ec4b283548bf0d7db3641b16de92fcf7ad9"
+}

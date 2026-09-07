@@ -1,0 +1,19 @@
+{
+  "available_current_rows": 125,
+  "bank_type": "current",
+  "canonical_row_map_sha256": "330b3b17436312748d625233f48cf2228b1e6e01eec4888a4df33cdd0573375b",
+  "condition": "class_prevalence_severe",
+  "dataset_id": "balance_scale",
+  "derived_seed": 1949507321,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 0,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "699da148a17fba7916b43b3537094b4252578c4e1e652ba1481178192e8ba745",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "scenario_status": "APPLICABLE",
+  "selected_current_rows": 125,
+  "selected_positions_sha256": "330b3b17436312748d625233f48cf2228b1e6e01eec4888a4df33cdd0573375b",
+  "selection_policy": "uniform_without_replacement",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "5601ebf86ca77d7937971fd3253c925e14f58aeb54fbc1115a44d80429e4ac45"
+}

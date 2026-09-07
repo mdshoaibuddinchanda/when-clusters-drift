@@ -1,0 +1,19 @@
+{
+  "available_current_rows": 1560,
+  "bank_type": "current",
+  "canonical_row_map_sha256": "6e438162485873b29007a8a41932886e4d2beb77942cf870f15f9532d182bfa7",
+  "condition": "class_prevalence_mild",
+  "dataset_id": "isolet",
+  "derived_seed": 2020595095,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 1,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "e5b785c35f03cfdd1d1db924cf7ae4ba5ed70811b3bb9a34cad0ca1b3a4c85f9",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "scenario_status": "APPLICABLE",
+  "selected_current_rows": 1560,
+  "selected_positions_sha256": "6e438162485873b29007a8a41932886e4d2beb77942cf870f15f9532d182bfa7",
+  "selection_policy": "uniform_without_replacement",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "be515cf51ce545fdaa6543fc1f7c226b66665ce8d0f70ec8742429547944671a"
+}

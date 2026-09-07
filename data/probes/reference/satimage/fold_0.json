@@ -1,0 +1,16 @@
+{
+  "available_rows": 5144,
+  "bank_type": "reference",
+  "canonical_bundle_sha256": "8e702b9bbdc62768177559086a346cb6a1325977914749d51348e8430355efbf",
+  "canonical_row_indices_sha256": "b34f6c3a6210aa760412919b4cf669f1bc4ce1d8e07777b07a4bca75fa66875c",
+  "dataset_id": "satimage",
+  "derived_seed": 2068880418,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 0,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "2ac1c21a06443c1237a01d6eeac7f7ece164da92b17282ed8599ff4855b2d3b8",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "selected_rows": 2048,
+  "selection_policy": "uniform_without_replacement",
+  "split_sha256": "3dfa9c1e065ed558e3e2a42148ee2aa82310ac66947f6daa306cc12ddb1ad41a"
+}

@@ -1,0 +1,16 @@
+{
+  "available_rows": 8232,
+  "bank_type": "reference",
+  "canonical_bundle_sha256": "e4b7891aba45f2e8dbf36e0f779a1d244f0f60f4120b356a22f02cac37d5fd38",
+  "canonical_row_indices_sha256": "5cf939380d43de1f286aec0eef2b99cc0c07b7a1e266b1c471466f9f37b82c4b",
+  "dataset_id": "human_activity_recognition",
+  "derived_seed": 1740806449,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 0,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "b1838cbcb0f86711b92b9031536b425ca0318e6822a272302e207fdbc8f31ad0",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "selected_rows": 2048,
+  "selection_policy": "uniform_without_replacement",
+  "split_sha256": "0f0afef150b3e5da74f8158c853494ccb2a091f799fe7e61f22e1f5d9f5e3992"
+}

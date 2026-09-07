@@ -1,0 +1,19 @@
+{
+  "available_current_rows": 2049,
+  "bank_type": "current",
+  "canonical_row_map_sha256": "1c2d6a32a0f852c7bad7db458b3bb37f6d8f6338c011c1f464222e1c5a79fefc",
+  "condition": "local_overlap_mild",
+  "dataset_id": "human_activity_recognition",
+  "derived_seed": 158427752,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 1,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "2fe34de673c0197e18ea0e37aba85c350f39d557d1ac98acc8fd27267a0e0bd3",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "scenario_status": "APPLICABLE",
+  "selected_current_rows": 2048,
+  "selected_positions_sha256": "1c2d6a32a0f852c7bad7db458b3bb37f6d8f6338c011c1f464222e1c5a79fefc",
+  "selection_policy": "uniform_without_replacement",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "ad7e69f399200183ca1ff7aacf0e4aa4a89c14e14265f68a4e6dc842a660286a"
+}

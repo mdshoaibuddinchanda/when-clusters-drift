@@ -1,0 +1,7 @@
+dataset_id,outer_fold,condition,method,probe_size_target,probe_size_actual,permutation,assignment_cost,overlap_mean,runtime
+iris,0,location_severe,fcm_adaptive,512,120,"[0, 1, 2]",2.573418,0.258762,0.0002
+iris,0,location_severe,fcm_adaptive,1024,120,"[0, 1, 2]",2.573418,0.258762,0.00017
+iris,0,location_severe,fcm_adaptive,2048,120,"[0, 1, 2]",2.573418,0.258762,0.00031
+sonar,0,location_severe,fcm_adaptive,512,166,"[0, 1]",0.791833,0.428964,0.00024
+sonar,0,location_severe,fcm_adaptive,1024,166,"[0, 1]",0.791833,0.428964,0.00035
+sonar,0,location_severe,fcm_adaptive,2048,166,"[0, 1]",0.791833,0.428964,0.00021

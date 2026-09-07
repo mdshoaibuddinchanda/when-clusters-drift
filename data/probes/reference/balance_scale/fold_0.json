@@ -1,0 +1,16 @@
+{
+  "available_rows": 500,
+  "bank_type": "reference",
+  "canonical_bundle_sha256": "bcd795f2be7918189f21a739b48ad5583dcdae8efdbd23256b9c574f6c7d3d66",
+  "canonical_row_indices_sha256": "a24cc2a4f7e39ad27e63edaf201d5e35975cebc598c6f528aa7464abacd0b172",
+  "dataset_id": "balance_scale",
+  "derived_seed": 1179812711,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 0,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "64a1d076fe7e9e888cd299d7e2eb4144c326cc88a743bfdb78170c7f51decad2",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "selected_rows": 500,
+  "selection_policy": "uniform_without_replacement",
+  "split_sha256": "8f607ca5fc6048da307cc8d841892b25b81622277fd8be60638ba67af0d1bcf1"
+}

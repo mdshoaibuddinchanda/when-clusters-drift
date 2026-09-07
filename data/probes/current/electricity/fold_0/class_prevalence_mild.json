@@ -1,0 +1,19 @@
+{
+  "available_current_rows": 7552,
+  "bank_type": "current",
+  "canonical_row_map_sha256": "af856a4ebbc6ed04ab27142a4ab51d2afbf247a86487379a02a316e6543543b1",
+  "condition": "class_prevalence_mild",
+  "dataset_id": "electricity",
+  "derived_seed": 606595147,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 0,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "d18bda91354a02b2e77033870515fab7fde5bcc08fcba415f1bccc908c8a992b",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "scenario_status": "APPLICABLE",
+  "selected_current_rows": 2048,
+  "selected_positions_sha256": "af856a4ebbc6ed04ab27142a4ab51d2afbf247a86487379a02a316e6543543b1",
+  "selection_policy": "uniform_without_replacement",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "7fd803640bba1ee32069d50be19cbc81e32ea2b62e34c57950438b8d7fbd025c"
+}

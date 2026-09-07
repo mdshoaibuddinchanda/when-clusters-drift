@@ -1,0 +1,16 @@
+{
+  "available_rows": 2080,
+  "bank_type": "reference",
+  "canonical_bundle_sha256": "01e0b4dc6a3e5b03571a28533edcd03cfcd59e9651104a7a607cdc35821f3a4e",
+  "canonical_row_indices_sha256": "fadea709a542379e18a745b006d9e7246af1bdd4f5476c07508492cd44ea6848",
+  "dataset_id": "madelon",
+  "derived_seed": 1947922986,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 4,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "277f5b27c7502131e26fb6565f0302bbb2cc67b45bb0b23bdd7473b1fe4f7633",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "selected_rows": 2048,
+  "selection_policy": "uniform_without_replacement",
+  "split_sha256": "75f14a2ffda864933f1760f60907d00b2ad54d8ca169d9ecb7974b489316e68d"
+}

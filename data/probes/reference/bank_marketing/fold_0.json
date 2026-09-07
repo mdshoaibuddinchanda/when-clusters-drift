@@ -1,0 +1,16 @@
+{
+  "available_rows": 36168,
+  "bank_type": "reference",
+  "canonical_bundle_sha256": "8289c4fcf072e69c19e8d9f0340825d6fe0cacf8a7a497ac08441eb0fce7a58b",
+  "canonical_row_indices_sha256": "ae05ce2a7101091c0918dc298a13eddeb09860ec8e4268b6b077413d7f2b7c77",
+  "dataset_id": "bank_marketing",
+  "derived_seed": 1479210248,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 0,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "c03b1ea76514282b4e75bc0b41f163bc59bb9c3fd6f642f51be87555d8547357",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "selected_rows": 2048,
+  "selection_policy": "uniform_without_replacement",
+  "split_sha256": "c702f22e28aff914847f5d4a5a4709e45b111a17d6f594507328894ec4e6b3f6"
+}

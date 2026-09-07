@@ -1,0 +1,16 @@
+{
+  "available_rows": 4000,
+  "bank_type": "reference",
+  "canonical_bundle_sha256": "31699e04c4591627b65e494edd2907ccd9baff40ac9f42e0210afbb13f43f74e",
+  "canonical_row_indices_sha256": "e2f490587340efdb928c77f28470b0d1a6b83e4cd329cef2e8756e8ab239093f",
+  "dataset_id": "waveform",
+  "derived_seed": 52978341,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 1,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "f7618ef3498b457f9690021e18b00db875210baf97382964e419d6516db501b3",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "selected_rows": 2048,
+  "selection_policy": "uniform_without_replacement",
+  "split_sha256": "ead07de8b373f484f5417a1aeb878c525c00a09b55c6b5f21670196bf2b3b8c8"
+}

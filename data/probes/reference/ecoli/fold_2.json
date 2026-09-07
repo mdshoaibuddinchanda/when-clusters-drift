@@ -1,0 +1,16 @@
+{
+  "available_rows": 269,
+  "bank_type": "reference",
+  "canonical_bundle_sha256": "b5ef6012bb4ec53a31808fbfd354ec7463b1ca2aac940be4ede819f6bc5fa2d2",
+  "canonical_row_indices_sha256": "a651b2d6c6ca54a84eb08dbd061f7983dafe632e1eac2ed61fbd8a635b7f6486",
+  "dataset_id": "ecoli",
+  "derived_seed": 73801966,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 2,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "10a97714379848b5941f047de114ca687fb63b638f51a20b11d3125c2037933b",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "selected_rows": 269,
+  "selection_policy": "uniform_without_replacement",
+  "split_sha256": "1001e6d1a0fd7ec14fcb9b56932d04ffaf4043cad9cff9e28cc50ee5b328b993"
+}

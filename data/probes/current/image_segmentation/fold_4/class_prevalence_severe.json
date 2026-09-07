@@ -1,0 +1,19 @@
+{
+  "available_current_rows": 462,
+  "bank_type": "current",
+  "canonical_row_map_sha256": "51f4cee9c4f7683e78b01936aa4255359494aa1af0e9126f68518ffc2f8443f1",
+  "condition": "class_prevalence_severe",
+  "dataset_id": "image_segmentation",
+  "derived_seed": 388954603,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 4,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "13eec9c96803f9bb491227617e7ab8cf15e18f1069dba2232ce679cdd8594968",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "scenario_status": "APPLICABLE",
+  "selected_current_rows": 462,
+  "selected_positions_sha256": "51f4cee9c4f7683e78b01936aa4255359494aa1af0e9126f68518ffc2f8443f1",
+  "selection_policy": "uniform_without_replacement",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "0640940a23422f9a841d128a668353230f8abbea3b92bd2890d1e9c84f6ee245"
+}

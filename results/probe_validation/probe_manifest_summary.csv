@@ -1,0 +1,4 @@
+bank_type,count,expected
+reference,150,150
+current,2250,2250
+total,2400,2400

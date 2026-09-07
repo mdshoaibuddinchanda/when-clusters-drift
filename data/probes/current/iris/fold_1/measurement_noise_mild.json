@@ -1,0 +1,19 @@
+{
+  "available_current_rows": 30,
+  "bank_type": "current",
+  "canonical_row_map_sha256": "931b96147296f13b75a422cbf2870f88a2c072a09c9de772cfe1c7ede3c3d2ce",
+  "condition": "measurement_noise_mild",
+  "dataset_id": "iris",
+  "derived_seed": 433416763,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 1,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "7c1bfd00d421f9640150b471e03ee56e9760eab7de0fb2ffa44a2b152f4d9c25",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "scenario_status": "APPLICABLE",
+  "selected_current_rows": 30,
+  "selected_positions_sha256": "931b96147296f13b75a422cbf2870f88a2c072a09c9de772cfe1c7ede3c3d2ce",
+  "selection_policy": "uniform_without_replacement",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "dd620312b849efd2cf9f609962467561a645caa3d0dd50eae8613d843f12f94b"
+}

@@ -1,0 +1,19 @@
+{
+  "available_current_rows": 520,
+  "bank_type": "current",
+  "canonical_row_map_sha256": "6ebc756d821ab1002a1a8ffc466b22b6c43ca32e36102f07d688872d045e0b6e",
+  "condition": "class_prevalence_severe",
+  "dataset_id": "madelon",
+  "derived_seed": 398346110,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 4,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "60f31a9f8af845493d11335e1cd32d225be2ae79723686cdb60aeaf488dde11b",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "scenario_status": "APPLICABLE",
+  "selected_current_rows": 520,
+  "selected_positions_sha256": "6ebc756d821ab1002a1a8ffc466b22b6c43ca32e36102f07d688872d045e0b6e",
+  "selection_policy": "uniform_without_replacement",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "126d9212fd898971afc9cb8989ed0e906b2279ffdf324df994bd2d84325d77e8"
+}

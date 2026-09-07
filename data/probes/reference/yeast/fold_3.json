@@ -1,0 +1,16 @@
+{
+  "available_rows": 1187,
+  "bank_type": "reference",
+  "canonical_bundle_sha256": "bbb1ad8a894a4c00778d3713ac65ffdaabf42a343f2b8647ba4e4113109800b2",
+  "canonical_row_indices_sha256": "2cc3e46989f7136ebf9f357eb6c6d011f842b8d4e95095b82bbd67eea2eab535",
+  "dataset_id": "yeast",
+  "derived_seed": 650641518,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 3,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "8415aaa9d24dbb46b53aab85537fad5e9a9a941a711710fc8532e8edd580dd86",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "selected_rows": 1187,
+  "selection_policy": "uniform_without_replacement",
+  "split_sha256": "9f31c6c52e6130942602a62799d276004fdae191dcdf3b3df4f341fce6e6e37f"
+}

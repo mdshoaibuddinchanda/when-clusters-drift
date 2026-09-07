@@ -1,0 +1,16 @@
+{
+  "available_rows": 6237,
+  "bank_type": "reference",
+  "canonical_bundle_sha256": "9d069e37146d31022ec288e3c2fbbadfba07e43cfc2a6af6f95be6532938d4cf",
+  "canonical_row_indices_sha256": "6d3f99021abb54dc8a6ee78470a69fae2d77dc1fc8350be076af847ff9108aed",
+  "dataset_id": "isolet",
+  "derived_seed": 938633005,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 0,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "f6d51a4cd826c2e429b9515fd542cd2c0010b4cb3e03d22e26354f3c4ccccb69",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "selected_rows": 2048,
+  "selection_policy": "uniform_without_replacement",
+  "split_sha256": "154dff83f196fe92a73559330f5eb269f3c6e32af9079e57a3aa2d759b5c1451"
+}

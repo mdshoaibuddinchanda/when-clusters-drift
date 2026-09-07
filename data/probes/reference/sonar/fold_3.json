@@ -1,0 +1,16 @@
+{
+  "available_rows": 167,
+  "bank_type": "reference",
+  "canonical_bundle_sha256": "a96acdbe229653c3b5388efaa8612239923efc26ef719bb86afa24301f4337f6",
+  "canonical_row_indices_sha256": "7aa2e53838b0cfbfcca3cf723d834f9f68da1a7de3cceae5533c346cc80fa07f",
+  "dataset_id": "sonar",
+  "derived_seed": 354114026,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 3,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "2871a24f8f458e313c963e680b90bcbb860d440593e6bfa81119692e8081fd88",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "selected_rows": 167,
+  "selection_policy": "uniform_without_replacement",
+  "split_sha256": "f344766fb1f364ed94928967cf2c52d3ff2733a5e13d053f0bf7041bff5870c2"
+}

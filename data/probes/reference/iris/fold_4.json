@@ -1,0 +1,16 @@
+{
+  "available_rows": 120,
+  "bank_type": "reference",
+  "canonical_bundle_sha256": "06a7bea1035adc450f695977cf5ff01ec45cd7cb140a5e8f23ad103da0949a27",
+  "canonical_row_indices_sha256": "1580cc5e45129b0593a33a2e80f138a2a619e232e29acc40cb9c494c745b3047",
+  "dataset_id": "iris",
+  "derived_seed": 919744491,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 4,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "9c80366211eac45c17dea164b51757fa675d9b8333de10668ab1a6485d374726",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "selected_rows": 120,
+  "selection_policy": "uniform_without_replacement",
+  "split_sha256": "5d9f354d8737f2e6c71078c8f8bf4a8255e32d65c6bf5c8b6984d493af6cd64e"
+}

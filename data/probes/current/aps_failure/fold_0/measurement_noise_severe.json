@@ -1,0 +1,19 @@
+{
+  "available_current_rows": 15200,
+  "bank_type": "current",
+  "canonical_row_map_sha256": "b980462d65400f9971970fc259198c3abfa6034505f43383197391a682b5f99f",
+  "condition": "measurement_noise_severe",
+  "dataset_id": "aps_failure",
+  "derived_seed": 625048170,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 0,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "fbdfa505bba09d0819eb033124782a5fcb6d3f1d489c2dc52dd85f35b9ef5e61",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "scenario_status": "APPLICABLE",
+  "selected_current_rows": 2048,
+  "selected_positions_sha256": "b980462d65400f9971970fc259198c3abfa6034505f43383197391a682b5f99f",
+  "selection_policy": "uniform_without_replacement",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "7ed82b18998c2dd9b8c3a2daf1075dee1e43858fa0365aff161eefde26d5c747"
+}

@@ -1,0 +1,19 @@
+{
+  "available_current_rows": 170,
+  "bank_type": "current",
+  "canonical_row_map_sha256": "8ca02fe6380284a1682bb73989f7507360979124cd6125e91cae8d00b39ef159",
+  "condition": "measurement_noise_mild",
+  "dataset_id": "vehicle_silhouettes",
+  "derived_seed": 1348569951,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 0,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "8fdbf095178a035d48c28a81b00c069e7bce3e867bcbf776ab2dd59a9c207cc8",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "scenario_status": "APPLICABLE",
+  "selected_current_rows": 170,
+  "selected_positions_sha256": "8ca02fe6380284a1682bb73989f7507360979124cd6125e91cae8d00b39ef159",
+  "selection_policy": "uniform_without_replacement",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "c36cc5642458527eac3e7765b08fabd55bafe2c2583f99eca65d709abc59d0b9"
+}

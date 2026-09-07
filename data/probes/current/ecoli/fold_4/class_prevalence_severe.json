@@ -1,0 +1,19 @@
+{
+  "available_current_rows": 67,
+  "bank_type": "current",
+  "canonical_row_map_sha256": "521e1cf6ab61e3a0fcb6ac43e4575a1d55f6f751bfe070dfb11f632e4727a6cc",
+  "condition": "class_prevalence_severe",
+  "dataset_id": "ecoli",
+  "derived_seed": 1534132003,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 4,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "2b4378e3d375e4f94421ba1afea7b7955d27d6e8f35ee1003cbc7e17c865815b",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "scenario_status": "APPLICABLE",
+  "selected_current_rows": 67,
+  "selected_positions_sha256": "521e1cf6ab61e3a0fcb6ac43e4575a1d55f6f751bfe070dfb11f632e4727a6cc",
+  "selection_policy": "uniform_without_replacement",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "321f0834feaeb4eaf909f8b207d139c41f436a78b7d3bee851a17f7d92528e03"
+}

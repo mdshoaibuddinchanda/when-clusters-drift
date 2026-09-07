@@ -1,0 +1,19 @@
+{
+  "available_current_rows": 4000,
+  "bank_type": "current",
+  "canonical_row_map_sha256": "f38aa0223a521fb594e015fe832003afed69653d0f454eb05d5bcb4852aa6c7b",
+  "condition": "location_mild",
+  "dataset_id": "letter_recognition",
+  "derived_seed": 687954297,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 3,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "03ac2b675d72994775c7d044ab533438d1dd3c83f552cc6c59fe520122b35751",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "scenario_status": "APPLICABLE",
+  "selected_current_rows": 2048,
+  "selected_positions_sha256": "f38aa0223a521fb594e015fe832003afed69653d0f454eb05d5bcb4852aa6c7b",
+  "selection_policy": "uniform_without_replacement",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "f611ffab6dd792bd12b116bffe01f64cf8158989df52f35ea46663367c369d8f"
+}

@@ -1,0 +1,16 @@
+{
+  "available_rows": 293,
+  "bank_type": "reference",
+  "canonical_bundle_sha256": "e8ca74df36fa9d2b9d7b9627cd2ccf8d0306bd343ca2424d23a375d2c3d7c229",
+  "canonical_row_indices_sha256": "5ed3960f21004cdb706fe31b91a2ab691d0d0c3ba2b4ec5018cb7bf67ef0b75a",
+  "dataset_id": "dermatology",
+  "derived_seed": 1535231623,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 1,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "444ab9a2bcc5b78cce460763cdaba6183e13732e1b95bd7f39b945f3b09f604c",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "selected_rows": 293,
+  "selection_policy": "uniform_without_replacement",
+  "split_sha256": "a2c3b9beea22f2aac57bdc8e8ce99f922ff63ff76e89571c2dcd33c49646ee9c"
+}

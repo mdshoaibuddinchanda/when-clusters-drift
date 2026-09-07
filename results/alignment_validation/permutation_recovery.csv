@@ -1,0 +1,6 @@
+test_name,K,D,eta,status,exact_recovery
+synthetic_exact_K2,2,10,0.5,PASS,True
+synthetic_exact_K3,3,10,0.5,PASS,True
+synthetic_exact_K5,5,10,0.5,PASS,True
+synthetic_exact_K10,10,10,0.5,PASS,True
+synthetic_exact_K26,26,10,0.5,PASS,True

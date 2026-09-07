@@ -1,0 +1,16 @@
+{
+  "available_rows": 870,
+  "bank_type": "reference",
+  "canonical_bundle_sha256": "0ad1f7f847c84b9cc5299bd05d8823b1dbd152612c6fc50bb458fec212d7c8c4",
+  "canonical_row_indices_sha256": "fd0104178986dd11cda0ffaf231c5fce42966cc7530839b697fdc79344b93a8a",
+  "dataset_id": "mice_protein_expression",
+  "derived_seed": 192070579,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 4,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "f8373f574e7284892eb54eb62c3ebd380cf717b8bc6104bdee1d3005c8074f23",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "selected_rows": 870,
+  "selection_policy": "uniform_without_replacement",
+  "split_sha256": "90fc8f10c55035fd13774f1ccfab6d361eb78c9d359cadda26726b8012e31bcf"
+}

@@ -1,0 +1,19 @@
+{
+  "available_current_rows": 61,
+  "bank_type": "current",
+  "canonical_row_map_sha256": "b75794848bba930dd85e3e11628a8e7411e1b2ca9b6f63d1f8587b672bd0e367",
+  "condition": "location_mild",
+  "dataset_id": "haberman_survival",
+  "derived_seed": 1994502887,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 2,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "767c9a93d308f93e04fb4b9760cced8bc173f93dd78cec1c82d0390f36953003",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "scenario_status": "APPLICABLE",
+  "selected_current_rows": 61,
+  "selected_positions_sha256": "b75794848bba930dd85e3e11628a8e7411e1b2ca9b6f63d1f8587b672bd0e367",
+  "selection_policy": "uniform_without_replacement",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "59639a5f407ba8fc7a4e18b64576d063c1b4ee618deb427fd9ff1bc84b56c20d"
+}

@@ -1,0 +1,13 @@
+method,condition,total_runs,mean_assignment_cost,mean_overlap,ambiguous_fraction
+fcm_adaptive,class_prevalence_severe,12,3.85329,0.22197,0.6667
+fcm_adaptive,clean,12,3.57445,0.22535,0.6667
+fcm_adaptive,local_overlap_severe,12,3.89839,0.18412,0.8333
+fcm_adaptive,location_severe,12,4.60648,0.21465,0.6667
+fcm_adaptive,mcar_severe,12,3.93586,0.21847,0.8333
+fcm_adaptive,scale_severe,12,4.93661,0.21627,0.6667
+gmm,class_prevalence_severe,12,6.62255,0.13718,1.0
+gmm,clean,12,6.29712,0.15526,0.9167
+gmm,local_overlap_severe,12,6.69559,0.14575,0.9167
+gmm,location_severe,12,7.52082,0.14758,0.9167
+gmm,mcar_severe,12,6.56275,0.15345,0.9167
+gmm,scale_severe,12,7.85026,0.1333,0.9167

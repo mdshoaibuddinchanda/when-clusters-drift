@@ -1,0 +1,19 @@
+{
+  "available_current_rows": 1286,
+  "bank_type": "current",
+  "canonical_row_map_sha256": "793504400e57ee86c334a315a4c2d9e38603d30b14327382514cd77c36dbac34",
+  "condition": "outliers_mild",
+  "dataset_id": "satimage",
+  "derived_seed": 327946503,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 3,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "98b0937c5784032f717ffee5f3f25c735a57879b65f29f7e37459f1a60d89c75",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "scenario_status": "APPLICABLE",
+  "selected_current_rows": 1286,
+  "selected_positions_sha256": "793504400e57ee86c334a315a4c2d9e38603d30b14327382514cd77c36dbac34",
+  "selection_policy": "uniform_without_replacement",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "a8212b827c472272225d8a158886bd71b1925eee748f73079729a7d0b8997051"
+}

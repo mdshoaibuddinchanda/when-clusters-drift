@@ -1,0 +1,19 @@
+{
+  "available_current_rows": 7552,
+  "bank_type": "current",
+  "canonical_row_map_sha256": "49097c6906e80d013f88b6d3bf8a5bb82e79c1b63246a7eae5926c6a542b6df1",
+  "condition": "mcar_severe",
+  "dataset_id": "electricity",
+  "derived_seed": 579623837,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 1,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "9f5cf2910741c9ca533205b782c6e4bd092a9b4d35dee88121d49a4186c8ecf9",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "scenario_status": "APPLICABLE",
+  "selected_current_rows": 2048,
+  "selected_positions_sha256": "49097c6906e80d013f88b6d3bf8a5bb82e79c1b63246a7eae5926c6a542b6df1",
+  "selection_policy": "uniform_without_replacement",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "5e00704bb488db2c07c3b95ba760e17d97775a1eca8f422d3bb566a19e870955"
+}

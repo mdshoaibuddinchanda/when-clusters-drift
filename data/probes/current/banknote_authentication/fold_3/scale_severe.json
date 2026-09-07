@@ -1,0 +1,19 @@
+{
+  "available_current_rows": 274,
+  "bank_type": "current",
+  "canonical_row_map_sha256": "c08a6870ce7f99357094eb8a0dbdcceffcecb36be874c69919fc44e50b745cb5",
+  "condition": "scale_severe",
+  "dataset_id": "banknote_authentication",
+  "derived_seed": 219899809,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 3,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "2779360a205b993bd9f7ce20f9aefb23d1f1bf63ee158de8b468cc886a9bb6c2",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "scenario_status": "APPLICABLE",
+  "selected_current_rows": 274,
+  "selected_positions_sha256": "c08a6870ce7f99357094eb8a0dbdcceffcecb36be874c69919fc44e50b745cb5",
+  "selection_policy": "uniform_without_replacement",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "bf59d17d3a40b868bee3650823c90e94e754761e2292005d935cb40215ae63ec"
+}

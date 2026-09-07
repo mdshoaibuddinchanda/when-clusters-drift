@@ -1,0 +1,19 @@
+{
+  "available_current_rows": 68,
+  "bank_type": "current",
+  "canonical_row_map_sha256": "dc41503b211c71b75068c1a2c7d2f082491f6d00bac3d81102bd97db3292946b",
+  "condition": "mcar_severe",
+  "dataset_id": "ecoli",
+  "derived_seed": 381983307,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 0,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "9f3dfa104e1993a7d46e12d566bb06fdc5ad82082cdfbbc735efcc845dbb3aa6",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "scenario_status": "APPLICABLE",
+  "selected_current_rows": 68,
+  "selected_positions_sha256": "dc41503b211c71b75068c1a2c7d2f082491f6d00bac3d81102bd97db3292946b",
+  "selection_policy": "uniform_without_replacement",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "63b2421083c97d62b3ecb90bdd16bd21735140aedf3c138eb03664fa65d3de59"
+}

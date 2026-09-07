@@ -1,0 +1,16 @@
+{
+  "available_rows": 281,
+  "bank_type": "reference",
+  "canonical_bundle_sha256": "eca7d42d83ca60d905dd826974f997f3fb761b8e1d9313e5069f69d54aa1908a",
+  "canonical_row_indices_sha256": "b7da5e78f8e9a991e709961df78272e10c2d969417d02a213e1ff2353c07385e",
+  "dataset_id": "ionosphere",
+  "derived_seed": 21266420,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 2,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "57cc14b61c6ef13d1c8d90116c440b76fcd0fb513a1e4361aee3f50d10c056d0",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "selected_rows": 281,
+  "selection_policy": "uniform_without_replacement",
+  "split_sha256": "2b43a3b475888692d89ae31893db24b9bbf525626957b6ca96bf27bfdf536df6"
+}

@@ -1,0 +1,11 @@
+dataset_id,condition,method,seed,eta,assignment_cost,permutation,matches_eta_05
+iris,scale_severe,fcm_adaptive,1,0.0,0.671537,"[0, 1, 2]",True
+iris,scale_severe,fcm_adaptive,1,0.25,1.404551,"[0, 1, 2]",True
+iris,scale_severe,fcm_adaptive,1,0.5,2.137564,"[0, 1, 2]",True
+iris,scale_severe,fcm_adaptive,1,0.75,2.870578,"[0, 1, 2]",True
+iris,scale_severe,fcm_adaptive,1,1.0,3.603591,"[0, 1, 2]",True
+glass,scale_severe,fcm_adaptive,1,0.0,1.502875,"[0, 1, 2, 3, 4, 5]",True
+glass,scale_severe,fcm_adaptive,1,0.25,3.150172,"[0, 1, 2, 3, 4, 5]",True
+glass,scale_severe,fcm_adaptive,1,0.5,4.797469,"[0, 1, 2, 3, 4, 5]",True
+glass,scale_severe,fcm_adaptive,1,0.75,6.444766,"[0, 1, 2, 3, 4, 5]",True
+glass,scale_severe,fcm_adaptive,1,1.0,8.092063,"[0, 1, 2, 3, 4, 5]",True

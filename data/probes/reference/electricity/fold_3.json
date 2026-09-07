@@ -1,0 +1,16 @@
+{
+  "available_rows": 30208,
+  "bank_type": "reference",
+  "canonical_bundle_sha256": "bd0134d8ec032b0cb125d6395ddb0b6fe9f751efcb5b2961d4803f89cb4b8605",
+  "canonical_row_indices_sha256": "4b5997ed420082b5820d660644dcc3d889aebb2f651bab59fe8ab7fa255c9b9f",
+  "dataset_id": "electricity",
+  "derived_seed": 375701908,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 3,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "cbbbd656a3d725a7800ddbb16bc135c5d080a4a37ca5bb6b224bbf8bfdaf84a4",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "selected_rows": 2048,
+  "selection_policy": "uniform_without_replacement",
+  "split_sha256": "38cd3faee9e6dc401e550da00ac350c84625a9218bda428192e8fbecbd738bcb"
+}

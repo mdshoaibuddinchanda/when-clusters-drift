@@ -1,0 +1,19 @@
+{
+  "available_current_rows": 36,
+  "bank_type": "current",
+  "canonical_row_map_sha256": "94c81f291f0af864c436ff59580faa489a4b557a54707c483d3293ed9e9eb458",
+  "condition": "class_prevalence_mild",
+  "dataset_id": "wine",
+  "derived_seed": 1827862280,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 2,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "ea67bd49fe27404568c861b67021ae56ff8bc2ed2c2a96aa33f3f6d09f9fc20d",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "scenario_status": "APPLICABLE",
+  "selected_current_rows": 36,
+  "selected_positions_sha256": "94c81f291f0af864c436ff59580faa489a4b557a54707c483d3293ed9e9eb458",
+  "selection_policy": "uniform_without_replacement",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "6fe08dc2c70b525ed92ff85887f9e3fdfad5f0fd5da1097d6c690ec72c407371"
+}

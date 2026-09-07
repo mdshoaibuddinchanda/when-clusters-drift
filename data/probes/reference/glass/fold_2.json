@@ -1,0 +1,16 @@
+{
+  "available_rows": 171,
+  "bank_type": "reference",
+  "canonical_bundle_sha256": "acc0be0fc68cc97c452475bbe1f35dae27d8dbdf8877445b022b26a4c1da4ba6",
+  "canonical_row_indices_sha256": "43e9183f2e8b8d1461c27a588351d6688bbebb35b6dbc0b393e4c61f1570ba9d",
+  "dataset_id": "glass",
+  "derived_seed": 1459445471,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 2,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "059b5820cf1182665269294b69863174048c76c5806ab8f375892e8643d181c0",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "selected_rows": 171,
+  "selection_policy": "uniform_without_replacement",
+  "split_sha256": "a9c231ee1a056eea32aaf278239add3191bb3fe20589f082c9cfc48c3c401ae4"
+}

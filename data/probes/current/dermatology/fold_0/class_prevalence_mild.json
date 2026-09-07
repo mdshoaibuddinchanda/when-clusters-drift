@@ -1,0 +1,19 @@
+{
+  "available_current_rows": 74,
+  "bank_type": "current",
+  "canonical_row_map_sha256": "7e0bac4f8b7a9fb77bef711a3f7d3e906f69d769b1cd0f4dd74ea068e16f2109",
+  "condition": "class_prevalence_mild",
+  "dataset_id": "dermatology",
+  "derived_seed": 1668866053,
+  "global_probe_seed": 2026090705,
+  "outer_fold": 0,
+  "preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+  "probe_bank_sha256": "beb57d20eb0ba026df25e94d8e9881225612b756548fa0d7bbed49677e542abc",
+  "probe_protocol_sha256": "f2553e8900aef113995acc38b708d2650b1625cadc80fab834eeff577c049c10",
+  "scenario_status": "APPLICABLE",
+  "selected_current_rows": 74,
+  "selected_positions_sha256": "7e0bac4f8b7a9fb77bef711a3f7d3e906f69d769b1cd0f4dd74ea068e16f2109",
+  "selection_policy": "uniform_without_replacement",
+  "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "shift_spec_sha256": "07ee22333c5624d2655468f7cafb761719cb1eac6c181fcf5c8fc17ab8b97883"
+}
