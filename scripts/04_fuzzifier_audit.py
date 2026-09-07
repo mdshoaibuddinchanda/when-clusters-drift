@@ -13,6 +13,7 @@ Produces the required scientific audit artifacts:
    and 5 seeds (all runs in denominator).
 """
 
+import argparse
 import json
 from pathlib import Path
 import sys
@@ -76,8 +77,10 @@ def audit_s01_objective_landscape(out_dir: Path, prep_cfg: Dict[str, Any]) -> No
         J_converged = fcm.objective_history_[-1] if fcm.objective_history_ else None
         J_grand = compute_grand_centroid_objective(X_source, K, m_val)
 
+        delta_j = (J_converged - J_grand) if (J_converged is not None) else None
+        grand_lower_than_converged = bool(delta_j > 1e-4) if (delta_j is not None) else False
         grand_lower_than_init = bool(J_grand < J_init) if J_init is not None else False
-        grand_is_minimum = bool(abs(J_converged - J_grand) / max(abs(J_grand), 1e-9) < 1e-4)
+        converged_is_grand = bool(abs(J_converged - J_grand) / max(abs(J_grand), 1e-9) < 1e-4)
 
         diag = fcm.diagnostics_
         records.append({
@@ -89,8 +92,10 @@ def audit_s01_objective_landscape(out_dir: Path, prep_cfg: Dict[str, Any]) -> No
             "J_init_separated": round(J_init, 2) if J_init is not None else None,
             "J_converged": round(J_converged, 2) if J_converged is not None else None,
             "J_grand_centroid": round(J_grand, 2),
+            "converged_minus_grand_objective": round(delta_j, 2) if delta_j is not None else None,
+            "grand_centroid_lower_than_converged": grand_lower_than_converged,
             "grand_centroid_lower_than_init": grand_lower_than_init,
-            "converged_is_grand_centroid": grand_is_minimum,
+            "converged_is_grand_centroid": converged_is_grand,
             "converged_is_degenerate": fcm.degenerate_solution_,
             "FPC": round(diag.get("fpc", 0.0), 4),
             "FPC_floor_gap": round(diag.get("fpc_floor_gap", 0.0), 6),
@@ -237,6 +242,10 @@ def audit_fuzzifier_m_grid(out_dir: Path, prep_cfg: Dict[str, Any], seeds: List[
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description="Audit fuzzifier policies and objective landscapes.")
+    parser.add_argument("--landscape-only", action="store_true", help="Only audit and regenerate s01 objective landscape.")
+    args = parser.parse_args()
+
     print("=" * 70)
     print("PHASE 3.2: FUZZIFIER POLICY FREEZE AND SOFT-MODEL VALIDITY GATE")
     print("=" * 70)
@@ -250,8 +259,9 @@ def main() -> None:
 
     t0 = time.perf_counter()
     audit_s01_objective_landscape(out_dir, prep_cfg)
-    audit_fuzzifier_policy_comparison(out_dir, prep_cfg, seeds)
-    audit_fuzzifier_m_grid(out_dir, prep_cfg, seeds)
+    if not args.landscape_only:
+        audit_fuzzifier_policy_comparison(out_dir, prep_cfg, seeds)
+        audit_fuzzifier_m_grid(out_dir, prep_cfg, seeds)
     total_time = time.perf_counter() - t0
     print(f"\nPhase 3.2 audit successfully finished in {total_time:.2f}s")
 

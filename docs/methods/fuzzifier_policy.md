@@ -24,7 +24,7 @@ As proven by Winkler, Klawonn, and Kruse (2010, 2011), as dimensionality $D$ inc
    $$J_m(\text{grand centroid}) = K^{1-m} \sum_{i=1}^N \|x_i - \bar{x}\|_2^2$$
 2. For $K=3, m=2$:
    $$J_2(\text{grand centroid}) = \frac{1}{3} \sum_{i=1}^N \|x_i - \bar{x}\|_2^2 = \frac{1}{3} S_{\text{tot}}$$
-3. For $m \ge 1.5$ on `s01_balanced_gmm` ($D=10$), this uniform grand-centroid state achieves a strictly lower objective $J_m$ than any separated prototype configuration. Consequently, gradient descent actively pulls prototypes toward $\bar{x}$ regardless of prototype initialization.
+3. For the tested `s01_balanced_gmm` source realization and FCM optimization protocol, the optimizer converges to the uniform grand-centroid solution for $m \ge 1.5$, whereas for $m \le 1.4$ it converges to distinct prototypes with an objective lower than the grand-centroid reference. (Note: this audit establishes observed optimizer behavior and objective comparisons on the empirical realization; it does not infer or prove a global optimum over all possible $(U, V)$ configurations.)
 
 ---
 
@@ -49,6 +49,18 @@ As $D \to \infty$, $m_D \to 1.0$, causing the exponent $\beta = \frac{2}{m-1}$ t
    This guarantees $\sum_k u_{ik} = 1.0 \pm 10^{-14}$ to floating-point precision without numerical overflow.
 3. **Exact Coincidence**: If any $d_{ik} = 0$, coincident prototypes receive $1/c$ and non-coincident receive $0.0$.
 
+### Low-Entropy / High-Crispness Caveat
+> As D increases, the dimension-adaptive fuzzifier approaches 1 and therefore yields increasingly crisp memberships. This prevents the high-dimensional uniform-partition pathology but may reduce the dynamic range of entropy- and membership-based drift signals. This is treated as an empirical question and will be explicitly assessed during the structural-signal falsification/ablation stage.
+
+The fuzzifier parameter $m$ will not be altered or tuned post-hoc to mitigate this effect. Later Phase 6 and Phase 7 evaluations must report signal usefulness separately across all individual structural signals:
+- $D_U^R$
+- $D_U^C$
+- $D_H$
+- $D_M$
+- $D_V$
+- $D_X$
+and evaluate whether low source entropy limits $D_H$ or membership-divergence signals.
+
 ---
 
 ## 4. Policy Comparison & Empirical Validation
@@ -56,15 +68,20 @@ As $D \to \infty$, $m_D \to 1.0$, causing the exponent $\beta = \frac{2}{m-1}$ t
 ### s01_balanced_gmm Objective Landscape
 Evaluated on `s01_balanced_gmm` ($N=8000, D=10, K=3$):
 
-| $m$ | $J_{\text{init}}$ (Separated) | $J_{\text{converged}}$ | $J_{\text{grand}}$ (Centroid) | Grand Centroid Lower? | Partition Status | Final FPC |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **1.10** | 83,849.19 | 61,913.70 | 71,676.68 | False | Non-degenerate | 0.9392 |
-| **1.20** ($m_D$) | 79,815.41 | 59,842.24 | 64,219.32 | False | Non-degenerate | 0.7795 |
-| **1.30** | 74,484.21 | 56,064.91 | 57,537.85 | False | Non-degenerate | 0.6017 |
-| **1.40** | 68,653.14 | 51,343.96 | 51,551.52 | False | Non-degenerate | 0.4485 |
-| **1.50** | 62,782.68 | 46,188.02 | 46,188.02 | **True** | **DEGENERATE** | 0.3333 |
-| **1.75** | 49,256.85 | 35,095.31 | 35,095.31 | **True** | **DEGENERATE** | 0.3333 |
-| **2.00** | 38,111.39 | 26,666.67 | 26,666.67 | **True** | **DEGENERATE** | 0.3333 |
+| $m$ | $J_{\text{init}}$ (Separated) | $J_{\text{converged}}$ | $J_{\text{grand}}$ (Centroid) | $\Delta J = J_{\text{conv}} - J_{\text{grand}}$ | Grand Centroid Lower than Converged? | Partition Status | Final FPC |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **1.10** | 83,849.19 | 61,913.70 | 71,676.68 | -9,762.98 | False | Non-degenerate | 0.9392 |
+| **1.20** ($m_D$) | 79,815.41 | 59,842.24 | 64,219.32 | -4,377.09 | False | Non-degenerate | 0.7795 |
+| **1.30** | 74,484.21 | 56,064.91 | 57,537.85 | -1,472.94 | False | Non-degenerate | 0.6017 |
+| **1.40** | 68,653.14 | 51,343.96 | 51,551.52 | -207.56 | False | Non-degenerate | 0.4485 |
+| **1.50** | 62,782.68 | 46,188.02 | 46,188.02 | 0.00 | False | **DEGENERATE** | 0.3333 |
+| **1.75** | 49,256.85 | 35,095.31 | 35,095.31 | 0.00 | False | **DEGENERATE** | 0.3333 |
+| **2.00** | 38,111.39 | 26,666.67 | 26,666.67 | 0.00 | False | **DEGENERATE** | 0.3333 |
+
+**Landscape Interpretation ($\Delta J = J_{\text{converged}} - J_{\text{grand}}$)**:
+- $\Delta J < 0$: Converged solution has lower objective than grand-centroid reference (separated prototypes maintained).
+- $\Delta J \approx 0$: Optimizer converged to the grand-centroid reference.
+- *Scientific note*: This audit establishes observed optimizer behavior and objective comparisons on the empirical realization; it does not infer or prove a global optimum over all possible $(U, V)$ configurations.
 
 ### Panel Summary (11 Datasets $\times$ 5 Seeds = 55 Runs)
 - **Fixed $m=2.0$ Control**:
