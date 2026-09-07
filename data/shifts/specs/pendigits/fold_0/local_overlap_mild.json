@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "e065779699b3acda40abd0b01e76c6cc6adcd12338c4a55bf084f8e8e362629e",
   "condition": "local_overlap_mild",
   "dataset_id": "pendigits",
   "derived_seed": 916215729,
@@ -20,9 +21,10 @@
   "outer_fold": 0,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "fb6cb1d78a7e2862163aa1befbc122c41f5e60aaba6b1e16678f39dc4f94b7a1",
+  "scenario_input_sha256": "4930826f225c205dcfba42370f7908741e2cb581d3374552eb92fd2f1c3c1c89",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "ecc1559ce49e5526a3a80c88c6b30acce0fb08d5157195d050bba5131d235dad",
+  "shift_spec_sha256": "6e5ed98c04a51a414945d0116987ee67d77f336d814a2f1db025da9ecd24e1a7",
+  "split_sha256": "87041798c6732e7b1da04db028a6e6feac43bb715b3d022ddf0b2b90afaeb385",
   "status": "APPLICABLE"
 }

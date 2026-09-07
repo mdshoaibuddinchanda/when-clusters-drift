@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "e4fcad9bbe56b5d128035baad54b4bf0da8fd86be5cd4328c3121f841695440e",
   "condition": "class_prevalence_severe",
   "dataset_id": "optdigits",
   "derived_seed": 392174298,
@@ -42,9 +43,10 @@
   "outer_fold": 3,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "71c3ce302384a577c1c13883848f02aa2028bbb965688d4a716eb2ab54648475",
+  "scenario_input_sha256": "49a2d67a7dd683c006067a03b154675c3a946f6d96caa27fee87df8789f4672a",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "19d39ee6c7d981473cf911b2bf3b966cd5324498191199c861fc8a8173014d32",
+  "shift_spec_sha256": "4281d9ec818cfc96da52ea6899a491c25cb8a3c835b5bec9a4865f5a4def2504",
+  "split_sha256": "d1b90dff53ec9dee4e1206ca7a5ad5040eb1a5666bf2ce230611d732e75a80df",
   "status": "APPLICABLE"
 }

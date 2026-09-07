@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "e9017e8d991e2aa03cfea07890801b98fc755002fb49c488b1c4aed738fbec2c",
   "condition": "mcar_severe",
   "dataset_id": "image_segmentation",
   "derived_seed": 1988790029,
@@ -37,9 +38,10 @@
   "outer_fold": 2,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "bfb2cd1f3a3afeb07c5b7695819f631ac6144b923a6834dfd517a29b61e6a9f1",
+  "scenario_input_sha256": "9866a1742de27b1db5492c969833de31e9e820c4d4e93966aaad7a46020cd1c4",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "54560bf43981bd7679d56bbbd66942e5accaeac4e53495761ab5360d1c8ec2ed",
+  "shift_spec_sha256": "e4e61564296ef50f777981b34208c4889dd81635761ae39dc9333a1b02a2a1d0",
+  "split_sha256": "bb6a80595049a7bae9eb4932bf9f2deed598c04d219db10a65a077178a829e56",
   "status": "APPLICABLE"
 }

@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "a21977d09b6b9b1f163d1e3d027900639183d0ce004d9b67193a04bb8465c146",
   "condition": "outliers_severe",
   "dataset_id": "letter_recognition",
   "derived_seed": 698889454,
@@ -6,8 +7,8 @@
   "metadata": {
     "eligible_feature_count": 16,
     "family": "outliers",
-    "noise_sha256": "447563a30e6ef4c46d8f25ef93d147f2f853a16b44c4ffa5ed8622f581eb090e",
-    "realized_standardized_displacement": 3.3367116259415175,
+    "noise_sha256": "c78eb82f545060b60853604a0908072032ac8d61729d3a4cd1e1f645ea8e4d0e",
+    "realized_standardized_displacement": 3.2752170157561693,
     "row_fraction": 0.15,
     "row_selection_sha256": "d0151253de0465ecd4ffc64c4fc96f586eccf64e6ca8bc6bfc2a0acdc3cf0ad6",
     "selected_row_count": 600,
@@ -20,9 +21,10 @@
   "outer_fold": 4,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "615366a090111d34a72b8a43b6c569004ef939ed63be14ebe7285cdb61f00d2a",
+  "scenario_input_sha256": "a75f2b953abfd6a10076361a93838443cf21b8999fe400a76b173797e5e82aa1",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "a82bec7afa1210c9170aa59b2938c2db16ace4144e7734fa24207ebe83c69e4a",
+  "shift_spec_sha256": "2f5adfaf89dba4a4ca5e38b60c559f027a73ae1111698c5fc78bfd06454b3903",
+  "split_sha256": "2209ffd1b34b6d75df1450ec396bb124c04771f4f4cdfb64ddb68a83b43f1825",
   "status": "APPLICABLE"
 }

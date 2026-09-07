@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "e4b7891aba45f2e8dbf36e0f779a1d244f0f60f4120b356a22f02cac37d5fd38",
   "condition": "scale_severe",
   "dataset_id": "human_activity_recognition",
   "derived_seed": 154335926,
@@ -1141,9 +1142,10 @@
   "outer_fold": 4,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "1a1965b0c4f6f354d0948c4f351274a82e9f567bdb3bfd0a71a8d6ede07f4711",
+  "scenario_input_sha256": "705725727c1365b279159f265e53b60badfb254972842b75339bda4e2f1928f6",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "bf4fdeffa98f2fa0ad5df88d9405f6be2d040608b8d3878893c038c088484925",
+  "shift_spec_sha256": "2f4cf7de1bf84c37fc16ea64a8fba8b96bc183a697eb1d683deb5aa1ac5d9772",
+  "split_sha256": "0a97daa67ad27bec34a0b2463123ad83c115178eef8f6b84756e4cef7e65c7a9",
   "status": "APPLICABLE"
 }

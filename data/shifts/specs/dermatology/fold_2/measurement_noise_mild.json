@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "e8ca74df36fa9d2b9d7b9627cd2ccf8d0306bd343ca2424d23a375d2c3d7c229",
   "condition": "measurement_noise_mild",
   "dataset_id": "dermatology",
   "derived_seed": 1778974127,
@@ -7,9 +8,9 @@
     "eligible_feature_count": 1,
     "family": "measurement_noise",
     "noise_multiplier": 0.1,
-    "noise_seed": 192026201,
-    "noise_sha256": "b339a834e9c562d42e65247e18497767c0c44a60c279e0c8ce489979268f8fe7",
-    "rms_standardized_perturbation": 0.09700261742815723,
+    "noise_seed": 2073316286,
+    "noise_sha256": "8029d72fcbfb4b6dc3f9ddaba44e5a5b5e9b6a9fbbe643097edf53ae619c9af0",
+    "rms_standardized_perturbation": 0.08805239455424224,
     "severity": "mild"
   },
   "npz_relpath": "data/shifts/specs/dermatology/fold_2/measurement_noise_mild.npz",
@@ -17,9 +18,10 @@
   "outer_fold": 2,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "78e28fb8a44b404bf8b83d388f04ed9ce4ef9a877b4d98dad29497df358eb349",
+  "scenario_input_sha256": "288cb863fe307b473e3da00340276754f6a5da82306afeec5adc9fcfdb351e6b",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "9d1e9563c977f85ec6e800fdb2c5405055e524d53303130ed039ceaafae42c38",
+  "shift_spec_sha256": "0c5da3176b02cb3498b5bb7f6e8bf782ef0d1e14a4c81b1214d3b64bc2e1146f",
+  "split_sha256": "fa218fa2006d5e889f5b9368f7fc63ef4e7441330d266b4d4595cf0e2f6abf34",
   "status": "APPLICABLE"
 }

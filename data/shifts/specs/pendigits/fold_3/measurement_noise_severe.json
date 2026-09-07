@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "e065779699b3acda40abd0b01e76c6cc6adcd12338c4a55bf084f8e8e362629e",
   "condition": "measurement_noise_severe",
   "dataset_id": "pendigits",
   "derived_seed": 2123770957,
@@ -7,9 +8,9 @@
     "eligible_feature_count": 16,
     "family": "measurement_noise",
     "noise_multiplier": 0.3,
-    "noise_seed": 1181619527,
-    "noise_sha256": "96784e46376a70116032de72b6cb41c7856faf1b8346fa19fe3993c3e1d61ceb",
-    "rms_standardized_perturbation": 0.30018149291698015,
+    "noise_seed": 273766645,
+    "noise_sha256": "1eea3e31e520d2adf2e780e3bb0b111488a7603e71e9ed0cd0774b14044ee442",
+    "rms_standardized_perturbation": 0.29948160878502594,
     "severity": "severe"
   },
   "npz_relpath": "data/shifts/specs/pendigits/fold_3/measurement_noise_severe.npz",
@@ -17,9 +18,10 @@
   "outer_fold": 3,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "74f22f375829c1299f5c39e1b62c8dee87b54107d81d1ecce86c30c1d04aa984",
+  "scenario_input_sha256": "2484cefbb7e0c4b239edc83109fa43696a011ffcc8b21ff3f4a42da91566e7e4",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "3068358a2518d8f370a9e00759bae32a89e1a487aa4dbf25aa02d823e482f9a6",
+  "shift_spec_sha256": "1d7974b1a238feec2fba1a3e3abafe6f90c860f9926129afcaa6ab23cc641647",
+  "split_sha256": "e01dcf842999b6778d07652345d9c3d34fd7f058e67ded19449fa8105db28b77",
   "status": "APPLICABLE"
 }

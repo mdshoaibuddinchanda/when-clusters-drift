@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "bd0134d8ec032b0cb125d6395ddb0b6fe9f751efcb5b2961d4803f89cb4b8605",
   "condition": "class_prevalence_severe",
   "dataset_id": "electricity",
   "derived_seed": 1828786938,
@@ -26,9 +27,10 @@
   "outer_fold": 3,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "7ae39c6c8953eb34bb4d8c201eb19d6ab00adf9615d8f9561416ff69d19da261",
+  "scenario_input_sha256": "5f3052381a5663e550af2edf60a63dca1854c30770e8534082245222ce9b5627",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "55d73ad7ab88269bb150960d9d5ef106bedbcd49e587d1da98f8bad2142153b3",
+  "shift_spec_sha256": "8f475f3269ab58a00438f5161707fa6eaeba9d4a6fd4af08238e6467db8c5754",
+  "split_sha256": "38cd3faee9e6dc401e550da00ac350c84625a9218bda428192e8fbecbd738bcb",
   "status": "APPLICABLE"
 }

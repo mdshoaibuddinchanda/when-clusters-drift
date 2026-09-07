@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "b3cc7798de38b4f5b40a3c0e9c6afe0d0368422198cadfc4c80412cc739c8dc9",
   "condition": "class_prevalence_severe",
   "dataset_id": "seeds",
   "derived_seed": 353708540,
@@ -28,9 +29,10 @@
   "outer_fold": 0,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "f25a4e02cd3e4b4018f23ed97f9535cc673c664b0c2db7481804b893f7eaba08",
+  "scenario_input_sha256": "989329c703dfc91d6b2acafd1f8187c6f49c87b4b98ddd53ed6bd318d5fa65bb",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "bf76bed1fae2f37962c9c90e9279aa59dae2892b3459769c6bc9ddb5f7c14f7b",
+  "shift_spec_sha256": "e0408fb1c4ef0ac69a6352189ffbc9bd31bbdeab016572b2a6599f3a35fb1cc2",
+  "split_sha256": "6f6544fa56400abeb4252d308422ae187fb3a56a4e8e315e252880c452cdea29",
   "status": "APPLICABLE"
 }

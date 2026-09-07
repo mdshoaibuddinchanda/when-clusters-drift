@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "ff79a9f41b62db1f4c4927745c0d1ffad2c814a40904535067e46ba412a2d763",
   "condition": "outliers_severe",
   "dataset_id": "haberman_survival",
   "derived_seed": 2073421317,
@@ -6,8 +7,8 @@
   "metadata": {
     "eligible_feature_count": 2,
     "family": "outliers",
-    "noise_sha256": "915f568fb39c8434d8e8f30f504c2d1e14da036d9a87225463fc4f2b281888c8",
-    "realized_standardized_displacement": 3.097996357468568,
+    "noise_sha256": "6cf2b38bd03570da4401ba1ac42bc95db04639333f91384240b2e976d630cd19",
+    "realized_standardized_displacement": 2.230702378786375,
     "row_fraction": 0.15,
     "row_selection_sha256": "2b14e717bd6039682e64112a860da4aa30f48a2ca0442062bd91ce78bbf61a3c",
     "selected_row_count": 9,
@@ -20,9 +21,10 @@
   "outer_fold": 1,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "ebd0dc076db12051608038b8e06501920ac45e3c9dc53219bf19175fe3025e9c",
+  "scenario_input_sha256": "cdc352e6b92e5fad8fea20971c7d74c5916da12a9821a16aa15e9c28ff1dce63",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "8459868706e8ba23e211536c10a4d45f8dc69ca588ca1be4b97f8df226385d06",
+  "shift_spec_sha256": "94e57ebfc553a8646bd6a7e9d241d35d49998b4d1051127e2073f9830d885e3f",
+  "split_sha256": "0fd17abf7cae8a0ca500820e931316b062aa2d687130ada9dba2fd2ba94dd0e6",
   "status": "APPLICABLE"
 }

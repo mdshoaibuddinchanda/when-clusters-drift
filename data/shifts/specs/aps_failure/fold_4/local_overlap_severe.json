@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "ce3e2676f0650e30fcd51f698c0909651e832dbcb922c33ff77a72dd235b1350",
   "condition": "local_overlap_severe",
   "dataset_id": "aps_failure",
   "derived_seed": 1216475585,
@@ -7,12 +8,12 @@
     "alpha": 0.5,
     "boundary_fraction": 0.3,
     "family": "local_overlap",
-    "mean_competing_centroid_dist_after": 13.925495017362785,
-    "mean_competing_centroid_dist_before": 26.71815761102908,
-    "mean_source_normalized_movement": 13.052794517587722,
-    "overlap_strength_metric": 12.792662593666297,
+    "mean_competing_centroid_dist_after": 13.784794899773077,
+    "mean_competing_centroid_dist_before": 26.773835488962785,
+    "mean_source_normalized_movement": 13.225109233619218,
+    "overlap_strength_metric": 12.989040589189708,
     "selected_rows_count": 4560,
-    "selected_rows_sha256": "66b6a32466d8a5e6da8196d298aea01f2eebe40f96a5db03930852fcd5c128ab",
+    "selected_rows_sha256": "4cf674e0095e6587e255cc68dea6e1ac8493294955e0eb864c20e90dcd4f2c5c",
     "severity": "severe"
   },
   "npz_relpath": "data/shifts/specs/aps_failure/fold_4/local_overlap_severe.npz",
@@ -20,9 +21,10 @@
   "outer_fold": 4,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "8adc2b66f67e32268f13755cce235b28e59d85a8a1f623641c22e3c42bbcd161",
+  "scenario_input_sha256": "1f6f116013779349586ad1e0cc00c6b20a9693bb7b05f64c36c75d2c0d87db20",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "0c89e190d01cb48954d1b130454c4a3e6287d2fd65127aece0dd11cc1a10142d",
+  "shift_spec_sha256": "9e37364c179217bbd55b92bc169a27cd9c34c555fb9627eb79110aecc578bbd6",
+  "split_sha256": "6414e098d0469dd1b69a46bf8bc36f799533b349cebd93b49f7588546f12cbce",
   "status": "APPLICABLE"
 }

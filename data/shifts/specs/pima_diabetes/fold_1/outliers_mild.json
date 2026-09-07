@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "27fed1028d76076c513c75a26e3b31e211b5ca6116b72d0c35638b41d15c0c93",
   "condition": "outliers_mild",
   "dataset_id": "pima_diabetes",
   "derived_seed": 1618916039,
@@ -6,8 +7,8 @@
   "metadata": {
     "eligible_feature_count": 8,
     "family": "outliers",
-    "noise_sha256": "dc2df1bdf9964d98a44f92cf8e3016c79ff9e49aa643c7e3be0cf3edfa71e96b",
-    "realized_standardized_displacement": 4.122713992630384,
+    "noise_sha256": "8dc4f5500b9e5ef8edd38f4ba1f9742eb11390c4de6d03dade243e656d63f052",
+    "realized_standardized_displacement": 3.751830471027059,
     "row_fraction": 0.05,
     "row_selection_sha256": "7dd10f6371b266f07e847d71d742878871a6e1f827da91d3a2c8eaded166cb5d",
     "selected_row_count": 8,
@@ -20,9 +21,10 @@
   "outer_fold": 1,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "ff310ca98d4d7006b4e40bc7ae6b8839eb8737a5ba248dbad39c752583a366a0",
+  "scenario_input_sha256": "cb9bb300e07560a4ea1aca140c5680e065bfee2e778c7688a920b305748766ee",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "3fb6b09dc4c370c46b955ddd939164cb6e40e8f0041acb520b67c1cad62f8d7d",
+  "shift_spec_sha256": "291bb7b07fb3a22ab0e700598d4c8c0b379bec03df2cdcef5b5aec82cbe0b0a6",
+  "split_sha256": "717f4d6df7abee746fa3c2d8f15621526fb69eac87dd5ef07d1ed74fb18ab690",
   "status": "APPLICABLE"
 }

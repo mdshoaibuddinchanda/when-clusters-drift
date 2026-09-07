@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "eca7d42d83ca60d905dd826974f997f3fb761b8e1d9313e5069f69d54aa1908a",
   "condition": "measurement_noise_mild",
   "dataset_id": "ionosphere",
   "derived_seed": 1437971736,
@@ -7,9 +8,9 @@
     "eligible_feature_count": 33,
     "family": "measurement_noise",
     "noise_multiplier": 0.1,
-    "noise_seed": 618540854,
-    "noise_sha256": "e74cdc3ef75eacf1fb3e7b67c9e5240b83875365d3b3018f568e7a40d4be4de3",
-    "rms_standardized_perturbation": 0.1005701767544762,
+    "noise_seed": 745033117,
+    "noise_sha256": "57d3e19f82569b16b43951219c77b470d5dfe23549e291107deed18bfbf99b72",
+    "rms_standardized_perturbation": 0.10024494301025907,
     "severity": "mild"
   },
   "npz_relpath": "data/shifts/specs/ionosphere/fold_4/measurement_noise_mild.npz",
@@ -17,9 +18,10 @@
   "outer_fold": 4,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "2106cdca0ff8a7bd9cb50ce0e4b15f7602529f41844c303d726ccd244d91f8dd",
+  "scenario_input_sha256": "05a77edbf6acd6bbb26c712736d4db24385d4d90549aaff66f5f811ddf417ca4",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "ac8f67054c98b7736575b7c62d8b2a5cca4ee6a81a5d9a39b73d0c01d056f43f",
+  "shift_spec_sha256": "a491db0f4ea03db8174152f4e14533d8cc399d7a2c5d642a4607a4347b6b4866",
+  "split_sha256": "a62b97be0f5cfef10bd3c970f37c11e3ad65c404250da42cc4ae57d2d1594d31",
   "status": "APPLICABLE"
 }

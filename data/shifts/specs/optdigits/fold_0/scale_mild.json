@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "e4fcad9bbe56b5d128035baad54b4bf0da8fd86be5cd4328c3121f841695440e",
   "condition": "scale_mild",
   "dataset_id": "optdigits",
   "derived_seed": 1048152381,
@@ -143,9 +144,10 @@
   "outer_fold": 0,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "24545e853790d9457f1c96989a5e2de9b78ec73167666eaf989f14432123f2b5",
+  "scenario_input_sha256": "ea48571bdfead8faeabdebb5f5523f686a80fc2c949b0e10c1f7ce6afbf42ba0",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "8f6d3609b530142de54ca8ca695ecb5e7ac1d48e40631198c63f1cdd72b4f0e0",
+  "shift_spec_sha256": "c1f0f922b92c5894625a60eac388bfc9aa6dd1e90158fef38b94dd9ec7ebb0e2",
+  "split_sha256": "2fbdc322c3cd06b9f8089eefc4ea1c5c349c26cf3b402e40a70fcefa2a62f139",
   "status": "APPLICABLE"
 }

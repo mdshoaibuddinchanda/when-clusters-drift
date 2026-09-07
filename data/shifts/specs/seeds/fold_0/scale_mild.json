@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "b3cc7798de38b4f5b40a3c0e9c6afe0d0368422198cadfc4c80412cc739c8dc9",
   "condition": "scale_mild",
   "dataset_id": "seeds",
   "derived_seed": 431238731,
@@ -33,9 +34,10 @@
   "outer_fold": 0,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "f25a4e02cd3e4b4018f23ed97f9535cc673c664b0c2db7481804b893f7eaba08",
+  "scenario_input_sha256": "989329c703dfc91d6b2acafd1f8187c6f49c87b4b98ddd53ed6bd318d5fa65bb",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "63ddd73a009b1839f144881dd8e83ac9eea21c3d52e8ce538894813a6f6a0879",
+  "shift_spec_sha256": "377afbb4977ed71806a7160903f8e1f31b7707f17085e84d99d3ed30aed992fa",
+  "split_sha256": "6f6544fa56400abeb4252d308422ae187fb3a56a4e8e315e252880c452cdea29",
   "status": "APPLICABLE"
 }

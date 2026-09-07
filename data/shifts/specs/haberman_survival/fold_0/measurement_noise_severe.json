@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "ff79a9f41b62db1f4c4927745c0d1ffad2c814a40904535067e46ba412a2d763",
   "condition": "measurement_noise_severe",
   "dataset_id": "haberman_survival",
   "derived_seed": 125709814,
@@ -7,9 +8,9 @@
     "eligible_feature_count": 2,
     "family": "measurement_noise",
     "noise_multiplier": 0.3,
-    "noise_seed": 502053991,
-    "noise_sha256": "6e4144575adac32ac0d47bbf4c928bf7d5dc4729e8f5ec037fc245f969b3cb47",
-    "rms_standardized_perturbation": 0.28103211069797596,
+    "noise_seed": 1825427577,
+    "noise_sha256": "0407daaa7d899ea8acaa7b521173da2782777f73ffbf471750cb65c185de19c2",
+    "rms_standardized_perturbation": 0.3074276727358311,
     "severity": "severe"
   },
   "npz_relpath": "data/shifts/specs/haberman_survival/fold_0/measurement_noise_severe.npz",
@@ -17,9 +18,10 @@
   "outer_fold": 0,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "9a9c80b6b7579999dda6f5b7f02ba0639befcefeca04db846605233ded103427",
+  "scenario_input_sha256": "7dcce9a41a2870d8a93e2aff7758961a574c1b99310fc09f0d926d5cc8276b6e",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "e8fd1c583ee0fdf3bf12f40295b6f962d955f410c30b2019f45419e47ef1400b",
+  "shift_spec_sha256": "f8427b71aa6ae1825c911404dd86f7ca9689872a5584103ef6c18cd8b0c865dd",
+  "split_sha256": "2680fc442c6548b30591ea917a6d8f0aafd719f24b03e128558ee934cb27350e",
   "status": "APPLICABLE"
 }

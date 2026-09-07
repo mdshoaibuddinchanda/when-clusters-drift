@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "eca7d42d83ca60d905dd826974f997f3fb761b8e1d9313e5069f69d54aa1908a",
   "condition": "local_overlap_severe",
   "dataset_id": "ionosphere",
   "derived_seed": 1559873759,
@@ -20,9 +21,10 @@
   "outer_fold": 3,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "a064db7fc0183b11be244c42be0a260a27b448d009223b57a9d3d61d66cdd05a",
+  "scenario_input_sha256": "fe863a4bc9412571928cda1ae42d4e1aa3394b0a153610b2705db5f7b9e1729b",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "589f372b8140d94c2920c85068961cd17bb9895badc71bef8418d26af860278e",
+  "shift_spec_sha256": "6449dafbc806861e10743f02062a33b19162a646beb9db87be41d8d295b6935d",
+  "split_sha256": "39804520b475ca4f15d0225e5c30308fe9a1f740fd243645039e9d0fbe1d3744",
   "status": "APPLICABLE"
 }

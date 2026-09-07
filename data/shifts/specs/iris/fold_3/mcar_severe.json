@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "06a7bea1035adc450f695977cf5ff01ec45cd7cb140a5e8f23ad103da0949a27",
   "condition": "mcar_severe",
   "dataset_id": "iris",
   "derived_seed": 2073235469,
@@ -23,9 +24,10 @@
   "outer_fold": 3,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "51f66c973572e2c5157201f8a25e577069fc5c6f1181bdb8f3df41d79831c5ad",
+  "scenario_input_sha256": "52ca9aed87aba4a1772313bd5955efe741bc7a3ca37d5bfaed912dd99be18424",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "c5d174c48d91857915980f2f0a603a559bc1f54ee425891a3665468187ed9cec",
+  "shift_spec_sha256": "f173c3722ad926da18ab14f2d1d879cc2219edfd5677718fea01a9304d5f6679",
+  "split_sha256": "e60af7ef49846cc4df27339327be3fb1dd554e4bcfb87595b4547231f90b4ee8",
   "status": "APPLICABLE"
 }

@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "6e911376a9efb14d8854f88a603a01dd992892b8151023dbbbef9df750a45879",
   "condition": "measurement_noise_mild",
   "dataset_id": "heart_disease",
   "derived_seed": 1135213483,
@@ -7,9 +8,9 @@
     "eligible_feature_count": 13,
     "family": "measurement_noise",
     "noise_multiplier": 0.1,
-    "noise_seed": 1316502531,
-    "noise_sha256": "549d7b019d04c498e3c2f6cbe95be8fd68dbafb3d18afaba0b123fc610266b57",
-    "rms_standardized_perturbation": 0.09606743621780293,
+    "noise_seed": 1676633714,
+    "noise_sha256": "35ab1c883094c5c8d10c32aa9fd040f6d41ac3a17b9ef94e0aa688cf53e21d6c",
+    "rms_standardized_perturbation": 0.10247891575063722,
     "severity": "mild"
   },
   "npz_relpath": "data/shifts/specs/heart_disease/fold_2/measurement_noise_mild.npz",
@@ -17,9 +18,10 @@
   "outer_fold": 2,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "9dbfafb9c66d4771c4c8f9d9c10d27f222a5c35961fdb2a69373500e05ea4326",
+  "scenario_input_sha256": "d9dba27c9407b5d413430ba4683a686985466a52139bd21cb1957b27a0d15098",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "3f66df2ace2c3f0c6ec56cb96ee19e58393ec8247df4a0cc7185da6c43b61ee8",
+  "shift_spec_sha256": "cd582a9de52838b68fdbce135caaf847da255b7054da8450ee42a0e080e67c5c",
+  "split_sha256": "b347ae6511f5a5ae20fef52aa7a591a4a6fc866e29a54934e4e525964cd6dc92",
   "status": "APPLICABLE"
 }

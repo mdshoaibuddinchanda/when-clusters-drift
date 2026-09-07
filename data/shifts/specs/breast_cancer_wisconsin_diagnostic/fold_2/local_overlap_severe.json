@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "afbaa0e3d7da94dd224c489771b90fa0db77875ee64c74a2dd26a31d0884eac1",
   "condition": "local_overlap_severe",
   "dataset_id": "breast_cancer_wisconsin_diagnostic",
   "derived_seed": 1201379514,
@@ -20,9 +21,10 @@
   "outer_fold": 2,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "c98f6230ff6651c3b0d5ab05b2a34f158e0a309c81616827fbdb9a2e7c98f66c",
+  "scenario_input_sha256": "7c889afb672c9f9d009f8dff05d644d4efba89a24db635b7810f7c1485299d31",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "2456ba9fb958ee00beb88113462f7b696545c6daf46e037d5260da824e267e1f",
+  "shift_spec_sha256": "0ccf447ead55c9b5435670983b3eb74d6f91d809a45d47ac74bf53713f6ad957",
+  "split_sha256": "721bf35e04e0dee50c9be0251dc1d00cae8667a1d8260fb9bb1db8ae400e5133",
   "status": "APPLICABLE"
 }

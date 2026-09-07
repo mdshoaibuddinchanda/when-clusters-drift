@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "9d069e37146d31022ec288e3c2fbbadfba07e43cfc2a6af6f95be6532938d4cf",
   "condition": "class_prevalence_severe",
   "dataset_id": "isolet",
   "derived_seed": 1997793791,
@@ -74,9 +75,10 @@
   "outer_fold": 4,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "ec1081d7a126e777c13bebb6ee0dfe182811b7c141f6165cff7f551b207cab0e",
+  "scenario_input_sha256": "5657603796c6581643182c0c3f2db18a54be84452e49091a30927fcf1a4fbbe2",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "163ca22e448e02a35e4efb4a59e7371b23fdfa7a6692f1013b7bc661dbec7a81",
+  "shift_spec_sha256": "46b71f449b0590c7e8d249154e1606b76f20b741c1bd5016a10474b904141475",
+  "split_sha256": "729ec36a3a64164caf31971c9be99afa7c1b102e9887fbd7f758e2b6e4bbe6f3",
   "status": "APPLICABLE"
 }

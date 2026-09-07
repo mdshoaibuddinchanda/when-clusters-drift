@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "ce3e2676f0650e30fcd51f698c0909651e832dbcb922c33ff77a72dd235b1350",
   "condition": "clean",
   "dataset_id": "aps_failure",
   "derived_seed": 1930559758,
@@ -12,9 +13,10 @@
   "outer_fold": 1,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "80148df5d316eb03692c5ff786e490013b016280c519a15e25587a91effaf2b5",
+  "scenario_input_sha256": "b7917e5c4944dd26cd49e6a2c8f2a398c59c746e0ec89ac51b1755aff31b8a96",
   "severity": "none",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "3f5025c42416daf6cf93952ea37234199a59101b48d0b17fdf18f76b4084db54",
+  "shift_spec_sha256": "3375311ca19312b654d5b44d305408e95fd0e378506c18b5ac9a94d1a7d44800",
+  "split_sha256": "50792e9e320e74e0078db9b78a2cda91011f1924f75552cda45cfb66f9ca602c",
   "status": "APPLICABLE"
 }

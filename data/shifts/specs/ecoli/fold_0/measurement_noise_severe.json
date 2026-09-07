@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "b5ef6012bb4ec53a31808fbfd354ec7463b1ca2aac940be4ede819f6bc5fa2d2",
   "condition": "measurement_noise_severe",
   "dataset_id": "ecoli",
   "derived_seed": 875328032,
@@ -7,9 +8,9 @@
     "eligible_feature_count": 7,
     "family": "measurement_noise",
     "noise_multiplier": 0.3,
-    "noise_seed": 1443982406,
-    "noise_sha256": "6e78d5fdcbe124d885db930ca2ef0374cf0750e35fa29ac06bfaac9dfe5920de",
-    "rms_standardized_perturbation": 0.29751206314096423,
+    "noise_seed": 1919702220,
+    "noise_sha256": "f74f17b702b17d1ab5e9856e20ab4fff5fd8981d16fa922b4c3761d50d702a1b",
+    "rms_standardized_perturbation": 0.30779495837775017,
     "severity": "severe"
   },
   "npz_relpath": "data/shifts/specs/ecoli/fold_0/measurement_noise_severe.npz",
@@ -17,9 +18,10 @@
   "outer_fold": 0,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "91520e8c96052716456906e9006ac02638516a18f522b0ee0d66d3b07d04335a",
+  "scenario_input_sha256": "11f0306742605e90dad460e861e8e096bf157ecda5fe35c344d4c9f5910b6934",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "ea0df888deb92fee152d20f1fcfac728f5689456f05b63d62436555a9e3c1efa",
+  "shift_spec_sha256": "91913369ae4c7df8fd55027cff5395db7581c338bf43cc9e79db57be32fdb473",
+  "split_sha256": "acf0c920b022a1b09053d3fb46e75c93550c6166e5a90a5dc91fd99919c4a3a0",
   "status": "APPLICABLE"
 }

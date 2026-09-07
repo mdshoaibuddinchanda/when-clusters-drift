@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "bbb1ad8a894a4c00778d3713ac65ffdaabf42a343f2b8647ba4e4113109800b2",
   "condition": "outliers_mild",
   "dataset_id": "yeast",
   "derived_seed": 228928459,
@@ -6,8 +7,8 @@
   "metadata": {
     "eligible_feature_count": 8,
     "family": "outliers",
-    "noise_sha256": "6dbe745883c51691a2b0fa7f59a62b35d894ee3a0261929a2fe060e6d34a6a24",
-    "realized_standardized_displacement": 2.8670684813437872,
+    "noise_sha256": "af6d50f1a278b83ba67f9f10ad50526142f8d6b47ac23d40d3981f94243098ad",
+    "realized_standardized_displacement": 3.3915278064657506,
     "row_fraction": 0.05,
     "row_selection_sha256": "9d1c01d39f60e442dc203422c7a11198c5007a7e684a9c65105a95cef474c7f9",
     "selected_row_count": 15,
@@ -20,9 +21,10 @@
   "outer_fold": 2,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "2627a127d33a46ddf318d5285a9ff5c197171eb58b31d836c90d5fad2aa8585f",
+  "scenario_input_sha256": "cdde65e83060246617986303c910324aba41a34e03d8fd29d8651925287ac040",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "266ceb04e731f9cf015aace1ea38d27c87a6ce845c36dd27d09788565178863d",
+  "shift_spec_sha256": "84c5adf7b7489525295cf246a0e8ecc2876611748d7195b3816109a6abd2935d",
+  "split_sha256": "ca743c6d4a3953f8bd6ca3533b9a5a0d4b830378ff2f6060ea99ee0dae9573bb",
   "status": "APPLICABLE"
 }

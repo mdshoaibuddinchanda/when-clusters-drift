@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "df45af075f8d5419d64bc7c81db9ddad980bd2bad5380309af81ade8608ba4b6",
   "condition": "measurement_noise_severe",
   "dataset_id": "spambase",
   "derived_seed": 1703064634,
@@ -7,9 +8,9 @@
     "eligible_feature_count": 57,
     "family": "measurement_noise",
     "noise_multiplier": 0.3,
-    "noise_seed": 1120556209,
-    "noise_sha256": "f678fb335f0a6bdc16b482ea25ec4831e45475aa23ed2381c67dc64e7cdea7ac",
-    "rms_standardized_perturbation": 0.3010021839216795,
+    "noise_seed": 1218394235,
+    "noise_sha256": "f9452944ac59e72fbbcf22614f53b86f30e874fd0de4e2727cb43e9646c78978",
+    "rms_standardized_perturbation": 0.299852112207197,
     "severity": "severe"
   },
   "npz_relpath": "data/shifts/specs/spambase/fold_4/measurement_noise_severe.npz",
@@ -17,9 +18,10 @@
   "outer_fold": 4,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "9d584b24febd7ea4b8aab7490a0669e7c9c9edf477208d36700147ad8c1fd324",
+  "scenario_input_sha256": "0294b8459dfe8190e94a2400f0d32600685969f076d419e2299cfe0fca9ecf6d",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "1b18e4b150e73902d454371a39f622a9337fac72afd3c227f26cd28c13da126f",
+  "shift_spec_sha256": "d28dd15cac2ab2870e99eabf8582b503454645cae52f177c364726883d4fbc08",
+  "split_sha256": "da75f870f877ab95a19bc02e083e5af7733646ebd9a8401a2b870d29811b59c3",
   "status": "APPLICABLE"
 }

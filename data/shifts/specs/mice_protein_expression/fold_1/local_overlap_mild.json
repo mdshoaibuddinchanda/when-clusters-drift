@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "0ad1f7f847c84b9cc5299bd05d8823b1dbd152612c6fc50bb458fec212d7c8c4",
   "condition": "local_overlap_mild",
   "dataset_id": "mice_protein_expression",
   "derived_seed": 1138597237,
@@ -7,10 +8,10 @@
     "alpha": 0.25,
     "boundary_fraction": 0.3,
     "family": "local_overlap",
-    "mean_competing_centroid_dist_after": 4.240193323183415,
-    "mean_competing_centroid_dist_before": 5.650693286731069,
+    "mean_competing_centroid_dist_after": 4.246138993441571,
+    "mean_competing_centroid_dist_before": 5.655165336352342,
     "mean_source_normalized_movement": 1.4117404321318292,
-    "overlap_strength_metric": 1.4104999635476538,
+    "overlap_strength_metric": 1.4090263429107708,
     "selected_rows_count": 68,
     "selected_rows_sha256": "757570a5ec4bae79d00e9d467fc46eb10805390368e8cce8205a4c3e31865f31",
     "severity": "mild"
@@ -20,9 +21,10 @@
   "outer_fold": 1,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "802915f7223e6d5053ce884e9d3fbbd69f7568c5247b41b448e57e5cc395f90e",
+  "scenario_input_sha256": "d320efc9cb709841df05456981b253f2cfc6b309c8c365e62a44e53758e50bb0",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "df540cb9e4033ed11f3d0eed1ca04575a95f5f8cb9675a4a1088c6295f3842c8",
+  "shift_spec_sha256": "30420187edd43438142dfef6a0c85e7e72b5edd794997090a2bbfbc116b20ad2",
+  "split_sha256": "313c21e0ffb1d56f5784dd313cf5afb3e9f5e01d602f192bdc36e56f8fe05c79",
   "status": "APPLICABLE"
 }

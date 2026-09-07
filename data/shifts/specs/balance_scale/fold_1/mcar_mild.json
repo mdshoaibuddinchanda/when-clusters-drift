@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "bcd795f2be7918189f21a739b48ad5583dcdae8efdbd23256b9c574f6c7d3d66",
   "condition": "mcar_mild",
   "dataset_id": "balance_scale",
   "derived_seed": 124733870,
@@ -23,9 +24,10 @@
   "outer_fold": 1,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "9551ebe48f11fe04c81ecb4dd649e371ec3abde6d5fc7c0f3a381732d40dc4bb",
+  "scenario_input_sha256": "b5ec5822a16fc20768bba0f3596f8ef90d829a945384efc2e9939cc29fe1e6a5",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "06e9c3b47b3e579cc0e8d09265dc50dccd29c2992db4e16455efd9254a9bfdb4",
+  "shift_spec_sha256": "9d786e1baea5cdf6cf370dc3d0630fd5aadead2115d8d4b839d39cc6c7731d1b",
+  "split_sha256": "84546d91ea43e99f88176950ae42f9a1f47febc5b1d9ad20b528e69d00528802",
   "status": "APPLICABLE"
 }

@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "df45af075f8d5419d64bc7c81db9ddad980bd2bad5380309af81ade8608ba4b6",
   "condition": "clean",
   "dataset_id": "spambase",
   "derived_seed": 1778851718,
@@ -12,9 +13,10 @@
   "outer_fold": 2,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "7b8d0c87eb044c59b3f348ffa057f2afa248928ba284db821e4c0bc17187ff7c",
+  "scenario_input_sha256": "316c676631dad37f75df743bafd3bfe79851465099ce37e036647562f4818661",
   "severity": "none",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "b40764a6420b59f5ddaa5ddaffc17ca05cde0d9796fa2347dc9a38eefc62546a",
+  "shift_spec_sha256": "6cb2ca3936a233ab101c212d5f7152724e59ca52153200a2e728a387855da99f",
+  "split_sha256": "ef63efd4fcdc38af9f44660af01f8162d6f8b05268f9ba8e072b17d92777916f",
   "status": "APPLICABLE"
 }

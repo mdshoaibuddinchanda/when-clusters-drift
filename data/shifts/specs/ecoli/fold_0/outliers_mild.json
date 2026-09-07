@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "b5ef6012bb4ec53a31808fbfd354ec7463b1ca2aac940be4ede819f6bc5fa2d2",
   "condition": "outliers_mild",
   "dataset_id": "ecoli",
   "derived_seed": 665478018,
@@ -6,8 +7,8 @@
   "metadata": {
     "eligible_feature_count": 7,
     "family": "outliers",
-    "noise_sha256": "060443fa4952b3adcc0b7cbf3516bbfd3b29281f5dab3c4bcd27340d830ee98c",
-    "realized_standardized_displacement": 3.8456964351194904,
+    "noise_sha256": "85d3c03eaa68b85df4d2f5971050c6d315279f0b52c3598590231e0ee9615877",
+    "realized_standardized_displacement": 2.995544353388575,
     "row_fraction": 0.05,
     "row_selection_sha256": "ba28b94c07412e5d4c88656beacfbc173cc45e30ca205b7dba0e6148e443722d",
     "selected_row_count": 3,
@@ -20,9 +21,10 @@
   "outer_fold": 0,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "91520e8c96052716456906e9006ac02638516a18f522b0ee0d66d3b07d04335a",
+  "scenario_input_sha256": "11f0306742605e90dad460e861e8e096bf157ecda5fe35c344d4c9f5910b6934",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "30e5774ec3bee2c06a756a51a3cb12f6b981ed6e3af06a4d48083c515af15974",
+  "shift_spec_sha256": "91218e16efbe507304bb7b02d29727d63e9b241783f048b6f984f07f589546fc",
+  "split_sha256": "acf0c920b022a1b09053d3fb46e75c93550c6166e5a90a5dc91fd99919c4a3a0",
   "status": "APPLICABLE"
 }

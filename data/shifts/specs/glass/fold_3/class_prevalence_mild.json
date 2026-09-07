@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "acc0be0fc68cc97c452475bbe1f35dae27d8dbdf8877445b022b26a4c1da4ba6",
   "condition": "class_prevalence_mild",
   "dataset_id": "glass",
   "derived_seed": 1763020590,
@@ -34,9 +35,10 @@
   "outer_fold": 3,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "3559905d9fbc31219003b339e7e16692cc979b11e055faf68479de39f9050124",
+  "scenario_input_sha256": "d84845780319e1400deb241c2abf20721aae7f17afbaa13dd670ca09452ef7f7",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "21970f30f5af3f4ea1404ac1a6813980750ebec9f7c4c527684dee51fb497d3e",
+  "shift_spec_sha256": "799a9383bf9c41453b7fc894aca7493c6676f99082ee5a045dfed43dc97da112",
+  "split_sha256": "91eebf95effb313b622723816ff577a3113e8cfeeff82650dedb378058771790",
   "status": "APPLICABLE"
 }

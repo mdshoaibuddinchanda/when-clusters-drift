@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "bbb1ad8a894a4c00778d3713ac65ffdaabf42a343f2b8647ba4e4113109800b2",
   "condition": "mcar_mild",
   "dataset_id": "yeast",
   "derived_seed": 1053635665,
@@ -27,9 +28,10 @@
   "outer_fold": 1,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "f95b231713ce6bbc70174509a7e60e35b70470d43085e9dd25d09210e8f2a115",
+  "scenario_input_sha256": "36e09ffc964c3537bfb2eb1c77e4358578f0ebf646e4a3dc38d197923a3d0c38",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "91f4775d61b6a4764f00d4ffa3e4e857305d3feb1d6174bba1003a0714cee374",
+  "shift_spec_sha256": "28507ff76945cd0cc3744efb43500eba90ec762847602cfbaee177819b294fbe",
+  "split_sha256": "50554999ccd979da7a2c576e6a3e4fac370497f04b7ceb76afdab63aeef478a7",
   "status": "APPLICABLE"
 }

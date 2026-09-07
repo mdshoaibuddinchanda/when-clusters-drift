@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "bd0134d8ec032b0cb125d6395ddb0b6fe9f751efcb5b2961d4803f89cb4b8605",
   "condition": "outliers_mild",
   "dataset_id": "electricity",
   "derived_seed": 425307935,
@@ -6,8 +7,8 @@
   "metadata": {
     "eligible_feature_count": 7,
     "family": "outliers",
-    "noise_sha256": "bf690c36f2073346064664554143072b0d8b22cd81567aea1dea4978853e616f",
-    "realized_standardized_displacement": 3.411482476013576,
+    "noise_sha256": "35247b9380e8d44114a5c24983462d9c14ddfc991d11c4ad5c4b5e834ed3097e",
+    "realized_standardized_displacement": 3.288663743203226,
     "row_fraction": 0.05,
     "row_selection_sha256": "4413bd64cb5483520eaaf2a629c363b310b0e493223c3ba1c98b7e966e9c65a5",
     "selected_row_count": 378,
@@ -20,9 +21,10 @@
   "outer_fold": 4,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "f1571199410a740cb043f7ed568b2a5444d10547435d3654dcad13f716b236ae",
+  "scenario_input_sha256": "9719bd89228e6c7ddad7aea93223f203b0d805c5ac9b048067428d09e30b566d",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "d0bd1a56d0de53f2d160b32a148aecd0b0fff39ff47ba388617b9a43db4cec07",
+  "shift_spec_sha256": "30dc606f317e60829e6e7a28e8d8eeb7067bb0a6722f2eab3d1488f62d2da8df",
+  "split_sha256": "6d5d73c0d2d104d35248dce222cbab6eb4ed6b367d9727b17cc2bbe9a52db77d",
   "status": "APPLICABLE"
 }

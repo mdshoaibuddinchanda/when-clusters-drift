@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "afbaa0e3d7da94dd224c489771b90fa0db77875ee64c74a2dd26a31d0884eac1",
   "condition": "measurement_noise_severe",
   "dataset_id": "breast_cancer_wisconsin_diagnostic",
   "derived_seed": 2118115746,
@@ -7,9 +8,9 @@
     "eligible_feature_count": 30,
     "family": "measurement_noise",
     "noise_multiplier": 0.3,
-    "noise_seed": 1630049384,
-    "noise_sha256": "3ebceef135ba0687cb63a74f89b5d223fee2877077414e19b5dcac4c1b941d98",
-    "rms_standardized_perturbation": 0.30337831834234985,
+    "noise_seed": 1323100672,
+    "noise_sha256": "1202abe900fd3c4f395d3fca1ad28454ef7c5d9cd683dfd21bfd63d673743a7a",
+    "rms_standardized_perturbation": 0.29199100020866375,
     "severity": "severe"
   },
   "npz_relpath": "data/shifts/specs/breast_cancer_wisconsin_diagnostic/fold_0/measurement_noise_severe.npz",
@@ -17,9 +18,10 @@
   "outer_fold": 0,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "dc79c355880503dafe6cabdddcdfb5b6ac1098eae95feb2d5ad1ac90026d7cb1",
+  "scenario_input_sha256": "9b6d4118268b327aad436187fcdbfce0591c91f68bae65691bcb503df78980cf",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "c94776dba561526bd36fbd304fa77f0fe18d49178634110ac084a5a6fbf01692",
+  "shift_spec_sha256": "7c66f2ee3670fa7d8e4bb7caa6c37bb02738f07c1c2332570a347d7f6c44d029",
+  "split_sha256": "52c5820ce3405556753d75bfda67b12c4d4774da3a6cd3223f4678e2c87d52e7",
   "status": "APPLICABLE"
 }

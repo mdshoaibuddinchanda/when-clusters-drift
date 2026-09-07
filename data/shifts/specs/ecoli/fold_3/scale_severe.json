@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "b5ef6012bb4ec53a31808fbfd354ec7463b1ca2aac940be4ede819f6bc5fa2d2",
   "condition": "scale_severe",
   "dataset_id": "ecoli",
   "derived_seed": 831654928,
@@ -33,9 +34,10 @@
   "outer_fold": 3,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "e34f263bb6ff37a027b3d8a9031c850ae3dc6af50fb6f51eca2a9df25e86a106",
+  "scenario_input_sha256": "3a85872f9b4485aab65c0ff3ff9f2302b2083b2c86fe5d14e6360e1f510365ec",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "a6991c3a3f9118111a7aaff4eb128fdeea832ce5a3dcfd40da0c370cea8a2e6d",
+  "shift_spec_sha256": "9b5bcea7bf3bace3cfee1384b688725a9b565ca9e1723245b6c99740a4974c3b",
+  "split_sha256": "f352bad1c8fe3a7e6107a2e28837c6899155e7f9e4a4f6e3d7ad8cd76330ae47",
   "status": "APPLICABLE"
 }

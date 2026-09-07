@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "9d069e37146d31022ec288e3c2fbbadfba07e43cfc2a6af6f95be6532938d4cf",
   "condition": "clean",
   "dataset_id": "isolet",
   "derived_seed": 877002530,
@@ -12,9 +13,10 @@
   "outer_fold": 2,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "ebd72601964bdcfc6cedf2cbfd9ffa3b6945faa2ac15a9e71f59fdbb7f1cd001",
+  "scenario_input_sha256": "dc21531ed61a2d80a4e30cec4c5c1b4f998a2b57a5c81d58d16fe8c68df4f31a",
   "severity": "none",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "c4c61853bcf6aaeec50cd2ec5cdd2ea1d5839f78db5c5f255b8ee10a6f85b05c",
+  "shift_spec_sha256": "3e734000188144bfbbd05bc137c563fa71dcec55b32da9de3a5bb279f77d70ac",
+  "split_sha256": "fbaae2988a0119a398e74587bcdc5e76ecd94a3f7e449db3f3f9e60623f22d2f",
   "status": "APPLICABLE"
 }

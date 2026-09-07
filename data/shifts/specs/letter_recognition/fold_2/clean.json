@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "a21977d09b6b9b1f163d1e3d027900639183d0ce004d9b67193a04bb8465c146",
   "condition": "clean",
   "dataset_id": "letter_recognition",
   "derived_seed": 399576449,
@@ -12,9 +13,10 @@
   "outer_fold": 2,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "d40a1d6db37256a2b95dfb8bb67f4fa345806ef6e06608d002c5398f4332fc25",
+  "scenario_input_sha256": "ca83e34deffbdb58c2da4c00e893aea6ef8ee8f613b318bb30aa835224dcb9ef",
   "severity": "none",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "4d9f7b7d4c63516b206c554eb1dacb5b2f46b875d6f10e756f89e77eada186ea",
+  "shift_spec_sha256": "4a876ec42c689603a3f2867dff66a09c9c0a43c4fd405e74e7f89a559ec87722",
+  "split_sha256": "90b998542d189b0d5a935a76b0d8b096fa4239059baa6b365f18a2d674866b91",
   "status": "APPLICABLE"
 }

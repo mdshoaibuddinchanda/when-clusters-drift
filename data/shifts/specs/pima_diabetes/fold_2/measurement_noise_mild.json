@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "27fed1028d76076c513c75a26e3b31e211b5ca6116b72d0c35638b41d15c0c93",
   "condition": "measurement_noise_mild",
   "dataset_id": "pima_diabetes",
   "derived_seed": 801158723,
@@ -7,9 +8,9 @@
     "eligible_feature_count": 8,
     "family": "measurement_noise",
     "noise_multiplier": 0.1,
-    "noise_seed": 1526150770,
-    "noise_sha256": "2b29a1632dd36bf029439e2b2bdd90296ca65a7169c70f7d673af69a1f1686ba",
-    "rms_standardized_perturbation": 0.100064848010435,
+    "noise_seed": 16943745,
+    "noise_sha256": "e57ff775fb858f5496df1d00a73ce52fd31c9a6d855a93fbc22362a77819d8ad",
+    "rms_standardized_perturbation": 0.10197283925867956,
     "severity": "mild"
   },
   "npz_relpath": "data/shifts/specs/pima_diabetes/fold_2/measurement_noise_mild.npz",
@@ -17,9 +18,10 @@
   "outer_fold": 2,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "51c91ae3fb3d13805fcec64df8052be144d2569022a9dc6643001052a66a6683",
+  "scenario_input_sha256": "16979a460821542d6202699554082760086f05a4844b6db6bf8294ab0c94501d",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "08c1030f7e6b9f209dd5b61a9be19d49ed3dba9f0588fd28fe03589b8ace748f",
+  "shift_spec_sha256": "35c8f3888bd67c06641258c0bd80851f1cdce36d7da778e0429b3dbaa45f36bb",
+  "split_sha256": "6b7962559e4f6f40394392ffd22b4a40f90772c9e5cb7c7797bb3c4e96322df6",
   "status": "APPLICABLE"
 }

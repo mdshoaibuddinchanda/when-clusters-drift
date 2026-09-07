@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "e065779699b3acda40abd0b01e76c6cc6adcd12338c4a55bf084f8e8e362629e",
   "condition": "outliers_mild",
   "dataset_id": "pendigits",
   "derived_seed": 1793013161,
@@ -6,8 +7,8 @@
   "metadata": {
     "eligible_feature_count": 16,
     "family": "outliers",
-    "noise_sha256": "31ea6d5bc6e21421a408185d142174effe5ef8d789fe5a60fa8f1e65e2ec89ef",
-    "realized_standardized_displacement": 3.2722191011487483,
+    "noise_sha256": "4f8c4c0438081049e43cb9a946dcc645e31573c2d71c5a744a8cbce412d450f0",
+    "realized_standardized_displacement": 3.1676943103150847,
     "row_fraction": 0.05,
     "row_selection_sha256": "3473e92659580aec0a525b16d1c89fcd63f87d363822d83f6874215cf8f60def",
     "selected_row_count": 110,
@@ -20,9 +21,10 @@
   "outer_fold": 0,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "fb6cb1d78a7e2862163aa1befbc122c41f5e60aaba6b1e16678f39dc4f94b7a1",
+  "scenario_input_sha256": "4930826f225c205dcfba42370f7908741e2cb581d3374552eb92fd2f1c3c1c89",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "d6a6921cf9ba0a815f539afe4d9466581e3983646dac1187a63a9f28e8385c0d",
+  "shift_spec_sha256": "3f05a7b2bafe8a515628d9cab99768a96bec9a7175dda3c1b0fc2a58a674280d",
+  "split_sha256": "87041798c6732e7b1da04db028a6e6feac43bb715b3d022ddf0b2b90afaeb385",
   "status": "APPLICABLE"
 }

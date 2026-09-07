@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "bcd795f2be7918189f21a739b48ad5583dcdae8efdbd23256b9c574f6c7d3d66",
   "condition": "local_overlap_severe",
   "dataset_id": "balance_scale",
   "derived_seed": 1232399600,
@@ -20,9 +21,10 @@
   "outer_fold": 1,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "9551ebe48f11fe04c81ecb4dd649e371ec3abde6d5fc7c0f3a381732d40dc4bb",
+  "scenario_input_sha256": "b5ec5822a16fc20768bba0f3596f8ef90d829a945384efc2e9939cc29fe1e6a5",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "2ec2502c1de49a8346271a20958403052d91f7e3fa84a419c74513e7582b2c40",
+  "shift_spec_sha256": "b9aed4487b2452da3d95f68bec4455aa53d7c3d89a399c676ae8736e2843cf56",
+  "split_sha256": "84546d91ea43e99f88176950ae42f9a1f47febc5b1d9ad20b528e69d00528802",
   "status": "APPLICABLE"
 }

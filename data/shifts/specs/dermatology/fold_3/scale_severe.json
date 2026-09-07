@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "e8ca74df36fa9d2b9d7b9627cd2ccf8d0306bd343ca2424d23a375d2c3d7c229",
   "condition": "scale_severe",
   "dataset_id": "dermatology",
   "derived_seed": 1864315123,
@@ -21,9 +22,10 @@
   "outer_fold": 3,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "1cb1a2d956c34be1cdd5103e10b3d8485ee2ef22bc5de874891b8bc13ac44d67",
+  "scenario_input_sha256": "fd8ff7d489f7454ced37bc1067228c8c694d0cf034832cad3a5e178a14cb5a20",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "a1ce1aab2a5a080951871fc16fc9d3f2444059cbc975c2c9170cfcc03f38f2ac",
+  "shift_spec_sha256": "51c73a395a078866d88a752d0853749b5a225d16dca5cd84adaea1025bb911fc",
+  "split_sha256": "7700f4443d96419a7c757104017185627a5d3b335da97fd1eb282ed2c2af1855",
   "status": "APPLICABLE"
 }

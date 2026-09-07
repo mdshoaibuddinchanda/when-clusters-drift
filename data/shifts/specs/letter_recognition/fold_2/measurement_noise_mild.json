@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "a21977d09b6b9b1f163d1e3d027900639183d0ce004d9b67193a04bb8465c146",
   "condition": "measurement_noise_mild",
   "dataset_id": "letter_recognition",
   "derived_seed": 1690316349,
@@ -7,9 +8,9 @@
     "eligible_feature_count": 16,
     "family": "measurement_noise",
     "noise_multiplier": 0.1,
-    "noise_seed": 646370615,
-    "noise_sha256": "01735dc312375c150a2d3eb35b97d63247e69fcb279b6fb5102a72b0bfea6a98",
-    "rms_standardized_perturbation": 0.10002077257371078,
+    "noise_seed": 492100454,
+    "noise_sha256": "641b65f16c5ef48555e3823b0393fe1c73ed12db75f37cc4c9f0e21bb27af707",
+    "rms_standardized_perturbation": 0.10003003588199454,
     "severity": "mild"
   },
   "npz_relpath": "data/shifts/specs/letter_recognition/fold_2/measurement_noise_mild.npz",
@@ -17,9 +18,10 @@
   "outer_fold": 2,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "d40a1d6db37256a2b95dfb8bb67f4fa345806ef6e06608d002c5398f4332fc25",
+  "scenario_input_sha256": "ca83e34deffbdb58c2da4c00e893aea6ef8ee8f613b318bb30aa835224dcb9ef",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "ad51e1b68803ed16b3991c94a59bccf462b0f20b8cf96b6610390aac1e49fd90",
+  "shift_spec_sha256": "f1fda62c045a29dabbbef7fecdfc7348315605a7a54bf559846f892d3c62f974",
+  "split_sha256": "90b998542d189b0d5a935a76b0d8b096fa4239059baa6b365f18a2d674866b91",
   "status": "APPLICABLE"
 }

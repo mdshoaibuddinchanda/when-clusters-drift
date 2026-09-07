@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "c0507977add20d390908e1c8c7a062c6b6ca6541c4dc869a44c13794ca49a398",
   "condition": "measurement_noise_severe",
   "dataset_id": "vehicle_silhouettes",
   "derived_seed": 110014566,
@@ -7,9 +8,9 @@
     "eligible_feature_count": 18,
     "family": "measurement_noise",
     "noise_multiplier": 0.3,
-    "noise_seed": 1157885665,
-    "noise_sha256": "0bb601bcd3ae1c3040f4c7e49d31d9936bb4c4c83434f0df42a3198e6090ac51",
-    "rms_standardized_perturbation": 0.2994211095824054,
+    "noise_seed": 950431135,
+    "noise_sha256": "413b075d00e5d9aa4a93211132b3b25d74914d9377d88c321991bad9ee651a27",
+    "rms_standardized_perturbation": 0.3019521730435777,
     "severity": "severe"
   },
   "npz_relpath": "data/shifts/specs/vehicle_silhouettes/fold_4/measurement_noise_severe.npz",
@@ -17,9 +18,10 @@
   "outer_fold": 4,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "738d711ddce9f9e6ae4dc972ab3eed2fcebd47add81783259eb2f1a3d9818c77",
+  "scenario_input_sha256": "96fd0e28b854c4d4f7fabf9adc60f8b8064b0e1875c98f286963497e5dcbf8be",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "5c55da2d6b3c885ba75bf33c21d22d9bec264f95c1810ec62a80fbb381802057",
+  "shift_spec_sha256": "6056de071bcc1ee2ae91c57c72dfda7a0ab91e84e7a3d995ae596dce53b8cb9c",
+  "split_sha256": "ce22904af31be9f571008d78caef51d5504a78ced5915bcfac32c43bdc9bb4d8",
   "status": "APPLICABLE"
 }

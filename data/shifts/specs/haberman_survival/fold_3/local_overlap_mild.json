@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "ff79a9f41b62db1f4c4927745c0d1ffad2c814a40904535067e46ba412a2d763",
   "condition": "local_overlap_mild",
   "dataset_id": "haberman_survival",
   "derived_seed": 1377390870,
@@ -20,9 +21,10 @@
   "outer_fold": 3,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "43b99555b06ecf16b9e9462a5dde6d173766e1fa5a94be72e1ae9242bc4765b2",
+  "scenario_input_sha256": "a3ad472080cdcd33e77360bfaf827aef4691f08206d549ae8c6da8e46877aeff",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "360710cec4dbf8bc802f9ac21da69c709c15d9ca1eff64e8a3d2090b3c60ff68",
+  "shift_spec_sha256": "7240404ecf91fafb73f281ab58a0950e071b339c40372bb3901d8e8c7be5b82f",
+  "split_sha256": "24e4e53f3a59773d696817583178884ff11327e75cf548ca8c1cbeb276e71aae",
   "status": "APPLICABLE"
 }

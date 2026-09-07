@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "e8e4dc77b2c204df11aa1323495507605c5f904eb1175ef5a9629f3cd9dc821b",
   "condition": "class_prevalence_severe",
   "dataset_id": "wine",
   "derived_seed": 1191682550,
@@ -28,9 +29,10 @@
   "outer_fold": 4,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "cea4f1ca9f4ab6a9265e69e861c2c6ac85b25d8becdca96d7a38b387799c6862",
+  "scenario_input_sha256": "9fe9d83a3b1dfb2060586210d2c679e32997b60663d2d178281a826a293c1855",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "aceb2b0fc1a9490537ea0ea355447544c08450fb49551cc765ef533be733a6a3",
+  "shift_spec_sha256": "f1a101a4dd3e9aaa3e4d4923fb745a8447db94edc138123a8938051384a417d7",
+  "split_sha256": "c1d02df3937db7705ed07059b5d984dce2783daebe0efcd2b12c03396a825c68",
   "status": "APPLICABLE"
 }

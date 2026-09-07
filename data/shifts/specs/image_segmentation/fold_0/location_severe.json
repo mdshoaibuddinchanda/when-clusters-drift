@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "e9017e8d991e2aa03cfea07890801b98fc755002fb49c488b1c4aed738fbec2c",
   "condition": "location_severe",
   "dataset_id": "image_segmentation",
   "derived_seed": 1609233233,
@@ -33,9 +34,10 @@
   "outer_fold": 0,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "072a2ed62ebb13f99cc12a9d823f811b07c33a99297cb6389aa152d8dcbddbfb",
+  "scenario_input_sha256": "95207782f24171676753d70cddda84292f43a9cf82ce3adb11144d4719881db8",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "9f11dec2d94dd64489672200648bbca68dceb5a7185d1274d7628b27ecaefc57",
+  "shift_spec_sha256": "0922f9a63d56d8feef89880f08126c7468a0fd1cc953098bccdb3bbb0ffe5548",
+  "split_sha256": "1d872835c7fb636d2ae2f8ec301f751d11423ed9ce354f2dfb4f9d69c0bfc630",
   "status": "APPLICABLE"
 }

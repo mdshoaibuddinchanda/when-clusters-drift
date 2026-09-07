@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "6e911376a9efb14d8854f88a603a01dd992892b8151023dbbbef9df750a45879",
   "condition": "local_overlap_severe",
   "dataset_id": "heart_disease",
   "derived_seed": 912247594,
@@ -20,9 +21,10 @@
   "outer_fold": 4,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "6d70e5e3a523e16541fe495bc3eb7f5ab92f7b229a621b1b6b657bc6ec98a66f",
+  "scenario_input_sha256": "6271d26bcb39abc0d09d8231704bb845004beb6fb80ddc1b7bade87d51378dcf",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "eab2b40256544a4ad8a2c651c6fbde9de3124ba939e4989dd7c1674ae8fb6b93",
+  "shift_spec_sha256": "0d59bec20a64a23e456439b95c4e839f452ca887c4a7c6dadbe34aa6d6a7a28f",
+  "split_sha256": "b8bfbab0440ba7e46b978b17ae56ded71b5b7708d3af95c170196781e56f2979",
   "status": "APPLICABLE"
 }

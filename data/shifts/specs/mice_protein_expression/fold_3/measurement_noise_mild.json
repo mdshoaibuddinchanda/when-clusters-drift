@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "0ad1f7f847c84b9cc5299bd05d8823b1dbd152612c6fc50bb458fec212d7c8c4",
   "condition": "measurement_noise_mild",
   "dataset_id": "mice_protein_expression",
   "derived_seed": 1792562697,
@@ -7,9 +8,9 @@
     "eligible_feature_count": 77,
     "family": "measurement_noise",
     "noise_multiplier": 0.1,
-    "noise_seed": 574041646,
-    "noise_sha256": "a09ef8bf8d23d10dcfd5754ecd83ceccd9ccfb12c4caa0bfbd7f44af82e4a607",
-    "rms_standardized_perturbation": 0.1009548210620895,
+    "noise_seed": 134981447,
+    "noise_sha256": "32b20619a197e8a23f525c475520bbf72fc8337abbbeb2d29898dd5d171ca903",
+    "rms_standardized_perturbation": 0.10042193812243891,
     "severity": "mild"
   },
   "npz_relpath": "data/shifts/specs/mice_protein_expression/fold_3/measurement_noise_mild.npz",
@@ -17,9 +18,10 @@
   "outer_fold": 3,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "744df94578e6d7498b2e660dbeeb082fa7feab4eec4d2d88e882fa032edfb170",
+  "scenario_input_sha256": "f5dc01d69ac85d8467946494ab41a931f15f5ea78d62c5316635a5eabcd386e9",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "621b27d1af79a0e06a2073f087b4922f68ff760f747596f62d10f2b12ec6e6a2",
+  "shift_spec_sha256": "b7e6fa4e9a1aa52e3c5bc480036762e2eab8f9e9b77a08ccd560cb219c564afd",
+  "split_sha256": "6df8b64c1012335902a43356e17d2d478966a311ef18e07bf561cb131ff7690c",
   "status": "APPLICABLE"
 }

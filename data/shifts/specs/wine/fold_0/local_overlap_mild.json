@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "e8e4dc77b2c204df11aa1323495507605c5f904eb1175ef5a9629f3cd9dc821b",
   "condition": "local_overlap_mild",
   "dataset_id": "wine",
   "derived_seed": 1147928858,
@@ -20,9 +21,10 @@
   "outer_fold": 0,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "fc19ec4792a1fbc9225f640cc48725d948d0101727cb93d3fa47fc9639d2ea61",
+  "scenario_input_sha256": "d886806dc749d4de23e17605ad111d2f92c6ede44f627950506fcaffbfe2eb83",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "d80fbacb563a2636ec42f9ce8040159befc295dda50fb5fc1a19e28efe045777",
+  "shift_spec_sha256": "942c56626ba5e82c033b295a2570ac8b6c41a210ac9867670c10c6561614c739",
+  "split_sha256": "50b7abaa29af503d480a79a09b2cc75ace1c2c7ee0364a085a2dacc90c0b6db3",
   "status": "APPLICABLE"
 }

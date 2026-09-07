@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "01e0b4dc6a3e5b03571a28533edcd03cfcd59e9651104a7a607cdc35821f3a4e",
   "condition": "mcar_severe",
   "dataset_id": "madelon",
   "derived_seed": 1433939826,
@@ -519,9 +520,10 @@
   "outer_fold": 0,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "7a64934a97411eafc2605e9ba3da2bd723f4612c1773cb0d191170be8a5992eb",
+  "scenario_input_sha256": "407a0f092475d226dd15a6f7d21079fff95c06ec2ec6367150837353156c2e03",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "c63374fb328f4dc49ac6296b7b075898c2222ea947c0cb46b8dd7615f7703be6",
+  "shift_spec_sha256": "056e052750e89831988f245dd9874c0ad954f64c86d1c16ae16c8b560bc773aa",
+  "split_sha256": "fbddb13074799aecfdf6eccbd0e9927e4d6d6eb8538446ceef65664aef048b85",
   "status": "APPLICABLE"
 }

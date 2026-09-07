@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "a96acdbe229653c3b5388efaa8612239923efc26ef719bb86afa24301f4337f6",
   "condition": "mcar_mild",
   "dataset_id": "sonar",
   "derived_seed": 747765016,
@@ -79,9 +80,10 @@
   "outer_fold": 1,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "26899a0d124b83c240722c2999640e48162987144f7ab9da43b41b4cb1852f6a",
+  "scenario_input_sha256": "9407bd858036b85d19590473d0658fcb04b1fd1f6a34f42c1685673c743c7785",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "882ac904cba8ddeba7343ad6f83ac02cf71700bb11b87e22099eaf361f8345ee",
+  "shift_spec_sha256": "713ccaa54d23779336ecc8246e9087edf045cc8a8813e66a71f4df32626842d5",
+  "split_sha256": "480cd013d99779290a35239e40f17b4f0998f29dd5a0c25aff043544df48be9c",
   "status": "APPLICABLE"
 }

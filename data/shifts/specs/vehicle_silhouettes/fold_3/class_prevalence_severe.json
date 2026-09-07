@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "c0507977add20d390908e1c8c7a062c6b6ca6541c4dc869a44c13794ca49a398",
   "condition": "class_prevalence_severe",
   "dataset_id": "vehicle_silhouettes",
   "derived_seed": 1717504884,
@@ -30,9 +31,10 @@
   "outer_fold": 3,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "520683f088b5297ff5780c0a7eeb97b95afd189162561246d1094c226880206a",
+  "scenario_input_sha256": "66db8e72e4e1aa490c68178e4c7834c9a242932a7ae0f9283416b236f3ad0353",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "d433388207fda1c34d0c68759d154e0168ea1032da8ffd81b59e5f0ec351a526",
+  "shift_spec_sha256": "bd9fe44f7a8c7424a822ddfe7ad3d890a3f52735023a86ea67d52426d53eb7be",
+  "split_sha256": "073fc2bfc57cd16f82c301e47eba7f1d8625be4ecf62836d7f6e15f9db34724e",
   "status": "APPLICABLE"
 }

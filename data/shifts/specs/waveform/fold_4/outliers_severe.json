@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "31699e04c4591627b65e494edd2907ccd9baff40ac9f42e0210afbb13f43f74e",
   "condition": "outliers_severe",
   "dataset_id": "waveform",
   "derived_seed": 1459978875,
@@ -6,8 +7,8 @@
   "metadata": {
     "eligible_feature_count": 40,
     "family": "outliers",
-    "noise_sha256": "967a7e00e99b4015b54b6b6f0063e8b34ffbd3dce00f7af1e8e488c84e4712c3",
-    "realized_standardized_displacement": 3.3594374406623606,
+    "noise_sha256": "9fb8f30761a34c3e179751f72f33364a8670dcc70f0295670432c60d7ba5e524",
+    "realized_standardized_displacement": 3.3152242242519283,
     "row_fraction": 0.15,
     "row_selection_sha256": "197e4844a57884f97b9e743c079821e0984aa8fda3d251f5de60787bc8b710e4",
     "selected_row_count": 150,
@@ -20,9 +21,10 @@
   "outer_fold": 4,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "3bde15af5b27c977576637dcb40e7978c3b58b886902093a9cf02cdfee1a8190",
+  "scenario_input_sha256": "68502f808cd0798ebdbb15407db1be667d65fd2644609d645637053f96a74fd6",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "ed7effa68c87dd2274f8a6775df1d048778311834e4ccd3de4fea17d2ce3762f",
+  "shift_spec_sha256": "7e411aa8621410db7ba176a77b176e5ce572d6b7d74db2a1b2516dbbe195c77b",
+  "split_sha256": "52191979abc029fc622d28afa5fb51ae2847f2c0d2b90732e60b6065cf9cf10b",
   "status": "APPLICABLE"
 }

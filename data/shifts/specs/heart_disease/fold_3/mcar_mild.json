@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "6e911376a9efb14d8854f88a603a01dd992892b8151023dbbbef9df750a45879",
   "condition": "mcar_mild",
   "dataset_id": "heart_disease",
   "derived_seed": 1151895595,
@@ -32,9 +33,10 @@
   "outer_fold": 3,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "569510b260ad0c041ddb5b6f6aef44478725e9b91c363628c5550f82d2691b2f",
+  "scenario_input_sha256": "e5caef83847682271ce4ca11eae32e36d37c377dc9548c4f20162cafd52904b7",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "0bb27fbaa22cece108e34efa1572bc94e3e38a5318cdc146dd46a2ab3cfef47d",
+  "shift_spec_sha256": "051b4371b3ed55453c129aa320edbbadd2606b8d7eec62083fc4f53992e8a1c1",
+  "split_sha256": "7b404fde5be8b02538222c4c9133ac51761239ae470c2a6b5d0b412fe6483eee",
   "status": "APPLICABLE"
 }

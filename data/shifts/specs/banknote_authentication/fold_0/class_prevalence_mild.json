@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "445ead712220b311e3ec7121840f3305395773e51d1ddc83a5fc0bfd45183a7d",
   "condition": "class_prevalence_mild",
   "dataset_id": "banknote_authentication",
   "derived_seed": 398460281,
@@ -26,9 +27,10 @@
   "outer_fold": 0,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "38a1aa0f923a5c34b8322643775d7e43129f8def41a2ba6764b379179eb08750",
+  "scenario_input_sha256": "a2d255b8cdba671a9c39b75d80c4250178a142466bde31a5100cef23eb7d7c55",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "ef63d607e0863e62d78ac8ac6fb7e4c60adb7078c1bcc110a084da3fbb48bd5a",
+  "shift_spec_sha256": "4eb66814c1ff9c8f72eb2176baf6c26abe154bfd7ec2b9a61accfa72f584cb3b",
+  "split_sha256": "48e3d03fada9b0f7ec0fe6de095477bdf3af5295cd167cab13dafffd8f3978cf",
   "status": "APPLICABLE"
 }

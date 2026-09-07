@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "31699e04c4591627b65e494edd2907ccd9baff40ac9f42e0210afbb13f43f74e",
   "condition": "measurement_noise_mild",
   "dataset_id": "waveform",
   "derived_seed": 444327168,
@@ -7,9 +8,9 @@
     "eligible_feature_count": 40,
     "family": "measurement_noise",
     "noise_multiplier": 0.1,
-    "noise_seed": 152397135,
-    "noise_sha256": "509cf3a91f7adc23ae08961fd3d7824239d9be17628e2e714c6cfc6fa6f9e9e2",
-    "rms_standardized_perturbation": 0.10007845344404566,
+    "noise_seed": 1898214367,
+    "noise_sha256": "3b2f06377e92684731e20b21ce79068984ec6344f7bc293f46866cc4ec320605",
+    "rms_standardized_perturbation": 0.10003078395411553,
     "severity": "mild"
   },
   "npz_relpath": "data/shifts/specs/waveform/fold_2/measurement_noise_mild.npz",
@@ -17,9 +18,10 @@
   "outer_fold": 2,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "f598054018a37420cce5176a060bcae772555d8244130909734b58dbb780b96b",
+  "scenario_input_sha256": "7588a1c929cade79af8bd1e698c72a8f52f56a279b28bc7b9ec9339b0fda8b0e",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "e5a2bba1df8a611b28d78b2ce6d195f5c013542178f541967704d49475bd9d1a",
+  "shift_spec_sha256": "63b0636025f445803b82ba85eedc2782275f0d3e4fb56df3d8f2288cc25bcb4e",
+  "split_sha256": "375cb7e0e385e2a13d04e53b1be7639915bfce2f8dc8a822bc485437a9ab2d75",
   "status": "APPLICABLE"
 }

@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "8e702b9bbdc62768177559086a346cb6a1325977914749d51348e8430355efbf",
   "condition": "class_prevalence_mild",
   "dataset_id": "satimage",
   "derived_seed": 1030941887,
@@ -34,9 +35,10 @@
   "outer_fold": 2,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "acf6070d4939e754765d534ac7c4221e25287adb3c7fcff3fffa40d6b4e8b3fa",
+  "scenario_input_sha256": "000d47b9bbbd0004cca28513cd2198f75423b410b8ec5f40a90e5fae9053cb2c",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "eb29a2e102aab45ea82dc442053d429345a4b7b98fe45098fcfa393c3e079c50",
+  "shift_spec_sha256": "c459504c67b27760a078e251be3f91f9e991dbd3ae8b1c6df9596f716f08e7f4",
+  "split_sha256": "4a2cea56aef0f5a1d19a41f5cf04bb6c052ce3a8c60029757e2b6f6b127650ed",
   "status": "APPLICABLE"
 }

@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "8e702b9bbdc62768177559086a346cb6a1325977914749d51348e8430355efbf",
   "condition": "location_mild",
   "dataset_id": "satimage",
   "derived_seed": 614449989,
@@ -43,9 +44,10 @@
   "outer_fold": 3,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "c58d92e1bc6715e88f132e30945def52eedf9cc39dfded540032463d23952451",
+  "scenario_input_sha256": "a65a115337d72c110a5df3d140326d307b3b62c7557dbf31575f724b8298909e",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "b658e94ca6531b0ceea533b3e2730f337f1d1e9c10151178b89e69fd8a7a1efb",
+  "shift_spec_sha256": "ef7935463d36ad713f1d86aaf7e8108bf1072f16c7228f93853c683ef5c37861",
+  "split_sha256": "0bd936c36628193dd5628fb056bf1a73c695b40138aed419b8de8cac1bbeb063",
   "status": "APPLICABLE"
 }

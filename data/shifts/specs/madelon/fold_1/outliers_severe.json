@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "01e0b4dc6a3e5b03571a28533edcd03cfcd59e9651104a7a607cdc35821f3a4e",
   "condition": "outliers_severe",
   "dataset_id": "madelon",
   "derived_seed": 1947453379,
@@ -6,8 +7,8 @@
   "metadata": {
     "eligible_feature_count": 500,
     "family": "outliers",
-    "noise_sha256": "5008568497a107ee76c7d8e774b4af3a1ec1d5d5510ebea393365aa317a0003c",
-    "realized_standardized_displacement": 3.295593803758034,
+    "noise_sha256": "25e2f5ef8297d8547214d67aeadcd240f43f1a2e8d01395c6284bd96e71d8fe3",
+    "realized_standardized_displacement": 3.368098066248783,
     "row_fraction": 0.15,
     "row_selection_sha256": "5e9726d9dc33c36511476a07211c1bfd070d46ecaa018b377f8252b9865a448f",
     "selected_row_count": 78,
@@ -20,9 +21,10 @@
   "outer_fold": 1,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "fbe5999bba0a10d9d329b7a409f1e2779ecda6b685c92c69cc563d2d03066005",
+  "scenario_input_sha256": "6da3bbf083e246dd394361f609b31a1c6a2fdb1ac4c43031f577c36a52b2bfe1",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "3f8a8d3408c4ee484df4ba32c14959a2fa9a3672070b968ef32a64a89ff4d8f3",
+  "shift_spec_sha256": "764fe3140c4113f28ce1b0087025080a45e8658d50807532d4cf8f7c9706698a",
+  "split_sha256": "788ab9d8632546f852a581286476868c5115c0a212f08ff48d3e11d02cf93abc",
   "status": "APPLICABLE"
 }

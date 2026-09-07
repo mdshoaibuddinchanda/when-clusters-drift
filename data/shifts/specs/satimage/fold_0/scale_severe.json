@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "8e702b9bbdc62768177559086a346cb6a1325977914749d51348e8430355efbf",
   "condition": "scale_severe",
   "dataset_id": "satimage",
   "derived_seed": 1882413743,
@@ -91,9 +92,10 @@
   "outer_fold": 0,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "4249424339d4c0d6d37bfa5ac456bb77a155df235a43f068505680bcf0372ba5",
+  "scenario_input_sha256": "d3c6056fc5474e6cfc3861924b7e3be6c1ed19f819041954e5c0f0c6b5f9136a",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "808e5f1fb127a528384a8b588656fae76bfe2cb8702520821b8731f7517b1fd6",
+  "shift_spec_sha256": "7c5ee5ecf807d208b641bca49b26c0fbeb1936df364f84472de642def7b44664",
+  "split_sha256": "3dfa9c1e065ed558e3e2a42148ee2aa82310ac66947f6daa306cc12ddb1ad41a",
   "status": "APPLICABLE"
 }

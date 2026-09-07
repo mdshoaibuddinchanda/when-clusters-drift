@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "e8ca74df36fa9d2b9d7b9627cd2ccf8d0306bd343ca2424d23a375d2c3d7c229",
   "condition": "local_overlap_mild",
   "dataset_id": "dermatology",
   "derived_seed": 1254304216,
@@ -11,9 +12,10 @@
   "outer_fold": 3,
   "protocol_version": 1,
   "reason": "Fewer than 2 eligible numeric features for local overlap",
-  "scenario_input_sha256": "1cb1a2d956c34be1cdd5103e10b3d8485ee2ef22bc5de874891b8bc13ac44d67",
+  "scenario_input_sha256": "fd8ff7d489f7454ced37bc1067228c8c694d0cf034832cad3a5e178a14cb5a20",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "902f7df508e5469101c94ad3e33fda8869d952d727f89e42810f13b62f9d2402",
+  "shift_spec_sha256": "d5f1c4157cdf381392be0bd92e95ca2d6e4f9aae2eafaefd1922c6bf87f9d397",
+  "split_sha256": "7700f4443d96419a7c757104017185627a5d3b335da97fd1eb282ed2c2af1855",
   "status": "NOT_APPLICABLE"
 }

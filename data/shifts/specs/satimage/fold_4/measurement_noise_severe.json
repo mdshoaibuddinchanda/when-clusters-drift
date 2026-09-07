@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "8e702b9bbdc62768177559086a346cb6a1325977914749d51348e8430355efbf",
   "condition": "measurement_noise_severe",
   "dataset_id": "satimage",
   "derived_seed": 55392939,
@@ -7,9 +8,9 @@
     "eligible_feature_count": 36,
     "family": "measurement_noise",
     "noise_multiplier": 0.3,
-    "noise_seed": 258981957,
-    "noise_sha256": "8a55353a1fb652957a69aa1d0fb31556901da8b8682b9f7e902428ff96729bb3",
-    "rms_standardized_perturbation": 0.29926964707092923,
+    "noise_seed": 83572808,
+    "noise_sha256": "3c409b6760363b312a55a8419fe11f3b8f4c1b9d1a1e1c774747a7f82fd831ca",
+    "rms_standardized_perturbation": 0.2998361162406164,
     "severity": "severe"
   },
   "npz_relpath": "data/shifts/specs/satimage/fold_4/measurement_noise_severe.npz",
@@ -17,9 +18,10 @@
   "outer_fold": 4,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "6279e499c3f9672262287b3f731a2582f6e2550a88502415252b42f2be8cf426",
+  "scenario_input_sha256": "da0ce1508f6260f5f82249ce4c5104ce634ead1f038ef2b4c19d4b6b82e2251e",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "9b677f91536c0e93f258707dcfcf863b9c032274955b3c151dc229ced03b3b9b",
+  "shift_spec_sha256": "0781b3d9f81f18ff6d8b44c3041a0efa3912ade7549ae042b758d3f5e6acf968",
+  "split_sha256": "7a3cd1afe960fe912e53d68a31421e1d9419c99779c88bb21cc32721003f8212",
   "status": "APPLICABLE"
 }

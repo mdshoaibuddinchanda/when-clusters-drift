@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "e4fcad9bbe56b5d128035baad54b4bf0da8fd86be5cd4328c3121f841695440e",
   "condition": "measurement_noise_mild",
   "dataset_id": "optdigits",
   "derived_seed": 1474078416,
@@ -7,9 +8,9 @@
     "eligible_feature_count": 62,
     "family": "measurement_noise",
     "noise_multiplier": 0.1,
-    "noise_seed": 818783854,
-    "noise_sha256": "bc469e53c509f2cf35911a2f84c32b51593e4dffcdf74c604f8b5e9ae673f857",
-    "rms_standardized_perturbation": 0.09958331613344452,
+    "noise_seed": 180875626,
+    "noise_sha256": "b2c606ac1e9822f6f90ea6ddc14402c11c96c45537543c0309717b5405e86cff",
+    "rms_standardized_perturbation": 0.09998851272955331,
     "severity": "mild"
   },
   "npz_relpath": "data/shifts/specs/optdigits/fold_1/measurement_noise_mild.npz",
@@ -17,9 +18,10 @@
   "outer_fold": 1,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "8699c959d536ed5e6755e92aeb1cd9521f30134cc051bcd6a28b7eb4eaf57664",
+  "scenario_input_sha256": "bc3da7bb450486a7eb31c0c2e9912f05971553e6b13acc3f9bb09dff151f2e39",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "2f82e6d3aa63693fb0dfdf1302ab63c5629e3fb91f6134773286df7d9d5b6bad",
+  "shift_spec_sha256": "b0eb9a5461d68cfc24ee84a5027097301489c7db739bcdfd9a34e7543a3dccc7",
+  "split_sha256": "a58e0189fff9819113053ee53bb3c9042ac93675c6199598c0a5162260035208",
   "status": "APPLICABLE"
 }

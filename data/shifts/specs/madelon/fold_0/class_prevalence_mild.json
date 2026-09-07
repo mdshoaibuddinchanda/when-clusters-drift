@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "01e0b4dc6a3e5b03571a28533edcd03cfcd59e9651104a7a607cdc35821f3a4e",
   "condition": "class_prevalence_mild",
   "dataset_id": "madelon",
   "derived_seed": 645929929,
@@ -26,9 +27,10 @@
   "outer_fold": 0,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "7a64934a97411eafc2605e9ba3da2bd723f4612c1773cb0d191170be8a5992eb",
+  "scenario_input_sha256": "407a0f092475d226dd15a6f7d21079fff95c06ec2ec6367150837353156c2e03",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "107e5f0f9343909659ce37f841ec017b48d2c6615fc70d5b2dc61fc5b1332185",
+  "shift_spec_sha256": "daef4a0f97a0e0151dfea47c269373441986e7ef217b365aab5b3b274f391ec7",
+  "split_sha256": "fbddb13074799aecfdf6eccbd0e9927e4d6d6eb8538446ceef65664aef048b85",
   "status": "APPLICABLE"
 }

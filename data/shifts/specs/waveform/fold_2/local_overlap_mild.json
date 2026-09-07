@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "31699e04c4591627b65e494edd2907ccd9baff40ac9f42e0210afbb13f43f74e",
   "condition": "local_overlap_mild",
   "dataset_id": "waveform",
   "derived_seed": 1167087328,
@@ -20,9 +21,10 @@
   "outer_fold": 2,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "f598054018a37420cce5176a060bcae772555d8244130909734b58dbb780b96b",
+  "scenario_input_sha256": "7588a1c929cade79af8bd1e698c72a8f52f56a279b28bc7b9ec9339b0fda8b0e",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "b36479ba32eeed4e1ef988d6dcbd6853d6359b31082b8aba346eb8a04b384605",
+  "shift_spec_sha256": "c4ced1890f6cd639aeaa3e56701cfb8be4d28a037145addbb906df3c81a29b39",
+  "split_sha256": "375cb7e0e385e2a13d04e53b1be7639915bfce2f8dc8a822bc485437a9ab2d75",
   "status": "APPLICABLE"
 }

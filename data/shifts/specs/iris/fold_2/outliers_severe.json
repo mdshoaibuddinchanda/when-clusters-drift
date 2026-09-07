@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "06a7bea1035adc450f695977cf5ff01ec45cd7cb140a5e8f23ad103da0949a27",
   "condition": "outliers_severe",
   "dataset_id": "iris",
   "derived_seed": 1943151206,
@@ -6,8 +7,8 @@
   "metadata": {
     "eligible_feature_count": 4,
     "family": "outliers",
-    "noise_sha256": "5fff02e7067f65d6a62160ce6ba4606c6bee763d3f7d351fca34d993c6b063d7",
-    "realized_standardized_displacement": 2.839579120445891,
+    "noise_sha256": "fb368a1392419ccd4311ae88316135fc652aaea336e3dc79fa04c2e5a306275a",
+    "realized_standardized_displacement": 3.7078678017464366,
     "row_fraction": 0.15,
     "row_selection_sha256": "6a67d5bac73f27905fb5967124636abcb7907637cd7645ad7cd5dde6463cde81",
     "selected_row_count": 4,
@@ -20,9 +21,10 @@
   "outer_fold": 2,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "f84b1a4b6ab7ac854726ffe0662b8706d334c9431d51f1c7f16d2c3288bbe10e",
+  "scenario_input_sha256": "fe8e758be6e4d5e9734ce24eebf0d324c348b6d553cee98b12a33b1dcde74b64",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "d178605d4241097beeb920d1de3ba5fc4159c0b78e24b95ecd749bf229b8cbb4",
+  "shift_spec_sha256": "e3a58265ba9ee7be9f1dcd23cd9030b8eb4446998938d13fd3d100d0692f75da",
+  "split_sha256": "cc90a87b53fca273b7c14792e7d22e3a91499bdcd04c0d391c099799d0b31466",
   "status": "APPLICABLE"
 }

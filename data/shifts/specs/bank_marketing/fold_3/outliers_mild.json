@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "8289c4fcf072e69c19e8d9f0340825d6fe0cacf8a7a497ac08441eb0fce7a58b",
   "condition": "outliers_mild",
   "dataset_id": "bank_marketing",
   "derived_seed": 656217471,
@@ -6,8 +7,8 @@
   "metadata": {
     "eligible_feature_count": 7,
     "family": "outliers",
-    "noise_sha256": "76a225fc703fa956bbb709c00d82d2d17bd4c9b80e56679cafd8b920f3a33bc6",
-    "realized_standardized_displacement": 3.3339943975798665,
+    "noise_sha256": "721952711e2a89135462418277ee7d87c5135e50ef15e71bf3093ad489c25e2a",
+    "realized_standardized_displacement": 3.315099162445282,
     "row_fraction": 0.05,
     "row_selection_sha256": "4138f6c45547026f187c96e93e26037d48525d1c8233fa574fd2c68537b49a2d",
     "selected_row_count": 452,
@@ -20,9 +21,10 @@
   "outer_fold": 3,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "8f951db2505fd12b16c4ac83a0bb0d603c10dc28a3da065b231f938cfc41aeba",
+  "scenario_input_sha256": "67a0dc4397f535299216310fd23eab3568e1ddf7ef650b01d10fa83d167bdc01",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "7679676e144aa1e59ce3f996356252ed0c4c9bd7700243d263b78c2099f2ec35",
+  "shift_spec_sha256": "21afcb44e6f98435aa23debfad7de36cdcde9ea47ea631c2697b1a1d3ed91c71",
+  "split_sha256": "b1fe600806f1a171a6f581fe8666770ddc73c6c3348de5f9be9fc1a1e37aa3ed",
   "status": "APPLICABLE"
 }

@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "445ead712220b311e3ec7121840f3305395773e51d1ddc83a5fc0bfd45183a7d",
   "condition": "measurement_noise_mild",
   "dataset_id": "banknote_authentication",
   "derived_seed": 1629445026,
@@ -7,9 +8,9 @@
     "eligible_feature_count": 4,
     "family": "measurement_noise",
     "noise_multiplier": 0.1,
-    "noise_seed": 519414215,
-    "noise_sha256": "9f23381040206801741d6aaa153690313816a0db3314419ea220479b82926dcb",
-    "rms_standardized_perturbation": 0.10029360538669625,
+    "noise_seed": 1524627700,
+    "noise_sha256": "1d3b77e63449082d675e73fa2df782a3c933fa6c6cc8901ac7fa641c6d9585e0",
+    "rms_standardized_perturbation": 0.10104244437606577,
     "severity": "mild"
   },
   "npz_relpath": "data/shifts/specs/banknote_authentication/fold_4/measurement_noise_mild.npz",
@@ -17,9 +18,10 @@
   "outer_fold": 4,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "1bcefd700a2fe52f67eb517f5ecc00ea97843fdba1f35da8bbb1318263aec769",
+  "scenario_input_sha256": "59c2fe999d250fd83dfd20696805aabd0c1590f1cae7a0baf42bc60530a769a0",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "1f6d55de1974f9491aa33049fd63d6a70a526d96764ca72832aa83cb18d49473",
+  "shift_spec_sha256": "ec2a024beb48b04c6150a08ec52dead746057126be52ab46130b5be619ac95a2",
+  "split_sha256": "ee46050a41193e18867511a7e6ed67da56e2920f48528a53c2b3bd9b2c82dd10",
   "status": "APPLICABLE"
 }

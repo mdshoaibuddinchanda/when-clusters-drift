@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "bd0134d8ec032b0cb125d6395ddb0b6fe9f751efcb5b2961d4803f89cb4b8605",
   "condition": "clean",
   "dataset_id": "electricity",
   "derived_seed": 222314561,
@@ -12,9 +13,10 @@
   "outer_fold": 3,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "7ae39c6c8953eb34bb4d8c201eb19d6ab00adf9615d8f9561416ff69d19da261",
+  "scenario_input_sha256": "5f3052381a5663e550af2edf60a63dca1854c30770e8534082245222ce9b5627",
   "severity": "none",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "480840801b285675a34e208e13646d7f6fb0377a42354a4f2bce6f83dd7ecad9",
+  "shift_spec_sha256": "53ad5c47956d6cbc9b26ccec450d477719acffec2a89583a6b1a5dce5d5eb889",
+  "split_sha256": "38cd3faee9e6dc401e550da00ac350c84625a9218bda428192e8fbecbd738bcb",
   "status": "APPLICABLE"
 }

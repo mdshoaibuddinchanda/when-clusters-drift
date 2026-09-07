@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "0ad1f7f847c84b9cc5299bd05d8823b1dbd152612c6fc50bb458fec212d7c8c4",
   "condition": "class_prevalence_mild",
   "dataset_id": "mice_protein_expression",
   "derived_seed": 909447905,
@@ -38,9 +39,10 @@
   "outer_fold": 3,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "744df94578e6d7498b2e660dbeeb082fa7feab4eec4d2d88e882fa032edfb170",
+  "scenario_input_sha256": "f5dc01d69ac85d8467946494ab41a931f15f5ea78d62c5316635a5eabcd386e9",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "9d07b6854b69f9a03dd7c5e38233f208ecef05eae09f91a5b24844726af9b7dc",
+  "shift_spec_sha256": "db02be7fea4d5d5dc9951e0dc902f0613ede42cca0fc2c6618db86e69ca42457",
+  "split_sha256": "6df8b64c1012335902a43356e17d2d478966a311ef18e07bf561cb131ff7690c",
   "status": "APPLICABLE"
 }

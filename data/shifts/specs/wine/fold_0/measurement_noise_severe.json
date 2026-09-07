@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "e8e4dc77b2c204df11aa1323495507605c5f904eb1175ef5a9629f3cd9dc821b",
   "condition": "measurement_noise_severe",
   "dataset_id": "wine",
   "derived_seed": 583245968,
@@ -7,9 +8,9 @@
     "eligible_feature_count": 13,
     "family": "measurement_noise",
     "noise_multiplier": 0.3,
-    "noise_seed": 944153345,
-    "noise_sha256": "f080da23dfcc625e37d68f9b2cf4ea03987e729c41d3795b1986f11b5ba0784d",
-    "rms_standardized_perturbation": 0.3044200115851223,
+    "noise_seed": 126844920,
+    "noise_sha256": "0acf0798a4fac05660344aaf00702023412efbe82298ed89840f830332f31d06",
+    "rms_standardized_perturbation": 0.299499008869865,
     "severity": "severe"
   },
   "npz_relpath": "data/shifts/specs/wine/fold_0/measurement_noise_severe.npz",
@@ -17,9 +18,10 @@
   "outer_fold": 0,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "fc19ec4792a1fbc9225f640cc48725d948d0101727cb93d3fa47fc9639d2ea61",
+  "scenario_input_sha256": "d886806dc749d4de23e17605ad111d2f92c6ede44f627950506fcaffbfe2eb83",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "18a6535b4e844c9e28d84333848458914db749fc90938bb85c3744bdba1d49db",
+  "shift_spec_sha256": "1642891d0d8a175a5ac9033480fadb7540733986d0878f944da8eb3453466738",
+  "split_sha256": "50b7abaa29af503d480a79a09b2cc75ace1c2c7ee0364a085a2dacc90c0b6db3",
   "status": "APPLICABLE"
 }

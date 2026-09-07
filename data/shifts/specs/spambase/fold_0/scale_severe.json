@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "df45af075f8d5419d64bc7c81db9ddad980bd2bad5380309af81ade8608ba4b6",
   "condition": "scale_severe",
   "dataset_id": "spambase",
   "derived_seed": 182599173,
@@ -133,9 +134,10 @@
   "outer_fold": 0,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "999c8405b0ef5839bc00d320fb2e2479c536759ecd2ee8c609995f3ad298228e",
+  "scenario_input_sha256": "5d548b9b9b6e5d05767737ba8e578e51a5c461877fc76950d68355ecd0546e3a",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "3e34870b8dbfff57aaad5024d93fc2abd234051a62c8140a75b59b694bfd2051",
+  "shift_spec_sha256": "6892577ee97f786f94de87d350e76db2db7d44e0dbe0b9dd80922ee2358a9392",
+  "split_sha256": "fa914e0986c7a41f4b0a42a1f929cbcc2ae6abd134393932312b0effa19a9e19",
   "status": "APPLICABLE"
 }

@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "acc0be0fc68cc97c452475bbe1f35dae27d8dbdf8877445b022b26a4c1da4ba6",
   "condition": "measurement_noise_severe",
   "dataset_id": "glass",
   "derived_seed": 1199746434,
@@ -7,9 +8,9 @@
     "eligible_feature_count": 9,
     "family": "measurement_noise",
     "noise_multiplier": 0.3,
-    "noise_seed": 1479250448,
-    "noise_sha256": "f5a8e0685f657c249b5689ad89b05ff35394a2c2da93eabf5c67ce3de73a7d39",
-    "rms_standardized_perturbation": 0.31703203360072696,
+    "noise_seed": 56263313,
+    "noise_sha256": "f707a54bb9c185d973478de6eb4d1b1ea6302d9fe73a1879fcb7f78e3ca07423",
+    "rms_standardized_perturbation": 0.3030187505537372,
     "severity": "severe"
   },
   "npz_relpath": "data/shifts/specs/glass/fold_1/measurement_noise_severe.npz",
@@ -17,9 +18,10 @@
   "outer_fold": 1,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "d7a168f7ee3b5a27770aca58868129d7773658a6c81c5efbcb78501432fcd976",
+  "scenario_input_sha256": "f766559831f7a5d698bfd931a87ea241f1c259b9150da883cb7ad7d80112711a",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "75398652bc683497660851d9f1add2783296dbcb608508d7e8ff412cbc0c29f5",
+  "shift_spec_sha256": "abd1f18f84d20edc4b0d7593e9798e9e7d1e3ad6063540c3de32b1eaacd53b5c",
+  "split_sha256": "f9be215f92da3277610c4289d0b55a6c4593f8b857b6e637fb9de21c230a4a39",
   "status": "APPLICABLE"
 }

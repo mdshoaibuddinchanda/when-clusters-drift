@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "a96acdbe229653c3b5388efaa8612239923efc26ef719bb86afa24301f4337f6",
   "condition": "measurement_noise_mild",
   "dataset_id": "sonar",
   "derived_seed": 988399997,
@@ -7,9 +8,9 @@
     "eligible_feature_count": 60,
     "family": "measurement_noise",
     "noise_multiplier": 0.1,
-    "noise_seed": 1772526792,
-    "noise_sha256": "68545ed0bf6bed6e64e37862855b7d96657e0ecec275a72fd5de2c814ef96f92",
-    "rms_standardized_perturbation": 0.10154611896971082,
+    "noise_seed": 1810239134,
+    "noise_sha256": "45d9dc5024b0102214e25ff0e3f621763da2298ad4bd79e100e0e8662b5d5c11",
+    "rms_standardized_perturbation": 0.09984509419646505,
     "severity": "mild"
   },
   "npz_relpath": "data/shifts/specs/sonar/fold_2/measurement_noise_mild.npz",
@@ -17,9 +18,10 @@
   "outer_fold": 2,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "f5d3a1807ac1ad12759da2e0a373e3743c7d1010b2515cdadfb883197d02543d",
+  "scenario_input_sha256": "c002098ba12c7ac67399c22646afcf6046586da4d833a5edfaf88d68743652bf",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "2b0468373668688742b91f72080750031032a4d7964e5e7f6552b1d35e18c8e8",
+  "shift_spec_sha256": "4e518eafd5e30bc5ac648ffc24c29469845b080c5f73f2c39f5411038773a734",
+  "split_sha256": "07fa2d958fa6dca169ff263a87a35b5ffb29300905b11a02c2c699480b9dc481",
   "status": "APPLICABLE"
 }

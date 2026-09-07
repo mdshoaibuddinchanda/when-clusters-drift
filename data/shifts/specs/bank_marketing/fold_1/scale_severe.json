@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "8289c4fcf072e69c19e8d9f0340825d6fe0cacf8a7a497ac08441eb0fce7a58b",
   "condition": "scale_severe",
   "dataset_id": "bank_marketing",
   "derived_seed": 81909759,
@@ -33,9 +34,10 @@
   "outer_fold": 1,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "8b870d7e08ed5c709b3d09a7a77163693969f55fe14dc55fceecc63113f5efb9",
+  "scenario_input_sha256": "7f83b3cd0afcb8fd1ccb7abc56f95c07db3d767214ea15feb0d0daa857c726c7",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "8e05169f48802936660e9e0c76440c132f122cd469863457a51a48033c4716dd",
+  "shift_spec_sha256": "58139a014def9e9c1682c86b7dec0115330d5a3c547d522dca2c3d057d1ff271",
+  "split_sha256": "e5bed7f84596c17a8e61a6c99d2b2738ad0eef192024b9072b241fe35ef648a8",
   "status": "APPLICABLE"
 }

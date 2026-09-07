@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "01e0b4dc6a3e5b03571a28533edcd03cfcd59e9651104a7a607cdc35821f3a4e",
   "condition": "measurement_noise_severe",
   "dataset_id": "madelon",
   "derived_seed": 1108232288,
@@ -7,9 +8,9 @@
     "eligible_feature_count": 500,
     "family": "measurement_noise",
     "noise_multiplier": 0.3,
-    "noise_seed": 1186612798,
-    "noise_sha256": "d74ea8c991170c873f3240839d84b609cd45a1953973b14f5110eb6ec4830793",
-    "rms_standardized_perturbation": 0.30036257402104594,
+    "noise_seed": 2050319444,
+    "noise_sha256": "d06b08c70f3523f895703194bfffd9bc48e8d3e2e6f5ab49a19141b8d7c51372",
+    "rms_standardized_perturbation": 0.2986988700013759,
     "severity": "severe"
   },
   "npz_relpath": "data/shifts/specs/madelon/fold_0/measurement_noise_severe.npz",
@@ -17,9 +18,10 @@
   "outer_fold": 0,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "7a64934a97411eafc2605e9ba3da2bd723f4612c1773cb0d191170be8a5992eb",
+  "scenario_input_sha256": "407a0f092475d226dd15a6f7d21079fff95c06ec2ec6367150837353156c2e03",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "4217ba6f5ca82e652217687646f0df3e4d50813f58452cc65b1d50c45654c8cc",
+  "shift_spec_sha256": "00263a0f2437a25a758f47ba6d50ea3b174f9a8c9c6157830b733d25820a5cbe",
+  "split_sha256": "fbddb13074799aecfdf6eccbd0e9927e4d6d6eb8538446ceef65664aef048b85",
   "status": "APPLICABLE"
 }

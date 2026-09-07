@@ -1,0 +1,142 @@
+{
+  "applicable_count": 2240,
+  "backend_benchmark": {
+    "benchmarked_datasets": [
+      "aps_failure",
+      "isolet",
+      "letter_recognition"
+    ],
+    "cuda_available": true,
+    "cuda_faster_overall": false,
+    "recommendation": "For Phase-4 tabular shifts, NumPy CPU provides parity or faster throughput than GPU for all datasets under 2.5M cells, with zero host-device transfer overhead. Auto backend defaults to NumPy for safe and deterministic execution."
+  },
+  "dataset_count": 30,
+  "dataset_ids": [
+    "aps_failure",
+    "balance_scale",
+    "bank_marketing",
+    "banknote_authentication",
+    "breast_cancer_wisconsin_diagnostic",
+    "dermatology",
+    "ecoli",
+    "electricity",
+    "glass",
+    "haberman_survival",
+    "heart_disease",
+    "human_activity_recognition",
+    "image_segmentation",
+    "ionosphere",
+    "iris",
+    "isolet",
+    "letter_recognition",
+    "madelon",
+    "mice_protein_expression",
+    "optdigits",
+    "pendigits",
+    "pima_diabetes",
+    "satimage",
+    "seeds",
+    "sonar",
+    "spambase",
+    "vehicle_silhouettes",
+    "waveform",
+    "wine",
+    "yeast"
+  ],
+  "dimension_match_count": 2250,
+  "finite_transformed_count": 2250,
+  "input_lock_sha256": "65b650447020340d77f416216fafffc469d585d8e84600cb4272bf5262830cb4",
+  "not_applicable_count": 10,
+  "per_family_counts": {
+    "class_prevalence": 300,
+    "clean": 150,
+    "local_overlap": 300,
+    "location": 300,
+    "mcar": 300,
+    "measurement_noise": 300,
+    "outliers": 300,
+    "scale": 300
+  },
+  "protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
+  "scenario_count": 2250,
+  "severity_monotonicity": {
+    "fail_count": 0,
+    "not_applicable_count": 5,
+    "pass_count": 1038,
+    "total_pairs": 1050,
+    "warn_count": 7,
+    "warn_rows": [
+      {
+        "dataset": "balance_scale",
+        "details": "severe=0.0880 vs mild=0.1200",
+        "family": "class_prevalence",
+        "fold": 2,
+        "metric_name": "total_variation_distance",
+        "mild_value": 0.12,
+        "severe_value": 0.08800000000000001,
+        "status": "WARN"
+      },
+      {
+        "dataset": "dermatology",
+        "details": "severe=0.1096 vs mild=0.1370",
+        "family": "class_prevalence",
+        "fold": 2,
+        "metric_name": "total_variation_distance",
+        "mild_value": 0.136986301369863,
+        "severe_value": 0.1095890410958904,
+        "status": "WARN"
+      },
+      {
+        "dataset": "glass",
+        "details": "severe=0.1395 vs mild=0.1628",
+        "family": "class_prevalence",
+        "fold": 1,
+        "metric_name": "total_variation_distance",
+        "mild_value": 0.16279069767441862,
+        "severe_value": 0.13953488372093023,
+        "status": "WARN"
+      },
+      {
+        "dataset": "glass",
+        "details": "severe=0.1429 vs mild=0.2143",
+        "family": "class_prevalence",
+        "fold": 4,
+        "metric_name": "total_variation_distance",
+        "mild_value": 0.21428571428571427,
+        "severe_value": 0.14285714285714285,
+        "status": "WARN"
+      },
+      {
+        "dataset": "heart_disease",
+        "details": "severe=0.0678 vs mild=0.0847",
+        "family": "class_prevalence",
+        "fold": 0,
+        "metric_name": "total_variation_distance",
+        "mild_value": 0.0847457627118644,
+        "severe_value": 0.06779661016949151,
+        "status": "WARN"
+      },
+      {
+        "dataset": "heart_disease",
+        "details": "severe=0.0508 vs mild=0.0678",
+        "family": "class_prevalence",
+        "fold": 3,
+        "metric_name": "total_variation_distance",
+        "mild_value": 0.06779661016949154,
+        "severe_value": 0.05084745762711865,
+        "status": "WARN"
+      },
+      {
+        "dataset": "yeast",
+        "details": "severe=0.0707 vs mild=0.1044",
+        "family": "class_prevalence",
+        "fold": 0,
+        "metric_name": "total_variation_distance",
+        "mild_value": 0.10437710437710437,
+        "severe_value": 0.0707070707070707,
+        "status": "WARN"
+      }
+    ]
+  },
+  "shift_manifest_sha256": "60024c73fd25ddbdb874e92ffba98905cf248a40564655980b9806c17d15c852"
+}

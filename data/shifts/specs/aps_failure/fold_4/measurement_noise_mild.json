@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "ce3e2676f0650e30fcd51f698c0909651e832dbcb922c33ff77a72dd235b1350",
   "condition": "measurement_noise_mild",
   "dataset_id": "aps_failure",
   "derived_seed": 626724309,
@@ -7,9 +8,9 @@
     "eligible_feature_count": 169,
     "family": "measurement_noise",
     "noise_multiplier": 0.1,
-    "noise_seed": 2110034537,
-    "noise_sha256": "58a7b34d6f56eef0be343919850287a26a88d36d72d1ac96e6dab131684bff0b",
-    "rms_standardized_perturbation": 0.09993884515880441,
+    "noise_seed": 127252138,
+    "noise_sha256": "a09988bcc8db06b3fa814634eaaacfea056381618783e9b78055f41e5d67c6e1",
+    "rms_standardized_perturbation": 0.09998826278026458,
     "severity": "mild"
   },
   "npz_relpath": "data/shifts/specs/aps_failure/fold_4/measurement_noise_mild.npz",
@@ -17,9 +18,10 @@
   "outer_fold": 4,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "8adc2b66f67e32268f13755cce235b28e59d85a8a1f623641c22e3c42bbcd161",
+  "scenario_input_sha256": "1f6f116013779349586ad1e0cc00c6b20a9693bb7b05f64c36c75d2c0d87db20",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "61970051f3c392659bc14af6a6af7814ded136674032a9c464b10900a4aac493",
+  "shift_spec_sha256": "7cb6b8de12262d8a91953aeb605fe430fd71afe0e1cec8df23adbc7161cfe4db",
+  "split_sha256": "6414e098d0469dd1b69a46bf8bc36f799533b349cebd93b49f7588546f12cbce",
   "status": "APPLICABLE"
 }

@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "acc0be0fc68cc97c452475bbe1f35dae27d8dbdf8877445b022b26a4c1da4ba6",
   "condition": "location_mild",
   "dataset_id": "glass",
   "derived_seed": 389872343,
@@ -27,9 +28,10 @@
   "outer_fold": 2,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "2f7b500172027a6ff7d4e518980d1cc3c750a4058e24e67e92495fe2650b1b49",
+  "scenario_input_sha256": "5a3fb84409e784db8017a061747811af9ce2e9d665730c7adbe6576c16be5139",
   "severity": "mild",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "0787b412143c673ce9139d0ef7dd0cf12359fb8e5f1abfa04077d0b6889a6104",
+  "shift_spec_sha256": "0474a2796cc68414375669671cd507bbdc1b4c3893b5d71dc70e9a3af43c2c5b",
+  "split_sha256": "a9c231ee1a056eea32aaf278239add3191bb3fe20589f082c9cfc48c3c401ae4",
   "status": "APPLICABLE"
 }

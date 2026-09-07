@@ -1,4 +1,5 @@
 {
+  "canonical_bundle_sha256": "acc0be0fc68cc97c452475bbe1f35dae27d8dbdf8877445b022b26a4c1da4ba6",
   "condition": "outliers_severe",
   "dataset_id": "glass",
   "derived_seed": 258142730,
@@ -6,8 +7,8 @@
   "metadata": {
     "eligible_feature_count": 9,
     "family": "outliers",
-    "noise_sha256": "42b6580f5adeef08ef973ea23844a3f6bd498baab8e42e9c7c15bcbd3cad0f31",
-    "realized_standardized_displacement": 3.5852438057313867,
+    "noise_sha256": "4fc0d392a74baab09a2c0e1685569ce83782beffd81cac2d5f3f2543b36d4cec",
+    "realized_standardized_displacement": 3.408469161699843,
     "row_fraction": 0.15,
     "row_selection_sha256": "2a46ef14d2e3241a4707e9abc8adbf6f44647032a80c3764f279ef12a8e118a1",
     "selected_row_count": 6,
@@ -20,9 +21,10 @@
   "outer_fold": 3,
   "protocol_version": 1,
   "reason": null,
-  "scenario_input_sha256": "3559905d9fbc31219003b339e7e16692cc979b11e055faf68479de39f9050124",
+  "scenario_input_sha256": "d84845780319e1400deb241c2abf20721aae7f17afbaa13dd670ca09452ef7f7",
   "severity": "severe",
   "shift_protocol_sha256": "9791705ed63002b76f20bfcb996c310d8fb3104b7d963f0ee10747295dddc038",
-  "shift_spec_sha256": "5601811ca779f893f78c7d1e8b6fb0b0568244949d9d08bacfaaaff2d3d22e46",
+  "shift_spec_sha256": "f29dfa3d39556418dbbbc4542be38e8cd19662829b8628e193ad95e2b33654ed",
+  "split_sha256": "91eebf95effb313b622723816ff577a3113e8cfeeff82650dedb378058771790",
   "status": "APPLICABLE"
 }
