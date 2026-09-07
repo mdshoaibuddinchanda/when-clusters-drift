@@ -1,13 +1,22 @@
 {
-  "created_at": "2026-09-07T19:51:50.320946+00:00",
+  "alignment_config_sha256": "3afa2b89ed781bd40ffa3dbe1bc244b74fd12b304d6025e9b8300835aa85d359",
   "falsification_config_sha256": "9d9f9aaf37c42e0a0cd6c7d0aa5f5820638e4cf7b29db1bfa1f46de382dc6cd6",
-  "lock_version": 1,
+  "lock_version": 2,
   "methods_config_sha256": "5e5be24811aa3f8289b4b9b3be79bda431d09a6c2ce685963442273d499dc278",
   "phase1_dataset_manifest_sha256": "16eced96d3580e593ebddd78b3c2995e87c6103c1b63d9f2449657b7dcd62e60",
+  "phase2_preprocessing_config_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
   "phase2_split_manifest_sha256": "25106924ad5e1b8dd0b8ceeab65659a2a163e82b561ceca12bec1588aae52ff5",
   "phase4_shift_manifest_sha256": "60024c73fd25ddbdb874e92ffba98905cf248a40564655980b9806c17d15c852",
   "phase5_probe_manifest_sha256": "6ec8717a951fd45696a836bd5bc55536f7349ec4687a4053b4951159cdb78659",
-  "phase6_freeze_commit": "a2726e6423405c93d9319eebbe0cbdfdfc7ecbb4",
-  "phase7_producer_commit": "8dc7bc8056a686f1eb147f9ec5bf211935454da6",
+  "phase6_final_artifact_commit": "a2726e655da43bec59c640dda008cf65f412919d",
+  "phase6_final_producer_commit": "ca73a520ef65c2e1de8ff014190019e19d4ab864",
+  "phase6_input_lock_sha256": "a3541b410c7d1bb5e7be6a217a24b4f41956468cf436edce07d98ea507417abc",
+  "phase6_signal_protocol_sha256": "70a97778df2ac411a42e111020d43fa56d09336f20c4bc65929e97cae04054c5",
+  "phase7_execution_patch_commits": [
+    "cfa04975b483b0898dd197cd06ded48a824bd99d",
+    "c09103eebe2e750f1d07842cea1cb8890b1bbd20"
+  ],
+  "phase7_scientific_protocol_commit": "8dc7bc8056a686f1eb147f9ec5bf211935454da6",
+  "probe_config_sha256": "f181ce081dd59cd40d37f2da4107bfd4f1b536764993155bd726e198f5ca3343",
   "signals_config_sha256": "ca073113c293e238c3ab0d753a53ae6fdd6a88426b8b47d59b00a96098586be4"
 }

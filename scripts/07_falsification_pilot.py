@@ -81,7 +81,7 @@ from clusterdrift.falsification.protocol import (
     compute_falsification_protocol_sha256,
     load_falsification_config,
 )
-from clusterdrift.falsification.verification import verify_falsification
+from clusterdrift.falsification.verification import verify_falsification, verify_pass_a
 from clusterdrift.probes.bank import (
     load_current_probe_descriptor,
     load_reference_probe_descriptor,
@@ -1021,20 +1021,29 @@ def run_evaluation(cfg: Dict[str, Any], project_root: Path) -> None:
 # Phase 7 Input Lock Creation
 # ---------------------------------------------------------------------------
 
-def create_phase7_input_lock(project_root: Path, producer_commit: str) -> Dict[str, Any]:
+def create_phase7_input_lock(project_root: Path, producer_commit: Optional[str] = None) -> Dict[str, Any]:
     """Cryptographically bind all Phase 1-6 inputs into phase7_input_lock.json."""
     lock_data = {
-        "lock_version": 1,
-        "created_at": datetime.now(timezone.utc).isoformat(),
-        "phase6_freeze_commit": "a2726e6423405c93d9319eebbe0cbdfdfc7ecbb4",
-        "phase7_producer_commit": producer_commit,
+        "alignment_config_sha256": compute_file_sha256(project_root / "configs" / "alignment.yaml"),
+        "falsification_config_sha256": compute_file_sha256(project_root / "configs" / "falsification.yaml"),
+        "lock_version": 2,
+        "methods_config_sha256": compute_file_sha256(project_root / "configs" / "methods.yaml"),
         "phase1_dataset_manifest_sha256": compute_file_sha256(project_root / "data" / "manifests" / "datasets.json"),
+        "phase2_preprocessing_config_sha256": compute_file_sha256(project_root / "configs" / "preprocessing.yaml"),
         "phase2_split_manifest_sha256": compute_file_sha256(project_root / "data" / "splits" / "split_manifest.json"),
         "phase4_shift_manifest_sha256": compute_file_sha256(project_root / "data" / "shifts" / "shift_manifest.json"),
         "phase5_probe_manifest_sha256": compute_file_sha256(project_root / "data" / "probes" / "probe_manifest.json"),
-        "methods_config_sha256": compute_file_sha256(project_root / "configs" / "methods.yaml"),
+        "phase6_final_artifact_commit": "a2726e655da43bec59c640dda008cf65f412919d",
+        "phase6_final_producer_commit": "ca73a520ef65c2e1de8ff014190019e19d4ab864",
+        "phase6_input_lock_sha256": compute_file_sha256(project_root / "data" / "signals" / "phase6_input_lock.json"),
+        "phase6_signal_protocol_sha256": "70a97778df2ac411a42e111020d43fa56d09336f20c4bc65929e97cae04054c5",
+        "phase7_execution_patch_commits": [
+            "cfa04975b483b0898dd197cd06ded48a824bd99d",
+            "c09103eebe2e750f1d07842cea1cb8890b1bbd20"
+        ],
+        "phase7_scientific_protocol_commit": "8dc7bc8056a686f1eb147f9ec5bf211935454da6",
+        "probe_config_sha256": compute_file_sha256(project_root / "configs" / "probes.yaml"),
         "signals_config_sha256": compute_file_sha256(project_root / "configs" / "signals.yaml"),
-        "falsification_config_sha256": compute_file_sha256(project_root / "configs" / "falsification.yaml"),
     }
     out_p = project_root / "data" / "falsification" / "phase7_input_lock.json"
     out_p.parent.mkdir(parents=True, exist_ok=True)
@@ -1057,6 +1066,7 @@ def main():
     parser.add_argument("--resume", action="store_true", default=True, help="Resume from fine-grained checkpoints")
     parser.add_argument("--all", action="store_true", help="Run full pipeline: replay, signals, quality, evaluate")
     parser.add_argument("--verify", action="store_true", help="Run strict byte-read-only verification")
+    parser.add_argument("--verify-pass-a", action="store_true", help="Run strict byte-read-only verification of Pass A signals")
     parser.add_argument("--workers", type=str, default="4", help="Workers: 'auto' or integer <= 4")
     parser.add_argument("--work-dir", type=str, default=None, help="Runtime work/cache directory")
     args = parser.parse_args()
@@ -1081,6 +1091,17 @@ def main():
         cache = PersistentPhase7Cache(w_dir, proto_sha, PROJECT_ROOT)
         cache.clear_cache(confirmed=args.yes_really_clear_runtime_cache)
         print(f"[CACHE CLEARED] Successfully cleared {cache.root}")
+        return
+
+    if args.verify_pass_a:
+        res = verify_pass_a(PROJECT_ROOT)
+        print("============================================================")
+        print("[VERIFY PASS A SUCCESS] Pass A label-free signals verified!")
+        print(f"  Rows: {res['signals']['rows']} (exact universe)")
+        print(f"  Columns: {res['signals']['columns']}")
+        print(f"  SHA256: {res['signals']['sha256']}")
+        print(f"  Status: {res['pass_a_status']}")
+        print("============================================================")
         return
 
     if args.verify:
