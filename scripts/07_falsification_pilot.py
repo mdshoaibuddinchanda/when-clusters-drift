@@ -10,7 +10,7 @@ Execution-Only Reliability, Caching, Resumability, and Performance Upgrades:
 """
 
 import argparse
-from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor, as_completed
 import copy
 from datetime import datetime, timezone
 import json
@@ -510,43 +510,98 @@ def run_label_free_signals_pass(
         completed_tasks = 0
         total_completed_rows = n_valid
 
-        for task_idx, (ds, fold) in enumerate(tasks):
-            if interrupt_handler.interrupted:
-                journal.log(f"[INTERRUPTED] Exiting safely after task {task_idx}. Checkpoints preserved.")
-                break
+        if max_workers == 1:
+            for task_idx, (ds, fold) in enumerate(tasks):
+                if interrupt_handler.interrupted:
+                    journal.log(f"[INTERRUPTED] Exiting safely after task {task_idx}. Checkpoints preserved.")
+                    break
 
-            journal.log(f"[TASK START {task_idx+1}/{len(tasks)}] {ds} fold_{fold}...")
-            task_rows = process_dataset_fold_task(
-                ds=ds,
-                fold=fold,
-                K=classes_map[ds],
-                conditions=conditions,
-                methods=methods,
-                seeds=seeds,
-                sig_cfg=sig_cfg,
-                alignment_cfg=alignment_cfg,
-                methods_cfg=methods_cfg,
-                prep_cfg=prep_cfg,
-                project_root=root,
-                cache=cache,
-                checkpoint_mgr=checkpoint_mgr,
-                signal_protocol_sha=signal_protocol_sha,
-            )
-            completed_tasks += 1
+                journal.log(f"[TASK START {task_idx+1}/{len(tasks)}] {ds} fold_{fold}...")
+                task_rows = process_dataset_fold_task(
+                    ds=ds,
+                    fold=fold,
+                    K=classes_map[ds],
+                    conditions=conditions,
+                    methods=methods,
+                    seeds=seeds,
+                    sig_cfg=sig_cfg,
+                    alignment_cfg=alignment_cfg,
+                    methods_cfg=methods_cfg,
+                    prep_cfg=prep_cfg,
+                    project_root=root,
+                    cache=cache,
+                    checkpoint_mgr=checkpoint_mgr,
+                    signal_protocol_sha=signal_protocol_sha,
+                )
+                completed_tasks += 1
 
-            # Recount valid checkpoints
-            current_valid = len(checkpoint_mgr.get_completed_checkpoint_keys(signal_protocol_sha))
-            progress_doc = journal.update(
-                completed_rows=current_valid,
-                completed_tasks=completed_tasks,
-                total_tasks=len(tasks),
-                active_task=f"{ds}_fold_{fold}",
-                cache_metrics=cache.cache_size_report(),
-            )
-            journal.log(
-                f"[PROGRESS] {current_valid}/4500 rows ({progress_doc['percent_complete']}%) | "
-                f"Throughput: {progress_doc['rows_per_hour']} rows/hr | ETA: {progress_doc['estimated_completion_time']}"
-            )
+                # Recount valid checkpoints
+                current_valid = len(checkpoint_mgr.get_completed_checkpoint_keys(signal_protocol_sha))
+                progress_doc = journal.update(
+                    completed_rows=current_valid,
+                    completed_tasks=completed_tasks,
+                    total_tasks=len(tasks),
+                    active_task=f"{ds}_fold_{fold}",
+                    cache_metrics=cache.cache_size_report(),
+                )
+                journal.log(
+                    f"[PROGRESS] {current_valid}/4500 rows ({progress_doc['percent_complete']}%) | "
+                    f"Throughput: {progress_doc['rows_per_hour']} rows/hr | ETA: {progress_doc['estimated_completion_time']}"
+                )
+        else:
+            def _worker_task(t_item):
+                t_idx, (ds, fold) = t_item
+                if interrupt_handler.interrupted:
+                    return ds, fold, 0
+                journal.log(f"[TASK START {t_idx+1}/{len(tasks)}] {ds} fold_{fold}...")
+                rows = process_dataset_fold_task(
+                    ds=ds,
+                    fold=fold,
+                    K=classes_map[ds],
+                    conditions=conditions,
+                    methods=methods,
+                    seeds=seeds,
+                    sig_cfg=sig_cfg,
+                    alignment_cfg=alignment_cfg,
+                    methods_cfg=methods_cfg,
+                    prep_cfg=prep_cfg,
+                    project_root=root,
+                    cache=cache,
+                    checkpoint_mgr=checkpoint_mgr,
+                    signal_protocol_sha=signal_protocol_sha,
+                )
+                return ds, fold, rows
+
+            journal.log(f"[PARALLEL EXECUTION] Dispatching {len(tasks)} dataset-fold tasks across {max_workers} threads...")
+            with ThreadPoolExecutor(max_workers=max_workers) as executor:
+                future_map = {
+                    executor.submit(_worker_task, (i, t)): t
+                    for i, t in enumerate(tasks)
+                }
+                for fut in as_completed(future_map):
+                    if interrupt_handler.interrupted:
+                        journal.log("[INTERRUPTED] Stopping task collection...")
+                        break
+                    try:
+                        ds, fold, _ = fut.result()
+                    except Exception as exc:
+                        ds, fold = future_map[fut]
+                        journal.log_failure(f"{ds}_fold_{fold}", str(exc))
+                        continue
+
+                    completed_tasks += 1
+                    current_valid = len(checkpoint_mgr.get_completed_checkpoint_keys(signal_protocol_sha))
+                    progress_doc = journal.update(
+                        completed_rows=current_valid,
+                        completed_tasks=completed_tasks,
+                        total_tasks=len(tasks),
+                        active_task=f"{ds}_fold_{fold}",
+                        cache_metrics=cache.cache_size_report(),
+                    )
+                    journal.log(
+                        f"[PROGRESS] {current_valid}/4500 rows ({progress_doc['percent_complete']}%) | "
+                        f"Throughput: {progress_doc['rows_per_hour']} rows/hr | ETA: {progress_doc['estimated_completion_time']}"
+                    )
 
         # Assemble final CSV if all 4,500 are done
         final_valid = len(checkpoint_mgr.get_completed_checkpoint_keys(signal_protocol_sha))
