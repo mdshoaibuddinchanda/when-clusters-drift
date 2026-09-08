@@ -1,5 +1,7 @@
 {
+  "falsification_tests_passed": 79,
   "final_verdict": "FAILS_PRIMARY_FALSIFICATION",
+  "full_test_suite_passed": 402,
   "joined_table_sha256": "a8a58ebc601bf7e5f3e5456336cd3b9fc049364c10bc99d0c33422274fae1815",
   "manifest_version": 1,
   "metric_artifacts": {
@@ -21,6 +23,7 @@
   "phase7_pass_a_freeze_commit": "89b3df90f2cdc29d0e341637a11c0eabd2099ee7",
   "phase7_pass_b_freeze_commit": "889624d2ade5d15635d9459dd2601c5664a2747b",
   "phase7_pass_c_preflight_commit": "ef07a68f973fdc77bae7d7410149214b2a10ee21",
+  "phase7_result_commit": "c9280bb390492f4528752f5457e341fb3d9c1040",
   "prediction_artifacts": {
     "lodo_predictions": {
       "rows": 92400,
