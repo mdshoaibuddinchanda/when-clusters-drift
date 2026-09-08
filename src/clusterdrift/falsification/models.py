@@ -70,12 +70,17 @@ class TrainingOnlyPreprocessor:
         return self.fit(X).transform(X)
 
 
+import hashlib
+import json
+
+
 @dataclass(frozen=True)
 class TuningSelection:
     selected_params: Dict[str, Any]
     best_score: float
     candidates: List[Dict[str, Any]]
     tie_broken: bool
+    inner_splits_sha256: str = ""
 
 
 def tune_and_fit_hgbr(
@@ -99,13 +104,24 @@ def tune_and_fit_hgbr(
     # Setup GroupKFold inner CV
     unique_groups = len(np.unique(groups_train))
     actual_splits = min(n_splits, unique_groups)
+    assert actual_splits == n_splits, f"Expected exactly {n_splits} inner folds, got {actual_splits}"
     gkf = GroupKFold(n_splits=actual_splits)
+
+    # Pre-verify splits and compute inner split hash
+    inner_splits_repr = []
+    for f_idx, (in_tr, in_val) in enumerate(gkf.split(X_train, y_train, groups=groups_train)):
+        tr_g = sorted(list(set(str(g) for g in groups_train[in_tr])))
+        val_g = sorted(list(set(str(g) for g in groups_train[in_val])))
+        assert set(tr_g).isdisjoint(set(val_g)), f"Inner fold {f_idx} train/val groups overlap: {set(tr_g) & set(val_g)}"
+        inner_splits_repr.append(f"fold_{f_idx}:tr={tr_g}:val={val_g}")
+    inner_splits_sha256 = hashlib.sha256("|".join(inner_splits_repr).encode("utf-8")).hexdigest()
 
     candidate_results: List[Dict[str, Any]] = []
 
     for params in param_combos:
         fold_maes = []
-        for inner_tr_idx, inner_val_idx in gkf.split(X_train, y_train, groups=groups_train):
+        fold_records = []
+        for fold_idx, (inner_tr_idx, inner_val_idx) in enumerate(gkf.split(X_train, y_train, groups=groups_train)):
             X_in_tr = X_train[inner_tr_idx]
             y_in_tr = y_train[inner_tr_idx]
             X_in_val = X_train[inner_val_idx]
@@ -124,13 +140,26 @@ def tune_and_fit_hgbr(
             )
             model.fit(X_in_tr_trans, y_in_tr)
             preds = model.predict(X_in_val_trans)
-            fold_maes.append(float(mean_absolute_error(y_in_val, preds)))
+            f_mae = float(mean_absolute_error(y_in_val, preds))
+            fold_maes.append(f_mae)
+
+            tr_g_sha = hashlib.sha256(json.dumps(sorted(list(set(str(g) for g in groups_train[inner_tr_idx])))).encode("utf-8")).hexdigest()
+            val_g_sha = hashlib.sha256(json.dumps(sorted(list(set(str(g) for g in groups_train[inner_val_idx])))).encode("utf-8")).hexdigest()
+            fold_records.append({
+                "inner_fold": fold_idx,
+                "inner_training_group_sha256": tr_g_sha,
+                "inner_validation_group_sha256": val_g_sha,
+                "inner_fold_mae": f_mae,
+            })
 
         mean_mae = float(np.mean(fold_maes))
         candidate_results.append({
             "params": params,
             "mean_mae": mean_mae,
             "fold_maes": fold_maes,
+            "fold_records": fold_records,
+            "selected": False,
+            "tie_status": False,
         })
 
     # Find best score
@@ -143,6 +172,9 @@ def tune_and_fit_hgbr(
         if abs(c["mean_mae"] - best_score) <= 1e-7
     ]
 
+    for c in tied_candidates:
+        c["tie_status"] = len(tied_candidates) > 1
+
     def _hgbr_tie_key(c: Dict[str, Any]) -> Tuple[int, int, float, float]:
         p = c["params"]
         return (
@@ -154,6 +186,7 @@ def tune_and_fit_hgbr(
 
     tied_candidates.sort(key=_hgbr_tie_key)
     selected = tied_candidates[0]
+    selected["selected"] = True
     best_params = selected["params"]
 
     # Final fit on full outer training set
@@ -172,6 +205,7 @@ def tune_and_fit_hgbr(
         best_score=best_score,
         candidates=candidate_results,
         tie_broken=len(tied_candidates) > 1,
+        inner_splits_sha256=inner_splits_sha256,
     )
     return final_model, outer_prep, selection
 
@@ -190,13 +224,24 @@ def tune_and_fit_ridge(
 
     unique_groups = len(np.unique(groups_train))
     actual_splits = min(n_splits, unique_groups)
+    assert actual_splits == n_splits, f"Expected exactly {n_splits} inner folds, got {actual_splits}"
     gkf = GroupKFold(n_splits=actual_splits)
+
+    # Pre-verify splits and compute inner split hash
+    inner_splits_repr = []
+    for f_idx, (in_tr, in_val) in enumerate(gkf.split(X_train, y_train, groups=groups_train)):
+        tr_g = sorted(list(set(str(g) for g in groups_train[in_tr])))
+        val_g = sorted(list(set(str(g) for g in groups_train[in_val])))
+        assert set(tr_g).isdisjoint(set(val_g)), f"Inner fold {f_idx} train/val groups overlap: {set(tr_g) & set(val_g)}"
+        inner_splits_repr.append(f"fold_{f_idx}:tr={tr_g}:val={val_g}")
+    inner_splits_sha256 = hashlib.sha256("|".join(inner_splits_repr).encode("utf-8")).hexdigest()
 
     candidate_results: List[Dict[str, Any]] = []
 
     for alpha in sorted(alphas):
         fold_maes = []
-        for inner_tr_idx, inner_val_idx in gkf.split(X_train, y_train, groups=groups_train):
+        fold_records = []
+        for fold_idx, (inner_tr_idx, inner_val_idx) in enumerate(gkf.split(X_train, y_train, groups=groups_train)):
             X_in_tr = X_train[inner_tr_idx]
             y_in_tr = y_train[inner_tr_idx]
             X_in_val = X_train[inner_val_idx]
@@ -209,13 +254,26 @@ def tune_and_fit_ridge(
             model = Ridge(alpha=alpha, random_state=random_state)
             model.fit(X_in_tr_trans, y_in_tr)
             preds = model.predict(X_in_val_trans)
-            fold_maes.append(float(mean_absolute_error(y_in_val, preds)))
+            f_mae = float(mean_absolute_error(y_in_val, preds))
+            fold_maes.append(f_mae)
+
+            tr_g_sha = hashlib.sha256(json.dumps(sorted(list(set(str(g) for g in groups_train[inner_tr_idx])))).encode("utf-8")).hexdigest()
+            val_g_sha = hashlib.sha256(json.dumps(sorted(list(set(str(g) for g in groups_train[inner_val_idx])))).encode("utf-8")).hexdigest()
+            fold_records.append({
+                "inner_fold": fold_idx,
+                "inner_training_group_sha256": tr_g_sha,
+                "inner_validation_group_sha256": val_g_sha,
+                "inner_fold_mae": f_mae,
+            })
 
         mean_mae = float(np.mean(fold_maes))
         candidate_results.append({
             "params": {"alpha": alpha},
             "mean_mae": mean_mae,
             "fold_maes": fold_maes,
+            "fold_records": fold_records,
+            "selected": False,
+            "tie_status": False,
         })
 
     best_score = min(c["mean_mae"] for c in candidate_results)
@@ -225,8 +283,12 @@ def tune_and_fit_ridge(
         c for c in candidate_results
         if abs(c["mean_mae"] - best_score) <= 1e-7
     ]
+    for c in tied_candidates:
+        c["tie_status"] = len(tied_candidates) > 1
+
     tied_candidates.sort(key=lambda c: -c["params"]["alpha"])
     selected = tied_candidates[0]
+    selected["selected"] = True
     best_params = selected["params"]
 
     X_train_trans = outer_prep.transform(X_train)
@@ -238,5 +300,6 @@ def tune_and_fit_ridge(
         best_score=best_score,
         candidates=candidate_results,
         tie_broken=len(tied_candidates) > 1,
+        inner_splits_sha256=inner_splits_sha256,
     )
     return final_model, outer_prep, selection

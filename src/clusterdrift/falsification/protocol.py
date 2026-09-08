@@ -106,3 +106,32 @@ def compute_falsification_protocol_sha256(cfg: Dict[str, Any]) -> str:
     ]
     sub_dict = {k: cfg[k] for k in keys_to_bind if k in cfg}
     return compute_canonical_dict_sha256(sub_dict)
+
+
+def compute_prediction_record_sha256(rec: Dict[str, Any]) -> str:
+    """Compute deterministic SHA-256 hash of a single prediction record."""
+    keys = [
+        "analysis_scope",
+        "outer_eval_type",
+        "outer_test_group",
+        "dataset_id",
+        "outer_fold",
+        "condition",
+        "shift_family",
+        "severity",
+        "method",
+        "seed",
+        "feature_block",
+        "regressor",
+        "observed_delta_ari",
+        "predicted_delta_ari",
+        "absolute_error",
+        "squared_error",
+        "phase7_protocol_sha",
+        "pass_a_signals_sha",
+        "pass_b_quality_sha",
+    ]
+    vals = [str(rec.get(k, "")) for k in keys]
+    canonical_repr = "|".join(vals)
+    import hashlib
+    return hashlib.sha256(canonical_repr.encode("utf-8")).hexdigest()

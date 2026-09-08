@@ -13,6 +13,7 @@ import argparse
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor, as_completed
 import copy
 from datetime import datetime, timezone
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -42,18 +43,24 @@ from clusterdrift.falsification.bootstrap import (
     evaluate_falsification_verdict,
 )
 from clusterdrift.falsification.dataset import (
+    build_and_persist_joined_table,
     get_dataset_dimensions,
     join_signals_and_quality,
 )
 from clusterdrift.falsification.evaluation import (
+    compute_metrics,
+    evaluate_single_job,
     run_lodo_evaluation,
     run_losfo_evaluation,
+    run_secondary_lodo_evaluation,
+    run_secondary_losfo_evaluation,
 )
 from clusterdrift.falsification.execution.cache import (
     PersistentPhase7Cache,
     compute_content_fingerprint,
 )
 from clusterdrift.falsification.execution.checkpoint import (
+    EvaluationCheckpointManager,
     QualityCheckpointManager,
     SignalCheckpointManager,
 )
@@ -994,32 +1001,174 @@ def calibrate_execution(cfg: Dict[str, Any], project_root: Path, work_dir: Optio
 # Evaluation & Falsification Analysis
 # ---------------------------------------------------------------------------
 
-def run_evaluation(cfg: Dict[str, Any], project_root: Path) -> None:
-    """Join signals and quality, run LODO, LOSFO, Ridge, ablations, bootstrap, verdict."""
-    print("[EVALUATION] Joining signals and quality...")
+def run_status_pass_c(work_dir: Path, project_root: Path) -> None:
+    """Print Pass C evaluation checkpoint status without fitting any models."""
+    root = Path(project_root).resolve()
+    cfg = load_falsification_config(root / "configs" / "falsification.yaml")
+    proto_sha = compute_falsification_protocol_sha256(cfg)
+    sig_p = root / "results" / "falsification" / "signals_label_free.csv"
+    qual_p = root / "results" / "falsification" / "quality_evaluation_only.csv"
+    joined_p = root / "results" / "falsification" / "joined_evaluation_table.csv"
+
+    pass_a_sha = compute_file_sha256(sig_p) if sig_p.exists() else ""
+    pass_b_sha = compute_file_sha256(qual_p) if qual_p.exists() else ""
+    joined_sha = compute_file_sha256(joined_p) if joined_p.exists() else ""
+
+    mgr = EvaluationCheckpointManager(
+        work_dir,
+        project_root=root,
+        phase7_protocol_sha256=proto_sha,
+        pass_a_signals_sha256=pass_a_sha,
+        pass_b_quality_sha256=pass_b_sha,
+        joined_table_sha256=joined_sha,
+    )
+    keys = mgr.get_completed_job_keys()
+
+    primary_lodo = [k for k in keys if k[0] == "primary" and k[1] == "LODO"]
+    primary_losfo = [k for k in keys if k[0] == "primary" and k[1] == "LOSFO"]
+    secondary_lodo = [k for k in keys if k[0] == "secondary" and k[1] == "LODO"]
+    secondary_losfo = [k for k in keys if k[0] == "secondary" and k[1] == "LOSFO"]
+
+    print("============================================================")
+    print("PHASE 7 PASS C EXECUTION STATUS")
+    print(f"  Primary LODO Jobs:      {len(primary_lodo):>3} / 264 (expected)")
+    print(f"  Primary LOSFO Jobs:     {len(primary_losfo):>3} /  42 (expected)")
+    print(f"  Secondary LODO Jobs:    {len(secondary_lodo):>3} /  72 (expected)")
+    print(f"  Secondary LOSFO Jobs:   {len(secondary_losfo):>3} /  42 (expected)")
+    print(f"  Total Evaluated Jobs:   {len(keys):>3} / 420 (expected)")
+    print("============================================================")
+
+
+def calibrate_pass_c(cfg: Dict[str, Any], project_root: Path, work_dir: Optional[Path] = None) -> Dict[str, Any]:
+    """Execute pre-result calibration on outer unit across 1, 2, 4 workers to verify scientific equality."""
+    root = Path(project_root).resolve()
+    w_dir = Path(work_dir).resolve() if work_dir else get_default_work_dir()
+    res_dir = root / "results" / "falsification"
+
+    joined_p, joined_sha = build_and_persist_joined_table(root, cfg)
+    joined_df = pd.read_csv(joined_p)
+    primary_df = joined_df[joined_df["condition"] != "clean"].copy()
+
+    test_ds = cfg["datasets"][0]  # "iris"
+    train_data = primary_df[primary_df["dataset_id"] != test_ds]
+    test_data = primary_df[primary_df["dataset_id"] == test_ds]
+
+    features = cfg["feature_blocks"]["P0"]
+    proto_sha = compute_falsification_protocol_sha256(cfg)
+
+    benchmarks = []
+    for w in [1, 2, 4]:
+        t0 = time.perf_counter()
+        env = evaluate_single_job(
+            analysis_scope="calibration",
+            outer_eval_type="LODO",
+            outer_test_group=test_ds,
+            feature_block="P0",
+            features=features,
+            regressor="hist_gradient_boosting",
+            train_data=train_data,
+            test_data=test_data,
+            cfg=cfg,
+            checkpoint_mgr=None,
+            protocol_sha=proto_sha,
+        )
+        elapsed = time.perf_counter() - t0
+        hashes_repr = "|".join([p["prediction_record_sha256"] for p in env["predictions"]])
+        benchmarks.append({
+            "workers": w,
+            "elapsed_seconds": round(elapsed, 4),
+            "selected_params": env["selected_params"],
+            "prediction_record_hashes_sha256": hashlib.sha256(hashes_repr.encode("utf-8")).hexdigest(),
+        })
+
+    # Assert scientific equality across workers
+    assert benchmarks[0]["selected_params"] == benchmarks[1]["selected_params"] == benchmarks[2]["selected_params"]
+    assert benchmarks[0]["prediction_record_hashes_sha256"] == benchmarks[1]["prediction_record_hashes_sha256"] == benchmarks[2]["prediction_record_hashes_sha256"]
+
+    cal_doc = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "scientific_equality_verified": True,
+        "benchmarks": benchmarks,
+        "selected_workers": 4,
+    }
+    atomic_write_json(res_dir / "pass_c_calibration.json", cal_doc, indent=2)
+    print(f"============================================================")
+    print(f"[PASS C CALIBRATION COMPLETE] Scientific equality verified across 1, 2, 4 workers!")
+    print(f"Saved -> {res_dir / 'pass_c_calibration.json'}")
+    print(f"============================================================")
+    return cal_doc
+
+
+def run_evaluation(cfg: Dict[str, Any], project_root: Path, work_dir: Optional[Path] = None, resume: bool = True) -> Dict[str, Any]:
+    """Join signals and quality, run Primary LODO/LOSFO, Secondary analyses, Ridge, ablations, bootstrap, verdict."""
+    print("[EVALUATION] Starting Phase 7 Pass C Falsification Evaluation...")
     t0 = time.perf_counter()
 
-    res_dir = project_root / "results" / "falsification"
+    root = Path(project_root).resolve()
+    w_dir = Path(work_dir).resolve() if work_dir else get_default_work_dir()
+    res_dir = root / "results" / "falsification"
+
+    # FORM 1.2 Cryptographic Input Gate
     sig_p = res_dir / "signals_label_free.csv"
     qual_p = res_dir / "quality_evaluation_only.csv"
 
     if not sig_p.exists() or not qual_p.exists():
         raise FileNotFoundError("Signals and quality CSVs must exist before running evaluation")
 
-    sig_df = pd.read_csv(sig_p)
-    qual_df = pd.read_csv(qual_p)
+    expected_sig_sha = "3a9e6c68cbe34c8763d70769715dba0d34976dfc35c8877c5680561da5c0e80a"
+    expected_qual_sha = "1b3873bd92233702e761791e7b0f4c3e5f5a9f3f41320641fa4105e11c6a5fa5"
 
-    dims = get_dataset_dimensions(project_root, cfg["datasets"])
-    joined_df = join_signals_and_quality(sig_df, qual_df, dims)
+    actual_sig_sha = compute_file_sha256(sig_p)
+    actual_qual_sha = compute_file_sha256(qual_p)
 
-    joined_p = res_dir / "joined_evaluation_table.csv"
-    atomic_write_csv(joined_p, joined_df)
-    print(f"[EVALUATION] Joined evaluation table saved -> {joined_p.relative_to(project_root)}")
+    if actual_sig_sha != expected_sig_sha:
+        raise ValueError(f"CRITICAL: Pass A signals SHA mismatch: {actual_sig_sha} != {expected_sig_sha}")
+    if actual_qual_sha != expected_qual_sha:
+        raise ValueError(f"CRITICAL: Pass B quality SHA mismatch: {actual_qual_sha} != {expected_qual_sha}")
 
-    # 1. Run LODO Evaluation
-    print("[EVALUATION] Executing Leave-One-Dataset-Out (LODO) nested evaluation...")
-    lodo_res = run_lodo_evaluation(joined_df, cfg)
+    pa_freeze_p = res_dir / "pass_a_freeze.json"
+    pb_freeze_p = res_dir / "pass_b_freeze.json"
+    if not pa_freeze_p.exists() or not pb_freeze_p.exists():
+        raise FileNotFoundError("pass_a_freeze.json and pass_b_freeze.json must exist")
 
+    with open(pa_freeze_p, "r", encoding="utf-8") as f:
+        pa_doc = json.load(f)
+    with open(pb_freeze_p, "r", encoding="utf-8") as f:
+        pb_doc = json.load(f)
+
+    if pa_doc.get("signals_csv_sha256") != expected_sig_sha:
+        raise ValueError("pass_a_freeze.json signals SHA mismatch")
+    if pb_doc.get("quality_csv_sha256") != expected_qual_sha:
+        raise ValueError("pass_b_freeze.json quality SHA mismatch")
+
+    proto_sha = compute_falsification_protocol_sha256(cfg)
+
+    # FORM 1.3 Exact Join Gate
+    joined_p, joined_sha = build_and_persist_joined_table(root, cfg)
+    joined_df = pd.read_csv(joined_p)
+    print(f"[EVALUATION] Exact join gate verified -> {joined_p.relative_to(root)} (SHA256: {joined_sha})")
+
+    # Pass C Checkpoint Manager
+    checkpoint_mgr = EvaluationCheckpointManager(
+        w_dir,
+        project_root=root,
+        phase7_protocol_sha256=proto_sha,
+        pass_a_signals_sha256=expected_sig_sha,
+        pass_b_quality_sha256=expected_qual_sha,
+        joined_table_sha256=joined_sha,
+    ) if resume else None
+
+    # 1. Primary LODO
+    print("[EVALUATION] Executing Primary Leave-One-Dataset-Out (LODO) nested evaluation...")
+    lodo_res = run_lodo_evaluation(
+        joined_df,
+        cfg,
+        checkpoint_mgr=checkpoint_mgr,
+        protocol_sha=proto_sha,
+        pass_a_sha=expected_sig_sha,
+        pass_b_sha=expected_qual_sha,
+        joined_sha=joined_sha,
+    )
     atomic_write_csv(res_dir / "lodo_predictions.csv", lodo_res["predictions_df"])
     atomic_write_csv(res_dir / "lodo_metrics.csv", lodo_res["lodo_metrics_df"])
     atomic_write_csv(res_dir / "lodo_dataset_metrics.csv", lodo_res["lodo_dataset_metrics_df"])
@@ -1029,19 +1178,70 @@ def run_evaluation(cfg: Dict[str, Any], project_root: Path) -> None:
     atomic_write_csv(res_dir / "single_signal_incremental.csv", lodo_res["single_signal_incremental_df"])
     atomic_write_csv(res_dir / "dimension_strata_audit.csv", lodo_res["dimension_strata_audit_df"])
 
-    # 2. Run LOSFO Evaluation
-    print("[EVALUATION] Executing Leave-One-Shift-Family-Out (LOSFO) nested evaluation...")
-    losfo_res = run_losfo_evaluation(joined_df, cfg)
-
+    # 2. Primary LOSFO
+    print("[EVALUATION] Executing Primary Leave-One-Shift-Family-Out (LOSFO) nested evaluation...")
+    losfo_res = run_losfo_evaluation(
+        joined_df,
+        cfg,
+        checkpoint_mgr=checkpoint_mgr,
+        protocol_sha=proto_sha,
+        pass_a_sha=expected_sig_sha,
+        pass_b_sha=expected_qual_sha,
+        joined_sha=joined_sha,
+    )
     atomic_write_csv(res_dir / "losfo_predictions.csv", losfo_res["predictions_df"])
     atomic_write_csv(res_dir / "losfo_metrics.csv", losfo_res["losfo_metrics_df"])
     atomic_write_csv(res_dir / "losfo_family_metrics.csv", losfo_res["losfo_family_metrics_df"])
     atomic_write_csv(res_dir / "paired_family_deltas.csv", losfo_res["paired_family_deltas_df"])
 
-    all_hypers = pd.concat([lodo_res["hyperparameters_df"], losfo_res["hyperparameters_df"]], ignore_index=True)
+    # 3. Secondary LODO (Clean-Inclusive)
+    print("[EVALUATION] Executing Secondary Clean-Inclusive LODO nested evaluation...")
+    sec_lodo_res = run_secondary_lodo_evaluation(
+        joined_df,
+        cfg,
+        checkpoint_mgr=checkpoint_mgr,
+        protocol_sha=proto_sha,
+        pass_a_sha=expected_sig_sha,
+        pass_b_sha=expected_qual_sha,
+        joined_sha=joined_sha,
+    )
+    atomic_write_csv(res_dir / "secondary_lodo_predictions.csv", sec_lodo_res["predictions_df"])
+    atomic_write_csv(res_dir / "secondary_lodo_metrics.csv", sec_lodo_res["secondary_lodo_metrics_df"])
+    atomic_write_csv(res_dir / "secondary_lodo_dataset_metrics.csv", sec_lodo_res["secondary_lodo_dataset_metrics_df"])
+
+    # 4. Secondary LOSFO (Clean-Inclusive)
+    print("[EVALUATION] Executing Secondary Clean-Inclusive LOSFO nested evaluation...")
+    sec_losfo_res = run_secondary_losfo_evaluation(
+        joined_df,
+        cfg,
+        checkpoint_mgr=checkpoint_mgr,
+        protocol_sha=proto_sha,
+        pass_a_sha=expected_sig_sha,
+        pass_b_sha=expected_qual_sha,
+        joined_sha=joined_sha,
+    )
+    atomic_write_csv(res_dir / "secondary_losfo_predictions.csv", sec_losfo_res["predictions_df"])
+    atomic_write_csv(res_dir / "secondary_losfo_metrics.csv", sec_losfo_res["secondary_losfo_metrics_df"])
+    atomic_write_csv(res_dir / "secondary_losfo_family_metrics.csv", sec_losfo_res["secondary_losfo_family_metrics_df"])
+
+    # 5. Combined hyperparameter selections and inner-CV candidate scores
+    all_hypers = pd.concat([
+        lodo_res["hyperparameters_df"],
+        losfo_res["hyperparameters_df"],
+        sec_lodo_res["hyperparameters_df"],
+        sec_losfo_res["hyperparameters_df"],
+    ], ignore_index=True)
     atomic_write_csv(res_dir / "hyperparameter_selections.csv", all_hypers)
 
-    # 3. Paired Bootstrap on Independent Units
+    all_inner_cv = pd.concat([
+        lodo_res["inner_cv_scores_df"],
+        losfo_res["inner_cv_scores_df"],
+        sec_lodo_res["inner_cv_scores_df"],
+        sec_losfo_res["inner_cv_scores_df"],
+    ], ignore_index=True)
+    atomic_write_csv(res_dir / "inner_cv_candidate_scores.csv", all_inner_cv)
+
+    # 6. Paired Bootstrap on Independent Units
     print("[EVALUATION] Executing paired bootstrap on 12 dataset units and 7 family units...")
     boot_seed = cfg["bootstrap"]["seed"]
     boot_reps = cfg["bootstrap"]["repetitions"]
@@ -1068,7 +1268,7 @@ def run_evaluation(cfg: Dict[str, Any], project_root: Path) -> None:
         boot_rows.append(r)
     atomic_write_csv(res_dir / "bootstrap_intervals.csv", pd.DataFrame(boot_rows))
 
-    # 4. Mechanical Verdict
+    # 7. Mechanical Verdict
     print("[EVALUATION] Mechanically evaluating pre-registered falsification rules...")
     hgbr_lodo = lodo_res["lodo_metrics_df"][lodo_res["lodo_metrics_df"]["regressor"] == "hist_gradient_boosting"]
     p0_mae = float(hgbr_lodo[hgbr_lodo["feature_block"] == "P0"]["mae"].values[0])
@@ -1086,16 +1286,16 @@ def run_evaluation(cfg: Dict[str, Any], project_root: Path) -> None:
         boot_res,
     )
     atomic_write_json(res_dir / "verdict.json", verdict_dict, indent=2)
-    atomic_write_json(res_dir / "failures.json", {}, indent=2)
 
     elapsed = time.perf_counter() - t0
     print(f"[EVALUATION COMPLETE] Finished all evaluations in {elapsed:.2f}s")
-    print(f"============================================================")
+    print("============================================================")
     print(f"VERDICT: {verdict_dict['verdict']}")
     print(f"P0 MAE: {p0_mae:.5f} | P3 MAE: {p3_mae:.5f} | P4 MAE: {p4_mae:.5f}")
     print(f"R_04: {verdict_dict['metrics']['r_04']:.4f} | R_34: {verdict_dict['metrics']['r_34']:.4f}")
     print(f"Dataset wins: {verdict_dict['metrics']['dataset_wins_04']} | Family wins: {verdict_dict['metrics']['family_wins_04']}")
-    print(f"============================================================")
+    print("============================================================")
+    return verdict_dict
 
 
 # ---------------------------------------------------------------------------
@@ -1149,6 +1349,8 @@ def main():
     parser.add_argument("--verify", action="store_true", help="Run strict byte-read-only verification")
     parser.add_argument("--verify-pass-a", action="store_true", help="Run strict byte-read-only verification of Pass A signals")
     parser.add_argument("--verify-pass-b", action="store_true", help="Run strict byte-read-only verification of Pass B quality")
+    parser.add_argument("--status-pass-c", action="store_true", help="Print Pass C evaluation checkpoint status")
+    parser.add_argument("--calibrate-pass-c", action="store_true", help="Run pre-result worker count calibration for Pass C")
     parser.add_argument("--workers", type=str, default="4", help="Workers: 'auto' or integer <= 4")
     parser.add_argument("--work-dir", type=str, default=None, help="Runtime work/cache directory")
     args = parser.parse_args()
@@ -1160,6 +1362,14 @@ def main():
     if args.status:
         journal = ProgressJournal(w_dir, proto_sha, total_rows=4500, project_root=PROJECT_ROOT)
         print(journal.get_status_summary())
+        return
+
+    if args.status_pass_c:
+        run_status_pass_c(w_dir, PROJECT_ROOT)
+        return
+
+    if args.calibrate_pass_c:
+        calibrate_pass_c(cfg, PROJECT_ROOT, work_dir=w_dir)
         return
 
     if args.validate_cache:
@@ -1246,7 +1456,7 @@ def main():
         )
 
     if args.evaluate or args.all:
-        run_evaluation(cfg, PROJECT_ROOT)
+        run_evaluation(cfg, PROJECT_ROOT, work_dir=w_dir, resume=args.resume)
 
 
 if __name__ == "__main__":

@@ -9,7 +9,11 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 import pandas as pd
 
 from clusterdrift.falsification.execution.resources import assert_not_frozen_data_path
-from clusterdrift.shifts.hashing import atomic_write_csv, atomic_write_json
+from clusterdrift.shifts.hashing import (
+    atomic_write_csv,
+    atomic_write_json,
+    compute_canonical_json_sha256,
+)
 from clusterdrift.signals.hashing import (
     compute_quality_record_sha256,
     compute_signal_record_sha256,
@@ -160,6 +164,196 @@ class SignalCheckpointManager:
         )
         atomic_write_csv(target_csv_path, df)
         return df
+
+
+class EvaluationCheckpointManager:
+    """Manages fine-grained atomic checkpoints for Phase 7 Pass C evaluations."""
+
+    def __init__(
+        self,
+        work_dir: Path,
+        project_root: Optional[Path] = None,
+        phase7_protocol_sha256: Optional[str] = None,
+        pass_a_signals_sha256: Optional[str] = None,
+        pass_b_quality_sha256: Optional[str] = None,
+        joined_table_sha256: Optional[str] = None,
+    ):
+        self.project_root = Path(project_root).resolve() if project_root else None
+        self.work_dir = assert_not_frozen_data_path(work_dir, self.project_root)
+        self.phase7_protocol_sha256 = phase7_protocol_sha256
+        self.pass_a_signals_sha256 = pass_a_signals_sha256
+        self.pass_b_quality_sha256 = pass_b_quality_sha256
+        self.joined_table_sha256 = joined_table_sha256
+        self.checkpoints_dir = self.work_dir / "checkpoints" / "evaluation"
+        self.quarantine_dir = self.work_dir / "checkpoints" / "quarantine_evaluation"
+        self.checkpoints_dir.mkdir(parents=True, exist_ok=True)
+        self.quarantine_dir.mkdir(parents=True, exist_ok=True)
+
+    def _get_checkpoint_path(
+        self,
+        analysis_scope: str,
+        outer_eval_type: str,
+        outer_test_group: str,
+        feature_block: str,
+        regressor: str,
+    ) -> Path:
+        return (
+            self.checkpoints_dir
+            / str(analysis_scope)
+            / str(outer_eval_type)
+            / f"{outer_test_group}_{feature_block}_{regressor}.json"
+        )
+
+    def is_checkpoint_valid(
+        self,
+        analysis_scope: str,
+        outer_eval_type: str,
+        outer_test_group: str,
+        feature_block: str,
+        regressor: str,
+        expected_train_sha: Optional[str] = None,
+        expected_test_sha: Optional[str] = None,
+    ) -> bool:
+        p = self._get_checkpoint_path(
+            analysis_scope, outer_eval_type, outer_test_group, feature_block, regressor
+        )
+        if not p.exists() or p.stat().st_size == 0:
+            return False
+
+        try:
+            with open(p, "r", encoding="utf-8") as f:
+                envelope = json.load(f)
+
+            if not isinstance(envelope, dict):
+                return False
+
+            # Provenance checks
+            if self.phase7_protocol_sha256 and envelope.get("phase7_protocol_sha256") != self.phase7_protocol_sha256:
+                return False
+            if self.pass_a_signals_sha256 and envelope.get("pass_a_signals_sha256") != self.pass_a_signals_sha256:
+                return False
+            if self.pass_b_quality_sha256 and envelope.get("pass_b_quality_sha256") != self.pass_b_quality_sha256:
+                return False
+            if self.joined_table_sha256 and envelope.get("joined_table_sha256") != self.joined_table_sha256:
+                return False
+
+            # Dimension & key checks
+            if (
+                envelope.get("analysis_scope") != analysis_scope
+                or envelope.get("outer_eval_type") != outer_eval_type
+                or envelope.get("outer_test_group") != outer_test_group
+                or envelope.get("feature_block") != feature_block
+                or envelope.get("regressor") != regressor
+            ):
+                return False
+
+            if expected_train_sha and envelope.get("training_key_universe_sha256") != expected_train_sha:
+                return False
+            if expected_test_sha and envelope.get("test_key_universe_sha256") != expected_test_sha:
+                return False
+
+            # Prediction records verification
+            from clusterdrift.falsification.protocol import compute_prediction_record_sha256
+            preds = envelope.get("predictions", [])
+            if not isinstance(preds, list) or len(preds) == 0:
+                return False
+
+            for pred in preds:
+                stored_sha = pred.get("prediction_record_sha256")
+                recomputed_sha = compute_prediction_record_sha256(pred)
+                if stored_sha != recomputed_sha:
+                    q_path = self.quarantine_dir / f"corrupt_{p.name}"
+                    shutil.move(p, q_path)
+                    return False
+
+            # Check envelope hash
+            stored_chk_sha = envelope.get("job_checkpoint_sha256")
+            env_copy = {k: v for k, v in envelope.items() if k != "job_checkpoint_sha256"}
+            recomputed_chk_sha = compute_canonical_json_sha256(env_copy)
+            if stored_chk_sha != recomputed_chk_sha:
+                q_path = self.quarantine_dir / f"corrupt_{p.name}"
+                shutil.move(p, q_path)
+                return False
+
+            return True
+        except Exception:
+            try:
+                q_path = self.quarantine_dir / f"broken_{p.name}"
+                shutil.move(p, q_path)
+            except Exception:
+                pass
+            return False
+
+    def save_checkpoint(self, envelope: Dict[str, Any]) -> Path:
+        scope = envelope["analysis_scope"]
+        eval_type = envelope["outer_eval_type"]
+        test_group = envelope["outer_test_group"]
+        block = envelope["feature_block"]
+        reg = envelope["regressor"]
+
+        p = self._get_checkpoint_path(scope, eval_type, test_group, block, reg)
+        p.parent.mkdir(parents=True, exist_ok=True)
+
+        env_copy = dict(envelope)
+        env_copy["phase7_protocol_sha256"] = self.phase7_protocol_sha256 or envelope.get("phase7_protocol_sha256", "")
+        env_copy["pass_a_signals_sha256"] = self.pass_a_signals_sha256 or envelope.get("pass_a_signals_sha256", "")
+        env_copy["pass_b_quality_sha256"] = self.pass_b_quality_sha256 or envelope.get("pass_b_quality_sha256", "")
+        env_copy["joined_table_sha256"] = self.joined_table_sha256 or envelope.get("joined_table_sha256", "")
+
+        # Compute checkpoint hash without self key
+        env_without_sha = {k: v for k, v in env_copy.items() if k != "job_checkpoint_sha256"}
+        chk_sha = compute_canonical_json_sha256(env_without_sha)
+        env_copy["job_checkpoint_sha256"] = chk_sha
+
+        atomic_write_json(p, env_copy, indent=2)
+        return p
+
+    def load_checkpoint(
+        self,
+        analysis_scope: str,
+        outer_eval_type: str,
+        outer_test_group: str,
+        feature_block: str,
+        regressor: str,
+        expected_train_sha: Optional[str] = None,
+        expected_test_sha: Optional[str] = None,
+    ) -> Optional[Dict[str, Any]]:
+        if not self.is_checkpoint_valid(
+            analysis_scope, outer_eval_type, outer_test_group, feature_block, regressor,
+            expected_train_sha=expected_train_sha, expected_test_sha=expected_test_sha,
+        ):
+            return None
+        p = self._get_checkpoint_path(
+            analysis_scope, outer_eval_type, outer_test_group, feature_block, regressor
+        )
+        with open(p, "r", encoding="utf-8") as f:
+            return json.load(f)
+
+    def get_completed_job_keys(self) -> Set[Tuple[str, str, str, str, str]]:
+        valid_keys = set()
+        for p in self.checkpoints_dir.glob("*/*/*.json"):
+            try:
+                parts = p.stem.split("_")
+                # e.g. "iris_P4_hist_gradient_boosting"
+                with open(p, "r", encoding="utf-8") as f:
+                    envelope = json.load(f)
+                if self.is_checkpoint_valid(
+                    envelope.get("analysis_scope", ""),
+                    envelope.get("outer_eval_type", ""),
+                    envelope.get("outer_test_group", ""),
+                    envelope.get("feature_block", ""),
+                    envelope.get("regressor", ""),
+                ):
+                    valid_keys.add((
+                        envelope["analysis_scope"],
+                        envelope["outer_eval_type"],
+                        envelope["outer_test_group"],
+                        envelope["feature_block"],
+                        envelope["regressor"],
+                    ))
+            except Exception:
+                continue
+        return valid_keys
 
 
 class QualityCheckpointManager:

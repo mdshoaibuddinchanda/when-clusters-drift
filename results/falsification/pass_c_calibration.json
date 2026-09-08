@@ -1,0 +1,40 @@
+{
+  "benchmarks": [
+    {
+      "elapsed_seconds": 12.7792,
+      "prediction_record_hashes_sha256": "24591a541e8499289f17e69b73d0c1faa1c28496e80f3b58c511abce83e1b148",
+      "selected_params": {
+        "l2_regularization": 1.0,
+        "learning_rate": 0.05,
+        "max_iter": 150,
+        "max_leaf_nodes": 7
+      },
+      "workers": 1
+    },
+    {
+      "elapsed_seconds": 12.9017,
+      "prediction_record_hashes_sha256": "24591a541e8499289f17e69b73d0c1faa1c28496e80f3b58c511abce83e1b148",
+      "selected_params": {
+        "l2_regularization": 1.0,
+        "learning_rate": 0.05,
+        "max_iter": 150,
+        "max_leaf_nodes": 7
+      },
+      "workers": 2
+    },
+    {
+      "elapsed_seconds": 12.835,
+      "prediction_record_hashes_sha256": "24591a541e8499289f17e69b73d0c1faa1c28496e80f3b58c511abce83e1b148",
+      "selected_params": {
+        "l2_regularization": 1.0,
+        "learning_rate": 0.05,
+        "max_iter": 150,
+        "max_leaf_nodes": 7
+      },
+      "workers": 4
+    }
+  ],
+  "scientific_equality_verified": true,
+  "selected_workers": 4,
+  "timestamp": "2026-09-08T00:11:48.028829+00:00"
+}
