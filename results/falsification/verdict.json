@@ -1,0 +1,28 @@
+{
+  "criteria": {
+    "rule_1_lodo_mae_p4_lt_p0": false,
+    "rule_2_r04_ge_005_or_ci_gt_0": false,
+    "rule_3_lodo_mae_p4_lt_p3": true,
+    "rule_4_r34_ge_002_or_ci_gt_0": true,
+    "rule_5_median_dataset_delta_04_gt_0": false,
+    "rule_6_dataset_wins_04_ge_7_of_12": false,
+    "rule_7_family_wins_04_ge_4_of_7": true,
+    "rule_8_family_wins_34_ge_4_of_7": false
+  },
+  "metrics": {
+    "bootstrap_lodo_04_mean_ci_lower": -0.0118544034051598,
+    "bootstrap_lodo_34_mean_ci_lower": 0.002950967679446092,
+    "dataset_median_delta_04": -0.00019196312269491658,
+    "dataset_wins_04": "5/12",
+    "dataset_wins_34": "10/12",
+    "family_wins_04": "4/7",
+    "family_wins_34": "3/7",
+    "lodo_mae_p0": 0.04670466347898161,
+    "lodo_mae_p3": 0.06392587674262015,
+    "lodo_mae_p4": 0.050894704583937404,
+    "r_04": -0.08971354877316323,
+    "r_34": 0.20384815700141518
+  },
+  "severe_family_generalization_failure_flag": false,
+  "verdict": "FAILS_PRIMARY_FALSIFICATION"
+}

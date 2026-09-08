@@ -1,0 +1,100 @@
+{
+  "benchmarks": [
+    {
+      "approx_mem_delta_mb": 323.23,
+      "config": {
+        "backend": "threads",
+        "inner_threads": 1,
+        "workers": 1
+      },
+      "elapsed_seconds": 59.06,
+      "fits_per_sec": 0.271,
+      "rows_per_hour": 975.3,
+      "total_fits": 16
+    },
+    {
+      "approx_mem_delta_mb": 0.0,
+      "config": {
+        "backend": "threads",
+        "inner_threads": 1,
+        "workers": 2
+      },
+      "elapsed_seconds": 18.538,
+      "fits_per_sec": 0.863,
+      "rows_per_hour": 3107.2,
+      "total_fits": 16
+    },
+    {
+      "approx_mem_delta_mb": 43.07,
+      "config": {
+        "backend": "threads",
+        "inner_threads": 1,
+        "workers": 4
+      },
+      "elapsed_seconds": 18.203,
+      "fits_per_sec": 0.879,
+      "rows_per_hour": 3164.2,
+      "total_fits": 16
+    }
+  ],
+  "cpu_topology": {
+    "available_ram_gb": 13.08,
+    "logical_cores": 8,
+    "physical_cores": 4,
+    "platform": "Windows-11-10.0.26200-SP0",
+    "threadpool_layers": [
+      {
+        "architecture": "SkylakeX",
+        "filepath": "D:\\Conda\\p12\\Lib\\site-packages\\numpy.libs\\libscipy_openblas64_-327b2e0bcffce2882e0dc04cdeb4eaa6.dll",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "prefix": "libscipy_openblas",
+        "threading_layer": "pthreads",
+        "user_api": "blas",
+        "version": "0.3.34.0.0"
+      },
+      {
+        "filepath": "D:\\Conda\\p12\\Lib\\site-packages\\sklearn\\.libs\\vcomp140.dll",
+        "internal_api": "openmp",
+        "num_threads": 1,
+        "prefix": "vcomp",
+        "user_api": "openmp",
+        "version": null
+      },
+      {
+        "architecture": "SkylakeX",
+        "filepath": "D:\\Conda\\p12\\Lib\\site-packages\\scipy.libs\\libscipy_openblas-197ee2fc9b4d071f7e048078cac74115.dll",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "prefix": "libscipy_openblas",
+        "threading_layer": "pthreads",
+        "user_api": "blas",
+        "version": "0.3.31.dev"
+      },
+      {
+        "filepath": "D:\\Conda\\p12\\Lib\\site-packages\\torch\\lib\\libiomp5md.dll",
+        "internal_api": "openmp",
+        "num_threads": 4,
+        "prefix": "libiomp",
+        "user_api": "openmp",
+        "version": null
+      },
+      {
+        "filepath": "D:\\Conda\\p12\\Lib\\site-packages\\torch\\lib\\libiompstubs5md.dll",
+        "internal_api": "openmp",
+        "num_threads": 1,
+        "prefix": "libiomp",
+        "user_api": "openmp",
+        "version": null
+      }
+    ],
+    "total_ram_gb": 31.73
+  },
+  "projected_full_run_hours": 1.42,
+  "selected_best_safe_config": {
+    "backend": "threads",
+    "inner_threads": 1,
+    "workers": 4
+  },
+  "timestamp": "2026-09-07T20:31:37.437742+00:00"
+}

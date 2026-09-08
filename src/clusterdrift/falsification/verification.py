@@ -8,6 +8,8 @@ import numpy as np
 import pandas as pd
 import yaml
 
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+
 from clusterdrift.falsification.bootstrap import (
     compute_paired_unit_bootstrap,
     evaluate_falsification_verdict,
@@ -733,10 +735,10 @@ def verify_falsification(project_root: Path) -> Dict[str, Any]:
             raise FileNotFoundError(f"Prediction file not found: {p}")
         check_count += 1
 
-    lodo_preds = pd.read_csv(lodo_p)
-    losfo_preds = pd.read_csv(losfo_p)
-    sec_lodo_preds = pd.read_csv(sec_lodo_p)
-    sec_losfo_preds = pd.read_csv(sec_losfo_p)
+    lodo_preds = pd.read_csv(lodo_p, float_precision="round_trip")
+    losfo_preds = pd.read_csv(losfo_p, float_precision="round_trip")
+    sec_lodo_preds = pd.read_csv(sec_lodo_p, float_precision="round_trip")
+    sec_losfo_preds = pd.read_csv(sec_losfo_p, float_precision="round_trip")
 
     # Exact expected row counts
     if len(lodo_preds) != 92400:
@@ -928,6 +930,7 @@ def verify_falsification(project_root: Path) -> Dict[str, Any]:
         "scientific_protocol_commit": "8dc7bc8056a686f1eb147f9ec5bf211935454da6",
         "phase7_pass_a_freeze_commit": "89b3df90f2cdc29d0e341637a11c0eabd2099ee7",
         "phase7_pass_b_freeze_commit": "889624d2ade5d15635d9459dd2601c5664a2747b",
+        "phase7_pass_c_preflight_commit": "ef07a68f973fdc77bae7d7410149214b2a10ee21",
         "pass_a_signals_sha256": act_sig_sha,
         "pass_b_quality_sha256": act_qual_sha,
         "joined_table_sha256": act_joined_sha,

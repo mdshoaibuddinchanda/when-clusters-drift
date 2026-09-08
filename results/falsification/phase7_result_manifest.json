@@ -1,0 +1,45 @@
+{
+  "final_verdict": "FAILS_PRIMARY_FALSIFICATION",
+  "joined_table_sha256": "a8a58ebc601bf7e5f3e5456336cd3b9fc049364c10bc99d0c33422274fae1815",
+  "manifest_version": 1,
+  "metric_artifacts": {
+    "bootstrap_intervals_sha256": "9ddd147aba5677bdf3050fcccb726993f6abfbcf60805aee8f5c367104c1d84a",
+    "dimension_strata_audit_sha256": "fc96390ca275c8ba2c3769902ad96b94f852252627162dba7689ddec39d24ad2",
+    "hyperparameter_selections_sha256": "e60b1ef37caa98af03a0305a113d05cb34294097622f9693d0631e292b1f544b",
+    "inner_cv_candidate_scores_sha256": "3511c3387704659d0a5f0bd2cd1e48ccad935ef22c3396edb1ecc7c1d42dcedd",
+    "lodo_metrics_sha256": "e6ebe3dbed89af0c1c368ff6fc6d48a8fdf6722ac0f9a0b183b0aa0723cd3b09",
+    "losfo_metrics_sha256": "82c64fbe95436113ff361f5a721599c8f584bd0b2e26c12116f5569f436e8e70",
+    "paired_dataset_deltas_sha256": "cc2d5624a0efbeecef26bb9a20fdbcd4123e8850a5c355bf89045b0e42c591dc",
+    "paired_family_deltas_sha256": "98077bfdf09869c9691bc569b121b8de7a4304c2c9bf4f51b57b087f47bcb15e",
+    "ridge_control_metrics_sha256": "f00242bb50efad42de5821cf27604a0ff07c46e4a23ab15e6220126b31a336f0",
+    "single_signal_incremental_sha256": "198dbd209e81b08ce47cb7c06cc4651ca540f57c66938b437d5c10909547af43",
+    "structural_ablation_sha256": "c7948182973a02a2525f77c2b0755738906b3abc5f2a8eef3a2536c7a73ca5b2",
+    "verdict_sha256": "6f7641a6390f5df45faa63a5169ecf89452e1abe913eae72d4d6bc8e3d86d8f8"
+  },
+  "pass_a_signals_sha256": "3a9e6c68cbe34c8763d70769715dba0d34976dfc35c8877c5680561da5c0e80a",
+  "pass_b_quality_sha256": "1b3873bd92233702e761791e7b0f4c3e5f5a9f3f41320641fa4105e11c6a5fa5",
+  "phase7_pass_a_freeze_commit": "89b3df90f2cdc29d0e341637a11c0eabd2099ee7",
+  "phase7_pass_b_freeze_commit": "889624d2ade5d15635d9459dd2601c5664a2747b",
+  "phase7_pass_c_preflight_commit": "ef07a68f973fdc77bae7d7410149214b2a10ee21",
+  "prediction_artifacts": {
+    "lodo_predictions": {
+      "rows": 92400,
+      "sha256": "09cb5e3eaa82f770980cbcaa35b860e58711ed19c4ca62f1f1ac2f314777505c"
+    },
+    "losfo_predictions": {
+      "rows": 25200,
+      "sha256": "c66cc5b6dcc6dc89eca64d3c508b2d0e8b54a81c94854f94fb6cb33fa1cfa9a6"
+    },
+    "secondary_lodo_predictions": {
+      "rows": 27000,
+      "sha256": "333935d1143432cf32215612fc434732838fa68122d902ea22dbaa8132a391e6"
+    },
+    "secondary_losfo_predictions": {
+      "rows": 25200,
+      "sha256": "e5096ec1d79f7190f5721ad125cc3a71503ceba822e4b4f41eb367c737c510b7"
+    }
+  },
+  "scientific_protocol_commit": "8dc7bc8056a686f1eb147f9ec5bf211935454da6",
+  "total_checks_verified": 169917,
+  "total_predictions_verified": 169800
+}

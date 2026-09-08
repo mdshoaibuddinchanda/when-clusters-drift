@@ -1,0 +1,421 @@
+analysis_scope,outer_eval_type,outer_test_group,feature_block,regressor,best_inner_mae,selected_params,tie_broken
+primary,LODO,iris,P0,hist_gradient_boosting,0.03616883234919273,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,iris,P1,hist_gradient_boosting,0.05894636636415486,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,iris,P2,hist_gradient_boosting,0.03924919358567204,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,iris,P3,hist_gradient_boosting,0.06011126898154982,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,iris,P4,hist_gradient_boosting,0.043675330757386346,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,iris,P5,hist_gradient_boosting,0.057772991166141596,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,iris,P4_minus_D_U_R,hist_gradient_boosting,0.0433725802105659,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,iris,P4_minus_D_U_C,hist_gradient_boosting,0.042671440972841125,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,iris,P4_minus_D_V,hist_gradient_boosting,0.0458775236181198,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,iris,P4_minus_D_H,hist_gradient_boosting,0.03788259945808274,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,iris,P4_minus_D_M,hist_gradient_boosting,0.04495669800280646,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,iris,DX_plus_D_U_R,hist_gradient_boosting,0.03848515837720827,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,iris,DX_plus_D_U_C,hist_gradient_boosting,0.038904780701398425,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,iris,DX_plus_D_V,hist_gradient_boosting,0.035994655656555755,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,iris,DX_plus_D_H,hist_gradient_boosting,0.04098312227303408,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,iris,DX_plus_D_M,hist_gradient_boosting,0.03698007080089377,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,iris,P0,ridge,0.033921769768096535,"{""alpha"": 10000.0}",False
+primary,LODO,iris,P1,ridge,0.03461312097539308,"{""alpha"": 10000.0}",False
+primary,LODO,iris,P2,ridge,0.033703031121123286,"{""alpha"": 10000.0}",False
+primary,LODO,iris,P3,ridge,0.03430103810253759,"{""alpha"": 10000.0}",False
+primary,LODO,iris,P4,ridge,0.033657705515427856,"{""alpha"": 10000.0}",False
+primary,LODO,iris,P5,ridge,0.034261801624895956,"{""alpha"": 10000.0}",False
+primary,LODO,glass,P0,hist_gradient_boosting,0.0479673805693651,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,glass,P1,hist_gradient_boosting,0.06861956695872595,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 15}",False
+primary,LODO,glass,P2,hist_gradient_boosting,0.05126819836669041,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,glass,P3,hist_gradient_boosting,0.0676251103981138,"{""l2_regularization"": 1.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 15}",False
+primary,LODO,glass,P4,hist_gradient_boosting,0.054540206093194835,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,glass,P5,hist_gradient_boosting,0.06505153598072225,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 15}",False
+primary,LODO,glass,P4_minus_D_U_R,hist_gradient_boosting,0.054959160864602376,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 15}",False
+primary,LODO,glass,P4_minus_D_U_C,hist_gradient_boosting,0.0538463280759382,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,glass,P4_minus_D_V,hist_gradient_boosting,0.058489460744675384,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,glass,P4_minus_D_H,hist_gradient_boosting,0.04994882962274848,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,glass,P4_minus_D_M,hist_gradient_boosting,0.05335353470576635,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,glass,DX_plus_D_U_R,hist_gradient_boosting,0.04881821705190999,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,glass,DX_plus_D_U_C,hist_gradient_boosting,0.0491174251435571,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,glass,DX_plus_D_V,hist_gradient_boosting,0.047643403395926084,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,glass,DX_plus_D_H,hist_gradient_boosting,0.05401109513267701,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,glass,DX_plus_D_M,hist_gradient_boosting,0.049601927592308595,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,glass,P0,ridge,0.044108728799999136,"{""alpha"": 10000.0}",False
+primary,LODO,glass,P1,ridge,0.04368790664830955,"{""alpha"": 10000.0}",False
+primary,LODO,glass,P2,ridge,0.04433233886152815,"{""alpha"": 10000.0}",False
+primary,LODO,glass,P3,ridge,0.04370270608166595,"{""alpha"": 10000.0}",False
+primary,LODO,glass,P4,ridge,0.04443251567426805,"{""alpha"": 10000.0}",False
+primary,LODO,glass,P5,ridge,0.043465787876870686,"{""alpha"": 10000.0}",False
+primary,LODO,sonar,P0,hist_gradient_boosting,0.04949184602392856,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,sonar,P1,hist_gradient_boosting,0.0603562892307658,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,sonar,P2,hist_gradient_boosting,0.050264470640842676,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,sonar,P3,hist_gradient_boosting,0.06337517384822555,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,sonar,P4,hist_gradient_boosting,0.053037707611325,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,sonar,P5,hist_gradient_boosting,0.05834012102106727,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,sonar,P4_minus_D_U_R,hist_gradient_boosting,0.055159908661457965,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,sonar,P4_minus_D_U_C,hist_gradient_boosting,0.05251989635562678,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,sonar,P4_minus_D_V,hist_gradient_boosting,0.05288603426506935,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,sonar,P4_minus_D_H,hist_gradient_boosting,0.051213300372587436,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,sonar,P4_minus_D_M,hist_gradient_boosting,0.05255202435394003,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,sonar,DX_plus_D_U_R,hist_gradient_boosting,0.04966353636895583,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,sonar,DX_plus_D_U_C,hist_gradient_boosting,0.049758234942568626,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,sonar,DX_plus_D_V,hist_gradient_boosting,0.051735560382294335,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,sonar,DX_plus_D_H,hist_gradient_boosting,0.05426151171100864,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,sonar,DX_plus_D_M,hist_gradient_boosting,0.05212601317730505,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,sonar,P0,ridge,0.04435563356038938,"{""alpha"": 10000.0}",False
+primary,LODO,sonar,P1,ridge,0.04578550095886322,"{""alpha"": 10000.0}",False
+primary,LODO,sonar,P2,ridge,0.04464500503040302,"{""alpha"": 10000.0}",False
+primary,LODO,sonar,P3,ridge,0.045835303474625264,"{""alpha"": 10000.0}",False
+primary,LODO,sonar,P4,ridge,0.04462266459870086,"{""alpha"": 10000.0}",False
+primary,LODO,sonar,P5,ridge,0.04597374828876658,"{""alpha"": 10000.0}",False
+primary,LODO,breast_cancer_wisconsin_diagnostic,P0,hist_gradient_boosting,0.041311073886618185,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,breast_cancer_wisconsin_diagnostic,P1,hist_gradient_boosting,0.055066916568742866,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,breast_cancer_wisconsin_diagnostic,P2,hist_gradient_boosting,0.044974515714402766,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,breast_cancer_wisconsin_diagnostic,P3,hist_gradient_boosting,0.056164693609647785,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 300, ""max_leaf_nodes"": 15}",False
+primary,LODO,breast_cancer_wisconsin_diagnostic,P4,hist_gradient_boosting,0.04474449846670731,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,breast_cancer_wisconsin_diagnostic,P5,hist_gradient_boosting,0.04998235064729977,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,breast_cancer_wisconsin_diagnostic,P4_minus_D_U_R,hist_gradient_boosting,0.04492313802187349,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,breast_cancer_wisconsin_diagnostic,P4_minus_D_U_C,hist_gradient_boosting,0.04504036441667332,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,breast_cancer_wisconsin_diagnostic,P4_minus_D_V,hist_gradient_boosting,0.047155515466593884,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,breast_cancer_wisconsin_diagnostic,P4_minus_D_H,hist_gradient_boosting,0.043916622937174944,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,breast_cancer_wisconsin_diagnostic,P4_minus_D_M,hist_gradient_boosting,0.04660877819452478,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,breast_cancer_wisconsin_diagnostic,DX_plus_D_U_R,hist_gradient_boosting,0.04263487467288962,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,breast_cancer_wisconsin_diagnostic,DX_plus_D_U_C,hist_gradient_boosting,0.04243003428383084,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,breast_cancer_wisconsin_diagnostic,DX_plus_D_V,hist_gradient_boosting,0.04218057581455312,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,breast_cancer_wisconsin_diagnostic,DX_plus_D_H,hist_gradient_boosting,0.04709783910300833,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,breast_cancer_wisconsin_diagnostic,DX_plus_D_M,hist_gradient_boosting,0.041741861940881066,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,breast_cancer_wisconsin_diagnostic,P0,ridge,0.03797509724946201,"{""alpha"": 10000.0}",False
+primary,LODO,breast_cancer_wisconsin_diagnostic,P1,ridge,0.03765589217304602,"{""alpha"": 10000.0}",False
+primary,LODO,breast_cancer_wisconsin_diagnostic,P2,ridge,0.03744587527577295,"{""alpha"": 1000.0}",False
+primary,LODO,breast_cancer_wisconsin_diagnostic,P3,ridge,0.03776860415737369,"{""alpha"": 10000.0}",False
+primary,LODO,breast_cancer_wisconsin_diagnostic,P4,ridge,0.03785964977005165,"{""alpha"": 10000.0}",False
+primary,LODO,breast_cancer_wisconsin_diagnostic,P5,ridge,0.037442063504952605,"{""alpha"": 10000.0}",False
+primary,LODO,spambase,P0,hist_gradient_boosting,0.04818453031102297,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,spambase,P1,hist_gradient_boosting,0.0547957106290732,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,spambase,P2,hist_gradient_boosting,0.049197798701379934,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,spambase,P3,hist_gradient_boosting,0.05906184009894835,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,spambase,P4,hist_gradient_boosting,0.051849076577843836,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,spambase,P5,hist_gradient_boosting,0.05190732831611914,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,spambase,P4_minus_D_U_R,hist_gradient_boosting,0.050391810929561354,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,spambase,P4_minus_D_U_C,hist_gradient_boosting,0.05214393423211426,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,spambase,P4_minus_D_V,hist_gradient_boosting,0.050168306988875755,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,spambase,P4_minus_D_H,hist_gradient_boosting,0.049872153828558176,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,spambase,P4_minus_D_M,hist_gradient_boosting,0.052142031704523174,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,spambase,DX_plus_D_U_R,hist_gradient_boosting,0.04895529504575048,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,spambase,DX_plus_D_U_C,hist_gradient_boosting,0.04829898653559693,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,spambase,DX_plus_D_V,hist_gradient_boosting,0.049939436911336274,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,spambase,DX_plus_D_H,hist_gradient_boosting,0.05185258630051295,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,spambase,DX_plus_D_M,hist_gradient_boosting,0.05030899093499408,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,spambase,P0,ridge,0.042240097403739976,"{""alpha"": 10000.0}",False
+primary,LODO,spambase,P1,ridge,0.04206550815891688,"{""alpha"": 10000.0}",False
+primary,LODO,spambase,P2,ridge,0.04111629014321321,"{""alpha"": 1000.0}",False
+primary,LODO,spambase,P3,ridge,0.042061051935005346,"{""alpha"": 10000.0}",False
+primary,LODO,spambase,P4,ridge,0.0418226255879243,"{""alpha"": 1000.0}",False
+primary,LODO,spambase,P5,ridge,0.04183902472719356,"{""alpha"": 10000.0}",False
+primary,LODO,waveform,P0,hist_gradient_boosting,0.04959737691412504,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,waveform,P1,hist_gradient_boosting,0.0599220450136279,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,waveform,P2,hist_gradient_boosting,0.051577857339004385,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,waveform,P3,hist_gradient_boosting,0.06140737664635236,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,waveform,P4,hist_gradient_boosting,0.05196131048579803,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,waveform,P5,hist_gradient_boosting,0.059606814203596745,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,waveform,P4_minus_D_U_R,hist_gradient_boosting,0.05226884755492613,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,waveform,P4_minus_D_U_C,hist_gradient_boosting,0.05218932507854581,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,waveform,P4_minus_D_V,hist_gradient_boosting,0.050544856579627685,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,waveform,P4_minus_D_H,hist_gradient_boosting,0.04958384133449495,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,waveform,P4_minus_D_M,hist_gradient_boosting,0.0528891107009688,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,waveform,DX_plus_D_U_R,hist_gradient_boosting,0.049732588192384054,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,waveform,DX_plus_D_U_C,hist_gradient_boosting,0.05052658354190788,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,waveform,DX_plus_D_V,hist_gradient_boosting,0.04930032133901438,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,waveform,DX_plus_D_H,hist_gradient_boosting,0.053397597282007325,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,waveform,DX_plus_D_M,hist_gradient_boosting,0.05135239405184662,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,waveform,P0,ridge,0.04489310029110094,"{""alpha"": 10000.0}",False
+primary,LODO,waveform,P1,ridge,0.0448248521582426,"{""alpha"": 10000.0}",False
+primary,LODO,waveform,P2,ridge,0.0433551649441673,"{""alpha"": 100.0}",False
+primary,LODO,waveform,P3,ridge,0.04478887079318465,"{""alpha"": 10000.0}",False
+primary,LODO,waveform,P4,ridge,0.04413856233873005,"{""alpha"": 1000.0}",False
+primary,LODO,waveform,P5,ridge,0.0444159996521173,"{""alpha"": 10000.0}",False
+primary,LODO,satimage,P0,hist_gradient_boosting,0.04716612390857496,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,satimage,P1,hist_gradient_boosting,0.06039848386293702,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,satimage,P2,hist_gradient_boosting,0.04975256588983553,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,satimage,P3,hist_gradient_boosting,0.06300929067499869,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 15}",False
+primary,LODO,satimage,P4,hist_gradient_boosting,0.050229553425681736,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,satimage,P5,hist_gradient_boosting,0.06310032377267565,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 15}",False
+primary,LODO,satimage,P4_minus_D_U_R,hist_gradient_boosting,0.05029304130589661,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,satimage,P4_minus_D_U_C,hist_gradient_boosting,0.05050995320742171,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,satimage,P4_minus_D_V,hist_gradient_boosting,0.048259634645919355,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,satimage,P4_minus_D_H,hist_gradient_boosting,0.04750190106149969,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,satimage,P4_minus_D_M,hist_gradient_boosting,0.050682958756771,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,satimage,DX_plus_D_U_R,hist_gradient_boosting,0.04879292230896408,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,satimage,DX_plus_D_U_C,hist_gradient_boosting,0.046438972513856716,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,satimage,DX_plus_D_V,hist_gradient_boosting,0.04916753824675359,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,satimage,DX_plus_D_H,hist_gradient_boosting,0.050341368116568495,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,satimage,DX_plus_D_M,hist_gradient_boosting,0.04836862309399599,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,satimage,P0,ridge,0.041558234917410196,"{""alpha"": 10000.0}",False
+primary,LODO,satimage,P1,ridge,0.0434462064493879,"{""alpha"": 10000.0}",False
+primary,LODO,satimage,P2,ridge,0.041609364446487926,"{""alpha"": 10000.0}",False
+primary,LODO,satimage,P3,ridge,0.043518246028904264,"{""alpha"": 10000.0}",False
+primary,LODO,satimage,P4,ridge,0.04161666358528442,"{""alpha"": 10000.0}",False
+primary,LODO,satimage,P5,ridge,0.04343980434521662,"{""alpha"": 10000.0}",False
+primary,LODO,pendigits,P0,hist_gradient_boosting,0.046353435634356344,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,pendigits,P1,hist_gradient_boosting,0.05390938688265469,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 15}",False
+primary,LODO,pendigits,P2,hist_gradient_boosting,0.04850728620781329,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,pendigits,P3,hist_gradient_boosting,0.05631751499158109,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,pendigits,P4,hist_gradient_boosting,0.04936637328335409,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,pendigits,P5,hist_gradient_boosting,0.053029872895879224,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 15}",False
+primary,LODO,pendigits,P4_minus_D_U_R,hist_gradient_boosting,0.0505499841787431,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,pendigits,P4_minus_D_U_C,hist_gradient_boosting,0.04941044913351254,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,pendigits,P4_minus_D_V,hist_gradient_boosting,0.04722359748063881,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,pendigits,P4_minus_D_H,hist_gradient_boosting,0.04827178768262631,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,pendigits,P4_minus_D_M,hist_gradient_boosting,0.05092445029767886,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,pendigits,DX_plus_D_U_R,hist_gradient_boosting,0.046036079179050296,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,pendigits,DX_plus_D_U_C,hist_gradient_boosting,0.04594231980484993,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,pendigits,DX_plus_D_V,hist_gradient_boosting,0.04822135243558727,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,pendigits,DX_plus_D_H,hist_gradient_boosting,0.04885528249339648,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,pendigits,DX_plus_D_M,hist_gradient_boosting,0.04971834631304997,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,pendigits,P0,ridge,0.040361941392761475,"{""alpha"": 10000.0}",False
+primary,LODO,pendigits,P1,ridge,0.041973535032469145,"{""alpha"": 10000.0}",False
+primary,LODO,pendigits,P2,ridge,0.04048183326472851,"{""alpha"": 10000.0}",False
+primary,LODO,pendigits,P3,ridge,0.04203563056339514,"{""alpha"": 10000.0}",False
+primary,LODO,pendigits,P4,ridge,0.04047855599542863,"{""alpha"": 10000.0}",False
+primary,LODO,pendigits,P5,ridge,0.04207358401433772,"{""alpha"": 10000.0}",False
+primary,LODO,letter_recognition,P0,hist_gradient_boosting,0.048539087148856366,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,letter_recognition,P1,hist_gradient_boosting,0.06059032580095654,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 15}",False
+primary,LODO,letter_recognition,P2,hist_gradient_boosting,0.05353400884813396,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,letter_recognition,P3,hist_gradient_boosting,0.06186778249437502,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 15}",False
+primary,LODO,letter_recognition,P4,hist_gradient_boosting,0.05575174241879921,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 300, ""max_leaf_nodes"": 7}",False
+primary,LODO,letter_recognition,P5,hist_gradient_boosting,0.059493581240807815,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 150, ""max_leaf_nodes"": 15}",False
+primary,LODO,letter_recognition,P4_minus_D_U_R,hist_gradient_boosting,0.051925371631183395,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,letter_recognition,P4_minus_D_U_C,hist_gradient_boosting,0.05196913602088331,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,letter_recognition,P4_minus_D_V,hist_gradient_boosting,0.05433701226306879,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,letter_recognition,P4_minus_D_H,hist_gradient_boosting,0.05025603550330502,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,letter_recognition,P4_minus_D_M,hist_gradient_boosting,0.05541677676963863,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,letter_recognition,DX_plus_D_U_R,hist_gradient_boosting,0.04951800111354865,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,letter_recognition,DX_plus_D_U_C,hist_gradient_boosting,0.04948990657109533,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,letter_recognition,DX_plus_D_V,hist_gradient_boosting,0.047290487205453896,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,letter_recognition,DX_plus_D_H,hist_gradient_boosting,0.05120530669837568,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,letter_recognition,DX_plus_D_M,hist_gradient_boosting,0.04849467350778866,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,letter_recognition,P0,ridge,0.04414712355609644,"{""alpha"": 10000.0}",False
+primary,LODO,letter_recognition,P1,ridge,0.043799216423144924,"{""alpha"": 10000.0}",False
+primary,LODO,letter_recognition,P2,ridge,0.04405945058508076,"{""alpha"": 1000.0}",False
+primary,LODO,letter_recognition,P3,ridge,0.043733636969113095,"{""alpha"": 10000.0}",False
+primary,LODO,letter_recognition,P4,ridge,0.04424700886862958,"{""alpha"": 10000.0}",False
+primary,LODO,letter_recognition,P5,ridge,0.04368236907994424,"{""alpha"": 10000.0}",False
+primary,LODO,madelon,P0,hist_gradient_boosting,0.04895449422057365,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,madelon,P1,hist_gradient_boosting,0.05664796067570377,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,madelon,P2,hist_gradient_boosting,0.05003221608786934,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,madelon,P3,hist_gradient_boosting,0.06027898985758656,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,madelon,P4,hist_gradient_boosting,0.05097945088308346,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,madelon,P5,hist_gradient_boosting,0.06132123609303014,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 15}",False
+primary,LODO,madelon,P4_minus_D_U_R,hist_gradient_boosting,0.05039322329535045,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,madelon,P4_minus_D_U_C,hist_gradient_boosting,0.05229012377112176,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,madelon,P4_minus_D_V,hist_gradient_boosting,0.049606688029612975,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,madelon,P4_minus_D_H,hist_gradient_boosting,0.04963703293461687,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,madelon,P4_minus_D_M,hist_gradient_boosting,0.05039283973175272,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,madelon,DX_plus_D_U_R,hist_gradient_boosting,0.0488508209669906,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,madelon,DX_plus_D_U_C,hist_gradient_boosting,0.048603126660818355,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,madelon,DX_plus_D_V,hist_gradient_boosting,0.05023984777874531,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,madelon,DX_plus_D_H,hist_gradient_boosting,0.05007439816071073,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,madelon,DX_plus_D_M,hist_gradient_boosting,0.049649147009331276,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,madelon,P0,ridge,0.04462110075695162,"{""alpha"": 10000.0}",False
+primary,LODO,madelon,P1,ridge,0.04490972155895397,"{""alpha"": 10000.0}",False
+primary,LODO,madelon,P2,ridge,0.04440330349048356,"{""alpha"": 1000.0}",False
+primary,LODO,madelon,P3,ridge,0.044789597084788385,"{""alpha"": 10000.0}",False
+primary,LODO,madelon,P4,ridge,0.0444188779808378,"{""alpha"": 10000.0}",False
+primary,LODO,madelon,P5,ridge,0.044681859613198774,"{""alpha"": 10000.0}",False
+primary,LODO,human_activity_recognition,P0,hist_gradient_boosting,0.04874798768367065,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,human_activity_recognition,P1,hist_gradient_boosting,0.06285028063331899,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,human_activity_recognition,P2,hist_gradient_boosting,0.0538234592257506,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,human_activity_recognition,P3,hist_gradient_boosting,0.06412473546136553,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,human_activity_recognition,P4,hist_gradient_boosting,0.05430542842991406,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,human_activity_recognition,P5,hist_gradient_boosting,0.05812388683839809,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,human_activity_recognition,P4_minus_D_U_R,hist_gradient_boosting,0.05446212079346964,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,human_activity_recognition,P4_minus_D_U_C,hist_gradient_boosting,0.054305731787646194,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,human_activity_recognition,P4_minus_D_V,hist_gradient_boosting,0.05725019030333611,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,human_activity_recognition,P4_minus_D_H,hist_gradient_boosting,0.0528659327504605,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,human_activity_recognition,P4_minus_D_M,hist_gradient_boosting,0.05732570693527002,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,human_activity_recognition,DX_plus_D_U_R,hist_gradient_boosting,0.05123943426480711,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,human_activity_recognition,DX_plus_D_U_C,hist_gradient_boosting,0.05098344569960417,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,human_activity_recognition,DX_plus_D_V,hist_gradient_boosting,0.04884862527450175,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,human_activity_recognition,DX_plus_D_H,hist_gradient_boosting,0.05274221969871638,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,human_activity_recognition,DX_plus_D_M,hist_gradient_boosting,0.049035024374426736,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,human_activity_recognition,P0,ridge,0.04534542570361706,"{""alpha"": 10000.0}",False
+primary,LODO,human_activity_recognition,P1,ridge,0.04735908400581003,"{""alpha"": 10000.0}",False
+primary,LODO,human_activity_recognition,P2,ridge,0.04516820132505496,"{""alpha"": 100.0}",False
+primary,LODO,human_activity_recognition,P3,ridge,0.04652357594956405,"{""alpha"": 10000.0}",False
+primary,LODO,human_activity_recognition,P4,ridge,0.04542518458812626,"{""alpha"": 10000.0}",False
+primary,LODO,human_activity_recognition,P5,ridge,0.046418101107534436,"{""alpha"": 10000.0}",False
+primary,LODO,mice_protein_expression,P0,hist_gradient_boosting,0.048061102783056996,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,mice_protein_expression,P1,hist_gradient_boosting,0.062458192504654744,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,mice_protein_expression,P2,hist_gradient_boosting,0.05151717723947526,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,mice_protein_expression,P3,hist_gradient_boosting,0.0639980583755102,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,mice_protein_expression,P4,hist_gradient_boosting,0.05224539030233566,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,mice_protein_expression,P5,hist_gradient_boosting,0.0633071999042425,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 15}",False
+primary,LODO,mice_protein_expression,P4_minus_D_U_R,hist_gradient_boosting,0.05258078622691872,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,mice_protein_expression,P4_minus_D_U_C,hist_gradient_boosting,0.05132585225822235,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,mice_protein_expression,P4_minus_D_V,hist_gradient_boosting,0.04949726530630763,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,mice_protein_expression,P4_minus_D_H,hist_gradient_boosting,0.04965889481285143,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,mice_protein_expression,P4_minus_D_M,hist_gradient_boosting,0.052449904877538686,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,mice_protein_expression,DX_plus_D_U_R,hist_gradient_boosting,0.04739804069851811,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,mice_protein_expression,DX_plus_D_U_C,hist_gradient_boosting,0.04799739620007622,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,mice_protein_expression,DX_plus_D_V,hist_gradient_boosting,0.049449718911165695,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,mice_protein_expression,DX_plus_D_H,hist_gradient_boosting,0.050765874984157064,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,mice_protein_expression,DX_plus_D_M,hist_gradient_boosting,0.049372537594283006,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LODO,mice_protein_expression,P0,ridge,0.04392384235451742,"{""alpha"": 10000.0}",False
+primary,LODO,mice_protein_expression,P1,ridge,0.04549758667454944,"{""alpha"": 10000.0}",False
+primary,LODO,mice_protein_expression,P2,ridge,0.0439911178123011,"{""alpha"": 10000.0}",False
+primary,LODO,mice_protein_expression,P3,ridge,0.045520592365620685,"{""alpha"": 10000.0}",False
+primary,LODO,mice_protein_expression,P4,ridge,0.04395397746277026,"{""alpha"": 10000.0}",False
+primary,LODO,mice_protein_expression,P5,ridge,0.04544012862480608,"{""alpha"": 10000.0}",False
+primary,LOSFO,location,P0,hist_gradient_boosting,0.050940942834638535,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,location,P1,hist_gradient_boosting,0.058873228753321225,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,location,P2,hist_gradient_boosting,0.051034952356604435,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,location,P3,hist_gradient_boosting,0.06294242024857007,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,location,P4,hist_gradient_boosting,0.05396415108784185,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,location,P5,hist_gradient_boosting,0.05964173861951183,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,scale,P0,hist_gradient_boosting,0.05324307741440877,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,scale,P1,hist_gradient_boosting,0.06299571798535777,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,scale,P2,hist_gradient_boosting,0.05217607007229731,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,scale,P3,hist_gradient_boosting,0.06746866209902955,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 15}",False
+primary,LOSFO,scale,P4,hist_gradient_boosting,0.05508477743307727,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,scale,P5,hist_gradient_boosting,0.06376446432917551,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,mcar,P0,hist_gradient_boosting,0.046709131391998705,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,mcar,P1,hist_gradient_boosting,0.05805770165276279,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 15}",False
+primary,LOSFO,mcar,P2,hist_gradient_boosting,0.04958172032609721,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,mcar,P3,hist_gradient_boosting,0.05911170938363462,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,mcar,P4,hist_gradient_boosting,0.047935296846887555,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,mcar,P5,hist_gradient_boosting,0.05471841673802726,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,outliers,P0,hist_gradient_boosting,0.049372996654874456,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,outliers,P1,hist_gradient_boosting,0.05216097223564949,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,outliers,P2,hist_gradient_boosting,0.05141596393980917,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,outliers,P3,hist_gradient_boosting,0.054753005652808474,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,outliers,P4,hist_gradient_boosting,0.051110772556482706,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,outliers,P5,hist_gradient_boosting,0.05424280364397153,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,measurement_noise,P0,hist_gradient_boosting,0.052411006793832704,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,measurement_noise,P1,hist_gradient_boosting,0.05948456271986857,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,measurement_noise,P2,hist_gradient_boosting,0.05388812448437421,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,measurement_noise,P3,hist_gradient_boosting,0.06398569953269109,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,measurement_noise,P4,hist_gradient_boosting,0.05522104915714613,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,measurement_noise,P5,hist_gradient_boosting,0.05667362535607129,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,class_prevalence,P0,hist_gradient_boosting,0.045346575502694254,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,class_prevalence,P1,hist_gradient_boosting,0.05111327958032628,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 15}",False
+primary,LOSFO,class_prevalence,P2,hist_gradient_boosting,0.04584790856619719,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,class_prevalence,P3,hist_gradient_boosting,0.0539487160833028,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,class_prevalence,P4,hist_gradient_boosting,0.048075398415445766,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,class_prevalence,P5,hist_gradient_boosting,0.05303809897448676,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,local_overlap,P0,hist_gradient_boosting,0.04051508830406332,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,local_overlap,P1,hist_gradient_boosting,0.056018394957140324,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,local_overlap,P2,hist_gradient_boosting,0.042712843132108665,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,local_overlap,P3,hist_gradient_boosting,0.05554084162861024,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,local_overlap,P4,hist_gradient_boosting,0.040954804150419875,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+primary,LOSFO,local_overlap,P5,hist_gradient_boosting,0.04782349323994549,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,iris,P0,hist_gradient_boosting,0.03417393584833485,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,iris,P1,hist_gradient_boosting,0.05986952984878585,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,iris,P2,hist_gradient_boosting,0.03770264853584915,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,iris,P3,hist_gradient_boosting,0.061267759866975816,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,iris,P4,hist_gradient_boosting,0.04362872401106671,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,iris,P5,hist_gradient_boosting,0.057884243811393635,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,glass,P0,hist_gradient_boosting,0.0442551769022274,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,glass,P1,hist_gradient_boosting,0.06986091241556924,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 300, ""max_leaf_nodes"": 15}",False
+secondary,LODO,glass,P2,hist_gradient_boosting,0.05063431230347719,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,glass,P3,hist_gradient_boosting,0.06822757324960989,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 15}",False
+secondary,LODO,glass,P4,hist_gradient_boosting,0.05087663828054684,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,glass,P5,hist_gradient_boosting,0.06495580692895499,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 15}",False
+secondary,LODO,sonar,P0,hist_gradient_boosting,0.0471953911104335,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,sonar,P1,hist_gradient_boosting,0.05979527020137361,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,sonar,P2,hist_gradient_boosting,0.048200088753734084,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,sonar,P3,hist_gradient_boosting,0.06079132320784657,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,sonar,P4,hist_gradient_boosting,0.051031453800762586,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,sonar,P5,hist_gradient_boosting,0.05854113344853629,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 15}",False
+secondary,LODO,breast_cancer_wisconsin_diagnostic,P0,hist_gradient_boosting,0.039046006287835416,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,breast_cancer_wisconsin_diagnostic,P1,hist_gradient_boosting,0.052939066063759775,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,breast_cancer_wisconsin_diagnostic,P2,hist_gradient_boosting,0.042708481765377504,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,breast_cancer_wisconsin_diagnostic,P3,hist_gradient_boosting,0.051846051344568676,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 15}",False
+secondary,LODO,breast_cancer_wisconsin_diagnostic,P4,hist_gradient_boosting,0.041799947680909506,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,breast_cancer_wisconsin_diagnostic,P5,hist_gradient_boosting,0.047851452135261915,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,spambase,P0,hist_gradient_boosting,0.045676725558360345,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,spambase,P1,hist_gradient_boosting,0.055351583080129815,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,spambase,P2,hist_gradient_boosting,0.04758952623162077,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,spambase,P3,hist_gradient_boosting,0.06022933692479754,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,spambase,P4,hist_gradient_boosting,0.04988231315338719,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,spambase,P5,hist_gradient_boosting,0.052147307102175855,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,waveform,P0,hist_gradient_boosting,0.04745537761166234,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,waveform,P1,hist_gradient_boosting,0.05847154847746565,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,waveform,P2,hist_gradient_boosting,0.0497255417400282,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,waveform,P3,hist_gradient_boosting,0.05945298146330839,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,waveform,P4,hist_gradient_boosting,0.04907104300045462,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,waveform,P5,hist_gradient_boosting,0.056057064356272966,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,satimage,P0,hist_gradient_boosting,0.0450756333869627,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,satimage,P1,hist_gradient_boosting,0.060775516567884866,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 15}",False
+secondary,LODO,satimage,P2,hist_gradient_boosting,0.04746234555199201,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,satimage,P3,hist_gradient_boosting,0.059798574403573466,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,satimage,P4,hist_gradient_boosting,0.047806825756026294,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,satimage,P5,hist_gradient_boosting,0.06004471679004382,"{""l2_regularization"": 1.0, ""learning_rate"": 0.1, ""max_iter"": 150, ""max_leaf_nodes"": 15}",False
+secondary,LODO,pendigits,P0,hist_gradient_boosting,0.04424557502680142,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,pendigits,P1,hist_gradient_boosting,0.04996932439654904,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 15}",False
+secondary,LODO,pendigits,P2,hist_gradient_boosting,0.04607479850600399,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,pendigits,P3,hist_gradient_boosting,0.0524154924094269,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 15}",False
+secondary,LODO,pendigits,P4,hist_gradient_boosting,0.04834421429905585,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,pendigits,P5,hist_gradient_boosting,0.05223676690962611,"{""l2_regularization"": 1.0, ""learning_rate"": 0.1, ""max_iter"": 150, ""max_leaf_nodes"": 15}",False
+secondary,LODO,letter_recognition,P0,hist_gradient_boosting,0.046282854249369246,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,letter_recognition,P1,hist_gradient_boosting,0.05973540815614892,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 15}",False
+secondary,LODO,letter_recognition,P2,hist_gradient_boosting,0.052161128348328825,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,letter_recognition,P3,hist_gradient_boosting,0.0594787025277838,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 15}",False
+secondary,LODO,letter_recognition,P4,hist_gradient_boosting,0.05180909672969888,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,letter_recognition,P5,hist_gradient_boosting,0.057715586822028354,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,madelon,P0,hist_gradient_boosting,0.04581387570346642,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,madelon,P1,hist_gradient_boosting,0.05614187854619359,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 15}",False
+secondary,LODO,madelon,P2,hist_gradient_boosting,0.048698524389300266,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,madelon,P3,hist_gradient_boosting,0.05757923782558812,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,madelon,P4,hist_gradient_boosting,0.05006868674948626,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,madelon,P5,hist_gradient_boosting,0.06100078560968812,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,human_activity_recognition,P0,hist_gradient_boosting,0.04572514541161574,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,human_activity_recognition,P1,hist_gradient_boosting,0.06306513742718492,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,human_activity_recognition,P2,hist_gradient_boosting,0.05141023770771802,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,human_activity_recognition,P3,hist_gradient_boosting,0.06076407791993639,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,human_activity_recognition,P4,hist_gradient_boosting,0.052803078051988916,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,human_activity_recognition,P5,hist_gradient_boosting,0.05929148647771937,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,mice_protein_expression,P0,hist_gradient_boosting,0.045914348179454306,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,mice_protein_expression,P1,hist_gradient_boosting,0.06199682756212468,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 15}",False
+secondary,LODO,mice_protein_expression,P2,hist_gradient_boosting,0.049014862385605276,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,mice_protein_expression,P3,hist_gradient_boosting,0.06312422834159435,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,mice_protein_expression,P4,hist_gradient_boosting,0.04992237284975574,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LODO,mice_protein_expression,P5,hist_gradient_boosting,0.06218650201632161,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,location,P0,hist_gradient_boosting,0.047484991667250696,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,location,P1,hist_gradient_boosting,0.0593472153030052,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,location,P2,hist_gradient_boosting,0.049546442949152,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,location,P3,hist_gradient_boosting,0.058281153125557095,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,location,P4,hist_gradient_boosting,0.051468012621110545,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,location,P5,hist_gradient_boosting,0.058028445837662444,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,scale,P0,hist_gradient_boosting,0.04959325452745837,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,scale,P1,hist_gradient_boosting,0.059117245704031596,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,scale,P2,hist_gradient_boosting,0.0499518008304843,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,scale,P3,hist_gradient_boosting,0.06193543570960573,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,scale,P4,hist_gradient_boosting,0.05267925822507998,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,scale,P5,hist_gradient_boosting,0.060410016618916464,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,mcar,P0,hist_gradient_boosting,0.04359188113562071,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,mcar,P1,hist_gradient_boosting,0.052898914620141325,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,mcar,P2,hist_gradient_boosting,0.046860910458317126,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,mcar,P3,hist_gradient_boosting,0.05429481841876638,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,mcar,P4,hist_gradient_boosting,0.044883786911009416,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,mcar,P5,hist_gradient_boosting,0.05192076691504884,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,outliers,P0,hist_gradient_boosting,0.046117248668457504,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,outliers,P1,hist_gradient_boosting,0.05122706282526901,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,outliers,P2,hist_gradient_boosting,0.0488422297205544,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,outliers,P3,hist_gradient_boosting,0.05158566688920694,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,outliers,P4,hist_gradient_boosting,0.0491878098202186,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,outliers,P5,hist_gradient_boosting,0.05105059403131079,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,measurement_noise,P0,hist_gradient_boosting,0.048511382274595775,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,measurement_noise,P1,hist_gradient_boosting,0.05856298179485934,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,measurement_noise,P2,hist_gradient_boosting,0.05151192121779495,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,measurement_noise,P3,hist_gradient_boosting,0.060297034785353844,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,measurement_noise,P4,hist_gradient_boosting,0.05140887860514376,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,measurement_noise,P5,hist_gradient_boosting,0.05593932932502773,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,class_prevalence,P0,hist_gradient_boosting,0.04216302105618462,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,class_prevalence,P1,hist_gradient_boosting,0.05194162062438219,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,class_prevalence,P2,hist_gradient_boosting,0.04405553559923869,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,class_prevalence,P3,hist_gradient_boosting,0.053290363214390034,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 15}",False
+secondary,LOSFO,class_prevalence,P4,hist_gradient_boosting,0.04730138764634514,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,class_prevalence,P5,hist_gradient_boosting,0.05040273418778433,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,local_overlap,P0,hist_gradient_boosting,0.038056321419947345,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,local_overlap,P1,hist_gradient_boosting,0.053783114551552456,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,local_overlap,P2,hist_gradient_boosting,0.040386828090107206,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,local_overlap,P3,hist_gradient_boosting,0.052469672055316885,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,local_overlap,P4,hist_gradient_boosting,0.039124982375708287,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
+secondary,LOSFO,local_overlap,P5,hist_gradient_boosting,0.045818130325749565,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 150, ""max_leaf_nodes"": 7}",False
