@@ -1,0 +1,37 @@
+{
+  "dataset": "optdigits",
+  "inner_group_leakage": false,
+  "inner_strategy": "StratifiedGroupKFold",
+  "npz_path": "experiments/hypothesis_y1/corrected_splits/optdigits/hypothesis_y1_fold_1.npz",
+  "npz_sha256": "aa619dac9d306dbc8543cd40ff39624dd1613e7477edf8b857e43efda09ef543",
+  "outer_fold": 1,
+  "outer_group_leakage": false,
+  "outer_strategy": "StratifiedGroupKFold",
+  "policy": "connected protected-group and exact-row-hash components",
+  "source_classes": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+  ],
+  "source_rows": 4496,
+  "target_classes": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+  ],
+  "target_rows": 1124
+}

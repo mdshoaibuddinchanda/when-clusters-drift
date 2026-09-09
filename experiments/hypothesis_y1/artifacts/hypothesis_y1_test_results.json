@@ -1,0 +1,72 @@
+{
+  "audit": "hypothesis_y1_test_results",
+  "required_interpreter": "D:\\Conda\\p12\\python.exe",
+  "suites": {
+    "falsification": {
+      "collected": 79,
+      "command": [
+        "D:\\Conda\\p12\\python.exe",
+        "-m",
+        "pytest",
+        "tests/test_falsification/",
+        "-q"
+      ],
+      "deselected": 0,
+      "duration": 27.92,
+      "errors": 0,
+      "executable": "D:\\Conda\\p12\\python.exe",
+      "exit_code": 0,
+      "failed": 0,
+      "log": "experiments/hypothesis_y1/logs/hypothesis_y1_pytest_falsification.txt",
+      "passed": 79,
+      "skipped": 0,
+      "wall_duration_seconds": 29.11107849999098,
+      "xfailed": 0,
+      "xpassed": 0
+    },
+    "full": {
+      "collected": 402,
+      "command": [
+        "D:\\Conda\\p12\\python.exe",
+        "-m",
+        "pytest",
+        "tests/",
+        "-q"
+      ],
+      "deselected": 0,
+      "duration": 279.73,
+      "errors": 0,
+      "executable": "D:\\Conda\\p12\\python.exe",
+      "exit_code": 0,
+      "failed": 0,
+      "log": "experiments/hypothesis_y1/logs/hypothesis_y1_pytest_full.txt",
+      "passed": 402,
+      "skipped": 0,
+      "wall_duration_seconds": 281.078081500018,
+      "xfailed": 0,
+      "xpassed": 0
+    },
+    "y1": {
+      "collected": 19,
+      "command": [
+        "D:\\Conda\\p12\\python.exe",
+        "-m",
+        "pytest",
+        "experiments/hypothesis_y1/tests/",
+        "-q"
+      ],
+      "deselected": 0,
+      "duration": 9.63,
+      "errors": 0,
+      "executable": "D:\\Conda\\p12\\python.exe",
+      "exit_code": 0,
+      "failed": 0,
+      "log": "experiments/hypothesis_y1/logs/hypothesis_y1_pytest_y1.txt",
+      "passed": 19,
+      "skipped": 0,
+      "wall_duration_seconds": 10.934719900018536,
+      "xfailed": 0,
+      "xpassed": 0
+    }
+  }
+}

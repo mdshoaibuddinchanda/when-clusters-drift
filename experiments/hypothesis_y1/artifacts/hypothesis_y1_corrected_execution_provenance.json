@@ -1,0 +1,342 @@
+{
+  "audit": "hypothesis_y1_corrected_execution_provenance",
+  "configuration_sha256": {
+    "configs/alignment.yaml": "3afa2b89ed781bd40ffa3dbe1bc244b74fd12b304d6025e9b8300835aa85d359",
+    "configs/falsification.yaml": "9d9f9aaf37c42e0a0cd6c7d0aa5f5820638e4cf7b29db1bfa1f46de382dc6cd6",
+    "configs/methods.yaml": "5e5be24811aa3f8289b4b9b3be79bda431d09a6c2ce685963442273d499dc278",
+    "configs/preprocessing.yaml": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+    "configs/probes.yaml": "f181ce081dd59cd40d37f2da4107bfd4f1b536764993155bd726e198f5ca3343",
+    "configs/shifts.yaml": "4374d14ce856af5b8fb6d77ee52d93170e84f9a069279b69202246526b9541d9",
+    "configs/signals.yaml": "ca073113c293e238c3ab0d753a53ae6fdd6a88426b8b47d59b00a96098586be4"
+  },
+  "corrected_split_bindings": [
+    {
+      "corrected_split_sha256": "fb8c5d886c5bd70cbdb470453a3ac6bb60f90a96275ac1d0373f299ad6c2c07b",
+      "dataset_id": "breast_cancer_wisconsin_diagnostic",
+      "outer_fold": 0
+    },
+    {
+      "corrected_split_sha256": "1f25a17e9c15630cef2f05c3095d4565a25af27812b637a0f4cce4ce6b1f7a61",
+      "dataset_id": "breast_cancer_wisconsin_diagnostic",
+      "outer_fold": 1
+    },
+    {
+      "corrected_split_sha256": "842f9e1c11d0a5f7b0a5a060322a5877506f91a41c4c2a6dc1e0f6e0b399f530",
+      "dataset_id": "breast_cancer_wisconsin_diagnostic",
+      "outer_fold": 2
+    },
+    {
+      "corrected_split_sha256": "10a902462ae8ba3ce1a20516d131a51865480bbc28e1aea0e4aa14870861f9f7",
+      "dataset_id": "breast_cancer_wisconsin_diagnostic",
+      "outer_fold": 3
+    },
+    {
+      "corrected_split_sha256": "007f7f3922f7ca1b8e3a180983cf9a43f056c9fe8a52910852b82319ffd3ced9",
+      "dataset_id": "breast_cancer_wisconsin_diagnostic",
+      "outer_fold": 4
+    },
+    {
+      "corrected_split_sha256": "a6972baf69d6bbf0a450e7db3e00802ec7a2c9991a1d1a57722b3546c3fe6a88",
+      "dataset_id": "glass",
+      "outer_fold": 0
+    },
+    {
+      "corrected_split_sha256": "1b26dbd5a29ac5651d47cdcb221656d5000d7713a74971dadbd15f02a6dea4f5",
+      "dataset_id": "glass",
+      "outer_fold": 1
+    },
+    {
+      "corrected_split_sha256": "8b4a1c1de6679f0b9e7fa75179a12f601f406f585aa24550f414182f520073ef",
+      "dataset_id": "glass",
+      "outer_fold": 2
+    },
+    {
+      "corrected_split_sha256": "8a308ac988e1aa761f1f6faae71498067127ae6e885810cb6507c45c7cfbb927",
+      "dataset_id": "glass",
+      "outer_fold": 3
+    },
+    {
+      "corrected_split_sha256": "6b685617ec8035f9f867298b081551c649bbd7e01b9af8aba8d4e34f12b541d8",
+      "dataset_id": "glass",
+      "outer_fold": 4
+    },
+    {
+      "corrected_split_sha256": "2e7fdae0dc4d198afb686b4550c3b9d4ae4f9d502abffef719be4a6668a5017b",
+      "dataset_id": "human_activity_recognition",
+      "outer_fold": 0
+    },
+    {
+      "corrected_split_sha256": "27cc1202fbb37930fbdfebe3d7b71addf68214ee282ff5191d4d618fdcc9bb14",
+      "dataset_id": "human_activity_recognition",
+      "outer_fold": 1
+    },
+    {
+      "corrected_split_sha256": "be735e08e94ce00c5d5180b9b13480e698f4557a49ab551284c02eae0e49b7e3",
+      "dataset_id": "human_activity_recognition",
+      "outer_fold": 2
+    },
+    {
+      "corrected_split_sha256": "b4a3a1233462215718745d2e44e672854b39852e6a4b16c49bb89ce8116ef43f",
+      "dataset_id": "human_activity_recognition",
+      "outer_fold": 3
+    },
+    {
+      "corrected_split_sha256": "566beaabb16647e8c2d19d1027d8b55e1dea560031588dbdb9b38729db0bd79f",
+      "dataset_id": "human_activity_recognition",
+      "outer_fold": 4
+    },
+    {
+      "corrected_split_sha256": "8937881e44c9b92431f9b886b5f2c7050f7aaa0ed441b7800ec8dabb69bd5bbd",
+      "dataset_id": "iris",
+      "outer_fold": 0
+    },
+    {
+      "corrected_split_sha256": "0a3021afb91cde0d5c10f3766d092b80311d783661e96f7a4fb7253f70dd9d0f",
+      "dataset_id": "iris",
+      "outer_fold": 1
+    },
+    {
+      "corrected_split_sha256": "ec31989982a9e8146da77d499a5d5b3e51f23e9b617f1475c255a00ad88974ad",
+      "dataset_id": "iris",
+      "outer_fold": 2
+    },
+    {
+      "corrected_split_sha256": "731365ed8bcee8e135e1215a1c59b4d33406537dd0b866a5b03d1ef81a85cfd2",
+      "dataset_id": "iris",
+      "outer_fold": 3
+    },
+    {
+      "corrected_split_sha256": "4d385b22e4050ec24a352ef6d1125d3eb410589f4cf431dee4e895773e96b365",
+      "dataset_id": "iris",
+      "outer_fold": 4
+    },
+    {
+      "corrected_split_sha256": "6a2b0c32c48811adf5c2be9961c9082a6305fdb0d58f8444a75b5aa37ec63462",
+      "dataset_id": "letter_recognition",
+      "outer_fold": 0
+    },
+    {
+      "corrected_split_sha256": "bd19eb935f971032ef1fb4acc67249fe7ca018f5f4558a21ebbe0bb0055f4414",
+      "dataset_id": "letter_recognition",
+      "outer_fold": 1
+    },
+    {
+      "corrected_split_sha256": "485e71d516cc64cd0ccc1afd5a2d5c324d93a1adbb04c696ab22748b5877d9da",
+      "dataset_id": "letter_recognition",
+      "outer_fold": 2
+    },
+    {
+      "corrected_split_sha256": "1bb4c9d98e56265599b4d59947cffe2b55d3506923732679848e2b90c0add50c",
+      "dataset_id": "letter_recognition",
+      "outer_fold": 3
+    },
+    {
+      "corrected_split_sha256": "d2f5e78d4e8c6e216ef8b9c8da702c0764b74403c302dd28ba29c94d66f1845a",
+      "dataset_id": "letter_recognition",
+      "outer_fold": 4
+    },
+    {
+      "corrected_split_sha256": "3cb60a44d58e3c37e03f79bbc0c31827ad2f75926069bf2f6fa904bf3e09abb3",
+      "dataset_id": "madelon",
+      "outer_fold": 0
+    },
+    {
+      "corrected_split_sha256": "6ce25cea5844d979b18c7d5e045bb8145030c0303b39ffeb809ced1799c785c0",
+      "dataset_id": "madelon",
+      "outer_fold": 1
+    },
+    {
+      "corrected_split_sha256": "121f4c09d511ef317b16e9a105b3ae2afe0f7c1d0483a15ad122bde5988caef6",
+      "dataset_id": "madelon",
+      "outer_fold": 2
+    },
+    {
+      "corrected_split_sha256": "33e9bc1ad89598e9384d95e1c9e5c009fd16c4276fa00291a2612fb238c6f1a4",
+      "dataset_id": "madelon",
+      "outer_fold": 3
+    },
+    {
+      "corrected_split_sha256": "16463a0927dab1f9a1f8025e7e519d806d3ac6d81ae55fcb9772664a68c0c63b",
+      "dataset_id": "madelon",
+      "outer_fold": 4
+    },
+    {
+      "corrected_split_sha256": "ee8473353991767db6ac6ba68ffd638f256ab7b42734ba041d8535f51af3faae",
+      "dataset_id": "mice_protein_expression",
+      "outer_fold": 0
+    },
+    {
+      "corrected_split_sha256": "7e76f83a4dcdb1d5d0a71f3dd159dffbc8dd8d5ddce850acb19898b13befc597",
+      "dataset_id": "mice_protein_expression",
+      "outer_fold": 1
+    },
+    {
+      "corrected_split_sha256": "49043848c6a318a478cb90db35fd3e7cb06d6cc2051dd239966ceb3730a1dc30",
+      "dataset_id": "mice_protein_expression",
+      "outer_fold": 2
+    },
+    {
+      "corrected_split_sha256": "7e85a412c9e1ccb415cc896959f7779d764a842f5145dec86941c70afc967d22",
+      "dataset_id": "mice_protein_expression",
+      "outer_fold": 3
+    },
+    {
+      "corrected_split_sha256": "809c9eaa1ea3e3d3c77ecb0444bd124f1fc923c242198b684262a04a4c05c0c5",
+      "dataset_id": "mice_protein_expression",
+      "outer_fold": 4
+    },
+    {
+      "corrected_split_sha256": "aca4524aaa2519119e5e27fbc9aab32da099ec5d0e1f81d8af8789843fb287a1",
+      "dataset_id": "pendigits",
+      "outer_fold": 0
+    },
+    {
+      "corrected_split_sha256": "52819fce1572575abc120c7882420ae255bc786012dfea4edb551eeeb70f4615",
+      "dataset_id": "pendigits",
+      "outer_fold": 1
+    },
+    {
+      "corrected_split_sha256": "e26a011097e6a6deffaaf6aefffa1cf8aef0837f2e576eddf1ed846e1155a130",
+      "dataset_id": "pendigits",
+      "outer_fold": 2
+    },
+    {
+      "corrected_split_sha256": "450b924e7ec3b577bd484ceb2340d0095bb516fdb69a98fe883a6f5606e1a269",
+      "dataset_id": "pendigits",
+      "outer_fold": 3
+    },
+    {
+      "corrected_split_sha256": "b4d2b5fedab57f8d6cb4907226b62eb7d3a0e7be373ea48bddbf997fec677426",
+      "dataset_id": "pendigits",
+      "outer_fold": 4
+    },
+    {
+      "corrected_split_sha256": "0f49ed671204dba76c77fb784d189baf2a886eba063768e9f8ee75c8aea23b4b",
+      "dataset_id": "satimage",
+      "outer_fold": 0
+    },
+    {
+      "corrected_split_sha256": "3e6a462bdc0b49d524b25520d13cf46ada709da665b54f073d2092c147cae002",
+      "dataset_id": "satimage",
+      "outer_fold": 1
+    },
+    {
+      "corrected_split_sha256": "d49722c45fea932b6d5c37bc2504dea57fbacc97e0acf5684130cb1dbc9cdb8d",
+      "dataset_id": "satimage",
+      "outer_fold": 2
+    },
+    {
+      "corrected_split_sha256": "d0b91795671601c05f4c2ff3e58af902e71538c03389a089562a0f03219b6c35",
+      "dataset_id": "satimage",
+      "outer_fold": 3
+    },
+    {
+      "corrected_split_sha256": "8ab2c2b32faa2666e1001074b781b73423dd094440e748dcc5b07e3731fc91c3",
+      "dataset_id": "satimage",
+      "outer_fold": 4
+    },
+    {
+      "corrected_split_sha256": "114ab953c71d319ab3f6b35ff68fb736f2d4721de03a347535c57a6b063ce8d4",
+      "dataset_id": "sonar",
+      "outer_fold": 0
+    },
+    {
+      "corrected_split_sha256": "a313006f5d33af9af2b741b7d2b87c1e5196ac0db9b30cfc49fd4c30209a2fb7",
+      "dataset_id": "sonar",
+      "outer_fold": 1
+    },
+    {
+      "corrected_split_sha256": "847e9eec5b0c20fcd77070512be65d11e12504cc954a8814d516b4e909e1aaca",
+      "dataset_id": "sonar",
+      "outer_fold": 2
+    },
+    {
+      "corrected_split_sha256": "75a66227c354c556ba2143cf240b3ca838a763b134eab9b85016d9777a68e88d",
+      "dataset_id": "sonar",
+      "outer_fold": 3
+    },
+    {
+      "corrected_split_sha256": "5b3081fa84f2d7d776de98fe744a464b9467cb8a53ba053aaa69ce315209df0d",
+      "dataset_id": "sonar",
+      "outer_fold": 4
+    },
+    {
+      "corrected_split_sha256": "7d502c94d0cc72ac48b77850c20fa9748f92ce739d008d4c384a25c4595e34f5",
+      "dataset_id": "spambase",
+      "outer_fold": 0
+    },
+    {
+      "corrected_split_sha256": "7d2212c69fbe838859e3ce46b589afa2849078c7bbbd33141c2c03a4617ff889",
+      "dataset_id": "spambase",
+      "outer_fold": 1
+    },
+    {
+      "corrected_split_sha256": "2a758464b71962c54c8279d5f8c75006e6d97cbe6644f0957158c028e4333534",
+      "dataset_id": "spambase",
+      "outer_fold": 2
+    },
+    {
+      "corrected_split_sha256": "ac296494c35f15e2cfc21d55096f586ebf8d998d39371b2f2d7fe643b62a6071",
+      "dataset_id": "spambase",
+      "outer_fold": 3
+    },
+    {
+      "corrected_split_sha256": "a757df0292e782bbb5ac0079d9ca11008fa1efe3829b4e7df0a7d6df707fae9e",
+      "dataset_id": "spambase",
+      "outer_fold": 4
+    },
+    {
+      "corrected_split_sha256": "e10b99fadf3baf20a5dca0752dafaecf83e063c62e123fe2c294232da3b102ad",
+      "dataset_id": "waveform",
+      "outer_fold": 0
+    },
+    {
+      "corrected_split_sha256": "d31735c388965393ed156fa67811462acc7d4419a5bec83392b5b94915fbc9a4",
+      "dataset_id": "waveform",
+      "outer_fold": 1
+    },
+    {
+      "corrected_split_sha256": "7724b00446aeba8520c894e641e518eaf49cabef8d3969166a4376e31b111ab9",
+      "dataset_id": "waveform",
+      "outer_fold": 2
+    },
+    {
+      "corrected_split_sha256": "c350dea458e997b3a055e7da930e653658ccaefe47faf04b5046ca5b817406bd",
+      "dataset_id": "waveform",
+      "outer_fold": 3
+    },
+    {
+      "corrected_split_sha256": "a497bc46fd5c9daa4e8aee3935ac025828f8eaef5a410261c1589c7c2c3867e7",
+      "dataset_id": "waveform",
+      "outer_fold": 4
+    }
+  ],
+  "executed_code_sha256": {
+    "experiments/hypothesis_y1/scripts/hypothesis_y1_corrected_replication.py": "0dcebe0141c6724e1ed4a5938710cdf596c9ad53fda888e2cedcff7fd2a1c2da",
+    "experiments/hypothesis_y1/scripts/hypothesis_y1_independent_phase7_replication.py": "3c099db46130779a728a1e9db1b9524f8a65f0dad73a0f4816f92c3cf8aef882",
+    "src/clusterdrift/data/preprocess.py": "c465f3c2bff6cf764fe576139f94721e698673eb5338a29e9ecbaa730c71f994",
+    "src/clusterdrift/methods/fcm.py": "afd83bd8dac1a47cf77821a5c701db8eb9d9144f7e305925c2ca0468bf8c8a59",
+    "src/clusterdrift/probes/hashing.py": "7ce4ed5653f3f20c6493c96b201ed08a5596459274be5d49e7e4d43f6bf18ec9",
+    "src/clusterdrift/probes/selection.py": "288d01be4f86f73321aafefccd3bae172d4384ea42cdc020c7d1bd311bc49eb8",
+    "src/clusterdrift/shifts/engine.py": "a111ac0520507223c91bf8bb5042889c9ba73fd8ac4d18eef423229cf6837c89",
+    "src/clusterdrift/signals/engine.py": "13d7273627360563df4546889c683eb55e89b558f1967d9c3c8adc95b5775041",
+    "src/clusterdrift/signals/validity.py": "0c51108a38e2807ff956a4c398a6192829b4114902150b3d1848374c2b1ac081"
+  },
+  "git_head_during_y1_run": "3da9c6ee6af8f00110e6eab569d1dba009a6598c",
+  "interpreter": "D:\\Conda\\p12\\python.exe",
+  "label": "POST-HOC METHODOLOGICAL CORRECTION / EXPLORATORY REPLICATION",
+  "result_sha256": {
+    "corrected_model_metrics": "6784b2eac120e1e83eff12fc5e9ab77a4d539814635cafaa637143577c136ed3",
+    "corrected_rows": "6dc49b576d69b7477568b7c19b873f4309a5c95b8f3b5977ae04426629dbbb36",
+    "corrected_summary": "269199c1a04b3e5f1b7b569beab72e976fe5f948c5c4322e33046938316dc6c0"
+  },
+  "runtime_checkpoint_cache_policy": "noncanonical resume cache; delete after consolidated outputs and provenance are verified",
+  "unique_task_input_fingerprints": 60,
+  "versions": {
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "python": "3.12.14",
+    "pyyaml": "6.0.3",
+    "scikit-learn": "1.9.0"
+  }
+}

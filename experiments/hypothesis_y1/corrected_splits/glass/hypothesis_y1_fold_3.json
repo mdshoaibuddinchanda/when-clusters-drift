@@ -1,0 +1,29 @@
+{
+  "dataset": "glass",
+  "inner_group_leakage": false,
+  "inner_strategy": "StratifiedGroupKFold",
+  "npz_path": "experiments/hypothesis_y1/corrected_splits/glass/hypothesis_y1_fold_3.npz",
+  "npz_sha256": "8a308ac988e1aa761f1f6faae71498067127ae6e885810cb6507c45c7cfbb927",
+  "outer_fold": 3,
+  "outer_group_leakage": false,
+  "outer_strategy": "StratifiedGroupKFold",
+  "policy": "connected protected-group and exact-row-hash components",
+  "source_classes": [
+    "build wind float",
+    "build wind non-float",
+    "containers",
+    "headlamps",
+    "tableware",
+    "vehic wind float"
+  ],
+  "source_rows": 171,
+  "target_classes": [
+    "build wind float",
+    "build wind non-float",
+    "containers",
+    "headlamps",
+    "tableware",
+    "vehic wind float"
+  ],
+  "target_rows": 43
+}

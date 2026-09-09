@@ -1,0 +1,21 @@
+feature_block,threshold,positive_rate,calibration,auroc,auprc,balanced_accuracy,brier
+B0_mean,0.0,0.5823809523809523,cross-dataset one-variable logistic calibration of fixed LODO regression score,0.30853248875832,0.4725489303652777,0.5,0.24865136184058217
+B0_mean,0.025,0.2642857142857143,cross-dataset one-variable logistic calibration of fixed LODO regression score,0.21254263972710577,0.17941613041613041,0.5,0.20181866477013857
+B0_mean,0.05,0.16142857142857142,cross-dataset one-variable logistic calibration of fixed LODO regression score,0.17329252787786503,0.10627150044785948,0.5,0.14027248363977785
+B0_mean,0.1,0.09380952380952381,cross-dataset one-variable logistic calibration of fixed LODO regression score,0.14172919595295697,0.06223835579455594,0.5,0.08762082337115994
+B0_median,0.0,0.5823809523809523,cross-dataset one-variable logistic calibration of fixed LODO regression score,0.30845090907734785,0.47251733637036164,0.5,0.24862761560763494
+B0_median,0.025,0.2642857142857143,cross-dataset one-variable logistic calibration of fixed LODO regression score,0.21254263972710577,0.17941613041613041,0.5,0.20205175361414351
+B0_median,0.05,0.16142857142857142,cross-dataset one-variable logistic calibration of fixed LODO regression score,0.17329252787786503,0.10627150044785948,0.5,0.14039299685952014
+B0_median,0.1,0.09380952380952381,cross-dataset one-variable logistic calibration of fixed LODO regression score,0.14172919595295697,0.06223835579455594,0.5,0.08766454145670928
+P0,0.0,0.5823809523809523,cross-dataset one-variable logistic calibration of fixed LODO regression score,0.30091148977550203,0.4548921607190271,0.5,0.24877107572581508
+P0,0.025,0.2642857142857143,cross-dataset one-variable logistic calibration of fixed LODO regression score,0.2487762033878539,0.18048272525844888,0.5,0.2010017265843406
+P0,0.05,0.16142857142857142,cross-dataset one-variable logistic calibration of fixed LODO regression score,0.1825623786598859,0.09726424491541413,0.5,0.14016269287646896
+P0,0.1,0.09380952380952381,cross-dataset one-variable logistic calibration of fixed LODO regression score,0.14172127698451017,0.05365428524924323,0.5,0.0876036848723662
+P3,0.0,0.5823809523809523,cross-dataset one-variable logistic calibration of fixed LODO regression score,0.30459591952420867,0.4557058994895529,0.5,0.2502949936328448
+P3,0.025,0.2642857142857143,cross-dataset one-variable logistic calibration of fixed LODO regression score,0.3601330942593079,0.2050317803265212,0.5,0.19995729454188446
+P3,0.05,0.16142857142857142,cross-dataset one-variable logistic calibration of fixed LODO regression score,0.2861294639342422,0.10861971325741666,0.5,0.13939119204242037
+P3,0.1,0.09380952380952381,cross-dataset one-variable logistic calibration of fixed LODO regression score,0.2470500592172125,0.05899147400835806,0.5,0.087094961945572
+P4,0.0,0.5823809523809523,cross-dataset one-variable logistic calibration of fixed LODO regression score,0.3380770072563961,0.4721583186805857,0.5,0.2491468411458874
+P4,0.025,0.2642857142857143,cross-dataset one-variable logistic calibration of fixed LODO regression score,0.20950727426455584,0.1666511111122876,0.5,0.2023202004843434
+P4,0.05,0.16142857142857142,cross-dataset one-variable logistic calibration of fixed LODO regression score,0.18389230400064324,0.09603288593357938,0.5,0.1404335020306378
+P4,0.1,0.09380952380952381,cross-dataset one-variable logistic calibration of fixed LODO regression score,0.13609372457594343,0.052838605134202805,0.5,0.08772714023478716

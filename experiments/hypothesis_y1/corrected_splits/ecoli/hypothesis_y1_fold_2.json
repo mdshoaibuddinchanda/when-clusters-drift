@@ -1,0 +1,32 @@
+{
+  "dataset": "ecoli",
+  "inner_group_leakage": false,
+  "inner_strategy": "StratifiedGroupKFold",
+  "npz_path": "experiments/hypothesis_y1/corrected_splits/ecoli/hypothesis_y1_fold_2.npz",
+  "npz_sha256": "b7620f7f96e16daee58d3e1133bf12c88b1aaaf1a2e856db8e286414e31c2a07",
+  "outer_fold": 2,
+  "outer_group_leakage": false,
+  "outer_strategy": "StratifiedGroupKFold",
+  "policy": "connected protected-group and exact-row-hash components",
+  "source_classes": [
+    "cp",
+    "im",
+    "imL",
+    "imS",
+    "imU",
+    "om",
+    "omL",
+    "pp"
+  ],
+  "source_rows": 269,
+  "target_classes": [
+    "cp",
+    "im",
+    "imL",
+    "imU",
+    "om",
+    "omL",
+    "pp"
+  ],
+  "target_rows": 67
+}

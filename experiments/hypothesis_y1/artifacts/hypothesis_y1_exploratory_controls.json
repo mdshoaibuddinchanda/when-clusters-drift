@@ -1,0 +1,34 @@
+{
+  "blocks": {
+    "Y1_P4_DH_SOURCE_RELATIVE": {
+      "LODO": {
+        "mae": 0.05096067285233096,
+        "median_unit_mae": 0.05011690743905292,
+        "n_units": 12,
+        "rmse": 0.08024263153832704
+      },
+      "LOSFO": {
+        "mae": 0.04739562304762207,
+        "median_unit_mae": 0.042224140510939916,
+        "n_units": 7,
+        "rmse": 0.08000740008110553
+      }
+    },
+    "Y1_VALIDITY_DELTA_CLEAN_REFERENCE": {
+      "LODO": {
+        "mae": 0.04559677255993949,
+        "median_unit_mae": 0.038956444654858466,
+        "n_units": 12,
+        "rmse": 0.07829289495923303
+      },
+      "LOSFO": {
+        "mae": 0.04925541832400594,
+        "median_unit_mae": 0.04256585542393762,
+        "n_units": 7,
+        "rmse": 0.08666841037122261
+      }
+    }
+  },
+  "label": "POST-HOC EXPLORATORY CONTROLS",
+  "reference_definition": "same dataset/fold/seed unshifted target fold; label-free and train-independent, but not the source A_R probe"
+}

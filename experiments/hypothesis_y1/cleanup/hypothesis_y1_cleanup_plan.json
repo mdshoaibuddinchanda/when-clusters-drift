@@ -1,0 +1,139 @@
+{
+  "audit": "hypothesis_y1_cleanup_plan",
+  "deletion_policy": "exact allow-list; generated caches only; PowerShell performs deletion after containment and reparse-point checks",
+  "frozen_scientific_evidence_is_candidate": false,
+  "planned_deletions": [
+    {
+      "absolute_path": "D:\\DR2\\when-clusters-drift\\.pytest_cache",
+      "kind": "directory",
+      "reason": "safe generated tool/Python cache",
+      "relative_path": ".pytest_cache"
+    },
+    {
+      "absolute_path": "D:\\DR2\\when-clusters-drift\\scripts\\__pycache__",
+      "kind": "directory",
+      "reason": "safe generated tool/Python cache",
+      "relative_path": "scripts/__pycache__"
+    },
+    {
+      "absolute_path": "D:\\DR2\\when-clusters-drift\\tests\\__pycache__",
+      "kind": "directory",
+      "reason": "safe generated tool/Python cache",
+      "relative_path": "tests/__pycache__"
+    },
+    {
+      "absolute_path": "D:\\DR2\\when-clusters-drift\\src\\clusterdrift\\__pycache__",
+      "kind": "directory",
+      "reason": "safe generated tool/Python cache",
+      "relative_path": "src/clusterdrift/__pycache__"
+    },
+    {
+      "absolute_path": "D:\\DR2\\when-clusters-drift\\tests\\test_alignment\\__pycache__",
+      "kind": "directory",
+      "reason": "safe generated tool/Python cache",
+      "relative_path": "tests/test_alignment/__pycache__"
+    },
+    {
+      "absolute_path": "D:\\DR2\\when-clusters-drift\\tests\\test_falsification\\__pycache__",
+      "kind": "directory",
+      "reason": "safe generated tool/Python cache",
+      "relative_path": "tests/test_falsification/__pycache__"
+    },
+    {
+      "absolute_path": "D:\\DR2\\when-clusters-drift\\tests\\test_methods\\__pycache__",
+      "kind": "directory",
+      "reason": "safe generated tool/Python cache",
+      "relative_path": "tests/test_methods/__pycache__"
+    },
+    {
+      "absolute_path": "D:\\DR2\\when-clusters-drift\\tests\\test_probes\\__pycache__",
+      "kind": "directory",
+      "reason": "safe generated tool/Python cache",
+      "relative_path": "tests/test_probes/__pycache__"
+    },
+    {
+      "absolute_path": "D:\\DR2\\when-clusters-drift\\tests\\test_shifts\\__pycache__",
+      "kind": "directory",
+      "reason": "safe generated tool/Python cache",
+      "relative_path": "tests/test_shifts/__pycache__"
+    },
+    {
+      "absolute_path": "D:\\DR2\\when-clusters-drift\\tests\\test_signals\\__pycache__",
+      "kind": "directory",
+      "reason": "safe generated tool/Python cache",
+      "relative_path": "tests/test_signals/__pycache__"
+    },
+    {
+      "absolute_path": "D:\\DR2\\when-clusters-drift\\experiments\\hypothesis_y1\\corrected_replication\\cache",
+      "kind": "directory",
+      "reason": "duplicate resumable per-fold cache; consolidated rows, metrics, summary and provenance verified",
+      "relative_path": "experiments/hypothesis_y1/corrected_replication/cache"
+    },
+    {
+      "absolute_path": "D:\\DR2\\when-clusters-drift\\experiments\\hypothesis_y1\\scripts\\__pycache__",
+      "kind": "directory",
+      "reason": "safe generated tool/Python cache",
+      "relative_path": "experiments/hypothesis_y1/scripts/__pycache__"
+    },
+    {
+      "absolute_path": "D:\\DR2\\when-clusters-drift\\experiments\\hypothesis_y1\\tests\\__pycache__",
+      "kind": "directory",
+      "reason": "safe generated tool/Python cache",
+      "relative_path": "experiments/hypothesis_y1/tests/__pycache__"
+    },
+    {
+      "absolute_path": "D:\\DR2\\when-clusters-drift\\src\\clusterdrift\\alignment\\__pycache__",
+      "kind": "directory",
+      "reason": "safe generated tool/Python cache",
+      "relative_path": "src/clusterdrift/alignment/__pycache__"
+    },
+    {
+      "absolute_path": "D:\\DR2\\when-clusters-drift\\src\\clusterdrift\\data\\__pycache__",
+      "kind": "directory",
+      "reason": "safe generated tool/Python cache",
+      "relative_path": "src/clusterdrift/data/__pycache__"
+    },
+    {
+      "absolute_path": "D:\\DR2\\when-clusters-drift\\src\\clusterdrift\\falsification\\__pycache__",
+      "kind": "directory",
+      "reason": "safe generated tool/Python cache",
+      "relative_path": "src/clusterdrift/falsification/__pycache__"
+    },
+    {
+      "absolute_path": "D:\\DR2\\when-clusters-drift\\src\\clusterdrift\\methods\\__pycache__",
+      "kind": "directory",
+      "reason": "safe generated tool/Python cache",
+      "relative_path": "src/clusterdrift/methods/__pycache__"
+    },
+    {
+      "absolute_path": "D:\\DR2\\when-clusters-drift\\src\\clusterdrift\\metrics\\__pycache__",
+      "kind": "directory",
+      "reason": "safe generated tool/Python cache",
+      "relative_path": "src/clusterdrift/metrics/__pycache__"
+    },
+    {
+      "absolute_path": "D:\\DR2\\when-clusters-drift\\src\\clusterdrift\\probes\\__pycache__",
+      "kind": "directory",
+      "reason": "safe generated tool/Python cache",
+      "relative_path": "src/clusterdrift/probes/__pycache__"
+    },
+    {
+      "absolute_path": "D:\\DR2\\when-clusters-drift\\src\\clusterdrift\\shifts\\__pycache__",
+      "kind": "directory",
+      "reason": "safe generated tool/Python cache",
+      "relative_path": "src/clusterdrift/shifts/__pycache__"
+    },
+    {
+      "absolute_path": "D:\\DR2\\when-clusters-drift\\src\\clusterdrift\\signals\\__pycache__",
+      "kind": "directory",
+      "reason": "safe generated tool/Python cache",
+      "relative_path": "src/clusterdrift/signals/__pycache__"
+    },
+    {
+      "absolute_path": "D:\\DR2\\when-clusters-drift\\src\\clusterdrift\\falsification\\execution\\__pycache__",
+      "kind": "directory",
+      "reason": "safe generated tool/Python cache",
+      "relative_path": "src/clusterdrift/falsification/execution/__pycache__"
+    }
+  ]
+}

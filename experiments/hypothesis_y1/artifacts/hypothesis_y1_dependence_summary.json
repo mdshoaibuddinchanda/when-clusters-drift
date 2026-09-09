@@ -1,0 +1,10 @@
+{
+  "between_scenario_mean_variance": 0.004806788740309223,
+  "icc_style_ratio": 0.9000316386753807,
+  "identical_across_seed_count": 336,
+  "identical_across_seed_fraction": 0.4,
+  "mean_within_scenario_seed_variance": 0.0005338998907966815,
+  "n_rows": 4200,
+  "n_scenarios": 840,
+  "scientific_inference_unit": "dataset and shift-family, not rows or seeds"
+}

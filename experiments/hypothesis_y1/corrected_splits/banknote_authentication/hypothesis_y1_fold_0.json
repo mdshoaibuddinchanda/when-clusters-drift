@@ -1,0 +1,21 @@
+{
+  "dataset": "banknote_authentication",
+  "inner_group_leakage": false,
+  "inner_strategy": "StratifiedGroupKFold",
+  "npz_path": "experiments/hypothesis_y1/corrected_splits/banknote_authentication/hypothesis_y1_fold_0.npz",
+  "npz_sha256": "c9d3cd9d18c45f39dec447c40498fad0acc31d796093ddbdfced1e4f920b529d",
+  "outer_fold": 0,
+  "outer_group_leakage": false,
+  "outer_strategy": "StratifiedGroupKFold",
+  "policy": "connected protected-group and exact-row-hash components",
+  "source_classes": [
+    "1",
+    "2"
+  ],
+  "source_rows": 1097,
+  "target_classes": [
+    "1",
+    "2"
+  ],
+  "target_rows": 275
+}

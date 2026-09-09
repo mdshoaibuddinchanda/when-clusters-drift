@@ -1,0 +1,261 @@
+{
+  "label": "POST-HOC CONVERGENCE SENSITIVITY",
+  "sensitivities": {
+    "S0_all_original_rows": {
+      "LODO": {
+        "bootstrap_delta_04": {
+          "mean_ci_lower": -0.011854403405159832,
+          "mean_ci_upper": 0.0024365487075054693,
+          "median_ci_lower": -0.0080497115756608,
+          "median_ci_upper": 0.0026116510943690954,
+          "n_units": 12,
+          "sample_mean": -0.004190041104955801,
+          "sample_median": -0.00019196312269489924
+        },
+        "bootstrap_delta_34": {
+          "mean_ci_lower": 0.002950967679446085,
+          "mean_ci_upper": 0.023305587344546307,
+          "median_ci_lower": 0.00270161986976015,
+          "median_ci_upper": 0.0226123024266374,
+          "n_units": 12,
+          "sample_mean": 0.013031172158682729,
+          "sample_median": 0.0101481517387731
+        },
+        "evaluation": "LODO",
+        "mae": {
+          "P0": 0.046704663478981584,
+          "P3": 0.06392587674262011,
+          "P4": 0.05089470458393738
+        },
+        "n_units": 12,
+        "wins_04": 5,
+        "wins_34": 10
+      },
+      "LOSFO": {
+        "bootstrap_delta_04": {
+          "mean_ci_lower": -0.0006775425946786587,
+          "mean_ci_upper": 0.00389981492084153,
+          "median_ci_lower": -0.0010631031775540992,
+          "median_ci_upper": 0.004930398248417095,
+          "n_units": 7,
+          "sample_mean": 0.0015734133975765844,
+          "sample_median": 0.0009792220450517974
+        },
+        "bootstrap_delta_34": {
+          "mean_ci_lower": -0.006420026767533188,
+          "mean_ci_upper": 0.0007181307643526282,
+          "median_ci_lower": -0.007467400856099302,
+          "median_ci_upper": 0.0012163964480272002,
+          "n_units": 7,
+          "sample_mean": -0.002941897986678773,
+          "sample_median": -0.004827826452666002
+        },
+        "evaluation": "LOSFO",
+        "mae": {
+          "P0": 0.04781452277089576,
+          "P3": 0.0432992113866404,
+          "P4": 0.04624110937331917
+        },
+        "n_units": 7,
+        "wins_04": 4,
+        "wins_34": 3
+      },
+      "excluded_datasets": [],
+      "n_datasets": 12,
+      "n_rows": 4200
+    },
+    "S1_source_converged": {
+      "LODO": {
+        "bootstrap_delta_04": {
+          "mean_ci_lower": -0.011666516516395997,
+          "mean_ci_upper": 0.0040667137228664685,
+          "median_ci_lower": -0.0037446129099441353,
+          "median_ci_upper": 0.005465868306010476,
+          "n_units": 11,
+          "sample_mean": -0.002789031184781193,
+          "sample_median": 0.0009059162275424637
+        },
+        "bootstrap_delta_34": {
+          "mean_ci_lower": 0.0004104026497364632,
+          "mean_ci_upper": 0.019450892399954036,
+          "median_ci_lower": 0.00033987089500894796,
+          "median_ci_upper": 0.010607751018382197,
+          "n_units": 11,
+          "sample_mean": 0.009303593947697548,
+          "sample_median": 0.007915108041668513
+        },
+        "evaluation": "LODO",
+        "mae": {
+          "P0": 0.050142561406449654,
+          "P3": 0.06223518653892839,
+          "P4": 0.05293159259123084
+        },
+        "n_units": 11,
+        "wins_04": 6,
+        "wins_34": 9
+      },
+      "LOSFO": {
+        "bootstrap_delta_04": {
+          "mean_ci_lower": -0.0010035704258740486,
+          "mean_ci_upper": 0.006687793185263918,
+          "median_ci_lower": -0.0024406872171615357,
+          "median_ci_upper": 0.005942112505791332,
+          "n_units": 7,
+          "sample_mean": 0.002518030980218982,
+          "sample_median": -2.3348912662118915e-05
+        },
+        "bootstrap_delta_34": {
+          "mean_ci_lower": -0.007280403236989558,
+          "mean_ci_upper": 0.0011298187952396407,
+          "median_ci_lower": -0.007323149265244626,
+          "median_ci_upper": 0.0009952909963873713,
+          "n_units": 7,
+          "sample_mean": -0.003220091352632393,
+          "sample_median": -0.00443971964439073
+        },
+        "evaluation": "LOSFO",
+        "mae": {
+          "P0": 0.052123217332271966,
+          "P3": 0.0463850949994206,
+          "P4": 0.04960518635205298
+        },
+        "n_units": 7,
+        "wins_04": 3,
+        "wins_34": 2
+      },
+      "excluded_datasets": [
+        "letter_recognition"
+      ],
+      "n_datasets": 11,
+      "n_rows": 3682
+    },
+    "S2_candidate_converged": {
+      "LODO": {
+        "bootstrap_delta_04": {
+          "mean_ci_lower": -0.013475825168893663,
+          "mean_ci_upper": 0.003616627023673338,
+          "median_ci_lower": -0.006881413144025791,
+          "median_ci_upper": 0.002756617160726463,
+          "n_units": 12,
+          "sample_mean": -0.004019995105246101,
+          "sample_median": 0.001043235908035886
+        },
+        "bootstrap_delta_34": {
+          "mean_ci_lower": 0.0024349250086059394,
+          "mean_ci_upper": 0.018490588202683927,
+          "median_ci_lower": 0.0023562099963962847,
+          "median_ci_upper": 0.022037302735995416,
+          "n_units": 12,
+          "sample_mean": 0.010398654815307428,
+          "sample_median": 0.006513868780076534
+        },
+        "evaluation": "LODO",
+        "mae": {
+          "P0": 0.04717709638656977,
+          "P3": 0.061595746307123306,
+          "P4": 0.05119709149181589
+        },
+        "n_units": 12,
+        "wins_04": 6,
+        "wins_34": 10
+      },
+      "LOSFO": {
+        "bootstrap_delta_04": {
+          "mean_ci_lower": -0.00020032131939499393,
+          "mean_ci_upper": 0.006224773559893639,
+          "median_ci_lower": -0.00017591835678280876,
+          "median_ci_upper": 0.004961322147941205,
+          "n_units": 7,
+          "sample_mean": 0.0027945884906237528,
+          "sample_median": 0.001983100232428578
+        },
+        "bootstrap_delta_34": {
+          "mean_ci_lower": -0.0060801467282283,
+          "mean_ci_upper": 0.0011748516582460059,
+          "median_ci_lower": -0.007536279772882182,
+          "median_ci_upper": 0.001997466014088331,
+          "n_units": 7,
+          "sample_mean": -0.002374968800275293,
+          "sample_median": -0.0007351308837270643
+        },
+        "evaluation": "LOSFO",
+        "mae": {
+          "P0": 0.05035551198402156,
+          "P3": 0.04518595469312252,
+          "P4": 0.04756092349339781
+        },
+        "n_units": 7,
+        "wins_04": 5,
+        "wins_34": 3
+      },
+      "excluded_datasets": [],
+      "n_datasets": 12,
+      "n_rows": 3797
+    },
+    "S3_both_converged": {
+      "LODO": {
+        "bootstrap_delta_04": {
+          "mean_ci_lower": -0.012681131802460483,
+          "mean_ci_upper": 0.003431317383475908,
+          "median_ci_lower": -0.0028374635809945634,
+          "median_ci_upper": 0.0019160258178100298,
+          "n_units": 11,
+          "sample_mean": -0.003564562157962849,
+          "sample_median": 0.00086568725256507
+        },
+        "bootstrap_delta_34": {
+          "mean_ci_lower": 0.0016354387003068857,
+          "mean_ci_upper": 0.02617158720006734,
+          "median_ci_lower": -0.0005813656279764108,
+          "median_ci_upper": 0.03356680586549093,
+          "n_units": 11,
+          "sample_mean": 0.01318388693879149,
+          "sample_median": 0.006331241837799546
+        },
+        "evaluation": "LODO",
+        "mae": {
+          "P0": 0.049406096143989435,
+          "P3": 0.0661545452407438,
+          "P4": 0.05297065830195229
+        },
+        "n_units": 11,
+        "wins_04": 7,
+        "wins_34": 7
+      },
+      "LOSFO": {
+        "bootstrap_delta_04": {
+          "mean_ci_lower": -0.0019217297316851134,
+          "mean_ci_upper": 0.006272792830208642,
+          "median_ci_lower": -0.0034622540651420147,
+          "median_ci_upper": 0.006735335892085317,
+          "n_units": 7,
+          "sample_mean": 0.0018962065691532578,
+          "sample_median": 0.0023611547363736884
+        },
+        "bootstrap_delta_34": {
+          "mean_ci_lower": -0.007405115937450507,
+          "mean_ci_upper": 0.0020223416467629617,
+          "median_ci_lower": -0.008484323447085523,
+          "median_ci_upper": 0.003430105780776932,
+          "n_units": 7,
+          "sample_mean": -0.002685357417744284,
+          "sample_median": -0.001843595946126264
+        },
+        "evaluation": "LOSFO",
+        "mae": {
+          "P0": 0.051182129115714736,
+          "P3": 0.046600565128817203,
+          "P4": 0.04928592254656149
+        },
+        "n_units": 7,
+        "wins_04": 4,
+        "wins_34": 3
+      },
+      "excluded_datasets": [
+        "letter_recognition"
+      ],
+      "n_datasets": 11,
+      "n_rows": 3604
+    }
+  }
+}

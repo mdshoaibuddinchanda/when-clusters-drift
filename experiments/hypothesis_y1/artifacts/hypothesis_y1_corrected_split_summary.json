@@ -1,0 +1,4539 @@
+{
+  "datasets": {
+    "aps_failure": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "aps_failure",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/aps_failure/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "fa45524b7012b38f38129e8c9b704ba654457403e7034b524a3fa8f8bb4105d3",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "neg",
+            "pos"
+          ],
+          "source_rows": 60800,
+          "target_classes": [
+            "neg",
+            "pos"
+          ],
+          "target_rows": 15200
+        },
+        {
+          "dataset": "aps_failure",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/aps_failure/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "4add4c7a02a0e578f94c619bb9098a6f9477d96de102ddf0d2cf79e8e4bb3218",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "neg",
+            "pos"
+          ],
+          "source_rows": 60800,
+          "target_classes": [
+            "neg",
+            "pos"
+          ],
+          "target_rows": 15200
+        },
+        {
+          "dataset": "aps_failure",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/aps_failure/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "c0edb1c720a9f55acb556efbf03f9b05590d00949f360905e7f53a6436bf3df3",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "neg",
+            "pos"
+          ],
+          "source_rows": 60800,
+          "target_classes": [
+            "neg",
+            "pos"
+          ],
+          "target_rows": 15200
+        },
+        {
+          "dataset": "aps_failure",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/aps_failure/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "4d7601f72d405bb001cffcffdf0a0e4e0ea85ea3b5f1276fc4a9217fe53d0f94",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "neg",
+            "pos"
+          ],
+          "source_rows": 60800,
+          "target_classes": [
+            "neg",
+            "pos"
+          ],
+          "target_rows": 15200
+        },
+        {
+          "dataset": "aps_failure",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/aps_failure/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "93358f80265bd32645009d0c2e25c496e360b085299ab4dc51ebbd7b901052e9",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "neg",
+            "pos"
+          ],
+          "source_rows": 60800,
+          "target_classes": [
+            "neg",
+            "pos"
+          ],
+          "target_rows": 15200
+        }
+      ],
+      "n_connected_groups": 76000,
+      "original_strategy": "kfold",
+      "protected_group_column": null
+    },
+    "balance_scale": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "balance_scale",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/balance_scale/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "f995be8dc4ab6ca1c23f7a3f5556927c964036a0bc564713813372daf11d3e2b",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "B",
+            "L",
+            "R"
+          ],
+          "source_rows": 500,
+          "target_classes": [
+            "B",
+            "L",
+            "R"
+          ],
+          "target_rows": 125
+        },
+        {
+          "dataset": "balance_scale",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/balance_scale/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "dbcb590941007bb85ea3ea47f46aff89779093ddf13310864257a4da0f2afc50",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "B",
+            "L",
+            "R"
+          ],
+          "source_rows": 500,
+          "target_classes": [
+            "B",
+            "L",
+            "R"
+          ],
+          "target_rows": 125
+        },
+        {
+          "dataset": "balance_scale",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/balance_scale/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "e9ebd80701bc18740b6094e5d42c7e5f4ceaee0c1b35bf0b5cd4b17e737b3734",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "B",
+            "L",
+            "R"
+          ],
+          "source_rows": 500,
+          "target_classes": [
+            "B",
+            "L",
+            "R"
+          ],
+          "target_rows": 125
+        },
+        {
+          "dataset": "balance_scale",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/balance_scale/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "815affa2d4032fb3000b9677f095bb87f9e4702be0a3ddce535241e249698404",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "B",
+            "L",
+            "R"
+          ],
+          "source_rows": 500,
+          "target_classes": [
+            "B",
+            "L",
+            "R"
+          ],
+          "target_rows": 125
+        },
+        {
+          "dataset": "balance_scale",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/balance_scale/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "639c7788c628af66c189b7c6030d01dee900352edda9aac16f34ddbf6975f98b",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "B",
+            "L",
+            "R"
+          ],
+          "source_rows": 500,
+          "target_classes": [
+            "B",
+            "L",
+            "R"
+          ],
+          "target_rows": 125
+        }
+      ],
+      "n_connected_groups": 625,
+      "original_strategy": "kfold",
+      "protected_group_column": null
+    },
+    "bank_marketing": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "bank_marketing",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/bank_marketing/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "9b3ef1f85711eb087e3098f3e37f1a492d178acfa9e84e8127dd50687995a561",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2"
+          ],
+          "source_rows": 36168,
+          "target_classes": [
+            "1",
+            "2"
+          ],
+          "target_rows": 9043
+        },
+        {
+          "dataset": "bank_marketing",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/bank_marketing/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "28a0b96d15f1e5e47259d8e7d466d227e473445fb905ea45f787c9c3df2ee01e",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2"
+          ],
+          "source_rows": 36169,
+          "target_classes": [
+            "1",
+            "2"
+          ],
+          "target_rows": 9042
+        },
+        {
+          "dataset": "bank_marketing",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/bank_marketing/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "b788336c33e23e96a4e40b7a89da6dcd7f86d15be5122d4696ba0de31b148df8",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2"
+          ],
+          "source_rows": 36169,
+          "target_classes": [
+            "1",
+            "2"
+          ],
+          "target_rows": 9042
+        },
+        {
+          "dataset": "bank_marketing",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/bank_marketing/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "c97b4cfa372592f980651ecb11f5ed7388d151983ac2d84dc731908d55ae6c92",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2"
+          ],
+          "source_rows": 36169,
+          "target_classes": [
+            "1",
+            "2"
+          ],
+          "target_rows": 9042
+        },
+        {
+          "dataset": "bank_marketing",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/bank_marketing/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "aa0fcdec41a07ce4062dda934c4a63e04182581e264425ea0f5c5ca5e5e6ca37",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2"
+          ],
+          "source_rows": 36169,
+          "target_classes": [
+            "1",
+            "2"
+          ],
+          "target_rows": 9042
+        }
+      ],
+      "n_connected_groups": 45211,
+      "original_strategy": "kfold",
+      "protected_group_column": null
+    },
+    "banknote_authentication": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "banknote_authentication",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/banknote_authentication/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "c9d3cd9d18c45f39dec447c40498fad0acc31d796093ddbdfced1e4f920b529d",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2"
+          ],
+          "source_rows": 1097,
+          "target_classes": [
+            "1",
+            "2"
+          ],
+          "target_rows": 275
+        },
+        {
+          "dataset": "banknote_authentication",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/banknote_authentication/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "600b3707923c1717810813afdf8b7e7f3d6d2f7dccf9a8f5aec124d89ff452e4",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2"
+          ],
+          "source_rows": 1097,
+          "target_classes": [
+            "1",
+            "2"
+          ],
+          "target_rows": 275
+        },
+        {
+          "dataset": "banknote_authentication",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/banknote_authentication/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "d537f3afedb5ff24d740cfd7f5224f0b91c0d4a14266d53d36aa09ec01ed6a91",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2"
+          ],
+          "source_rows": 1098,
+          "target_classes": [
+            "1",
+            "2"
+          ],
+          "target_rows": 274
+        },
+        {
+          "dataset": "banknote_authentication",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/banknote_authentication/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "4c62b07562305e60f54e13d1aa40168fae11546da91591f862dcde8ecfb3a813",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2"
+          ],
+          "source_rows": 1098,
+          "target_classes": [
+            "1",
+            "2"
+          ],
+          "target_rows": 274
+        },
+        {
+          "dataset": "banknote_authentication",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/banknote_authentication/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "b2cb6bcddea4d6939f6c1d890f25f7707ee40cba7e7480b2c6ab633fad39a48a",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2"
+          ],
+          "source_rows": 1098,
+          "target_classes": [
+            "1",
+            "2"
+          ],
+          "target_rows": 274
+        }
+      ],
+      "n_connected_groups": 1348,
+      "original_strategy": "kfold",
+      "protected_group_column": null
+    },
+    "breast_cancer_wisconsin_diagnostic": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "breast_cancer_wisconsin_diagnostic",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/breast_cancer_wisconsin_diagnostic/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "fb8c5d886c5bd70cbdb470453a3ac6bb60f90a96275ac1d0373f299ad6c2c07b",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1"
+          ],
+          "source_rows": 455,
+          "target_classes": [
+            "0",
+            "1"
+          ],
+          "target_rows": 114
+        },
+        {
+          "dataset": "breast_cancer_wisconsin_diagnostic",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/breast_cancer_wisconsin_diagnostic/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "1f25a17e9c15630cef2f05c3095d4565a25af27812b637a0f4cce4ce6b1f7a61",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1"
+          ],
+          "source_rows": 455,
+          "target_classes": [
+            "0",
+            "1"
+          ],
+          "target_rows": 114
+        },
+        {
+          "dataset": "breast_cancer_wisconsin_diagnostic",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/breast_cancer_wisconsin_diagnostic/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "842f9e1c11d0a5f7b0a5a060322a5877506f91a41c4c2a6dc1e0f6e0b399f530",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1"
+          ],
+          "source_rows": 455,
+          "target_classes": [
+            "0",
+            "1"
+          ],
+          "target_rows": 114
+        },
+        {
+          "dataset": "breast_cancer_wisconsin_diagnostic",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/breast_cancer_wisconsin_diagnostic/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "10a902462ae8ba3ce1a20516d131a51865480bbc28e1aea0e4aa14870861f9f7",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1"
+          ],
+          "source_rows": 455,
+          "target_classes": [
+            "0",
+            "1"
+          ],
+          "target_rows": 114
+        },
+        {
+          "dataset": "breast_cancer_wisconsin_diagnostic",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/breast_cancer_wisconsin_diagnostic/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "007f7f3922f7ca1b8e3a180983cf9a43f056c9fe8a52910852b82319ffd3ced9",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1"
+          ],
+          "source_rows": 456,
+          "target_classes": [
+            "0",
+            "1"
+          ],
+          "target_rows": 113
+        }
+      ],
+      "n_connected_groups": 569,
+      "original_strategy": "kfold",
+      "protected_group_column": null
+    },
+    "dermatology": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "dermatology",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/dermatology/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "f3f4eb56975a748b1b50881ad93701876af755deac337c684bce18efb0354565",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "source_rows": 292,
+          "target_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "target_rows": 74
+        },
+        {
+          "dataset": "dermatology",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/dermatology/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "6a3fb9dbbd65239728635a3997432c020ee82ea771f382954d8360ce39bd0e60",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "source_rows": 293,
+          "target_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "target_rows": 73
+        },
+        {
+          "dataset": "dermatology",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/dermatology/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "4a44ee7ea5e142c8354d444c6c87c6fd172a216bd944bf42af98b0f395dd113c",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "source_rows": 293,
+          "target_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "target_rows": 73
+        },
+        {
+          "dataset": "dermatology",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/dermatology/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "8d94ce7391ffedc5c4b8063c282c064be727e0be11e1f707962154ed32223d3e",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "source_rows": 293,
+          "target_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "target_rows": 73
+        },
+        {
+          "dataset": "dermatology",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/dermatology/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "4dc5f28364836bd2dbfde9c77f3bf6ea447f52b1359417610880071468a6231a",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "source_rows": 293,
+          "target_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "target_rows": 73
+        }
+      ],
+      "n_connected_groups": 366,
+      "original_strategy": "kfold",
+      "protected_group_column": null
+    },
+    "ecoli": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "ecoli",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/ecoli/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "a67ca506880ff1fec3cb86ddfc7d9973ca80152d59b9b17787bd242cf5eaac0b",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "cp",
+            "im",
+            "imL",
+            "imS",
+            "imU",
+            "om",
+            "omL",
+            "pp"
+          ],
+          "source_rows": 268,
+          "target_classes": [
+            "cp",
+            "im",
+            "imL",
+            "imU",
+            "om",
+            "omL",
+            "pp"
+          ],
+          "target_rows": 68
+        },
+        {
+          "dataset": "ecoli",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/ecoli/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "bc41b3d464722b2258b5b0ae4f9b741d6ae71b1fe763cc0ea181f87b03bf8acd",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "cp",
+            "im",
+            "imL",
+            "imS",
+            "imU",
+            "om",
+            "omL",
+            "pp"
+          ],
+          "source_rows": 269,
+          "target_classes": [
+            "cp",
+            "im",
+            "imU",
+            "om",
+            "omL",
+            "pp"
+          ],
+          "target_rows": 67
+        },
+        {
+          "dataset": "ecoli",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/ecoli/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "b7620f7f96e16daee58d3e1133bf12c88b1aaaf1a2e856db8e286414e31c2a07",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "cp",
+            "im",
+            "imL",
+            "imS",
+            "imU",
+            "om",
+            "omL",
+            "pp"
+          ],
+          "source_rows": 269,
+          "target_classes": [
+            "cp",
+            "im",
+            "imL",
+            "imU",
+            "om",
+            "omL",
+            "pp"
+          ],
+          "target_rows": 67
+        },
+        {
+          "dataset": "ecoli",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/ecoli/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "9e32a719345bf8feaef6719a3691458f7d0b22f2362318328fa6e3d2ae4cbadb",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "cp",
+            "im",
+            "imL",
+            "imS",
+            "imU",
+            "om",
+            "omL",
+            "pp"
+          ],
+          "source_rows": 269,
+          "target_classes": [
+            "cp",
+            "im",
+            "imS",
+            "imU",
+            "om",
+            "omL",
+            "pp"
+          ],
+          "target_rows": 67
+        },
+        {
+          "dataset": "ecoli",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/ecoli/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "f69e85d9b11a8e9a6fc7d427fbf44511ae8bfa1f7696305164991a36964ccd11",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "cp",
+            "im",
+            "imL",
+            "imS",
+            "imU",
+            "om",
+            "omL",
+            "pp"
+          ],
+          "source_rows": 269,
+          "target_classes": [
+            "cp",
+            "im",
+            "imS",
+            "imU",
+            "om",
+            "omL",
+            "pp"
+          ],
+          "target_rows": 67
+        }
+      ],
+      "n_connected_groups": 336,
+      "original_strategy": "kfold",
+      "protected_group_column": null
+    },
+    "electricity": {
+      "corrected_outer_strategy": "preserved_temporal_block",
+      "folds": [
+        {
+          "dataset": "electricity",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/electricity/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "1b7f3ef430fc55c36059656c7c3225d424b6577e2af8b085f62fddbbb9bc78c1",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "preserved_temporal_block",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "DOWN",
+            "UP"
+          ],
+          "source_rows": 7552,
+          "target_classes": [
+            "DOWN",
+            "UP"
+          ],
+          "target_rows": 7552
+        },
+        {
+          "dataset": "electricity",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/electricity/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "676f46c371cb64430dfdf6551f9d44e7712c5c326c647e600dab94a9b0d0cc74",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "preserved_temporal_block",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "DOWN",
+            "UP"
+          ],
+          "source_rows": 15104,
+          "target_classes": [
+            "DOWN",
+            "UP"
+          ],
+          "target_rows": 7552
+        },
+        {
+          "dataset": "electricity",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/electricity/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "45d58eddf53a358a6fc56fae248b6b960e7d604141c400859c96d65d763445a9",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "preserved_temporal_block",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "DOWN",
+            "UP"
+          ],
+          "source_rows": 22656,
+          "target_classes": [
+            "DOWN",
+            "UP"
+          ],
+          "target_rows": 7552
+        },
+        {
+          "dataset": "electricity",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/electricity/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "31531947bcc4e289079b6962abd7b89737dd607bd55ed2eae94bc3bbd87056aa",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "preserved_temporal_block",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "DOWN",
+            "UP"
+          ],
+          "source_rows": 30208,
+          "target_classes": [
+            "DOWN",
+            "UP"
+          ],
+          "target_rows": 7552
+        },
+        {
+          "dataset": "electricity",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/electricity/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "7f9150cc44a15e7f60a7f2d1f059e6a16d1e2c24ef424429acd1771f593152c3",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "preserved_temporal_block",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "DOWN",
+            "UP"
+          ],
+          "source_rows": 37760,
+          "target_classes": [
+            "DOWN",
+            "UP"
+          ],
+          "target_rows": 7552
+        }
+      ],
+      "n_connected_groups": 45312,
+      "original_strategy": "temporal_block",
+      "protected_group_column": null
+    },
+    "glass": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "glass",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/glass/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "a6972baf69d6bbf0a450e7db3e00802ec7a2c9991a1d1a57722b3546c3fe6a88",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "build wind float",
+            "build wind non-float",
+            "containers",
+            "headlamps",
+            "tableware",
+            "vehic wind float"
+          ],
+          "source_rows": 171,
+          "target_classes": [
+            "build wind float",
+            "build wind non-float",
+            "containers",
+            "headlamps",
+            "tableware",
+            "vehic wind float"
+          ],
+          "target_rows": 43
+        },
+        {
+          "dataset": "glass",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/glass/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "1b26dbd5a29ac5651d47cdcb221656d5000d7713a74971dadbd15f02a6dea4f5",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "build wind float",
+            "build wind non-float",
+            "containers",
+            "headlamps",
+            "tableware",
+            "vehic wind float"
+          ],
+          "source_rows": 171,
+          "target_classes": [
+            "build wind float",
+            "build wind non-float",
+            "containers",
+            "headlamps",
+            "tableware",
+            "vehic wind float"
+          ],
+          "target_rows": 43
+        },
+        {
+          "dataset": "glass",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/glass/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "8b4a1c1de6679f0b9e7fa75179a12f601f406f585aa24550f414182f520073ef",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "build wind float",
+            "build wind non-float",
+            "containers",
+            "headlamps",
+            "tableware",
+            "vehic wind float"
+          ],
+          "source_rows": 171,
+          "target_classes": [
+            "build wind float",
+            "build wind non-float",
+            "containers",
+            "headlamps",
+            "tableware",
+            "vehic wind float"
+          ],
+          "target_rows": 43
+        },
+        {
+          "dataset": "glass",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/glass/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "8a308ac988e1aa761f1f6faae71498067127ae6e885810cb6507c45c7cfbb927",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "build wind float",
+            "build wind non-float",
+            "containers",
+            "headlamps",
+            "tableware",
+            "vehic wind float"
+          ],
+          "source_rows": 171,
+          "target_classes": [
+            "build wind float",
+            "build wind non-float",
+            "containers",
+            "headlamps",
+            "tableware",
+            "vehic wind float"
+          ],
+          "target_rows": 43
+        },
+        {
+          "dataset": "glass",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/glass/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "6b685617ec8035f9f867298b081551c649bbd7e01b9af8aba8d4e34f12b541d8",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "build wind float",
+            "build wind non-float",
+            "containers",
+            "headlamps",
+            "tableware",
+            "vehic wind float"
+          ],
+          "source_rows": 172,
+          "target_classes": [
+            "build wind float",
+            "build wind non-float",
+            "containers",
+            "headlamps",
+            "tableware",
+            "vehic wind float"
+          ],
+          "target_rows": 42
+        }
+      ],
+      "n_connected_groups": 213,
+      "original_strategy": "kfold",
+      "protected_group_column": null
+    },
+    "haberman_survival": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "haberman_survival",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/haberman_survival/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "9d451f3c28c6e1b0439f2fd7017035af540b92656510e9dd6d6b59dfa6a04217",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2"
+          ],
+          "source_rows": 245,
+          "target_classes": [
+            "1",
+            "2"
+          ],
+          "target_rows": 61
+        },
+        {
+          "dataset": "haberman_survival",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/haberman_survival/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "73473e966144d60bca1558a06c5d6db4cf112336ec6429ed2848a1b4835358c4",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2"
+          ],
+          "source_rows": 245,
+          "target_classes": [
+            "1",
+            "2"
+          ],
+          "target_rows": 61
+        },
+        {
+          "dataset": "haberman_survival",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/haberman_survival/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "a7308f02cd2ff9c6446c73e14ecde3ed4a8d959683c7e5e21e573939e1d77d7e",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2"
+          ],
+          "source_rows": 245,
+          "target_classes": [
+            "1",
+            "2"
+          ],
+          "target_rows": 61
+        },
+        {
+          "dataset": "haberman_survival",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/haberman_survival/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "8369015614a882b39d2f7a1cdbe4061b15885d7465267af265936dfbfb70cf88",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2"
+          ],
+          "source_rows": 245,
+          "target_classes": [
+            "1",
+            "2"
+          ],
+          "target_rows": 61
+        },
+        {
+          "dataset": "haberman_survival",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/haberman_survival/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "eccdc8dfb8f2df970af419b8d47dd6dfeb244c759b8921db032abb78abde3d27",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2"
+          ],
+          "source_rows": 244,
+          "target_classes": [
+            "1",
+            "2"
+          ],
+          "target_rows": 62
+        }
+      ],
+      "n_connected_groups": 283,
+      "original_strategy": "kfold",
+      "protected_group_column": null
+    },
+    "heart_disease": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "heart_disease",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/heart_disease/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "7e8fdab1c7fddd1c609e264158e8138b2ab3dafcb552385d2ef164e51984e50f",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "source_rows": 235,
+          "target_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "target_rows": 59
+        },
+        {
+          "dataset": "heart_disease",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/heart_disease/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "ecdecec7fef9f0ae2cd6a848b3747085cb291e715401c32802bcd4a0d79505b0",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "source_rows": 235,
+          "target_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "target_rows": 59
+        },
+        {
+          "dataset": "heart_disease",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/heart_disease/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "dfaa8babbddce37d0f214674615783523f597eef6ee9b9a915b9cfc97ce32cd9",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "source_rows": 235,
+          "target_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "target_rows": 59
+        },
+        {
+          "dataset": "heart_disease",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/heart_disease/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "007849db56110e377dc5c52fc2d5a2ccd22de84957eb7a971fb5872d4eb4f8a2",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "source_rows": 235,
+          "target_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "target_rows": 59
+        },
+        {
+          "dataset": "heart_disease",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/heart_disease/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "8269ad374ef93dd28d32dc1f5e55f64458f926e66036ee8120eb966491d1e06d",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "source_rows": 236,
+          "target_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "target_rows": 58
+        }
+      ],
+      "n_connected_groups": 293,
+      "original_strategy": "kfold",
+      "protected_group_column": null
+    },
+    "human_activity_recognition": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "human_activity_recognition",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/human_activity_recognition/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "2e7fdae0dc4d198afb686b4550c3b9d4ae4f9d502abffef719be4a6668a5017b",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "source_rows": 8337,
+          "target_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "target_rows": 1962
+        },
+        {
+          "dataset": "human_activity_recognition",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/human_activity_recognition/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "27cc1202fbb37930fbdfebe3d7b71addf68214ee282ff5191d4d618fdcc9bb14",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "source_rows": 8243,
+          "target_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "target_rows": 2056
+        },
+        {
+          "dataset": "human_activity_recognition",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/human_activity_recognition/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "be735e08e94ce00c5d5180b9b13480e698f4557a49ab551284c02eae0e49b7e3",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "source_rows": 8155,
+          "target_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "target_rows": 2144
+        },
+        {
+          "dataset": "human_activity_recognition",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/human_activity_recognition/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "b4a3a1233462215718745d2e44e672854b39852e6a4b16c49bb89ce8116ef43f",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "source_rows": 8192,
+          "target_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "target_rows": 2107
+        },
+        {
+          "dataset": "human_activity_recognition",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/human_activity_recognition/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "566beaabb16647e8c2d19d1027d8b55e1dea560031588dbdb9b38729db0bd79f",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "source_rows": 8269,
+          "target_classes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "target_rows": 2030
+        }
+      ],
+      "n_connected_groups": 30,
+      "original_strategy": "group_kfold",
+      "protected_group_column": "subject_id"
+    },
+    "image_segmentation": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "image_segmentation",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/image_segmentation/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "53f3e5f5bcab37f167e8ead9496caa071cade23f152d9e030b7f021883af877b",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "brickface",
+            "cement",
+            "foliage",
+            "grass",
+            "path",
+            "sky",
+            "window"
+          ],
+          "source_rows": 1848,
+          "target_classes": [
+            "brickface",
+            "cement",
+            "foliage",
+            "grass",
+            "path",
+            "sky",
+            "window"
+          ],
+          "target_rows": 462
+        },
+        {
+          "dataset": "image_segmentation",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/image_segmentation/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "836363d64e42f99371cebfe32a49ca56325f9242542f7c080a96bf49c108c878",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "brickface",
+            "cement",
+            "foliage",
+            "grass",
+            "path",
+            "sky",
+            "window"
+          ],
+          "source_rows": 1848,
+          "target_classes": [
+            "brickface",
+            "cement",
+            "foliage",
+            "grass",
+            "path",
+            "sky",
+            "window"
+          ],
+          "target_rows": 462
+        },
+        {
+          "dataset": "image_segmentation",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/image_segmentation/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "9ca26a2629392d8b052878866a384e0d65ecd5942657c7fbd617facd685e65c2",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "brickface",
+            "cement",
+            "foliage",
+            "grass",
+            "path",
+            "sky",
+            "window"
+          ],
+          "source_rows": 1848,
+          "target_classes": [
+            "brickface",
+            "cement",
+            "foliage",
+            "grass",
+            "path",
+            "sky",
+            "window"
+          ],
+          "target_rows": 462
+        },
+        {
+          "dataset": "image_segmentation",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/image_segmentation/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "93f05345dfc8416631f9633281c2995359fed82386cadf23f662c58767557c5a",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "brickface",
+            "cement",
+            "foliage",
+            "grass",
+            "path",
+            "sky",
+            "window"
+          ],
+          "source_rows": 1848,
+          "target_classes": [
+            "brickface",
+            "cement",
+            "foliage",
+            "grass",
+            "path",
+            "sky",
+            "window"
+          ],
+          "target_rows": 462
+        },
+        {
+          "dataset": "image_segmentation",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/image_segmentation/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "a4cf2ff8ecda4cc90e53f006efebb3c1b5f8fd875981e49a96b57425a543fd01",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "brickface",
+            "cement",
+            "foliage",
+            "grass",
+            "path",
+            "sky",
+            "window"
+          ],
+          "source_rows": 1848,
+          "target_classes": [
+            "brickface",
+            "cement",
+            "foliage",
+            "grass",
+            "path",
+            "sky",
+            "window"
+          ],
+          "target_rows": 462
+        }
+      ],
+      "n_connected_groups": 2068,
+      "original_strategy": "kfold",
+      "protected_group_column": null
+    },
+    "ionosphere": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "ionosphere",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/ionosphere/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "35915c42e340030a89aa68055cd7dfb98cd9221a9d49cf62c455b25aae92a4c5",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "b",
+            "g"
+          ],
+          "source_rows": 280,
+          "target_classes": [
+            "b",
+            "g"
+          ],
+          "target_rows": 71
+        },
+        {
+          "dataset": "ionosphere",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/ionosphere/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "c7752b64f1c800a951604e4cd3e599fd50dd590e58de0c1dd363400694743047",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "b",
+            "g"
+          ],
+          "source_rows": 281,
+          "target_classes": [
+            "b",
+            "g"
+          ],
+          "target_rows": 70
+        },
+        {
+          "dataset": "ionosphere",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/ionosphere/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "98208032acde9a93b3c20fc36bb5953738f16aa110a7c518b0113303026088c9",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "b",
+            "g"
+          ],
+          "source_rows": 281,
+          "target_classes": [
+            "b",
+            "g"
+          ],
+          "target_rows": 70
+        },
+        {
+          "dataset": "ionosphere",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/ionosphere/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "60d19adafd1142663cc7eb979c8bd729c6fe3fe45b6ebb302d661d9dc4c098cb",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "b",
+            "g"
+          ],
+          "source_rows": 281,
+          "target_classes": [
+            "b",
+            "g"
+          ],
+          "target_rows": 70
+        },
+        {
+          "dataset": "ionosphere",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/ionosphere/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "e94aff5e852fb6f8778be5d76816ebf9ac7a198e59775a08df66eadf2dccb7d3",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "b",
+            "g"
+          ],
+          "source_rows": 281,
+          "target_classes": [
+            "b",
+            "g"
+          ],
+          "target_rows": 70
+        }
+      ],
+      "n_connected_groups": 350,
+      "original_strategy": "kfold",
+      "protected_group_column": null
+    },
+    "iris": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "iris",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/iris/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "8937881e44c9b92431f9b886b5f2c7050f7aaa0ed441b7800ec8dabb69bd5bbd",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "source_rows": 120,
+          "target_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "target_rows": 30
+        },
+        {
+          "dataset": "iris",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/iris/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "0a3021afb91cde0d5c10f3766d092b80311d783661e96f7a4fb7253f70dd9d0f",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "source_rows": 120,
+          "target_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "target_rows": 30
+        },
+        {
+          "dataset": "iris",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/iris/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "ec31989982a9e8146da77d499a5d5b3e51f23e9b617f1475c255a00ad88974ad",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "source_rows": 120,
+          "target_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "target_rows": 30
+        },
+        {
+          "dataset": "iris",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/iris/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "731365ed8bcee8e135e1215a1c59b4d33406537dd0b866a5b03d1ef81a85cfd2",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "source_rows": 120,
+          "target_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "target_rows": 30
+        },
+        {
+          "dataset": "iris",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/iris/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "4d385b22e4050ec24a352ef6d1125d3eb410589f4cf431dee4e895773e96b365",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "source_rows": 120,
+          "target_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "target_rows": 30
+        }
+      ],
+      "n_connected_groups": 149,
+      "original_strategy": "kfold",
+      "protected_group_column": null
+    },
+    "isolet": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "isolet",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/isolet/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "40a2a6cc903a078b90eb02b93ffd539fa6c3bac9fe8d4d6dbccdda763c17f936",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "2",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "source_rows": 6237,
+          "target_classes": [
+            "1",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "2",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "target_rows": 1560
+        },
+        {
+          "dataset": "isolet",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/isolet/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "505e0bfc9127b308a867f5d7db3b81aa1ab3683dcdc0cb5ad6e236a6726f946e",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "2",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "source_rows": 6237,
+          "target_classes": [
+            "1",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "2",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "target_rows": 1560
+        },
+        {
+          "dataset": "isolet",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/isolet/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "4630f001dfc6abcace300d292a532f7896811e622c92850127add4d378eca993",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "2",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "source_rows": 6238,
+          "target_classes": [
+            "1",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "2",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "target_rows": 1559
+        },
+        {
+          "dataset": "isolet",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/isolet/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "d2d1722bcefc0101f75ced5ed29dd19387ae731c5027cab8161a04143509d9f3",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "2",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "source_rows": 6238,
+          "target_classes": [
+            "1",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "2",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "target_rows": 1559
+        },
+        {
+          "dataset": "isolet",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/isolet/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "56eeaf01c679f147ae13d03e430cd4ea272bf57daf0744201961c1ecae02022a",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "2",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "source_rows": 6238,
+          "target_classes": [
+            "1",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "2",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "target_rows": 1559
+        }
+      ],
+      "n_connected_groups": 7797,
+      "original_strategy": "kfold",
+      "protected_group_column": null
+    },
+    "letter_recognition": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "letter_recognition",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/letter_recognition/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "6a2b0c32c48811adf5c2be9961c9082a6305fdb0d58f8444a75b5aa37ec63462",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z"
+          ],
+          "source_rows": 15999,
+          "target_classes": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z"
+          ],
+          "target_rows": 4001
+        },
+        {
+          "dataset": "letter_recognition",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/letter_recognition/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "bd19eb935f971032ef1fb4acc67249fe7ca018f5f4558a21ebbe0bb0055f4414",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z"
+          ],
+          "source_rows": 16000,
+          "target_classes": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z"
+          ],
+          "target_rows": 4000
+        },
+        {
+          "dataset": "letter_recognition",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/letter_recognition/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "485e71d516cc64cd0ccc1afd5a2d5c324d93a1adbb04c696ab22748b5877d9da",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z"
+          ],
+          "source_rows": 16000,
+          "target_classes": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z"
+          ],
+          "target_rows": 4000
+        },
+        {
+          "dataset": "letter_recognition",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/letter_recognition/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "1bb4c9d98e56265599b4d59947cffe2b55d3506923732679848e2b90c0add50c",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z"
+          ],
+          "source_rows": 16000,
+          "target_classes": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z"
+          ],
+          "target_rows": 4000
+        },
+        {
+          "dataset": "letter_recognition",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/letter_recognition/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "d2f5e78d4e8c6e216ef8b9c8da702c0764b74403c302dd28ba29c94d66f1845a",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z"
+          ],
+          "source_rows": 16001,
+          "target_classes": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z"
+          ],
+          "target_rows": 3999
+        }
+      ],
+      "n_connected_groups": 18668,
+      "original_strategy": "kfold",
+      "protected_group_column": null
+    },
+    "madelon": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "madelon",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/madelon/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "3cb60a44d58e3c37e03f79bbc0c31827ad2f75926069bf2f6fa904bf3e09abb3",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2"
+          ],
+          "source_rows": 2080,
+          "target_classes": [
+            "1",
+            "2"
+          ],
+          "target_rows": 520
+        },
+        {
+          "dataset": "madelon",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/madelon/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "6ce25cea5844d979b18c7d5e045bb8145030c0303b39ffeb809ced1799c785c0",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2"
+          ],
+          "source_rows": 2080,
+          "target_classes": [
+            "1",
+            "2"
+          ],
+          "target_rows": 520
+        },
+        {
+          "dataset": "madelon",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/madelon/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "121f4c09d511ef317b16e9a105b3ae2afe0f7c1d0483a15ad122bde5988caef6",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2"
+          ],
+          "source_rows": 2080,
+          "target_classes": [
+            "1",
+            "2"
+          ],
+          "target_rows": 520
+        },
+        {
+          "dataset": "madelon",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/madelon/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "33e9bc1ad89598e9384d95e1c9e5c009fd16c4276fa00291a2612fb238c6f1a4",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2"
+          ],
+          "source_rows": 2080,
+          "target_classes": [
+            "1",
+            "2"
+          ],
+          "target_rows": 520
+        },
+        {
+          "dataset": "madelon",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/madelon/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "16463a0927dab1f9a1f8025e7e519d806d3ac6d81ae55fcb9772664a68c0c63b",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2"
+          ],
+          "source_rows": 2080,
+          "target_classes": [
+            "1",
+            "2"
+          ],
+          "target_rows": 520
+        }
+      ],
+      "n_connected_groups": 2600,
+      "original_strategy": "kfold",
+      "protected_group_column": null
+    },
+    "mice_protein_expression": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "mice_protein_expression",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/mice_protein_expression/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "ee8473353991767db6ac6ba68ffd638f256ab7b42734ba041d8535f51af3faae",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "c-CS-m",
+            "c-CS-s",
+            "c-SC-m",
+            "c-SC-s",
+            "t-CS-m",
+            "t-CS-s",
+            "t-SC-m",
+            "t-SC-s"
+          ],
+          "source_rows": 855,
+          "target_classes": [
+            "c-CS-m",
+            "c-CS-s",
+            "c-SC-m",
+            "c-SC-s",
+            "t-CS-m",
+            "t-CS-s",
+            "t-SC-m",
+            "t-SC-s"
+          ],
+          "target_rows": 225
+        },
+        {
+          "dataset": "mice_protein_expression",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/mice_protein_expression/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "7e76f83a4dcdb1d5d0a71f3dd159dffbc8dd8d5ddce850acb19898b13befc597",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "c-CS-m",
+            "c-CS-s",
+            "c-SC-m",
+            "c-SC-s",
+            "t-CS-m",
+            "t-CS-s",
+            "t-SC-m",
+            "t-SC-s"
+          ],
+          "source_rows": 870,
+          "target_classes": [
+            "c-CS-m",
+            "c-CS-s",
+            "c-SC-m",
+            "c-SC-s",
+            "t-CS-m",
+            "t-CS-s",
+            "t-SC-m",
+            "t-SC-s"
+          ],
+          "target_rows": 210
+        },
+        {
+          "dataset": "mice_protein_expression",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/mice_protein_expression/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "49043848c6a318a478cb90db35fd3e7cb06d6cc2051dd239966ceb3730a1dc30",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "c-CS-m",
+            "c-CS-s",
+            "c-SC-m",
+            "c-SC-s",
+            "t-CS-m",
+            "t-CS-s",
+            "t-SC-m",
+            "t-SC-s"
+          ],
+          "source_rows": 870,
+          "target_classes": [
+            "c-CS-m",
+            "c-CS-s",
+            "c-SC-m",
+            "c-SC-s",
+            "t-CS-m",
+            "t-CS-s",
+            "t-SC-m",
+            "t-SC-s"
+          ],
+          "target_rows": 210
+        },
+        {
+          "dataset": "mice_protein_expression",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/mice_protein_expression/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "7e85a412c9e1ccb415cc896959f7779d764a842f5145dec86941c70afc967d22",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "c-CS-m",
+            "c-CS-s",
+            "c-SC-m",
+            "c-SC-s",
+            "t-CS-m",
+            "t-CS-s",
+            "t-SC-m",
+            "t-SC-s"
+          ],
+          "source_rows": 855,
+          "target_classes": [
+            "c-CS-m",
+            "c-CS-s",
+            "c-SC-m",
+            "c-SC-s",
+            "t-CS-m",
+            "t-CS-s",
+            "t-SC-m",
+            "t-SC-s"
+          ],
+          "target_rows": 225
+        },
+        {
+          "dataset": "mice_protein_expression",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/mice_protein_expression/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "809c9eaa1ea3e3d3c77ecb0444bd124f1fc923c242198b684262a04a4c05c0c5",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "c-CS-m",
+            "c-CS-s",
+            "c-SC-m",
+            "c-SC-s",
+            "t-CS-m",
+            "t-CS-s",
+            "t-SC-m",
+            "t-SC-s"
+          ],
+          "source_rows": 870,
+          "target_classes": [
+            "c-CS-m",
+            "c-CS-s",
+            "c-SC-m",
+            "c-SC-s",
+            "t-CS-m",
+            "t-CS-s",
+            "t-SC-m",
+            "t-SC-s"
+          ],
+          "target_rows": 210
+        }
+      ],
+      "n_connected_groups": 72,
+      "original_strategy": "group_kfold",
+      "protected_group_column": "mouse_subject_id"
+    },
+    "optdigits": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "optdigits",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/optdigits/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "068d9f6e4ed750fc7da4c60000e175b3552022d6ce24d25f64fdac5351a22f34",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "source_rows": 4496,
+          "target_classes": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "target_rows": 1124
+        },
+        {
+          "dataset": "optdigits",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/optdigits/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "aa619dac9d306dbc8543cd40ff39624dd1613e7477edf8b857e43efda09ef543",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "source_rows": 4496,
+          "target_classes": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "target_rows": 1124
+        },
+        {
+          "dataset": "optdigits",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/optdigits/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "2798fc8354eb7e0ca4ba9ddc97308af55856ead7d297f9738ea3d844f7850f2d",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "source_rows": 4496,
+          "target_classes": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "target_rows": 1124
+        },
+        {
+          "dataset": "optdigits",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/optdigits/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "38655cede0ba8c9a2bf3cc6c2da0f47c0b3b2b7074508b2b6fdf8a33ac55e902",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "source_rows": 4496,
+          "target_classes": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "target_rows": 1124
+        },
+        {
+          "dataset": "optdigits",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/optdigits/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "d7837e2f7701f700909473f6bb2592ce83d6fdd624c45b409e27d96fc369567b",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "source_rows": 4496,
+          "target_classes": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "target_rows": 1124
+        }
+      ],
+      "n_connected_groups": 5620,
+      "original_strategy": "kfold",
+      "protected_group_column": null
+    },
+    "pendigits": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "pendigits",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/pendigits/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "aca4524aaa2519119e5e27fbc9aab32da099ec5d0e1f81d8af8789843fb287a1",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "source_rows": 8793,
+          "target_classes": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "target_rows": 2199
+        },
+        {
+          "dataset": "pendigits",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/pendigits/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "52819fce1572575abc120c7882420ae255bc786012dfea4edb551eeeb70f4615",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "source_rows": 8794,
+          "target_classes": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "target_rows": 2198
+        },
+        {
+          "dataset": "pendigits",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/pendigits/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "e26a011097e6a6deffaaf6aefffa1cf8aef0837f2e576eddf1ed846e1155a130",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "source_rows": 8794,
+          "target_classes": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "target_rows": 2198
+        },
+        {
+          "dataset": "pendigits",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/pendigits/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "450b924e7ec3b577bd484ceb2340d0095bb516fdb69a98fe883a6f5606e1a269",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "source_rows": 8793,
+          "target_classes": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "target_rows": 2199
+        },
+        {
+          "dataset": "pendigits",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/pendigits/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "b4d2b5fedab57f8d6cb4907226b62eb7d3a0e7be373ea48bddbf997fec677426",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "source_rows": 8794,
+          "target_classes": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "target_rows": 2198
+        }
+      ],
+      "n_connected_groups": 10992,
+      "original_strategy": "kfold",
+      "protected_group_column": null
+    },
+    "pima_diabetes": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "pima_diabetes",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/pima_diabetes/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "701194e6b4024921da343f5e3de8aa03cea955e668444d5bfab3e58e05514c8b",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "tested_negative",
+            "tested_positive"
+          ],
+          "source_rows": 614,
+          "target_classes": [
+            "tested_negative",
+            "tested_positive"
+          ],
+          "target_rows": 154
+        },
+        {
+          "dataset": "pima_diabetes",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/pima_diabetes/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "a428e253b3b4e26df743754dba882e45338a6889a30d49f4a7313f6b55c73cee",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "tested_negative",
+            "tested_positive"
+          ],
+          "source_rows": 614,
+          "target_classes": [
+            "tested_negative",
+            "tested_positive"
+          ],
+          "target_rows": 154
+        },
+        {
+          "dataset": "pima_diabetes",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/pima_diabetes/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "cf1c7a1cb16f35694e6acd0d9721da9952a1b645625d609ecb73c4fea3657d80",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "tested_negative",
+            "tested_positive"
+          ],
+          "source_rows": 615,
+          "target_classes": [
+            "tested_negative",
+            "tested_positive"
+          ],
+          "target_rows": 153
+        },
+        {
+          "dataset": "pima_diabetes",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/pima_diabetes/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "d040cb7dd88ef1f380b5b9829ade34954144aeba669efb2c6876a272f7e17e79",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "tested_negative",
+            "tested_positive"
+          ],
+          "source_rows": 615,
+          "target_classes": [
+            "tested_negative",
+            "tested_positive"
+          ],
+          "target_rows": 153
+        },
+        {
+          "dataset": "pima_diabetes",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/pima_diabetes/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "4cc60bf918d68eb061926bf86bbf8995451fcbd099658166937a393caafa4644",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "tested_negative",
+            "tested_positive"
+          ],
+          "source_rows": 614,
+          "target_classes": [
+            "tested_negative",
+            "tested_positive"
+          ],
+          "target_rows": 154
+        }
+      ],
+      "n_connected_groups": 768,
+      "original_strategy": "kfold",
+      "protected_group_column": null
+    },
+    "satimage": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "satimage",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/satimage/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "0f49ed671204dba76c77fb784d189baf2a886eba063768e9f8ee75c8aea23b4b",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1.",
+            "2.",
+            "3.",
+            "4.",
+            "5.",
+            "7."
+          ],
+          "source_rows": 5144,
+          "target_classes": [
+            "1.",
+            "2.",
+            "3.",
+            "4.",
+            "5.",
+            "7."
+          ],
+          "target_rows": 1286
+        },
+        {
+          "dataset": "satimage",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/satimage/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "3e6a462bdc0b49d524b25520d13cf46ada709da665b54f073d2092c147cae002",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1.",
+            "2.",
+            "3.",
+            "4.",
+            "5.",
+            "7."
+          ],
+          "source_rows": 5144,
+          "target_classes": [
+            "1.",
+            "2.",
+            "3.",
+            "4.",
+            "5.",
+            "7."
+          ],
+          "target_rows": 1286
+        },
+        {
+          "dataset": "satimage",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/satimage/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "d49722c45fea932b6d5c37bc2504dea57fbacc97e0acf5684130cb1dbc9cdb8d",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1.",
+            "2.",
+            "3.",
+            "4.",
+            "5.",
+            "7."
+          ],
+          "source_rows": 5144,
+          "target_classes": [
+            "1.",
+            "2.",
+            "3.",
+            "4.",
+            "5.",
+            "7."
+          ],
+          "target_rows": 1286
+        },
+        {
+          "dataset": "satimage",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/satimage/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "d0b91795671601c05f4c2ff3e58af902e71538c03389a089562a0f03219b6c35",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1.",
+            "2.",
+            "3.",
+            "4.",
+            "5.",
+            "7."
+          ],
+          "source_rows": 5144,
+          "target_classes": [
+            "1.",
+            "2.",
+            "3.",
+            "4.",
+            "5.",
+            "7."
+          ],
+          "target_rows": 1286
+        },
+        {
+          "dataset": "satimage",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/satimage/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "8ab2c2b32faa2666e1001074b781b73423dd094440e748dcc5b07e3731fc91c3",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1.",
+            "2.",
+            "3.",
+            "4.",
+            "5.",
+            "7."
+          ],
+          "source_rows": 5144,
+          "target_classes": [
+            "1.",
+            "2.",
+            "3.",
+            "4.",
+            "5.",
+            "7."
+          ],
+          "target_rows": 1286
+        }
+      ],
+      "n_connected_groups": 6430,
+      "original_strategy": "kfold",
+      "protected_group_column": null
+    },
+    "seeds": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "seeds",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/seeds/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "9c9d0b90b92bdfd80debe4de2fea5e179241649201419628fac25fa4979e75c9",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2",
+            "3"
+          ],
+          "source_rows": 168,
+          "target_classes": [
+            "1",
+            "2",
+            "3"
+          ],
+          "target_rows": 42
+        },
+        {
+          "dataset": "seeds",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/seeds/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "a21cbc78bc4adfb417632e815ae2094eb91f5f38771269047ca9bfdefaba287f",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2",
+            "3"
+          ],
+          "source_rows": 168,
+          "target_classes": [
+            "1",
+            "2",
+            "3"
+          ],
+          "target_rows": 42
+        },
+        {
+          "dataset": "seeds",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/seeds/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "66875d324e2c54c9dbc067f37a54fbeeb3995b2bb39c38afd5c4281bda2f0c6a",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2",
+            "3"
+          ],
+          "source_rows": 168,
+          "target_classes": [
+            "1",
+            "2",
+            "3"
+          ],
+          "target_rows": 42
+        },
+        {
+          "dataset": "seeds",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/seeds/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "da3f6865ac8241fb42ba24c8a376ef9c641fa9a94182affe6905c114e9814c99",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2",
+            "3"
+          ],
+          "source_rows": 168,
+          "target_classes": [
+            "1",
+            "2",
+            "3"
+          ],
+          "target_rows": 42
+        },
+        {
+          "dataset": "seeds",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/seeds/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "f9a4dbb548b70926696a4c29b4b159622e06e6820c6d70035f6ee61a009359ee",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "1",
+            "2",
+            "3"
+          ],
+          "source_rows": 168,
+          "target_classes": [
+            "1",
+            "2",
+            "3"
+          ],
+          "target_rows": 42
+        }
+      ],
+      "n_connected_groups": 210,
+      "original_strategy": "kfold",
+      "protected_group_column": null
+    },
+    "sonar": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "sonar",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/sonar/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "114ab953c71d319ab3f6b35ff68fb736f2d4721de03a347535c57a6b063ce8d4",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "Mine",
+            "Rock"
+          ],
+          "source_rows": 166,
+          "target_classes": [
+            "Mine",
+            "Rock"
+          ],
+          "target_rows": 42
+        },
+        {
+          "dataset": "sonar",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/sonar/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "a313006f5d33af9af2b741b7d2b87c1e5196ac0db9b30cfc49fd4c30209a2fb7",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "Mine",
+            "Rock"
+          ],
+          "source_rows": 166,
+          "target_classes": [
+            "Mine",
+            "Rock"
+          ],
+          "target_rows": 42
+        },
+        {
+          "dataset": "sonar",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/sonar/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "847e9eec5b0c20fcd77070512be65d11e12504cc954a8814d516b4e909e1aaca",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "Mine",
+            "Rock"
+          ],
+          "source_rows": 167,
+          "target_classes": [
+            "Mine",
+            "Rock"
+          ],
+          "target_rows": 41
+        },
+        {
+          "dataset": "sonar",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/sonar/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "75a66227c354c556ba2143cf240b3ca838a763b134eab9b85016d9777a68e88d",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "Mine",
+            "Rock"
+          ],
+          "source_rows": 167,
+          "target_classes": [
+            "Mine",
+            "Rock"
+          ],
+          "target_rows": 41
+        },
+        {
+          "dataset": "sonar",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/sonar/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "5b3081fa84f2d7d776de98fe744a464b9467cb8a53ba053aaa69ce315209df0d",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "Mine",
+            "Rock"
+          ],
+          "source_rows": 166,
+          "target_classes": [
+            "Mine",
+            "Rock"
+          ],
+          "target_rows": 42
+        }
+      ],
+      "n_connected_groups": 208,
+      "original_strategy": "kfold",
+      "protected_group_column": null
+    },
+    "spambase": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "spambase",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/spambase/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "7d502c94d0cc72ac48b77850c20fa9748f92ce739d008d4c384a25c4595e34f5",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1"
+          ],
+          "source_rows": 3680,
+          "target_classes": [
+            "0",
+            "1"
+          ],
+          "target_rows": 921
+        },
+        {
+          "dataset": "spambase",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/spambase/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "7d2212c69fbe838859e3ce46b589afa2849078c7bbbd33141c2c03a4617ff889",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1"
+          ],
+          "source_rows": 3680,
+          "target_classes": [
+            "0",
+            "1"
+          ],
+          "target_rows": 921
+        },
+        {
+          "dataset": "spambase",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/spambase/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "2a758464b71962c54c8279d5f8c75006e6d97cbe6644f0957158c028e4333534",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1"
+          ],
+          "source_rows": 3682,
+          "target_classes": [
+            "0",
+            "1"
+          ],
+          "target_rows": 919
+        },
+        {
+          "dataset": "spambase",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/spambase/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "ac296494c35f15e2cfc21d55096f586ebf8d998d39371b2f2d7fe643b62a6071",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1"
+          ],
+          "source_rows": 3682,
+          "target_classes": [
+            "0",
+            "1"
+          ],
+          "target_rows": 919
+        },
+        {
+          "dataset": "spambase",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/spambase/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "a757df0292e782bbb5ac0079d9ca11008fa1efe3829b4e7df0a7d6df707fae9e",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1"
+          ],
+          "source_rows": 3680,
+          "target_classes": [
+            "0",
+            "1"
+          ],
+          "target_rows": 921
+        }
+      ],
+      "n_connected_groups": 4207,
+      "original_strategy": "kfold",
+      "protected_group_column": null
+    },
+    "vehicle_silhouettes": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "vehicle_silhouettes",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/vehicle_silhouettes/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "0ef7cd56fab26811c0e270da878235e78329e8fc10c21ab8eef02d8f210b1832",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "bus",
+            "opel",
+            "saab",
+            "van"
+          ],
+          "source_rows": 677,
+          "target_classes": [
+            "bus",
+            "opel",
+            "saab",
+            "van"
+          ],
+          "target_rows": 169
+        },
+        {
+          "dataset": "vehicle_silhouettes",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/vehicle_silhouettes/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "dd1133c1bd432a54f00e9353bc644e5221f999fea445fcf5b68c7e151aea92ff",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "bus",
+            "opel",
+            "saab",
+            "van"
+          ],
+          "source_rows": 676,
+          "target_classes": [
+            "bus",
+            "opel",
+            "saab",
+            "van"
+          ],
+          "target_rows": 170
+        },
+        {
+          "dataset": "vehicle_silhouettes",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/vehicle_silhouettes/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "b792933314a8b2f8729d03efa1f8f3cb0760bf986df1b911a3bb01ad02c45027",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "bus",
+            "opel",
+            "saab",
+            "van"
+          ],
+          "source_rows": 677,
+          "target_classes": [
+            "bus",
+            "opel",
+            "saab",
+            "van"
+          ],
+          "target_rows": 169
+        },
+        {
+          "dataset": "vehicle_silhouettes",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/vehicle_silhouettes/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "e274eeab8d93dc74672e5c36e9b845eb97ba9d2ed695d66ff0bdbddc9fdc2134",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "bus",
+            "opel",
+            "saab",
+            "van"
+          ],
+          "source_rows": 677,
+          "target_classes": [
+            "bus",
+            "opel",
+            "saab",
+            "van"
+          ],
+          "target_rows": 169
+        },
+        {
+          "dataset": "vehicle_silhouettes",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/vehicle_silhouettes/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "7bb5ac183c4ddf9ec9bc401a936ef0e070b80eb2e264e0c2f19d32c75eb5067e",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "bus",
+            "opel",
+            "saab",
+            "van"
+          ],
+          "source_rows": 677,
+          "target_classes": [
+            "bus",
+            "opel",
+            "saab",
+            "van"
+          ],
+          "target_rows": 169
+        }
+      ],
+      "n_connected_groups": 846,
+      "original_strategy": "kfold",
+      "protected_group_column": null
+    },
+    "waveform": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "waveform",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/waveform/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "e10b99fadf3baf20a5dca0752dafaecf83e063c62e123fe2c294232da3b102ad",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "source_rows": 4000,
+          "target_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "target_rows": 1000
+        },
+        {
+          "dataset": "waveform",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/waveform/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "d31735c388965393ed156fa67811462acc7d4419a5bec83392b5b94915fbc9a4",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "source_rows": 4000,
+          "target_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "target_rows": 1000
+        },
+        {
+          "dataset": "waveform",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/waveform/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "7724b00446aeba8520c894e641e518eaf49cabef8d3969166a4376e31b111ab9",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "source_rows": 4000,
+          "target_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "target_rows": 1000
+        },
+        {
+          "dataset": "waveform",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/waveform/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "c350dea458e997b3a055e7da930e653658ccaefe47faf04b5046ca5b817406bd",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "source_rows": 4000,
+          "target_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "target_rows": 1000
+        },
+        {
+          "dataset": "waveform",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/waveform/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "a497bc46fd5c9daa4e8aee3935ac025828f8eaef5a410261c1589c7c2c3867e7",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "source_rows": 4000,
+          "target_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "target_rows": 1000
+        }
+      ],
+      "n_connected_groups": 5000,
+      "original_strategy": "kfold",
+      "protected_group_column": null
+    },
+    "wine": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "wine",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/wine/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "68cd66685e5fc96ba80b4bbbbe8eeece6a0752d8ce8ac6a216194e662791704e",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "source_rows": 142,
+          "target_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "target_rows": 36
+        },
+        {
+          "dataset": "wine",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/wine/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "42b8f9f3ac56ae90ac1bfaaa5d2ea9dc4ac1b9c171d52276c42c5711f0beed7d",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "source_rows": 142,
+          "target_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "target_rows": 36
+        },
+        {
+          "dataset": "wine",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/wine/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "e53b52755d8e5e8283319fc9ae7868a5fe38e99f0e32fc20f9da7f9c15fcc958",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "source_rows": 142,
+          "target_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "target_rows": 36
+        },
+        {
+          "dataset": "wine",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/wine/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "73d30a3c69dde8e428b8a61bbeda5c598ea2c98e091e0fb935ae2f0a5584c02d",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "source_rows": 143,
+          "target_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "target_rows": 35
+        },
+        {
+          "dataset": "wine",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/wine/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "9f7fdfcc35f22adc15eda9ef1323a8c650d513d0d6d31fb0a923bb92b7a1fe66",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "source_rows": 143,
+          "target_classes": [
+            "0",
+            "1",
+            "2"
+          ],
+          "target_rows": 35
+        }
+      ],
+      "n_connected_groups": 178,
+      "original_strategy": "kfold",
+      "protected_group_column": null
+    },
+    "yeast": {
+      "corrected_outer_strategy": "StratifiedGroupKFold",
+      "folds": [
+        {
+          "dataset": "yeast",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/yeast/hypothesis_y1_fold_0.npz",
+          "npz_sha256": "6b797e7323d2dc040e7406d7bb159144b045b14ae70cf4885228b459e63895df",
+          "outer_fold": 0,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "CYT",
+            "ERL",
+            "EXC",
+            "ME1",
+            "ME2",
+            "ME3",
+            "MIT",
+            "NUC",
+            "POX",
+            "VAC"
+          ],
+          "source_rows": 1187,
+          "target_classes": [
+            "CYT",
+            "ERL",
+            "EXC",
+            "ME1",
+            "ME2",
+            "ME3",
+            "MIT",
+            "NUC",
+            "POX",
+            "VAC"
+          ],
+          "target_rows": 297
+        },
+        {
+          "dataset": "yeast",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/yeast/hypothesis_y1_fold_1.npz",
+          "npz_sha256": "6601c57547862151a68745b6da8b312bddbbf4dc531234caaeb48170f4172130",
+          "outer_fold": 1,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "CYT",
+            "ERL",
+            "EXC",
+            "ME1",
+            "ME2",
+            "ME3",
+            "MIT",
+            "NUC",
+            "POX",
+            "VAC"
+          ],
+          "source_rows": 1187,
+          "target_classes": [
+            "CYT",
+            "ERL",
+            "EXC",
+            "ME1",
+            "ME2",
+            "ME3",
+            "MIT",
+            "NUC",
+            "POX",
+            "VAC"
+          ],
+          "target_rows": 297
+        },
+        {
+          "dataset": "yeast",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/yeast/hypothesis_y1_fold_2.npz",
+          "npz_sha256": "24cfdf935b08dc53212ddc1bcdc97a7c359d08426d301ea982eab598093751bd",
+          "outer_fold": 2,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "CYT",
+            "ERL",
+            "EXC",
+            "ME1",
+            "ME2",
+            "ME3",
+            "MIT",
+            "NUC",
+            "POX",
+            "VAC"
+          ],
+          "source_rows": 1187,
+          "target_classes": [
+            "CYT",
+            "ERL",
+            "EXC",
+            "ME1",
+            "ME2",
+            "ME3",
+            "MIT",
+            "NUC",
+            "POX",
+            "VAC"
+          ],
+          "target_rows": 297
+        },
+        {
+          "dataset": "yeast",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/yeast/hypothesis_y1_fold_3.npz",
+          "npz_sha256": "6bcee790083f855cc754d526ea8318d8cc14971df4fcbdffe488216f9d9f9bc1",
+          "outer_fold": 3,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "CYT",
+            "ERL",
+            "EXC",
+            "ME1",
+            "ME2",
+            "ME3",
+            "MIT",
+            "NUC",
+            "POX",
+            "VAC"
+          ],
+          "source_rows": 1187,
+          "target_classes": [
+            "CYT",
+            "ERL",
+            "EXC",
+            "ME1",
+            "ME2",
+            "ME3",
+            "MIT",
+            "NUC",
+            "POX",
+            "VAC"
+          ],
+          "target_rows": 297
+        },
+        {
+          "dataset": "yeast",
+          "inner_group_leakage": false,
+          "inner_strategy": "StratifiedGroupKFold",
+          "npz_path": "experiments/hypothesis_y1/corrected_splits/yeast/hypothesis_y1_fold_4.npz",
+          "npz_sha256": "3fbf3dcfd702dc70ffdcfa24c4ba513a2e59c5466ecc561e6dc04bca21649d1d",
+          "outer_fold": 4,
+          "outer_group_leakage": false,
+          "outer_strategy": "StratifiedGroupKFold",
+          "policy": "connected protected-group and exact-row-hash components",
+          "source_classes": [
+            "CYT",
+            "ERL",
+            "EXC",
+            "ME1",
+            "ME2",
+            "ME3",
+            "MIT",
+            "NUC",
+            "POX",
+            "VAC"
+          ],
+          "source_rows": 1188,
+          "target_classes": [
+            "CYT",
+            "ERL",
+            "EXC",
+            "ME1",
+            "ME2",
+            "ME3",
+            "MIT",
+            "NUC",
+            "POX",
+            "VAC"
+          ],
+          "target_rows": 296
+        }
+      ],
+      "n_connected_groups": 1453,
+      "original_strategy": "kfold",
+      "protected_group_column": null
+    }
+  },
+  "policy_version": 1
+}

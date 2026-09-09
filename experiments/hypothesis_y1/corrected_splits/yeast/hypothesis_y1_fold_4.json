@@ -1,0 +1,37 @@
+{
+  "dataset": "yeast",
+  "inner_group_leakage": false,
+  "inner_strategy": "StratifiedGroupKFold",
+  "npz_path": "experiments/hypothesis_y1/corrected_splits/yeast/hypothesis_y1_fold_4.npz",
+  "npz_sha256": "3fbf3dcfd702dc70ffdcfa24c4ba513a2e59c5466ecc561e6dc04bca21649d1d",
+  "outer_fold": 4,
+  "outer_group_leakage": false,
+  "outer_strategy": "StratifiedGroupKFold",
+  "policy": "connected protected-group and exact-row-hash components",
+  "source_classes": [
+    "CYT",
+    "ERL",
+    "EXC",
+    "ME1",
+    "ME2",
+    "ME3",
+    "MIT",
+    "NUC",
+    "POX",
+    "VAC"
+  ],
+  "source_rows": 1188,
+  "target_classes": [
+    "CYT",
+    "ERL",
+    "EXC",
+    "ME1",
+    "ME2",
+    "ME3",
+    "MIT",
+    "NUC",
+    "POX",
+    "VAC"
+  ],
+  "target_rows": 296
+}

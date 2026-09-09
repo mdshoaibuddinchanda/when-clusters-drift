@@ -1,0 +1,21 @@
+{
+  "dataset": "ionosphere",
+  "inner_group_leakage": false,
+  "inner_strategy": "StratifiedGroupKFold",
+  "npz_path": "experiments/hypothesis_y1/corrected_splits/ionosphere/hypothesis_y1_fold_3.npz",
+  "npz_sha256": "60d19adafd1142663cc7eb979c8bd729c6fe3fe45b6ebb302d661d9dc4c098cb",
+  "outer_fold": 3,
+  "outer_group_leakage": false,
+  "outer_strategy": "StratifiedGroupKFold",
+  "policy": "connected protected-group and exact-row-hash components",
+  "source_classes": [
+    "b",
+    "g"
+  ],
+  "source_rows": 281,
+  "target_classes": [
+    "b",
+    "g"
+  ],
+  "target_rows": 70
+}

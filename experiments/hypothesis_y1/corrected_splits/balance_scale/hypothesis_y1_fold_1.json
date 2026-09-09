@@ -1,0 +1,23 @@
+{
+  "dataset": "balance_scale",
+  "inner_group_leakage": false,
+  "inner_strategy": "StratifiedGroupKFold",
+  "npz_path": "experiments/hypothesis_y1/corrected_splits/balance_scale/hypothesis_y1_fold_1.npz",
+  "npz_sha256": "dbcb590941007bb85ea3ea47f46aff89779093ddf13310864257a4da0f2afc50",
+  "outer_fold": 1,
+  "outer_group_leakage": false,
+  "outer_strategy": "StratifiedGroupKFold",
+  "policy": "connected protected-group and exact-row-hash components",
+  "source_classes": [
+    "B",
+    "L",
+    "R"
+  ],
+  "source_rows": 500,
+  "target_classes": [
+    "B",
+    "L",
+    "R"
+  ],
+  "target_rows": 125
+}

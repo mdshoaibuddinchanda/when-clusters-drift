@@ -1,0 +1,21 @@
+{
+  "dataset": "aps_failure",
+  "inner_group_leakage": false,
+  "inner_strategy": "StratifiedGroupKFold",
+  "npz_path": "experiments/hypothesis_y1/corrected_splits/aps_failure/hypothesis_y1_fold_2.npz",
+  "npz_sha256": "c0edb1c720a9f55acb556efbf03f9b05590d00949f360905e7f53a6436bf3df3",
+  "outer_fold": 2,
+  "outer_group_leakage": false,
+  "outer_strategy": "StratifiedGroupKFold",
+  "policy": "connected protected-group and exact-row-hash components",
+  "source_classes": [
+    "neg",
+    "pos"
+  ],
+  "source_rows": 60800,
+  "target_classes": [
+    "neg",
+    "pos"
+  ],
+  "target_rows": 15200
+}

@@ -1,0 +1,21 @@
+{
+  "dataset": "pima_diabetes",
+  "inner_group_leakage": false,
+  "inner_strategy": "StratifiedGroupKFold",
+  "npz_path": "experiments/hypothesis_y1/corrected_splits/pima_diabetes/hypothesis_y1_fold_3.npz",
+  "npz_sha256": "d040cb7dd88ef1f380b5b9829ade34954144aeba669efb2c6876a272f7e17e79",
+  "outer_fold": 3,
+  "outer_group_leakage": false,
+  "outer_strategy": "StratifiedGroupKFold",
+  "policy": "connected protected-group and exact-row-hash components",
+  "source_classes": [
+    "tested_negative",
+    "tested_positive"
+  ],
+  "source_rows": 615,
+  "target_classes": [
+    "tested_negative",
+    "tested_positive"
+  ],
+  "target_rows": 153
+}

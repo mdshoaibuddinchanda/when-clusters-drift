@@ -1,0 +1,9 @@
+suite: falsification
+command: D:\Conda\p12\python.exe -m pytest tests/test_falsification/ -q
+working_directory: D:\DR2\when-clusters-drift
+exit_code: 0
+wall_duration_seconds: 29.111078
+
+........................................................................ [ 91%]
+.......                                                                  [100%]
+79 passed in 27.92s

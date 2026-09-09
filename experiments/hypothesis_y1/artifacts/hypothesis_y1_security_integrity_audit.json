@@ -1,0 +1,134 @@
+{
+  "all_identified_issues_fixed": true,
+  "audit": "hypothesis_y1_security_integrity_audit",
+  "checks": {
+    "current_archive_download_is_pinned_atomic": true,
+    "current_cache_disables_pickle_np_load": true,
+    "current_cache_has_no_joblib_load": true,
+    "current_cache_has_payload_digests": true,
+    "current_cache_rejects_unsafe_components": true,
+    "current_cache_uses_unique_atomic_temps": true,
+    "current_result_manifest_write_is_atomic": true,
+    "current_scalar_cache_requires_fingerprint": true,
+    "current_source_key_binds_artifacts": true,
+    "frozen_archive_download_was_direct": true,
+    "frozen_cache_used_joblib_load": true,
+    "frozen_scalar_cache_was_filename_only": true,
+    "frozen_source_key_omitted_artifact_hashes": true
+  },
+  "current_direct_scientific_write_matches_outside_atomic_helpers": [],
+  "current_unsafe_code_matches": [],
+  "frozen_reference_commit": "3da9c6ee6af8f00110e6eab569d1dba009a6598c",
+  "issues": [
+    {
+      "classification": "B. FIX_NOW_SOFTWARE_INTEGRITY",
+      "evidence": "3da9c6ee6af8f00110e6eab569d1dba009a6598c:src/clusterdrift/falsification/execution/cache.py:211,409",
+      "failure_mode": "A replaced local cache payload could execute Python code during deserialization; a corrupt but loadable object could also enter verification.",
+      "fix": "Replace executable serialization with numeric NPZ state for FCM and treat all legacy joblib entries as cache misses/corrupt entries.",
+      "fixed": true,
+      "id": "SEC-01",
+      "problem": "Phase-7 cache loaded joblib payloads before any trustworthy content verification.",
+      "severity": "HIGH",
+      "test": "test_numeric_model_cache_roundtrip_and_tamper_rejection"
+    },
+    {
+      "classification": "B. FIX_NOW_SOFTWARE_INTEGRITY",
+      "evidence": "3da9c6ee6af8f00110e6eab569d1dba009a6598c:src/clusterdrift/falsification/execution/cache.py:82-83,145-146,280-281",
+      "failure_mode": "Silent payload replacement, partial corruption, or stale array reuse could change scientific signals while metadata still matched.",
+      "fix": "Store and verify SHA-256 plus expected shapes before all array/model/membership loads; set allow_pickle=False.",
+      "fixed": true,
+      "id": "SEC-02",
+      "problem": "Cached numerical payloads had no stored content digest and were accepted after checking metadata only.",
+      "severity": "HIGH_SCIENTIFIC_INTEGRITY",
+      "test": "test_array_cache_digest_and_fingerprint_are_required and test_numeric_model_cache_roundtrip_and_tamper_rejection"
+    },
+    {
+      "classification": "B. FIX_NOW_SOFTWARE_INTEGRITY",
+      "evidence": "3da9c6ee6af8f00110e6eab569d1dba009a6598c:src/clusterdrift/falsification/execution/cache.py:322,344",
+      "failure_mode": "A value computed for different data, split, probe, or signal protocol could be silently reused.",
+      "fix": "Require a provenance fingerprint on scalar cache reads and writes.",
+      "fixed": true,
+      "id": "SEC-03",
+      "problem": "MMD bandwidth/source-kernel and D_X scalar caches were accepted solely because a filename existed.",
+      "severity": "HIGH_SCIENTIFIC_INTEGRITY",
+      "test": "test_scalar_caches_require_matching_provenance"
+    },
+    {
+      "classification": "B. FIX_NOW_SOFTWARE_INTEGRITY",
+      "evidence": "3da9c6ee6af8f00110e6eab569d1dba009a6598c:scripts/07_falsification_pilot.py:260-296,361-367",
+      "failure_mode": "Modified features, metadata, splits, probes, method configuration, or signal configuration could retain the same cache key.",
+      "fix": "Bind source/model/scenario/MMD/D_X keys to input artifact hashes, split, probes, method/configuration, protocol and seed.",
+      "fixed": true,
+      "id": "SEC-04",
+      "problem": "Source/model/scenario cache keys omitted some underlying artifact and protocol hashes.",
+      "severity": "HIGH_SCIENTIFIC_INTEGRITY",
+      "test": "test_source_and_model_fingerprints_bind_input_artifacts"
+    },
+    {
+      "classification": "B. FIX_NOW_SOFTWARE_INTEGRITY",
+      "evidence": "3da9c6ee6af8f00110e6eab569d1dba009a6598c:src/clusterdrift/falsification/execution/cache.py:132,198,267,434",
+      "failure_mode": "A malicious or malformed dataset/method/condition identifier could traverse directories; a redirected cache path increased deletion risk.",
+      "fix": "Reject non-portable/path-like components and require resolved containment plus a non-symlink root before recursive removal.",
+      "fixed": true,
+      "id": "SEC-05",
+      "problem": "Unvalidated identifier components reached cache paths, and recursive clearing relied only on a marker check.",
+      "severity": "MEDIUM",
+      "test": "test_cache_rejects_path_traversal_components and test_cache_clear_rejects_escaped_root"
+    },
+    {
+      "classification": "B. FIX_NOW_SOFTWARE_INTEGRITY",
+      "evidence": "3da9c6ee6af8f00110e6eab569d1dba009a6598c:src/clusterdrift/falsification/execution/cache.py:102-108,166-172,239-241,301-307",
+      "failure_mode": "Concurrent workers could overwrite each other's temporary payloads or expose partially inconsistent metadata/payload pairs.",
+      "fix": "Use unique same-directory temporary files, fsync where applicable, then atomic os.replace.",
+      "fixed": true,
+      "id": "SEC-06",
+      "problem": "Cache writers used predictable shared temporary filenames.",
+      "severity": "MEDIUM",
+      "test": "test_numeric_model_cache_roundtrip_and_tamper_rejection"
+    },
+    {
+      "classification": "B. FIX_NOW_SOFTWARE_INTEGRITY",
+      "evidence": "3da9c6ee6af8f00110e6eab569d1dba009a6598c:src/clusterdrift/data/loaders.py:53-58,152-157,217-222",
+      "failure_mode": "Upstream compromise, transparent content change, or interrupted writes could seed different/corrupt raw datasets.",
+      "fix": "Require HTTPS and registry-pinned SHA-256, enforce a size ceiling, stream to a unique temporary file, fsync, verify, and atomically replace.",
+      "fixed": true,
+      "id": "SEC-07",
+      "problem": "Three direct archive downloads were neither digest-pinned nor atomically persisted.",
+      "severity": "HIGH_SUPPLY_CHAIN_INTEGRITY",
+      "test": "test_pinned_archive_download_rejects_wrong_digest_and_non_https"
+    },
+    {
+      "classification": "B. FIX_NOW_SOFTWARE_INTEGRITY",
+      "evidence": "3da9c6ee6af8f00110e6eab569d1dba009a6598c:src/clusterdrift/falsification/verification.py:955-956",
+      "failure_mode": "Interruption during verification could leave a truncated manifest even when the source result files remained valid.",
+      "fix": "Write the verification manifest through the existing same-directory atomic JSON writer.",
+      "fixed": true,
+      "id": "SEC-08",
+      "problem": "The final Phase-7 verification manifest was written directly to its canonical path.",
+      "severity": "MEDIUM_SCIENTIFIC_INTEGRITY",
+      "test": "tests/test_falsification verification tests plus final full suite"
+    },
+    {
+      "classification": "B. FIX_NOW_SOFTWARE_INTEGRITY",
+      "evidence": "frozen/current direct writers in data canonicalize.py, synthetic.py, folds.py, manifest.py, validation.py and scripts/02-04",
+      "failure_mode": "Process interruption or concurrent execution could leave truncated parquet/NPY/CSV/JSON scientific artifacts at canonical filenames.",
+      "fix": "Centralize same-directory atomic parquet, non-pickle NPY, CSV, JSON, and NPZ writers and migrate every direct scientific writer found in src/ and scripts/.",
+      "fixed": true,
+      "id": "SEC-09",
+      "problem": "Canonical data, split, manifest, and baseline-audit writers published directly to final paths.",
+      "severity": "MEDIUM_SCIENTIFIC_INTEGRITY",
+      "test": "test_atomic_scientific_writers_publish_readable_files plus final full suite"
+    }
+  ],
+  "possible_committed_secret_matches": [],
+  "residual_findings": [
+    "Package versions remain ranges and requirements.lock is intentionally empty; this is a reproducibility limitation, not evidence of dependency confusion because no private package namespace is used.",
+    "Provider-managed OpenML/whyshift/tableshift acquisition is not byte-pinned at this layer; canonical bundle manifests retain post-acquisition hashes.",
+    "Local cache security assumes the repository parent and cache parent are not already controlled by a hostile same-user process."
+  ],
+  "scope": "tracked repository text plus focused historical/current Phase-7 cache and direct archive acquisition comparison",
+  "security_issue_count": 9,
+  "tracked_files_scanned": 7682,
+  "tracked_python_files_scanned": 254,
+  "user_specific_absolute_path_matches": []
+}

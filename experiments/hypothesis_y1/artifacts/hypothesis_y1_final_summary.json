@@ -1,0 +1,195 @@
+{
+  "both_converged_rate": 0.8588888888888889,
+  "candidate_convergence_rate": 0.9046666666666666,
+  "class_K_problem_folds": {
+    "corrected_broader_panel_infeasible_ecoli": 5,
+    "corrected_phase7": 0,
+    "original_phase7": 4
+  },
+  "corrected_P0": 0.04276013593651704,
+  "corrected_P4": 0.04838698315467562,
+  "corrected_excluded_rows_by_dataset": {
+    "human_activity_recognition": 1,
+    "letter_recognition": 54
+  },
+  "corrected_no_skill_mean_mae": 0.038936117380000794,
+  "corrected_no_skill_median_mae": 0.03567496124518792,
+  "corrected_result_direction": "STRUCTURAL_PREMISE_NOT_RESCUED",
+  "corrected_retention_fraction": 0.986904761904762,
+  "corrected_validity_control": 0.04378428133383981,
+  "counterevidence": "some dataset/family wins and modest D_M association, but only Satimage helps both within and cross dataset and no learned block beats grouped median no-skill robustly",
+  "datasets_with_severe_convergence_problem": [
+    "letter_recognition"
+  ],
+  "duplicate_leakage_datasets": {
+    "all_controlled": [
+      "banknote_authentication",
+      "glass",
+      "haberman_survival",
+      "image_segmentation",
+      "ionosphere",
+      "iris",
+      "letter_recognition",
+      "spambase",
+      "yeast"
+    ],
+    "phase7": [
+      "glass",
+      "iris",
+      "letter_recognition",
+      "spambase"
+    ]
+  },
+  "final_decision": "FAILURE_CONFIRMED_STOP_PROJECT",
+  "fixes_implemented_count": 15,
+  "initial_integrity_status": "PASSED",
+  "issues_fixed": [
+    "M-FIX-01 require both FCM fits to converge under the outcome-blind 600-iteration policy",
+    "M-FIX-02 group exact duplicates and protected entities while preserving temporal splits",
+    "M-FIX-03 enforce/report source and target class coverage for Oracle-K folds",
+    "M-FIX-04 add grouped mean and median no-skill baselines",
+    "M-FIX-05 add clean-referenced conventional validity deltas",
+    "M-FIX-06 use dataset/family/scenario grouping for uncertainty and within-dataset validation",
+    "S-FIX-01 remove executable joblib cache deserialization",
+    "S-FIX-02 digest and shape-check cached numerical payloads",
+    "S-FIX-03 bind scalar caches to provenance fingerprints",
+    "S-FIX-04 bind cache keys to data/split/probe/protocol/method identities",
+    "S-FIX-05 reject path traversal and unsafe recursive cache roots",
+    "S-FIX-06 use unique atomic cache temporaries",
+    "S-FIX-07 pin, bound, verify, and atomically publish direct archive downloads",
+    "S-FIX-08 atomically publish the final verification manifest",
+    "S-FIX-09 atomically publish canonical data, split, manifest, and baseline-audit artifacts"
+  ],
+  "largest_duplicate_leakage_rate": 0.1935483870967742,
+  "lodo_structural_help_count": 7,
+  "methodological_issue_count": 9,
+  "methodological_issues": [
+    "convergence eligibility",
+    "duplicate/group leakage",
+    "target class coverage",
+    "missing no-skill baseline",
+    "unfair validity level comparator",
+    "dependence/pseudoreplication",
+    "post-label evaluator changes",
+    "construct overclaim",
+    "hard/contemporaneous terminology overclaim"
+  ],
+  "new_hypothesis_if_any": null,
+  "no_skill_mean_mae": 0.042690496284289725,
+  "no_skill_median_mae": 0.03800816450584381,
+  "original_P0": 0.046704663478981584,
+  "original_P3": 0.06392587674262011,
+  "original_P4": 0.05089470458393738,
+  "original_phase7_reproduced": true,
+  "original_verdict": "FAILS_PRIMARY_FALSIFICATION",
+  "security_issue_count": 9,
+  "shift_family_structural_help_count": 5,
+  "source_convergence_rate": 0.8766666666666667,
+  "strongest_mechanism": "weak heterogeneous dataset-calibrated structural associations with substantial D_U redundancy",
+  "test_results": {
+    "falsification": {
+      "collected": 79,
+      "command": [
+        "D:\\Conda\\p12\\python.exe",
+        "-m",
+        "pytest",
+        "tests/test_falsification/",
+        "-q"
+      ],
+      "deselected": 0,
+      "duration": 27.92,
+      "errors": 0,
+      "executable": "D:\\Conda\\p12\\python.exe",
+      "exit_code": 0,
+      "failed": 0,
+      "log": "experiments/hypothesis_y1/logs/hypothesis_y1_pytest_falsification.txt",
+      "passed": 79,
+      "skipped": 0,
+      "wall_duration_seconds": 29.11107849999098,
+      "xfailed": 0,
+      "xpassed": 0
+    },
+    "full": {
+      "collected": 402,
+      "command": [
+        "D:\\Conda\\p12\\python.exe",
+        "-m",
+        "pytest",
+        "tests/",
+        "-q"
+      ],
+      "deselected": 0,
+      "duration": 279.73,
+      "errors": 0,
+      "executable": "D:\\Conda\\p12\\python.exe",
+      "exit_code": 0,
+      "failed": 0,
+      "log": "experiments/hypothesis_y1/logs/hypothesis_y1_pytest_full.txt",
+      "passed": 402,
+      "skipped": 0,
+      "wall_duration_seconds": 281.078081500018,
+      "xfailed": 0,
+      "xpassed": 0
+    },
+    "y1": {
+      "collected": 19,
+      "command": [
+        "D:\\Conda\\p12\\python.exe",
+        "-m",
+        "pytest",
+        "experiments/hypothesis_y1/tests/",
+        "-q"
+      ],
+      "deselected": 0,
+      "duration": 9.63,
+      "errors": 0,
+      "executable": "D:\\Conda\\p12\\python.exe",
+      "exit_code": 0,
+      "failed": 0,
+      "log": "experiments/hypothesis_y1/logs/hypothesis_y1_pytest_y1.txt",
+      "passed": 19,
+      "skipped": 0,
+      "wall_duration_seconds": 10.934719900018536,
+      "xfailed": 0,
+      "xpassed": 0
+    }
+  },
+  "untouched_confirmation_plan": {
+    "discovery_datasets": [
+      "iris",
+      "glass",
+      "sonar",
+      "breast_cancer_wisconsin_diagnostic",
+      "spambase",
+      "waveform",
+      "satimage",
+      "pendigits",
+      "letter_recognition",
+      "madelon",
+      "human_activity_recognition",
+      "mice_protein_expression"
+    ],
+    "status": "reserved_not_authorized_under_stop_decision",
+    "untouched_y1_outcome_datasets": [
+      "wine",
+      "seeds",
+      "ecoli",
+      "yeast",
+      "vehicle_silhouettes",
+      "image_segmentation",
+      "optdigits",
+      "banknote_authentication",
+      "ionosphere",
+      "pima_diabetes",
+      "heart_disease",
+      "haberman_survival",
+      "dermatology",
+      "balance_scale",
+      "isolet",
+      "electricity",
+      "bank_marketing",
+      "aps_failure"
+    ]
+  },
+  "within_dataset_structural_help_count": 6
+}

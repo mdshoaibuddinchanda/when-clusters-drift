@@ -1,0 +1,233 @@
+{
+  "by_dataset": [
+    {
+      "converged_by_300": 2,
+      "converged_by_600": 2,
+      "dataset_id": "breast_cancer_wisconsin_diagnostic",
+      "fit_role": "candidate",
+      "median_final_shift_over_tol": 0.8304335646464274,
+      "original_failures": 0,
+      "runs": 2
+    },
+    {
+      "converged_by_300": 6,
+      "converged_by_600": 6,
+      "dataset_id": "glass",
+      "fit_role": "candidate",
+      "median_final_shift_over_tol": 0.8325774233451859,
+      "original_failures": 4,
+      "runs": 6
+    },
+    {
+      "converged_by_300": 11,
+      "converged_by_600": 14,
+      "dataset_id": "human_activity_recognition",
+      "fit_role": "candidate",
+      "median_final_shift_over_tol": 0.9715858184387867,
+      "original_failures": 12,
+      "runs": 14
+    },
+    {
+      "converged_by_300": 2,
+      "converged_by_600": 4,
+      "dataset_id": "iris",
+      "fit_role": "candidate",
+      "median_final_shift_over_tol": 0.8959203060724248,
+      "original_failures": 2,
+      "runs": 4
+    },
+    {
+      "converged_by_300": 20,
+      "converged_by_600": 37,
+      "dataset_id": "letter_recognition",
+      "fit_role": "candidate",
+      "median_final_shift_over_tol": 0.9726634312432482,
+      "original_failures": 39,
+      "runs": 41
+    },
+    {
+      "converged_by_300": 14,
+      "converged_by_600": 15,
+      "dataset_id": "madelon",
+      "fit_role": "candidate",
+      "median_final_shift_over_tol": 0.9539746899108927,
+      "original_failures": 13,
+      "runs": 15
+    },
+    {
+      "converged_by_300": 4,
+      "converged_by_600": 5,
+      "dataset_id": "mice_protein_expression",
+      "fit_role": "candidate",
+      "median_final_shift_over_tol": 0.770439529023099,
+      "original_failures": 3,
+      "runs": 5
+    },
+    {
+      "converged_by_300": 38,
+      "converged_by_600": 40,
+      "dataset_id": "pendigits",
+      "fit_role": "candidate",
+      "median_final_shift_over_tol": 0.9717753982053943,
+      "original_failures": 38,
+      "runs": 40
+    },
+    {
+      "converged_by_300": 9,
+      "converged_by_600": 10,
+      "dataset_id": "satimage",
+      "fit_role": "candidate",
+      "median_final_shift_over_tol": 0.9773044075573454,
+      "original_failures": 9,
+      "runs": 11
+    },
+    {
+      "converged_by_300": 3,
+      "converged_by_600": 3,
+      "dataset_id": "sonar",
+      "fit_role": "candidate",
+      "median_final_shift_over_tol": 0.33909045370153207,
+      "original_failures": 1,
+      "runs": 3
+    },
+    {
+      "converged_by_300": 2,
+      "converged_by_600": 2,
+      "dataset_id": "spambase",
+      "fit_role": "candidate",
+      "median_final_shift_over_tol": 0.515335099378187,
+      "original_failures": 0,
+      "runs": 2
+    },
+    {
+      "converged_by_300": 4,
+      "converged_by_600": 5,
+      "dataset_id": "waveform",
+      "fit_role": "candidate",
+      "median_final_shift_over_tol": 0.9644008108953189,
+      "original_failures": 3,
+      "runs": 5
+    },
+    {
+      "converged_by_300": 2,
+      "converged_by_600": 2,
+      "dataset_id": "breast_cancer_wisconsin_diagnostic",
+      "fit_role": "source",
+      "median_final_shift_over_tol": 0.6867344424951097,
+      "original_failures": 0,
+      "runs": 2
+    },
+    {
+      "converged_by_300": 2,
+      "converged_by_600": 6,
+      "dataset_id": "glass",
+      "fit_role": "source",
+      "median_final_shift_over_tol": 0.9856286994576665,
+      "original_failures": 4,
+      "runs": 6
+    },
+    {
+      "converged_by_300": 3,
+      "converged_by_600": 4,
+      "dataset_id": "human_activity_recognition",
+      "fit_role": "source",
+      "median_final_shift_over_tol": 0.971591683222801,
+      "original_failures": 2,
+      "runs": 4
+    },
+    {
+      "converged_by_300": 3,
+      "converged_by_600": 3,
+      "dataset_id": "iris",
+      "fit_role": "source",
+      "median_final_shift_over_tol": 0.7253629917449511,
+      "original_failures": 1,
+      "runs": 3
+    },
+    {
+      "converged_by_300": 12,
+      "converged_by_600": 22,
+      "dataset_id": "letter_recognition",
+      "fit_role": "source",
+      "median_final_shift_over_tol": 0.9828669332804936,
+      "original_failures": 25,
+      "runs": 25
+    },
+    {
+      "converged_by_300": 2,
+      "converged_by_600": 2,
+      "dataset_id": "madelon",
+      "fit_role": "source",
+      "median_final_shift_over_tol": 0.8545545702008348,
+      "original_failures": 0,
+      "runs": 2
+    },
+    {
+      "converged_by_300": 4,
+      "converged_by_600": 4,
+      "dataset_id": "mice_protein_expression",
+      "fit_role": "source",
+      "median_final_shift_over_tol": 0.9316849593703003,
+      "original_failures": 2,
+      "runs": 4
+    },
+    {
+      "converged_by_300": 4,
+      "converged_by_600": 4,
+      "dataset_id": "pendigits",
+      "fit_role": "source",
+      "median_final_shift_over_tol": 0.9469461579545383,
+      "original_failures": 2,
+      "runs": 4
+    },
+    {
+      "converged_by_300": 2,
+      "converged_by_600": 2,
+      "dataset_id": "satimage",
+      "fit_role": "source",
+      "median_final_shift_over_tol": 0.9371375735250458,
+      "original_failures": 0,
+      "runs": 2
+    },
+    {
+      "converged_by_300": 3,
+      "converged_by_600": 3,
+      "dataset_id": "sonar",
+      "fit_role": "source",
+      "median_final_shift_over_tol": 0.8588442487243394,
+      "original_failures": 1,
+      "runs": 3
+    },
+    {
+      "converged_by_300": 2,
+      "converged_by_600": 2,
+      "dataset_id": "spambase",
+      "fit_role": "source",
+      "median_final_shift_over_tol": 0.9199035952640993,
+      "original_failures": 0,
+      "runs": 2
+    },
+    {
+      "converged_by_300": 2,
+      "converged_by_600": 2,
+      "dataset_id": "waveform",
+      "fit_role": "source",
+      "median_final_shift_over_tol": 0.568125607239454,
+      "original_failures": 0,
+      "runs": 2
+    }
+  ],
+  "failed_sample_converged_by_300": 110,
+  "failed_sample_converged_by_600": 153,
+  "failed_sample_near_at_150": 39,
+  "numerical_or_degenerate_runs": 0,
+  "objective_increase_runs": 0,
+  "original_failed_rows_in_sample": 161,
+  "scope": {
+    "all_non_letter_failed_candidate_fits": true,
+    "all_unique_original_failed_source_fits": true,
+    "letter_failed_candidate_sampling": "one per condition plus one per fold-seed combination",
+    "matched_controls_per_dataset": 2,
+    "n_diagnostic_fits": 207
+  }
+}

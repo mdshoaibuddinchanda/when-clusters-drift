@@ -1,0 +1,324 @@
+{
+  "audit": "hypothesis_y1_initial_integrity",
+  "branch": "hypothesis-y1-master-audit",
+  "computed_phase7_protocol_sha256": "80e5e26c79e92796ed5b64999dec1f086ccb6eecc073b82fc98cbb8fdc97c09c",
+  "config_and_input_files": {
+    "alignment_config_sha256": {
+      "actual_sha256": "3afa2b89ed781bd40ffa3dbe1bc244b74fd12b304d6025e9b8300835aa85d359",
+      "exists": true,
+      "expected_sha256": "3afa2b89ed781bd40ffa3dbe1bc244b74fd12b304d6025e9b8300835aa85d359",
+      "matches_expected": true,
+      "path": "configs/alignment.yaml",
+      "size_bytes": 452
+    },
+    "falsification_config_sha256": {
+      "actual_sha256": "9d9f9aaf37c42e0a0cd6c7d0aa5f5820638e4cf7b29db1bfa1f46de382dc6cd6",
+      "exists": true,
+      "expected_sha256": "9d9f9aaf37c42e0a0cd6c7d0aa5f5820638e4cf7b29db1bfa1f46de382dc6cd6",
+      "matches_expected": true,
+      "path": "configs/falsification.yaml",
+      "size_bytes": 2014
+    },
+    "methods_config_sha256": {
+      "actual_sha256": "5e5be24811aa3f8289b4b9b3be79bda431d09a6c2ce685963442273d499dc278",
+      "exists": true,
+      "expected_sha256": "5e5be24811aa3f8289b4b9b3be79bda431d09a6c2ce685963442273d499dc278",
+      "matches_expected": true,
+      "path": "configs/methods.yaml",
+      "size_bytes": 986
+    },
+    "phase1_dataset_manifest_sha256": {
+      "actual_sha256": "16eced96d3580e593ebddd78b3c2995e87c6103c1b63d9f2449657b7dcd62e60",
+      "exists": true,
+      "expected_sha256": "16eced96d3580e593ebddd78b3c2995e87c6103c1b63d9f2449657b7dcd62e60",
+      "matches_expected": true,
+      "path": "data/manifests/datasets.json",
+      "size_bytes": 72829
+    },
+    "phase2_preprocessing_config_sha256": {
+      "actual_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+      "exists": true,
+      "expected_sha256": "73b4539f933d1f353fe7784205bdd7cd8202c9dd6d6fbc0980140ca901794446",
+      "matches_expected": true,
+      "path": "configs/preprocessing.yaml",
+      "size_bytes": 759
+    },
+    "phase2_split_manifest_sha256": {
+      "actual_sha256": "25106924ad5e1b8dd0b8ceeab65659a2a163e82b561ceca12bec1588aae52ff5",
+      "exists": true,
+      "expected_sha256": "25106924ad5e1b8dd0b8ceeab65659a2a163e82b561ceca12bec1588aae52ff5",
+      "matches_expected": true,
+      "path": "data/splits/split_manifest.json",
+      "size_bytes": 197176
+    },
+    "phase4_shift_manifest_sha256": {
+      "actual_sha256": "60024c73fd25ddbdb874e92ffba98905cf248a40564655980b9806c17d15c852",
+      "exists": true,
+      "expected_sha256": "60024c73fd25ddbdb874e92ffba98905cf248a40564655980b9806c17d15c852",
+      "matches_expected": true,
+      "path": "data/shifts/shift_manifest.json",
+      "size_bytes": 1077120
+    },
+    "phase5_probe_manifest_sha256": {
+      "actual_sha256": "6ec8717a951fd45696a836bd5bc55536f7349ec4687a4053b4951159cdb78659",
+      "exists": true,
+      "expected_sha256": "6ec8717a951fd45696a836bd5bc55536f7349ec4687a4053b4951159cdb78659",
+      "matches_expected": true,
+      "path": "data/probes/probe_manifest.json",
+      "size_bytes": 856535
+    },
+    "phase6_input_lock_sha256": {
+      "actual_sha256": "a3541b410c7d1bb5e7be6a217a24b4f41956468cf436edce07d98ea507417abc",
+      "exists": true,
+      "expected_sha256": "a3541b410c7d1bb5e7be6a217a24b4f41956468cf436edce07d98ea507417abc",
+      "matches_expected": true,
+      "path": "data/signals/phase6_input_lock.json",
+      "size_bytes": 1657
+    },
+    "probe_config_sha256": {
+      "actual_sha256": "f181ce081dd59cd40d37f2da4107bfd4f1b536764993155bd726e198f5ca3343",
+      "exists": true,
+      "expected_sha256": "f181ce081dd59cd40d37f2da4107bfd4f1b536764993155bd726e198f5ca3343",
+      "matches_expected": true,
+      "path": "configs/probes.yaml",
+      "size_bytes": 494
+    },
+    "signals_config_sha256": {
+      "actual_sha256": "ca073113c293e238c3ab0d753a53ae6fdd6a88426b8b47d59b00a96098586be4",
+      "exists": true,
+      "expected_sha256": "ca073113c293e238c3ab0d753a53ae6fdd6a88426b8b47d59b00a96098586be4",
+      "matches_expected": true,
+      "path": "configs/signals.yaml",
+      "size_bytes": 1357
+    }
+  },
+  "failures": [],
+  "files": {
+    "joined_table": {
+      "actual_sha256": "a8a58ebc601bf7e5f3e5456336cd3b9fc049364c10bc99d0c33422274fae1815",
+      "exists": true,
+      "expected_sha256": "a8a58ebc601bf7e5f3e5456336cd3b9fc049364c10bc99d0c33422274fae1815",
+      "matches_expected": true,
+      "path": "results/falsification/joined_evaluation_table.csv",
+      "size_bytes": 5818231
+    },
+    "metric:bootstrap_intervals": {
+      "actual_sha256": "9ddd147aba5677bdf3050fcccb726993f6abfbcf60805aee8f5c367104c1d84a",
+      "exists": true,
+      "expected_sha256": "9ddd147aba5677bdf3050fcccb726993f6abfbcf60805aee8f5c367104c1d84a",
+      "matches_expected": true,
+      "path": "results/falsification/bootstrap_intervals.csv",
+      "size_bytes": 697
+    },
+    "metric:dimension_strata_audit": {
+      "actual_sha256": "fc96390ca275c8ba2c3769902ad96b94f852252627162dba7689ddec39d24ad2",
+      "exists": true,
+      "expected_sha256": "fc96390ca275c8ba2c3769902ad96b94f852252627162dba7689ddec39d24ad2",
+      "matches_expected": true,
+      "path": "results/falsification/dimension_strata_audit.csv",
+      "size_bytes": 619
+    },
+    "metric:hyperparameter_selections": {
+      "actual_sha256": "e60b1ef37caa98af03a0305a113d05cb34294097622f9693d0631e292b1f544b",
+      "exists": true,
+      "expected_sha256": "e60b1ef37caa98af03a0305a113d05cb34294097622f9693d0631e292b1f544b",
+      "matches_expected": true,
+      "path": "results/falsification/hyperparameter_selections.csv",
+      "size_bytes": 69642
+    },
+    "metric:inner_cv_candidate_scores": {
+      "actual_sha256": "3511c3387704659d0a5f0bd2cd1e48ccad935ef22c3396edb1ecc7c1d42dcedd",
+      "exists": true,
+      "expected_sha256": "3511c3387704659d0a5f0bd2cd1e48ccad935ef22c3396edb1ecc7c1d42dcedd",
+      "matches_expected": true,
+      "path": "results/falsification/inner_cv_candidate_scores.csv",
+      "size_bytes": 10247816
+    },
+    "metric:lodo_metrics": {
+      "actual_sha256": "e6ebe3dbed89af0c1c368ff6fc6d48a8fdf6722ac0f9a0b183b0aa0723cd3b09",
+      "exists": true,
+      "expected_sha256": "e6ebe3dbed89af0c1c368ff6fc6d48a8fdf6722ac0f9a0b183b0aa0723cd3b09",
+      "matches_expected": true,
+      "path": "results/falsification/lodo_metrics.csv",
+      "size_bytes": 747
+    },
+    "metric:losfo_metrics": {
+      "actual_sha256": "82c64fbe95436113ff361f5a721599c8f584bd0b2e26c12116f5569f436e8e70",
+      "exists": true,
+      "expected_sha256": "82c64fbe95436113ff361f5a721599c8f584bd0b2e26c12116f5569f436e8e70",
+      "matches_expected": true,
+      "path": "results/falsification/losfo_metrics.csv",
+      "size_bytes": 758
+    },
+    "metric:paired_dataset_deltas": {
+      "actual_sha256": "cc2d5624a0efbeecef26bb9a20fdbcd4123e8850a5c355bf89045b0e42c591dc",
+      "exists": true,
+      "expected_sha256": "cc2d5624a0efbeecef26bb9a20fdbcd4123e8850a5c355bf89045b0e42c591dc",
+      "matches_expected": true,
+      "path": "results/falsification/paired_dataset_deltas.csv",
+      "size_bytes": 1472
+    },
+    "metric:paired_family_deltas": {
+      "actual_sha256": "98077bfdf09869c9691bc569b121b8de7a4304c2c9bf4f51b57b087f47bcb15e",
+      "exists": true,
+      "expected_sha256": "98077bfdf09869c9691bc569b121b8de7a4304c2c9bf4f51b57b087f47bcb15e",
+      "matches_expected": true,
+      "path": "results/falsification/paired_family_deltas.csv",
+      "size_bytes": 872
+    },
+    "metric:ridge_control_metrics": {
+      "actual_sha256": "f00242bb50efad42de5821cf27604a0ff07c46e4a23ab15e6220126b31a336f0",
+      "exists": true,
+      "expected_sha256": "f00242bb50efad42de5821cf27604a0ff07c46e4a23ab15e6220126b31a336f0",
+      "matches_expected": true,
+      "path": "results/falsification/ridge_control_metrics.csv",
+      "size_bytes": 726
+    },
+    "metric:single_signal_incremental": {
+      "actual_sha256": "198dbd209e81b08ce47cb7c06cc4651ca540f57c66938b437d5c10909547af43",
+      "exists": true,
+      "expected_sha256": "198dbd209e81b08ce47cb7c06cc4651ca540f57c66938b437d5c10909547af43",
+      "matches_expected": true,
+      "path": "results/falsification/single_signal_incremental.csv",
+      "size_bytes": 540
+    },
+    "metric:structural_ablation": {
+      "actual_sha256": "c7948182973a02a2525f77c2b0755738906b3abc5f2a8eef3a2536c7a73ca5b2",
+      "exists": true,
+      "expected_sha256": "c7948182973a02a2525f77c2b0755738906b3abc5f2a8eef3a2536c7a73ca5b2",
+      "matches_expected": true,
+      "path": "results/falsification/structural_ablation.csv",
+      "size_bytes": 546
+    },
+    "metric:verdict": {
+      "actual_sha256": "6f7641a6390f5df45faa63a5169ecf89452e1abe913eae72d4d6bc8e3d86d8f8",
+      "exists": true,
+      "expected_sha256": "6f7641a6390f5df45faa63a5169ecf89452e1abe913eae72d4d6bc8e3d86d8f8",
+      "matches_expected": true,
+      "path": "results/falsification/verdict.json",
+      "size_bytes": 1003
+    },
+    "pass_a_freeze": {
+      "actual_sha256": "af74b3c7fe45e795f6c7dd4f6a8a800223943268e58234c6f9ad3dabf93a53a4",
+      "exists": true,
+      "expected_sha256": "af74b3c7fe45e795f6c7dd4f6a8a800223943268e58234c6f9ad3dabf93a53a4",
+      "matches_expected": true,
+      "path": "results/falsification/pass_a_freeze.json",
+      "size_bytes": 1854
+    },
+    "pass_a_signals": {
+      "actual_sha256": "3a9e6c68cbe34c8763d70769715dba0d34976dfc35c8877c5680561da5c0e80a",
+      "exists": true,
+      "expected_sha256": "3a9e6c68cbe34c8763d70769715dba0d34976dfc35c8877c5680561da5c0e80a",
+      "matches_expected": true,
+      "path": "results/falsification/signals_label_free.csv",
+      "size_bytes": 4928687
+    },
+    "pass_b_quality": {
+      "actual_sha256": "1b3873bd92233702e761791e7b0f4c3e5f5a9f3f41320641fa4105e11c6a5fa5",
+      "exists": true,
+      "expected_sha256": "1b3873bd92233702e761791e7b0f4c3e5f5a9f3f41320641fa4105e11c6a5fa5",
+      "matches_expected": true,
+      "path": "results/falsification/quality_evaluation_only.csv",
+      "size_bytes": 1009562
+    },
+    "prediction:lodo_predictions": {
+      "actual_sha256": "09cb5e3eaa82f770980cbcaa35b860e58711ed19c4ca62f1f1ac2f314777505c",
+      "exists": true,
+      "expected_sha256": "09cb5e3eaa82f770980cbcaa35b860e58711ed19c4ca62f1f1ac2f314777505c",
+      "matches_expected": true,
+      "path": "results/falsification/lodo_predictions.csv",
+      "size_bytes": 42492355
+    },
+    "prediction:losfo_predictions": {
+      "actual_sha256": "c66cc5b6dcc6dc89eca64d3c508b2d0e8b54a81c94854f94fb6cb33fa1cfa9a6",
+      "exists": true,
+      "expected_sha256": "c66cc5b6dcc6dc89eca64d3c508b2d0e8b54a81c94854f94fb6cb33fa1cfa9a6",
+      "matches_expected": true,
+      "path": "results/falsification/losfo_predictions.csv",
+      "size_bytes": 11553890
+    },
+    "prediction:secondary_lodo_predictions": {
+      "actual_sha256": "333935d1143432cf32215612fc434732838fa68122d902ea22dbaa8132a391e6",
+      "exists": true,
+      "expected_sha256": "333935d1143432cf32215612fc434732838fa68122d902ea22dbaa8132a391e6",
+      "matches_expected": true,
+      "path": "results/falsification/secondary_lodo_predictions.csv",
+      "size_bytes": 12413258
+    },
+    "prediction:secondary_losfo_predictions": {
+      "actual_sha256": "e5096ec1d79f7190f5721ad125cc3a71503ceba822e4b4f41eb367c737c510b7",
+      "exists": true,
+      "expected_sha256": "e5096ec1d79f7190f5721ad125cc3a71503ceba822e4b4f41eb367c737c510b7",
+      "matches_expected": true,
+      "path": "results/falsification/secondary_losfo_predictions.csv",
+      "size_bytes": 11606584
+    }
+  },
+  "frozen_commit_identity": {
+    "pass_a_signals_at_freeze": true,
+    "pass_b_quality_at_freeze": true,
+    "result_manifest_at_result_commit": true
+  },
+  "full_git_status": "?? experiments/",
+  "head": "3da9c6ee6af8f00110e6eab569d1dba009a6598c",
+  "historical_commits": {
+    "manifest_finalization": {
+      "exists": true,
+      "sha": "3da9c6ee6af8f00110e6eab569d1dba009a6598c"
+    },
+    "pass_a_freeze": {
+      "exists": true,
+      "sha": "89b3df90f2cdc29d0e341637a11c0eabd2099ee7"
+    },
+    "pass_b_freeze": {
+      "exists": true,
+      "sha": "889624d2ade5d15635d9459dd2601c5664a2747b"
+    },
+    "pass_c_preflight": {
+      "exists": true,
+      "sha": "ef07a68f973fdc77bae7d7410149214b2a10ee21"
+    },
+    "phase7_result": {
+      "exists": true,
+      "sha": "c9280bb390492f4528752f5457e341fb3d9c1040"
+    },
+    "scientific_preregistration": {
+      "exists": true,
+      "sha": "8dc7bc8056a686f1eb147f9ec5bf211935454da6"
+    }
+  },
+  "integrity_status": "PASSED",
+  "protocol_sha_values_in_predictions": [
+    "80e5e26c79e92796ed5b64999dec1f086ccb6eecc073b82fc98cbb8fdc97c09c"
+  ],
+  "result_manifest_sha256": "88efb20eee84166d40cbadf90fe7921a75d6ea5b03175e37708418bb752679c9",
+  "scientific_source_sha256": {
+    "scripts/07_falsification_pilot.py": "f613be6010ba4fe72a5ee7678c34a7ddaae87d870fd4a4b2e06698e9dc276d65",
+    "src/clusterdrift/falsification/__init__.py": "56e6b9c04e1367dec0e55cd2d360612fc94823ff91ca7301b063c54441faea1e",
+    "src/clusterdrift/falsification/bootstrap.py": "82e1eb47d7d51060a4947644abf9d454259cafaa5947d81ef076eba10298638d",
+    "src/clusterdrift/falsification/dataset.py": "0b7859a7796371d4ef55a16adf62b4c737bbc1fbfe3c335753449cf59f72f8f4",
+    "src/clusterdrift/falsification/evaluation.py": "6a93bbe038e405b182ec6ec0181bbb6a6d23913cdc6d9bda45059434ad53a470",
+    "src/clusterdrift/falsification/models.py": "59c68f3d55e80ec5acff520e307bddaed7d74524de7ca52089f9fb63df8f426c",
+    "src/clusterdrift/falsification/protocol.py": "d64507705e77eaa7a441cc2d13b2f389b0facc70f5428797f85d58f26bf2b124",
+    "src/clusterdrift/falsification/verification.py": "8d58df2ea43dc02350a6c090fcc3460aee34ce3070566b81003bb0f49efe0cbe",
+    "src/clusterdrift/methods/fcm.py": "afd83bd8dac1a47cf77821a5c701db8eb9d9144f7e305925c2ca0468bf8c8a59",
+    "src/clusterdrift/methods/fuzzifier.py": "913d0f3d4f2185d83161693370587635478ae1deb13ff9798dc2fe8eb7ec4396",
+    "src/clusterdrift/signals/__init__.py": "ee56beef724dfc29e4b88e61baccd60766ba89bc1a0ad03ca7f8e67c2adc0e0b",
+    "src/clusterdrift/signals/covariate.py": "01ee0afa448c44c4fb22a27002af2908bb2bd974ab2afe0c8251cfcc505c1db6",
+    "src/clusterdrift/signals/divergence.py": "b0a9501041c0637e5f456b4e2aca30ca235c94a9e609765fc1874890b452ca9a",
+    "src/clusterdrift/signals/engine.py": "13d7273627360563df4546889c683eb55e89b558f1967d9c3c8adc95b5775041",
+    "src/clusterdrift/signals/entropy.py": "b8ee16129593d75478ca030201b0db08c5efee6fccbdfb190ef29f02f471ed8d",
+    "src/clusterdrift/signals/hashing.py": "d8b30c66cda6987555626de00ad07b1d8b9706c6b04cbd10f5796c4db1f4a19a",
+    "src/clusterdrift/signals/mass.py": "6143d85ac25eff43121ae3938dd478e9bd00f69f10995041a91445c4aed438a6",
+    "src/clusterdrift/signals/membership.py": "bcc95920301fc0555d5138709a0a010a80981cb4b773f26ffe1443a482d55df7",
+    "src/clusterdrift/signals/mmd.py": "d689288688875fb9adaaf41b5374fb1aba2e2feaae7e949972b4017abf1c9e37",
+    "src/clusterdrift/signals/prototype.py": "f5c0d36bee90dca8da2c1e6017561a4344c506a28e24bcaf491da7b7056430f3",
+    "src/clusterdrift/signals/result.py": "c1e03e407bb23fc401da576339d0def5533f6c79717c5e73a6b3336c22f8d6c4",
+    "src/clusterdrift/signals/signature.py": "71a03bdfd4e5020b45aee1e7ac4843a308838b81079291cf0c5a7b65fe3c41d1",
+    "src/clusterdrift/signals/structural.py": "28465599f20304d585ff5d15746a552645250f24a0077c5d275bfaf6e469bb61",
+    "src/clusterdrift/signals/validity.py": "0c51108a38e2807ff956a4c398a6192829b4114902150b3d1848374c2b1ac081",
+    "src/clusterdrift/signals/verification.py": "f14dfab2df904269172516665b32d89d56ebb4ba4265b2fb98cba8bdcd93dced"
+  },
+  "tracked_git_status": ""
+}

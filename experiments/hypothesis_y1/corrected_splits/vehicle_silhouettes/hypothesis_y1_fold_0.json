@@ -1,0 +1,25 @@
+{
+  "dataset": "vehicle_silhouettes",
+  "inner_group_leakage": false,
+  "inner_strategy": "StratifiedGroupKFold",
+  "npz_path": "experiments/hypothesis_y1/corrected_splits/vehicle_silhouettes/hypothesis_y1_fold_0.npz",
+  "npz_sha256": "0ef7cd56fab26811c0e270da878235e78329e8fc10c21ab8eef02d8f210b1832",
+  "outer_fold": 0,
+  "outer_group_leakage": false,
+  "outer_strategy": "StratifiedGroupKFold",
+  "policy": "connected protected-group and exact-row-hash components",
+  "source_classes": [
+    "bus",
+    "opel",
+    "saab",
+    "van"
+  ],
+  "source_rows": 677,
+  "target_classes": [
+    "bus",
+    "opel",
+    "saab",
+    "van"
+  ],
+  "target_rows": 169
+}

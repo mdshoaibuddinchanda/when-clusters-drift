@@ -1,0 +1,37 @@
+{
+  "dataset": "pendigits",
+  "inner_group_leakage": false,
+  "inner_strategy": "StratifiedGroupKFold",
+  "npz_path": "experiments/hypothesis_y1/corrected_splits/pendigits/hypothesis_y1_fold_0.npz",
+  "npz_sha256": "aca4524aaa2519119e5e27fbc9aab32da099ec5d0e1f81d8af8789843fb287a1",
+  "outer_fold": 0,
+  "outer_group_leakage": false,
+  "outer_strategy": "StratifiedGroupKFold",
+  "policy": "connected protected-group and exact-row-hash components",
+  "source_classes": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+  ],
+  "source_rows": 8793,
+  "target_classes": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+  ],
+  "target_rows": 2199
+}

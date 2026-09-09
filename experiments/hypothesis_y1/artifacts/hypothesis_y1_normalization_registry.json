@@ -1,0 +1,45 @@
+{
+  "attempts": [
+    {
+      "created_before_result": true,
+      "formula": "mean_k ||v0_k-vt_pi(k)||/(s_k^R+eps)",
+      "kept_or_rejected": "kept_as_existing_signal",
+      "motivation": "dimensionless prototype motion",
+      "name": "D_V_reference_radius",
+      "signal": "D_V",
+      "status": "already_the_frozen_definition"
+    },
+    {
+      "created_before_result": false,
+      "formula": "D_H/(H_source_current+eps)",
+      "kept_or_rejected": "pending_model_result",
+      "motivation": "same absolute entropy change may differ by source ambiguity",
+      "name": "D_H_source_entropy_relative",
+      "signal": "D_H",
+      "status": "registered_for_one_exploratory model"
+    },
+    {
+      "created_before_result": true,
+      "formula": "retain normalized Jensen-Shannon definitions",
+      "kept_or_rejected": "avoid redundant formula search",
+      "motivation": "these signals are already bounded/source-comparable",
+      "name": "D_U_normalized_JS",
+      "signal": "D_U_R,D_U_C,D_M",
+      "status": "no additional transform"
+    },
+    {
+      "created_before_result": true,
+      "formula": "retain MMD with source-reference median bandwidth",
+      "kept_or_rejected": "avoid redundant formula search",
+      "motivation": "bandwidth already derives only from source",
+      "name": "D_X_source_bandwidth",
+      "signal": "D_X",
+      "status": "no additional transform"
+    }
+  ],
+  "constraints": {
+    "max_one_family_per_signal_type": true,
+    "target_labels_used": false
+  },
+  "status": "POST_HOC_EXPLORATORY_REGISTRY_DO_NOT_REPLACE_P4"
+}

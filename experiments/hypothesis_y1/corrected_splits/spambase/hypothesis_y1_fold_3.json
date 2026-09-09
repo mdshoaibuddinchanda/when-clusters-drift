@@ -1,0 +1,21 @@
+{
+  "dataset": "spambase",
+  "inner_group_leakage": false,
+  "inner_strategy": "StratifiedGroupKFold",
+  "npz_path": "experiments/hypothesis_y1/corrected_splits/spambase/hypothesis_y1_fold_3.npz",
+  "npz_sha256": "ac296494c35f15e2cfc21d55096f586ebf8d998d39371b2f2d7fe643b62a6071",
+  "outer_fold": 3,
+  "outer_group_leakage": false,
+  "outer_strategy": "StratifiedGroupKFold",
+  "policy": "connected protected-group and exact-row-hash components",
+  "source_classes": [
+    "0",
+    "1"
+  ],
+  "source_rows": 3682,
+  "target_classes": [
+    "0",
+    "1"
+  ],
+  "target_rows": 919
+}

@@ -1,0 +1,23 @@
+{
+  "dataset": "iris",
+  "inner_group_leakage": false,
+  "inner_strategy": "StratifiedGroupKFold",
+  "npz_path": "experiments/hypothesis_y1/corrected_splits/iris/hypothesis_y1_fold_3.npz",
+  "npz_sha256": "731365ed8bcee8e135e1215a1c59b4d33406537dd0b866a5b03d1ef81a85cfd2",
+  "outer_fold": 3,
+  "outer_group_leakage": false,
+  "outer_strategy": "StratifiedGroupKFold",
+  "policy": "connected protected-group and exact-row-hash components",
+  "source_classes": [
+    "0",
+    "1",
+    "2"
+  ],
+  "source_rows": 120,
+  "target_classes": [
+    "0",
+    "1",
+    "2"
+  ],
+  "target_rows": 30
+}

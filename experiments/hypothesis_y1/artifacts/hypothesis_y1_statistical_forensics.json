@@ -1,0 +1,530 @@
+{
+  "construct_tier_counts": {
+    "A": 4,
+    "B": 8,
+    "C": 42
+  },
+  "dataset_influence": [
+    {
+      "fraction_of_net_negative_sum_attributable": -0.0,
+      "n_removed": 0,
+      "official_verdict_changed": false,
+      "remaining_mean_delta04": -0.004190041104955781,
+      "removed_datasets": "[]",
+      "removed_delta04_sum": 0.0
+    },
+    {
+      "fraction_of_net_negative_sum_attributable": 0.6915014326886224,
+      "n_removed": 1,
+      "official_verdict_changed": false,
+      "remaining_mean_delta04": -0.0014101327394777893,
+      "removed_datasets": "[\"madelon\"]",
+      "removed_delta04_sum": -0.0347690331252137
+    },
+    {
+      "fraction_of_net_negative_sum_attributable": 1.1570563349080132,
+      "n_removed": 2,
+      "official_verdict_changed": false,
+      "remaining_mean_delta04": 0.0007896869988699318,
+      "removed_datasets": "[\"sonar\", \"madelon\"]",
+      "removed_delta04_sum": -0.0581773632481687
+    },
+    {
+      "fraction_of_net_negative_sum_attributable": 1.446835695925504,
+      "n_removed": 3,
+      "official_verdict_changed": false,
+      "remaining_mean_delta04": 0.002496346577452513,
+      "removed_datasets": "[\"sonar\", \"letter_recognition\", \"madelon\"]",
+      "removed_delta04_sum": -0.07274761245654199
+    }
+  ],
+  "label": "POST-HOC FAILURE FORENSICS; NOT THE PREREGISTERED RESULT",
+  "no_skill": [
+    {
+      "evaluation": "LODO",
+      "feature_block": "B0_mean",
+      "mae": 0.042690496284289725,
+      "median_absolute_error": 0.021462204929889366,
+      "n": 4200,
+      "r2": -0.020980064210722293,
+      "rmse": 0.07384264771469114
+    },
+    {
+      "evaluation": "LODO",
+      "feature_block": "B0_median",
+      "mae": 0.03800816450584381,
+      "median_absolute_error": 0.012063671466526925,
+      "n": 4200,
+      "r2": -0.05433080977308857,
+      "rmse": 0.07503900698423331
+    },
+    {
+      "evaluation": "LOSFO",
+      "feature_block": "B0_mean",
+      "mae": 0.043155092392299726,
+      "median_absolute_error": 0.022852158256676896,
+      "n": 4200,
+      "r2": -0.04496698233844376,
+      "rmse": 0.07470504188109375
+    },
+    {
+      "evaluation": "LOSFO",
+      "feature_block": "B0_median",
+      "mae": 0.03828430779781614,
+      "median_absolute_error": 0.01180917688339805,
+      "n": 4200,
+      "r2": -0.06121074159894446,
+      "rmse": 0.07528343870244603
+    }
+  ],
+  "ranking": [
+    {
+      "event_capture_delta_gt_005": 0.008849557522123894,
+      "feature_block": "B0_mean",
+      "positive_degradation_mass_capture": 0.011400595240628782,
+      "spearman": -0.29301270307840055,
+      "top_fraction": 0.1
+    },
+    {
+      "event_capture_delta_gt_005": 0.04277286135693215,
+      "feature_block": "B0_mean",
+      "positive_degradation_mass_capture": 0.05439103154796053,
+      "spearman": -0.29301270307840055,
+      "top_fraction": 0.2
+    },
+    {
+      "event_capture_delta_gt_005": 0.05604719764011799,
+      "feature_block": "B0_mean",
+      "positive_degradation_mass_capture": 0.0801392297228351,
+      "spearman": -0.29301270307840055,
+      "top_fraction": 0.3
+    },
+    {
+      "event_capture_delta_gt_005": 0.0,
+      "feature_block": "B0_median",
+      "positive_degradation_mass_capture": 0.009058993322725329,
+      "spearman": -0.26642520759356586,
+      "top_fraction": 0.1
+    },
+    {
+      "event_capture_delta_gt_005": 0.030973451327433628,
+      "feature_block": "B0_median",
+      "positive_degradation_mass_capture": 0.053285245906889774,
+      "spearman": -0.26642520759356586,
+      "top_fraction": 0.2
+    },
+    {
+      "event_capture_delta_gt_005": 0.12684365781710916,
+      "feature_block": "B0_median",
+      "positive_degradation_mass_capture": 0.14150187342187942,
+      "spearman": -0.26642520759356586,
+      "top_fraction": 0.3
+    },
+    {
+      "event_capture_delta_gt_005": 0.084070796460177,
+      "feature_block": "P0",
+      "positive_degradation_mass_capture": 0.06958931232091554,
+      "spearman": -0.07751807133765691,
+      "top_fraction": 0.1
+    },
+    {
+      "event_capture_delta_gt_005": 0.15855457227138642,
+      "feature_block": "P0",
+      "positive_degradation_mass_capture": 0.1431774837790838,
+      "spearman": -0.07751807133765691,
+      "top_fraction": 0.2
+    },
+    {
+      "event_capture_delta_gt_005": 0.16297935103244837,
+      "feature_block": "P0",
+      "positive_degradation_mass_capture": 0.16370230637073743,
+      "spearman": -0.07751807133765691,
+      "top_fraction": 0.3
+    },
+    {
+      "event_capture_delta_gt_005": 0.056784660766961655,
+      "feature_block": "P3",
+      "positive_degradation_mass_capture": 0.055558606324072474,
+      "spearman": -0.07286905403459741,
+      "top_fraction": 0.1
+    },
+    {
+      "event_capture_delta_gt_005": 0.11651917404129794,
+      "feature_block": "P3",
+      "positive_degradation_mass_capture": 0.11395963923311873,
+      "spearman": -0.07286905403459741,
+      "top_fraction": 0.2
+    },
+    {
+      "event_capture_delta_gt_005": 0.14380530973451328,
+      "feature_block": "P3",
+      "positive_degradation_mass_capture": 0.14676199018015296,
+      "spearman": -0.07286905403459741,
+      "top_fraction": 0.3
+    },
+    {
+      "event_capture_delta_gt_005": 0.07669616519174041,
+      "feature_block": "P4",
+      "positive_degradation_mass_capture": 0.09935743982233557,
+      "spearman": 0.04182034429728781,
+      "top_fraction": 0.1
+    },
+    {
+      "event_capture_delta_gt_005": 0.15781710914454278,
+      "feature_block": "P4",
+      "positive_degradation_mass_capture": 0.17462444944578745,
+      "spearman": 0.04182034429728781,
+      "top_fraction": 0.2
+    },
+    {
+      "event_capture_delta_gt_005": 0.2308259587020649,
+      "feature_block": "P4",
+      "positive_degradation_mass_capture": 0.26193885925638616,
+      "spearman": 0.04182034429728781,
+      "top_fraction": 0.3
+    }
+  ],
+  "risk": [
+    {
+      "auprc": 0.4725489303652777,
+      "auroc": 0.30853248875832,
+      "balanced_accuracy": 0.5,
+      "brier": 0.24865136184058217,
+      "calibration": "cross-dataset one-variable logistic calibration of fixed LODO regression score",
+      "feature_block": "B0_mean",
+      "positive_rate": 0.5823809523809523,
+      "threshold": 0.0
+    },
+    {
+      "auprc": 0.17941613041613041,
+      "auroc": 0.21254263972710577,
+      "balanced_accuracy": 0.5,
+      "brier": 0.20181866477013857,
+      "calibration": "cross-dataset one-variable logistic calibration of fixed LODO regression score",
+      "feature_block": "B0_mean",
+      "positive_rate": 0.2642857142857143,
+      "threshold": 0.025
+    },
+    {
+      "auprc": 0.10627150044785948,
+      "auroc": 0.17329252787786503,
+      "balanced_accuracy": 0.5,
+      "brier": 0.14027248363977785,
+      "calibration": "cross-dataset one-variable logistic calibration of fixed LODO regression score",
+      "feature_block": "B0_mean",
+      "positive_rate": 0.16142857142857142,
+      "threshold": 0.05
+    },
+    {
+      "auprc": 0.06223835579455594,
+      "auroc": 0.14172919595295697,
+      "balanced_accuracy": 0.5,
+      "brier": 0.08762082337115994,
+      "calibration": "cross-dataset one-variable logistic calibration of fixed LODO regression score",
+      "feature_block": "B0_mean",
+      "positive_rate": 0.09380952380952381,
+      "threshold": 0.1
+    },
+    {
+      "auprc": 0.47251733637036164,
+      "auroc": 0.30845090907734785,
+      "balanced_accuracy": 0.5,
+      "brier": 0.24862761560763494,
+      "calibration": "cross-dataset one-variable logistic calibration of fixed LODO regression score",
+      "feature_block": "B0_median",
+      "positive_rate": 0.5823809523809523,
+      "threshold": 0.0
+    },
+    {
+      "auprc": 0.17941613041613041,
+      "auroc": 0.21254263972710577,
+      "balanced_accuracy": 0.5,
+      "brier": 0.20205175361414351,
+      "calibration": "cross-dataset one-variable logistic calibration of fixed LODO regression score",
+      "feature_block": "B0_median",
+      "positive_rate": 0.2642857142857143,
+      "threshold": 0.025
+    },
+    {
+      "auprc": 0.10627150044785948,
+      "auroc": 0.17329252787786503,
+      "balanced_accuracy": 0.5,
+      "brier": 0.14039299685952014,
+      "calibration": "cross-dataset one-variable logistic calibration of fixed LODO regression score",
+      "feature_block": "B0_median",
+      "positive_rate": 0.16142857142857142,
+      "threshold": 0.05
+    },
+    {
+      "auprc": 0.06223835579455594,
+      "auroc": 0.14172919595295697,
+      "balanced_accuracy": 0.5,
+      "brier": 0.08766454145670928,
+      "calibration": "cross-dataset one-variable logistic calibration of fixed LODO regression score",
+      "feature_block": "B0_median",
+      "positive_rate": 0.09380952380952381,
+      "threshold": 0.1
+    },
+    {
+      "auprc": 0.4548921607190271,
+      "auroc": 0.30091148977550203,
+      "balanced_accuracy": 0.5,
+      "brier": 0.24877107572581508,
+      "calibration": "cross-dataset one-variable logistic calibration of fixed LODO regression score",
+      "feature_block": "P0",
+      "positive_rate": 0.5823809523809523,
+      "threshold": 0.0
+    },
+    {
+      "auprc": 0.18048272525844888,
+      "auroc": 0.2487762033878539,
+      "balanced_accuracy": 0.5,
+      "brier": 0.2010017265843406,
+      "calibration": "cross-dataset one-variable logistic calibration of fixed LODO regression score",
+      "feature_block": "P0",
+      "positive_rate": 0.2642857142857143,
+      "threshold": 0.025
+    },
+    {
+      "auprc": 0.09726424491541413,
+      "auroc": 0.1825623786598859,
+      "balanced_accuracy": 0.5,
+      "brier": 0.14016269287646896,
+      "calibration": "cross-dataset one-variable logistic calibration of fixed LODO regression score",
+      "feature_block": "P0",
+      "positive_rate": 0.16142857142857142,
+      "threshold": 0.05
+    },
+    {
+      "auprc": 0.05365428524924323,
+      "auroc": 0.14172127698451017,
+      "balanced_accuracy": 0.5,
+      "brier": 0.0876036848723662,
+      "calibration": "cross-dataset one-variable logistic calibration of fixed LODO regression score",
+      "feature_block": "P0",
+      "positive_rate": 0.09380952380952381,
+      "threshold": 0.1
+    },
+    {
+      "auprc": 0.4557058994895529,
+      "auroc": 0.30459591952420867,
+      "balanced_accuracy": 0.5,
+      "brier": 0.2502949936328448,
+      "calibration": "cross-dataset one-variable logistic calibration of fixed LODO regression score",
+      "feature_block": "P3",
+      "positive_rate": 0.5823809523809523,
+      "threshold": 0.0
+    },
+    {
+      "auprc": 0.2050317803265212,
+      "auroc": 0.3601330942593079,
+      "balanced_accuracy": 0.5,
+      "brier": 0.19995729454188446,
+      "calibration": "cross-dataset one-variable logistic calibration of fixed LODO regression score",
+      "feature_block": "P3",
+      "positive_rate": 0.2642857142857143,
+      "threshold": 0.025
+    },
+    {
+      "auprc": 0.10861971325741666,
+      "auroc": 0.2861294639342422,
+      "balanced_accuracy": 0.5,
+      "brier": 0.13939119204242037,
+      "calibration": "cross-dataset one-variable logistic calibration of fixed LODO regression score",
+      "feature_block": "P3",
+      "positive_rate": 0.16142857142857142,
+      "threshold": 0.05
+    },
+    {
+      "auprc": 0.05899147400835806,
+      "auroc": 0.2470500592172125,
+      "balanced_accuracy": 0.5,
+      "brier": 0.087094961945572,
+      "calibration": "cross-dataset one-variable logistic calibration of fixed LODO regression score",
+      "feature_block": "P3",
+      "positive_rate": 0.09380952380952381,
+      "threshold": 0.1
+    },
+    {
+      "auprc": 0.4721583186805857,
+      "auroc": 0.3380770072563961,
+      "balanced_accuracy": 0.5,
+      "brier": 0.2491468411458874,
+      "calibration": "cross-dataset one-variable logistic calibration of fixed LODO regression score",
+      "feature_block": "P4",
+      "positive_rate": 0.5823809523809523,
+      "threshold": 0.0
+    },
+    {
+      "auprc": 0.1666511111122876,
+      "auroc": 0.20950727426455584,
+      "balanced_accuracy": 0.5,
+      "brier": 0.2023202004843434,
+      "calibration": "cross-dataset one-variable logistic calibration of fixed LODO regression score",
+      "feature_block": "P4",
+      "positive_rate": 0.2642857142857143,
+      "threshold": 0.025
+    },
+    {
+      "auprc": 0.09603288593357938,
+      "auroc": 0.18389230400064324,
+      "balanced_accuracy": 0.5,
+      "brier": 0.1404335020306378,
+      "calibration": "cross-dataset one-variable logistic calibration of fixed LODO regression score",
+      "feature_block": "P4",
+      "positive_rate": 0.16142857142857142,
+      "threshold": 0.05
+    },
+    {
+      "auprc": 0.052838605134202805,
+      "auroc": 0.13609372457594343,
+      "balanced_accuracy": 0.5,
+      "brier": 0.08772714023478716,
+      "calibration": "cross-dataset one-variable logistic calibration of fixed LODO regression score",
+      "feature_block": "P4",
+      "positive_rate": 0.09380952380952381,
+      "threshold": 0.1
+    }
+  ],
+  "severity": [
+    {
+      "median_severe_minus_mild": 0.0089251,
+      "n_pairs": 2100,
+      "quantity": "D_X",
+      "severe_gt_mild_fraction": 0.9142857142857143,
+      "violation_fraction": 0.08571428571428572
+    },
+    {
+      "median_severe_minus_mild": 0.009001100000000001,
+      "n_pairs": 2100,
+      "quantity": "D_U_R",
+      "severe_gt_mild_fraction": 0.6919047619047619,
+      "violation_fraction": 0.3080952380952381
+    },
+    {
+      "median_severe_minus_mild": 0.008607799999999999,
+      "n_pairs": 2100,
+      "quantity": "D_U_C",
+      "severe_gt_mild_fraction": 0.67,
+      "violation_fraction": 0.33
+    },
+    {
+      "median_severe_minus_mild": 0.10758704999999999,
+      "n_pairs": 2100,
+      "quantity": "D_V",
+      "severe_gt_mild_fraction": 0.7852380952380953,
+      "violation_fraction": 0.21476190476190476
+    },
+    {
+      "median_severe_minus_mild": 0.008655500000000002,
+      "n_pairs": 2100,
+      "quantity": "D_H",
+      "severe_gt_mild_fraction": 0.7538095238095238,
+      "violation_fraction": 0.24619047619047618
+    },
+    {
+      "median_severe_minus_mild": 0.0010608,
+      "n_pairs": 2100,
+      "quantity": "D_M",
+      "severe_gt_mild_fraction": 0.6566666666666666,
+      "violation_fraction": 0.3433333333333333
+    },
+    {
+      "median_severe_minus_mild": -0.010340349999999943,
+      "n_pairs": 2100,
+      "quantity": "FPC",
+      "severe_gt_mild_fraction": 0.2138095238095238,
+      "violation_fraction": 0.7861904761904762
+    },
+    {
+      "median_severe_minus_mild": 0.0164993,
+      "n_pairs": 2100,
+      "quantity": "PE",
+      "severe_gt_mild_fraction": 0.7804761904761904,
+      "violation_fraction": 0.2195238095238095
+    },
+    {
+      "median_severe_minus_mild": 0.15010964999999998,
+      "n_pairs": 2100,
+      "quantity": "XB_soft_m2",
+      "severe_gt_mild_fraction": 0.7095238095238096,
+      "violation_fraction": 0.2904761904761905
+    },
+    {
+      "median_severe_minus_mild": -0.014584500000000014,
+      "n_pairs": 2100,
+      "quantity": "silhouette",
+      "severe_gt_mild_fraction": 0.22333333333333333,
+      "violation_fraction": 0.7766666666666666
+    },
+    {
+      "median_severe_minus_mild": 0.00631039168511895,
+      "n_pairs": 2100,
+      "quantity": "delta_ari",
+      "severe_gt_mild_fraction": 0.6514285714285715,
+      "violation_fraction": 0.3485714285714286
+    }
+  ],
+  "signal_between_within": [
+    {
+      "between_dataset_variance": 0.00011908495198235156,
+      "between_within_ratio": 0.0853845881641046,
+      "mean_within_dataset_variance": 0.001394689071445501,
+      "signal": "D_X"
+    },
+    {
+      "between_dataset_variance": 0.019435277010391997,
+      "between_within_ratio": 1.257746839796542,
+      "mean_within_dataset_variance": 0.015452455450840905,
+      "signal": "D_U_R"
+    },
+    {
+      "between_dataset_variance": 0.017158409480726448,
+      "between_within_ratio": 1.0971650732224365,
+      "mean_within_dataset_variance": 0.01563885863622255,
+      "signal": "D_U_C"
+    },
+    {
+      "between_dataset_variance": 0.2587510304046412,
+      "between_within_ratio": 0.0674350624166879,
+      "mean_within_dataset_variance": 3.8370399778944826,
+      "signal": "D_V"
+    },
+    {
+      "between_dataset_variance": 0.004097432170414742,
+      "between_within_ratio": 1.1180546976589019,
+      "mean_within_dataset_variance": 0.003664786865074104,
+      "signal": "D_H"
+    },
+    {
+      "between_dataset_variance": 0.0007852079237735346,
+      "between_within_ratio": 0.1433874872961169,
+      "mean_within_dataset_variance": 0.005476125836224197,
+      "signal": "D_M"
+    },
+    {
+      "between_dataset_variance": 0.005762526737310063,
+      "between_within_ratio": 4.962952741519403,
+      "mean_within_dataset_variance": 0.0011611085249918925,
+      "signal": "FPC"
+    },
+    {
+      "between_dataset_variance": 0.02310224265163522,
+      "between_within_ratio": 4.847450931327334,
+      "mean_within_dataset_variance": 0.004765853843374406,
+      "signal": "PE"
+    },
+    {
+      "between_dataset_variance": 106.81093214529322,
+      "between_within_ratio": 2.5537307440130794,
+      "mean_within_dataset_variance": 41.82544788470705,
+      "signal": "XB_soft_m2"
+    },
+    {
+      "between_dataset_variance": 0.016514657618697113,
+      "between_within_ratio": 1.6782673605093665,
+      "mean_within_dataset_variance": 0.009840301972913775,
+      "signal": "silhouette"
+    }
+  ]
+}

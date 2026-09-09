@@ -1,0 +1,29 @@
+{
+  "dataset": "dermatology",
+  "inner_group_leakage": false,
+  "inner_strategy": "StratifiedGroupKFold",
+  "npz_path": "experiments/hypothesis_y1/corrected_splits/dermatology/hypothesis_y1_fold_3.npz",
+  "npz_sha256": "8d94ce7391ffedc5c4b8063c282c064be727e0be11e1f707962154ed32223d3e",
+  "outer_fold": 3,
+  "outer_group_leakage": false,
+  "outer_strategy": "StratifiedGroupKFold",
+  "policy": "connected protected-group and exact-row-hash components",
+  "source_classes": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+  ],
+  "source_rows": 293,
+  "target_classes": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+  ],
+  "target_rows": 73
+}

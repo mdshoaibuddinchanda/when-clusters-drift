@@ -1,0 +1,8 @@
+suite: y1
+command: D:\Conda\p12\python.exe -m pytest experiments/hypothesis_y1/tests/ -q
+working_directory: D:\DR2\when-clusters-drift
+exit_code: 0
+wall_duration_seconds: 10.934720
+
+...................                                                      [100%]
+19 passed in 9.63s

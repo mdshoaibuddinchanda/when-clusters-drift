@@ -1,0 +1,27 @@
+{
+  "dataset": "heart_disease",
+  "inner_group_leakage": false,
+  "inner_strategy": "StratifiedGroupKFold",
+  "npz_path": "experiments/hypothesis_y1/corrected_splits/heart_disease/hypothesis_y1_fold_3.npz",
+  "npz_sha256": "007849db56110e377dc5c52fc2d5a2ccd22de84957eb7a971fb5872d4eb4f8a2",
+  "outer_fold": 3,
+  "outer_group_leakage": false,
+  "outer_strategy": "StratifiedGroupKFold",
+  "policy": "connected protected-group and exact-row-hash components",
+  "source_classes": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+  ],
+  "source_rows": 235,
+  "target_classes": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+  ],
+  "target_rows": 59
+}

@@ -1,0 +1,21 @@
+{
+  "dataset": "electricity",
+  "inner_group_leakage": false,
+  "inner_strategy": "StratifiedGroupKFold",
+  "npz_path": "experiments/hypothesis_y1/corrected_splits/electricity/hypothesis_y1_fold_4.npz",
+  "npz_sha256": "7f9150cc44a15e7f60a7f2d1f059e6a16d1e2c24ef424429acd1771f593152c3",
+  "outer_fold": 4,
+  "outer_group_leakage": false,
+  "outer_strategy": "preserved_temporal_block",
+  "policy": "connected protected-group and exact-row-hash components",
+  "source_classes": [
+    "DOWN",
+    "UP"
+  ],
+  "source_rows": 37760,
+  "target_classes": [
+    "DOWN",
+    "UP"
+  ],
+  "target_rows": 7552
+}

@@ -1,0 +1,31 @@
+{
+  "dataset": "image_segmentation",
+  "inner_group_leakage": false,
+  "inner_strategy": "StratifiedGroupKFold",
+  "npz_path": "experiments/hypothesis_y1/corrected_splits/image_segmentation/hypothesis_y1_fold_4.npz",
+  "npz_sha256": "a4cf2ff8ecda4cc90e53f006efebb3c1b5f8fd875981e49a96b57425a543fd01",
+  "outer_fold": 4,
+  "outer_group_leakage": false,
+  "outer_strategy": "StratifiedGroupKFold",
+  "policy": "connected protected-group and exact-row-hash components",
+  "source_classes": [
+    "brickface",
+    "cement",
+    "foliage",
+    "grass",
+    "path",
+    "sky",
+    "window"
+  ],
+  "source_rows": 1848,
+  "target_classes": [
+    "brickface",
+    "cement",
+    "foliage",
+    "grass",
+    "path",
+    "sky",
+    "window"
+  ],
+  "target_rows": 462
+}

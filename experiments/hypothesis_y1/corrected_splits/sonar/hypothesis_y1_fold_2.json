@@ -1,0 +1,21 @@
+{
+  "dataset": "sonar",
+  "inner_group_leakage": false,
+  "inner_strategy": "StratifiedGroupKFold",
+  "npz_path": "experiments/hypothesis_y1/corrected_splits/sonar/hypothesis_y1_fold_2.npz",
+  "npz_sha256": "847e9eec5b0c20fcd77070512be65d11e12504cc954a8814d516b4e909e1aaca",
+  "outer_fold": 2,
+  "outer_group_leakage": false,
+  "outer_strategy": "StratifiedGroupKFold",
+  "policy": "connected protected-group and exact-row-hash components",
+  "source_classes": [
+    "Mine",
+    "Rock"
+  ],
+  "source_rows": 167,
+  "target_classes": [
+    "Mine",
+    "Rock"
+  ],
+  "target_rows": 41
+}

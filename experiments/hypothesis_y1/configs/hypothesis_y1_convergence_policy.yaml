@@ -1,0 +1,56 @@
+policy_id: hypothesis_y1_fcm_validity_v1
+status: fixed_before_corrected_replication_outcome
+scope: future and Hypothesis-Y1 corrected FCM runs only
+optimizer:
+  tolerance: 1.0e-5
+  max_iter: 600
+  initialization: kmeans++
+  justification: >-
+    Diagnostic reruns were selected without inspecting corrected P4 performance.
+    Of 161 originally failed sampled fits, 110 converged by 300 and 153 by
+    600; objectives were monotone and no sampled run was degenerate/numerical.
+statuses:
+  SUCCESS_CONVERGED:
+    criteria:
+      - converged flag is true
+      - final center Frobenius shift is finite and below tolerance
+      - centers and memberships are finite
+      - no empty cluster and no degeneracy flag
+    primary_eligible: true
+  MAX_ITER_NEAR_CONVERGED:
+    criteria:
+      - max_iter reached without formal convergence
+      - final center shift is finite and <= 10 * tolerance
+      - no objective increase beyond numerical tolerance
+      - no empty cluster and no degeneracy flag
+    primary_eligible: false
+    use: descriptive sensitivity only
+  MAX_ITER_NONCONVERGED:
+    criteria:
+      - max_iter reached
+      - final center shift > 10 * tolerance
+    primary_eligible: false
+  DEGENERATE:
+    criteria:
+      - model degeneracy diagnostic is true
+    primary_eligible: false
+  NUMERICAL_FAILURE:
+    criteria:
+      - any non-finite center, membership, objective, or center shift
+    primary_eligible: false
+  EMPTY_CLUSTER:
+    criteria:
+      - any fuzzy mass is below implementation validity threshold
+    primary_eligible: false
+row_validity:
+  required_source_status: SUCCESS_CONVERGED
+  required_candidate_status: SUCCESS_CONVERGED
+  both_required: true
+attrition_reporting:
+  report_by: [dataset, fold, condition, severity, seed]
+  minimum_dataset_retention_fraction: 0.80
+  action_below_minimum: mark_dataset_result_insufficient_do_not_silently_drop
+selection_firewall:
+  choose_max_iter_from_convergence_only: true
+  inspect_P4_when_setting_policy: false
+  tolerance_changed_from_phase7: false

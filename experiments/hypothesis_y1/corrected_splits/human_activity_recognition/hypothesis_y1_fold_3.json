@@ -1,0 +1,29 @@
+{
+  "dataset": "human_activity_recognition",
+  "inner_group_leakage": false,
+  "inner_strategy": "StratifiedGroupKFold",
+  "npz_path": "experiments/hypothesis_y1/corrected_splits/human_activity_recognition/hypothesis_y1_fold_3.npz",
+  "npz_sha256": "b4a3a1233462215718745d2e44e672854b39852e6a4b16c49bb89ce8116ef43f",
+  "outer_fold": 3,
+  "outer_group_leakage": false,
+  "outer_strategy": "StratifiedGroupKFold",
+  "policy": "connected protected-group and exact-row-hash components",
+  "source_classes": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+  ],
+  "source_rows": 8192,
+  "target_classes": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+  ],
+  "target_rows": 2107
+}

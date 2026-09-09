@@ -1,0 +1,5 @@
+n_removed,removed_datasets,remaining_mean_delta04,removed_delta04_sum,fraction_of_net_negative_sum_attributable,official_verdict_changed
+0,[],-0.004190041104955781,0.0,-0.0,False
+1,"[""madelon""]",-0.0014101327394777893,-0.0347690331252137,0.6915014326886224,False
+2,"[""sonar"", ""madelon""]",0.0007896869988699318,-0.0581773632481687,1.1570563349080132,False
+3,"[""sonar"", ""letter_recognition"", ""madelon""]",0.002496346577452513,-0.07274761245654199,1.446835695925504,False

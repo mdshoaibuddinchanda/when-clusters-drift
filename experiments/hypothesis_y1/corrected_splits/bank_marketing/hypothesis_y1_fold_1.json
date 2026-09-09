@@ -1,0 +1,21 @@
+{
+  "dataset": "bank_marketing",
+  "inner_group_leakage": false,
+  "inner_strategy": "StratifiedGroupKFold",
+  "npz_path": "experiments/hypothesis_y1/corrected_splits/bank_marketing/hypothesis_y1_fold_1.npz",
+  "npz_sha256": "28a0b96d15f1e5e47259d8e7d466d227e473445fb905ea45f787c9c3df2ee01e",
+  "outer_fold": 1,
+  "outer_group_leakage": false,
+  "outer_strategy": "StratifiedGroupKFold",
+  "policy": "connected protected-group and exact-row-hash components",
+  "source_classes": [
+    "1",
+    "2"
+  ],
+  "source_rows": 36169,
+  "target_classes": [
+    "1",
+    "2"
+  ],
+  "target_rows": 9042
+}

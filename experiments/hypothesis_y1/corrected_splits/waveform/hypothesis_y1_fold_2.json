@@ -1,0 +1,23 @@
+{
+  "dataset": "waveform",
+  "inner_group_leakage": false,
+  "inner_strategy": "StratifiedGroupKFold",
+  "npz_path": "experiments/hypothesis_y1/corrected_splits/waveform/hypothesis_y1_fold_2.npz",
+  "npz_sha256": "7724b00446aeba8520c894e641e518eaf49cabef8d3969166a4376e31b111ab9",
+  "outer_fold": 2,
+  "outer_group_leakage": false,
+  "outer_strategy": "StratifiedGroupKFold",
+  "policy": "connected protected-group and exact-row-hash components",
+  "source_classes": [
+    "0",
+    "1",
+    "2"
+  ],
+  "source_rows": 4000,
+  "target_classes": [
+    "0",
+    "1",
+    "2"
+  ],
+  "target_rows": 1000
+}

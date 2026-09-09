@@ -1,0 +1,21 @@
+{
+  "dataset": "breast_cancer_wisconsin_diagnostic",
+  "inner_group_leakage": false,
+  "inner_strategy": "StratifiedGroupKFold",
+  "npz_path": "experiments/hypothesis_y1/corrected_splits/breast_cancer_wisconsin_diagnostic/hypothesis_y1_fold_1.npz",
+  "npz_sha256": "1f25a17e9c15630cef2f05c3095d4565a25af27812b637a0f4cce4ce6b1f7a61",
+  "outer_fold": 1,
+  "outer_group_leakage": false,
+  "outer_strategy": "StratifiedGroupKFold",
+  "policy": "connected protected-group and exact-row-hash components",
+  "source_classes": [
+    "0",
+    "1"
+  ],
+  "source_rows": 455,
+  "target_classes": [
+    "0",
+    "1"
+  ],
+  "target_rows": 114
+}

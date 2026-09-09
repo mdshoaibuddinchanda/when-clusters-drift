@@ -1,0 +1,10 @@
+{
+  "both_help_datasets": [
+    "satimage"
+  ],
+  "cross_structural_help_count": 5,
+  "grouping": "outer fold held out; inner groups outer_fold|condition so all five seeds of a scenario remain together",
+  "label": "POST-HOC WITHIN-VS-CROSS DATASET COMPARISON; NOT CONFIRMATORY",
+  "same_direction_count": 3,
+  "within_structural_help_count": 6
+}

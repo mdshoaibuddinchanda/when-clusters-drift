@@ -1,0 +1,23 @@
+{
+  "dataset": "seeds",
+  "inner_group_leakage": false,
+  "inner_strategy": "StratifiedGroupKFold",
+  "npz_path": "experiments/hypothesis_y1/corrected_splits/seeds/hypothesis_y1_fold_3.npz",
+  "npz_sha256": "da3f6865ac8241fb42ba24c8a376ef9c641fa9a94182affe6905c114e9814c99",
+  "outer_fold": 3,
+  "outer_group_leakage": false,
+  "outer_strategy": "StratifiedGroupKFold",
+  "policy": "connected protected-group and exact-row-hash components",
+  "source_classes": [
+    "1",
+    "2",
+    "3"
+  ],
+  "source_rows": 168,
+  "target_classes": [
+    "1",
+    "2",
+    "3"
+  ],
+  "target_rows": 42
+}

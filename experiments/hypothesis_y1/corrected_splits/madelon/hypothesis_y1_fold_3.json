@@ -1,0 +1,21 @@
+{
+  "dataset": "madelon",
+  "inner_group_leakage": false,
+  "inner_strategy": "StratifiedGroupKFold",
+  "npz_path": "experiments/hypothesis_y1/corrected_splits/madelon/hypothesis_y1_fold_3.npz",
+  "npz_sha256": "33e9bc1ad89598e9384d95e1c9e5c009fd16c4276fa00291a2612fb238c6f1a4",
+  "outer_fold": 3,
+  "outer_group_leakage": false,
+  "outer_strategy": "StratifiedGroupKFold",
+  "policy": "connected protected-group and exact-row-hash components",
+  "source_classes": [
+    "1",
+    "2"
+  ],
+  "source_rows": 2080,
+  "target_classes": [
+    "1",
+    "2"
+  ],
+  "target_rows": 520
+}

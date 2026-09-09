@@ -1,0 +1,29 @@
+{
+  "letter_recognition": {
+    "both_converged_count": 0,
+    "both_convergence_rate": 0.0,
+    "candidate_converged_count": 31,
+    "candidate_convergence_rate": 0.08266666666666667,
+    "dataset_id": "letter_recognition",
+    "grouping_level": "dataset",
+    "n_rows": 375,
+    "source_converged_count": 0,
+    "source_convergence_rate": 0.0,
+    "usable_count": 375,
+    "usable_nonconverged_count": 375
+  },
+  "overall": {
+    "both_converged_count": 3865,
+    "both_convergence_rate": 0.8588888888888889,
+    "candidate_converged_count": 4071,
+    "candidate_convergence_rate": 0.9046666666666666,
+    "grouping_level": "overall",
+    "n_rows": 4500,
+    "source_converged_count": 3945,
+    "source_convergence_rate": 0.8766666666666667,
+    "usable_count": 4500,
+    "usable_nonconverged_count": 635
+  },
+  "usable_accepts_nonconvergence": true,
+  "usable_nonconverged_rows": 635
+}

@@ -1,0 +1,33 @@
+{
+  "dataset": "mice_protein_expression",
+  "inner_group_leakage": false,
+  "inner_strategy": "StratifiedGroupKFold",
+  "npz_path": "experiments/hypothesis_y1/corrected_splits/mice_protein_expression/hypothesis_y1_fold_4.npz",
+  "npz_sha256": "809c9eaa1ea3e3d3c77ecb0444bd124f1fc923c242198b684262a04a4c05c0c5",
+  "outer_fold": 4,
+  "outer_group_leakage": false,
+  "outer_strategy": "StratifiedGroupKFold",
+  "policy": "connected protected-group and exact-row-hash components",
+  "source_classes": [
+    "c-CS-m",
+    "c-CS-s",
+    "c-SC-m",
+    "c-SC-s",
+    "t-CS-m",
+    "t-CS-s",
+    "t-SC-m",
+    "t-SC-s"
+  ],
+  "source_rows": 870,
+  "target_classes": [
+    "c-CS-m",
+    "c-CS-s",
+    "c-SC-m",
+    "c-SC-s",
+    "t-CS-m",
+    "t-CS-s",
+    "t-SC-m",
+    "t-SC-s"
+  ],
+  "target_rows": 210
+}

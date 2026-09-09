@@ -1,0 +1,29 @@
+{
+  "dataset": "satimage",
+  "inner_group_leakage": false,
+  "inner_strategy": "StratifiedGroupKFold",
+  "npz_path": "experiments/hypothesis_y1/corrected_splits/satimage/hypothesis_y1_fold_1.npz",
+  "npz_sha256": "3e6a462bdc0b49d524b25520d13cf46ada709da665b54f073d2092c147cae002",
+  "outer_fold": 1,
+  "outer_group_leakage": false,
+  "outer_strategy": "StratifiedGroupKFold",
+  "policy": "connected protected-group and exact-row-hash components",
+  "source_classes": [
+    "1.",
+    "2.",
+    "3.",
+    "4.",
+    "5.",
+    "7."
+  ],
+  "source_rows": 5144,
+  "target_classes": [
+    "1.",
+    "2.",
+    "3.",
+    "4.",
+    "5.",
+    "7."
+  ],
+  "target_rows": 1286
+}

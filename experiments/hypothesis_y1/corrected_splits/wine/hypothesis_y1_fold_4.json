@@ -1,0 +1,23 @@
+{
+  "dataset": "wine",
+  "inner_group_leakage": false,
+  "inner_strategy": "StratifiedGroupKFold",
+  "npz_path": "experiments/hypothesis_y1/corrected_splits/wine/hypothesis_y1_fold_4.npz",
+  "npz_sha256": "9f7fdfcc35f22adc15eda9ef1323a8c650d513d0d6d31fb0a923bb92b7a1fe66",
+  "outer_fold": 4,
+  "outer_group_leakage": false,
+  "outer_strategy": "StratifiedGroupKFold",
+  "policy": "connected protected-group and exact-row-hash components",
+  "source_classes": [
+    "0",
+    "1",
+    "2"
+  ],
+  "source_rows": 143,
+  "target_classes": [
+    "0",
+    "1",
+    "2"
+  ],
+  "target_rows": 35
+}

@@ -1,0 +1,21 @@
+{
+  "dataset": "haberman_survival",
+  "inner_group_leakage": false,
+  "inner_strategy": "StratifiedGroupKFold",
+  "npz_path": "experiments/hypothesis_y1/corrected_splits/haberman_survival/hypothesis_y1_fold_4.npz",
+  "npz_sha256": "eccdc8dfb8f2df970af419b8d47dd6dfeb244c759b8921db032abb78abde3d27",
+  "outer_fold": 4,
+  "outer_group_leakage": false,
+  "outer_strategy": "StratifiedGroupKFold",
+  "policy": "connected protected-group and exact-row-hash components",
+  "source_classes": [
+    "1",
+    "2"
+  ],
+  "source_rows": 244,
+  "target_classes": [
+    "1",
+    "2"
+  ],
+  "target_rows": 62
+}
