@@ -1,16 +1,6 @@
 # Default: text files use native auto
 * text auto
 
-# Binary files must never undergo line conversion
-*.npy binary
-*.npz binary
-*.parquet binary
-*.zip binary
-*.tar.gz binary
-*.png binary
-*.jpg binary
-*.jpeg binary
-
 # Scientific configs frozen with LF:
 configs/alignment.yaml text eol=lf
 configs/execution_phase7.yaml text eol=lf
@@ -37,4 +27,19 @@ data/falsification/offline_shift_replay/** text eol=crlf
 results/** text eol=crlf
 experiments/hypothesis_y1/corrected_replication/*.csv text eol=crlf
 experiments/hypothesis_y1/artifacts/*.csv text eol=crlf
+
+# Binary files must NEVER undergo line conversion (must appear last to override directory rules):
+*.npy -text -diff eol=
+*.npz -text -diff eol=
+*.parquet -text -diff eol=
+*.zip -text -diff eol=
+*.tar.gz -text -diff eol=
+*.gz -text -diff eol=
+*.png -text -diff eol=
+*.jpg -text -diff eol=
+*.jpeg -text -diff eol=
+*.xlsx -text -diff eol=
+
+
+
 
