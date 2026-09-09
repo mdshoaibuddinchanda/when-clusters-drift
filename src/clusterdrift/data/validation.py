@@ -12,6 +12,7 @@ from clusterdrift.data.manifest import (
     compute_synthetic_bundle_sha256,
 )
 from clusterdrift.data.schemas import ALLOWED_FEATURE_ROLES, DatasetSpec, ValidationResult
+from clusterdrift.shifts.hashing import atomic_write_csv
 
 
 class DataValidator:
@@ -496,5 +497,5 @@ class DataValidator:
 
         df_summary = pd.DataFrame(records)
         out_csv = self.manifest_dir / "dataset_summary.csv"
-        df_summary.to_csv(out_csv, index=False)
+        atomic_write_csv(out_csv, df_summary, index=False)
         return out_csv

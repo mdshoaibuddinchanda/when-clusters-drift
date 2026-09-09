@@ -8,6 +8,7 @@ from typing import Any, Dict, List, Optional
 import pandas as pd
 
 from clusterdrift.data.schemas import DatasetManifestEntry, DatasetSpec, SyntheticManifestEntry
+from clusterdrift.shifts.hashing import atomic_write_json
 
 
 def compute_file_sha256(filepath: Path) -> str:
@@ -366,24 +367,20 @@ class ManifestManager:
                     synthetic_entries.append(entry.__dict__)
 
         # Write datasets.json
-        with open(self.manifest_dir / "datasets.json", "w", encoding="utf-8") as f:
-            json.dump(real_entries, f, indent=2)
+        atomic_write_json(self.manifest_dir / "datasets.json", real_entries, indent=2, sort_keys=False)
 
         # Write synthetic_manifest.json
-        with open(self.manifest_dir / "synthetic_manifest.json", "w", encoding="utf-8") as f:
-            json.dump(synthetic_entries, f, indent=2)
+        atomic_write_json(self.manifest_dir / "synthetic_manifest.json", synthetic_entries, indent=2, sort_keys=False)
 
         # Write unavailable_datasets.json
-        with open(self.manifest_dir / "unavailable_datasets.json", "w", encoding="utf-8") as f:
-            json.dump(unavailable_entries, f, indent=2)
+        atomic_write_json(self.manifest_dir / "unavailable_datasets.json", unavailable_entries, indent=2, sort_keys=False)
 
         # Write download_report.json if provided
         if download_results is not None:
             if isinstance(download_results, dict):
                 download_results["manifest_schema_version"] = 2
                 download_results["generated_from_commit"] = source_commit
-            with open(self.manifest_dir / "download_report.json", "w", encoding="utf-8") as f:
-                json.dump(download_results, f, indent=2)
+            atomic_write_json(self.manifest_dir / "download_report.json", download_results, indent=2, sort_keys=False)
 
         return {
             "real_entries_count": len(real_entries),

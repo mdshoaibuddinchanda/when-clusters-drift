@@ -46,6 +46,7 @@ class DatasetSpec:
     license: str
     citation: str
     target_column: Optional[str]
+    source_sha256: Optional[str] = None
     domain_column: Optional[str] = None
     id_columns: List[str] = field(default_factory=list)
     drop_columns: List[str] = field(default_factory=list)

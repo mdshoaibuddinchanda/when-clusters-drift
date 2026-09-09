@@ -186,6 +186,46 @@ def atomic_write_csv(
         raise
 
 
+def atomic_write_parquet(
+    path: Union[str, Path],
+    df: Any,
+    index: bool = False,
+    **kwargs: Any,
+) -> None:
+    """Write a parquet table atomically in the destination directory."""
+    target = Path(path)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    tmp_id = hashlib.sha256(f"{time.time_ns()}:{os.getpid()}".encode()).hexdigest()[:8]
+    temp_path = target.with_name(f".{target.name}.tmp_{tmp_id}")
+    try:
+        df.to_parquet(temp_path, index=index, **kwargs)
+        with open(temp_path, "rb+") as f:
+            os.fsync(f.fileno())
+        os.replace(temp_path, target)
+    except Exception:
+        if temp_path.exists():
+            temp_path.unlink()
+        raise
+
+
+def atomic_write_npy(path: Union[str, Path], array: Any) -> None:
+    """Write one non-pickle NPY array atomically in the destination directory."""
+    target = Path(path)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    tmp_id = hashlib.sha256(f"{time.time_ns()}:{os.getpid()}".encode()).hexdigest()[:8]
+    temp_path = target.with_name(f".{target.name}.tmp_{tmp_id}")
+    try:
+        with open(temp_path, "wb") as f:
+            np.save(f, np.asarray(array), allow_pickle=False)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(temp_path, target)
+    except Exception:
+        if temp_path.exists():
+            temp_path.unlink()
+        raise
+
+
 def atomic_write_npz(
     path: Union[str, Path],
     **arrays: Any,

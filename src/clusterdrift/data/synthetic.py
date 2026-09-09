@@ -8,6 +8,7 @@ import pandas as pd
 from scipy.special import gamma, gammaln, logsumexp
 
 from clusterdrift.data.schemas import SyntheticDatasetSpec
+from clusterdrift.shifts.hashing import atomic_write_json, atomic_write_npy, atomic_write_parquet
 
 
 def _compute_gaussian_log_pdf(X: np.ndarray, mean: np.ndarray, cov: np.ndarray) -> np.ndarray:
@@ -209,12 +210,10 @@ def save_synthetic_dataset(
     params_path = target_dir / "parameters.json"
     meta_path = target_dir / "metadata.json"
 
-    df_X.to_parquet(features_path, index=False, engine="pyarrow")
-    df_y.to_parquet(labels_path, index=False, engine="pyarrow")
-    np.save(tau_path, tau)
-
-    with open(params_path, "w", encoding="utf-8") as f:
-        json.dump(params, f, indent=2)
+    atomic_write_parquet(features_path, df_X, index=False, engine="pyarrow")
+    atomic_write_parquet(labels_path, df_y, index=False, engine="pyarrow")
+    atomic_write_npy(tau_path, tau)
+    atomic_write_json(params_path, params, indent=2, sort_keys=False)
 
     metadata = {
         "dataset_id": spec.family_id,
@@ -227,8 +226,7 @@ def save_synthetic_dataset(
         "soft_ground_truth_available": True,
         "notes": spec.notes,
     }
-    with open(meta_path, "w", encoding="utf-8") as f:
-        json.dump(metadata, f, indent=2)
+    atomic_write_json(meta_path, metadata, indent=2, sort_keys=False)
 
     return {
         "features": str(features_path),

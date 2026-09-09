@@ -51,6 +51,7 @@ def load_registry(config_path: Optional[Path] = None, force_reload: bool = False
             source_provider=spec["source_provider"],
             source_type=spec["source_type"],
             source_url=spec.get("source_url"),
+            source_sha256=spec.get("source_sha256"),
             source_id=spec.get("source_id"),
             source_version=spec.get("source_version"),
             download_mode=spec.get("download_mode", "auto"),

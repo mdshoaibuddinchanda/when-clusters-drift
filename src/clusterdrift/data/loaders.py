@@ -1,7 +1,10 @@
 """Loaders module converting provider-specific outputs into standard DatasetBundle objects."""
 
 import io
+import hashlib
+import os
 from pathlib import Path
+import tempfile
 from typing import Any, Dict, Optional, Tuple
 import urllib.request
 import zipfile
@@ -10,6 +13,57 @@ import pandas as pd
 from sklearn.datasets import fetch_openml, load_breast_cancer, load_iris, load_wine
 
 from clusterdrift.data.schemas import DatasetBundle, DatasetSpec
+
+
+_MAX_ARCHIVE_BYTES = 2 * 1024 * 1024 * 1024
+
+
+def _sha256_bytes(content: bytes) -> str:
+    return hashlib.sha256(content).hexdigest()
+
+
+def _load_or_download_pinned_archive(url: str, path: Path, expected_sha256: Optional[str]) -> bytes:
+    """Read or atomically download an HTTPS archive and enforce its pinned digest."""
+    if not expected_sha256 or len(expected_sha256) != 64:
+        raise ValueError(f"A pinned source_sha256 is required for archive acquisition: {path.name}")
+    expected_sha256 = expected_sha256.lower()
+    if path.exists() and path.stat().st_size > 0:
+        content = path.read_bytes()
+        actual = _sha256_bytes(content)
+        if actual != expected_sha256:
+            raise ValueError(f"Cached archive digest mismatch for {path}: expected {expected_sha256}, got {actual}")
+        return content
+    if not url.lower().startswith("https://"):
+        raise ValueError(f"Refusing non-HTTPS dataset download: {url}")
+    request = urllib.request.Request(url, headers={"User-Agent": "clusterdrift-research/1"})
+    fd, raw = tempfile.mkstemp(prefix=f".{path.name}.", suffix=".download", dir=path.parent)
+    tmp = Path(raw)
+    try:
+        total = 0
+        hasher = hashlib.sha256()
+        with os.fdopen(fd, "wb") as output, urllib.request.urlopen(request, timeout=60) as response:
+            advertised = response.headers.get("Content-Length")
+            if advertised and int(advertised) > _MAX_ARCHIVE_BYTES:
+                raise ValueError(f"Dataset archive exceeds {_MAX_ARCHIVE_BYTES} bytes: {url}")
+            while True:
+                chunk = response.read(1024 * 1024)
+                if not chunk:
+                    break
+                total += len(chunk)
+                if total > _MAX_ARCHIVE_BYTES:
+                    raise ValueError(f"Dataset archive exceeds {_MAX_ARCHIVE_BYTES} bytes: {url}")
+                hasher.update(chunk)
+                output.write(chunk)
+            output.flush()
+            os.fsync(output.fileno())
+        actual = hasher.hexdigest()
+        if actual != expected_sha256:
+            raise ValueError(f"Downloaded archive digest mismatch for {url}: expected {expected_sha256}, got {actual}")
+        os.replace(tmp, path)
+        return path.read_bytes()
+    finally:
+        if tmp.exists():
+            tmp.unlink()
 
 
 def load_sklearn_dataset(spec: DatasetSpec) -> DatasetBundle:
@@ -48,15 +102,7 @@ def load_uci_mice_protein_dataset(spec: DatasetSpec, raw_dir: Path) -> DatasetBu
     zip_path = raw_dir / "mice_protein_expression.zip"
 
     url = spec.source_url or "https://archive.ics.uci.edu/static/public/342/mice+protein+expression.zip"
-    if not zip_path.exists() or zip_path.stat().st_size == 0:
-        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"})
-        with urllib.request.urlopen(req, timeout=60) as resp:
-            content = resp.read()
-        with open(zip_path, "wb") as f:
-            f.write(content)
-    else:
-        with open(zip_path, "rb") as f:
-            content = f.read()
+    content = _load_or_download_pinned_archive(url, zip_path, spec.source_sha256)
 
     with zipfile.ZipFile(io.BytesIO(content)) as z:
         with z.open("Data_Cortex_Nuclear.xls") as f:
@@ -147,15 +193,7 @@ def load_uci_har_dataset(spec: DatasetSpec, raw_dir: Path) -> DatasetBundle:
     zip_path = raw_dir / "human_activity_recognition_using_smartphones.zip"
 
     url = spec.source_url or "https://archive.ics.uci.edu/static/public/240/human+activity+recognition+using+smartphones.zip"
-    if not zip_path.exists() or zip_path.stat().st_size == 0:
-        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"})
-        with urllib.request.urlopen(req, timeout=60) as resp:
-            content = resp.read()
-        with open(zip_path, "wb") as f:
-            f.write(content)
-    else:
-        with open(zip_path, "rb") as f:
-            content = f.read()
+    content = _load_or_download_pinned_archive(url, zip_path, spec.source_sha256)
 
     with zipfile.ZipFile(io.BytesIO(content)) as outer_zip:
         inner_bytes = outer_zip.read("UCI HAR Dataset.zip")
@@ -212,15 +250,7 @@ def load_tableshift_hospital_readmission(spec: DatasetSpec, raw_dir: Path) -> Da
     zip_path = raw_dir / "diabetes_130_us_hospitals.zip"
 
     url = spec.source_url or "https://archive.ics.uci.edu/static/public/296/diabetes+130-us+hospitals+for+years+1999-2008.zip"
-    if not zip_path.exists() or zip_path.stat().st_size == 0:
-        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"})
-        with urllib.request.urlopen(req, timeout=60) as resp:
-            content = resp.read()
-        with open(zip_path, "wb") as f:
-            f.write(content)
-    else:
-        with open(zip_path, "rb") as f:
-            content = f.read()
+    content = _load_or_download_pinned_archive(url, zip_path, spec.source_sha256)
 
     with zipfile.ZipFile(io.BytesIO(content)) as z:
         with z.open("diabetic_data.csv") as f:

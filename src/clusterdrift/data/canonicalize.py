@@ -6,6 +6,7 @@ from typing import Any, Dict, List, Optional
 import pandas as pd
 
 from clusterdrift.data.schemas import DatasetBundle, DatasetSpec
+from clusterdrift.shifts.hashing import atomic_write_json, atomic_write_parquet
 
 
 def canonicalize_bundle(
@@ -61,7 +62,7 @@ def canonicalize_bundle(
 
     # Save features.parquet
     features_path = output_dir / "features.parquet"
-    X.to_parquet(features_path, index=False, engine="pyarrow")
+    atomic_write_parquet(features_path, X, index=False, engine="pyarrow")
 
     # Save labels.parquet
     labels_path = output_dir / "labels.parquet"
@@ -72,12 +73,12 @@ def canonicalize_bundle(
             y_df = y
         else:
             y_df = pd.DataFrame({target_col or "target": y})
-        y_df.to_parquet(labels_path, index=False, engine="pyarrow")
+        atomic_write_parquet(labels_path, y_df, index=False, engine="pyarrow")
         n_classes = int(y_df.iloc[:, 0].nunique())
     else:
         # Dummy empty labels if purely unlabeled
         y_df = pd.DataFrame({"target": []})
-        y_df.to_parquet(labels_path, index=False, engine="pyarrow")
+        atomic_write_parquet(labels_path, y_df, index=False, engine="pyarrow")
         n_classes = None
 
     # Save domains.parquet if domain artifact exists
@@ -90,7 +91,7 @@ def canonicalize_bundle(
             dom_df = pd.DataFrame({domain_col or "domain": domains.values})
         else:
             dom_df = pd.DataFrame({domain_col or "domain": domains})
-        dom_df.to_parquet(domains_path, index=False, engine="pyarrow")
+        atomic_write_parquet(domains_path, dom_df, index=False, engine="pyarrow")
 
     # Save groups.parquet if group artifact exists
     groups_path = output_dir / "groups.parquet"
@@ -102,7 +103,7 @@ def canonicalize_bundle(
             grp_df = pd.DataFrame({group_col or "group": groups.values})
         else:
             grp_df = pd.DataFrame({group_col or "group": groups})
-        grp_df.to_parquet(groups_path, index=False, engine="pyarrow")
+        atomic_write_parquet(groups_path, grp_df, index=False, engine="pyarrow")
 
     # Build feature roles ensuring completeness
     feature_roles = dict(spec.feature_roles)
@@ -145,8 +146,7 @@ def canonicalize_bundle(
     }
 
     metadata_path = output_dir / "metadata.json"
-    with open(metadata_path, "w", encoding="utf-8") as f:
-        json.dump(meta, f, indent=2)
+    atomic_write_json(metadata_path, meta, indent=2, sort_keys=False)
 
     ret = {
         "features_path": str(features_path),

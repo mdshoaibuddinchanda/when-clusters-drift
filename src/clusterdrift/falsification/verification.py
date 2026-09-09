@@ -18,7 +18,8 @@ from clusterdrift.falsification.dataset import FORBIDDEN_PREDICTOR_FEATURES
 from clusterdrift.falsification.evaluation import compute_prediction_record_sha256
 from clusterdrift.falsification.execution.cache import (
     PersistentPhase7Cache,
-    compute_content_fingerprint,
+    compute_model_cache_fingerprint,
+    compute_source_cache_fingerprint,
 )
 from clusterdrift.falsification.execution.resources import get_default_work_dir
 from clusterdrift.falsification.protocol import (
@@ -33,6 +34,7 @@ from clusterdrift.probes.bank import (
     load_reference_probe_descriptor,
 )
 from clusterdrift.shifts.hashing import (
+    atomic_write_json,
     compute_bytes_sha256,
     compute_canonical_json_sha256,
     compute_file_sha256,
@@ -594,16 +596,10 @@ def verify_pass_b(project_root: Path, cfg: Optional[Dict[str, Any]] = None) -> D
                 src_idx = npz["source_indices"]
             X_src_raw = None
             X_src_trans = None
+            src_fp = compute_source_cache_fingerprint(root, ds, fold, prep_config_sha)
 
             for seed in cfg["algorithm_seeds"]:
-                model_fp = compute_content_fingerprint({
-                    "dataset_id": ds,
-                    "outer_fold": fold,
-                    "method": cfg["methods"][0],
-                    "seed": seed,
-                    "K": K,
-                    "prep_config_sha": prep_config_sha,
-                })
+                model_fp = compute_model_cache_fingerprint(root, src_fp, cfg["methods"][0], seed, K)
                 src_model = cache.get_source_model(ds, fold, cfg["methods"][0], seed, model_fp)
                 if src_model is None:
                     if X_src_trans is None:
@@ -958,8 +954,7 @@ def verify_falsification(project_root: Path) -> Dict[str, Any]:
         "total_checks_verified": check_count,
         "final_verdict": stored_verdict["verdict"],
     }
-    with open(manifest_p, "w", encoding="utf-8") as f:
-        json.dump(manifest_doc, f, indent=2, sort_keys=True)
+    atomic_write_json(manifest_p, manifest_doc, indent=2, sort_keys=True)
     check_count += 1
 
     return {

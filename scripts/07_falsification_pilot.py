@@ -58,6 +58,8 @@ from clusterdrift.falsification.evaluation import (
 from clusterdrift.falsification.execution.cache import (
     PersistentPhase7Cache,
     compute_content_fingerprint,
+    compute_model_cache_fingerprint,
+    compute_source_cache_fingerprint,
 )
 from clusterdrift.falsification.execution.checkpoint import (
     EvaluationCheckpointManager,
@@ -257,11 +259,7 @@ def process_dataset_fold_task(
     )
 
     # 1. Source Preprocessing (from disk cache or compute)
-    src_fp = compute_content_fingerprint({
-        "dataset_id": ds,
-        "outer_fold": fold,
-        "prep_config_sha": prep_config_sha,
-    })
+    src_fp = compute_source_cache_fingerprint(project_root, ds, fold, prep_config_sha)
     cached_source = cache.get_source_data(ds, fold, src_fp)
 
     if cached_source is not None:
@@ -287,14 +285,7 @@ def process_dataset_fold_task(
 
     # 2. Source Models & Memberships (retrieved from disk cache or fit)
     for seed in seeds:
-        model_fp = compute_content_fingerprint({
-            "dataset_id": ds,
-            "outer_fold": fold,
-            "method": methods[0],
-            "seed": seed,
-            "K": K,
-            "prep_config_sha": prep_config_sha,
-        })
+        model_fp = compute_model_cache_fingerprint(project_root, src_fp, methods[0], seed, K)
         m_src = cache.get_source_model(ds, fold, methods[0], seed, model_fp)
         if m_src is None:
             m_src = fit_clustering_model(
@@ -324,7 +315,11 @@ def process_dataset_fold_task(
             mem_cache.put_reference_scales(m_fp, scales)
 
     # 3. MMD Sigma (disk cached)
-    cached_sigma = cache.get_mmd_sigma(ds, fold)
+    mmd_fp = compute_content_fingerprint({
+        "kind": "mmd_source_v2", "source_fingerprint": src_fp,
+        "signal_protocol_sha": signal_protocol_sha,
+    })
+    cached_sigma = cache.get_mmd_sigma(ds, fold, mmd_fp)
     if cached_sigma is not None:
         sigma, status, sum_xx = cached_sigma
         mem_cache.put_mmd_sigma(ds, fold, sigma, status)
@@ -358,16 +353,20 @@ def process_dataset_fold_task(
             continue
 
         # Retrieve scenario preprocessed arrays or compute once for 5 seeds
+        cur_desc_path = probes_dir / "current" / ds / f"fold_{fold}" / f"{cond}.json"
         scen_fp = compute_content_fingerprint({
+            "kind": "phase7_scenario_v2",
             "dataset_id": ds,
             "outer_fold": fold,
             "condition": cond,
+            "source_fingerprint": src_fp,
             "shift_spec_sha": shift_spec_sha,
-            "prep_config_sha": prep_config_sha,
+            "shift_spec_file_sha": shift_spec_file_sha,
+            "current_probe_sha": compute_file_sha256(cur_desc_path),
+            "signal_protocol_sha": signal_protocol_sha,
         })
         cached_scen = cache.get_scenario_data(ds, fold, cond, scen_fp)
 
-        cur_desc_path = probes_dir / "current" / ds / f"fold_{fold}" / f"{cond}.json"
         cur_desc, cur_positions, _, _ = load_current_probe_descriptor(cur_desc_path)
 
         if cached_scen is not None:
@@ -396,7 +395,11 @@ def process_dataset_fold_task(
             cache.put_scenario_data(ds, fold, cond, scen_fp, X_tgt_shifted_trans, A_C)
 
         # Check D_X in cache
-        cached_dx = cache.get_dx(ds, fold, cond)
+        dx_fp = compute_content_fingerprint({
+            "kind": "dx_v2", "scenario_fingerprint": scen_fp,
+            "source_fingerprint": src_fp, "signal_protocol_sha": signal_protocol_sha,
+        })
+        cached_dx = cache.get_dx(ds, fold, cond, dx_fp)
         if cached_dx is not None:
             mem_cache.put_dx(ds, fold, cond, cached_dx)
 
@@ -427,11 +430,11 @@ def process_dataset_fold_task(
 
                 # Update disk cache with D_X and MMD sigma if newly computed
                 if mem_cache.get_dx(ds, fold, cond) is not None:
-                    cache.put_dx(ds, fold, cond, mem_cache.get_dx(ds, fold, cond))
+                    cache.put_dx(ds, fold, cond, dx_fp, mem_cache.get_dx(ds, fold, cond))
                 sig_tuple = mem_cache.get_mmd_sigma(ds, fold)
                 sum_xx = mem_cache.get_mmd_source_kernel_sum(ds, fold)
                 if sig_tuple is not None and sum_xx is not None:
-                    cache.put_mmd_sigma(ds, fold, sig_tuple[0], sig_tuple[1], sum_xx)
+                    cache.put_mmd_sigma(ds, fold, mmd_fp, sig_tuple[0], sig_tuple[1], sum_xx)
 
                 # Persist checkpoint immediately
                 checkpoint_mgr.save_checkpoint(res.to_dict())
@@ -752,20 +755,14 @@ def run_evaluation_quality_pass(
             src_prep = build_preprocessor(feature_roles=roles, config=prep_cfg, metadata=meta)
             src_prep.fit(X_src_raw)
             X_src_trans = src_prep.transform(X_src_raw)
+            src_fp = compute_source_cache_fingerprint(root, ds, fold, prep_config_sha)
 
             # Fit/retrieve source models once per seed and verify fingerprints
             src_models: Dict[int, Any] = {}
             ari_cleans: Dict[int, float] = {}
 
             for seed in seeds:
-                model_fp = compute_content_fingerprint({
-                    "dataset_id": ds,
-                    "outer_fold": fold,
-                    "method": methods[0],
-                    "seed": seed,
-                    "K": K,
-                    "prep_config_sha": prep_config_sha,
-                })
+                model_fp = compute_model_cache_fingerprint(root, src_fp, methods[0], seed, K)
                 src_model = cache.get_source_model(ds, fold, methods[0], seed, model_fp)
                 if src_model is None:
                     with limit_inner_threads(1):

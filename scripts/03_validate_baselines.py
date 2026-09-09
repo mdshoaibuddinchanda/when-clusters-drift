@@ -28,6 +28,7 @@ from clusterdrift.methods.gmm import GMM
 from clusterdrift.methods.gustafson_kessel import GustafsonKessel
 from clusterdrift.methods.kmeans import KMeans
 from clusterdrift.methods.pfcm import PFCM
+from clusterdrift.shifts.hashing import atomic_write_csv, atomic_write_json
 from clusterdrift.methods.utils import compute_methods_config_sha256
 from clusterdrift.metrics.external import (
     adjusted_mutual_info,
@@ -365,7 +366,7 @@ def main() -> None:
     # Save validation runs
     df_runs = pd.DataFrame(runs_records)
     runs_path = out_dir / "validation_runs.csv"
-    df_runs.to_csv(runs_path, index=False)
+    atomic_write_csv(runs_path, df_runs, index=False)
     print(f"Saved: {runs_path}")
 
     # Build summary
@@ -401,7 +402,7 @@ def main() -> None:
 
     df_summary = pd.DataFrame(summary_rows)
     summary_path = out_dir / "validation_summary.csv"
-    df_summary.to_csv(summary_path, index=False)
+    atomic_write_csv(summary_path, df_summary, index=False)
     print(f"Saved: {summary_path}")
 
     # Programmatically derive pre-repair baseline statistics from versioned artifact
@@ -468,13 +469,12 @@ def main() -> None:
 
     df_comp = pd.DataFrame(comparison_rows)
     comp_path = out_dir / "initialization_repair_comparison.csv"
-    df_comp.to_csv(comp_path, index=False)
+    atomic_write_csv(comp_path, df_comp, index=False)
     print(f"Saved: {comp_path}")
 
     # Save failures
     failures_path = out_dir / "failures.json"
-    with open(failures_path, "w", encoding="utf-8") as f:
-        json.dump(failures_records, f, indent=2)
+    atomic_write_json(failures_path, failures_records, indent=2, sort_keys=False)
     print(f"Saved: {failures_path} (Total failures: {len(failures_records)})")
 
     print("\nSummary Table:")

@@ -28,6 +28,8 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
 
+from clusterdrift.shifts.hashing import atomic_write_csv
+
 from clusterdrift.methods.fcm import FCM
 from clusterdrift.methods.fuzzifier import resolve_fuzzifier
 from clusterdrift.metrics.external import adjusted_rand_index
@@ -107,7 +109,7 @@ def audit_s01_objective_landscape(out_dir: Path, prep_cfg: Dict[str, Any]) -> No
 
     df = pd.DataFrame(records)
     out_path = out_dir / "fuzzifier_objective_landscape.csv"
-    df.to_csv(out_path, index=False)
+    atomic_write_csv(out_path, df, index=False)
     print(f"Saved: {out_path}")
 
 
@@ -175,7 +177,7 @@ def audit_fuzzifier_policy_comparison(out_dir: Path, prep_cfg: Dict[str, Any], s
 
     df = pd.DataFrame(records)
     out_path = out_dir / "fuzzifier_policy_comparison.csv"
-    df.to_csv(out_path, index=False)
+    atomic_write_csv(out_path, df, index=False)
     print(f"Saved: {out_path}")
 
 
@@ -237,7 +239,7 @@ def audit_fuzzifier_m_grid(out_dir: Path, prep_cfg: Dict[str, Any], seeds: List[
 
     df = pd.DataFrame(records)
     out_path = out_dir / "fuzzifier_m_grid_audit.csv"
-    df.to_csv(out_path, index=False)
+    atomic_write_csv(out_path, df, index=False)
     print(f"Saved: {out_path}")
 
 

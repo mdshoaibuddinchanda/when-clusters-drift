@@ -717,6 +717,7 @@ real_datasets:
     source_provider: uci
     source_type: archive
     source_url: https://archive.ics.uci.edu/static/public/342/mice+protein+expression.zip
+    source_sha256: 5b46e1f4e104506397db9c1968e7ea43adceec844a2f55ed5cb38a944057a26d
     source_id: '342'
     source_version: '1'
     download_mode: auto
@@ -753,6 +754,7 @@ real_datasets:
     source_provider: uci
     source_type: archive
     source_url: https://archive.ics.uci.edu/static/public/240/human+activity+recognition+using+smartphones.zip
+    source_sha256: c00b803081a5c797cd5e4b83700a9810b38d53d9d84e01917e090e1fdbc81031
     source_id: '240'
     source_version: '1'
     download_mode: auto
@@ -1158,6 +1160,7 @@ real_datasets:
     source_provider: tableshift
     source_type: archive
     source_url: https://archive.ics.uci.edu/static/public/296/diabetes+130-us+hospitals+for+years+1999-2008.zip
+    source_sha256: f82ac129da2ddd2299391ff6fbae3a6a58b3edcf59ac9d7bd480c00fe453112a
     source_id: diabetes_readmission
     source_version: '1'
     download_mode: auto

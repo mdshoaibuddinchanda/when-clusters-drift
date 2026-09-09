@@ -30,6 +30,7 @@ from clusterdrift.data.folds import (
 from clusterdrift.data.manifest import compute_canonical_bundle_sha256, compute_file_sha256
 from clusterdrift.data.preprocess import SourceOnlyPreprocessor, build_preprocessor
 from clusterdrift.data.registry import get_dataset_spec, list_controlled_real, list_datasets, list_natural_shift
+from clusterdrift.shifts.hashing import atomic_write_csv, atomic_write_json
 
 PHASE1_FREEZE_COMMIT = "d5cb818589a138b25f10e926e9e83b198d369599"
 DATE_OF_FREEZE = "2026-09-07"
@@ -214,8 +215,7 @@ def generate_input_lock(
 
     if not dry_run:
         lock_path.parent.mkdir(parents=True, exist_ok=True)
-        with open(lock_path, "w", encoding="utf-8") as f:
-            json.dump(lock_doc, f, indent=2)
+        atomic_write_json(lock_path, lock_doc, indent=2, sort_keys=False)
 
     return lock_doc
 
@@ -919,8 +919,7 @@ def main():
             "total_inner_folds": sum(s["inner_folds_count"] for s in merged_splits),
             "splits": merged_splits,
         }
-        with open(manifest_path, "w", encoding="utf-8") as f:
-            json.dump(manifest_doc, f, indent=2)
+        atomic_write_json(manifest_path, manifest_doc, indent=2, sort_keys=False)
 
         if args.dataset and audit_path.exists() and not args.force:
             df_old = pd.read_csv(audit_path)
@@ -934,7 +933,7 @@ def main():
         else:
             df_final = pd.DataFrame(all_audit)
 
-        df_final.to_csv(audit_path, index=False)
+        atomic_write_csv(audit_path, df_final, index=False)
         print(f"\nAudit saved to {audit_path} ({len(df_final)} rows)")
         print(f"Manifest saved to {manifest_path} ({len(merged_splits)} splits)")
 

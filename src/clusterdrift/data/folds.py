@@ -9,6 +9,8 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import GroupKFold, KFold, TimeSeriesSplit
 
+from clusterdrift.shifts.hashing import atomic_write_json, atomic_write_npz
+
 
 @dataclass
 class InnerFold:
@@ -401,7 +403,7 @@ def save_fold_split_artifacts(
         npz_dict[f"inner_{inf.inner_fold}_train"] = np.ascontiguousarray(inf.train_indices, dtype=np.int64)
         npz_dict[f"inner_{inf.inner_fold}_val"] = np.ascontiguousarray(inf.val_indices, dtype=np.int64)
 
-    np.savez_compressed(npz_path, **npz_dict)
+    atomic_write_npz(npz_path, **npz_dict)
 
     # Save JSON metadata
     meta_dict = {
@@ -427,8 +429,7 @@ def save_fold_split_artifacts(
         "extra": split.metadata,
     }
 
-    with open(json_path, "w", encoding="utf-8") as f:
-        json.dump(meta_dict, f, indent=2)
+    atomic_write_json(json_path, meta_dict, indent=2, sort_keys=False)
 
     return npz_path, json_path, split_sha256
 
