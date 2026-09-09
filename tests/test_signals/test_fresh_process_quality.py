@@ -11,6 +11,10 @@ import yaml
 from clusterdrift.signals.engine import SignalCache
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+pytestmark = pytest.mark.skipif(
+    not (PROJECT_ROOT / "data" / "canonical" / "controlled" / "iris" / "features.parquet").exists(),
+    reason="Canonical iris dataset not present locally",
+)
 
 _spec = importlib.util.spec_from_file_location("compute_signals_script", PROJECT_ROOT / "scripts" / "06_compute_signals.py")
 _mod = importlib.util.module_from_spec(_spec)

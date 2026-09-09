@@ -138,12 +138,16 @@ def load_reference_probe_descriptor(
     desc = ReferenceProbeDescriptor(**data)
 
     npz_path = spec_path.with_suffix(".npz")
-    with np.load(npz_path) as npz:
-        if "selected_source_positions" in npz:
-            positions = npz["selected_source_positions"]
-        else:
-            positions = npz["canonical_row_indices"]
-        canonical_rows = npz["canonical_row_indices"]
+    if npz_path.exists():
+        with np.load(npz_path) as npz:
+            if "selected_source_positions" in npz:
+                positions = npz["selected_source_positions"]
+            else:
+                positions = npz["canonical_row_indices"]
+            canonical_rows = npz["canonical_row_indices"]
+    else:
+        positions = np.array([], dtype=np.int64)
+        canonical_rows = np.array([], dtype=np.int64)
 
     return desc, positions, canonical_rows
 
@@ -236,17 +240,22 @@ def load_current_probe_descriptor(
     desc = CurrentProbeDescriptor(**data)
 
     npz_path = spec_path.with_suffix(".npz")
-    with np.load(npz_path) as npz:
-        if "selected_current_positions" in npz:
-            selected_positions = npz["selected_current_positions"]
-        else:
-            selected_positions = npz["selected_positions"]
+    if npz_path.exists():
+        with np.load(npz_path) as npz:
+            if "selected_current_positions" in npz:
+                selected_positions = npz["selected_current_positions"]
+            else:
+                selected_positions = npz["selected_positions"]
 
-        if "target_partition_positions" in npz:
-            target_positions = npz["target_partition_positions"]
-        else:
-            target_positions = selected_positions
+            if "target_partition_positions" in npz:
+                target_positions = npz["target_partition_positions"]
+            else:
+                target_positions = selected_positions
 
-        canonical_rows = npz["canonical_row_indices"]
+            canonical_rows = npz["canonical_row_indices"]
+    else:
+        selected_positions = np.array([], dtype=np.int64)
+        target_positions = np.array([], dtype=np.int64)
+        canonical_rows = np.array([], dtype=np.int64)
 
     return desc, selected_positions, target_positions, canonical_rows

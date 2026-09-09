@@ -14,6 +14,10 @@ from clusterdrift.shifts.replay import (
 )
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+pytestmark = pytest.mark.skipif(
+    not (PROJECT_ROOT / "data" / "canonical" / "controlled" / "iris" / "features.parquet").exists(),
+    reason="Canonical iris dataset not present locally",
+)
 
 
 def test_clean_replay():

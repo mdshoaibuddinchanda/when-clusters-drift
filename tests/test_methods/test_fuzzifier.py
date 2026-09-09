@@ -12,6 +12,7 @@ from clusterdrift.methods.fuzzifier import FuzzifierResolution, resolve_fuzzifie
 from clusterdrift.data.preprocess import build_preprocessor
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+_S01_AVAILABLE = (PROJECT_ROOT / "data" / "synthetic" / "s01_balanced_gmm" / "features.parquet").exists()
 
 
 def test_dimension_adaptive_fuzzifier_exact_values():
@@ -92,6 +93,7 @@ def test_low_m_simplex_machine_precision():
     np.testing.assert_allclose(row_sums, 1.0, atol=1e-14)
 
 
+@pytest.mark.skipif(not _S01_AVAILABLE, reason="Synthetic s01 benchmark dataset not generated in lightweight clone")
 @pytest.mark.parametrize("seed", [1, 2, 3, 4, 5])
 def test_s01_dimension_rule_nondegenerate_all_seeds(seed):
     """Verify that dimension-adaptive m=1.2 on s01 produces non-degenerate solutions across all 5 seeds."""
@@ -119,6 +121,7 @@ def test_s01_dimension_rule_nondegenerate_all_seeds(seed):
     assert fcm.diagnostics_["normalized_min_center_distance"] > 0.5
 
 
+@pytest.mark.skipif(not _S01_AVAILABLE, reason="Synthetic s01 benchmark dataset not generated in lightweight clone")
 def test_fixed_m2_s01_collapse_reproduced():
     """Verify that fixed m=2.0 on s01 collapses to DEGENERATE_SOLUTION due to fuzzifier objective collapse."""
     feat_path = PROJECT_ROOT / "data" / "synthetic" / "s01_balanced_gmm" / "features.parquet"

@@ -25,6 +25,8 @@ FROZEN_PATHS = [
 
 def test_frozen_paths_unmodified():
     """Verify that no frozen directories or config files have git modifications."""
+    if not (PROJECT_ROOT / ".git").exists():
+        pytest.skip("Not inside a git worktree")
     cmd = ["git", "status", "--porcelain"]
     res = subprocess.run(cmd, cwd=PROJECT_ROOT, capture_output=True, text=True, check=True)
     lines = res.stdout.strip().splitlines()

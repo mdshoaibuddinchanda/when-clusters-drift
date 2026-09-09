@@ -5,7 +5,23 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics import silhouette_score
 
-from clusterdrift.methods.utils import ensure_feature_array
+def _ensure_feature_array(X: np.ndarray | pd.DataFrame) -> np.ndarray:
+    """Validate and convert input feature matrix to contiguous float64 2D numpy array."""
+    if isinstance(X, pd.DataFrame):
+        arr = X.to_numpy(dtype=np.float64, copy=False)
+    elif isinstance(X, np.ndarray):
+        arr = np.asarray(X, dtype=np.float64)
+    else:
+        raise TypeError(f"Expected pandas DataFrame or numpy array, got {type(X)}")
+
+    if arr.ndim != 2:
+        raise ValueError(f"Feature matrix must be 2-dimensional, got shape {arr.shape}")
+    if arr.shape[0] == 0 or arr.shape[1] == 0:
+        raise ValueError(f"Feature matrix must not be empty, got shape {arr.shape}")
+    if not np.all(np.isfinite(arr)):
+        raise ValueError("Feature matrix contains non-finite values (NaN, +inf, or -inf).")
+
+    return np.ascontiguousarray(arr)
 
 
 def silhouette_metric(
@@ -13,7 +29,7 @@ def silhouette_metric(
     labels: np.ndarray,
 ) -> Optional[float]:
     """Compute mean Silhouette Coefficient. Returns None if < 2 unique clusters."""
-    arr_X = ensure_feature_array(X)
+    arr_X = _ensure_feature_array(X)
     arr_labels = np.asarray(labels).ravel()
     unique_labels = np.unique(arr_labels)
     if len(unique_labels) < 2 or len(unique_labels) >= len(arr_labels):
@@ -65,7 +81,7 @@ def xie_beni_index(
     XB = sum_{i=1}^n sum_{k=1}^K u_{ik}^m * ||x_i - v_k||^2 / (n * min_{j != k} ||v_j - v_k||^2)
     Lower values indicate more compact, better-separated clusters.
     """
-    arr_X = ensure_feature_array(X)
+    arr_X = _ensure_feature_array(X)
     U = np.asarray(U, dtype=np.float64)
     centers = np.asarray(centers, dtype=np.float64)
 
