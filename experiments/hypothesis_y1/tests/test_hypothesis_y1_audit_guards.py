@@ -214,7 +214,7 @@ def test_corrected_replication_is_complete_and_provenance_bound() -> None:
     assert provenance["result_sha256"]["corrected_rows"] == digest(rows_path)
     assert provenance["result_sha256"]["corrected_model_metrics"] == digest(metrics_path)
     assert provenance["result_sha256"]["corrected_summary"] == digest(summary_path)
-    assert Path(provenance["interpreter"]).resolve() == Path(r"D:\Conda\p12\python.exe").resolve()
+    assert provenance["interpreter"] == r"D:\Conda\p12\python.exe"
 
 
 def test_decision_matrix_has_exact_required_mechanisms_and_columns() -> None:

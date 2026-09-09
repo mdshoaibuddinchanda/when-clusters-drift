@@ -21,6 +21,9 @@ configs/probes.yaml text eol=lf
 configs/signals.yaml text eol=lf
 configs/experiments/*.yaml text eol=lf
 data/falsification/phase7_input_lock.json text eol=lf
+experiments/hypothesis_y1/corrected_replication/hypothesis_y1_corrected_replication_summary.json text eol=lf
+experiments/hypothesis_y1/artifacts/hypothesis_y1_corrected_execution_provenance.json text eol=lf
+experiments/hypothesis_y1/artifacts/hypothesis_y1_final_summary.json text eol=lf
 
 # Scientific data and results frozen with CRLF:
 configs/shifts.yaml text eol=crlf
@@ -32,3 +35,6 @@ data/probes/** text eol=crlf
 data/signals/** text eol=crlf
 data/falsification/offline_shift_replay/** text eol=crlf
 results/** text eol=crlf
+experiments/hypothesis_y1/corrected_replication/*.csv text eol=crlf
+experiments/hypothesis_y1/artifacts/*.csv text eol=crlf
+

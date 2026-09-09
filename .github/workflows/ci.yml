@@ -33,8 +33,9 @@ jobs:
 
       - name: Verify Hypothesis-Y1 Master Audit & Falsification Suite
         run: |
-          pytest tests/test_falsification/ experiments/hypothesis_y1/tests/ -v
+          pytest tests/test_falsification/ experiments/hypothesis_y1/tests/ -v --tb=short
 
       - name: Verify Core Algorithms, Alignment, and Signals
         run: |
-          pytest tests/test_alignment/ tests/test_methods/ tests/test_signals/ tests/test_synthetic_reproducibility.py tests/test_synthetic_soft_truth.py tests/test_metric_correctness.py -v
+          pytest tests/test_alignment/ tests/test_methods/ tests/test_signals/ tests/test_synthetic_reproducibility.py tests/test_synthetic_soft_truth.py tests/test_metric_correctness.py -v --tb=short
+
