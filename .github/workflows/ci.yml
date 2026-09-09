@@ -19,11 +19,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Enforce CRLF line endings for frozen scientific hashes
-        run: |
-          git config core.autocrlf true
-          git checkout HEAD -- .
-
       - name: Set up Python 3.12
         uses: actions/setup-python@v5
         with:

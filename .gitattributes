@@ -1,7 +1,7 @@
-# Preserve exact CRLF line endings for all text artifacts across all platforms
-* text eol=crlf
+# Default: text files use native auto
+* text auto
 
-# Explicit binary files that must not undergo line conversion
+# Binary files must never undergo line conversion
 *.npy binary
 *.npz binary
 *.parquet binary
@@ -10,3 +10,25 @@
 *.png binary
 *.jpg binary
 *.jpeg binary
+
+# Scientific configs frozen with LF:
+configs/alignment.yaml text eol=lf
+configs/execution_phase7.yaml text eol=lf
+configs/falsification.yaml text eol=lf
+configs/methods.yaml text eol=lf
+configs/preprocessing.yaml text eol=lf
+configs/probes.yaml text eol=lf
+configs/signals.yaml text eol=lf
+configs/experiments/*.yaml text eol=lf
+data/falsification/phase7_input_lock.json text eol=lf
+
+# Scientific data and results frozen with CRLF:
+configs/shifts.yaml text eol=crlf
+configs/datasets.yaml text eol=crlf
+data/manifests/** text eol=crlf
+data/splits/** text eol=crlf
+data/shifts/** text eol=crlf
+data/probes/** text eol=crlf
+data/signals/** text eol=crlf
+data/falsification/offline_shift_replay/** text eol=crlf
+results/** text eol=crlf
