@@ -32,10 +32,32 @@ jobs:
           pip install -e .
 
       - name: Verify Hypothesis-Y1 Master Audit & Falsification Suite
+        id: test_suite1
+        shell: bash
         run: |
-          pytest tests/test_falsification/ experiments/hypothesis_y1/tests/ -v --tb=short
+          python -m pytest tests/test_falsification/ experiments/hypothesis_y1/tests/ -v --tb=short 2>&1 | tee test_suite1.log
 
       - name: Verify Core Algorithms, Alignment, and Signals
+        id: test_suite2
+        shell: bash
         run: |
-          pytest tests/test_alignment/ tests/test_methods/ tests/test_signals/ tests/test_synthetic_reproducibility.py tests/test_synthetic_soft_truth.py tests/test_metric_correctness.py -v --tb=short
+          python -m pytest tests/test_alignment/ tests/test_methods/ tests/test_signals/ tests/test_synthetic_reproducibility.py tests/test_synthetic_soft_truth.py tests/test_metric_correctness.py -v --tb=short 2>&1 | tee test_suite2.log
+
+      - name: Publish Test Summaries
+        if: always()
+        shell: bash
+        run: |
+          echo "## Test Run Diagnostics (${{ matrix.os }})" >> $GITHUB_STEP_SUMMARY
+          if [ -f test_suite1.log ]; then
+            echo "### Suite 1 (Falsification & Y1)" >> $GITHUB_STEP_SUMMARY
+            echo '```text' >> $GITHUB_STEP_SUMMARY
+            tail -n 120 test_suite1.log >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi
+          if [ -f test_suite2.log ]; then
+            echo "### Suite 2 (Core & Signals)" >> $GITHUB_STEP_SUMMARY
+            echo '```text' >> $GITHUB_STEP_SUMMARY
+            tail -n 120 test_suite2.log >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi
 
