@@ -26,18 +26,38 @@ htmlcov/
 *.swp
 *.swo
 
+# =========================================================================
+# Binary Data Files & Array Payloads (NEVER push data files to GitHub)
+# =========================================================================
+*.npz
+*.npy
+*.parquet
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.joblib
+*.feather
+*.arrow
+*.bin
+*.dat
+
 # Data directories (per Phase 1 specification)
 data/raw/**
 data/canonical/**
 data/synthetic/**
 data/processed/**
 data/splits/**
+data/probes/**
+data/shifts/cache/**
+data/signals/**
 runs/**
 results/*
 !results/baseline_validation/
 !results/shift_validation/
 !results/probe_validation/
 !results/alignment_validation/
+!results/falsification/
 
 # Preserve gitkeep, manifests, and documentation
 !data/processed/.gitkeep
@@ -48,17 +68,32 @@ results/*
 !data/splits/**/*.json
 !data/manifests/**
 !data/README.md
+!data/shifts/specs/**/*.json
+!data/falsification/**/*.json
 !results/baseline_validation/**
 !results/shift_validation/**
-
-# Cache and payload files for shifts
-data/shifts/cache/**
-data/shifts/**/*.parquet
-data/shifts/**/*.npy
-data/shifts/**/*.npz
+!results/probe_validation/**
+!results/alignment_validation/**
+!results/falsification/**
 
 # Credentials & secrets
 kaggle.json
 *.pem
 *.key
 .env
+
+# =========================================================================
+# ABSOLUTE RULE: NEVER TRACK OR PUSH ANY DATA OR ARRAY FILES
+# =========================================================================
+*.npz
+*.npy
+*.parquet
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.joblib
+*.feather
+*.arrow
+*.bin
+*.dat

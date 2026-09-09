@@ -1,0 +1,8 @@
+Author,Year,Title,Domain,Relevance_To_Project
+Bezdek,1981,"Pattern Recognition with Fuzzy Objective Function Algorithms",Fuzzy Clustering,"Foundations of FCM and membership entropy"
+Xie & Beni,1991,"A Validity Measure for Fuzzy Clustering",Cluster Validity,"Xie-Beni index benchmark for feature block P3"
+Gretton et al.,2012,"A Kernel Two-Sample Test",Distribution Shift,"MMD formulation used for covariate drift feature D_X (P0)"
+Bickel et al.,2009,"Discriminative Learning Under Covariate Shift",Dataset Shift,"Source-conditioned covariate shift framework"
+Rousseeuw,1987,"Silhouettes: A Graphical Aid to the Interpretation and Validation of Cluster Analysis",Cluster Validity,"Silhouette coefficient baseline for validity feature block P3"
+Pal & Bezdek,1995,"On Cluster Validity for the Fuzzy c-Means Model",Cluster Validity,"Partition Coefficient (PC) and Partition Entropy (PE) formulations"
+Sugiyama & Kawanabe,2012,"Machine Learning in Non-Stationary Environments",Distribution Shift,"Theoretical bounds on model risk under non-stationary covariate shift"
