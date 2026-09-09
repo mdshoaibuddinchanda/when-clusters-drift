@@ -1,0 +1,12 @@
+# Preserve exact CRLF line endings for all text artifacts across all platforms
+* text eol=crlf
+
+# Explicit binary files that must not undergo line conversion
+*.npy binary
+*.npz binary
+*.parquet binary
+*.zip binary
+*.tar.gz binary
+*.png binary
+*.jpg binary
+*.jpeg binary
